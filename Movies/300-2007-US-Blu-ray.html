@@ -1,340 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Chosen Palette: Warm Neutral (Stone, Amber, Slate) -->
-    <!-- Application Structure Plan: A tabbed interface is used, with sections for "Overview," "Video," "Audio," and "Special Features." This structure was chosen because the source report's content is naturally divided into distinct, non-hierarchical categories. Tabs allow the user to quickly navigate to the specific data they need (e.g., audio codecs) without a long scroll, mimicking the clean, task-oriented feel of a technical spec sheet or a disc's main menu, thus enhancing usability for this type of data. -->
-    <!-- Visualization & Content Choices:
-        - Report Info: Key release stats (Date, Studio, etc.) -> Goal: Inform -> Method: Styled HTML "stat cards" on the "Overview" tab for quick, at-a-glance reading.
-        - Report Info: Video Specs (Codec, Resolution, Ratio) -> Goal: Inform -> Method: Styled HTML "stat cards" on the "Video Specs" tab. A chart is not useful here as the data points are distinct properties, not comparable values.
-        - Report Info: Audio Specs (List of formats) -> Goal: Inform & Synthesize -> Method: A Doughnut Chart (Chart.js/Canvas) on the "Audio Specs" tab. -> Interaction: Hover to see labels. -> Justification: This chart visually synthesizes the *types* of audio (Lossless vs. Lossy) from the raw list, providing an immediate insight (2 lossless, 3 lossy) that the text alone does not.
-        - Report Info: Special Features List -> Goal: Organize & Engage -> Method: Interactive HTML list (accordion-style) on the "Special Features" tab. -> Interaction: Clicking a feature title reveals a brief description (JS-driven). -> Justification: This makes a static list feel "explorable" and interactive, similar to navigating a disc menu.
-        - Report Info: Quality Note -> Goal: Inform (Qualitative) -> Method: A styled blockquote on the "Overview" tab to highlight this key commentary.
-    -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>300 (2007 US Blu-ray)</title>
+    <title>300 (2007 US Blu-ray) | GitHub Pages</title>
+    <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
+        /* Custom font import and application (Inter) */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        
         body {
-            font-family: sans-serif;
-        }
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
-        
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 400px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 300px;
-            max-height: 400px;
-        }
-        @media (min-width: 768px) {
-            .chart-container {
-                height: 350px;
-            }
-        }
-
-        .tab-button.active {
-            border-color: #ca8a04;
-            color: #ca8a04;
-            font-weight: 600;
-        }
-
-        .tab-content {
-            display: none;
-        }
-        
-        .tab-content.active {
-            display: block;
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f7f7; /* Light background similar to docs sites */
         }
     </style>
 </head>
-<body class="bg-stone-50 text-stone-900 min-h-screen antialiased">
+<body class="antialiased min-h-screen">
 
-    <div class="container mx-auto p-4 md:p-8 max-w-5xl">
-        
-        <header class="text-center mb-8">
-            <h1 class="text-3xl md:text-4xl font-bold text-stone-800">300</h1>
-            <p class="text-lg md:text-xl text-stone-600">2007 US Blu-ray: Interactive Specification Report</p>
-        </header>
-
-        <main class="bg-white rounded-lg shadow-xl border border-stone-200 overflow-hidden">
-            <nav class="flex border-b border-stone-200" aria-label="Tabs">
-                <button class="tab-button flex-1 py-4 px-2 text-center text-sm sm:text-base font-medium text-stone-600 hover:text-stone-800 border-b-4 border-transparent active" data-tab="overview">
-                    Overview
-                </button>
-                <button class="tab-button flex-1 py-4 px-2 text-center text-sm sm:text-base font-medium text-stone-600 hover:text-stone-800 border-b-4 border-transparent" data-tab="video">
-                    Video Specs
-                </button>
-                <button class="tab-button flex-1 py-4 px-2 text-center text-sm sm:text-base font-medium text-stone-600 hover:text-stone-800 border-b-4 border-transparent" data-tab="audio">
-                    Audio Specs
-                </button>
-                <button class="tab-button flex-1 py-4 px-2 text-center text-sm sm:text-base font-medium text-stone-600 hover:text-stone-800 border-b-4 border-transparent" data-tab="features">
-                    Special Features
-                </button>
+    <!-- Header Navigation Bar (Minimalist GitHub style) -->
+    <header class="bg-white border-b border-gray-200 shadow-sm">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
+            <a href="#" class="text-xl font-bold text-gray-800 hover:text-red-700 transition duration-150">
+                /300-blu-ray-artifact
+            </a>
+            <nav class="hidden sm:block">
+                <a href="#" class="text-gray-600 hover:text-gray-900 mx-2 text-sm font-medium">Overview</a>
+                <a href="#" class="text-gray-600 hover:text-gray-900 mx-2 text-sm font-medium">Specs</a>
+                <a href="#" class="text-gray-600 hover:text-gray-900 mx-2 text-sm font-medium">History</a>
             </nav>
+        </div>
+    </header>
 
-            <div class="p-6 md:p-8">
+    <!-- Main Content Container -->
+    <main class="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8">
+        
+        <!-- Document Title -->
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-6 border-b-4 border-red-600 pb-2">
+            300 (Blu-ray)
+        </h1>
+
+        <!-- Content Grid (Image and Details) -->
+        <div class="grid md:grid-cols-3 gap-8">
+            
+            <!-- Cover Art / Placeholder -->
+            <div class="md:col-span-1">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-200">
+                    <img src="https://images.45cat.com/f/dv/300-27-dv.jpg"
+                         alt="300 Blu-ray Cover Placeholder"
+                         class="w-full h-auto object-cover transition duration-300 hover:opacity-90">
+                    
+                    <div class="p-4 bg-gray-50 border-t border-gray-200 text-center">
+                        <p class="text-xs text-gray-500 font-semibold uppercase">Media Artifact ID: BLU-300-2007</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Details Section -->
+            <div class="md:col-span-2 space-y-6">
                 
-                <section id="overview" class="tab-content active">
-                    <h2 class="text-2xl font-semibold text-stone-800 mb-4">Release Overview</h2>
-                    <p class="text-stone-700 mb-6">
-                        A summary of the 2007 Blu-ray release, highlighting its key attributes. This title was a key demonstrator for the HD format in its early years.
+                <!-- Key Details Card -->
+                <div class="bg-white p-6 rounded-lg shadow-xl border border-gray-100">
+                    <h2 class="text-2xl font-bold text-red-600 mb-4">Key Release Information</h2>
+                    <ul class="space-y-3 text-lg text-gray-700">
+                        <li class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-500 mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                            <span class="font-semibold text-gray-900">Release Date (USA):</span> July 31, 2007
+                        </li>
+                        <li class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-500 mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v14M5 19H3v-1l12-3v-1l-3 1-3 1-3 1-3 1M9 19H7V6l12-3v14" />
+                            </svg>
+                            <span class="font-semibold text-gray-900">Format:</span> Blu-ray Disc (First Generation)
+                        </li>
+                        <li class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-500 mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 11-1.447.809L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                            </svg>
+                            <span class="font-semibold text-gray-900">Studio:</span> Warner Bros. Home Video
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Synopsis / Context -->
+                <div class="bg-white p-6 rounded-lg shadow-lg border border-gray-100">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Synopsis</h2>
+                    <p class="text-gray-700 leading-relaxed">
+                        Based on the graphic novel by Frank Miller and Lynn Varley, <i>300</i> is a fictionalized retelling of the Battle of Thermopylae in 480 BC. It depicts King Leonidas (Gerard Butler) leading 300 Spartans against the Persian “god-King” Xerxes (Rodrigo Santoro) and his massive army. The Blu-ray release was one of the early high-definition titles, showcasing the film’s highly stylized, comic-book aesthetic with vibrant color grading and stark visual fidelity, making it a popular showcase disc for the emerging format.
                     </p>
-
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-                        <div class="bg-stone-100 p-4 rounded-lg border border-stone-200 text-center">
-                            <span class="text-sm text-stone-600 block">Release Date</span>
-                            <span class="text-lg font-semibold text-stone-900">July 31, 2007</span>
-                        </div>
-                        <div class="bg-stone-100 p-4 rounded-lg border border-stone-200 text-center">
-                            <span class="text-sm text-stone-600 block">Disc Type</span>
-                            <span class="text-lg font-semibold text-stone-900">BD-50 Dual-Layer</span>
-                        </div>
-                        <div class="bg-stone-100 p-4 rounded-lg border border-stone-200 text-center">
-                            <span class="text-sm text-stone-600 block">Run Time</span>
-                            <span class="text-lg font-semibold text-stone-900">117 Minutes</span>
-                        </div>
-                        <div class="bg-stone-100 p-4 rounded-lg border border-stone-200 text-center">
-                            <span class="text-sm text-stone-600 block">Region</span>
-                            <span class="text-lg font-semibold text-stone-900">Region Free</span>
-                        </div>
-                    </div>
-
-                    <blockquote class="bg-yellow-50 border-l-4 border-yellow-500 text-yellow-800 p-4 rounded-r-lg my-6">
-                        <h3 class="font-semibold text-lg">Note on Quality</h3>
-                        <p class="mt-1">This disc was noted for its striking visual presentation that faithfully reproduced the film’s highly stylized, desaturated, and grainy aesthetic. The inclusion of two lossless audio options (Dolby TrueHD and LPCM) also made it a key demonstration disc for early home theater enthusiasts.</p>
-                    </blockquote>
-                </section>
-
-                <section id="video" class="tab-content">
-                    <h2 class="text-2xl font-semibold text-stone-800 mb-4">Video Specifications</h2>
-                    <p class="text-stone-700 mb-6">
-                        A detailed breakdown of the visual specifications. This disc was an early benchmark for 1080p video transfer quality, using the VC-1 codec.
-                    </p>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div class="bg-stone-100 p-6 rounded-lg border border-stone-200 text-center">
-                            <span class="text-base text-stone-600 block">Video Codec</span>
-                            <span class="text-2xl font-bold text-stone-900">VC-1</span>
-                        </div>
-                        <div class="bg-stone-100 p-6 rounded-lg border border-stone-200 text-center">
-                            <span class="text-base text-stone-600 block">Resolution</span>
-                            <span class="text-2xl font-bold text-stone-900">1080p</span>
-                        </div>
-                        <div class="bg-stone-100 p-6 rounded-lg border border-stone-200 text-center">
-                            <span class="text-base text-stone-600 block">Aspect Ratio</span>
-                            <span class="text-2xl font-bold text-stone-900">2.40:1</span>
-                        </div>
-                    </div>
-                     <div class="mt-6 bg-blue-50 p-4 rounded-lg border border-blue-200">
-                        <h3 class="font-semibold text-blue-800">Additional Info</h3>
-                        <ul class="list-disc list-inside text-blue-700 mt-2">
-                            <li>Subtitles: English, French, Spanish</li>
-                            <li>Studio: Warner Bros.</li>
-                            <li>MPAA Rating: R</li>
-                        </ul>
-                    </div>
-                </section>
-
-                <section id="audio" class="tab-content">
-                    <h2 class="text-2xl font-semibold text-stone-800 mb-4">Audio Specifications</h2>
-                    <p class="text-stone-700 mb-6">
-                        Explore the audio formats included on the disc. This release was notable for featuring two distinct lossless audio options, providing a reference-quality sound experience.
-                    </p>
-                    <div class="md:flex md:space-x-6">
-                        <div class="md:w-1/2">
-                            <h3 class="text-lg font-semibold text-stone-700 mb-2">Audio Tracks</h3>
-                            <ul class="space-y-2">
-                                <li class="flex items-center p-3 bg-stone-100 rounded-lg">
-                                    <span class="font-semibold text-stone-800 flex-1">English Dolby TrueHD 5.1</span>
-                                    <span class="text-sm font-medium text-green-700 bg-green-100 px-2 py-0.5 rounded-full">Lossless</span>
-                                </li>
-                                <li class="flex items-center p-3 bg-stone-100 rounded-lg">
-                                    <span class="font-semibold text-stone-800 flex-1">English 5.1 LPCM</span>
-                                    <span class="text-sm font-medium text-green-700 bg-green-100 px-2 py-0.5 rounded-full">Lossless</span>
-                                </li>
-                                <li class="flex items-center p-3 bg-stone-100 rounded-lg">
-                                    <span class="font-semibold text-stone-800 flex-1">English Dolby Digital 5.1</span>
-                                    <span class="text-sm font-medium text-orange-700 bg-orange-100 px-2 py-0.5 rounded-full">Lossy</span>
-                                </li>
-                                <li class="flex items-center p-3 bg-stone-100 rounded-lg">
-                                    <span class="font-semibold text-stone-800 flex-1">French Dolby Digital 5.1</span>
-                                    <span class="text-sm font-medium text-orange-700 bg-orange-100 px-2 py-0.5 rounded-full">Lossy</span>
-                                </li>
-                                <li class="flex items-center p-3 bg-stone-100 rounded-lg">
-                                    <span class="font-semibold text-stone-800 flex-1">Spanish Dolby Digital 5.1</span>
-                                    <span class="text-sm font-medium text-orange-700 bg-orange-100 px-2 py-0.5 rounded-full">Lossy</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="md:w-1/2 mt-8 md:mt-0">
-                             <h3 class="text-lg font-semibold text-stone-700 mb-2 text-center">Audio Track Types</h3>
-                            <div class="chart-container">
-                                <canvas id="audioChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section id="features" class="tab-content">
-                    <h2 class="text-2xl font-semibold text-stone-800 mb-4">Special Features</h2>
-                    <p class="text-stone-700 mb-6">
-                        A complete list of the bonus content included on the disc, presented in High Definition. Click on any feature to learn more about it.
-                    </p>
-                    <div class="space-y-2">
-                        <div class="feature-item">
-                            <button class="feature-button w-full text-left p-4 bg-stone-100 hover:bg-stone-200 rounded-lg font-semibold text-stone-800 transition flex justify-between items-center">
-                                Audio Commentary
-                                <span class="text-stone-500 text-xl_">+</span>
-                            </button>
-                            <div class="feature-content hidden p-4 bg-white border border-t-0 border-stone-200 rounded-b-lg">
-                                <p class="text-stone-700">Feature-length commentary with Director Zack Snyder, writer Kurt Johnstad, and Director of Photography Larry Fong, diving deep into the film’s production and stylistic choices.</p>
-                            </div>
-                        </div>
-                         <div class="feature-item">
-                            <button class="feature-button w-full text-left p-4 bg-stone-100 hover:bg-stone-200 rounded-lg font-semibold text-stone-800 transition flex justify-between items-center">
-                                Additional Scenes
-                                <span class="text-stone-500 text-xl">+</span>
-                            </button>
-                            <div class="feature-content hidden p-4 bg-white border border-t-0 border-stone-200 rounded-b-lg">
-                                <p class="text-stone-700">Deleted scenes featuring the Traitorous Hunchback and Never-Before-Seen Giant Warriors, with introductions by Director Zack Snyder.</p>
-                            </div>
-                        </div>
-                         <div class="feature-item">
-                            <button class="feature-button w-full text-left p-4 bg-stone-100 hover:bg-stone-200 rounded-lg font-semibold text-stone-800 transition flex justify-between items-center">
-                                <i>300</i> Spartans - Fact or Fiction?
-                                <span class="text-stone-500 text-xl">+</span>
-                            </button>
-                            <div class="feature-content hidden p-4 bg-white border border-t-0 border-stone-200 rounded-b-lg">
-                                <p class="text-stone-700">A featurette exploring the historical basis for the film and the realities of Spartan culture, comparing history to the graphic novel's portrayal.</p>
-                            </div>
-                        </div>
-                         <div class="feature-item">
-                            <button class="feature-button w-full text-left p-4 bg-stone-100 hover:bg-stone-200 rounded-lg font-semibold text-stone-800 transition flex justify-between items-center">
-                                Who Were the Spartans?
-                                <span class="text-stone-500 text-xl">+</span>
-                            </button>
-                            <div class="feature-content hidden p-4 bg-white border border-t-0 border-stone-200 rounded-b-lg">
-                                <p class="text-stone-700">A closer look at how the actors researched and built their characters based on the customs and warrior ethos of ancient Sparta.</p>
-                            </div>
-                        </div>
-                         <div class="feature-item">
-                            <button class="feature-button w-full text-left p-4 bg-stone-100 hover:bg-stone-200 rounded-lg font-semibold text-stone-800 transition flex justify-between items-center">
-                                Frank Miller’s Vision Realized
-                                <span class="text-stone-500 text-xl">+</span>
-                            </button>
-                            <div class="feature-content hidden p-4 bg-white border border-t-0 border-stone-200 rounded-b-lg">
-                                <p class="text-stone-700">An inside look at the adaptation process, translating the unique visual style of Frank Miller’s graphic novel to the screen using green screens and digital backgrounds.</p>
-                            </div>
-                        </div>
-                         <div class="feature-item">
-                            <button class="feature-button w-full text-left p-4 bg-stone-100 hover:bg-stone-200 rounded-lg font-semibold text-stone-800 transition flex justify-between items-center">
-                                Webisodes
-                                <span class="text-stone-500 text-xl">+</span>
-                            </button>
-                            <div class="feature-content hidden p-4 bg-white border border-t-0 border-stone-200 rounded-b-lg">
-                                <p class="text-stone-700">A collection of short behind-the-scenes segments covering various aspects of production, including Production Design, Wardrobe, Stunt Work, and Adapting the Graphic Novel.</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                </div>
+                
+                <!-- Technical Specs (Mockup) -->
+                <div class="bg-white p-6 rounded-lg shadow-lg border border-gray-100">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Technical Specifications</h2>
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Feature
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Detail
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Video</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">1080p VC-1 Encoding, 2.4:1 Aspect Ratio</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Audio</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">English (Dolby TrueHD 5.1) (48kHz/16-bit) <br> English (LPCM 5.1) <br> English (Dolby Digital 5.1) <br> French (Québéc) (Dolby Digital 5.1) <br> Spanish (Dolby Digital 5.1)</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Subtitles</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">English, French, Spanish</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Runtime</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">116 minutes</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
             </div>
-        </main>
+        </div>
+    </main>
 
-        <footer class="text-center mt-8 text-sm text-stone-500">
-            <p>Interactive report generated based on data for the <i>300</i> (2007) US Blu-ray release.</p>
-        </footer>
-
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            
-            const tabs = document.querySelectorAll('.tab-button');
-            const tabContents = document.querySelectorAll('.tab-content');
-
-            tabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    const target = document.getElementById(tab.dataset.tab);
-
-                    tabs.forEach(t => t.classList.remove('active'));
-                    tab.classList.add('active');
-
-                    tabContents.forEach(c => c.classList.remove('active'));
-                    target.classList.add('active');
-                });
-            });
-
-            const featureItems = document.querySelectorAll('.feature-item');
-            featureItems.forEach(item => {
-                const button = item.querySelector('.feature-button');
-                const content = item.querySelector('.feature-content');
-                const icon = button.querySelector('span');
-
-                button.addEventListener('click', () => {
-                    const isHidden = content.classList.contains('hidden');
-                    if (isHidden) {
-                        content.classList.remove('hidden');
-                        icon.textContent = '−';
-                    } else {
-                        content.classList.add('hidden');
-                        icon.textContent = '+';
-                    }
-                });
-            });
-
-            const audioCtx = document.getElementById('audioChart');
-            if (audioCtx) {
-                new Chart(audioCtx, {
-                    type: 'doughnut',
-                    data: {
-                        labels: ['Lossless', 'Lossy'],
-                        datasets: [{
-                            label: 'Audio Track Types',
-                            data: [2, 3],
-                            backgroundColor: [
-                                'rgb(22, 163, 74)',
-                                'rgb(249, 115, 22)'
-                            ],
-                            borderColor: [
-                                'rgb(255, 255, 255)',
-                                'rgb(255, 255, 255)'
-                            ],
-                            borderWidth: 3
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                position: 'bottom',
-                                labels: {
-                                    font: {
-                                        size: 14
-                                    },
-                                    color: '#44403c'
-                                }
-                            },
-                            tooltip: {
-                                callbacks: {
-                                    label: function(context) {
-                                        let label = context.label || '';
-                                        let value = context.raw;
-                                        return `${label}: ${value} tracks`;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                });
-            }
-        });
-    </script>
+    <!-- Footer (GitHub Pages inspired) -->
+    <footer class="mt-12 border-t border-gray-300 py-6 text-center bg-white shadow-sm">
+        <p class="text-sm text-gray-500">
+            Powered by <a href="#" class="text-red-600 hover:underline font-medium">GitHub Artifacts</a> and Spartan Resolve.
+        </p>
+        <p class="text-xs text-gray-400 mt-1">
+            Documentation generated for artifact BLU-300-2007 on November 2025.
+        </p>
+    </footer>
 
 </body>
 </html>
