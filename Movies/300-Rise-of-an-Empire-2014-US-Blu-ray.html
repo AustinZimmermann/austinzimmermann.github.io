@@ -3,295 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>300: Rise of an Empire (2014 US Blu-ray)</title>
+    <title>300: Rise of an Empire (Blu-ray) | Release date: June 24, 2014 (USA) | GitHub Pages</title>
+    <!-- Load Tailwind CSS from CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
+        /* Apply a default font and dark background */
         body {
-            font-family: sans-serif;
+            font-family: 'Inter', sans-serif;
+            background-color: #1a1a1a; /* Dark gray/nearly black */
+            color: #d1d5db; /* Light gray for readability */
         }
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
-        
-        .tab-btn {
-            @apply px-4 py-2 font-semibold rounded-t-lg transition-colors duration-200 focus:outline-none;
+        .hero-background {
+            /* A subtle, dark pattern or gradient to evoke a cinematic feel */
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://placehold.co/1200x600/1e1e1e/d1d5db?text=Ancient+Warfare+Background');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
-        .tab-btn.active {
-            @apply bg-white text-blue-700;
-        }
-        .tab-btn.inactive {
-            @apply bg-blue-100 text-blue-600 hover:bg-blue-200;
-        }
-        .content-section {
-            @apply bg-white p-6 md:p-8 rounded-b-lg rounded-tr-lg shadow-lg;
-        }
-        .feature-item {
-            @apply w-full text-left px-4 py-3 rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50;
-        }
-        .feature-item.active {
-            @apply bg-blue-700 text-white shadow-md;
-        }
-        .feature-item.inactive {
-            @apply bg-neutral-100 text-neutral-700 hover:bg-neutral-200 hover:text-neutral-900;
-        }
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 400px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 280px;
-            max-height: 300px;
-        }
-        @media (min-width: 768px) {
-            .chart-container {
-                height: 300px;
-                max-height: 350px;
-            }
+        .gold-text {
+            color: #d4af37; /* Gold color */
         }
     </style>
-    <!-- Chosen Palette: Warm Neutrals (Tailwind 'neutral' scale) with a 'blue' accent -->
-    <!-- Application Structure Plan: A tabbed SPA (Overview, Special Features). Overview shows key specs. Special Features section provides a data visualization (Film vs. Extras runtime) and an interactive selector to explore details of each featurette. This structure separates static specs from interactive content exploration, which is more engaging for a user than a single static page. -->
-    <!-- Visualization & Content Choices: 1. Tech Specs (Table) -> Goal: Inform -> HTML Table -> Interaction: None -> Justification: Clearest way to present key-value data. 2. Runtimes (Film/Extras) -> Goal: Compare/Synthesize -> Doughnut Chart (Chart.js) -> Interaction: Hover Tooltip -> Justification: Visually quantifies the amount of bonus content relative to the film. 3. Special Features List -> Goal: Organize/Explore -> Interactive List + Content Pane -> Interaction: Click list item to update pane -> Justification: Engages user by letting them 'discover' the details for each feature, rather than just reading a long list. -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-dark': '#1a1a1a',
+                        'accent-gold': '#d4af37',
+                        'accent-red': '#cc0000',
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body class="bg-neutral-100 text-neutral-800 antialiased">
+<body class="min-h-screen">
 
-    <div class="container max-w-6xl mx-auto p-4 sm:p-6 md:p-12">
-        
-        <header class="mb-8">
-            <h1 class="text-3xl md:text-5xl font-bold text-neutral-900">300: Rise of an Empire</h1>
-            <p class="text-xl md:text-2xl text-neutral-600 mt-2">Interactive Blu-ray Guide (2014 US Release)</p>
-        </header>
-
-        <nav class="flex">
-            <button id="tab-overview" class="tab-btn active">Overview</button>
-            <button id="tab-features" class="tab-btn inactive">Special Features</button>
-        </nav>
-
-        <main>
-            <section id="overview-section" class="content-section">
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div>
-                        <h2 class="text-2xl font-bold text-blue-800 mb-4">Disc Summary</h2>
-                        <p class="text-neutral-700 leading-relaxed">
-                            The 2014 US Blu-ray release of <i>300: Rise of an Empire</i> (often packaged as a Blu-ray + DVD + Digital HD UltraViolet Combo Pack) is highly regarded for its reference-quality audio and video presentation of the film's extreme visual style. This guide provides an interactive look at the technical specifications and bonus content included on the disc.
-                        </p>
-                    </div>
-                    <div>
-                        <h2 class="text-2xl font-bold text-blue-800 mb-4">Technical Specifications</h2>
-                        <div class="overflow-x-auto rounded-lg border border-neutral-200">
-                            <table class="w-full min-w-full divide-y divide-neutral-200">
-                                <tbody class="divide-y divide-neutral-200 bg-white">
-                                    <tr class="hover:bg-neutral-50">
-                                        <td class="px-4 py-3 font-semibold text-neutral-800">Video Resolution</td>
-                                        <td class="px-4 py-3 text-neutral-700">1080p</td>
-                                    </tr>
-                                    <tr class="hover:bg-neutral-50">
-                                        <td class="px-4 py-3 font-semibold text-neutral-800">Aspect Ratio</td>
-                                        <td class="px-4 py-3 text-neutral-700">2.40:1 (Widescreen)</td>
-                                    </tr>
-                                    <tr class="hover:bg-neutral-50">
-                                        <td class="px-4 py-3 font-semibold text-neutral-800">Main Audio</td>
-                                        <td class="px-4 py-3 text-neutral-700">English DTS-HD Master Audio 7.1</td>
-                                    </tr>
-                                    <tr class="hover:bg-neutral-50">
-                                        <td class="px-4 py-3 font-semibold text-neutral-800">Alternative Audio</td>
-                                        <td class="px-4 py-3 text-neutral-700">French & Spanish Dolby Digital 5.1</td>
-                                    </tr>
-                                    <tr class="hover:bg-neutral-50">
-                                        <td class="px-4 py-3 font-semibold text-neutral-800">Subtitles</td>
-                                        <td class="px-4 py-3 text-neutral-700">English SDH, French, Spanish</td>
-                                    </tr>
-                                    <tr class="hover:bg-neutral-50">
-                                        <td class="px-4 py-3 font-semibold text-neutral-800">Film Runtime</td>
-                                        <td class="px-4 py-3 text-neutral-700">102 Minutes</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="features-section" class="content-section hidden">
-                <p class="text-lg text-neutral-700 mb-8 max-w-4xl">
-                    This disc features a focused set of featurettes diving into the film’s production, historical context, and visual style. Explore the bonus content breakdown below. Click on any feature to see its detailed description.
-                </p>
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="md:col-span-1 flex flex-col space-y-6">
-                        <div>
-                            <h3 class="text-xl font-bold text-blue-800 mb-3 text-center">Content Breakdown</h3>
-                            <div class="chart-container">
-                                <canvas id="runtime-chart"></canvas>
-                            </div>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-blue-800 mb-3">Explore Features</h3>
-                            <nav id="feature-nav" class="flex flex-col space-y-2"></nav>
-                        </div>
-                    </div>
-
-                    <div id="feature-detail" class="md:col-span-2 bg-neutral-100 rounded-lg p-6 min-h-[300px] border border-neutral-200 transition-all duration-300">
-                    </div>
-                </div>
-            </section>
-        </main>
-
+    <div class="hero-background py-16 md:py-32 flex items-center justify-center rounded-b-xl shadow-2xl">
+        <div class="text-center px-4">
+            <h1 class="text-5xl md:text-7xl font-extrabold gold-text tracking-tight uppercase mb-4">
+                300: Rise of an Empire
+            </h1>
+            <p class="text-xl md:text-2xl text-white font-light">
+                The Battle Continues on Blu-ray
+            </p>
+        </div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const tabs = {
-                overview: document.getElementById('tab-overview'),
-                features: document.getElementById('tab-features')
-            };
-            const sections = {
-                overview: document.getElementById('overview-section'),
-                features: document.getElementById('features-section')
-            };
-            const featureNav = document.getElementById('feature-nav');
-            const featureDetail = document.getElementById('feature-detail');
-            let runtimeChart = null;
+    <main class="container mx-auto p-4 md:p-8">
 
-            const specialFeaturesData = {
-                'the-300-effect': {
-                    title: 'The 300 Effect',
-                    runtime: '~30 Minutes',
-                    description: 'This extensive behind-the-scenes look is typically broken down into several chapters and covers the sequel’s concept, the visual design, and how the story ties in with the first film, <i>300</i>.'
-                },
-                'real-leaders': {
-                    title: 'Real Leaders & Legends',
-                    runtime: '~23-25 Minutes',
-                    description: 'This featurette provides historical context for the Greco-Persian Wars, the real-life figures like Themistocles and Artemisia, and discusses where the film’s fictionalized narrative deviates from recorded history.'
-                },
-                'women-warriors': {
-                    title: 'Women Warriors',
-                    runtime: '~12 Minutes',
-                    description: 'A segment dedicated to the powerful female characters in the film, particularly Eva Green’s Artemisia and Lena Headey’s returning Queen Gorgo, examining their roles and influence within the narrative.'
-                },
-                'savage-warships': {
-                    title: 'Savage Warships',
-                    runtime: '~11 Minutes',
-                    description: 'This focuses on the naval elements of the film, covering the design and strategy of the ancient warships (triremes) and how the sea battles were conceptualized and filmed.'
-                },
-                'becoming-warrior': {
-                    title: 'Becoming a Warrior',
-                    runtime: '~5 Minutes',
-                    description: 'A brief featurette focusing on the intense physical training and workout regimens the lead actors undertook to prepare for their roles.'
-                }
-            };
-            
-            const totalFilmRuntime = 102;
-            const totalFeaturesRuntime = 30 + 24 + 12 + 11 + 5;
+        <!-- Release Details Card -->
+        <div class="bg-primary-dark p-6 md:p-10 rounded-xl shadow-lg border-t-4 border-accent-red mt-[-40px] relative z-10">
+            <h2 class="text-3xl font-bold text-accent-red mb-4">Blu-ray Release Information</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Blu-ray Artwork -->
+                <div class="flex justify-center">
+                    <img
+                        src="https://placehold.co/300x450/333333/ffffff?text=Blu-ray+Cover+Art"
+                        alt="300: Rise of an Empire Blu-ray Cover"
+                        class="w-full max-w-xs rounded-lg shadow-2xl transition duration-300 hover:shadow-accent-gold"
+                        onerror="this.onerror=null; this.src='https://placehold.co/300x450/4b5563/ffffff?text=Image+Unavailable'"
+                    >
+                </div>
 
-            function showTab(tabName) {
-                Object.keys(tabs).forEach(key => {
-                    const tab = tabs[key];
-                    const section = sections[key];
-                    if (key === tabName) {
-                        tab.classList.remove('inactive');
-                        tab.classList.add('active');
-                        section.classList.remove('hidden');
-                    } else {
-                        tab.classList.remove('active');
-                        tab.classList.add('inactive');
-                        section.classList.add('hidden');
-                    }
-                });
+                <!-- Details List -->
+                <div class="space-y-4">
+                    <p class="text-lg">
+                        <span class="font-semibold gold-text">Format:</span> Blu-ray, Digital HD
+                    </p>
+                    <p class="text-lg">
+                        <span class="font-semibold gold-text">Original Release:</span> March 7, 2014
+                    </p>
+                    <p class="text-3xl font-extrabold py-2 bg-accent-gold/10 rounded-lg text-center border border-accent-gold">
+                        <span class="text-accent-gold">USA Blu-ray Release Date:</span> June 24, 2014
+                    </p>
+                    <p class="text-lg">
+                        <span class="font-semibold gold-text">Studio:</span> Warner Bros. Home Entertainment
+                    </p>
+                    <p class="text-lg">
+                        <span class="font-semibold gold-text">Run Time:</span> Approx. 102 Minutes
+                    </p>
+                </div>
+            </div>
+        </div>
 
-                if (tabName === 'features' && !runtimeChart) {
-                    createRuntimeChart();
-                }
-            }
+        <!-- Synopsis Section -->
+        <div class="mt-12">
+            <h2 class="text-3xl font-bold gold-text border-b border-accent-red pb-2 mb-6">Synopsis & Special Features</h2>
 
-            function showFeatureDetail(featureKey) {
-                const data = specialFeaturesData[featureKey];
-                if (!data) return;
-                
-                featureDetail.innerHTML = `
-                    <h3 class="text-2xl font-bold text-blue-800 mb-2">${data.title}</h3>
-                    <p class="text-sm font-semibold text-neutral-500 uppercase mb-4">${data.runtime}</p>
-                    <p class="text-neutral-700 leading-relaxed">${data.description}</p>
-                `;
-                
-                document.querySelectorAll('.feature-item').forEach(btn => {
-                    if (btn.dataset.key === featureKey) {
-                        btn.classList.remove('inactive');
-                        btn.classList.add('active');
-                    } else {
-                        btn.classList.remove('active');
-                        btn.classList.add('inactive');
-                    }
-                });
-            }
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Synopsis Column -->
+                <div class="lg:col-span-2">
+                    <h3 class="text-2xl font-semibold text-accent-red mb-3">Film Summary</h3>
+                    <p class="mb-4 leading-relaxed">
+                        Based on Frank Miller’s graphic novel <i>Xerxes</i>, the film follows the Greek general Themistocles as he attempts to unite all of Greece and battle the massive invading Persian forces, led by Xerxes, the mortal-turned-god. The decisive confrontation takes place at sea, where Themistocles faces off against Artemisia, the ruthless commander of the Persian navy, in a bloody and stylized naval war that parallels the heroic stand at Thermopylae.
+                    </p>
+                    <p class="leading-relaxed border-l-4 border-accent-gold pl-4 italic text-gray-400">
+                        “The only hope for Greece is the unification of its people.”
+                    </p>
+                </div>
 
-            function createRuntimeChart() {
-                const ctx = document.getElementById('runtime-chart').getContext('2d');
-                runtimeChart = new Chart(ctx, {
-                    type: 'doughnut',
-                    data: {
-                        labels: ['Film Runtime', 'Special Features'],
-                        datasets: [{
-                            data: [totalFilmRuntime, totalFeaturesRuntime],
-                            backgroundColor: [
-                                'rgba(37, 99, 235, 0.8)',
-                                'rgba(100, 116, 139, 0.8)'
-                            ],
-                            borderColor: [
-                                'rgba(37, 99, 235, 1)',
-                                'rgba(100, 116, 139, 1)'
-                            ],
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                position: 'bottom',
-                                labels: {
-                                    font: {
-                                        size: 14,
-                                        family: "'Inter', sans-serif"
-                                    }
-                                }
-                            },
-                            tooltip: {
-                                callbacks: {
-                                    label: function(context) {
-                                        let label = context.label || '';
-                                        if (label) {
-                                            label += ': ';
-                                        }
-                                        if (context.parsed !== null) {
-                                            label += context.parsed + ' minutes';
-                                        }
-                                        return label;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                });
-            }
+                <!-- Features Column -->
+                <div class="lg:col-span-1 bg-gray-800 p-6 rounded-lg shadow-inner">
+                    <h3 class="text-2xl font-semibold text-accent-gold mb-3">Exclusive Blu-ray Features</h3>
+                    <ul class="list-none space-y-2 text-sm">
+                        <li class="flex items-start">
+                            <span class="text-accent-red font-bold mr-2">&bull;</span>
+                            <span class="flex-1">The Real Story Behind <i>300: Rise of an Empire</i></span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-accent-red font-bold mr-2">&bull;</span>
+                            <span class="flex-1">A New Breed of Hero: Themistocles</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-accent-red font-bold mr-2">&bull;</span>
+                            <span class="flex-1">Forging a Hero: The Stunts and Visual Effects</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-accent-red font-bold mr-2">&bull;</span>
+                            <span class="flex-1">Brutal Battles and Epic Effects: The Naval War</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
-            tabs.overview.addEventListener('click', () => showTab('overview'));
-            tabs.features.addEventListener('click', () => showTab('features'));
+    </main>
 
-            Object.keys(specialFeaturesData).forEach(key => {
-                const data = specialFeaturesData[key];
-                const button = document.createElement('button');
-                button.className = 'feature-item inactive';
-                button.textContent = data.title;
-                button.dataset.key = key;
-                button.addEventListener('click', () => showFeatureDetail(key));
-                featureNav.appendChild(button);
-            });
+    <footer class="mt-16 bg-black p-6 text-center text-gray-500 text-sm">
+        <p>&copy; 2023 Movie Fan Page. Information based on the US Blu-ray Release (June 24, 2014).</p>
+        <p>This is a mock GitHub Pages artifact showcasing HTML/Tailwind styling.</p>
+    </footer>
 
-            showTab('overview');
-            showFeatureDetail('the-300-effect');
-        });
-    </script>
 </body>
 </html>
