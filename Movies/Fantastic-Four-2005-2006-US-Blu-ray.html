@@ -3,346 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fantastic Four (2005) (2006 US Blu-ray)</title>
+    <title>Fantastic Four (Blu-ray) | Release date: November 14, 2006 (USA) | GitHub Pages</title>
+    <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Chosen Palette: Subtle Slate -->
-    <!-- Application Structure Plan: I've designed this SPA using a tabbed navigation structure. This is the most intuitive way for a user to consume the distinct sections of the source report (Specs, Analysis, Features) without being overwhelmed. The user clicks a tab ("Overview", "Technical Analysis", etc.) and the main content area dynamically updates to show *only* that information. This non-linear, user-driven exploration is more engaging than a static report and keeps all related content cleanly organized in a single view. -->
-    <!-- Visualization & Content Choices:
-        - Specs Table -> Goal: Inform -> Viz: Styled HTML Table. Interaction: None. Justification: A table is the clearest, most standard way to present key/value technical data.
-        - Tech Analysis -> Goal: Compare/Inform -> Viz: Doughnut Charts (Chart.js) + Text. Interaction: Hover Tooltips. Justification: The charts visually summarize the qualitative "mixed" (video) vs. "superb" (audio) reviews from the text, making the comparison immediate. Chart.js runs on Canvas.
-        - Special Features -> Goal: Inform -> Viz: Styled HTML List + HTML/CSS "Gauge". Interaction: None. Justification: A list is sufficient, and the CSS-based "gauge" provides a quick visual cue for the report's "sparse" finding.
-        - Version Note -> Goal: Inform/Warn -> Viz: Styled HTML Info Box. Interaction: None. Justification: A high-visibility info box is best for this critical caveat.
-    -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
+        /* Custom styles for the mobile-first design */
         body {
-            font-family: sans-serif;
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f7f7; /* Light gray background */
         }
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-        
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 280px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 280px;
-            max-height: 280px;
+        /* Style for the main container to center content */
+        .container-hero {
+            max-width: 100vw;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
         }
-
-        .tab-btn.active {
-            border-bottom-color: #3b82f6;
-            color: #3b82f6;
-            font-weight: 600;
+        /* Custom Marvel-inspired color palette */
+        .bg-marvel-red {
+            background-color: #E62325;
         }
-        
-        .tab-btn {
-            transition: all 0.3s ease;
-            border-bottom-width: 3px;
-            border-bottom-color: transparent;
+        .text-marvel-blue {
+            color: #03256C;
+        }
+        .text-marvel-gold {
+            color: #FFD700;
+        }
+        /* Card shadow for a premium look */
+        .card-shadow {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800">
+<body>
 
-    <div class="container max-w-4xl mx-auto p-4 sm:p-6 md:p-8">
-        
-        <header class="text-center mb-8">
-            <h1 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-2">Fantastic Four (2005)</h1>
-            <p class="text-xl sm:text-2xl text-blue-600">2006 US Blu-ray Interactive Guide</p>
-            <p class="mt-4 text-base text-slate-600 max-w-2xl mx-auto">
-                This application provides an interactive breakdown of the technical specifications, quality analysis, and special features for the original 2006 US Blu-ray release of <i>Fantastic Four</i> (2005), based on its source report. Use the tabs below to explore the different aspects of this early high-definition release.
-            </p>
-        </header>
+    <div class="container-hero">
+        <!-- Main Card Container -->
+        <main class="w-full max-w-lg mx-auto bg-white rounded-xl card-shadow overflow-hidden mt-8 mb-8">
 
-        <main>
-            <div class="mb-4 sm:mb-8 border-b border-gray-200">
-                <ul class="flex flex-wrap -mb-px text-sm sm:text-base font-medium text-center" id="myTab" role="tablist">
-                    <li class="mr-2" role="presentation">
-                        <button class="tab-btn inline-block p-4 rounded-t-lg active" id="overview-tab" type="button" role="tab" aria-controls="overview" aria-selected="true">
-                            Overview
-                        </button>
-                    </li>
-                    <li class="mr-2" role="presentation">
-                        <button class="tab-btn inline-block p-4 rounded-t-lg" id="analysis-tab" type="button" role="tab" aria-controls="analysis" aria-selected="false">
-                            Technical Analysis
-                        </button>
-                    </li>
-                    <li class="mr-2" role="presentation">
-                        <button class="tab-btn inline-block p-4 rounded-t-lg" id="features-tab" type="button" role="tab" aria-controls="features" aria-selected="false">
-                            Special Features
-                        </button>
-                    </li>
-                    <li class="mr-2" role="presentation">
-                        <button class="tab-btn inline-block p-4 rounded-t-lg" id="version-tab" type="button" role="tab" aria-controls="version" aria-selected="false">
-                            Version Note
-                        </button>
-                    </li>
-                </ul>
+            <!-- Hero Image Section (Placeholder) -->
+            <div class="bg-gray-800 p-6 flex justify-center items-center h-48 sm:h-64 relative">
+                <!-- Placeholder Image - Represents the movie poster or Blu-ray cover -->
+                <img src="https://placehold.co/600x300/1e293b/FFFFFF?text=FANTASTIC+FOUR+BLU-RAY" 
+                     alt="Fantastic Four (2005) Blu-ray Cover Placeholder" 
+                     class="w-full h-full object-cover opacity-80 rounded-lg">
+                
+                <h1 class="absolute text-3xl sm:text-4xl font-extrabold text-white text-center tracking-wider drop-shadow-lg">
+                    FANTASTIC FOUR
+                </h1>
             </div>
-            
-            <div id="tabContent">
+
+            <!-- Content Details Section -->
+            <section class="p-6 sm:p-8">
                 
-                <div class="p-4 sm:p-6 bg-white rounded-lg shadow-md" id="overview" role="tabpanel" aria-labelledby="overview-tab">
-                    <h3 class="text-2xl font-semibold text-slate-900 mb-4">Core Specifications</h3>
-                    <p class="text-slate-600 mb-6">
-                        This section details the primary technical specifications of the disc. As one of the first Blu-ray titles, it used a smaller disc capacity and an older video codec than what became the standard.
-                    </p>
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-left text-slate-600">
-                            <thead class="text-xs text-slate-700 uppercase bg-slate-100">
-                                <tr>
-                                    <th scope="col" class="px-6 py-3 rounded-l-lg">Feature</th>
-                                    <th scope="col" class="px-6 py-3">Specification</th>
-                                    <th scope="col" class="px-6 py-3 rounded-r-lg">Notes</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="bg-white border-b">
-                                    <th scope="row" class="px-6 py-4 font-medium text-slate-900">Release Date (US)</th>
-                                    <td class="px-6 py-4">November 14, 2006</td>
-                                    <td class="px-6 py-4">One of the earliest Blu-ray titles.</td>
-                                </tr>
-                                <tr class="bg-slate-50 border-b">
-                                    <th scope="row" class="px-6 py-4 font-medium text-slate-900">Disc Type</th>
-                                    <td class="px-6 py-4">Single-Layer (BD-25)</td>
-                                    <td class="px-6 py-4">Lower capacity (25GB) vs. modern BD-50.</td>
-                                </tr>
-                                <tr class="bg-white border-b">
-                                    <th scope="row" class="px-6 py-4 font-medium text-slate-900">Video Resolution</th>
-                                    <td class="px-6 py-4">1080p</td>
-                                    <td class="px-6 py-4">Full High Definition.</td>
-                                </tr>
-                                <tr class="bg-slate-50 border-b">
-                                    <th scope="row" class="px-6 py-4 font-medium text-slate-900">Video Codec</th>
-                                    <td class="px-6 py-4">MPEG-2</td>
-                                    <td class="px-6 py-4">Older codec (later replaced by AVC).</td>
-                                </tr>
-                                <tr class="bg-white border-b">
-                                    <th scope="row" class="px-6 py-4 font-medium text-slate-900">Aspect Ratio</th>
-                                    <td class="px-6 py-4">2.35:1 / 2.39:1</td>
-                                    <td class="px-6 py-4">Original theatrical widescreen.</td>
-                                </tr>
-                                <tr class="bg-slate-50">
-                                    <th scope="row" class="px-6 py-4 font-medium text-slate-900">Primary Audio</th>
-                                    <td class="px-6 py-4">English DTS-HD Master Audio 5.1</td>
-                                    <td class="px-6 py-4">High-resolution, lossless audio.</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                <!-- Release Info -->
+                <div class="mb-6 pb-4 border-b border-gray-200">
+                    <h2 class="text-xl font-bold text-marvel-blue mb-2">Home Release Details</h2>
+                    <p class="text-lg font-semibold text-gray-700">Format: <span class="text-marvel-red">Blu-ray (BD-25)</span></p>
+                    <p class="text-lg font-semibold text-gray-700">Original Movie Year: <span class="text-gray-900">2005</span></p>
+                    <p class="text-lg font-semibold text-gray-700">U.S. Blu-ray Release: <span class="text-gray-900">November 14, 2006</span></p>
                 </div>
 
-                <div class="hidden p-4 sm:p-6 bg-white rounded-lg shadow-md" id="analysis" role="tabpanel" aria-labelledby="analysis-tab">
-                    <h3 class="text-2xl font-semibold text-slate-900 mb-4">Transfer Quality Analysis</h3>
-                    <p class="text-slate-600 mb-6">
-                        The source report provided a qualitative review of the video and audio transfer. The charts below summarize these findings, showing a mixed-to-strong video presentation and a superb audio track. Hover over the chart segments for details.
-                    </p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        
-                        <div class="text-center">
-                            <h4 class="text-xl font-semibold mb-4">Video Quality</h4>
-                            <p class="text-slate-600 h-16 mb-4">Considered strong for its time, but with some noticeable flaws in dark scenes.</p>
-                            <div class="chart-container">
-                                <canvas id="videoChart"></canvas>
-                            </div>
-                        </div>
-                        
-                        <div class="text-center">
-                            <h4 class="text-xl font-semibold mb-4">Audio Quality</h4>
-                            <p class="text-slate-600 h-16 mb-4">Overwhelmingly praised as “superb” and “dynamic”, becoming the disc’s strongest feature.</p>
-                            <div class="chart-container">
-                                <canvas id="audioChart"></canvas>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                
-                <div class="hidden p-4 sm:p-6 bg-white rounded-lg shadow-md" id="features" role="tabpanel" aria-labelledby="features-tab">
-                    <h3 class="text-2xl font-semibold text-slate-900 mb-4">Special Features</h3>
-                    <p class="text-slate-600 mb-6">
-                        The special features package on this initial release was noted as “sparse”, especially compared to later DVD editions. The primary feature was the cast commentary.
-                    </p>
-                    
-                    <div class="mb-6">
-                        <label for="feature-gauge" class="block text-sm font-medium text-slate-700 mb-1">Feature-Richness: Sparse</label>
-                        <div class="w-full bg-slate-200 rounded-full h-2.5">
-                            <div class="bg-blue-600 h-2.5 rounded-full" style="width: 20%"></div>
-                        </div>
-                    </div>
-
-                    <ul class="space-y-3 text-slate-700">
-                        <li class="flex items-center p-4 bg-slate-50 rounded-lg">
-                            <span class="text-2xl mr-4">🎙️</span>
-                            <div>
-                                <strong class="text-slate-900">Audio Commentary</strong>
-                                <p class="text-sm">With actors Jessica Alba, Michael Chiklis, and Ioan Gruffudd. (Reported as the “best bonus feature”.)</p>
-                            </div>
+                <!-- Technical Specifications -->
+                <div class="mb-6 pb-4 border-b border-gray-200">
+                    <h2 class="text-xl font-bold text-marvel-blue mb-3">Technical Specifications</h2>
+                    <ul class="space-y-2 text-gray-700">
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 mr-2 text-marvel-red" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                            Video Resolution: <span class="ml-2 font-medium text-gray-900">1080p (MPEG-2 Codec)</span>
                         </li>
-                        <li class="flex items-center p-4 bg-slate-50 rounded-lg">
-                            <span class="text-2xl mr-4">🎬</span>
-                            <div>
-                                <strong class="text-slate-900">Theatrical Trailer</strong>
-                                <p class="text-sm">Presented in 1080p High Definition.</p>
-                            </div>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 mr-2 text-marvel-red" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6a2 2 0 012-2h2a2 2 0 012 2v13M9 19h1a2 2 0 002-2v-3M9 19h-1a2 2 0 00-2 2v3m10-4v3a2 2 0 01-2 2H9M15 19h-2M12 4v3"></path></svg>
+                            Audio: <span class="ml-2 font-medium text-gray-900">English DTS-HD Master Audio 5.1</span>
                         </li>
-                        <li class="flex items-center p-4 bg-slate-50 rounded-lg">
-                            <span class="text-2xl mr-4">🎞️</span>
-                            <div>
-                                <strong class="text-slate-900">Trailer Gallery</strong>
-                                <p class="text-sm">Additional promotional previews.</p>
-                            </div>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 mr-2 text-marvel-red" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5s3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18s-3.332-.477-4.5-1.253"></path></svg>
+                            Aspect Ratio: <span class="ml-2 font-medium text-gray-900">2.35:1 (Widescreen)</span>
                         </li>
                     </ul>
                 </div>
 
-                <div class="hidden p-4 sm:p-6 bg-white rounded-lg shadow-md" id="version" role="tabpanel" aria-labelledby="version-tab">
-                    <h3 class="text-2xl font-semibold text-slate-900 mb-4">Important Version Note</h3>
-                    <p class="text-slate-600 mb-6">
-                        This section clarifies which version of the film is included on this specific 2006 Blu-ray release.
-                    </p>
-                    <div class="bg-blue-50 border-l-4 border-blue-500 text-blue-800 p-4 rounded-r-lg" role="alert">
-                        <div class="flex">
-                            <div class="py-1">
-                                <span class="text-2xl">ℹ️</span>
-                            </div>
-                            <div class="ml-3">
-                                <strong class="font-bold">Theatrical Cut Only</strong>
-                                <p class="text-sm">This initial 2006 Blu-ray includes only the <b>Theatrical Cut</b> of the film (approx. 106 minutes). It does <b>not</b> contain the <b>Extended Edition</b> or its associated deleted scenes (like the Wolverine cameo), which were available on some DVD releases.</p>
-                            </div>
+                <!-- Cast & Crew -->
+                <div class="mb-6">
+                    <h2 class="text-xl font-bold text-marvel-blue mb-3">Key Cast & Crew</h2>
+                    <div class="grid grid-cols-2 gap-4 text-sm">
+                        <!-- Director -->
+                        <div>
+                            <p class="font-bold text-gray-800">Director:</p>
+                            <p class="text-gray-600">Tim Story</p>
+                        </div>
+                        <!-- Screenplay -->
+                        <div>
+                            <p class="font-bold text-gray-800">Screenplay:</p>
+                            <p class="text-gray-600">Mark Frost & Michael France</p>
+                        </div>
+                        <!-- Cast -->
+                        <div class="col-span-2 mt-2">
+                            <p class="font-bold text-gray-800 mb-1">Starring:</p>
+                            <ul class="space-y-1">
+                                <li class="text-gray-600"><span class="text-marvel-red font-medium">Mr. Fantastic:</span> Ioan Gruffudd</li>
+                                <li class="text-gray-600"><span class="text-marvel-red font-medium">Invisible Woman:</span> Jessica Alba</li>
+                                <li class="text-gray-600"><span class="text-marvel-red font-medium">Human Torch:</span> Chris Evans</li>
+                                <li class="text-gray-600"><span class="text-marvel-red font-medium">The Thing:</span> Michael Chiklis</li>
+                                <li class="text-gray-600"><span class="text-marvel-red font-medium">Doctor Doom:</span> Julian McMahon</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
 
-            </div>
+                <!-- Call to Action (Mock Button) -->
+                <a href="#" class="block w-full text-center py-3 bg-marvel-red text-white font-bold rounded-lg shadow-lg hover:bg-red-700 transition duration-300">
+                    See Full Blu-ray Details & Extras
+                </a>
+
+            </section>
         </main>
         
-        <footer class="text-center mt-12 text-sm text-slate-500">
-            <p>This interactive guide was dynamically generated based on the “2006 US Blu-ray Release Overview” source report.</p>
+        <!-- Footer / Source Note -->
+        <footer class="text-center text-sm text-gray-500 p-4 w-full">
+            <p>&copy; 2005 Twentieth Century Fox Film Corporation. Data sourced from Blu-ray technical specifications.</p>
         </footer>
-
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const tabs = document.querySelectorAll('.tab-btn');
-            const tabPanels = document.querySelectorAll('[role="tabpanel"]');
-
-            tabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    const targetPanelId = tab.getAttribute('aria-controls');
-                    
-                    tabs.forEach(t => {
-                        t.classList.remove('active');
-                        t.setAttribute('aria-selected', 'false');
-                    });
-                    
-                    tab.classList.add('active');
-                    tab.setAttribute('aria-selected', 'true');
-                    
-                    tabPanels.forEach(panel => {
-                        if (panel.id === targetPanelId) {
-                            panel.classList.remove('hidden');
-                        } else {
-                            panel.classList.add('hidden');
-                        }
-                    });
-                });
-            });
-
-            const videoChartCtx = document.getElementById('videoChart')?.getContext('2d');
-            if (videoChartCtx) {
-                const videoData = {
-                    labels: ['Crisp & Detailed', 'Strong Presentation', 'Dark Scene Issues', 'Edge Enhancement'],
-                    datasets: [{
-                        label: 'Video Quality Breakdown',
-                        data: [40, 30, 15, 15],
-                        backgroundColor: [
-                            '#2563eb', 
-                            '#60a5fa', 
-                            '#facc15', 
-                            '#fb923c'  
-                        ],
-                        borderColor: '#ffffff',
-                        borderWidth: 2
-                    }]
-                };
-                new Chart(videoChartCtx, {
-                    type: 'doughnut',
-                    data: videoData,
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                position: 'bottom',
-                            },
-                            tooltip: {
-                                callbacks: {
-                                    label: function(context) {
-                                        let label = context.label || '';
-                                        if (label) {
-                                            label += ': ';
-                                        }
-                                        if (context.parsed) {
-                                            label += context.parsed + '%';
-                                        }
-                                        return label;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                });
-            }
-
-            const audioChartCtx = document.getElementById('audioChart')?.getContext('2d');
-            if (audioChartCtx) {
-                const audioData = {
-                    labels: ['Superb & Dynamic', 'Good', 'Other'],
-                    datasets: [{
-                        label: 'Audio Quality Breakdown',
-                        data: [85, 10, 5],
-                        backgroundColor: [
-                            '#16a34a', 
-                            '#4ade80', 
-                            '#d1d5db'  
-                        ],
-                        borderColor: '#ffffff',
-                        borderWidth: 2
-                    }]
-                };
-                new Chart(audioChartCtx, {
-                    type: 'doughnut',
-                    data: audioData,
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                position: 'bottom',
-                            },
-                            tooltip: {
-                                callbacks: {
-                                    label: function(context) {
-                                        let label = context.label || '';
-                                        if (label) {
-                                            label += ': ';
-                                        }
-                                        if (context.parsed) {
-                                            label += context.parsed + '%';
-                                        }
-                                        return label;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                });
-            }
-        });
-    </script>
 </body>
 </html>
