@@ -3,163 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>300 〈スリーハンドレッド〉  (2007 Japanese Blu-ray)</title>
+    <title>300 〈スリーハンドレッド〉 (Blu-ray) | 発売日：2007/09/26 (日本) | GitHub Pages</title>
+    <!-- Tailwind CSS CDNを読み込み -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Chosen Palette: Warm Neutrals (Stone, Amber) -->
-    <!-- Application Structure Plan: A single-page layout focusing on clarity and thematic presentation. It uses a hero section for the title, followed by an interactive tab system to switch between 'Product Specifications' and 'Synopsis'. This structure was chosen because the source report is informational, not data-heavy. Tabs allow users to actively select the information they want (specs vs. story) without overwhelming them, improving usability on a single page. A final section highlights key personnel (Director/Cast). -->
-    <!-- Visualization & Content Choices: [Report Info: Product Specs Table -> Goal: Inform -> Viz/Presentation Method: HTML Definition List (dl) within a Tab Panel -> Interaction: Tab selection (JS) -> Justification: Clearly organizes key-value data, better than a plain table. Tab interaction saves space. -> Library/Method: Vanilla JS, HTML/Tailwind], [Report Info: Synopsis Text -> Goal: Inform -> Viz/Presentation Method: HTML Paragraph (p) within a Tab Panel -> Interaction: Tab selection (JS) -> Justification: Presents narrative text clearly. Tab interaction separates it from structured specs. -> Library/Method: Vanilla JS, HTML/Tailwind], [Report Info: Director/Cast -> Goal: Highlight -> Viz/Presentation Method: HTML Card-like layout (divs) -> Interaction: None (Static) -> Justification: Gives prominence to key people mentioned. -> Library/Method: HTML/Tailwind] -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <!-- カスタム設定とフォント -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'spartan-red': '#8B0000',
+                        'dark-bg': '#1a1a1a',
+                        'light-gold': '#FFD700',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
     <style>
+        /* カスタムスタイル */
         body {
-            font-family: sans-serif;
+            background-color: #1a1a1a;
         }
-        .tab-button.active {
-            border-bottom-color: #a16207;
-            color: #a16207;
-            font-weight: 600;
-        }
-        .tab-button {
-            border-bottom-width: 3px;
-            border-bottom-color: transparent;
+        .shadow-red-glow {
+            box-shadow: 0 0 15px rgba(139, 0, 0, 0.7);
         }
     </style>
 </head>
-<body class="bg-stone-50 text-stone-900">
+<body class="font-sans text-gray-100 min-h-screen p-4 md:p-8">
 
-    <div class="container mx-auto max-w-4xl p-4 md:p-8">
-
-        <header class="text-center my-8 md:my-12">
-            <h1 class="text-4xl md:text-6xl font-extrabold text-stone-800">300</h1>
-            <h2 class="text-2xl md:text-3xl font-light text-amber-800">〈スリーハンドレッド〉</h2>
-            <p class="mt-2 text-lg text-stone-600">Blu-ray Disc: 製品概要</p>
+    <div class="max-w-4xl mx-auto">
+        <!-- ヘッダー/タイトルセクション -->
+        <header class="text-center mb-8">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-light-gold mb-2 border-b-4 border-spartan-red pb-3 inline-block">
+                300 〈スリーハンドレッド〉
+            </h1>
+            <p class="text-xl sm:text-2xl text-spartan-red font-semibold">
+                Blu-ray 商品情報
+            </p>
         </header>
 
-        <main class="bg-white rounded-lg shadow-xl overflow-hidden">
-            <div class="p-6 md:p-8">
-                <p class="text-stone-700 mb-6 text-center">
-                    このBlu-rayの詳細情報を確認できます。「製品概要」で仕様を、「作品解説」で映画の背景をご覧ください。
-                </p>
+        <!-- メインコンテンツカード -->
+        <div class="bg-gray-800 rounded-xl overflow-hidden shadow-2xl shadow-red-glow p-6 md:p-8">
+            <div class="flex flex-col md:flex-row gap-8">
                 
-                <div class="border-b border-stone-200 mb-6">
-                    <nav class="flex justify-center -mb-px space-x-6" aria-label="Tabs">
-                        <button id="tab-btn-specs" class="tab-button active py-4 px-1 text-base font-medium text-stone-500 hover:text-amber-700 hover:border-stone-300 transition-colors duration-200" data-tab="specs">
-                            製品概要
-                        </button>
-                        <button id="tab-btn-synopsis" class="tab-button py-4 px-1 text-base font-medium text-stone-500 hover:text-amber-700 hover:border-stone-300 transition-colors duration-200" data-tab="synopsis">
-                            作品解説
-                        </button>
-                    </nav>
+                <!-- 商品画像 (プレースホルダー) -->
+                <div class="flex-shrink-0 w-full md:w-1/3">
+                    <div class="aspect-[2/3] bg-gray-900 rounded-lg overflow-hidden border-4 border-spartan-red flex items-center justify-center">
+                        <!-- プレースホルダー画像 (カバーアートを想定) -->
+                        <img 
+                            src="https://placehold.co/400x600/111/ffd700?text=300+Blu-ray+Cover"
+                            alt="300 ブルーレイ カバーアート" 
+                            class="w-full h-full object-cover"
+                            onerror="this.onerror=null; this.src='https://placehold.co/400x600/111/ffd700?text=Image+Not+Available'"
+                        >
+                    </div>
+                    <div class="mt-4 text-center">
+                        <span class="inline-block bg-spartan-red text-white text-sm font-bold px-4 py-1 rounded-full shadow-lg">
+                            HD リマスター版
+                        </span>
+                    </div>
                 </div>
 
-                <div>
-                    <div id="tab-content-specs" class="tab-content">
-                        <div class="flow-root">
-                            <dl class="-my-3 divide-y divide-stone-100 text-sm">
-                                <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
-                                    <dt class="font-medium text-stone-900">タイトル</dt>
-                                    <dd class="text-stone-700 sm:col-span-2">300 〈スリーハンドレッド〉</dd>
-                                </div>
-                                <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
-                                    <dt class="font-medium text-stone-900">メディア</dt>
-                                    <dd class="text-stone-700 sm:col-span-2">Blu-ray Disc</dd>
-                                </div>
-                                <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
-                                    <dt class="font-medium text-stone-900">日本発売日</dt>
-                                    <dd class="text-stone-700 sm:col-span-2">2007/09/26</dd>
-                                </div>
-                                <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
-                                    <dt class="font-medium text-stone-900">メーカー</dt>
-                                    <dd class="text-stone-700 sm:col-span-2">ワーナー・ブラザーズ ホーム エンターテイメント (WHV)</dd>
-                                </div>
-                                <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
-                                    <dt class="font-medium text-stone-900">品番</dt>
-                                    <dd class="text-stone-700 sm:col-span-2">WBBA-Y16103</dd>
-                                </div>
-                                <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
-                                    <dt class="font-medium text-stone-900">定価（当時）</dt>
-                                    <dd class="text-stone-700 sm:col-span-2">5,217円（税込）</dd>
-                                </div>
-                                <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
-                                    <dt class="font-medium text-stone-900">収録時間</dt>
-                                    <dd class="text-stone-700 sm:col-span-2">約116分 (本編)</dd>
-                                </div>
-                                <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
-                                    <dt class="font-medium text-stone-900">画面サイズ</dt>
-                                    <dd class="text-stone-700 sm:col-span-2">シネスコサイズ (16:9)</dd>
-                                </div>
-                                <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
-                                    <dt class="font-medium text-stone-900">音声情報</dt>
-                                    <dd class="text-stone-700 sm:col-span-2">英語 (5.1ch)、日本語 (5.1ch) など</dd>
-                                </div>
-                                <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
-                                    <dt class="font-medium text-stone-900">字幕情報</dt>
-                                    <dd class="text-stone-700 sm:col-span-2">日本語、英語、解説用字幕 など</dd>
-                                </div>
-                                <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
-                                    <dt class="font-medium text-stone-900">特典情報</dt>
-                                    <dd class="text-stone-700 sm:col-span-2">ゲーム収録など、当時の最新メディアならではの特典が話題となりました。</dd>
-                                </div>
-                            </dl>
+                <!-- 詳細情報 -->
+                <div class="flex-grow md:w-2/3">
+                    <h2 class="text-2xl font-bold text-light-gold mb-4">製品概要</h2>
+                    
+                    <dl class="space-y-3 text-gray-300">
+                        <div class="flex flex-wrap border-b border-gray-700 pb-2">
+                            <dt class="w-full sm:w-1/3 font-semibold text-spartan-red">発売日（日本）:</dt>
+                            <dd class="w-full sm:w-2/3 font-medium">2007/09/26</dd>
                         </div>
-                    </div>
+                        
+                        <div class="flex flex-wrap border-b border-gray-700 pb-2">
+                            <dt class="w-full sm:w-1/3 font-semibold text-spartan-red">販売元:</dt>
+                            <dd class="w-full sm:w-2/3 font-medium">ワーナー・ブラザース ホーム エンターテイメント</dd>
+                        </div>
 
-                    <div id="tab-content-synopsis" class="tab-content hidden">
-                        <article class="prose max-w-none prose-stone">
-                            <p>この映画は、紀元前480年のテルモピュライの戦いを題材に、フランク・ミラーのグラフィックノベルを基に制作されました。スパルタのレオニダス王が率いる精鋭300人が、ペルシア帝国の大軍100万人に立ち向かうという、史実に基づく無謀な戦いを斬新な映像表現で描いた歴史スペクタクル作品です。</p>
-                            <p>発売当時は、HD DVDと並んで次世代メディアとして注目されていたBlu-ray Discとして、映画の持つ独特のビジュアルと迫力を高解像度で楽しめる商品として発売されました。</p>
-                        </article>
-                    </div>
+                        <div class="flex flex-wrap border-b border-gray-700 pb-2">
+                            <dt class="w-full sm:w-1/3 font-semibold text-spartan-red">フォーマット:</dt>
+                            <dd class="w-full sm:w-2/3 font-medium">Blu-ray (本編ディスク1枚)</dd>
+                        </div>
+                        
+                        <div class="flex flex-wrap">
+                            <dt class="w-full sm:w-1/3 font-semibold text-spartan-red">収録時間:</dt>
+                            <dd class="w-full sm:w-2/3 font-medium">本編 117分</dd>
+                        </div>
+                    </dl>
+
+                    <h2 class="text-2xl font-bold text-light-gold mt-6 mb-4 border-t pt-4 border-gray-700">作品情報</h2>
+                    <dl class="space-y-3 text-gray-300">
+                        <div class="flex flex-wrap border-b border-gray-700 pb-2">
+                            <dt class="w-full sm:w-1/3 font-semibold text-spartan-red">監督:</dt>
+                            <dd class="w-full sm:w-2/3 font-medium">ザック・スナイダー</dd>
+                        </div>
+                        <div class="flex flex-wrap border-b border-gray-700 pb-2">
+                            <dt class="w-full sm:w-1/3 font-semibold text-spartan-red">主演:</dt>
+                            <dd class="w-full sm:w-2/3 font-medium">ジェラルド・バトラー（レオニダス王）</dd>
+                        </div>
+                        <div class="flex flex-wrap">
+                            <dt class="w-full sm:w-1/3 font-semibold text-spartan-red">ジャンル:</dt>
+                            <dd class="w-full sm:w-2/3 font-medium">アクション、歴史、ファンタジー</dd>
+                        </div>
+                    </dl>
                 </div>
             </div>
+            
+            <!-- 特典情報セクション -->
+            <div class="mt-8 pt-6 border-t border-gray-700">
+                <h2 class="text-2xl font-bold text-light-gold mb-4">封入・映像特典</h2>
+                <ul class="list-disc list-inside space-y-2 ml-4 text-gray-300">
+                    <li><span class="text-spartan-red font-semibold">監督による音声解説:</span> ザック・スナイダー監督が語る制作秘話。</li>
+                    <li><span class="text-spartan-red font-semibold">メイキング・オブ・「300」:</span> グリーンバックでの撮影プロセスとVFX技術の紹介。</li>
+                    <li><span class="text-spartan-red font-semibold">フランク・ミラーとの対話:</span> 原作者フランク・ミラーが語るコミックと映画の世界観。</li>
+                    <li><span class="text-spartan-red font-semibold">未公開シーン集:</span> 劇場版には含まれなかった貴重な映像。</li>
+                </ul>
+            </div>
 
-            <section class="bg-stone-100 p-6 md:p-8">
-                <h3 class="text-xl font-semibold text-center text-stone-800 mb-6">主要なスタッフ & キャスト</h3>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
-                    <div class="p-4 bg-white rounded-lg shadow-md">
-                        <h4 class="font-medium text-amber-800">監督</h4>
-                        <p class="text-lg text-stone-900">ザック・スナイダー</p>
-                    </div>
-                    <div class="p-4 bg-white rounded-lg shadow-md">
-                        <h4 class="font-medium text-amber-800">主演</h4>
-                        <p class="text-lg text-stone-900">ジェラルド・バトラー</p>
-                    </div>
-                    <div class="p-4 bg-white rounded-lg shadow-md">
-                        <h4 class="font-medium text-amber-800">主演</h4>
-                        <p class="text-lg text-stone-900">レナ・ヘディ</p>
-                    </div>
-                </div>
-            </section>
-        </main>
+            <!-- 購入ボタン (モック) -->
+            <div class="text-center mt-10">
+                <button class="bg-light-gold text-dark-bg hover:bg-yellow-600 transition duration-300 text-lg font-bold py-3 px-8 rounded-full shadow-xl focus:outline-none focus:ring-4 focus:ring-spartan-red transform hover:scale-105">
+                    今すぐ購入 (モック)
+                </button>
+                <p class="mt-3 text-sm text-gray-500">※在庫状況は販売店にご確認ください。</p>
+            </div>
+        </div>
 
-        <footer class="text-center py-8 mt-8 text-stone-500 text-sm">
-            <p>このページは製品概要をインタラクティブに表示するために生成されました。</p>
+        <footer class="text-center mt-8 text-gray-600 text-sm">
+            <p>&copy; 2007 Warner Bros. Entertainment Inc. All rights reserved.</p>
         </footer>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const tabButtons = document.querySelectorAll('.tab-button');
-            const tabContents = document.querySelectorAll('.tab-content');
-
-            tabButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const tabId = button.dataset.tab;
-
-                    tabButtons.forEach(btn => {
-                        btn.classList.remove('active');
-                    });
-                    button.classList.add('active');
-
-                    tabContents.forEach(content => {
-                        if (content.id === `tab-content-${tabId}`) {
-                            content.classList.remove('hidden');
-                        } else {
-                            content.classList.add('hidden');
-                        }
-                    });
-                });
-            });
-        });
-    </script>
 </body>
 </html>
