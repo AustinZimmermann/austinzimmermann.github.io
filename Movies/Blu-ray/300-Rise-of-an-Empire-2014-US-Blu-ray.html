@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>300: Rise of an Empire - Blu-ray Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        
+        .tab-btn {
+            @apply px-4 py-2 font-semibold rounded-t-lg transition-colors duration-200 focus:outline-none;
+        }
+        .tab-btn.active {
+            @apply bg-white text-blue-700;
+        }
+        .tab-btn.inactive {
+            @apply bg-blue-100 text-blue-600 hover:bg-blue-200;
+        }
+        .content-section {
+            @apply bg-white p-6 md:p-8 rounded-b-lg rounded-tr-lg shadow-lg;
+        }
+        .feature-item {
+            @apply w-full text-left px-4 py-3 rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50;
+        }
+        .feature-item.active {
+            @apply bg-blue-700 text-white shadow-md;
+        }
+        .feature-item.inactive {
+            @apply bg-neutral-100 text-neutral-700 hover:bg-neutral-200 hover:text-neutral-900;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 280px;
+            max-height: 300px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 300px;
+                max-height: 350px;
+            }
+        }
+    </style>
+    <!-- Chosen Palette: Warm Neutrals (Tailwind 'neutral' scale) with a 'blue' accent -->
+    <!-- Application Structure Plan: A tabbed SPA (Overview, Special Features). Overview shows key specs. Special Features section provides a data visualization (Film vs. Extras runtime) and an interactive selector to explore details of each featurette. This structure separates static specs from interactive content exploration, which is more engaging for a user than a single static page. -->
+    <!-- Visualization & Content Choices: 1. Tech Specs (Table) -> Goal: Inform -> HTML Table -> Interaction: None -> Justification: Clearest way to present key-value data. 2. Runtimes (Film/Extras) -> Goal: Compare/Synthesize -> Doughnut Chart (Chart.js) -> Interaction: Hover Tooltip -> Justification: Visually quantifies the amount of bonus content relative to the film. 3. Special Features List -> Goal: Organize/Explore -> Interactive List + Content Pane -> Interaction: Click list item to update pane -> Justification: Engages user by letting them 'discover' the details for each feature, rather than just reading a long list. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+</head>
+<body class="bg-neutral-100 text-neutral-800 antialiased">
+
+    <div class="container max-w-6xl mx-auto p-4 sm:p-6 md:p-12">
+        
+        <header class="mb-8">
+            <h1 class="text-3xl md:text-5xl font-bold text-neutral-900">300: Rise of an Empire</h1>
+            <p class="text-xl md:text-2xl text-neutral-600 mt-2">Interactive Blu-ray Guide (2014 US Release)</p>
+        </header>
+
+        <nav class="flex">
+            <button id="tab-overview" class="tab-btn active">Overview</button>
+            <button id="tab-features" class="tab-btn inactive">Special Features</button>
+        </nav>
+
+        <main>
+            <section id="overview-section" class="content-section">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h2 class="text-2xl font-bold text-blue-800 mb-4">Disc Summary</h2>
+                        <p class="text-neutral-700 leading-relaxed">
+                            The 2014 US Blu-ray release of <i>300: Rise of an Empire</i> (often packaged as a Blu-ray + DVD + Digital HD UltraViolet Combo Pack) is highly regarded for its reference-quality audio and video presentation of the film's extreme visual style. This guide provides an interactive look at the technical specifications and bonus content included on the disc.
+                        </p>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-bold text-blue-800 mb-4">Technical Specifications</h2>
+                        <div class="overflow-x-auto rounded-lg border border-neutral-200">
+                            <table class="w-full min-w-full divide-y divide-neutral-200">
+                                <tbody class="divide-y divide-neutral-200 bg-white">
+                                    <tr class="hover:bg-neutral-50">
+                                        <td class="px-4 py-3 font-semibold text-neutral-800">Video Resolution</td>
+                                        <td class="px-4 py-3 text-neutral-700">1080p</td>
+                                    </tr>
+                                    <tr class="hover:bg-neutral-50">
+                                        <td class="px-4 py-3 font-semibold text-neutral-800">Aspect Ratio</td>
+                                        <td class="px-4 py-3 text-neutral-700">2.40:1 (Widescreen)</td>
+                                    </tr>
+                                    <tr class="hover:bg-neutral-50">
+                                        <td class="px-4 py-3 font-semibold text-neutral-800">Main Audio</td>
+                                        <td class="px-4 py-3 text-neutral-700">English DTS-HD Master Audio 7.1</td>
+                                    </tr>
+                                    <tr class="hover:bg-neutral-50">
+                                        <td class="px-4 py-3 font-semibold text-neutral-800">Alternative Audio</td>
+                                        <td class="px-4 py-3 text-neutral-700">French & Spanish Dolby Digital 5.1</td>
+                                    </tr>
+                                    <tr class="hover:bg-neutral-50">
+                                        <td class="px-4 py-3 font-semibold text-neutral-800">Subtitles</td>
+                                        <td class="px-4 py-3 text-neutral-700">English SDH, French, Spanish</td>
+                                    </tr>
+                                    <tr class="hover:bg-neutral-50">
+                                        <td class="px-4 py-3 font-semibold text-neutral-800">Film Runtime</td>
+                                        <td class="px-4 py-3 text-neutral-700">102 Minutes</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="features-section" class="content-section hidden">
+                <p class="text-lg text-neutral-700 mb-8 max-w-4xl">
+                    This disc features a focused set of featurettes diving into the film’s production, historical context, and visual style. Explore the bonus content breakdown below. Click on any feature to see its detailed description.
+                </p>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="md:col-span-1 flex flex-col space-y-6">
+                        <div>
+                            <h3 class="text-xl font-bold text-blue-800 mb-3 text-center">Content Breakdown</h3>
+                            <div class="chart-container">
+                                <canvas id="runtime-chart"></canvas>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-blue-800 mb-3">Explore Features</h3>
+                            <nav id="feature-nav" class="flex flex-col space-y-2"></nav>
+                        </div>
+                    </div>
+
+                    <div id="feature-detail" class="md:col-span-2 bg-neutral-100 rounded-lg p-6 min-h-[300px] border border-neutral-200 transition-all duration-300">
+                    </div>
+                </div>
+            </section>
+        </main>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabs = {
+                overview: document.getElementById('tab-overview'),
+                features: document.getElementById('tab-features')
+            };
+            const sections = {
+                overview: document.getElementById('overview-section'),
+                features: document.getElementById('features-section')
+            };
+            const featureNav = document.getElementById('feature-nav');
+            const featureDetail = document.getElementById('feature-detail');
+            let runtimeChart = null;
+
+            const specialFeaturesData = {
+                'the-300-effect': {
+                    title: 'The 300 Effect',
+                    runtime: '~30 Minutes',
+                    description: 'This extensive behind-the-scenes look is typically broken down into several chapters and covers the sequel’s concept, the visual design, and how the story ties in with the first film, <i>300</i>.'
+                },
+                'real-leaders': {
+                    title: 'Real Leaders & Legends',
+                    runtime: '~23-25 Minutes',
+                    description: 'This featurette provides historical context for the Greco-Persian Wars, the real-life figures like Themistocles and Artemisia, and discusses where the film’s fictionalized narrative deviates from recorded history.'
+                },
+                'women-warriors': {
+                    title: 'Women Warriors',
+                    runtime: '~12 Minutes',
+                    description: 'A segment dedicated to the powerful female characters in the film, particularly Eva Green’s Artemisia and Lena Headey’s returning Queen Gorgo, examining their roles and influence within the narrative.'
+                },
+                'savage-warships': {
+                    title: 'Savage Warships',
+                    runtime: '~11 Minutes',
+                    description: 'This focuses on the naval elements of the film, covering the design and strategy of the ancient warships (triremes) and how the sea battles were conceptualized and filmed.'
+                },
+                'becoming-warrior': {
+                    title: 'Becoming a Warrior',
+                    runtime: '~5 Minutes',
+                    description: 'A brief featurette focusing on the intense physical training and workout regimens the lead actors undertook to prepare for their roles.'
+                }
+            };
+            
+            const totalFilmRuntime = 102;
+            const totalFeaturesRuntime = 30 + 24 + 12 + 11 + 5;
+
+            function showTab(tabName) {
+                Object.keys(tabs).forEach(key => {
+                    const tab = tabs[key];
+                    const section = sections[key];
+                    if (key === tabName) {
+                        tab.classList.remove('inactive');
+                        tab.classList.add('active');
+                        section.classList.remove('hidden');
+                    } else {
+                        tab.classList.remove('active');
+                        tab.classList.add('inactive');
+                        section.classList.add('hidden');
+                    }
+                });
+
+                if (tabName === 'features' && !runtimeChart) {
+                    createRuntimeChart();
+                }
+            }
+
+            function showFeatureDetail(featureKey) {
+                const data = specialFeaturesData[featureKey];
+                if (!data) return;
+                
+                featureDetail.innerHTML = `
+                    <h3 class="text-2xl font-bold text-blue-800 mb-2">${data.title}</h3>
+                    <p class="text-sm font-semibold text-neutral-500 uppercase mb-4">${data.runtime}</p>
+                    <p class="text-neutral-700 leading-relaxed">${data.description}</p>
+                `;
+                
+                document.querySelectorAll('.feature-item').forEach(btn => {
+                    if (btn.dataset.key === featureKey) {
+                        btn.classList.remove('inactive');
+                        btn.classList.add('active');
+                    } else {
+                        btn.classList.remove('active');
+                        btn.classList.add('inactive');
+                    }
+                });
+            }
+
+            function createRuntimeChart() {
+                const ctx = document.getElementById('runtime-chart').getContext('2d');
+                runtimeChart = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Film Runtime', 'Special Features'],
+                        datasets: [{
+                            data: [totalFilmRuntime, totalFeaturesRuntime],
+                            backgroundColor: [
+                                'rgba(37, 99, 235, 0.8)',
+                                'rgba(100, 116, 139, 0.8)'
+                            ],
+                            borderColor: [
+                                'rgba(37, 99, 235, 1)',
+                                'rgba(100, 116, 139, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    font: {
+                                        size: 14,
+                                        family: "'Inter', sans-serif"
+                                    }
+                                }
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        let label = context.label || '';
+                                        if (label) {
+                                            label += ': ';
+                                        }
+                                        if (context.parsed !== null) {
+                                            label += context.parsed + ' minutes';
+                                        }
+                                        return label;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            tabs.overview.addEventListener('click', () => showTab('overview'));
+            tabs.features.addEventListener('click', () => showTab('features'));
+
+            Object.keys(specialFeaturesData).forEach(key => {
+                const data = specialFeaturesData[key];
+                const button = document.createElement('button');
+                button.className = 'feature-item inactive';
+                button.textContent = data.title;
+                button.dataset.key = key;
+                button.addEventListener('click', () => showFeatureDetail(key));
+                featureNav.appendChild(button);
+            });
+
+            showTab('overview');
+            showFeatureDetail('the-300-effect');
+        });
+    </script>
+</body>
+</html>
