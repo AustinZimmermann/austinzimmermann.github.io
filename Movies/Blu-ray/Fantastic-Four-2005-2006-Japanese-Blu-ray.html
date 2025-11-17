@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fantastic Four (2005) (2006 Japanese Blu-ray)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chosen Palette: Warm Neutrals -->
+    <!-- Application Structure Plan: このSPAは、ソースレポートの静的な製品情報を、ユーザーが能動的に探索できるインタラクティブなタブ構造に再設計します。構造は「概要」「詳細スペック」「キャスト＆スタッフ」の3つの主要セクションに分割されます。ユーザーはタブをクリックすることで、関心のある情報（例：あらすじ、技術仕様、出演者）を即座に切り替えることができます。このアプローチは、すべての情報を一度に提示するよりも消化しやすく、SPAとしての使いやすさを向上させるために選択されました。 -->
+    <!-- Visualization & Content Choices: [レポート情報: Blu-rayの仕様と作品情報] -> [ゴール: 製品の詳細を分かりやすく提示する] -> [Viz/方法: インタラクティブなタブ（HTML/Tailwind）と整理されたテキストブロックおよびテーブル] -> [インタラクション: ユーザがタブをクリックすると、対応する情報セクション（概要、スペック、キャスト）が表示される] -> [正当化: ソースレポートにはChart.jsなどで視覚化する定量データ（売上、評価等）が含まれていません。そのため、インタラクティブ性はデータの視覚化ではなく、情報のナビゲーション（タブ切り替え）によって提供するのが最も効果的です。] -> [ライブラリ/メソッド: Vanilla JS（タブ切り替え）、HTML/Tailwind（レイアウト）] -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+        .tab-button.active {
+            border-color: #3B82F6;
+            color: #3B82F6;
+            background-color: #EFF6FF;
+        }
+        .tab-button {
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-4xl">
+        
+        <header class="mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">ファンタスティック・フォー ［超能力ユニット］</h1>
+            <p class="text-lg text-gray-600">Blu-ray Disc インタラクティブ概要</p>
+        </header>
+
+        <main class="bg-white rounded-lg shadow-xl overflow-hidden">
+            
+            <nav class="border-b border-gray-200">
+                <ul class="flex flex-wrap -mb-px">
+                    <li>
+                        <button id="tab-overview" class="tab-button active inline-block p-4 border-b-2 rounded-t-lg font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">
+                            概要
+                        </button>
+                    </li>
+                    <li>
+                        <button id="tab-specs" class="tab-button inline-block p-4 border-b-2 rounded-t-lg font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">
+                            詳細スペック
+                        </button>
+                    </li>
+                    <li>
+                        <button id="tab-cast" class="tab-button inline-block p-4 border-b-2 rounded-t-lg font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">
+                            キャスト＆スタッフ
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="p-6 md:p-8">
+                
+                <section id="content-overview" class="tab-content">
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">作品概要と主な情報</h2>
+                    <p class="text-gray-600 mb-6">
+                        ここでは、このBlu-rayの基本的な情報と映画のあらすじをご覧いただけます。2005年に公開されたマーベルヒーロー映画の原点の一つです。
+                    </p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div class="bg-blue-50 p-4 rounded-lg shadow-sm">
+                            <h3 class="font-semibold text-blue-800 mb-1">発売日（日本）</h3>
+                            <p class="text-xl font-bold text-blue-900">2006年11月10日</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                            <h3 class="font-semibold text-gray-700 mb-1">本編収録時間</h3>
+                            <p class="text-xl font-bold text-gray-900">約106分</p>
+                        </div>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">あらすじ</h3>
+                    <p class="text-gray-700 leading-relaxed">
+                        天才科学者リード・リチャーズとその仲間たちは、宇宙での実験中に予期せぬ事故に見舞われ、特殊な超能力を得てしまいます。彼らはその力を正義のために使い、「ファンタスティック・フォー」として、同様の力を得て邪悪な道に進んだ実業家のビクター・フォン・ドゥーム（Dr.ドゥーム）との戦いに挑みます。
+                    </p>
+                </section>
+
+                <section id="content-specs" class="tab-content hidden">
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Blu-ray 詳細スペック</h2>
+                    <p class="text-gray-600 mb-6">
+                        このBlu-ray Discの技術的な仕様（品番、映像、音声方式など）の一覧です。
+                    </p>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-gray-700">
+                            <tbody class="divide-y divide-gray-200">
+                                <tr class="hover:bg-gray-50">
+                                    <td class="py-3 px-4 font-medium text-gray-900 w-1/3">タイトル</td>
+                                    <td class="py-3 px-4">ファンタスティック・フォー ［超能力ユニット］</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="py-3 px-4 font-medium text-gray-900">メディア</td>
+                                    <td class="py-3 px-4">Blu-ray Disc (ブルーレイディスク)</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="py-3 px-4 font-medium text-gray-900">品番（例）</td>
+                                    <td class="py-3 px-4">FXXA-28667 など</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="py-3 px-4 font-medium text-gray-900">販売元</td>
+                                    <td class="py-3 px-4">20世紀フォックス ホーム エンターテイメント ジャパン（当時）</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="py-3 px-4 font-medium text-gray-900">ディスクタイプ</td>
+                                    <td class="py-3 px-4">片面一層 (BD25)</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="py-3 px-4 font-medium text-gray-900">映像方式</td>
+                                    <td class="py-3 px-4">1080p (ハイビジョン画質)</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="py-3 px-4 font-medium text-gray-900 align-top">音声方式</td>
+                                    <td class="py-3 px-4">
+                                        <ul class="list-disc list-inside">
+                                            <li>英語：DTS-HD マスター・オーディオ 5.1ch サラウンド (ロスレスオーディオ)</li>
+                                            <li>日本語：DTS 5.1ch サラウンド</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="content-cast" class="tab-content hidden">
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">主なキャスト＆スタッフ</h2>
+                    <p class="text-gray-600 mb-6">
+                        この作品の主要な出演者と監督の情報です。
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <h3 class="font-semibold text-gray-900">監督</h3>
+                            <p class="text-gray-700">ティム・ストーリー</p>
+                        </div>
+                        
+                        <div>
+                            <h3 class="font-semibold text-gray-900">主な出演者</h3>
+                            <ul class="list-disc list-inside text-gray-700 space-y-1 mt-2">
+                                <li>ヨアン・グリフィズ</li>
+                                <li>ジェシカ・アルバ</li>
+                                <li>クリス・エヴァンス</li>
+                                <li>マイケル・チクリス</li>
+                                <li>ジュリアン・マクマホン</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabs = document.querySelectorAll('.tab-button');
+            const contents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const targetId = tab.id.replace('tab-', 'content-');
+                    
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+
+                    contents.forEach(content => {
+                        if (content.id === targetId) {
+                            content.classList.remove('hidden');
+                        } else {
+                            content.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
