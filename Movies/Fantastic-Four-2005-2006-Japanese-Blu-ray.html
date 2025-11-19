@@ -1,170 +1,275 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ファンタスティック・フォー ［超能力ユニット］ (Blu-ray)｜発売日：2006/11/10 (日本)｜GitHub Pages</title>
-    <!-- Tailwind CSS CDNを読み込み -->
+    <title>Fantastic Four (2005) (2006 Japanese Blu-ray)</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutral -->
+    <!-- Application Structure Plan: The application is structured as a single-page "Technical Profile" for the Blu-ray. The information architecture is designed for clarity and exploration, not to mirror the report's table. It uses a top-level header for identification, followed by three main thematic sections: 1. "At a Glance" for quick-access key specs, 2. "Technical Deep Dive" using an interactive tabbed interface to separate A/V specs from Special Features, and 3. "Technology Context" featuring a comparative bar chart. This structure was chosen to guide the user from general information to specific details and finally to contextual analysis, making the report's data (especially the "limitations") easy to understand. User flow is vertical scrolling through sections, with horizontal tab interaction in the middle. -->
+    <!-- Visualization & Content Choices:
+        - Report Info (Table Specs) -> Goal: Inform/Organize -> Viz: Styled HTML lists & grids (in "At a Glance") and a Tabbed Interface (in "Technical Deep Dive"). Interaction: Clicking tabs (JS-driven show/hide) to switch between A/V and Features. Justification: More engaging and digestible than a single large table. Library: Vanilla JS/Tailwind.
+        - Report Info (Notes on limitations, BD-25, MPEG-2) -> Goal: Compare/Contextualize -> Viz: Bar Chart (Chart.js) comparing "2006 Release (BD-25)" vs. "Modern Release (BD-50)" on "Disc Capacity" and "Typical Video Bitrate". Interaction: Tooltips on hover. Justification: This visualizes the *why* behind the report's qualitative notes on limitations, making the technical data meaningful. Library: Chart.js on Canvas.
+        - Report Info (Special Features text) -> Goal: Inform -> Viz: Formatted text block within the "Special Features" tab. Interaction: Accessed via tab click. Justification: Neatly separates this qualitative info from the hard specs. Library: Vanilla JS/Tailwind.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
-        /* グローバルフォント設定 */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #0b0b0f; /* 濃い紺色/ほぼ黒の背景 */
-            color: #e5e7eb; /* 明るいテキスト */
         }
-        /* 映画のタイトルを強調 */
-        .movie-title {
-            text-shadow: 0 0 10px rgba(74, 20, 140, 0.5), 0 0 20px rgba(103, 58, 183, 0.4);
-            color: #ffffff;
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
         }
-    </style>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'marvel-blue': '#0070c9',
-                        'marvel-red': '#cc0000',
-                        'doom-green': '#1e8449',
-                        'doom-silver': '#bdbdbd',
-                    }
-                }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
             }
         }
-    </script>
+        .tab-btn.active {
+            border-color: #3B82F6;
+            color: #3B82F6;
+            font-weight: 600;
+        }
+    </style>
 </head>
-<body>
+<body class="bg-stone-50 text-stone-800">
 
-    <!-- ヘッダーセクション -->
-    <header class="bg-marvel-blue/90 shadow-lg sticky top-0 z-10">
-        <div class="max-w-4xl mx-auto p-4 flex justify-between items-center">
-            <h1 class="text-xl font-bold text-white tracking-wider">
-                FANTASTIC FOUR
-            </h1>
-            <span class="text-sm font-medium text-white/80">
-                Blu-ray 情報 (日本)
-            </span>
-        </div>
-    </header>
+    <div class="container mx-auto p-4 md:p-8 max-w-5xl">
 
-    <!-- メインコンテンツコンテナ -->
-    <main class="max-w-4xl mx-auto p-4 md:p-8">
+        <header class="text-center mb-8 md:mb-12">
+            <h1 class="text-3xl md:text-4xl font-bold text-stone-900">Fantastic Four (2005)</h1>
+            <h2 class="text-xl md:text-2xl font-medium text-blue-600">Japanese Blu-ray Technical Profile (2006)</h2>
+            <p class="text-lg text-stone-600 mt-2">ファンタスティック・フォー ［超能力ユニット］</p>
+        </header>
 
-        <!-- 映画情報カード -->
-        <section class="bg-[#1a1a2e] p-6 md:p-10 rounded-xl shadow-2xl border-t-4 border-marvel-red/80 mb-10">
-            <h2 class="movie-title text-3xl md:text-5xl font-extrabold mb-4 text-center">
-                ファンタスティック・フォー ［超能力ユニット］
-            </h2>
-            <p class="text-center text-lg italic text-gray-400 mb-8">
-                Fantastic Four (2005)
-            </p>
+        <main class="space-y-10 md:space-y-16">
 
-            <!-- 概要/あらすじ -->
-            <div class="mb-8">
-                <h3 class="text-2xl font-semibold mb-3 border-b border-doom-silver/30 pb-2 text-marvel-blue">作品概要</h3>
-                <p class="text-gray-300 leading-relaxed text-base">
-                    天才科学者リード・リチャーズは、元恋人のスー、その弟のジョニー、親友のベン、そして資金提供者のビクター・フォン・ドゥームと共に宇宙実験に挑むが、予期せぬ宇宙放射線にさらされてしまう。この事故により、彼らは人間を超越した特殊能力を身につける。リードは体を伸縮自在にする「Mr.ファンタスティック」に、スーは姿を消し、力場を操る「インビジブル・ウーマン」に、ジョニーは全身が炎をまとい空を飛ぶ「ヒューマン・トーチ」に、ベンは驚異的な怪力を持つ岩石男「ザ・シング」となる。一方、ビクターもまた強大な力を得て、邪悪なヴィラン「Dr.ドゥーム」と化し、4人は彼の野望を阻止するため、力を合わせることを決意する。
+            <section id="at-a-glance" class="bg-white p-6 rounded-lg shadow-sm border border-stone-200">
+                <h3 class="text-2xl font-semibold text-stone-900 mb-6 border-b border-stone-200 pb-3">At a Glance</h3>
+                <p class="text-stone-600 mb-6">
+                    This section provides the primary release details for this 2006 Japanese Blu-ray. This was one of 20th Century Fox’s initial offerings for the new high-definition format, and its specifications reflect the technology available at the time.
                 </p>
-            </div>
-
-            <!-- キャスト情報 -->
-            <div class="mb-8">
-                <h3 class="text-2xl font-semibold mb-3 border-b border-doom-silver/30 pb-2 text-marvel-blue">主要キャスト</h3>
-                <ul class="space-y-2 text-gray-300 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <li><strong class="text-white">リード・リチャーズ / Mr.ファンタスティック:</strong> ヨアン・グリフィズ</li>
-                    <li><strong class="text-white">スーザン・ストーム / インビジブル・ウーマン:</strong> ジェシカ・アルバ</li>
-                    <li><strong class="text-white">ジョニー・ストーム / ヒューマン・トーチ:</strong> クリス・エヴァンス</li>
-                    <li><strong class="text-white">ベン・グリム / ザ・シング:</strong> マイケル・チクリス</li>
-                    <li><strong class="text-white">ビクター・フォン・ドゥーム / Dr.ドゥーム:</strong> ジュリアン・マクマホン</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- Blu-ray 発売情報セクション -->
-        <section class="bg-white p-6 md:p-10 rounded-xl shadow-2xl text-gray-900">
-            <h3 class="text-3xl font-bold mb-6 text-center text-marvel-red border-b-2 border-marvel-blue pb-2">
-                日本版 Blu-ray 発売情報
-            </h3>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- 発売日/価格ブロック -->
-                <div class="bg-gray-100 p-4 rounded-lg shadow-md">
-                    <p class="text-sm font-medium text-gray-600 mb-1">日本国内 発売日</p>
-                    <p class="text-4xl font-extrabold text-marvel-red">2006/11/10</p>
-                    <p class="text-xs text-gray-500 mt-1">(20世紀フォックス ホーム エンターテイメント ジャパン)</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="bg-stone-50 p-4 rounded-lg border border-stone-200">
+                        <span class="block text-sm font-medium text-stone-500">Release Date</span>
+                        <span class="block text-lg font-semibold text-blue-600">November 10, 2006</span>
+                    </div>
+                    <div class="bg-stone-50 p-4 rounded-lg border border-stone-200">
+                        <span class="block text-sm font-medium text-stone-500">Studio</span>
+                        <span class="block text-lg font-semibold text-stone-700">20th Century Fox</span>
+                    </div>
+                    <div class="bg-stone-50 p-4 rounded-lg border border-stone-200">
+                        <span class="block text-sm font-medium text-stone-500">Runtime</span>
+                        <span class="block text-lg font-semibold text-stone-700">106 Minutes</span>
+                    </div>
+                    <div class="bg-stone-50 p-4 rounded-lg border border-stone-200">
+                        <span class="block text-sm font-medium text-stone-500">Aspect Ratio</span>
+                        <span class="block text-lg font-semibold text-stone-700">2.35:1</span>
+                    </div>
                 </div>
+            </section>
 
-                <!-- フォーマット/品番ブロック -->
-                <div class="bg-gray-100 p-4 rounded-lg shadow-md">
-                    <p class="text-sm font-medium text-gray-600 mb-1">製品フォーマット</p>
-                    <p class="text-2xl font-bold text-gray-800">Blu-ray Disc (ブルーレイ)</p>
-                    <p class="text-sm text-gray-500 mt-1">品番: FXXA-28667</p>
-                </div>
-            </div>
-
-            <!-- 仕様詳細テーブル -->
-            <div class="mt-8 overflow-x-auto">
-                <h4 class="text-xl font-semibold mb-3 text-marvel-blue">Blu-ray 仕様詳細</h4>
-                <table class="min-w-full divide-y divide-gray-300 rounded-lg overflow-hidden border border-gray-300">
-                    <thead class="bg-doom-silver/20">
-                        <tr>
-                            <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">項目</th>
-                            <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">仕様</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-gray-200">
-                        <tr class="hover:bg-gray-50">
-                            <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900">ディスクタイプ</td>
-                            <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-700">片面一層 (BD-25)</td>
-                        </tr>
-                        <tr class="hover:bg-gray-50">
-                            <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900">本編尺</td>
-                            <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-700">106分</td>
-                        </tr>
-                        <tr class="hover:bg-gray-50">
-                            <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900">画面サイズ</td>
-                            <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-700">1080p (2.35:1 スコープサイズ)</td>
-                        </tr>
-                        <tr class="hover:bg-gray-50">
-                            <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900">音声（英語）</td>
-                            <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-700">DTS-HD Master Audio 5.1ch サラウンド</td>
-                        </tr>
-                        <tr class="hover:bg-gray-50">
-                            <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900">音声（日本語）</td>
-                            <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-700">DTS 5.1ch サラウンド</td>
-                        </tr>
-                        <tr class="hover:bg-gray-50">
-                            <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900">字幕</td>
-                            <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-700">日本語、英語など</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            
-            <p class="text-center text-xs text-gray-500 mt-6">
-                ※上記仕様は発売当時の情報に基づいています。
-            </p>
-        </section>
-
-        <!-- ヒーローチームのロゴ風画像 Placeholder -->
-        <div class="mt-10 p-6 bg-doom-green/20 rounded-xl text-center border border-doom-green/50">
-            <svg class="mx-auto w-12 h-12 text-marvel-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-            </svg>
-            <p class="text-sm text-gray-400 mt-2">
+            <section id="deep-dive" class="bg-white p-6 rounded-lg shadow-sm border border-stone-200">
+                <h3 class="text-2xl font-semibold text-stone-900 mb-6 border-b border-stone-200 pb-3">Technical Deep Dive</h3>
+                <p class="text-stone-600 mb-6">
+                    Explore the specific audio-visual specifications and discover what was included for special features. Use the tabs below to switch between categories.
+                </p>
                 
-            </p>
-        </div>
+                <div class="border-b border-stone-200 mb-6">
+                    <nav class="-mb-px flex space-x-6" aria-label="Tabs">
+                        <button id="tab-av-btn" class="tab-btn active whitespace-nowrap py-3 px-1 border-b-2 font-medium text-sm text-stone-500 border-transparent hover:border-stone-300">
+                            Audio & Visual
+                        </button>
+                        <button id="tab-features-btn" class="tab-btn whitespace-nowrap py-3 px-1 border-b-2 font-medium text-sm text-stone-500 border-transparent hover:border-stone-300">
+                            Special Features
+                        </button>
+                    </nav>
+                </div>
 
-    </main>
+                <div id="tab-av-content" class="tab-content space-y-5">
+                    <ul class="space-y-4">
+                        <li class="flex flex-col md:flex-row md:items-start p-4 bg-stone-50 rounded-lg border border-stone-200">
+                            <span class="font-semibold text-stone-800 w-full md:w-1/3 mb-2 md:mb-0">Video Resolution</span>
+                            <div class="w-full md:w-2/3">
+                                <span class="text-stone-700">1080p High Definition</span>
+                            </div>
+                        </li>
+                         <li class="flex flex-col md:flex-row md:items-start p-4 bg-stone-50 rounded-lg border border-stone-200">
+                            <span class="font-semibold text-stone-800 w-full md:w-1/3 mb-2 md:mb-0">Video Codec</span>
+                            <div class="w-full md:w-2/3">
+                                <span class="text-stone-700">MPEG-2</span>
+                                <p class="text-sm text-stone-500 mt-1 italic">
+                                    Many early Fox Blu-ray titles used this codec before AVC (MPEG-4) became the standard.
+                                </p>
+                            </div>
+                        </li>
+                        <li class="flex flex-col md:flex-row md:items-start p-4 bg-stone-50 rounded-lg border border-stone-200">
+                            <span class="font-semibold text-stone-800 w-full md:w-1/3 mb-2 md:mb-0">Audio</span>
+                            <div class="w-full md:w-2/3">
+                                <span class="text-stone-700">Dolby Digital 5.1 / DTS 5.1 (Typical)</span>
+                                <p class="text-sm text-stone-500 mt-1 italic">
+                                    Includes original English and Japanese dubbed tracks. Lossless tracks (like DTS-HD MA) were rare on these early releases.
+                                </p>
+                            </div>
+                        </li>
+                        <li class="flex flex-col md:flex-row md:items-start p-4 bg-stone-50 rounded-lg border border-stone-200">
+                            <span class="font-semibold text-stone-800 w-full md:w-1/3 mb-2 md:mb-0">Subtitles</span>
+                            <div class="w-full md:w-2/3">
+                                <span class="text-stone-700">Japanese, English (Likely)</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
 
-    <!-- フッターセクション -->
-    <footer class="bg-gray-800/90 mt-10 p-4 text-center text-xs text-gray-400">
-        <div class="max-w-4xl mx-auto">
-            &copy; 2005 Twentieth Century Fox / Marvel Enterprises. 無断転載を禁じます。
-        </div>
-    </footer>
+                <div id="tab-features-content" class="tab-content hidden">
+                    <p class="text-stone-600 mb-4">
+                        The initial Blu-ray releases of <i>Fantastic Four</i> were noted for containing significantly fewer special features than their standard-definition DVD counterparts. This was largely due to the technical limitations described in the next section.
+                    </p>
+                    <p class="text-stone-600 font-medium mb-3">Expected Features on this Release:</p>
+                    <ul class="list-disc list-inside text-stone-600 space-y-2 pl-2">
+                        <li>Deleted/Extended Scenes (A small selection)</li>
+                        <li>Commentary Track (Often carried over from DVD)</li>
+                        <li>Theatrical Trailers/Promos</li>
+                    </ul>
+                    <p class="text-stone-500 mt-4 italic">
+                        The vast, in-depth featurettes and documentaries found on the DVD version were generally omitted from this first-generation Blu-ray.
+                    </p>
+                </div>
+            </section>
 
+            <section id="context" class="bg-white p-6 rounded-lg shadow-sm border border-stone-200">
+                <h3 class="text-2xl font-semibold text-stone-900 mb-6 border-b border-stone-200 pb-3">Technology Context: 2006 vs. Modern</h3>
+                <p class="text-stone-600 mb-6">
+                    This report highlights two key technical limitations of this 2006 release: the <b>BD-25 (Single-Layer)</b> disc and the <b>MPEG-2</b> video codec. The chart below visualizes the practical difference in storage capacity and video data rates compared to a typical modern Blu-ray release, which explains the limited space for special features.
+                </p>
+                <div class="chart-container">
+                    <canvas id="techSpecChart"></canvas>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            const tabButtons = {
+                av: document.getElementById('tab-av-btn'),
+                features: document.getElementById('tab-features-btn')
+            };
+            
+            const tabContents = {
+                av: document.getElementById('tab-av-content'),
+                features: document.getElementById('tab-features-content')
+            };
+
+            function switchTab(targetTab) {
+                Object.values(tabButtons).forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                Object.values(tabContents).forEach(content => {
+                    content.classList.add('hidden');
+                });
+                
+                tabButtons[targetTab].classList.add('active');
+                tabContents[targetTab].classList.remove('hidden');
+            }
+
+            tabButtons.av.addEventListener('click', () => switchTab('av'));
+            tabButtons.features.addEventListener('click', () => switchTab('features'));
+            
+            const ctx = document.getElementById('techSpecChart').getContext('2d');
+            
+            const chartData = {
+                labels: ['Disc Capacity (GB)', 'Typical Video Bitrate (Mbps)'],
+                datasets: [
+                    {
+                        label: '2006 Release (BD-25, MPEG-2)',
+                        data: [25, 20],
+                        backgroundColor: 'rgba(59, 130, 246, 0.6)',
+                        borderColor: 'rgba(59, 130, 246, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Modern Release (BD-50, AVC/H.265)',
+                        data: [50, 35],
+                        backgroundColor: 'rgba(107, 114, 128, 0.6)',
+                        borderColor: 'rgba(107, 114, 128, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            };
+            
+            function formatLabel(label, maxChars) {
+                if (label.length > maxChars) {
+                    const words = label.split(' ');
+                    let lines = [''];
+                    let currentLine = 0;
+                    words.forEach(word => {
+                        if (lines[currentLine].length + word.length + 1 > maxChars) {
+                            currentLine++;
+                            lines[currentLine] = word;
+                        } else {
+                            lines[currentLine] += (lines[currentLine].length === 0 ? '' : ' ') + word;
+                        }
+                    });
+                    return lines;
+                }
+                return label;
+            }
+
+            const chartOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Value (GB / Mbps)'
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            callback: function(value, index, values) {
+                                const label = this.getLabelForValue(value);
+                                return formatLabel(label, 16);
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                    },
+                    tooltip: {
+                        enabled: true,
+                        mode: 'index',
+                        intersect: false,
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                return tooltipItems[0].label.replace(',', ' ');
+                            }
+                        }
+                    }
+                }
+            };
+            
+            new Chart(ctx, {
+                type: 'bar',
+                data: chartData,
+                options: chartOptions
+            });
+
+        });
+    </script>
 </body>
 </html>
