@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ミュートシティ - Japanese F-ZERO Wiki</title>
+    <style>
+        :root {
+            --wiki-bg: #f6f6f6;
+            --wiki-content-bg: #ffffff;
+            --wiki-border: #a2a9b1;
+            --link-color: #0645ad;
+            --header-font: 'Helvetica Neue', Helvetica, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', sans-serif;
+            --infobox-header: #ccddff; /* Light blue typical of generic wiki templates */
+            --toc-bg: #f8f9fa;
+        }
+
+        body {
+            font-family: sans-serif;
+            background-color: var(--wiki-bg);
+            margin: 0;
+            padding: 0;
+            color: #202122;
+            line-height: 1.6;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: var(--wiki-content-bg);
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-top: none;
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 300px; /* Content | Infobox */
+            gap: 20px;
+        }
+
+        /* Header Simulation */
+        .wiki-header {
+            background-color: #fff;
+            border-bottom: 1px solid #a7d7f9;
+            padding: 10px 20px;
+            margin-bottom: 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .wiki-logo {
+            font-weight: bold;
+            font-size: 1.2em;
+            font-style: italic;
+            color: #000;
+        }
+        .search-bar {
+            background: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            padding: 5px;
+            width: 200px;
+        }
+
+        /* Main Content */
+        .main-content {
+            grid-column: 1;
+        }
+
+        h1 {
+            font-family: 'Times New Roman', serif;
+            border-bottom: 1px solid #a2a9b1;
+            margin-top: 0;
+            font-size: 1.8em;
+            padding-bottom: 5px;
+        }
+
+        h2 {
+            border-bottom: 1px solid #a2a9b1;
+            font-size: 1.5em;
+            margin-top: 1.5em;
+            padding-bottom: 5px;
+        }
+
+        h3 {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-top: 1em;
+        }
+
+        p {
+            margin-bottom: 0.8em;
+        }
+
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Infobox Template Styling */
+        .infobox {
+            background-color: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            padding: 5px;
+            font-size: 0.9em;
+            width: 100%;
+            float: right; /* Fallback */
+        }
+        
+        .infobox-header {
+            background-color: var(--infobox-header);
+            text-align: center;
+            font-weight: bold;
+            padding: 8px;
+            font-size: 1.1em;
+        }
+
+        .infobox-image {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #fff;
+        }
+        
+        .infobox-image img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #eee;
+        }
+
+        .infobox-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .infobox-table th {
+            text-align: left;
+            padding: 5px;
+            width: 40%;
+            vertical-align: top;
+        }
+
+        .infobox-table td {
+            padding: 5px;
+            vertical-align: top;
+        }
+
+        /* Table of Contents */
+        .toc {
+            background-color: var(--toc-bg);
+            border: 1px solid #a2a9b1;
+            padding: 10px;
+            display: inline-block;
+            margin: 10px 0;
+        }
+        .toc-title {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .toc ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 0;
+        }
+        .toc li {
+            margin-bottom: 5px;
+        }
+        .toc li ul {
+            padding-left: 20px;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .container {
+                display: flex;
+                flex-direction: column;
+            }
+            
+            /* Move infobox to top on mobile, under title */
+            .infobox-wrapper {
+                order: -1; 
+                margin-bottom: 20px;
+            }
+            
+            h1 {
+                order: -2;
+            }
+        }
+        
+        /* Utilities */
+        .placeholder-img {
+            width: 250px;
+            height: 150px;
+            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin: 0 auto;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Wiki Header Placeholder -->
+    <div class="wiki-header">
+        <div class="wiki-logo">F-ZERO Wiki</div>
+        <input type="text" class="search-bar" placeholder="Wiki内を検索">
+    </div>
+
+    <div class="container">
+        <!-- Main Article Content -->
+        <div class="main-content">
+            <h1>ミュートシティ</h1>
+            
+            <!-- Mobile: Infobox appears here via flex order, Desktop: Grid layout handles it -->
+            
+            <p>
+                <b>ミュートシティ</b>（英：MUTE CITY）は、任天堂のレースゲーム『F-ZERO』シリーズに登場する架空の都市であり、サーキットである。
+            </p>
+            <p>
+                銀河宇宙連邦の中心都市として機能しており、経済、政治、文化の中心地として知られる。人口は10億人を超え、宇宙で最も進んだ洗練された都市として描かれている。F-ZEROグランプリにおいて最も有名な開催地であり、ほぼ全てのシリーズ作品にコースとして登場する。
+            </p>
+
+            <!-- Table of Contents -->
+            <div class="toc">
+                <div class="toc-title">目次</div>
+                <ul>
+                    <li><a href="#overview">1 概要</a></li>
+                    <li><a href="#history">2 歴史</a></li>
+                    <li><a href="#courses">3 コース一覧</a>
+                        <ul>
+                            <li><a href="#snes">3.1 F-ZERO (SFC)</a></li>
+                            <li><a href="#x">3.2 F-ZERO X</a></li>
+                            <li><a href="#gx">3.3 F-ZERO GX</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#anime">4 アニメ版での設定</a></li>
+                    <li><a href="#trivia">5 トリビア</a></li>
+                </ul>
+            </div>
+
+            <h2 id="overview">概要</h2>
+            <p>
+                ミュートシティは、宇宙交易の中心地であり、銀河中から様々な異星人が集まる巨大メトロポリスである。高層ビルが林立し、反重力システムを利用した道路や建築物が特徴的である。
+            </p>
+            <p>
+                『スマブラ』シリーズにもステージとして登場しており、F-ZEROシリーズを象徴するロケーションとして認知されている。
+            </p>
+
+            <h2 id="history">歴史</h2>
+            <p>
+                かつては<b>ミュータント・シティ</b>（MUTANT CITY）と呼ばれていたが、その名称が短縮され現在の「ミュートシティ」という名前になったという設定が存在する。
+            </p>
+            <p>
+                『F-ZERO FOR GAMEBOY ADVANCE』では、この都市に代わって「ビアンカ シティー」が新たな経済の中心地として台頭しつつあるという背景ストーリーが語られているが、依然としてミュートシティの重要性は高い。
+            </p>
+
+            <h2 id="courses">コース一覧</h2>
+            
+            <h3 id="snes">F-ZERO (SFC)</h3>
+            <p>
+                初代『F-ZERO』では、以下の3つのコースが登場する。
+            </p>
+            <ul>
+                <li><b>MUTE CITY I</b>：KNIGHT LEAGUEの第1コース。基本的なレイアウトで構成された入門コース。</li>
+                <li><b>MUTE CITY II</b>：QUEEN LEAGUEの第1コース。夕暮れ時の背景が特徴。</li>
+                <li><b>MUTE CITY III</b>：KING LEAGUEの第1コース。夜景となり、難易度が上昇している。地雷（マイン）が設置されている。</li>
+            </ul>
+
+            <h3 id="x">F-ZERO X</h3>
+            <p>
+                『F-ZERO X』では、立体的なコースデザインが可能になり、垂直ループやひねりのあるコースが登場した。「シリンダー」や「ジャンププレート」を多用したテクニカルなレイアウトが多い。
+            </p>
+
+            <h3 id="gx">F-ZERO GX</h3>
+            <p>
+                『F-ZERO GX』では「宇宙連邦の心臓部（Metropolis in the Heart of the Space Federation）」として紹介されている。ストーリーモードの舞台としても頻繁に登場する。
+            </p>
+
+            <h2 id="anime">アニメ版での設定</h2>
+            <p>
+                アニメ『F-ZERO ファルコン伝説』では、西暦2201年の地球を舞台としており、ミュートシティはかつての<b>ニューヨーク</b>であるという設定がなされている。高機動小隊の本部が置かれている。
+            </p>
+
+            <h2 id="trivia">トリビア</h2>
+            <ul>
+                <li>『マリオカート8』および『マリオカート8 デラックス』のDLCとして、ミュートシティをモデルにしたコースが登場している。</li>
+                <li>コースBGMはシリーズを通してアレンジされ続けており、ゲーム音楽としても非常に知名度が高い。</li>
+            </ul>
+        </div>
+
+        <!-- Infobox Sidebar -->
+        <div class="infobox-wrapper">
+            <div class="infobox">
+                <div class="infobox-header">ミュートシティ <br> MUTE CITY</div>
+                
+                <div class="infobox-image">
+                    <div class="placeholder-img">
+                        
+                    </div>
+                    <div style="font-size:0.8em; padding:5px;">F-ZERO GXにおけるミュートシティ</div>
+                </div>
+
+                <table class="infobox-table">
+                    <tr>
+                        <th>日本語名</th>
+                        <td>ミュートシティ</td>
+                    </tr>
+                    <tr>
+                        <th>英語名</th>
+                        <td>MUTE CITY</td>
+                    </tr>
+                    <tr>
+                        <th>種類</th>
+                        <td>都市 / サーキット</td>
+                    </tr>
+                    <tr>
+                        <th>位置</th>
+                        <td>地球（宇宙連邦）</td>
+                    </tr>
+                    <tr>
+                        <th>人口</th>
+                        <td>10億人以上</td>
+                    </tr>
+                    <tr>
+                        <th>初登場</th>
+                        <td>F-ZERO (1990年)</td>
+                    </tr>
+                    <tr>
+                        <th>主な関連人物</th>
+                        <td><a href="#">キャプテン ファルコン</a><br><a href="#">ドクター スチュワート</a></td>
+                    </tr>
+                </table>
+            </div>
+            
+            <!-- Example of another template often found below infoboxes -->
+            <div style="margin-top: 10px; border: 1px solid #a2a9b1; background: #f9f9f9; padding: 5px; font-size: 0.85em;">
+                <div style="text-align: center; font-weight: bold; background: #e1e1e1; padding: 2px;">F-ZERO コース (SFC)</div>
+                <div style="padding: 5px; text-align: center;">
+                    <a href="#">Mute City</a> • <a href="#">Big Blue</a> • <a href="#">Sand Ocean</a> • <a href="#">Death Wind</a> • <a href="#">Silence</a> • <a href="#">Port Town</a> • <a href="#">Red Canyon</a> • <a href="#">White Land</a> • <a href="#">Fire Field</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div style="text-align: center; padding: 20px; font-size: 0.8em; color: #666;">
+        &copy; F-ZERO Wiki. Content is available under CC BY-NC-SA unless otherwise noted.
+    </div>
+
+</body>
+</html>
