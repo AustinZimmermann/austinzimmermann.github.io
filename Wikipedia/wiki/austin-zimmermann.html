@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en" class="client-nojs">
+<head>
+    <meta charset="UTF-8">
+    <title>Austin Zimmermann - Wikipedia</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* --- Wikipedia-style CSS Reset & Base --- */
+        body {
+            font-family: sans-serif;
+            background-color: #f6f6f6;
+            margin: 0;
+            padding: 0;
+            color: #202122;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: #3366cc;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* --- Layout --- */
+        .mw-page-container {
+            display: flex;
+            max-width: 100%;
+            min-height: 100vh;
+        }
+
+        /* Sidebar (Visual Mockup) */
+        .mw-sidebar {
+            width: 11rem;
+            background-color: #f6f6f6;
+            padding: 1.5em 1em;
+            border-right: 1px solid #a7d7f9;
+            display: none; /* Hidden on small mobile, shown on desktop */
+            flex-shrink: 0;
+            font-size: 0.875em;
+        }
+
+        .mw-logo {
+            display: block;
+            width: 135px;
+            height: 135px;
+            margin: 0 auto 1em;
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/b/b3/Wikipedia-logo-v2-en.svg');
+            background-repeat: no-repeat;
+            background-size: contain;
+            opacity: 0.8;
+        }
+
+        .sidebar-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1em 0;
+            border-bottom: 1px solid #c8ccd1;
+        }
+        
+        .sidebar-list li {
+            margin-bottom: 0.5em;
+            color: #54595d;
+            cursor: pointer;
+        }
+
+        /* Main Content Area */
+        .mw-content-container {
+            background-color: #ffffff;
+            flex-grow: 1;
+            border: 1px solid #a7d7f9;
+            border-top: none;
+            border-bottom: none;
+            padding: 1.5em 2em;
+            position: relative;
+            min-width: 0; /* Prevents overflow issues */
+        }
+
+        /* Top Header (Tabs/Search) */
+        .mw-header {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #a7d7f9;
+            margin-bottom: 1.5em;
+            padding-bottom: 0.5em;
+            font-size: 0.85em;
+        }
+        
+        .mw-indicators {
+            float: right;
+            line-height: 1.6;
+            font-size: 0.875em;
+            cursor: help;
+        }
+
+        /* Article Title */
+        h1.firstHeading {
+            font-family: 'Linux Libertine', 'Georgia', 'Times', serif;
+            font-weight: normal;
+            margin-top: 0;
+            margin-bottom: 0.25em;
+            font-size: 1.8em;
+            border-bottom: 1px solid #a2a9b1;
+            padding-bottom: 0.25em;
+        }
+
+        /* Body Content */
+        .mw-body-content {
+            font-size: 0.93em;
+            position: relative;
+        }
+        
+        p {
+            margin: 0.5em 0 1em 0;
+        }
+
+        /* --- Infobox Styling --- */
+        .infobox {
+            border: 1px solid #a2a9b1;
+            background-color: #f8f9fa;
+            color: black;
+            margin: 0.5em 0 0.5em 1em;
+            padding: 0.2em;
+            float: right;
+            clear: right;
+            font-size: 88%;
+            line-height: 1.5em;
+            width: 22em;
+        }
+
+        .infobox caption, .infobox .infobox-title {
+            font-size: 125%;
+            font-weight: bold;
+            padding: 0.2em;
+            text-align: center;
+            background-color: #b0c4de; /* Generic person color */
+        }
+
+        .infobox th, .infobox td {
+            vertical-align: top;
+            text-align: left;
+            padding: 0.2em 0.4em;
+        }
+
+        .infobox th {
+            width: 33%; /* typical width */
+            font-weight: bold;
+            background-color: transparent;
+        }
+        
+        .infobox-image {
+            text-align: center;
+            padding-bottom: 0.5em;
+        }
+        
+        .infobox-image img {
+            max-width: 220px;
+            height: auto;
+            border: 1px solid #c8ccd1;
+            background: #fff;
+            padding: 3px;
+        }
+
+        /* --- Mobile Responsiveness --- */
+        @media screen and (min-width: 1000px) {
+            .mw-sidebar {
+                display: block;
+            }
+            .mw-content-container {
+                margin-left: 0; 
+            }
+        }
+
+        @media screen and (max-width: 720px) {
+            .infobox {
+                float: none;
+                width: 100%;
+                margin: 0.5em 0;
+                box-sizing: border-box;
+            }
+            .mw-content-container {
+                padding: 1em;
+            }
+        }
+
+        /* --- Misc Elements --- */
+        .toc {
+            display: inline-block;
+            border: 1px solid #a2a9b1;
+            background-color: #f8f9fa;
+            padding: 1em;
+            margin-top: 1em;
+            font-size: 95%;
+        }
+        .toc h2 {
+            font-size: 100%;
+            font-family: sans-serif;
+            display: inline;
+            border: none;
+            margin: 0;
+        }
+        .toc ul {
+            list-style: none;
+            padding-left: 1.5em;
+            margin-bottom: 0;
+        }
+
+        .reflist {
+            font-size: 90%;
+            margin-bottom: 1em;
+        }
+
+        .catlinks {
+            border: 1px solid #a2a9b1;
+            background-color: #f8f9fa;
+            padding: 5px;
+            margin-top: 2em;
+            clear: both;
+            font-size: 0.875em;
+        }
+
+        .mw-editsection {
+            font-size: small;
+            margin-left: 1em;
+            vertical-align: baseline;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+
+<div class="mw-page-container">
+    <!-- Sidebar -->
+    <div class="mw-sidebar">
+        <a href="#" class="mw-logo" title="Visit the main page"></a>
+        <nav>
+            <h3>Navigation</h3>
+            <ul class="sidebar-list">
+                <li>Main page</li>
+                <li>Contents</li>
+                <li>Current events</li>
+                <li>Random article</li>
+                <li>About Wikipedia</li>
+                <li>Contact us</li>
+                <li>Donate</li>
+            </ul>
+        </nav>
+        <nav>
+            <h3>Contribute</h3>
+            <ul class="sidebar-list">
+                <li>Help</li>
+                <li>Learn to edit</li>
+                <li>Community portal</li>
+                <li>Recent changes</li>
+                <li>Upload file</li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="mw-content-container">
+        <!-- Header Tabs -->
+        <div class="mw-header">
+            <div style="display:flex; gap: 1em;">
+                <div style="font-weight:bold; border-bottom: 1px solid transparent; padding:0 0.5em;">Article</div>
+                <div style="color:#3366cc; cursor:pointer; padding:0 0.5em;">Talk</div>
+            </div>
+            <div style="display:flex; gap: 1em;">
+                <div style="font-weight:bold; padding:0 0.5em;">Read</div>
+                <div style="color:#3366cc; cursor:pointer; padding:0 0.5em;">Edit</div>
+                <div style="color:#3366cc; cursor:pointer; padding:0 0.5em;">View history</div>
+                <div style="margin-left:1em;">
+                    <input type="search" placeholder="Search Wikipedia" style="padding: 3px;">
+                </div>
+            </div>
+        </div>
+
+        <!-- Article Content -->
+        <div id="content" class="mw-body" role="main">
+            <h1 id="firstHeading" class="firstHeading">Austin Zimmermann</h1>
+            <div id="siteSub" class="noprint" style="font-size: 0.8em; color: #54595d;">From Wikipedia, the free encyclopedia</div>
+            
+            <div id="bodyContent" class="mw-body-content">
+                
+                <!-- INFOBOX PERSON -->
+                <table class="infobox vcard">
+                    <caption class="infobox-title fn">Austin Zimmermann</caption>
+                    <tbody>
+                        <tr>
+                            <td colspan="2" class="infobox-image">
+                                <!-- SVG Placeholder for missing image -->
+                                <svg width="220" height="250" xmlns="http://www.w3.org/2000/svg" style="background:#e0e0e0; border:1px solid #ccc;">
+                                    <path d="M110 120 c-25 0 -45 -20 -45 -45 s 20 -45 45 -45 s 45 20 45 45 s -20 45 -45 45 z M 50 220 l 0 -20 c 0 -30 25 -50 60 -50 s 60 20 60 50 l 0 20 z" fill="#999" />
+                                </svg>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Born</th>
+                            <td>
+                                <div class="nickname" style="display:inline;">Austin Robert Zimmermann</div><br>
+                                <span style="display:none">1997-01-09</span> <!-- Microformat -->
+                                January 9, 1997 <span class="noprint ForceAgeToShow">(age&nbsp;28)</span>
+                            </td>
+                        </tr>
+                        <!-- Placeholder fields for standard template structure -->
+                        <tr>
+                            <th scope="row">Nationality</th>
+                            <td class="category">American</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- END INFOBOX -->
+
+                <p><b>Austin Robert Zimmermann</b> (born January 9, 1997) is an American individual.</p>
+
+                <div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading">
+                    <input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none">
+                    <div class="toctitle" lang="en" dir="ltr">
+                        <h2 id="mw-toc-heading">Contents</h2>
+                    </div>
+                    <ul>
+                        <li class="toclevel-1 tocsection-1"><a href="#Biography"><span class="tocnumber">1</span> <span class="toctext">Biography</span></a></li>
+                        <li class="toclevel-1 tocsection-2"><a href="#References"><span class="tocnumber">2</span> <span class="toctext">References</span></a></li>
+                    </ul>
+                </div>
+
+                <h2 id="Biography">Biography<span class="mw-editsection">[<a href="#">edit</a>]</span></h2>
+                <p>Austin Zimmermann was born on January 9, 1997.</p>
+
+                <h2 id="References">References<span class="mw-editsection">[<a href="#">edit</a>]</span></h2>
+                <div class="reflist">
+                    <ol class="references">
+                        <li id="cite_note-1"><span class="mw-cite-backlink"><b>^</b></span> <span class="reference-text">"Austin Zimmermann". <i>Wikipedia</i>. Retrieved November 21, 2025.</span></li>
+                    </ol>
+                </div>
+
+                <!-- Categories -->
+                <div id="catlinks" class="catlinks" data-mw="interface">
+                    <div id="mw-normal-catlinks" class="mw-normal-catlinks">
+                        <a href="#">Categories</a>: 
+                        <ul>
+                            <li style="display:inline; border-left: 1px solid #a2a9b1; padding-left: 0.4em; margin-left: 0.4em;"><a href="#">1997 births</a></li>
+                            <li style="display:inline; border-left: 1px solid #a2a9b1; padding-left: 0.4em; margin-left: 0.4em;"><a href="#">Living people</a></li>
+                            <li style="display:inline; border-left: 1px solid #a2a9b1; padding-left: 0.4em; margin-left: 0.4em;"><a href="#">American people</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
