@@ -1,13 +1,16 @@
+# Media Information
+<pre>
 General
-Filename.....: BIONICLE 3 Web of Shadows (2005 Hungarian DVD Rip).mkv
+Filename.....: BIONICLE.3.Arnyak.Halojaban.2005.HUN.PAL.DVD9-BANYIT.iso
 MovieName....: BIONICLE 3. – Árynak hálójában
+FileSize.....: 7.95 GiB
 Duration.....: 1 h 15 min
 
 Video
 Codec........: MPEG Video
 Resolution...: 720x576
 AspectRatio..: 16:9
-FrameRate....: 23.976 FPS
+FrameRate....: 25.000 FPS
 
 Audio
 Language.....: Hungarian
@@ -38,3 +41,4 @@ Language.....: Hungarian
 Language.....: English
 Language.....: Czech
 Language.....: Slovak
+</pre>
