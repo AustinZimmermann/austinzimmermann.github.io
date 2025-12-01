@@ -1,44 +1,44 @@
-# Média információk
+# Media Information
 <pre>
-Általános
-Fájlnév : BIONICLE.3.Arnyak.Halojaban.2005.HUN.PAL.DVD9-BANYIT.iso
-Filmnév : BIONICLE 3. – Árynak hálójában
-Fájlméret : 7,95 GiB
-Hossz : 1 óra 15 perc
+General
+Filename.....: BIONICLE.3.Arnyak.Halojaban.2005.HUN.PAL.DVD9-BANYIT.iso
+MovieName....: BIONICLE 3. – Árynak hálójában
+FileSize.....: 7.95 GiB
+Duration.....: 1 h 15 min
 
-Videó
-Kodek : MPEG Video
-Felbontás : 720x576
-Képarány : 16:9
-Képkockasebesség : 25,000 FPS
+Video
+Codec........: MPEG Video
+Resolution...: 720x576
+AspectRatio..: 16:9
+FrameRate....: 25.000 FPS
 
-Hang
-Nyelv : magyar
-Csatornák : 6
-Formátum : Dolby Digital
+Audio
+Language.....: Hungarian
+Channels.....: 6
+Format.......: Dolby Digital
 (Dolby Digital 5.1)
 
-Hang (#2)
-Nyelv : angol
-Csatornák : 6
-Formátum : Dolby Digital
+Audio (#2)
+Language.....: English
+Channels.....: 6
+Format.......: Dolby Digital
 (Dolby Digital 5.1)
 
-Hang (#3)
-Nyelv : cseh
-Csatornák : 6
-Formátum : Dolby Digital
+Audio (#3)
+Language.....: Czech
+Channels.....: 6
+Format.......: Dolby Digital
 (Dolby Digital 5.1)
 
-Hang (#4)
-Nyelv : szlovák
-Csatornák : 6
-Formátum : Dolby Digital
+Audio (#4)
+Language.....: Slovak
+Channels.....: 6
+Format.......: Dolby Digital
 (Dolby Digital 5.1)
 
-Felirat
-Nyelv : magyar
-Nyelv : angol
-Nyelv : cseh
-Nyelv : szlovák
+Subtitle
+Language.....: Hungarian
+Language.....: English
+Language.....: Czech
+Language.....: Slovak
 </pre>
