@@ -1,7 +1,7 @@
 # Media Information
 <pre>
 General
-Filename.......: Ice.Age.Continental.Drift.2012.1080p.Blu-ray.Remux.AVC.DTS-HD.MA.7.1-GMA.mkv
+Filename.......: Ice.Age.Continental.Drift.2012.1080p.BluRay.REMUX.AVC.DTS-HD.MA.7.1-GMA.mkv
 Title..........: Ice Age: Continental Drift
 FileSize.......: 22.4 GiB
 Duration.......: 1 h 27 min
