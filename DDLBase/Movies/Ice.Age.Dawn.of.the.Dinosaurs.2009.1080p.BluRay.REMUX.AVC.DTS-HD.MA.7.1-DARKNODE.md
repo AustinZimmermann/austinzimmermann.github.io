@@ -1,7 +1,7 @@
 # Media Information
 <pre>
 General
-Filename.......: Ice.Age.Dawn.of.the.Dinosaurs.2009.1080p.Blu-ray.Remux.AVC.DTS-HD.MA.7.1-DARKNODE.mkv
+Filename.......: Ice.Age.Dawn.of.the.Dinosaurs.2009.1080p.BluRay.REMUX.AVC.DTS-HD.MA.7.1-DARKNODE.mkv
 Title..........: Ice Age: Dawn of the Dinosaurs
 FileSize.......: 26.4 GiB
 Duration.......: 1 h 34 min
