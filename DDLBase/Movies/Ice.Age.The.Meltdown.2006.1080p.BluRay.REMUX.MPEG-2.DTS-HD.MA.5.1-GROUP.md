@@ -1,7 +1,7 @@
 # Media Information
 <pre>
 General
-Filename.......: Ice.Age.The.Meltdown.2006.1080p.Blu-ray.Remux.MPEG-2.DTS-HD.MA.5.1-GROUP.mkv
+Filename.......: Ice.Age.The.Meltdown.2006.1080p.BluRay.REMUX.MPEG-2.DTS-HD.MA.5.1-GROUP.mkv
 Title..........: Ice Age: The Meltdown
 FileSize.......: 16.2 GiB
 Duration.......: 1 h 30 min
