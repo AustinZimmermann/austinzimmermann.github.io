@@ -10,7 +10,7 @@ Video
 Codec..........: AVC
 Resolution.....: 1920x1080
 AspectRatio....: 16:9
-FrameRate......: 23.976 fps
+FrameRate......: 23.976 FPS
 
 Audio
 Language.......: English
