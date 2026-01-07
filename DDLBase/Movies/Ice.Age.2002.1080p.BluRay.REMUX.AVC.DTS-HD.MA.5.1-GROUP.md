@@ -9,8 +9,8 @@ Duration.......: 1 h 21 min
 Video
 Codec..........: AVC
 Resolution.....: 1920x1080
-Aspect ratio...: 16:9
-Frame rate.....: 23.976 fps
+AspectRatio....: 16:9
+FrameRate......: 23.976 FPS
 
 Audio
 Language.......: English
@@ -18,8 +18,9 @@ Channels.......: 6 CH
 Format.........: DTS-HD Master Audio
 (DTS-HD Master Audio 5.1)
 
-Subtitle.......: English
-Subtitle.......: Spanish
-Subtitle.......: Cantonese
-Subtitle.......: Korean
+Subtitle
+Language.......: English
+Language.......: Spanish
+Language.......: Cantonese
+Language.......: Korean
 </pre>
