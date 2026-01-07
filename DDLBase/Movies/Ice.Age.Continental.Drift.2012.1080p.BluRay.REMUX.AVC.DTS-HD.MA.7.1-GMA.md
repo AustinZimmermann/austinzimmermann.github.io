@@ -20,5 +20,6 @@ Format.........: DTS-HD Master Audio
 
 Subtitle
 Language.......: English (SDH)
+Language.......: French (France)
 Language.......: Spanish (Latin America)
 </pre>
