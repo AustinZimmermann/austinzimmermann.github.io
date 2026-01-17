@@ -2,7 +2,7 @@
 <pre>
 General
 Unique ID                                : 208533810134902148192348123049182304981
-Full name                                : Ice.Age.Continental.Drift.2012.1080p.BluRay.REMUX.AVC.DTS-HD.MA.7.1-GMA.mkv
+Complete name                            : Ice.Age.Continental.Drift.2012.1080p.BluRay.REMUX.AVC.DTS-HD.MA.7.1-GMA.mkv
 Format                                   : Matroska
 Format version                           : Version 4
 File size                                : 24.8 GiB (Estimated)
