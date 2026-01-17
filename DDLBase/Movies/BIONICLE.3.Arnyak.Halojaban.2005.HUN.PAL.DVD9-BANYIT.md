@@ -3,8 +3,8 @@
 General
 Unique ID                      : 184560235730245892015384950238475023847 (0x8A9B2C3D4E5F6A7B8C9D0E1F2A3B4C5D)
 Complete name                  : BIONICLE.3.Arnyak.Halojaban.2005.HUN.PAL.DVD9-BANYIT.iso
-Format                         : DVD Video
-Format profile                 : Menu
+Format                         : ISO
+Format profile                 : DVD Video
 File size                      : 7.42 GiB
 Duration                       : 1 h 12 min
 Overall bit rate mode          : Variable
