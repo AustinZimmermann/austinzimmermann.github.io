@@ -94,7 +94,7 @@ Format                                   : PGS
 Codec ID                                 : S_HDMV/PGS
 Codec ID/Info                            : Picture based subtitle format used on BDs
 Language                                 : English (SDH)
-Default                                  : Yes
+Default                                  : No
 Forced                                   : No
 
 Text #2
