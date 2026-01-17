@@ -2,7 +2,7 @@
 <pre>
 General
 Unique ID                                : 24681357901234567890 (0x153A2B3C4D5E6F70)
-Complete name                             : X-Men.2000.1080p.JPN.BluRay.REMUX.AVC.DTS-HD.MA.5.1-FGT.mkv
+Complete name                            : X-Men.2000.1080p.JPN.BluRay.REMUX.AVC.DTS-HD.MA.5.1-FGT.mkv
 Format                                   : Matroska
 Format version                           : Version 2
 File size                                : 28.4 GiB
