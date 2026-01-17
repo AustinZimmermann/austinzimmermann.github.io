@@ -1,7 +1,7 @@
 # Media Information
 <pre>
 General
-Complete name                            : Star.Wars.III.Resz.A.Sith-ek.Bosszuja.2005.Disc1.HUN.PAL.DVD9-FiRE.iso
+Complete name                            : STAR_WARS_EP3_DISC1.iso
 Format                                   : ISO
 Format profile                           : DVD-Video
 File size                                : 7.82 GiB
@@ -139,7 +139,7 @@ Muxing mode                              : DVD-Video
 Language                                 : Romanian
 
 General
-Complete name                            : Star.Wars.III.Resz.A.Sith-ek.Bosszuja.2005.Disc2.HUN.PAL.DVD9-FiRE.iso
+Complete name                            : STAR_WARS_EP3_DISC2.iso
 Format                                   : ISO
 Format profile                           : DVD-Video
 File size                                : 7.24 GiB
