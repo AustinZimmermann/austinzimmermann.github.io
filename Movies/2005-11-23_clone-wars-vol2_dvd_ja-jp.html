@@ -1,362 +1,424 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>20世紀フォックス ホーム エンターテイメント - スター・ウォーズ クローン大戦 VOLUME TWO</title>
+    <title>20世紀 フォックス ホーム エンターテイメント - スター・ウォーズ クローン大戦 VOLUME TWO</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Internet Explorer 6/7 レトロスタイル */
         body {
-            background-color: #FFFFFF;
-            color: #333333;
-            font-family: "Hiragino Kaku Gothic Pro", sans-serif;
-            font-size: 12px;
+            background-color: #000000;
+            font-family: sans-serif;
             margin: 0;
             padding: 0;
+            color: #FFFFFF;
         }
 
-        /* IE ブラウザフレームの再現 */
-        .ie-frame {
-            border: 2px solid #0054E3;
-            background: #ECE9D8;
-            margin: 0 auto;
-            max-width: 1000px;
-        }
-
-        .ie-title-bar {
-            background: linear-gradient(to right, #0058EE, #3789ED);
+        /* IE6 Browser Chrome Simulation */
+        .ie-header {
+            background: linear-gradient(to bottom, #0058e6 0%, #3a93ff 8%, #0058e6 100%);
             color: white;
-            padding: 3px 10px;
+            padding: 4px 8px;
+            font-size: 12px;
             font-weight: bold;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 1px solid #003b99;
         }
 
         .ie-menu-bar {
-            background: #ECE9D8;
-            border-bottom: 1px solid #ACA899;
-            padding: 2px 5px;
+            background-color: #f0f0f0;
+            border-bottom: 1px solid #ccc;
+            padding: 2px 10px;
+            font-size: 11px;
+            color: #000;
         }
 
-        .ie-address-bar {
-            background: #ECE9D8;
-            border-bottom: 1px solid #ACA899;
-            padding: 5px;
+        .ie-tool-bar {
+            background-color: #f0f0f0;
+            border-bottom: 1px solid #999;
+            padding: 4px 10px;
             display: flex;
+            gap: 15px;
+            color: #000;
+            font-size: 11px;
             align-items: center;
         }
 
-        .address-field {
-            background: white;
-            border: 1px solid #7F9DB9;
-            flex-grow: 1;
-            margin-left: 5px;
-            padding: 2px 5px;
-            font-size: 11px;
+        .ie-address-bar {
+            background-color: #f0f0f0;
+            border-bottom: 1px solid #999;
+            padding: 4px 10px;
+            display: flex;
+            align-items: center;
+            font-size: 12px;
+            color: #000;
         }
 
-        /* サイトコンテンツ */
-        #container {
+        .address-input {
+            background: white;
+            border: 1px solid #7f9db9;
+            flex-grow: 1;
+            margin-left: 10px;
+            padding: 1px 4px;
+        }
+
+        /* 20th Century Fox Branding 2005 Style */
+        .page-container {
             width: 780px;
             margin: 0 auto;
             background-color: #FFFFFF;
+            color: #333;
+            min-height: 100vh;
+            border-left: 1px solid #333;
+            border-right: 1px solid #333;
         }
 
-        #header {
-            background-color: #000000;
-            color: #FFFFFF;
-            padding: 10px;
-            border-bottom: 3px solid #FFCC00;
-            text-align: center;
+        .fox-header {
+            background-color: #000033;
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 20px;
+            border-bottom: 4px solid #FFCC00;
+            background-image: linear-gradient(rgba(0,0,51,0.8), rgba(0,0,51,0.8)), url('https://www.google.com/search?q=star+wars+stars+background');
         }
 
         .fox-logo {
-            font-size: 24px;
-            font-weight: bold;
-            letter-spacing: 2px;
+            font-family: serif;
             color: #FFCC00;
-        }
-
-        #nav {
-            background-color: #F0F0F0;
-            padding: 5px;
-            border-bottom: 1px solid #CCCCCC;
-            text-align: center;
-        }
-
-        #nav a {
-            color: #003399;
-            text-decoration: none;
-            margin: 0 10px;
             font-weight: bold;
+            font-size: 28px;
+            text-shadow: 2px 2px #000;
+            letter-spacing: 1px;
         }
 
-        #nav a:hover {
-            text-decoration: underline;
+        .nav-tabs {
+            background-color: #333;
+            display: flex;
+            font-size: 12px;
         }
 
-        #main-layout {
+        .nav-tab {
+            padding: 8px 15px;
+            color: white;
+            text-decoration: none;
+            border-right: 1px solid #555;
+        }
+
+        .nav-tab:hover {
+            background-color: #FFCC00;
+            color: black;
+        }
+
+        /* Sidebar and Content */
+        .main-layout {
             display: flex;
             padding: 20px;
         }
 
-        #sidebar {
-            width: 180px;
-            border-right: 1px dotted #CCCCCC;
-            padding-right: 15px;
+        .sidebar {
+            width: 160px;
+            flex-shrink: 0;
+            font-size: 11px;
         }
 
-        .side-box {
-            background-color: #E6EEFF;
-            border: 1px solid #99BBFF;
-            padding: 8px;
+        .sidebar-box {
+            border: 1px solid #CCCCCC;
             margin-bottom: 15px;
         }
 
-        .side-title {
-            font-weight: bold;
-            color: #003399;
-            margin-bottom: 5px;
-            border-bottom: 1px solid #99BBFF;
-        }
-
-        #content {
-            flex-grow: 1;
-            padding-left: 20px;
-        }
-
-        .product-title {
-            font-size: 18px;
-            font-weight: bold;
-            color: #000000;
-            border-bottom: 2px solid #FFCC00;
-            padding-bottom: 5px;
-            margin-bottom: 15px;
-        }
-
-        .product-area {
-            display: flex;
-        }
-
-        .product-image {
-            width: 250px;
-            border: 1px solid #999999;
+        .sidebar-title {
+            background-color: #EEEEEE;
             padding: 5px;
-            background: #F9F9F9;
+            font-weight: bold;
+            border-bottom: 1px solid #CCCCCC;
         }
 
-        .product-info {
-            margin-left: 20px;
+        .sidebar-content {
+            padding: 8px;
+        }
+
+        .content-area {
             flex-grow: 1;
+            padding-left: 25px;
         }
 
-        .price {
-            font-size: 16px;
+        .breadcrumb {
+            font-size: 10px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .product-title-h1 {
+            font-size: 18px;
             color: #CC0000;
+            border-left: 5px solid #CC0000;
+            padding-left: 10px;
+            margin-bottom: 20px;
             font-weight: bold;
         }
 
-        .buy-btn {
-            background: linear-gradient(#FF9900, #FF6600);
-            color: white;
-            border: 1px solid #993300;
-            padding: 10px 20px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 15px;
-            text-align: center;
-            width: 150px;
+        .dvd-image-frame {
+            border: 1px solid #999;
+            padding: 3px;
+            background: #FFF;
+            box-shadow: 4px 4px 8px rgba(0,0,0,0.3);
         }
 
         .spec-table {
+            font-size: 12px;
             width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            font-size: 11px;
+            border-top: 2px solid #333;
         }
 
         .spec-table th {
-            background-color: #F0F0F0;
-            border: 1px solid #CCCCCC;
-            padding: 5px;
-            width: 80px;
+            background-color: #F7F7F7;
             text-align: left;
+            padding: 8px;
+            width: 100px;
+            border-bottom: 1px solid #DDD;
         }
 
         .spec-table td {
-            border: 1px solid #CCCCCC;
-            padding: 5px;
+            padding: 8px;
+            border-bottom: 1px solid #DDD;
         }
 
-        #footer {
-            clear: both;
-            text-align: center;
-            padding: 20px;
-            font-size: 10px;
-            color: #666666;
-            border-top: 1px solid #CCCCCC;
-        }
-
-        .status-bar {
-            background: #ECE9D8;
-            border-top: 1px solid #ACA899;
-            padding: 2px 5px;
-            font-size: 11px;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        /* スターウォーズらしい装飾 */
-        .sw-badge {
+        .ep3-promo {
             background-color: #000;
             color: #FFCC00;
-            padding: 2px 5px;
-            font-weight: bold;
+            padding: 10px;
+            margin-top: 20px;
+            border: 2px solid #FFCC00;
+            text-align: center;
+        }
+
+        .footer {
+            background-color: #F0F0F0;
+            padding: 30px 20px;
             font-size: 10px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #CCC;
+        }
+
+        .status-badge {
+            background-color: #008800;
+            color: white;
+            padding: 2px 8px;
+            font-size: 11px;
+            font-weight: bold;
             display: inline-block;
-            margin-bottom: 5px;
+            margin-bottom: 10px;
+        }
+
+        .timestamp-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #E1E1E1;
+            border-top: 1px solid #999;
+            padding: 2px 10px;
+            font-size: 11px;
+            color: #333;
+            display: flex;
+            justify-content: flex-end;
+            z-index: 1000;
         }
     </style>
 </head>
 <body>
 
-<div class="ie-frame">
-    <!-- IE Title Bar -->
-    <div class="ie-title-bar">
-        <span>20世紀フォックス ホーム エンターテイメント - スター・ウォーズ クローン大戦 VOLUME TWO - Microsoft Internet Explorer</span>
-        <div style="font-size: 14px;">[ _ ] [ 口 ] [ X ]</div>
+    <!-- IE6 Header -->
+    <div class="ie-header">
+        <span>スター・ウォーズ クローン大戦 VOLUME TWO - 20世紀フォックス - Microsoft Internet Explorer</span>
+        <div class="flex gap-1">
+            <div class="w-4 h-4 bg-gray-300 border border-white flex items-center justify-center text-black text-[10px]">_</div>
+            <div class="w-4 h-4 bg-gray-300 border border-white flex items-center justify-center text-black text-[10px]">□</div>
+            <div class="w-4 h-4 bg-red-500 border border-white flex items-center justify-center text-white text-[10px]">X</div>
+        </div>
     </div>
 
-    <!-- IE Menus -->
     <div class="ie-menu-bar">
         ファイル(F) &nbsp; 編集(E) &nbsp; 表示(V) &nbsp; お気に入り(A) &nbsp; ツール(T) &nbsp; ヘルプ(H)
     </div>
 
-    <!-- IE Address Bar -->
+    <div class="ie-tool-bar">
+        <span>戻る</span>
+        <span>進む</span>
+        <span>中止</span>
+        <span>更新</span>
+        <span>ホーム</span>
+        <span class="ml-auto">検索</span>
+        <span>お気に入り</span>
+        <span>履歴</span>
+    </div>
+
     <div class="ie-address-bar">
         <span>アドレス(D)</span>
-        <div class="address-field">http://www.foxjapan.com/dvd/starwars/clonewars_vol2/index.html</div>
-        <div style="margin-left: 5px; border: 1px solid #ACA899; padding: 1px 4px; background: #f1f1f1; cursor: pointer;">移動</div>
+        <div class="address-input">http://www.foxjapan.com/dvd-video/starwars/clonewars_vol2/detail.html</div>
+        <button class="ml-2 px-2 bg-gray-200 border border-gray-400 text-[10px]">移動</button>
     </div>
 
-    <!-- Web Content Container -->
-    <div id="container">
-        <div id="header">
+    <!-- Website Container -->
+    <div class="page-container">
+        <header class="fox-header">
             <div class="fox-logo">20th CENTURY FOX HOME ENTERTAINMENT</div>
-        </div>
+            <div class="text-[#FFCC00] text-[10px] mt-1 font-bold">20世紀 フォックス ホーム エンターテイメント ジャパン</div>
+        </header>
 
-        <div id="nav">
-            <a href="#">TOP</a> | 
-            <a href="#">新作情報</a> | 
-            <a href="#">ジャンル検索</a> | 
-            <a href="#">キャンペーン</a> | 
-            <a href="#">カタログ</a>
-        </div>
+        <nav class="nav-tabs">
+            <a href="#" class="nav-tab">HOME</a>
+            <a href="#" class="nav-tab">NEW RELEASE</a>
+            <a href="#" class="nav-tab">CATALOG</a>
+            <a href="#" class="nav-tab">STAR WARS SPECIAL</a>
+            <a href="#" class="nav-tab">CAMPAIGN</a>
+        </nav>
 
-        <div id="main-layout">
-            <div id="sidebar">
-                <div class="side-box">
-                    <div class="side-title">DVD CATEGORY</div>
-                    ・アクション<br>
-                    ・SF / ファンタジー<br>
-                    ・ドラマ<br>
-                    ・コメディ<br>
-                    ・アニメーション
+        <div class="main-layout">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-box">
+                    <div class="sidebar-title">ジャンル別検索</div>
+                    <div class="sidebar-content">
+                        <ul class="space-y-1">
+                            <li><a href="#" class="text-blue-700 underline">SF / アクション</a></li>
+                            <li><a href="#" class="text-blue-700 underline">アドベンチャー</a></li>
+                            <li><a href="#" class="text-blue-700 underline">アニメーション</a></li>
+                            <li><a href="#" class="text-blue-700 underline">ファミリー</a></li>
+                        </ul>
+                    </div>
                 </div>
 
-                <div class="side-box" style="background-color: #FFF0F0; border-color: #FFCCCC;">
-                    <div class="side-title" style="color: #990000;">HOT ITEMS</div>
-                    ・スター・ウォーズ EP3<br>
-                    ・ダイ・ハード BOX<br>
-                    ・24 -TWENTY FOUR-
-                </div>
-
-                <center>
-                    [attachment_0](attachment)
-                    <div style="border: 1px solid #CCC; width: 150px; height: 60px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #999; margin-top: 10px;">
-                        ADVERTISEMENT
-                    </div>
-                </center>
-            </div>
-
-            <div id="content">
-                <div class="sw-badge">STAR WARS SAGA</div>
-                <div class="product-title">スター・ウォーズ クローン大戦 VOLUME TWO</div>
-
-                <div class="product-area">
-                    <div class="product-image">
-                        <img src="https://images.static-bluray.com/movies/dvdcovers/290078_front.jpg" alt="Clone Wars Vol 2 DVD" style="width: 100%;">
-                        <p style="text-align: center; font-size: 10px; margin-top: 5px;">※画像をクリックすると拡大します</p>
-                    </div>
-
-                    <div class="product-info">
-                        <p><strong>『エピソード3』へのミッシング・リンクがついに明かされる！</strong></p>
-                        <p>全米エミー賞2年連続受賞！『エピソード2／クローンの攻撃』と『エピソード3／シスの復讐』の間で繰り広げられた激闘の記録、完結編。</p>
-                        
-                        <div style="margin: 15px 0;">
-                            希望小売価格：<span class="price">￥2,980（税込）</span><br>
-                            発売日：2005年11月23日<br>
-                            <span style="color: #009900; font-weight: bold;">[ 好評発売中 ]</span>
+                <div class="sidebar-box border-red-500">
+                    <div class="sidebar-title bg-red-100">PICK UP!</div>
+                    <div class="sidebar-content">
+                        <div class="text-center">
+                            <img src="https://i.postimg.cc/6qz5ybrX/star_wars_clone_wars_volume_two_2_dv.jpg" alt="Clone Wars 2" class="w-full mb-2">
+                            <div class="font-bold text-[10px]">クローン大戦 VOLUME TWO</div>
+                            <div class="text-red-600 font-bold">発売中！</div>
                         </div>
-
-                        <div class="buy-btn">
-                            FOXショップで購入
-                        </div>
-                        
-                        <p style="font-size: 11px; margin-top: 10px;">
-                            <a href="#">＞ お近くの取扱店を探す</a>
-                        </p>
                     </div>
                 </div>
 
-                <table class="spec-table">
-                    <tr>
-                        <th>商品番号</th>
-                        <td>FXBA-30433</td>
-                        <th>枚数</th>
-                        <td>1枚組</td>
-                    </tr>
-                    <tr>
-                        <th>収録時間</th>
-                        <td>約65分</td>
-                        <th>音声</th>
-                        <td>英語 5.1chサラウンド / 日本語 5.1chサラウンド</td>
-                    </tr>
-                    <tr>
-                        <th>字幕</th>
-                        <td>日本語 / 英語</td>
-                        <th>画面サイズ</th>
-                        <td>16:9 スタンダード</td>
-                    </tr>
-                </table>
-
-                <div style="margin-top: 20px; border: 1px solid #FFCC00; padding: 10px; background-color: #FFFFF0;">
-                    <strong>【映像特典】</strong><br>
-                    ･製作スタッフによる音声解説<br>
-                    ･メイキング・オブ「クローン大戦」<br>
-                    ･「エピソード3」劇場用予告編<br>
-                    ･ビデオゲーム「バトルフロントII」予告編
+                <div class="mt-4">
+                    <div class="bg-black text-white p-2 text-center text-[10px] font-bold">
+                        EPISODE III DVD<br>本日発売！
+                    </div>
                 </div>
-            </div>
+            </aside>
+
+            <!-- Main Content Area -->
+            <main class="content-area">
+                <div class="breadcrumb">ホーム &gt; カタログ &gt; SF &gt; スター・ウォーズ クローン大戦 VOLUME TWO</div>
+                
+                <div class="status-badge">好評発売中</div>
+                <h1 class="product-title-h1">スター・ウォーズ クローン大戦 VOLUME TWO</h1>
+
+                <div class="flex gap-6">
+                    <div class="w-[240px]">
+                        <div class="dvd-image-frame">
+                            <img src="https://i.postimg.cc/6qz5ybrX/star_wars_clone_wars_volume_two_2_dv.jpg" alt="Star Wars Clone Wars Vol 2 Front" class="w-full">
+                        </div>
+                        <div class="mt-4 p-2 bg-gray-100 text-[10px] leading-tight">
+                            <strong></strong><br>
+                            『エピソード3』へと直接つながるファン待望の完結編！
+                        </div>
+                    </div>
+
+                    <div class="flex-grow">
+                        <table class="spec-table">
+                            <tr>
+                                <th>価格</th>
+                                <td class="text-red-600 font-bold">￥2,980 (税込)</td>
+                            </tr>
+                            <tr>
+                                <th>発売日</th>
+                                <td>2005年11月23日</td>
+                            </tr>
+                            <tr>
+                                <th>品番</th>
+                                <td>FXBA-30534</td>
+                            </tr>
+                            <tr>
+                                <th>収録時間</th>
+                                <td>本編約63分</td>
+                            </tr>
+                            <tr>
+                                <th>音声</th>
+                                <td>1.英語 5.1chサラウンド<br>2.日本語 5.1chサラウンド</td>
+                            </tr>
+                            <tr>
+                                <th>字幕</th>
+                                <td>1.日本語字幕 2.英語字幕</td>
+                            </tr>
+                        </table>
+
+                        <div class="ep3-promo">
+                            <div class="font-bold text-sm mb-1">【エピソード3への架け橋】</div>
+                            <p class="text-[11px]">
+                                アナキン・スカイウォーカーがいかにして「騎士」となり、そしてパルパティーン最高議長がいかにして拉致されたのか。映画では語られなかった『シスの復讐』直前の物語がここに！
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8">
+                    <h2 class="bg-gray-800 text-white px-3 py-1 text-sm font-bold mb-3">作品内容</h2>
+                    <p class="text-xs leading-relaxed mb-4">
+                        ジョージ・ルーカス製作総指揮、ゲンディ・タルタコフスキー監督による「クローン大戦」シリーズの完結編。『エピソード3』の冒頭シーンへと直結する緊迫の展開！第21話から第25話を収録し、一気に物語はクライマックスへ。アナキンの精神的成長と暗黒面への予兆、そしてグリーヴァス将軍の圧倒的な脅威が描かれる。
+                    </p>
+
+                    <h2 class="bg-gray-800 text-white px-3 py-1 text-sm font-bold mb-3">特典映像</h2>
+                    <ul class="text-xs list-disc ml-5 space-y-1">
+                        <li>監督ゲンディ・タルタコフスキーとスタッフによる音声解説</li>
+                        <li>メイキング・オブ・「クローン大戦：VOLUME TWO」</li>
+                        <li>『エピソード3／シスの復讐』への繋がり（ビデオ解説）</li>
+                        <li>フォト・ギャラリー / コンセプト・アート</li>
+                        <li>「スター・ウォーズ：バトルフロントII」ゲーム・予告編</li>
+                    </ul>
+                </div>
+
+                <div class="mt-10 border-t pt-6">
+                    <h3 class="text-sm font-bold mb-4">パッケージ背面・詳細仕様</h3>
+                    <div class="flex items-start gap-4">
+                        <img src="https://i.postimg.cc/8cwPjXRQ/star_wars_clone_wars_volume_two_3_dv.jpg" alt="DVD Back Cover" class="w-64 border shadow-sm">
+                        <div class="text-[10px] text-gray-600 bg-yellow-50 p-3 border border-yellow-200">
+                            <strong>【初回限定仕様】</strong><br>
+                            ・特製ホログラム・ステッカー封入<br>
+                            ・デジパック＆透明アウターケース仕様<br><br>
+                            ※数に限りがございますので、お早めにご予約・ご購入ください。
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="my-10 text-center">
+                    <button class="bg-[#FFCC00] border-2 border-black px-10 py-3 font-bold text-lg hover:bg-black hover:text-[#FFCC00] transition-colors">
+                        オンラインショップで購入
+                    </button>
+                </div>
+            </main>
         </div>
 
-        <div id="footer">
-            Copyright (C) 2005 Twentieth Century Fox Home Entertainment Japan. All rights reserved.<br>
-            掲載の記事・写真・イラスト等のすべてのコンテンツの無断複写・転載を禁じます。
-        </div>
+        <footer class="footer">
+            TM & © 2005 Lucasfilm Ltd. & TM. All rights reserved. <br>
+            © 2005 Twentieth Century Fox Home Entertainment, Inc. All Rights Reserved. <br>
+            <div class="mt-4 font-bold">20世紀 フォックス ホーム エンターテイメント ジャパン株式会社</div>
+            <div class="mt-2 text-[9px]">当サイトに掲載されている画像・文章等の無断転載を禁じます。</div>
+        </footer>
     </div>
 
-    <!-- IE Status Bar -->
-    <div class="status-bar">
-        <span><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAYAAABy6+R8AAAAL0lEQVR42mNkYGD4z0AAMDHABYyNjY3YBKhmYmBgYIArYGRgYIBLMODvH6p+mAAA0EUPR5D94QAAAAAASUVORK5CYII=" alt="done"> ページが表示されました</span>
-        <span><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAYAAABy6+R8AAAALklEQVR42mNkYGD4z4AEMDFABYyNjcEmQDUTAwMDXAEjAwMCvQMDfgGoemICAAEFR0fQf+9RAAAAAElFTkSuQmCC" alt="zone"> インターネット</span>
+    <!-- Windows XP Taskbar Info -->
+    <div class="timestamp-bar">
+        <div class="flex items-center gap-2">
+            <span>[JAPANESE/INPUT]</span>
+            <span class="border-l border-gray-400 pl-2">2005/11/23 12:24</span>
+        </div>
     </div>
-</div>
-
-<div style="text-align: center; margin-top: 10px; color: #666; font-size: 12px;">
-    現在の時刻: 2005年11月23日 12:00 PM
-</div>
 
 </body>
 </html>
