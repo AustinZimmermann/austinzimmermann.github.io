@@ -1,135 +1,423 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>20th Century Fox - Star Wars: Clone Wars – Volume One</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>20th Century Fox Home Entertainment - Star Wars: Clone Wars – Volume One DVD</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        :root {
+            --fox-blue: #003399;
+            --fox-gold: #FFCC00;
+            --ie-bg: #D4D0C8;
+        }
+
         body {
-            background-color: #000000;
-            color: #FFFFFF;
-            font-family: Helvetica, sans-serif;
+            background-color: #001a4d;
+            font-family: sans-serif;
             margin: 0;
             padding: 0;
+            cursor: default;
         }
-        #address-bar {
-            background-color: #F0F0ED;
-            border-bottom: 2px solid #808080;
-            padding: 2px;
-            color: #000;
-            font-size: 12px;
+
+        /* IE6 Style Scrollbar */
+        body::-webkit-scrollbar { width: 16px; }
+        body::-webkit-scrollbar-track { background: #D4D0C8; }
+        body::-webkit-scrollbar-thumb { 
+            background: #D4D0C8; 
+            border: 2px solid;
+            border-color: #FFFFFF #808080 #808080 #FFFFFF;
         }
-        #header {
-            background: #222;
-            border-bottom: 3px solid #FFD700;
-            padding: 10px;
-            text-align: center;
+
+        .ie-window {
+            width: 950px;
+            margin: 0 auto;
+            background-color: white;
+            border: 2px solid #003399;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.5);
         }
-        #nav {
-            background: #333;
-            padding: 5px;
-            font-size: 11px;
-            text-align: center;
+
+        .fox-header {
+            background: linear-gradient(to bottom, #0044cc, #002266);
+            height: 100px;
+            border-bottom: 3px solid var(--fox-gold);
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
         }
-        #nav a {
-            color: #FFD700;
-            margin: 0 10px;
-            text-decoration: none;
+
+        .fox-logo {
+            font-family: 'Times New Roman', serif;
+            color: var(--fox-gold);
             font-weight: bold;
-        }
-        #main-content {
-            width: 760px;
-            margin: 20px auto;
-            border: 1px solid #444;
-            padding: 20px;
-            background: #111;
-        }
-        .product-title {
-            color: #FFD700;
+            text-transform: uppercase;
+            line-height: 0.9;
             font-size: 24px;
+            border-right: 1px solid rgba(255,255,255,0.3);
+            padding-right: 20px;
+            margin-right: 20px;
+        }
+
+        .nav-bar {
+            background-color: #eeeeee;
+            border-bottom: 1px solid #cccccc;
+            padding: 5px 20px;
+            font-size: 11px;
+            color: #333;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #003399;
             font-weight: bold;
+            margin-right: 15px;
+        }
+
+        .nav-link:hover {
+            text-decoration: underline;
+        }
+
+        .breadcrumb {
+            padding: 10px 20px;
+            font-size: 11px;
+            color: #666;
+        }
+
+        .main-content {
+            display: flex;
+            padding: 20px;
+            gap: 30px;
+        }
+
+        .product-image-container {
+            width: 320px;
+            text-align: center;
+        }
+
+        .dvd-cover {
+            width: 280px;
+            border: 1px solid #999;
+            box-shadow: 3px 3px 8px rgba(0,0,0,0.3);
+            background: #f9f9f9;
             margin-bottom: 15px;
+        }
+
+        .view-toggle {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .btn-ie {
+            background: #D4D0C8;
+            border: 2px solid;
+            border-color: #FFFFFF #808080 #808080 #FFFFFF;
+            padding: 2px 10px;
+            font-size: 11px;
+            cursor: pointer;
+        }
+
+        .btn-ie:active {
+            border-color: #808080 #FFFFFF #FFFFFF #808080;
+        }
+
+        .product-info {
+            flex: 1;
+        }
+
+        .title-banner {
+            background-color: #f0f4ff;
+            border-left: 5px solid #003399;
+            padding: 10px 15px;
+            margin-bottom: 20px;
+        }
+
+        .title-banner h1 {
+            margin: 0;
+            color: #003399;
+            font-size: 22px;
             text-transform: uppercase;
         }
-        .product-layout {
-            display: flex;
-        }
-        .cover-art {
-            border: 2px solid #555;
-            margin-right: 20px;
-            width: 300px;
-        }
-        .details {
-            flex: 1;
-            font-size: 13px;
-            line-height: 1.5;
-        }
-        .buy-now {
-            background-color: #FFCC00;
-            color: #000;
-            padding: 10px;
-            text-align: center;
+
+        .release-date {
+            color: #cc0000;
             font-weight: bold;
-            display: block;
-            margin-top: 20px;
-            text-decoration: none;
-            border: 2px outset #FFEE00;
+            font-size: 14px;
+            margin-bottom: 15px;
         }
+
+        .price-tag {
+            font-size: 24px;
+            color: #333;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        .buy-now-btn {
+            background: linear-gradient(to bottom, #ffcc00, #ff9900);
+            border: 1px solid #cc6600;
+            color: #000;
+            padding: 10px 30px;
+            font-weight: bold;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            text-shadow: 1px 1px 0px rgba(255,255,255,0.5);
+        }
+
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 12px;
+        }
+
+        .specs-table th {
+            text-align: left;
+            background-color: #f5f5f5;
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+            width: 150px;
+        }
+
+        .specs-table td {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .sidebar {
+            width: 200px;
+            padding: 10px;
+            border-left: 1px dotted #ccc;
+        }
+
+        .sidebar-box {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+
+        .sidebar-box h3 {
+            font-size: 12px;
+            color: #003399;
+            margin-top: 0;
+            border-bottom: 1px solid #003399;
+        }
+
         .footer {
+            background-color: #333;
+            color: #ccc;
+            padding: 20px;
             font-size: 10px;
             text-align: center;
-            margin-top: 30px;
-            color: #888;
+        }
+
+        .status-bar {
+            background: #D4D0C8;
+            border-top: 1px solid #808080;
+            padding: 2px 5px;
+            font-size: 11px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .ie-chrome {
+            background: #D4D0C8;
+            padding: 2px;
+            border-bottom: 1px solid #808080;
+        }
+
+        .url-bar {
+            background: white;
+            border: 1px solid #808080;
+            padding: 2px 5px;
+            font-family: sans-serif;
+            font-size: 12px;
+            margin: 2px 0;
         }
     </style>
 </head>
 <body>
 
-<div id="address-bar">
-    Address: http://www.foxhome.com/starwars/clonewarsvol1/index.html
-</div>
-
-<div id="header">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/20th_Century_Fox_Home_Entertainment_logo.svg/200px-200px-200px-200px.png" height="50" alt="20th Century Fox Home Entertainment">
-</div>
-
-<div id="nav">
-    <a href="#">HOME</a> | <a href="#">DVD RELEASES</a> | <a href="#">COMING SOON</a> | <a href="#">STORE</a> | <a href="#">STARWARS.COM</a>
-</div>
-
-<div id="main-content">
-    <div class="product-title">Star Wars: Clone Wars &ndash; Volume One</div>
-    
-    <div class="product-layout" style="display: table; width: 100%;">
-        <div style="display: table-cell; vertical-align: top; width: 320px;">
-            <img src="https://images.static-bluray.com/movies/dvdcovers/789_front.jpg" class="cover-art" alt="Clone Wars Volume One DVD Cover">
+<div class="ie-window">
+    <!-- IE Address Bar Mock -->
+    <div class="ie-chrome">
+        <div style="display: flex; align-items: center; gap: 5px; padding: 2px;">
+            <img src="https://img.icons8.com/color/24/000000/internet-explorer.png" width="16" alt="IE">
+            <span style="font-size: 11px;">20th Century Fox Home Entertainment - Microsoft Internet Explorer</span>
         </div>
-        
-        <div style="display: table-cell; vertical-align: top; padding-left: 20px;">
-            <p><strong>Release Date:</strong> March 22, 2005</p>
-            <p><strong>Format:</strong> DVD (Single Disc)</p>
-            <p>Experience the Emmy&reg; Award-winning animated micro-series that bridges the gap between <em>Star Wars</em>: Episode II <em>Attack of the Clones</em> and Episode III <em>Revenge of the Sith</em>.</p>
-            
-            <p><strong>Special Features:</strong></p>
-            <ul>
-                <li>Director’s Commentary by Genndy Tartakovsky</li>
-                <li>“Bridging the Saga” Featurette</li>
-                <li>Exclusive Episode III Teaser Trailer</li>
-                <li>Behind-the-scenes Galleries</li>
-                <li>Xbox Playable Demo: <em>Star Wars Republic Commando</em></li>
-            </ul>
+        <div class="url-bar">
+            Address: http://www.foxhome.com/starwars/clonewars_vol1/index.html
+        </div>
+    </div>
 
-            <a href="#" class="buy-now">ORDER DVD NOW - $19.98</a>
+    <!-- Website Header -->
+    <div class="fox-header">
+        <div class="fox-logo">
+            20th Century<br>Fox<br>Home Entertainment
+        </div>
+        <div style="color: white; font-size: 14px; font-weight: bold;">
+            STAR WARS: CLONE WARS
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav-bar">
+        <a href="#" class="nav-link">HOME</a>
+        <a href="#" class="nav-link">NEW RELEASES</a>
+        <a href="#" class="nav-link">COMING SOON</a>
+        <a href="#" class="nav-link">DVD CATALOG</a>
+        <a href="#" class="nav-link">SEARCH</a>
+        <a href="#" class="nav-link">MY ACCOUNT</a>
+    </div>
+
+    <div class="breadcrumb">
+        Home > DVD Catalog > Sci-Fi / Action > Star Wars: Clone Wars Vol. 1
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+        
+        <!-- Left: Product Image -->
+        <div class="product-image-container">
+            <img id="mainCover" src="https://i.postimg.cc/NMLXsY8X/front-cover.png" class="dvd-cover" alt="Front Cover">
+            <div class="view-toggle">
+                <button class="btn-ie" onclick="setCover('front')">FRONT COVER</button>
+                <button class="btn-ie" onclick="setCover('back')">BACK COVER</button>
+            </div>
+            <div style="margin-top: 20px; font-size: 11px; color: #666;">
+                <p>Click to enlarge</p>
+                <div style="border: 1px solid #ccc; padding: 10px; background: #fefefe;">
+                    <strong>SPECIAL FEATURES:</strong><br>
+                    • Bridging the Saga Featurette<br>
+                    • Behind-the-Scenes Featurette<br>
+                    • Director Commentary<br>
+                    • Video Games Trailers
+                </div>
+            </div>
+        </div>
+
+        <!-- Middle: Product Info -->
+        <div class="product-info">
+            <div class="title-banner">
+                <h1>Star Wars: Clone Wars – Volume One</h1>
+                <div style="font-size: 12px; font-style: italic;">From Genndy Tartakovsky and Lucasfilm Ltd.</div>
+            </div>
+
+            <div class="release-date">NOW AVAILABLE! (Released: March 22, 2005)</div>
+            
+            <p style="font-size: 13px; line-height: 1.5;">
+                Experience the epic adventures that lead up to <i>Star Wars</i>: Episode III <i>Revenge of the Sith</i>. Volume One of the Emmy® Award-winning animated series contains the first 20 chapters of the micro-series, chronicling the valiant efforts of the Jedi Knights as they lead the Republic’s Clone Army against the Separatist forces.
+            </p>
+
+            <div class="price-tag">
+                MSRP: $19.98<br>
+                <span style="color: #008000; font-size: 18px;">Our Price: $14.99</span>
+            </div>
+
+            <button class="buy-now-btn" onclick="showCart()">ADD TO SHOPPING CART</button>
+
+            <table class="specs-table">
+                <tr>
+                    <th>RATING</th>
+                    <td>TV-PG / Not Rated</td>
+                </tr>
+                <tr>
+                    <th>RUN TIME</th>
+                    <td>Approx. 69 Minutes</td>
+                </tr>
+                <tr>
+                    <th>ASPECT RATIO</th>
+                    <td>Anamorphic Widescreen (1.78:1)</td>
+                </tr>
+                <tr>
+                    <th>AUDIO</th>
+                    <td>English Dolby Digital 5.1 / 2.0</td>
+                </tr>
+                <tr>
+                    <th>SUBTITLES</th>
+                    <td>English</td>
+                </tr>
+                <tr>
+                    <th>CATALOG #</th>
+                    <td>2228394</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Right: Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-box">
+                <h3>RELATED TITLES</h3>
+                <div style="font-size: 11px;">
+                    <p>• Star Wars: Episode II</p>
+                    <p>• Star Wars: Episode I</p>
+                    <p>• X-Men 2 (DVD)</p>
+                </div>
+            </div>
+            <div class="sidebar-box">
+                <h3>PROMOTIONS</h3>
+                <p style="font-size: 10px;">Get a free <i>Clone Wars</i> poster with purchase at participating retailers!</p>
+            </div>
+            <center>
+                <img src="https://img.icons8.com/color/48/000000/mac-os.png" width="30" style="filter: grayscale(1); opacity: 0.5;">
+                <p style="font-size: 9px; color: #999;">Requires Windows Media Player 9 for trailers</p>
+            </center>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div style="margin-bottom: 10px;">
+            <a href="#" style="color: white; margin: 0 10px;">Privacy Policy</a> | 
+            <a href="#" style="color: white; margin: 0 10px;">Terms of Use</a> | 
+            <a href="#" style="color: white; margin: 0 10px;">Corporate Info</a>
+        </div>
+        TM & © 2005 Twentieth Century Fox Home Entertainment, Inc. All Rights Reserved.<br>
+        STAR WARS, CLONE WARS and all related logos and characters are TM & © 2005 Lucasfilm Ltd.
+    </div>
+
+    <!-- Status Bar -->
+    <div class="status-bar">
+        <div><img src="https://img.icons8.com/material-sharp/24/000000/globe.png" width="12" style="vertical-align: middle;"> Done</div>
+        <div style="border-left: 1px solid #808080; padding-left: 5px;">
+            Internet
         </div>
     </div>
 </div>
 
-<div class="footer">
-    TM & &copy; 2005 Lucasfilm Ltd. All Rights Reserved. <br>
-    &copy; 2005 Twentieth Century Fox Home Entertainment, Inc.
+<!-- Modal for "Cart" -->
+<div id="cartModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:100; justify-content:center; align-items:center;">
+    <div style="background:#D4D0C8; border:2px solid #fff; border-right-color:#808080; border-bottom-color:#808080; padding:20px; width:300px; text-align:center;">
+        <h4 style="margin-top:0;">Security Alert</h4>
+        <p style="font-size:12px;">You are about to add this item to your cart. Proceed?</p>
+        <button class="btn-ie" onclick="closeCart()">Yes</button>
+        <button class="btn-ie" onclick="closeCart()">No</button>
+    </div>
 </div>
 
 <script>
-    // Timestamp for the recreation
-    console.log("Logged: March 22, 2005 12:24 PM EST");
+    function setCover(side) {
+        const img = document.getElementById('mainCover');
+        if(side === 'front') {
+            img.src = 'https://i.postimg.cc/NMLXsY8X/front-cover.png';
+        } else {
+            img.src = 'https://i.postimg.cc/rmbrzbgt/back-cover.png';
+        }
+    }
+
+    function showCart() {
+        document.getElementById('cartModal').style.display = 'flex';
+    }
+
+    function closeCart() {
+        document.getElementById('cartModal').style.display = 'none';
+    }
+
+    // Set time clock mock if needed
+    console.log("March 22, 2005 - 12:12 PM");
 </script>
 
 </body>
