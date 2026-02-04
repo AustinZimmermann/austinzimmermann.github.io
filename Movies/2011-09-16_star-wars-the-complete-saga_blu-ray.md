@@ -41,7 +41,7 @@ Experience the spectacular adventure of **STAR WARS** the way it was meant to be
 * **Runtime:** Approximately 805 Minutes
 * **Rating:** PG / PG-13
 
-> **”The Force is strong with this one.”**
+> **“The Force is strong with this one.”**
 > This set includes the 1977-2005 saga in its most complete form to date.
 
 ***
