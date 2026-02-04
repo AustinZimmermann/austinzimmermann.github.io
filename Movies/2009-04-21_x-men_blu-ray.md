@@ -1,61 +1,61 @@
+## 20th Century Fox Home Entertainment - X-Men (Blu-ray)
+
+***
+
 **Address**: `http://www.foxhome.com/xmen/bluray/index.html`
 
----
+| **File** | **Edit** | **View** | **Favorites** | **Tools** | **Help** |
+| — | — | — | — | — | — |
+| [ **<- Back** ] | [ **Forward ->** ] | [ **Stop** ] | [ **Refresh** ] | [ **Home** ] | [ **Search** ] |
 
-# **20th Century Fox Home Entertainment**
+***
 
-[ Home ] [ Movies ] [ **Blu-ray** ] [ TV ] [ Games ] [ Newsletter ]
+### **NOW AVAILABLE ON BLU-RAY DISC**
 
----
+# **X-MEN: TWO-DISC SET**
 
-## **X-MEN (BLU-RAY)**
+**Experience the evolution in High Definition!**
 
-**Evolution Begins on High Definition.**
+**Release Date:** Available Now\
+**MSRP:** $34.99\
+**Rating:** PG-13\
+**Runtime:** 104 Minutes
 
-**Release Date:** Now Available
+***
 
-**Format:** 2-Disc Set
+### **PRODUCT OVERVIEW**
 
-**Rating:** PG-13
+The evolution has begun. Born into a world filled with prejudice are children who possess extraordinary and dangerous powers—the result of unique genetic mutations. Cyclops, Storm, Rogue, and the mysterious Wolverine must join forces with Professor Charles Xavier to protect a world that fears them from Magneto, who believes humans and mutants can never co-exist.
 
-**Price:** $34.98 MSRP
+### **EXCLUSIVE BLU-RAY FEATURES**
 
-[ **BUY NOW** ] [ **WATCH TRAILER** ]
+**Disc 1: Feature Film**
 
----
+* **1080p High-Definition Video** (2.35:1 Aspect Ratio)
+* **DTS-HD Master Audio 5.1**
+* **Enhanced for D-Box Motion Control Systems**
+* **BonusView:** Director Bryan Singer takes you behind the scenes via “Picture-in-Picture” commentary.
 
-### **Product Overview**
+**Disc 2: Special Features**
 
-Experience the film that launched the blockbuster franchise like never before. With 1080p resolution and DTS-HD Master Audio, the power of the X-Men is now in the palm of your hand. Join Professor Charles Xavier and his team of heroic mutants—including Wolverine, Storm, and Cyclops--as they fight to protect a world that fears them.
+* **Evolutionary Details:** An interactive look at the production design and costumes.
+* **The Mutant Watch:** Archival news featurette.
+* **Deleted/Extended Scenes:** With optional commentary by Bryan Singer.
+* **The Uncanny Stack:** Trailers, TV Spots, and Music Videos.
+* **Digital Copy:** Transfer the movie to your PC or portable media player (Expires 04/2010).
 
-### **Special Features**
+***
 
-This **Two-Disc Collector’s Edition** is packed with explosive bonus content:
+### **SYSTEM REQUIREMENTS**
 
-* **Disc 1: Feature Film**
-* 1080p High Definition Video
-* DTS-HD Master Audio 5.1
-* Enhanced for D-Box Motion Control Systems
-* Audio Commentary by Bryan Singer and Brian Peck
+* Blu-ray Disc Player (Profile 1.1 or 2.0 recommended for full interactivity)
+* HDMI Connection for 1080p Output
+* Internet Connection (Required for BD-Live features)
 
+***
 
-* **Disc 2: Beyond the X-Mansion**
-* “The Uncanny Suspects” Production Featurette
-* Deleted Scenes with Optional Commentary
-* Multi-Angle Scene Studies
-* The Art Gallery: Character Design and Production Art
-* **BD-Live Enabled:** Access the Fox Movie Channel and exclusive online content.
+**[ BUY IT NOW ]** | **[ ADD TO WISHLIST ]** | **[ FOX REWARDS ]**
 
----
-
-### **System Requirements**
-
-> **Note:** To enjoy the full Blu-ray experience, a Profile 2.0 (BD-Live) player is recommended. Internet connection required for BD-Live features.
-
----
-
-**Follow Fox Home Ent:** [ MySpace ] [ Facebook ] [ Twitter ]
-
-© 2009 Twentieth Century Fox Home Entertainment LLC. All Rights Reserved.
-
-*Current System Time: April 21, 2009 - 12:24 p.m.*
+*© 2009 20th Century Fox Home Entertainment. All Rights Reserved.*
+*Internet Explorer 7.0 | Windows XP / Vista*
+*Current Time: April 21, 2009 - 12:24 PM*
