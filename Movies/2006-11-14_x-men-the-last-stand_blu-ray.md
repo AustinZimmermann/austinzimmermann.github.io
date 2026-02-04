@@ -1,12 +1,12 @@
 ## 20th Century Fox Home Entertainment - Product Detail
 
-—
+***
 
 **Address:** `http://www.foxhome.com/xmenthelaststand/bluray/index.html`
 **Date:** November 14, 2006 | **Time:** 12:12 PM
 **Browser:** Internet Explorer 6.0 | **OS:** Windows XP Professional
 
-—
+***
 
 ### [ FOX HOME ENTERTAINMENT LOGO ]
 
