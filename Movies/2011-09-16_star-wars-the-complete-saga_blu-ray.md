@@ -48,7 +48,7 @@ Experience the spectacular adventure of **STAR WARS** the way it was meant to be
 
 ### **Customer Reviews (4.8/5 Stars)**
 
-* **“Finally in HD!”** – *ForceFan88 (Sept 16, 2011)*: Just picked mine up at midnight! The picture quality on A New Hope is unbelievable.
+* **“Finally in HD!”** – *ForceFan88 (Sept 16, 2011)*: Just picked mine up at midnight! The picture quality on *A New Hope* is unbelievable.
 * **“Must have for collectors”** – *JediMaster1138 (Sept 16, 2011)*: The Archive discs are worth the price alone. The deleted scenes are finally here!
 
 ***
