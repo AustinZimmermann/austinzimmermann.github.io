@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fantastic Four (2005) - Mac Blu-ray Player (2006)</title>
+    <style>
+        /* --- General Reset & Layout --- */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a;
+            background-image: radial-gradient(#333, #000);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            overflow: hidden;
+            user-select: none;
+        }
+
+        /* --- Mac OS X (Tiger Style) Window Wrapper --- */
+        #mac-window {
+            width: 90vw;
+            max-width: 1280px;
+            aspect-ratio: 16 / 9; /* Container aspect, slightly taller for title bar */
+            background: #e8e8e8;
+            border-radius: 5px 5px 0 0;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            border: 1px solid #999;
+        }
+
+        /* Brushed Metal Title Bar */
+        #title-bar {
+            height: 25px;
+            background: linear-gradient(to bottom, #e0e0e0, #b0b0b0);
+            border-bottom: 1px solid #555;
+            border-radius: 5px 5px 0 0;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            position: relative;
+        }
+
+        .traffic-lights {
+            display: flex;
+            gap: 6px;
+        }
+
+        .traffic-light {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 1px solid rgba(0,0,0,0.2);
+        }
+        .close { background: #ff5f57; }
+        .minimize { background: #ffbd2e; }
+        .maximize { background: #28c940; }
+
+        .window-title {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 13px;
+            color: #333;
+            text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+            font-weight: bold;
+        }
+
+        /* --- Blu-ray Screen Area (1080p Simulation) --- */
+        #bd-screen-container {
+            flex-grow: 1;
+            background: #000;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #bd-content {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            /* Authentic Fantastic Four 2005 Gradient Theme */
+            background: radial-gradient(circle at 70% 30%, #004488, #001122 60%, #000000 90%);
+            overflow: hidden;
+        }
+
+        /* --- Atmospheric Effects (Cosmic Rays/Clouds) --- */
+        .fog {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" opacity="0.1" filter="url(%23noise)"/></svg>');
+            animation: drift 60s linear infinite;
+            mix-blend-mode: screen;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .flare {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.6;
+            animation: pulse 4s infinite alternate;
+        }
+
+        .flare-1 { top: 20%; right: 20%; width: 300px; height: 300px; background: #0088ff; }
+        .flare-2 { bottom: 10%; left: 10%; width: 400px; height: 200px; background: #003366; animation-delay: 1s; }
+        
+        @keyframes drift {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes pulse {
+            0% { opacity: 0.4; transform: scale(1); }
+            100% { opacity: 0.7; transform: scale(1.1); }
+        }
+
+        /* --- Logo Section --- */
+        #logo-container {
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            z-index: 10;
+        }
+
+        .ff-logo-text {
+            font-family: 'Impact', 'Arial Black', sans-serif;
+            text-transform: uppercase;
+            font-style: italic;
+            color: white;
+            line-height: 0.9;
+            text-shadow: 0 0 10px #00aaff, 2px 2px 0px #000;
+        }
+
+        .ff-main {
+            font-size: 5vw;
+            letter-spacing: -2px;
+            background: linear-gradient(to bottom, #fff 40%, #88ccff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 5px rgba(0,100,255,0.8));
+        }
+
+        .ff-sub {
+            font-size: 1.5vw;
+            letter-spacing: 5px;
+            color: #ccc;
+            margin-top: 5px;
+            text-shadow: 0 0 5px #004488;
+        }
+
+        /* The '4' Emblem */
+        .emblem-4 {
+            position: absolute;
+            top: -20px;
+            right: -100px;
+            width: 120px;
+            height: 120px;
+            border: 4px solid white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 20px #00aaff, inset 0 0 20px #00aaff;
+            background: rgba(0, 50, 100, 0.3);
+        }
+        .emblem-4 span {
+            font-family: 'Arial', sans-serif;
+            font-weight: 900;
+            font-size: 80px;
+            color: white;
+            font-style: italic;
+            margin-right: 5px; /* Visual adjustment */
+            text-shadow: 0 0 10px #00aaff;
+        }
+
+        /* --- Menu Navigation --- */
+        #menu-list {
+            position: absolute;
+            bottom: 15%;
+            left: 10%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 20;
+        }
+
+        .menu-item {
+            font-family: 'Helvetica Neue', 'Arial', sans-serif; /* Cleaner font for JP text */
+            font-weight: 700;
+            font-size: 1.8vw;
+            color: #88aacc;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+            padding-left: 20px;
+            letter-spacing: 2px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        }
+
+        .menu-item.active {
+            color: #ffffff;
+            transform: translateX(10px);
+            text-shadow: 0 0 10px #00aaff, 0 0 20px #00aaff;
+        }
+
+        .menu-item.active::before {
+            content: '';
+            position: absolute;
+            left: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background: #fff;
+            box-shadow: 0 0 10px #00aaff;
+            border-radius: 50%;
+        }
+
+        /* --- Submenu Overlay (Audio/Chapters) --- */
+        #submenu-overlay {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 40%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(0,0,0,0.9) 30%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-left: 50px;
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 30;
+        }
+
+        #submenu-overlay.visible {
+            transform: translateX(0);
+        }
+
+        .submenu-title {
+            color: #00aaff;
+            font-size: 1.5vw;
+            border-bottom: 2px solid #00aaff;
+            margin-bottom: 20px;
+            width: 80%;
+            padding-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .sub-item {
+            color: #aaa;
+            font-size: 1.2vw;
+            margin: 10px 0;
+            cursor: pointer;
+        }
+        .sub-item:hover, .sub-item.selected {
+            color: white;
+            text-shadow: 0 0 5px #fff;
+        }
+
+        /* --- Player Controls Bar (Mac Style) --- */
+        #controls-bar {
+            height: 50px;
+            background: linear-gradient(to bottom, #dcdcdc, #a0a0a0);
+            border-top: 1px solid #777;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.5);
+        }
+
+        .control-btn {
+            background: linear-gradient(to bottom, #f0f0f0, #ccc);
+            border: 1px solid #888;
+            border-radius: 4px;
+            width: 40px;
+            height: 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            color: #333;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+            cursor: pointer;
+        }
+        .control-btn:active {
+            background: #bbb;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
+        }
+
+        #time-display {
+            font-family: monospace;
+            font-size: 14px;
+            color: #333;
+            background: #eee;
+            padding: 2px 8px;
+            border: 1px solid #999;
+            border-radius: 3px;
+            box-shadow: inset 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        /* --- Interactive Popups --- */
+        #notification {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: rgba(0,0,0,0.8);
+            border: 2px solid #00aaff;
+            color: white;
+            padding: 20px 40px;
+            font-size: 24px;
+            border-radius: 10px;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 100;
+            text-align: center;
+        }
+        #notification.show {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        /* Scanlines for CRT/Screen feel */
+        .scanlines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%);
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 90;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="mac-window">
+        <!-- Mac OS Title Bar -->
+        <div id="title-bar">
+            <div class="traffic-lights">
+                <div class="traffic-light close"></div>
+                <div class="traffic-light minimize"></div>
+                <div class="traffic-light maximize"></div>
+            </div>
+            <div class="window-title">Blu-ray Player</div>
+        </div>
+
+        <!-- Screen Container -->
+        <div id="bd-screen-container">
+            <div id="bd-content">
+                <!-- Background FX -->
+                <div class="fog"></div>
+                <div class="flare flare-1"></div>
+                <div class="flare flare-2"></div>
+                <div class="scanlines"></div>
+
+                <!-- Main Logo -->
+                <div id="logo-container">
+                    <div class="ff-logo-text ff-main">ファンタスティック・フォー</div>
+                    <div class="ff-logo-text ff-sub">［超能力ユニット］</div>
+                    <div class="emblem-4"><span>4</span></div>
+                </div>
+
+                <!-- Main Menu -->
+                <div id="menu-list">
+                    <div class="menu-item active" data-action="play">本編再生</div>
+                    <div class="menu-item" data-action="scenes">チャプター・セレクション</div>
+                    <div class="menu-item" data-action="audio">音声・字幕メニュー</div>
+                    <div class="menu-item" data-action="features">映像特典</div>
+                </div>
+
+                <!-- Submenu Overlay -->
+                <div id="submenu-overlay">
+                    <div id="submenu-content">
+                        <!-- Content injected via JS -->
+                    </div>
+                </div>
+
+                <!-- Notification Popup -->
+                <div id="notification"></div>
+            </div>
+        </div>
+
+        <!-- Player Controls (Mac OS Look) -->
+        <div id="controls-bar">
+            <div class="control-btn" id="btn-prev">|◀</div>
+            <div class="control-btn" id="btn-play">▶</div>
+            <div class="control-btn" id="btn-stop">■</div>
+            <div class="control-btn" id="btn-next">▶|</div>
+            <div id="time-display">00:00:00</div>
+            <div class="control-btn" id="btn-eject">⏏</div>
+        </div>
+    </div>
+
+    <script>
+        // --- Data & State ---
+        const menuItems = document.querySelectorAll('.menu-item');
+        let currentIndex = 0;
+        let isSubmenuOpen = false;
+
+        const subMenus = {
+            'scenes': {
+                title: 'CHAPTER SELECT',
+                items: ['1. 宇宙への旅立ち', '2. 運命の嵐', '3. 能力の覚醒', '4. ブルックリン橋の死闘', '5. ドゥームの計画', '6. 最終決戦']
+            },
+            'audio': {
+                title: 'AUDIO / SUBTITLES',
+                items: ['音声: 英語 DTS-HD 5.1ch', '音声: 日本語 DTS 5.1ch', '音声: 音声解説', '字幕: 日本語', '字幕: 英語', '字幕: なし']
+            },
+            'features': {
+                title: 'SPECIAL FEATURES',
+                items: ['メイキング・オブ・F4', 'キャスト・インタビュー', '未公開シーン集', 'ミュージック・ビデオ', '劇場予告編']
+            }
+        };
+
+        // --- Audio Simulation (Generic Bleeps) ---
+        // Note: Real browsers block autoplay, so these only work after first interaction usually.
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        
+        function playSound(type) {
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            
+            const osc = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+            
+            osc.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+            
+            if (type === 'move') {
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(220, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.1);
+                gainNode.gain.setValueAtTime(0.05, audioCtx.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.1);
+            } else if (type === 'select') {
+                osc.type = 'square';
+                osc.frequency.setValueAtTime(440, audioCtx.currentTime);
+                gainNode.gain.setValueAtTime(0.05, audioCtx.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.2);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.2);
+            }
+        }
+
+        // --- Navigation Logic ---
+        function updateMenu() {
+            menuItems.forEach((item, index) => {
+                if (index === currentIndex) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+        }
+
+        function showNotification(text) {
+            const notif = document.getElementById('notification');
+            notif.innerText = text;
+            notif.classList.add('show');
+            setTimeout(() => {
+                notif.classList.remove('show');
+            }, 2000);
+        }
+
+        function openSubmenu(action) {
+            const overlay = document.getElementById('submenu-overlay');
+            const content = document.getElementById('submenu-content');
+            
+            if (action === 'play') {
+                showNotification('再生中...');
+                playSound('select');
+                return;
+            }
+
+            const data = subMenus[action];
+            if (!data) return;
+
+            // Build Submenu HTML
+            let html = `<div class="submenu-title">${data.title}</div>`;
+            data.items.forEach(item => {
+                html += `<div class="sub-item" onclick="selectSubItem('${item}')">${item}</div>`;
+            });
+            
+            content.innerHTML = html;
+            overlay.classList.add('visible');
+            isSubmenuOpen = true;
+            playSound('select');
+        }
+
+        function closeSubmenu() {
+            document.getElementById('submenu-overlay').classList.remove('visible');
+            isSubmenuOpen = false;
+        }
+
+        // Used by generated HTML clicks
+        window.selectSubItem = function(text) {
+            showNotification(`選択: ${text}`);
+            playSound('select');
+            closeSubmenu();
+        };
+
+        // --- Event Listeners ---
+        
+        // Keyboard Navigation (Arrow Keys)
+        document.addEventListener('keydown', (e) => {
+            if (isSubmenuOpen) {
+                if (e.key === 'Escape' || e.key === 'ArrowLeft') {
+                    closeSubmenu();
+                }
+                return;
+            }
+
+            if (e.key === 'ArrowDown') {
+                currentIndex = (currentIndex + 1) % menuItems.length;
+                updateMenu();
+                playSound('move');
+            } else if (e.key === 'ArrowUp') {
+                currentIndex = (currentIndex - 1 + menuItems.length) % menuItems.length;
+                updateMenu();
+                playSound('move');
+            } else if (e.key === 'Enter') {
+                const action = menuItems[currentIndex].dataset.action;
+                openSubmenu(action);
+            }
+        });
+
+        // Mouse Interaction
+        menuItems.forEach((item, index) => {
+            item.addEventListener('mouseenter', () => {
+                if(!isSubmenuOpen) {
+                    currentIndex = index;
+                    updateMenu();
+                    playSound('move');
+                }
+            });
+            item.addEventListener('click', () => {
+                const action = item.dataset.action;
+                openSubmenu(action);
+            });
+        });
+
+        // Background click to close submenu
+        document.getElementById('bd-content').addEventListener('click', (e) => {
+            if (isSubmenuOpen && !e.target.closest('#submenu-overlay') && !e.target.closest('.menu-item')) {
+                closeSubmenu();
+            }
+        });
+
+        // Player Controls Simulation
+        document.getElementById('btn-play').addEventListener('click', () => {
+            showNotification('再生開始');
+            playSound('select');
+        });
+        document.getElementById('btn-stop').addEventListener('click', () => {
+            showNotification('停止');
+            closeSubmenu();
+        });
+        document.getElementById('btn-eject').addEventListener('click', () => {
+             showNotification('ディスクを取り出し中...');
+        });
+
+        // Clock Simulation
+        setInterval(() => {
+            // Hardcoded date logic to simulate "Time moving forward" but user feels like it's 2006
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('ja-JP', { hour12: false });
+            document.getElementById('time-display').innerText = timeString;
+        }, 1000);
+
+    </script>
+</body>
+</html>
