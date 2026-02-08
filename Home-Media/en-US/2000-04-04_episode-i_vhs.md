@@ -18,9 +18,9 @@
 
 Experience the beginning of the saga on your home television. The cinematic event of 1999 is finally here to own on VHS!
 
-**Retail Price:** $24.98
-**Format:** VHS (NTSC)
-**Rating:** PG
+**Retail Price:** $24.98\
+**Format:** VHS (NTSC)\
+**Rating:** PG\
 **Run Time:** 133 Minutes
 
 ---
