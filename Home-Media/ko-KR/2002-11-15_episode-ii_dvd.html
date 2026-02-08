@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스타워즈 에피소드 2: 클론의 습격 DVD 아카이브</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --sw-blue: #0066ff;
+            --sw-gold: #ffe81f;
+        }
+
+        body {
+            font-family: Helvetica, sans-serif;
+            background-color: #050505;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        .dvd-gradient {
+            background: radial-gradient(circle at top right, #1e293b, #020617);
+        }
+
+        .cover-container {
+            perspective: 1000px;
+        }
+
+        .cover-inner {
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+
+        .cover-inner.is-flipped {
+            transform: rotateY(180deg);
+        }
+
+        .cover-front, .cover-back {
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+
+        .cover-back {
+            transform: rotateY(180deg);
+        }
+
+        .spec-label {
+            color: #94a3b8;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .shimmer {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .shimmer::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <div class="container mx-auto px-4 py-8 md:py-16">
+        <!-- Header -->
+        <header class="mb-12 text-center">
+            <div class="inline-block px-3 py-1 border border-blue-500 text-blue-500 text-xs font-bold rounded mb-4 tracking-widest uppercase">
+                20th Century Fox Home Entertainment Korea
+            </div>
+            <h1 class="text-4xl md:text-6xl font-black mb-2 tracking-tighter italic">STAR WARS</h1>
+            <h2 class="text-xl md:text-3xl font-bold text-blue-400">EPISODE II: ATTACK OF THE CLONES</h2>
+            <p class="text-gray-500 mt-4 font-light">스페셜 에디션 2-디스크 DVD 세트 (2002. 11. 15 출시)</p>
+        </header>
+
+        <main class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+            
+            <!-- Left: Interactive DVD Cover -->
+            <div class="lg:col-span-5 flex flex-col items-center">
+                <div class="cover-container w-full max-w-[400px] aspect-[1/1.4]">
+                    <div id="coverInner" class="cover-inner relative w-full h-full shadow-2xl">
+                        <!-- Front Cover -->
+                        <div class="cover-front absolute inset-0 rounded-lg overflow-hidden border border-white/10">
+                            <img src="https://i.postimg.cc/zG6N4pQW/Front_cover.jpg" alt="DVD 앞면 표지" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/400x560?text=Front+Cover'">
+                        </div>
+                        <!-- Back Cover -->
+                        <div class="cover-back absolute inset-0 rounded-lg overflow-hidden border border-white/10">
+                            <img src="https://i.postimg.cc/cL2WPTzf/Back_cover.jpg" alt="DVD 뒷면 표지" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/400x560?text=Back+Cover'">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-6 flex gap-4">
+                    <button id="flipBtn" class="flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-500 transition-all rounded-full font-bold text-sm shadow-lg shadow-blue-900/20">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12a10 10 0 1 0 10-10"/><path d="m7 9 3-3-3-3"/><path d="M10 6H3"/></svg>
+                        표지 뒤집기
+                    </button>
+                </div>
+                <p class="mt-4 text-xs text-gray-500">이미지를 클릭하거나 버튼을 눌러 뒷면 사양을 확인하세요.</p>
+            </div>
+
+            <!-- Right: Information & JSON Data -->
+            <div class="lg:col-span-7 space-y-8">
+                
+                <!-- Specs Grid -->
+                <div id="specsContainer" class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    <!-- Loaded via JavaScript -->
+                </div>
+
+                <!-- Features Section -->
+                <div class="glass-panel rounded-2xl p-6">
+                    <h3 class="text-xl font-bold mb-6 flex items-center gap-2">
+                        <span class="w-2 h-6 bg-blue-500 rounded-full"></span>
+                        디스크 구성 및 스페셜 피처
+                    </h3>
+                    
+                    <div id="discContent" class="space-y-6">
+                        <!-- Loaded via JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Collector's Information -->
+                <div class="p-6 border-l-2 border-blue-600 bg-blue-900/10 rounded-r-2xl">
+                    <p class="text-sm text-blue-200 leading-relaxed">
+                        <strong>Collector’s Note:</strong> 본 DVD는 루카스필름과 THX의 엄격한 관리를 통해 제작되었으며, 당시 최신 기술인 돌비 디지털 5.1 EX 사운드를 지원합니다. 특히 “From Puppets to Pixels” 다큐멘터리는 디지털 영화 제작의 혁신을 다룬 명작으로 평가받습니다.
+                    </p>
+                </div>
+                
+                <!-- Raw Data View -->
+                <button id="toggleJson" class="text-xs text-gray-600 hover:text-blue-400 underline transition-colors">제품 메타데이터(JSON) 확인</button>
+                <div id="jsonOutput" class="hidden glass-panel p-4 rounded-lg overflow-x-auto">
+                    <pre class="text-[10px] text-green-400 font-mono" id="jsonDataDisplay"></pre>
+                </div>
+            </div>
+        </main>
+
+        <footer class="mt-20 pt-8 border-t border-white/5 text-center text-gray-600 text-[10px] tracking-widest uppercase">
+            &copy; 2026 Star Wars Home Media Archive | Distributed by 20th Century Fox Home Entertainment Korea
+        </footer>
+    </div>
+
+    <script>
+        // DVD Metadata JSON
+        const dvdData = {
+            "id": "SW-EP2-DVD-KR",
+            "title_ko": "스타워즈 에피소드 2: 클론의 습격",
+            "title_en": "Star Wars: Episode II - Attack of the Clones",
+            "release_info": {
+                "date": "2002-11-15",
+                "distributor": "20세기 폭스 홈 엔터테인먼트 코리아",
+                "discs": 2,
+                "price_at_launch": "27,500원"
+            },
+            "technical_specs": {
+                "video": "2.35:1 Anamorphic Widescreen",
+                "audio": [
+                    "English Dolby Digital 5.1 EX",
+                    "English Discrete 6.1",
+                    "Thai 5.1"
+                ],
+                "subtitles": ["한국어", "영어", "중국어", "광동어", "태국어"],
+                "layer": "DVD-9 (Dual Layer)",
+                "region": "3 (NTSC)"
+            },
+            "disc_details": [
+                {
+                    "disc": 1,
+                    "title": "본편 (Feature Film)",
+                    "features": [
+                        "조지 루카스, 릭 맥컬럼 등 주요 제작진의 음성 해설",
+                        "THX Optimizer (화질 및 음향 최적화)"
+                    ]
+                },
+                {
+                    "disc": 2,
+                    "title": "스페셜 피처 (Special Features)",
+                    "features": [
+                        "8개의 미공개 장면 (조지 루카스 해설 포함)",
+                        "“From Puppets to Pixels” 제작 다큐멘터리",
+                        "“State of the Art: The Pre-Visualization of Episode II” 분석",
+                        "시각 효과 및 사운드 다큐멘터리",
+                        "뮤직 비디오 (Across the Stars)",
+                        "극장용 예고편 및 TV 광고 모음"
+                    ]
+                }
+            ]
+        };
+
+        // Render Specs
+        function renderContent() {
+            const specContainer = document.getElementById('specsContainer');
+            const specs = [
+                { label: '출시일', value: dvdData.release_info.date },
+                { label: '디스크', value: `${dvdData.release_info.discs} Discs` },
+                { label: '화면비', value: dvdData.technical_specs.video },
+                { label: '사운드', value: 'DD 5.1 EX' },
+                { label: '지역코드', value: dvdData.technical_specs.region },
+                { label: '등급', value: '12세 이용가' }
+            ];
+
+            specContainer.innerHTML = specs.map(s => `
+                <div class="glass-panel p-4 rounded-xl text-center">
+                    <div class="spec-label mb-1">${s.label}</div>
+                    <div class="text-sm font-bold text-white">${s.value}</div>
+                </div>
+            `).join('');
+
+            const discContent = document.getElementById('discContent');
+            discContent.innerHTML = dvdData.disc_details.map(d => `
+                <div>
+                    <h4 class="text-blue-300 font-bold mb-3 text-sm flex items-center">
+                        <svg class="mr-2" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" opacity="0.3"/><circle cx="12" cy="12" r="3"/></svg>
+                        ${d.title}
+                    </h4>
+                    <ul class="space-y-2">
+                        ${d.features.map(f => `
+                            <li class="text-xs text-gray-400 flex items-start gap-2">
+                                <span class="text-blue-500">•</span>
+                                <span>${f}</span>
+                            </li>
+                        `).join('')}
+                    </ul>
+                </div>
+            `).join('');
+
+            document.getElementById('jsonDataDisplay').textContent = JSON.stringify(dvdData, null, 4);
+        }
+
+        // Interaction Logic
+        const coverInner = document.getElementById('coverInner');
+        const flipBtn = document.getElementById('flipBtn');
+        const toggleJson = document.getElementById('toggleJson');
+        const jsonOutput = document.getElementById('jsonOutput');
+
+        const flipAction = () => {
+            coverInner.classList.toggle('is-flipped');
+        };
+
+        coverInner.onclick = flipAction;
+        flipBtn.onclick = flipAction;
+
+        toggleJson.onclick = () => {
+            jsonOutput.classList.toggle('hidden');
+            toggleJson.textContent = jsonOutput.classList.contains('hidden') ? '제품 메타데이터(JSON) 확인' : '데이터 창 닫기';
+        };
+
+        window.onload = renderContent;
+    </script>
+</body>
+</html>
