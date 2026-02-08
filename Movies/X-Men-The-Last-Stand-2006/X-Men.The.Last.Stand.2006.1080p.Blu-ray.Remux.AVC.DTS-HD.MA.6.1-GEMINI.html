@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VLC Media Player - X-Men: The Last Stand</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom Scrollbar for Playlist (if added later) */
+        ::-webkit-scrollbar {
+            width: 8px;
+            background: #2b2b2b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4a4a4a;
+            border-radius: 4px;
+        }
+        
+        /* macOS Window Shadow */
+        .mac-window-shadow {
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.1);
+        }
+
+        /* Range Slider Styling */
+        input[type=range] {
+            -webkit-appearance: none; 
+            background: transparent; 
+        }
+        
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 12px;
+            width: 12px;
+            border-radius: 50%;
+            background: #e0e0e0;
+            margin-top: -5px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+        }
+
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 3px;
+            background: #555;
+            border-radius: 2px;
+        }
+
+        /* Hover effects for controls */
+        .control-btn:hover svg {
+            fill: #fff;
+            filter: drop-shadow(0 0 2px rgba(255,255,255,0.5));
+        }
+
+        .control-btn:active svg {
+            fill: #bbb;
+        }
+
+        /* Gradient for bottom bar */
+        .vlc-bottom-bar {
+            background: linear-gradient(to bottom, #3a3a3a, #2b2b2b);
+            border-top: 1px solid #000;
+        }
+
+        /* Font for LCD display looks */
+        .time-display {
+            font-variant-numeric: tabular-nums;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 h-screen w-full flex items-center justify-center overflow-hidden font-sans select-none">
+
+    <!-- Wallpaper Background (Simulated Desktop) -->
+    <div class="absolute inset-0 z-0">
+        <div class="w-full h-full bg-gradient-to-br from-blue-900 via-purple-900 to-black opacity-80"></div>
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1497250681960-ef048c0ab947?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-20 mix-blend-overlay"></div>
+    </div>
+
+    <!-- Main VLC Window -->
+    <div id="vlc-window" class="relative z-10 w-[90%] max-w-5xl bg-[#1e1e1e] rounded-lg overflow-hidden mac-window-shadow flex flex-col transition-all duration-300">
+        
+        <!-- Top Bar (Title & Window Controls) -->
+        <div class="bg-gradient-to-b from-[#444] to-[#2c2c2c] h-8 flex items-center px-3 border-b border-black relative shrink-0">
+            <!-- Traffic Lights -->
+            <div class="flex space-x-2 absolute left-3">
+                <div class="w-3 h-3 rounded-full bg-[#ff5f56] border border-[#e0443e] cursor-pointer hover:bg-[#ff4038]"></div> <!-- Close -->
+                <div class="w-3 h-3 rounded-full bg-[#ffbd2e] border border-[#dea123] cursor-pointer hover:bg-[#ffad14]"></div> <!-- Minimize -->
+                <div class="w-3 h-3 rounded-full bg-[#27c93f] border border-[#1aab29] cursor-pointer hover:bg-[#20b038]" onclick="toggleWindowFullscreen()"></div> <!-- Maximize -->
+            </div>
+            
+            <!-- Filename Title -->
+            <div class="w-full text-center text-gray-300 text-xs font-medium truncate px-16 opacity-90 drop-shadow-md">
+                X-Men.The.Last.Stand.2006.1080p.Blu-ray.Remux.AVC.DTS-HD.MA.6.1-GEMINI.mkv
+            </div>
+        </div>
+
+        <!-- Video Area (16:9 Aspect Ratio Container) -->
+        <div class="relative bg-black w-full flex-grow group" style="aspect-ratio: 16/9;">
+            
+            <!-- Simulated Video Content -->
+            <div id="video-screen" class="absolute inset-0 flex items-center justify-center overflow-hidden">
+                
+                <!-- VLC Cone (Visible when paused/stopped) -->
+                <div id="vlc-cone" class="transition-opacity duration-300 opacity-100 transform scale-75 md:scale-100">
+                    <svg width="120" height="120" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Cone Body -->
+                        <path d="M4 28H28L16 2L4 28Z" fill="#FF8800"/>
+                        <!-- White Stripes -->
+                        <path d="M13.5 8H18.5L19.5 11H12.5L13.5 8Z" fill="white" opacity="0.9"/>
+                        <path d="M10.5 15H21.5L22.5 19H9.5L10.5 15Z" fill="white" opacity="0.9"/>
+                        <!-- Shadow/Detail -->
+                        <path d="M16 2L28 28H4L16 2Z" stroke="#CC6600" stroke-width="1" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+
+                <!-- Playing Content Overlay (Hidden by default) -->
+                <div id="movie-content" class="absolute inset-0 bg-black opacity-0 transition-opacity duration-500 flex items-center justify-center">
+                    <!-- Very subtle gradient animation to simulate a dark movie scene -->
+                    <div class="w-full h-full bg-gradient-to-t from-black via-gray-900 to-black opacity-30 animate-pulse"></div>
+                    <div class="absolute text-gray-500 font-serif text-2xl tracking-widest opacity-20 select-none">
+                        PAUSED
+                    </div>
+                </div>
+
+                <!-- OSD (On Screen Display) - Volume/Play status -->
+                <div id="osd" class="absolute top-4 right-4 bg-black/70 text-white px-3 py-1 rounded text-sm opacity-0 transition-opacity duration-500 pointer-events-none">
+                    Volume: 100%
+                </div>
+            </div>
+        </div>
+
+        <!-- Control Bar -->
+        <div class="vlc-bottom-bar h-14 flex items-center px-4 space-x-4 shrink-0 relative z-20">
+            
+            <!-- Play/Pause -->
+            <button id="play-btn" class="control-btn text-gray-400 focus:outline-none" onclick="togglePlay()">
+                <svg id="icon-play" class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                <svg id="icon-pause" class="w-6 h-6 fill-current hidden" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+            </button>
+            
+            <!-- Previous -->
+            <button class="control-btn text-gray-400 focus:outline-none hidden sm:block">
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
+            </button>
+            
+            <!-- Stop -->
+            <button class="control-btn text-gray-400 focus:outline-none hidden sm:block" onclick="stopVideo()">
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M6 6h12v12H6z"/></svg>
+            </button>
+            
+            <!-- Next -->
+            <button class="control-btn text-gray-400 focus:outline-none hidden sm:block">
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
+            </button>
+
+            <!-- Time Scrubber Area -->
+            <div class="flex-grow flex items-center space-x-3">
+                <span id="current-time" class="text-xs text-gray-400 font-mono w-12 text-right">00:00</span>
+                
+                <div class="relative flex-grow h-4 flex items-center group cursor-pointer">
+                    <!-- Track Background -->
+                    <div class="absolute w-full h-1 bg-gray-600 rounded-full"></div>
+                    <!-- Buffered (fake) -->
+                    <div class="absolute w-3/4 h-1 bg-gray-500 rounded-full opacity-50"></div>
+                    <!-- Progress -->
+                    <div id="progress-bar" class="absolute w-0 h-1 bg-blue-500 rounded-full"></div>
+                    <!-- Input Slider -->
+                    <input type="range" id="seek-slider" min="0" max="100" value="0" class="absolute w-full h-full opacity-0 cursor-pointer z-10" oninput="seek(this.value)">
+                    <!-- Thumb (Visual only, follows JS) -->
+                    <div id="progress-thumb" class="absolute h-3 w-3 bg-white rounded-full shadow left-0 pointer-events-none transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                </div>
+
+                <span id="total-time" class="text-xs text-gray-400 font-mono w-12">1:44:05</span>
+            </div>
+
+            <!-- Fullscreen Toggle -->
+            <button class="control-btn text-gray-400 focus:outline-none" onclick="toggleFullscreen()">
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+            </button>
+
+            <!-- Volume Area -->
+            <div class="flex items-center space-x-2 w-24">
+                <button class="control-btn text-gray-400 focus:outline-none" onclick="toggleMute()">
+                    <svg id="vol-icon" class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                </button>
+                <div class="relative flex-grow h-1 bg-gray-600 rounded">
+                     <div id="vol-bar" class="absolute h-full bg-gray-300 rounded w-full"></div>
+                     <input type="range" min="0" max="100" value="100" class="absolute w-full h-full opacity-0 cursor-pointer" oninput="setVolume(this.value)">
+                </div>
+            </div>
+
+            <!-- Equalizer / Playlist Icons (Visual Only) -->
+            <button class="control-btn text-gray-400 focus:outline-none hidden md:block">
+                 <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // State
+        let isPlaying = false;
+        let currentTime = 0;
+        const totalDuration = 6245; // 1h 44m 05s in seconds
+        let timerInterval;
+
+        // Elements
+        const playBtn = document.getElementById('play-btn');
+        const iconPlay = document.getElementById('icon-play');
+        const iconPause = document.getElementById('icon-pause');
+        const cone = document.getElementById('vlc-cone');
+        const movieContent = document.getElementById('movie-content');
+        const timeDisplay = document.getElementById('current-time');
+        const progressBar = document.getElementById('progress-bar');
+        const seekSlider = document.getElementById('seek-slider');
+        const progressThumb = document.getElementById('progress-thumb');
+        const osd = document.getElementById('osd');
+        const volBar = document.getElementById('vol-bar');
+
+        // Logic
+        function togglePlay() {
+            isPlaying = !isPlaying;
+            updatePlayState();
+        }
+
+        function stopVideo() {
+            isPlaying = false;
+            currentTime = 0;
+            updatePlayState();
+            updateTimeDisplay();
+            updateProgressBar();
+        }
+
+        function updatePlayState() {
+            if (isPlaying) {
+                // UI Changes for Play
+                iconPlay.classList.add('hidden');
+                iconPause.classList.remove('hidden');
+                cone.classList.add('opacity-0');
+                movieContent.classList.remove('opacity-0');
+                movieContent.classList.add('opacity-100');
+                
+                // Start Timer
+                clearInterval(timerInterval);
+                timerInterval = setInterval(() => {
+                    currentTime++;
+                    if (currentTime >= totalDuration) {
+                        stopVideo();
+                    }
+                    updateTimeDisplay();
+                    updateProgressBar();
+                }, 1000);
+            } else {
+                // UI Changes for Pause
+                iconPlay.classList.remove('hidden');
+                iconPause.classList.add('hidden');
+                cone.classList.remove('opacity-0');
+                movieContent.classList.remove('opacity-100');
+                movieContent.classList.add('opacity-0');
+                
+                // Stop Timer
+                clearInterval(timerInterval);
+            }
+        }
+
+        function formatTime(seconds) {
+            const h = Math.floor(seconds / 3600);
+            const m = Math.floor((seconds % 3600) / 60);
+            const s = seconds % 60;
+            if (h > 0) {
+                return `${h}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+            }
+            return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+        }
+
+        function updateTimeDisplay() {
+            timeDisplay.innerText = formatTime(currentTime);
+        }
+
+        function updateProgressBar() {
+            const percent = (currentTime / totalDuration) * 100;
+            progressBar.style.width = `${percent}%`;
+            progressThumb.style.left = `${percent}%`;
+            seekSlider.value = percent;
+        }
+
+        function seek(val) {
+            currentTime = Math.floor((val / 100) * totalDuration);
+            updateTimeDisplay();
+            progressBar.style.width = `${val}%`;
+            progressThumb.style.left = `${val}%`;
+        }
+
+        function setVolume(val) {
+            volBar.style.width = `${val}%`;
+            showOSD(`Volume: ${val}%`);
+        }
+
+        function toggleMute() {
+            const currentWidth = volBar.style.width;
+            if (currentWidth === '0%') {
+                volBar.style.width = '100%';
+                showOSD('Volume: 100%');
+            } else {
+                volBar.style.width = '0%';
+                showOSD('Mute');
+            }
+        }
+
+        function toggleFullscreen() {
+            const elem = document.getElementById("vlc-window");
+            if (!document.fullscreenElement) {
+                if(elem.requestFullscreen) {
+                    elem.requestFullscreen();
+                } else if(elem.webkitRequestFullscreen) {
+                    elem.webkitRequestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        }
+        
+        // Simulation for "window maximization" (green traffic light)
+        function toggleWindowFullscreen() {
+             const win = document.getElementById("vlc-window");
+             win.classList.toggle('w-full');
+             win.classList.toggle('h-full');
+             win.classList.toggle('rounded-none');
+             win.classList.toggle('max-w-none');
+        }
+
+        let osdTimeout;
+        function showOSD(text) {
+            osd.innerText = text;
+            osd.classList.remove('opacity-0');
+            clearTimeout(osdTimeout);
+            osdTimeout = setTimeout(() => {
+                osd.classList.add('opacity-0');
+            }, 2000);
+        }
+
+        // Initialize display
+        updateTimeDisplay();
+    </script>
+</body>
+</html>
