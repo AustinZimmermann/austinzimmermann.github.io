@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fantastic Four (2005) - Blu-ray Player (Nov 14, 2006)</title>
+    <style>
+        /* --- RESET & FONTS --- */
+        * {
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+        
+        body {
+            margin: 0;
+            height: 100vh;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><defs><linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:%232b3a55;stop-opacity:1" /><stop offset="100%" style="stop-color:%235d7ea8;stop-opacity:1" /></linearGradient></defs><rect width="100%" height="100%" fill="url(%23bg)"/></svg>') no-repeat center center fixed;
+            background-size: cover;
+            font-family: "Lucida Grande", sans-serif; /* The OS X system font */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* --- OS X TIGER (10.4) WINDOW STYLING --- */
+        .osx-window {
+            width: 960px; /* Scaled down 1920x1080 container for desktop view */
+            height: auto;
+            background: #e8e8e8; /* Fallback */
+            /* Brushed Metal Simulation */
+            background-image: linear-gradient(to bottom, #dcdcdc 0%, #f0f0f0 5%, #b0b0b0 100%);
+            border-radius: 5px 5px 0 0;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 0 1px rgba(0,0,0,0.4);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .window-header {
+            height: 25px;
+            display: flex;
+            align-items: center;
+            padding-left: 10px;
+            border-bottom: 1px solid #888;
+            background: linear-gradient(to bottom, #f0f0f0, #c0c0c0);
+            border-radius: 5px 5px 0 0;
+            position: relative;
+        }
+
+        .window-title {
+            position: absolute;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 13px;
+            color: #333;
+            text-shadow: 0 1px 0 rgba(255,255,255,0.6);
+            pointer-events: none;
+            font-weight: bold;
+        }
+
+        /* Traffic Lights */
+        .controls {
+            display: flex;
+            gap: 6px;
+            z-index: 10;
+        }
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 1px solid rgba(0,0,0,0.2);
+            box-shadow: inset 0 1px 2px rgba(255,255,255,0.5);
+        }
+        .red { background: radial-gradient(circle at 30% 30%, #ff8a8a, #ff3b3b); border-color: #b02626; }
+        .yellow { background: radial-gradient(circle at 30% 30%, #fff78a, #ffcc00); border-color: #b89200; }
+        .green { background: radial-gradient(circle at 30% 30%, #b4ff8a, #26cc35); border-color: #1a8a24; }
+
+        /* --- PLAYER SCREEN (16:9) --- */
+        .screen-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            background: #000;
+            overflow: hidden;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+        }
+
+        .screen-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+        }
+
+        /* --- BLU-RAY MENU ASSETS --- */
+        /* Background Animation simulating the movie menu */
+        .bd-background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, #0a1a3a 0%, #000000 90%);
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        /* The "4" Logo */
+        .logo-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -60%);
+            width: 40%;
+            height: 40%;
+            opacity: 0.8;
+            z-index: 1;
+        }
+
+        .ff-logo {
+            width: 100%;
+            height: 100%;
+            fill: none;
+            stroke: #3b82f6;
+            stroke-width: 10;
+            filter: drop-shadow(0 0 20px #2563eb);
+            animation: pulseLogo 4s infinite ease-in-out;
+        }
+        
+        .ff-circle {
+            stroke: #3b82f6;
+            stroke-width: 15;
+            fill: none;
+            opacity: 0.6;
+        }
+
+        @keyframes pulseLogo {
+            0% { filter: drop-shadow(0 0 15px #2563eb); opacity: 0.8; }
+            50% { filter: drop-shadow(0 0 30px #60a5fa); opacity: 1; }
+            100% { filter: drop-shadow(0 0 15px #2563eb); opacity: 0.8; }
+        }
+
+        /* Tech Grid Lines */
+        .grid-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            perspective: 500px;
+            transform: scale(1.1);
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        /* Menu Bar (Bottom HUD style common in early Fox BDs) */
+        .menu-bar {
+            position: absolute;
+            bottom: 8%;
+            left: 0;
+            width: 100%;
+            height: 15%; /* Responsive height */
+            background: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(10,20,40,0.9) 20%, rgba(10,20,40,0.9) 80%, rgba(0,0,0,0) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            z-index: 10;
+            border-top: 1px solid rgba(100, 149, 237, 0.4);
+            border-bottom: 1px solid rgba(100, 149, 237, 0.4);
+        }
+
+        .menu-item {
+            font-family: "Eurostile", "Impact", sans-serif;
+            color: #8ab4f8;
+            font-size: 1.5vw;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            padding: 10px 20px;
+            transition: all 0.2s ease;
+            position: relative;
+            text-shadow: 0 0 5px rgba(37, 99, 235, 0.5);
+        }
+
+        .menu-item:hover, .menu-item.active {
+            color: #ffffff;
+            text-shadow: 0 0 15px #3b82f6, 0 0 30px #3b82f6;
+            transform: scale(1.1);
+        }
+        
+        /* Fox Blue Glow indicator */
+        .menu-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 2px;
+            background: #fff;
+            box-shadow: 0 0 10px #3b82f6;
+        }
+
+        /* Sub-menus (Panels) */
+        .panel {
+            position: absolute;
+            bottom: 25%; /* Above main menu */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            background: rgba(13, 22, 45, 0.9);
+            border: 1px solid #3b82f6;
+            border-radius: 4px;
+            padding: 20px;
+            display: none; /* Hidden by default */
+            z-index: 20;
+            color: white;
+            box-shadow: 0 0 30px rgba(0,0,0,0.8);
+        }
+
+        .panel.visible {
+            display: block;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .panel h2 {
+            margin: 0 0 15px 0;
+            font-family: "Eurostile", sans-serif;
+            font-weight: normal;
+            text-transform: uppercase;
+            border-bottom: 1px solid #3b82f6;
+            padding-bottom: 5px;
+            font-size: 1.2rem;
+            color: #8ab4f8;
+        }
+
+        .panel-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+        
+        .panel-btn {
+            background: rgba(255,255,255,0.05);
+            border: none;
+            color: #ccc;
+            padding: 8px;
+            text-align: left;
+            cursor: pointer;
+            font-family: sans-serif;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+        }
+        
+        .panel-btn:hover {
+            background: rgba(59, 130, 246, 0.3);
+            color: white;
+        }
+
+        /* Scene Selection specific grid */
+        .scene-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+        .scene-item {
+            aspect-ratio: 16/9;
+            background: #222;
+            border: 1px solid #444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            cursor: pointer;
+            color: #888;
+        }
+        .scene-item:hover {
+            border-color: #3b82f6;
+            color: white;
+            background: #333;
+        }
+
+        /* Feature Presentation Overlay */
+        #video-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: black;
+            z-index: 100;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: white;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translate(-50%, 10px); } to { opacity: 1; transform: translate(-50%, 0); } }
+
+        /* --- FOOTER SIMULATION --- */
+        .player-footer {
+            height: 35px;
+            background: #d4d4d4;
+            border-top: 1px solid #999;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10px;
+            font-size: 11px;
+            color: #333;
+        }
+        
+        .lcd-display {
+            background: #222;
+            color: #7aff7a; /* Classic VCR green */
+            font-family: "Courier New", monospace;
+            padding: 2px 8px;
+            border-radius: 2px;
+            border: 1px inset #555;
+            letter-spacing: 1px;
+        }
+
+        .btn-transport {
+            width: 24px;
+            height: 20px;
+            background: linear-gradient(to bottom, #fff, #ccc);
+            border: 1px solid #888;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 10px;
+        }
+        
+        .btn-transport:active {
+            background: #aaa;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="osx-window">
+        <!-- OS X Window Header -->
+        <div class="window-header">
+            <div class="controls">
+                <div class="dot red" title="Close"></div>
+                <div class="dot yellow" title="Minimize"></div>
+                <div class="dot green" title="Maximize"></div>
+            </div>
+            <div class="window-title">Blu-ray Player</div>
+        </div>
+
+        <!-- 16:9 Screen -->
+        <div class="screen-container">
+            <div class="screen-content">
+                
+                <!-- Background Layer -->
+                <div class="bd-background">
+                    <div class="grid-lines"></div>
+                    <!-- SVG Logo Representation -->
+                    <div class="logo-container">
+                        <svg viewBox="0 0 100 100" class="ff-logo">
+                            <circle cx="50" cy="50" r="45" class="ff-circle" />
+                            <text x="50" y="70" font-family="Arial, sans-serif" font-weight="900" font-size="60" text-anchor="middle" fill="#3b82f6" stroke="white" stroke-width="1" style="font-style: italic;">4</text>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Panels (Hidden by default) -->
+                
+                <!-- SETUP PANEL -->
+                <div id="panel-setup" class="panel">
+                    <h2>Audio & Subtitles</h2>
+                    <div class="panel-content">
+                        <button class="panel-btn">English DTS-HD Master Audio 5.1</button>
+                        <button class="panel-btn">Spanish Dolby Digital 5.1</button>
+                        <button class="panel-btn" style="margin-top:10px;">Subtitles: English</button>
+                        <button class="panel-btn">Subtitles: Spanish</button>
+                        <button class="panel-btn">Subtitles: Off</button>
+                    </div>
+                </div>
+
+                <!-- SCENES PANEL -->
+                <div id="panel-scenes" class="panel">
+                    <h2>Scene Selection</h2>
+                    <div class="scene-grid">
+                        <div class="scene-item">1. Origins</div>
+                        <div class="scene-item">2. Space Station</div>
+                        <div class="scene-item">3. The Storm</div>
+                        <div class="scene-item">4. Recovery</div>
+                        <div class="scene-item">5. Bridge Rescue</div>
+                        <div class="scene-item">6. Changes</div>
+                    </div>
+                </div>
+
+                <!-- SPECIAL FEATURES PANEL (Accurate to the 2006 Release) -->
+                <div id="panel-extras" class="panel">
+                    <h2>Special Features</h2>
+                    <div class="panel-content">
+                        <button class="panel-btn" onclick="playFeature('Commentary')">Commentary by J. Alba, M. Chiklis & I. Gruffudd</button>
+                        <button class="panel-btn" onclick="playFeature('Music Video')">Music Video: “Come On, Come In”</button>
+                        <button class="panel-btn" onclick="playFeature('Trailers')">Fox Blu-ray Trailer Gallery</button>
+                        <button class="panel-btn" onclick="playFeature('Teaser')">Fantastic Four Teaser</button>
+                        <button class="panel-btn" onclick="playFeature('Theatrical')">Theatrical Trailer</button>
+                    </div>
+                </div>
+
+                <!-- Main Menu Bar -->
+                <div class="menu-bar">
+                    <div class="menu-item active" onclick="playMovie()">Play</div>
+                    <div class="menu-item" onclick="togglePanel('panel-setup')">Setup</div>
+                    <div class="menu-item" onclick="togglePanel('panel-scenes')">Scenes</div>
+                    <div class="menu-item" onclick="togglePanel('panel-extras')">Extras</div>
+                </div>
+
+                <!-- Video Simulation Overlay -->
+                <div id="video-overlay" onclick="stopVideo()">
+                    <h1 style="font-family: 'Eurostile', sans-serif; text-transform: uppercase; color: #3b82f6; text-shadow: 0 0 10px #3b82f6;">20th Century Fox</h1>
+                    <p>Home Entertainment</p>
+                    <div style="margin-top: 20px; font-size: 12px; color: #888;">Reading Disc... (Click to Return to Menu)</div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Simulated Player Controls Footer -->
+        <div class="player-footer">
+            <div style="display:flex; gap:5px;">
+                <div class="btn-transport" onclick="playMovie()">&#9658;</div> <!-- Play -->
+                <div class="btn-transport">&#10074;&#10074;</div> <!-- Pause -->
+                <div class="btn-transport">&#9632;</div> <!-- Stop -->
+                <div class="btn-transport">&#9664;&#9664;</div> <!-- Rew -->
+                <div class="btn-transport">&#9654;&#9654;</div> <!-- FF -->
+            </div>
+            <div class="lcd-display" id="time-display">00:00:00</div>
+            <div style="color: #666;">TITLE 1 &nbsp; CH 1</div>
+        </div>
+    </div>
+
+    <script>
+        // --- LOGIC ---
+        
+        let activePanelId = null;
+
+        function togglePanel(panelId) {
+            // Hide currently active panel if it's different
+            if (activePanelId && activePanelId !== panelId) {
+                document.getElementById(activePanelId).classList.remove('visible');
+            }
+
+            const panel = document.getElementById(panelId);
+            if (panel.classList.contains('visible')) {
+                panel.classList.remove('visible');
+                activePanelId = null;
+            } else {
+                panel.classList.add('visible');
+                activePanelId = panelId;
+            }
+        }
+
+        function playMovie() {
+            // Hide UI
+            if(activePanelId) {
+                document.getElementById(activePanelId).classList.remove('visible');
+                activePanelId = null;
+            }
+            
+            const overlay = document.getElementById('video-overlay');
+            overlay.style.display = 'flex';
+            
+            // Simulate playing by updating time
+            startTimer();
+        }
+
+        function playFeature(featureName) {
+            alert("Now Loading Feature: " + featureName + "\n\n(Simulated BD-J Loading...)");
+        }
+
+        function stopVideo() {
+            const overlay = document.getElementById('video-overlay');
+            overlay.style.display = 'none';
+            stopTimer();
+        }
+
+        // --- CLOCK SIMULATION ---
+        let timerInterval;
+        let seconds = 0;
+
+        function startTimer() {
+            clearInterval(timerInterval);
+            seconds = 0;
+            updateDisplay();
+            timerInterval = setInterval(() => {
+                seconds++;
+                updateDisplay();
+            }, 1000);
+        }
+
+        function stopTimer() {
+            clearInterval(timerInterval);
+            seconds = 0;
+            updateDisplay();
+        }
+
+        function updateDisplay() {
+            const h = Math.floor(seconds / 3600).toString().padStart(2, '0');
+            const m = Math.floor((seconds % 3600) / 60).toString().padStart(2, '0');
+            const s = (seconds % 60).toString().padStart(2, '0');
+            document.getElementById('time-display').innerText = `${h}:${m}:${s}`;
+        }
+
+        // --- DATE CONTEXT ---
+        // Just for fun/realism, log the date to console as if booting
+        console.log("System Date: Tue Nov 14 2006 20:00:00 GMT-0500 (EST)");
+        console.log("Mounting Volume: FANTASTIC_FOUR_BD");
+    </script>
+</body>
+</html>
