@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스타워즈 에피소드 1: 보이지 않는 위험 DVD (2001)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --dvd-silver: #c0c0c0;
+            --fox-blue: #003399;
+            --starwars-yellow: #FFE81F;
+        }
+
+        body {
+            background-color: #020205;
+            color: #e2e2e2;
+            font-family: Helvetica, sans-serif;
+            background-image: radial-gradient(circle at 50% 50%, #1a1a2e 0%, #020205 100%);
+            overflow-x: hidden;
+        }
+
+        /* 3D Flip Card Effect */
+        .dvd-container {
+            perspective: 1500px;
+        }
+
+        .dvd-card {
+            position: relative;
+            width: 320px;
+            height: 450px;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+
+        .dvd-card.is-flipped {
+            transform: rotateY(180deg);
+        }
+
+        .dvd-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 4px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            overflow: hidden;
+        }
+
+        .dvd-front {
+            background: #000;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .dvd-back {
+            background: #000;
+            transform: rotateY(180deg);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .dvd-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* DVD Menu Glossy Button */
+        .menu-btn {
+            background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-btn:hover {
+            border-color: var(--starwars-yellow);
+            color: var(--starwars-yellow);
+            background: rgba(255, 232, 31, 0.1);
+        }
+
+        .active-tab {
+            border-bottom: 3px solid var(--starwars-yellow);
+            color: var(--starwars-yellow);
+        }
+
+        /* Disc simulation */
+        .disc-shimmer {
+            background: conic-gradient(
+                from 0deg,
+                #333, #666, #999, #666, #333
+            );
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .scanline {
+            width: 100%;
+            height: 100px;
+            z-index: 5;
+            background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(255,255,255,0.05) 50%, rgba(0,0,0,0) 100%);
+            position: absolute;
+            top: -100px;
+            animation: scan 4s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes scan {
+            0% { top: -100px; }
+            100% { top: 100%; }
+        }
+    </style>
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "스타워즈 에피소드 1: 보이지 않는 위험 (2디스크 DVD)",
+      "description": "20세기 폭스 홈 엔터테인먼트 코리아 정식 발매 2디스크 DVD 세트",
+      "image": "https://i.postimg.cc/ZYB3113r/Front_cover.jpg",
+      "releaseDate": "2001-11-08",
+      "brand": {
+        "@type": "Brand",
+        "name": "20세기 폭스 홈 엔터테인먼트 코리아"
+      },
+      "offers": {
+        "@type": "Offer",
+        "availability": "https://schema.org/Discontinued",
+        "priceCurrency": "KRW",
+        "price": "27500"
+      }
+    }
+    </script>
+</head>
+<body class="p-4 md:p-8">
+    <!-- Header Area -->
+    <header class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center mb-12 gap-6">
+        <div class="flex flex-col items-center md:items-start">
+            <span class="text-xs tracking-[0.3em] text-gray-400 font-bold uppercase mb-2">20th Century Fox Home Entertainment</span>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Star_Wars_Logo.svg" alt="Star Wars" class="w-48 invert">
+            <h1 class="text-xl font-light tracking-widest mt-2 uppercase">Episode I: The Phantom Menace</h1>
+        </div>
+        <div class="text-right flex flex-col items-center md:items-end">
+            <div class="flex gap-2 mb-2">
+                <span class="px-2 py-1 border border-gray-600 text-[10px] rounded">THX CERTIFIED</span>
+                <span class="px-2 py-1 border border-gray-600 text-[10px] rounded">DOLBY DIGITAL</span>
+            </div>
+            <p class="text-sm font-bold text-yellow-500">2001. 11. 08 국내 정식 발매</p>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- Interactive DVD Case Section -->
+        <div class="lg:col-span-5 flex flex-col items-center">
+            <div class="dvd-container mb-8" onclick="this.querySelector('.dvd-card').classList.toggle('is-flipped')">
+                <div class="dvd-card">
+                    <!-- Front Cover -->
+                    <div class="dvd-face dvd-front">
+                        <img src="https://i.postimg.cc/ZYB3113r/Front_cover.jpg" alt="DVD Front Cover" class="dvd-image">
+                        <div class="scanline"></div>
+                    </div>
+                    <!-- Back Cover -->
+                    <div class="dvd-face dvd-back">
+                        <img src="https://i.postimg.cc/NG9TWWTm/Back_cover.jpg" alt="DVD Back Cover" class="dvd-image">
+                    </div>
+                </div>
+            </div>
+            <p class="text-xs text-gray-500 italic">이미지를 클릭하면 뒷면을 볼 수 있습니다.</p>
+        </div>
+
+        <!-- Content Details Section -->
+        <div class="lg:col-span-7 space-y-8">
+            <!-- Navigation Tabs -->
+            <div class="flex border-b border-gray-800 gap-8">
+                <button onclick="showDisc(1)" id="tab-1" class="pb-4 font-bold text-lg active-tab transition">디스크 1: 본편</button>
+                <button onclick="showDisc(2)" id="tab-2" class="pb-4 font-bold text-lg text-gray-500 hover:text-white transition">디스크 2: 스페셜 피처</button>
+            </div>
+
+            <!-- Disc 1 Content -->
+            <div id="disc-content-1" class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-gray-900/50 p-4 rounded-lg border border-gray-800">
+                        <h4 class="text-yellow-500 font-bold mb-2">AUDIO</h4>
+                        <ul class="text-sm text-gray-400 space-y-1">
+                            <li>• English 5.1 Dolby Digital EX</li>
+                            <li>• English 2.0 Surround</li>
+                            <li>• Commentary by George Lucas, Rick McCallum, etc.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-900/50 p-4 rounded-lg border border-gray-800">
+                        <h4 class="text-yellow-500 font-bold mb-2">SUBTITLES</h4>
+                        <ul class="text-sm text-gray-400 space-y-1">
+                            <li>• 한국어 (Korean)</li>
+                            <li>• English</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="flex items-center gap-6 bg-white/5 p-6 rounded-xl">
+                    <div class="disc-shimmer">
+                        <div class="w-8 h-8 bg-black rounded-full border border-gray-600"></div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-2">영화 본편 (THE MOVIE)</h3>
+                        <p class="text-sm text-gray-400">조지 루카스 감독이 직접 감수하여 완성된 최상의 화질과 사운드. THX 인증을 통해 극장의 감동을 그대로 거실로 전달합니다.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Disc 2 Content (Hidden by default) -->
+            <div id="disc-content-2" class="space-y-6 hidden">
+                <h3 class="text-xl font-bold text-yellow-500 uppercase tracking-tighter">Bonus Features Exclusively for DVD</h3>
+                <ul class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+                    <li class="p-3 bg-gray-800/40 rounded flex items-start gap-3">
+                        <span class="text-yellow-500">▶</span>
+                        <span>미공개 삭제 장면 (7개 장면 및 시각효과 완성본)</span>
+                    </li>
+                    <li class="p-3 bg-gray-800/40 rounded flex items-start gap-3">
+                        <span class="text-yellow-500">▶</span>
+                        <span>‘The Beginning’ 제작 다큐멘터리 (60분 분량)</span>
+                    </li>
+                    <li class="p-3 bg-gray-800/40 rounded flex items-start gap-3">
+                        <span class="text-yellow-500">▶</span>
+                        <span>멀티 앵글 스토리보드 비교</span>
+                    </li>
+                    <li class="p-3 bg-gray-800/40 rounded flex items-start gap-3">
+                        <span class="text-yellow-500">▶</span>
+                        <span>디자인 갤러리 및 제작 노트</span>
+                    </li>
+                </ul>
+                <div class="bg-blue-900/20 border border-blue-500/30 p-4 rounded-lg">
+                    <p class="text-xs text-blue-300">※ 디스크 2의 모든 부가 영상은 한글 자막을 완벽하게 지원합니다.</p>
+                </div>
+            </div>
+
+            <!-- Specs Table -->
+            <div class="pt-8 border-t border-gray-800">
+                <table class="w-full text-xs text-gray-500">
+                    <tr class="border-b border-gray-900">
+                        <td class="py-2 font-bold uppercase">Aspect Ratio</td>
+                        <td class="py-2 text-right">Anamorphic Widescreen 2.35:1</td>
+                    </tr>
+                    <tr class="border-b border-gray-900">
+                        <td class="py-2 font-bold uppercase">Region Code</td>
+                        <td class="py-2 text-right">Region 3 (Korea)</td>
+                    </tr>
+                    <tr class="border-b border-gray-900">
+                        <td class="py-2 font-bold uppercase">Layers</td>
+                        <td class="py-2 text-right">Dual Layer</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-24 max-w-6xl mx-auto border-t border-gray-800 py-12 flex flex-col md:flex-row justify-between items-center gap-8">
+        <div class="flex gap-6 opacity-40">
+            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/53/20th_Century_Fox_Home_Entertainment_logo.svg/1200px-20th_Century_Fox_Home_Entertainment_logo.svg.png" alt="Fox Logo" class="h-10">
+            <div class="text-[10px] uppercase font-bold self-center">Lucasfilm Ltd.</div>
+        </div>
+        <div class="text-center md:text-right">
+            <p class="text-[10px] text-gray-600 leading-relaxed">
+                &copy; 2001 Lucasfilm Ltd. & TM. All Rights Reserved. <br>
+                Published and Distributed by 20th Century Fox Home Entertainment Korea. <br>
+                Unauthorized copying, hiring, lending, public performance and broadcasting of this DVD prohibited.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        function showDisc(num) {
+            // Update content visibility
+            document.getElementById('disc-content-1').classList.add('hidden');
+            document.getElementById('disc-content-2').classList.add('hidden');
+            document.getElementById(`disc-content-${num}`).classList.remove('hidden');
+
+            // Update tab styles
+            document.getElementById('tab-1').classList.remove('active-tab');
+            document.getElementById('tab-1').classList.add('text-gray-500');
+            document.getElementById('tab-2').classList.remove('active-tab');
+            document.getElementById('tab-2').classList.add('text-gray-500');
+
+            const activeTab = document.getElementById(`tab-${num}`);
+            activeTab.classList.add('active-tab');
+            activeTab.classList.remove('text-gray-500');
+            activeTab.classList.add('text-white');
+        }
+    </script>
+</body>
+</html>
