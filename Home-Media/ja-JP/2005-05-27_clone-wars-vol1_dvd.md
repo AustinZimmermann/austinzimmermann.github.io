@@ -1,9 +1,10 @@
 ## 🌐 Internet Explorer 6.0
 
 **Address:** `http://www.foxjapan.com/dvd-video/starwars/clone_wars/index.html`
+
 **Date:** 2005年5月27日 (金) | 12:24 PM
 
-—
+***
 
 ### **20th Century Fox Home Entertainment Japan**
 
