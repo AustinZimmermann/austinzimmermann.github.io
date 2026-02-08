@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[VHS] Star Wars: Episode I – The Phantom Menace (1999) - Release date: April 4, 2000 - 20th Century Fox Home Entertainment</title>
+    <style>
+        :root {
+            --primary: #ffe81f; /* Star Wars Yellow */
+            --accent: #d32f2f;  /* Sith Red */
+            --bg: #0b0b0b;
+            --text: #e0e0e0;
+            --card-bg: #1a1a1a;
+            
+            /* VHS Dimensions (Approx ratio) */
+            --vhs-width: 300px;
+            --vhs-height: 520px; 
+            --vhs-depth: 55px;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: Helvetica, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            perspective: 1500px;
+            overflow-x: hidden;
+        }
+
+        h1 {
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 1.5rem;
+            text-shadow: 0 0 10px rgba(255, 232, 31, 0.5);
+        }
+
+        /* 3D Scene */
+        .scene {
+            width: var(--vhs-width);
+            height: var(--vhs-height);
+            margin: 3rem 0;
+            position: relative;
+            transform-style: preserve-3d;
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+
+        .vhs-case {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .vhs-case.flipped {
+            transform: rotateY(180deg);
+        }
+
+        /* Faces */
+        .face {
+            position: absolute;
+            background-color: #111;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+            border: 1px solid #333;
+        }
+
+        .front, .back {
+            width: var(--vhs-width);
+            height: var(--vhs-height);
+            background-size: cover;
+            background-position: center;
+        }
+
+        .front {
+            transform: rotateY(0deg) translateZ(calc(var(--vhs-depth) / 2));
+        }
+
+        .back {
+            transform: rotateY(180deg) translateZ(calc(var(--vhs-depth) / 2));
+        }
+
+        .spine-left {
+            width: var(--vhs-depth);
+            height: var(--vhs-height);
+            background: linear-gradient(90deg, #111, #222, #111);
+            transform: rotateY(-90deg) translateZ(calc(var(--vhs-depth) / 2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .spine-right {
+            width: var(--vhs-depth);
+            height: var(--vhs-height);
+            background: #111;
+            /* Simulating the opening of a slipcase */
+            background-image: linear-gradient(#111 20%, #000 20%, #000 80%, #111 80%);
+            transform: rotateY(90deg) translateZ(calc(var(--vhs-width) - (var(--vhs-depth) / 2)));
+        }
+
+        .top {
+            width: var(--vhs-width);
+            height: var(--vhs-depth);
+            background: #111;
+            transform: rotateX(90deg) translateZ(calc(var(--vhs-depth) / 2));
+        }
+
+        .bottom {
+            width: var(--vhs-width);
+            height: var(--vhs-depth);
+            background: #111;
+            transform: rotateX(-90deg) translateZ(calc(var(--vhs-height) - (var(--vhs-depth) / 2)));
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+        }
+
+        /* Spine Text */
+        .spine-text {
+            transform: rotate(90deg);
+            white-space: nowrap;
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+        /* Info Card */
+        .info-panel {
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 8px;
+            max-width: 600px;
+            width: 90%;
+            margin-bottom: 3rem;
+            border-left: 4px solid var(--accent);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        .info-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #333;
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .format-badge {
+            background: var(--text);
+            color: #000;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .data-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .data-row {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .label {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .value {
+            font-weight: 500;
+            text-align: right;
+        }
+
+        .json-preview {
+            background: #000;
+            padding: 1rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            color: #0f0;
+            overflow-x: auto;
+            margin-top: 2rem;
+            border: 1px solid #333;
+        }
+        
+        .controls {
+            margin-top: 1rem;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        @media (min-width: 600px) {
+            .data-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <!-- Rendered via JS -->
+    </div>
+
+    <script>
+        // 1. The Data (JSON)
+        const vhsData = {
+            "title": "Star Wars: Episode I – The Phantom Menace",
+            "year": 1999,
+            "release_details": {
+                "format": "VHS",
+                "release_date": "2000-04-04",
+                "distributor": "20th Century Fox Home Entertainment",
+                "catalog_id": "2000092", // Hypothetical catalog ID
+                "region": "NTSC (US)"
+            },
+            "assets": {
+                "front_cover": "https://i.ibb.co/qLb9bJK6/star-wars-episode-i-the-phantom-menace-6-dv.jpg",
+                "back_cover": "https://i.ibb.co/hRhDcgzz/star-wars-episode-i-the-phantom-menace-7-dv.jpg"
+            },
+            "technical_specs": {
+                "runtime": "136 minutes",
+                "audio": "Hi-Fi Stereo / Dolby Surround",
+                "aspect_ratio": "Pan & Scan (Full Screen) / Widescreen"
+            },
+            "synopsis": "Stranded on the desert planet Tatooine after rescuing young Queen Amidala from the impending invasion of Naboo, Jedi apprentice Obi-Wan Kenobi and his Jedi Master Qui-Gon Jinn discover nine-year-old Anakin Skywalker, a young slave unusually strong in the Force."
+        };
+
+        // 2. Application Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const app = document.getElementById('app');
+            
+            // Build the HTML structure
+            const html = `
+                <header>
+                    <h1>${vhsData.title} <span style="font-size: 0.6em; color: #888">(${vhsData.year})</span></h1>
+                </header>
+
+                <div class="scene">
+                    <div class="vhs-case" id="vhsCase">
+                        <div class="face front" style="background-image: url('${vhsData.assets.front_cover}')"></div>
+                        <div class="face back" style="background-image: url('${vhsData.assets.back_cover}')"></div>
+                        <div class="face spine-left">
+                            <span class="spine-text">STAR WARS EPISODE I</span>
+                        </div>
+                        <div class="face spine-right"></div>
+                        <div class="face top"></div>
+                        <div class="face bottom"></div>
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <p>Tap case to flip • Hover to inspect</p>
+                </div>
+
+                <div class="info-panel">
+                    <div class="info-header">
+                        <h2>Release Database</h2>
+                        <span class="format-badge">${vhsData.release_details.format}</span>
+                    </div>
+                    
+                    <div class="data-grid">
+                        <div class="data-row">
+                            <span class="label">Release Date</span>
+                            <span class="value">${vhsData.release_details.release_date}</span>
+                        </div>
+                        <div class="data-row">
+                            <span class="label">Distributor</span>
+                            <span class="value">${vhsData.release_details.distributor}</span>
+                        </div>
+                        <div class="data-row">
+                            <span class="label">Runtime</span>
+                            <span class="value">${vhsData.technical_specs.runtime}</span>
+                        </div>
+                        <div class="data-row">
+                            <span class="label">Audio</span>
+                            <span class="value">${vhsData.technical_specs.audio}</span>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 1.5rem; line-height: 1.6; color: #ccc;">
+                        “${vhsData.synopsis}”
+                    </div>
+
+                    <div class="json-preview">
+                        <strong>// RAW JSON DATA</strong><br>
+                        ${JSON.stringify(vhsData, null, 2).replace(/\n/g, '<br>').replace(/ /g, '&nbsp;')}
+                    </div>
+                </div>
+            `;
+
+            app.innerHTML = html;
+
+            // 3. Interactivity
+            const caseElement = document.getElementById('vhsCase');
+            let isFlipped = false;
+
+            caseElement.addEventListener('click', () => {
+                isFlipped = !isFlipped;
+                if (isFlipped) {
+                    caseElement.classList.add('flipped');
+                } else {
+                    caseElement.classList.remove('flipped');
+                }
+            });
+
+            // Add simple tilt effect on mousemove for the scene
+            const scene = document.querySelector('.scene');
+            document.addEventListener('mousemove', (e) => {
+                const x = (window.innerWidth / 2 - e.pageX) / 25;
+                const y = (window.innerHeight / 2 - e.pageY) / 25;
+                scene.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+            });
+        });
+    </script>
+</body>
+</html>
