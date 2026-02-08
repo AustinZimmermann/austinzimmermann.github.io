@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>바이오니클 3: 보이지 않는 함정 - DVD 아카이브</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Helvetica, sans-serif;
+            background-color: #0a0a0c;
+            color: #e2e8f0;
+        }
+
+        .glass-card {
+            background: rgba(30, 30, 35, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #4fd1c5, #63b3ed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .image-zoom:hover img {
+            transform: scale(1.05);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Movie",
+      "name": "바이오니클 3: 보이지 않는 함정",
+      "image": "https://i.postimg.cc/Ls5Tg36K/Front_cover.png",
+      "datePublished": "2005-10-19",
+      "description": "토아 메트루의 마지막 장정! 거미 여왕 루다카의 함정에 빠진 영웅들의 모험.",
+      "director": {
+        "@type": "Person",
+        "name": "David Molina, Terry Shakespeare"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "부에나 비스타 홈 엔터테인먼트 코리아"
+      },
+      "workExample": {
+        "@type": "Product",
+        "name": "바이오니클 3 DVD",
+        "releaseDate": "2005-10-19",
+        "offers": {
+          "@type": "Offer",
+          "availability": "https://schema.org/OutOfStock",
+          "itemCondition": "https://schema.org/NewCondition"
+        }
+      }
+    }
+    </script>
+</head>
+<body class="min-h-screen">
+
+    <!-- Header -->
+    <header class="py-8 px-4 text-center border-b border-white/10">
+        <h1 class="text-3xl md:text-5xl font-bold mb-2">BIONICLE<span class="text-teal-500">®</span> 3</h1>
+        <p class="text-xl md:text-2xl font-light text-gray-400">보이지 않는 함정 (Web of Shadows)</p>
+        <div class="mt-4 inline-block px-4 py-1 rounded-full bg-teal-900/30 border border-teal-500/50 text-teal-400 text-sm">
+            DVD 출시일: 2005년 10월 19일
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-12">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            
+            <!-- Gallery Section -->
+            <section class="space-y-6">
+                <div class="glass-card rounded-2xl overflow-hidden shadow-2xl transition-all duration-500 image-zoom">
+                    <img id="mainImage" src="https://i.postimg.cc/Ls5Tg36K/Front_cover.png" alt="Bionicle 3 Front Cover" class="w-full h-auto transition-transform duration-500">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <button onclick="changeImage('https://i.postimg.cc/Ls5Tg36K/Front_cover.png')" class="glass-card p-2 rounded-xl hover:bg-white/10 transition-colors border-2 border-teal-500">
+                        <img src="https://i.postimg.cc/Ls5Tg36K/Front_cover.png" alt="Front Thumbnail" class="w-full h-auto rounded-lg">
+                        <span class="block text-xs mt-2 text-center text-gray-400">앞면 (Front)</span>
+                    </button>
+                    <button onclick="changeImage('https://i.postimg.cc/4xJwsTDX/Back_cover.png')" class="glass-card p-2 rounded-xl hover:bg-white/10 transition-colors border-2 border-transparent">
+                        <img src="https://i.postimg.cc/4xJwsTDX/Back_cover.png" alt="Back Thumbnail" class="w-full h-auto rounded-lg">
+                        <span class="block text-xs mt-2 text-center text-gray-400">뒷면 (Back)</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Details Section -->
+            <section class="glass-card p-8 rounded-2xl">
+                <div class="flex space-x-6 border-b border-white/10 mb-8">
+                    <button onclick="showTab('overview')" id="tab-overview-btn" class="pb-4 text-teal-500 border-b-2 border-teal-500 font-medium">개요</button>
+                    <button onclick="showTab('tech')" id="tab-tech-btn" class="pb-4 text-gray-400 hover:text-white transition-colors font-medium">기술 사양</button>
+                    <button onclick="showTab('bonus')" id="tab-bonus-btn" class="pb-4 text-gray-400 hover:text-white transition-colors font-medium">스페셜 피처</button>
+                </div>
+
+                <!-- Overview Tab -->
+                <div id="overview" class="tab-content active space-y-6">
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 flex items-center"><i class="fas fa-film mr-2 text-teal-500"></i> 시놉시스</h3>
+                        <p class="text-gray-300 leading-relaxed">
+                            토아 메트루 영웅들은 한때 영광의 도시였던 메트루 누이가 암흑의 세력으로 변해버린 것을 목격합니다. 사나운 거미 종족 비소락의 습격을 받아 토아들은 기괴한 돌연변이 “토아 호디카”로 변하게 되고, 절망적인 상황 속에서 도시를 구하고 다시 본래의 모습으로 돌아가기 위한 마지막 전투를 준비합니다.
+                        </p>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4 pt-4">
+                        <div class="bg-black/30 p-4 rounded-xl">
+                            <span class="text-gray-500 text-sm block mb-1">장르</span>
+                            <span class="text-gray-200">애니메이션 / 액션</span>
+                        </div>
+                        <div class="bg-black/30 p-4 rounded-xl">
+                            <span class="text-gray-500 text-sm block mb-1">상영 시간</span>
+                            <span class="text-gray-200">75분</span>
+                        </div>
+                        <div class="bg-black/30 p-4 rounded-xl">
+                            <span class="text-gray-500 text-sm block mb-1">배급사</span>
+                            <span class="text-gray-200 text-sm">부에나 비스타 홈 엔터테인먼트 코리아</span>
+                        </div>
+                        <div class="bg-black/30 p-4 rounded-xl">
+                            <span class="text-gray-500 text-sm block mb-1">관람등급</span>
+                            <span class="text-gray-200">전체 관람가</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tech Specs Tab -->
+                <div id="tech" class="tab-content space-y-4">
+                    <table class="w-full text-left text-sm text-gray-300">
+                        <tr class="border-b border-white/5">
+                            <th class="py-3 font-medium text-gray-500">화면비율</th>
+                            <td class="py-3">1.85:1 Anamorphic Widescreen</td>
+                        </tr>
+                        <tr class="border-b border-white/5">
+                            <th class="py-3 font-medium text-gray-500">오디오</th>
+                            <td class="py-3">English / Korean (Dolby Digital 5.1)</td>
+                        </tr>
+                        <tr class="border-b border-white/5">
+                            <th class="py-3 font-medium text-gray-500">자막</th>
+                            <td class="py-3">Korean, English</td>
+                        </tr>
+                        <tr>
+                            <th class="py-3 font-medium text-gray-500">지역코드</th>
+                            <td class="py-3">3 (NTSC)</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- Bonus Features Tab -->
+                <div id="bonus" class="tab-content space-y-4">
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-teal-500 mt-1 mr-3"></i>
+                            <span>BIONICLE Music Video (Move It!)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-teal-500 mt-1 mr-3"></i>
+                            <span>The Making of BIONICLE 3</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-teal-500 mt-1 mr-3"></i>
+                            <span>Unused Scenes (삭제 장면)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-teal-500 mt-1 mr-3"></i>
+                            <span>BIONICLE Explore Metru Nui</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Purchase Intent Button -->
+                <div class="mt-10">
+                    <button class="w-full py-4 bg-teal-600 hover:bg-teal-500 text-white font-bold rounded-xl transition-all shadow-lg shadow-teal-900/20 flex items-center justify-center">
+                        <i class="fas fa-info-circle mr-2"></i> 아카이브 정보 저장
+                    </button>
+                </div>
+            </section>
+        </div>
+
+        <!-- Footnote -->
+        <section class="mt-16 glass-card p-6 rounded-2xl text-center border-dashed border-teal-500/30">
+            <p class="text-sm text-gray-500">
+                본 페이지는 2005년 출시된 오리지널 DVD 매체의 정보를 바탕으로 구성되었습니다.<br>
+                © LEGO, the LEGO logo and BIONICLE are trademarks of The LEGO Group.
+            </p>
+        </section>
+    </main>
+
+    <footer class="py-12 text-center text-gray-600 text-xs">
+        <p>© 2026 Archive Project. No rights reserved (Educational Demo).</p>
+    </footer>
+
+    <script>
+        function changeImage(src) {
+            const mainImg = document.getElementById('mainImage');
+            mainImg.style.opacity = '0';
+            
+            setTimeout(() => {
+                mainImg.src = src;
+                mainImg.style.opacity = '1';
+            }, 300);
+
+            // Update border highlight
+            const buttons = document.querySelectorAll('button img');
+            buttons.forEach(img => {
+                if (img.src === src) {
+                    img.parentElement.classList.add('border-teal-500');
+                    img.parentElement.classList.remove('border-transparent');
+                } else {
+                    img.parentElement.classList.remove('border-teal-500');
+                    img.parentElement.classList.add('border-transparent');
+                }
+            });
+        }
+
+        function showTab(tabId) {
+            // Hide all
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show target
+            document.getElementById(tabId).classList.add('active');
+
+            // Update UI
+            const btns = ['overview', 'tech', 'bonus'];
+            btns.forEach(btn => {
+                const element = document.getElementById(`tab-${btn}-btn`);
+                if (btn === tabId) {
+                    element.classList.add('text-teal-500', 'border-b-2', 'border-teal-500');
+                    element.classList.remove('text-gray-400');
+                } else {
+                    element.classList.remove('text-teal-500', 'border-b-2', 'border-teal-500');
+                    element.classList.add('text-gray-400');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
