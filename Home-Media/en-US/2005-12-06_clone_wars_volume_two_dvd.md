@@ -5,7 +5,6 @@
 * **Release Date:** December 6, 2005
 * **Distributor:** 20th Century Fox Home Entertainment
 * **Region:** 1 (USA/Canada)
-* **Certification:** PG
 
 # **Visual Reference**
 
