@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[DVD] Star Wars: Clone Wars – Volume One (2003-2004) - Release date: March 22, 2005 - 20th Century Fox Home Entertainment</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Product",
+      "name": "Star Wars: Clone Wars – Volume One",
+      "image": [
+        "https://i.postimg.cc/nz2jZ67N/Front_cover.jpg",
+        "https://i.postimg.cc/Tw0LGZgT/Back_cover.jpg"
+      ],
+      "description": "The animated micro-series that bridges the saga between Attack of the Clones and Revenge of the Sith. Directed by Genndy Tartakovsky.",
+      "sku": "2234805",
+      "mpn": "24543157922",
+      "brand": {
+        "@type": "Brand",
+        "name": "20th Century Fox Home Entertainment"
+      },
+      "releaseDate": "2005-03-22",
+      "productionDate": "2003-2004",
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "USD",
+        "price": "19.99",
+        "itemCondition": "https://schema.org/NewCondition",
+        "availability": "https://schema.org/OutOfStock",
+        "seller": {
+          "@type": "Organization",
+          "name": "Lucasfilm Ltd."
+        }
+      },
+      "additionalProperty": [
+        {
+          "@type": "PropertyValue",
+          "name": "Format",
+          "value": "DVD"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Aspect Ratio",
+          "value": "1.78:1 Anamorphic Widescreen"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Runtime",
+          "value": "69 Minutes"
+        }
+      ]
+    }
+    </script>
+
+    <style>
+        :root {
+            --cw-yellow: #ffc400;
+            --cw-red: #d01010;
+            --cw-blue: #0088ff;
+            --cw-dark: #0a0b10;
+            --cw-panel: #14161f;
+        }
+
+        body {
+            background-color: #050505;
+            background-image: 
+                radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 3px),
+                radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 2px),
+                radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 3px);
+            background-size: 550px 550px, 350px 350px, 250px 250px;
+            background-position: 0 0, 40px 60px, 130px 270px;
+            font-family: 'Rajdhani', sans-serif;
+            color: #e0e0e0;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Anton', sans-serif;
+            letter-spacing: 0.05em;
+        }
+
+        /* 3D DVD Case Styles */
+        .scene {
+            perspective: 1000px;
+            width: 300px;
+            height: 430px;
+            margin: 0 auto;
+        }
+
+        .card {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+        }
+
+        .card.is-flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card__face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 4px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+        }
+
+        .card__face--front {
+            background-image: url('https://i.postimg.cc/nz2jZ67N/Front_cover.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        /* Plastic Sheen Overlay */
+        .card__face--front::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 40%, rgba(255,255,255,0) 100%);
+            pointer-events: none;
+            border-radius: 4px;
+        }
+
+        .card__face--back {
+            background-image: url('https://i.postimg.cc/Tw0LGZgT/Back_cover.jpg');
+            background-size: cover;
+            background-position: center;
+            transform: rotateY(180deg);
+        }
+
+        /* Spine simulation (simple) */
+        .card::before {
+            content: '';
+            position: absolute;
+            left: -14px;
+            top: 2px;
+            width: 14px;
+            height: 99%;
+            background: #111;
+            transform: rotateY(-90deg) translateX(7px);
+            transform-origin: right;
+        }
+
+        /* CRT Effect for the UI Panel */
+        .crt-panel {
+            background: rgba(20, 22, 31, 0.95);
+            border: 1px solid #333;
+            box-shadow: 0 0 20px rgba(0, 136, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .crt-panel::before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+            z-index: 2;
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+
+        /* Tab Animations */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .active-tab {
+            background-color: var(--cw-yellow);
+            color: black;
+            border-color: var(--cw-yellow);
+        }
+        
+        .tech-border {
+            clip-path: polygon(
+                0 0, 
+                100% 0, 
+                100% calc(100% - 20px), 
+                calc(100% - 20px) 100%, 
+                0 100%
+            );
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-start p-4 md:p-8">
+
+    <!-- Header -->
+    <header class="w-full max-w-5xl flex flex-col md:flex-row items-center justify-between mb-10 z-10">
+        <div class="text-center md:text-left">
+            <h1 class="text-4xl md:text-6xl text-white uppercase leading-none tracking-tighter">
+                Star Wars<br>
+                <span class="text-[#ffc400]">Clone Wars</span>
+            </h1>
+            <p class="text-gray-400 tracking-widest text-sm mt-2 uppercase">Volume One • 2003-2004</p>
+        </div>
+        <div class="mt-4 md:mt-0 flex gap-4">
+            <div class="px-4 py-1 border border-gray-600 text-xs text-gray-400 rounded uppercase tracking-widest">
+                Lucasfilm Ltd.
+            </div>
+            <div class="px-4 py-1 border border-gray-600 text-xs text-gray-400 rounded uppercase tracking-widest">
+                Genndy Tartakovsky
+            </div>
+        </div>
+    </header>
+
+    <main class="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-12 gap-12 z-10">
+        
+        <!-- Left Column: 3D DVD Case -->
+        <section class="lg:col-span-5 flex flex-col items-center justify-start pt-4">
+            <div class="scene">
+                <div class="card" id="dvd-card" onclick="flipCard()">
+                    <div class="card__face card__face--front border border-gray-800"></div>
+                    <div class="card__face card__face--back border border-gray-800"></div>
+                </div>
+            </div>
+            <p class="mt-6 text-gray-500 text-sm uppercase tracking-widest animate-pulse">
+                Click Case to Flip
+            </p>
+            
+            <div class="mt-8 grid grid-cols-2 gap-4 w-full max-w-[300px]">
+                <div class="bg-gray-900 border border-gray-700 p-3 text-center rounded">
+                    <span class="block text-xl text-[#ffc400] font-bold">69</span>
+                    <span class="text-xs text-gray-500 uppercase">Minutes</span>
+                </div>
+                <div class="bg-gray-900 border border-gray-700 p-3 text-center rounded">
+                    <span class="block text-xl text-[#ffc400] font-bold">2005</span>
+                    <span class="text-xs text-gray-500 uppercase">Release</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Right Column: Datapad Interface -->
+        <section class="lg:col-span-7">
+            <div class="crt-panel tech-border w-full min-h-[500px] flex flex-col">
+                
+                <!-- Datapad Header/Tabs -->
+                <div class="flex border-b border-gray-800 bg-black/50 overflow-x-auto">
+                    <button onclick="switchTab('intel')" id="tab-intel" class="px-6 py-4 uppercase font-bold tracking-widest text-sm hover:text-[#ffc400] transition-colors active-tab border-b-2">
+                        Intel
+                    </button>
+                    <button onclick="switchTab('chapters')" id="tab-chapters" class="px-6 py-4 uppercase font-bold tracking-widest text-sm text-gray-500 hover:text-[#ffc400] transition-colors border-b-2 border-transparent">
+                        Chapters
+                    </button>
+                    <button onclick="switchTab('bonus')" id="tab-bonus" class="px-6 py-4 uppercase font-bold tracking-widest text-sm text-gray-500 hover:text-[#ffc400] transition-colors border-b-2 border-transparent">
+                        Bonus Data
+                    </button>
+                    <button onclick="switchTab('specs')" id="tab-specs" class="px-6 py-4 uppercase font-bold tracking-widest text-sm text-gray-500 hover:text-[#ffc400] transition-colors border-b-2 border-transparent">
+                        Specs
+                    </button>
+                </div>
+
+                <!-- Content Area -->
+                <div class="p-6 md:p-8 flex-1 overflow-y-auto max-h-[600px] relative z-10 text-gray-300">
+
+                    <!-- TAB 1: INTEL -->
+                    <div id="content-intel" class="tab-content active">
+                        <h2 class="text-3xl text-white mb-4">Begun, the Clone War Has</h2>
+                        <p class="mb-4 leading-relaxed text-lg">
+                            Witness the animated micro-series that bridges the saga between <em class="text-[#ffc400]">Attack of the Clones</em> and <em class="text-[#ffc400]">Revenge of the Sith</em>.
+                        </p>
+                        <p class="mb-6 leading-relaxed text-gray-400">
+                            The Jedi Knights lead the Grand Army of the Republic against the droid forces of the Separatists. From the deserts of Muunilinst to the jungles of Yavin 4, Anakin Skywalker and Obi-Wan Kenobi face new threats, including the dark acolyte Asajj Ventress and the bounty hunter Durge.
+                        </p>
+                        
+                        <div class="p-4 bg-red-900/10 border-l-4 border-red-700 mb-6">
+                            <h3 class="text-red-500 uppercase tracking-widest text-sm font-bold mb-1">Threat Assessment</h3>
+                            <p class="text-sm">Includes the first ever appearance of <strong>General Grievous</strong>.</p>
+                        </div>
+
+                        <ul class="space-y-2 text-sm text-gray-400 font-mono mt-8">
+                            <li class="flex justify-between border-b border-gray-800 pb-1">
+                                <span>Director</span>
+                                <span class="text-white">Genndy Tartakovsky</span>
+                            </li>
+                            <li class="flex justify-between border-b border-gray-800 pb-1">
+                                <span>Production</span>
+                                <span class="text-white">Lucasfilm & Cartoon Network</span>
+                            </li>
+                            <li class="flex justify-between border-b border-gray-800 pb-1">
+                                <span>Original Air Dates</span>
+                                <span class="text-white">Nov 2003 - Apr 2004</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- TAB 2: CHAPTERS -->
+                    <div id="content-chapters" class="tab-content">
+                        <div class="flex justify-between items-end mb-6">
+                            <h2 class="text-2xl text-white">Battle Log</h2>
+                            <span class="text-xs text-[#ffc400] uppercase border border-[#ffc400] px-2 py-1 rounded">20 Chapters</span>
+                        </div>
+                        
+                        <div class="space-y-3">
+                            <!-- Chapter Items -->
+                            <div class="group flex items-center p-3 hover:bg-white/5 rounded transition-colors cursor-default">
+                                <span class="text-2xl font-bold text-gray-600 mr-4 group-hover:text-[#ffc400]">01</span>
+                                <div>
+                                    <h4 class="text-white font-bold uppercase text-sm">The War Begins</h4>
+                                    <p class="text-xs text-gray-500">Obi-Wan and Anakin lead the assault on Muunilinst.</p>
+                                </div>
+                            </div>
+                            <div class="group flex items-center p-3 hover:bg-white/5 rounded transition-colors cursor-default">
+                                <span class="text-2xl font-bold text-gray-600 mr-4 group-hover:text-[#ffc400]">02</span>
+                                <div>
+                                    <h4 class="text-white font-bold uppercase text-sm">ARC Troopers Deploy</h4>
+                                    <p class="text-xs text-gray-500">Elite clones infiltrate the Separatist city.</p>
+                                </div>
+                            </div>
+                            <div class="group flex items-center p-3 hover:bg-white/5 rounded transition-colors cursor-default">
+                                <span class="text-2xl font-bold text-gray-600 mr-4 group-hover:text-[#ffc400]">05</span>
+                                <div>
+                                    <h4 class="text-white font-bold uppercase text-sm">Battle of Mon Calamari</h4>
+                                    <p class="text-xs text-gray-500">Kit Fisto leads underwater forces against the Quarren.</p>
+                                </div>
+                            </div>
+                            <div class="group flex items-center p-3 hover:bg-white/5 rounded transition-colors cursor-default">
+                                <span class="text-2xl font-bold text-gray-600 mr-4 group-hover:text-[#ffc400]">06</span>
+                                <div>
+                                    <h4 class="text-white font-bold uppercase text-sm">The Gladiator</h4>
+                                    <p class="text-xs text-gray-500">Count Dooku discovers Asajj Ventress on Rattatak.</p>
+                                </div>
+                            </div>
+                            <div class="group flex items-center p-3 hover:bg-white/5 rounded transition-colors cursor-default">
+                                <span class="text-2xl font-bold text-gray-600 mr-4 group-hover:text-[#ffc400]">12</span>
+                                <div>
+                                    <h4 class="text-white font-bold uppercase text-sm">The Seismic Tank</h4>
+                                    <p class="text-xs text-gray-500">Mace Windu faces a droid army on Dantooine.</p>
+                                </div>
+                            </div>
+                            <div class="group flex items-center p-3 hover:bg-white/5 rounded transition-colors cursor-default">
+                                <span class="text-2xl font-bold text-gray-600 mr-4 group-hover:text-[#ffc400]">17</span>
+                                <div>
+                                    <h4 class="text-white font-bold uppercase text-sm">Duel on Yavin 4</h4>
+                                    <p class="text-xs text-gray-500">Anakin tracks Ventress to the Massassi temples.</p>
+                                </div>
+                            </div>
+                            <div class="group flex items-center p-3 hover:bg-white/5 rounded transition-colors cursor-default">
+                                <span class="text-2xl font-bold text-gray-600 mr-4 group-hover:text-[#ffc400]">20</span>
+                                <div>
+                                    <h4 class="text-white font-bold uppercase text-sm">Hypori</h4>
+                                    <p class="text-xs text-gray-500">A new threat surrounds the Jedi: General Grievous.</p>
+                                </div>
+                            </div>
+                            <div class="text-center pt-4 text-xs text-gray-500 italic">
+                                *All 20 chapters are edited seamlessly into one continuous feature.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 3: BONUS -->
+                    <div id="content-bonus" class="tab-content">
+                        <h2 class="text-2xl text-white mb-6">Archive Data (Extras)</h2>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <!-- Feature 1 -->
+                            <div class="bg-gray-800/50 p-4 border border-gray-700 rounded hover:border-[#ffc400] transition-colors">
+                                <div class="text-[#ffc400] text-xs uppercase font-bold mb-2">Documentary</div>
+                                <h3 class="text-white font-bold text-lg leading-tight">Bridging the Saga</h3>
+                                <p class="text-sm text-gray-400 mt-2">Making-of featurette linking <i>Clone Wars</i> to <i>Revenge of the Sith</i>. Featuring George Lucas.</p>
+                            </div>
+
+                            <!-- Feature 2 -->
+                            <div class="bg-gray-800/50 p-4 border border-gray-700 rounded hover:border-[#ffc400] transition-colors">
+                                <div class="text-[#ffc400] text-xs uppercase font-bold mb-2">Audio</div>
+                                <h3 class="text-white font-bold text-lg leading-tight">Director’s Commentary</h3>
+                                <p class="text-sm text-gray-400 mt-2">Full length commentary track by director Genndy Tartakovsky.</p>
+                            </div>
+
+                            <!-- Feature 3 -->
+                            <div class="bg-gray-800/50 p-4 border border-gray-700 rounded hover:border-[#ffc400] transition-colors">
+                                <div class="text-[#ffc400] text-xs uppercase font-bold mb-2">Interactive</div>
+                                <h3 class="text-white font-bold text-lg leading-tight">Xbox Demo: Republic Commando</h3>
+                                <p class="text-sm text-gray-400 mt-2">Playable game level included on the disc (Xbox required).</p>
+                            </div>
+
+                            <!-- Feature 4 -->
+                            <div class="bg-gray-800/50 p-4 border border-gray-700 rounded hover:border-[#ffc400] transition-colors">
+                                <div class="text-[#ffc400] text-xs uppercase font-bold mb-2">Trailer</div>
+                                <h3 class="text-white font-bold text-lg leading-tight"><i>Episode III</i> Teaser</h3>
+                                <p class="text-sm text-gray-400 mt-2">The original theatrical teaser for <i>Revenge of the Sith</i>.</p>
+                            </div>
+
+                            <!-- Feature 5 -->
+                            <div class="bg-gray-800/50 p-4 border border-gray-700 rounded hover:border-[#ffc400] transition-colors">
+                                <div class="text-[#ffc400] text-xs uppercase font-bold mb-2">Gallery</div>
+                                <h3 class="text-white font-bold text-lg leading-tight">Concept Art</h3>
+                                <p class="text-sm text-gray-400 mt-2">Sketches, storyboards, and character designs.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 4: SPECS -->
+                    <div id="content-specs" class="tab-content">
+                        <h2 class="text-2xl text-white mb-6">Technical Specifications</h2>
+                        
+                        <div class="overflow-hidden border border-gray-700 rounded">
+                            <table class="w-full text-left text-sm">
+                                <tbody class="divide-y divide-gray-800">
+                                    <tr class="bg-gray-900/50">
+                                        <th class="py-3 px-4 text-gray-500 font-medium">Video Format</th>
+                                        <td class="py-3 px-4 text-white">Anamorphic Widescreen (1.78:1)</td>
+                                    </tr>
+                                    <tr class="bg-gray-900/30">
+                                        <th class="py-3 px-4 text-gray-500 font-medium">Resolution</th>
+                                        <td class="py-3 px-4 text-white">720x480 (NTSC)</td>
+                                    </tr>
+                                    <tr class="bg-gray-900/50">
+                                        <th class="py-3 px-4 text-gray-500 font-medium">Audio Tracks</th>
+                                        <td class="py-3 px-4 text-white">
+                                            <div class="mb-1"><span class="text-[#ffc400]">English:</span> Dolby Digital 2.0 Surround</div>
+                                            <div class="mb-1"><span class="text-gray-400">French:</span> Dolby Digital 2.0 Surround</div>
+                                            <div><span class="text-gray-400">Spanish:</span> Dolby Digital 2.0 Surround</div>
+                                        </td>
+                                    </tr>
+                                    <tr class="bg-gray-900/30">
+                                        <th class="py-3 px-4 text-gray-500 font-medium">Subtitles</th>
+                                        <td class="py-3 px-4 text-white">English</td>
+                                    </tr>
+                                    <tr class="bg-gray-900/50">
+                                        <th class="py-3 px-4 text-gray-500 font-medium">Region Code</th>
+                                        <td class="py-3 px-4 text-white">Region 1 (USA/Canada)</td>
+                                    </tr>
+                                    <tr class="bg-gray-900/30">
+                                        <th class="py-3 px-4 text-gray-500 font-medium">Distributor</th>
+                                        <td class="py-3 px-4 text-white">20th Century Fox Home Entertainment</td>
+                                    </tr>
+                                    <tr class="bg-gray-900/50">
+                                        <th class="py-3 px-4 text-gray-500 font-medium">Disc Format</th>
+                                        <td class="py-3 px-4 text-white">DVD-9 (Dual Layer)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="mt-auto py-8 text-center text-gray-600 text-xs w-full">
+        <p>&copy; 2005 Lucasfilm Ltd. & TM. All rights reserved. Distributed by 20th Century Fox Home Entertainment.</p>
+        <p class="mt-1">Star Wars and all related characters and elements are trademarks of and &copy; Lucasfilm Ltd.</p>
+    </footer>
+
+    <script>
+        // --- 3D Flip Logic ---
+        const card = document.getElementById('dvd-card');
+        
+        function flipCard() {
+            card.classList.toggle('is-flipped');
+        }
+
+        // --- Tab Logic ---
+        function switchTab(tabId) {
+            // Remove active state from all contents
+            document.querySelectorAll('.tab-content').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            // Remove active styles from all buttons
+            document.querySelectorAll('button[id^="tab-"]').forEach(btn => {
+                btn.classList.remove('active-tab', 'border-b-2', 'border-[#ffc400]', 'text-black');
+                btn.classList.add('text-gray-500', 'border-transparent');
+            });
+
+            // Activate Target Content
+            document.getElementById(`content-${tabId}`).classList.add('active');
+
+            // Activate Target Button
+            const activeBtn = document.getElementById(`tab-${tabId}`);
+            activeBtn.classList.add('active-tab', 'border-b-2', 'border-[#ffc400]');
+            activeBtn.classList.remove('text-gray-500', 'border-transparent');
+        }
+    </script>
+</body>
+</html>
