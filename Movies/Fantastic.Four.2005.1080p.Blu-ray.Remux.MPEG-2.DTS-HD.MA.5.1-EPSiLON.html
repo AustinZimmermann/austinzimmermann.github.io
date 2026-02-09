@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fantastic.Four.2005.1080p.Blu-ray.Remux.MPEG-2.DTS-HD.MA.5.1-EPSiLON</title>
+    <style>
+        :root {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --text-main: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --accent: #00bcd4; /* Cyan accent */
+            --accent-hover: #008ba3;
+            --border: #333;
+            --nfo-bg: #000;
+            --nfo-text: #0f0;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: Helvetics, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* --- Header --- */
+        header {
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            font-size: 1.4rem;
+            word-break: break-all;
+            color: var(--accent);
+        }
+
+        .tags {
+            margin-top: 10px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: var(--border);
+            color: var(--text-muted);
+            padding: 2px 8px;
+            font-size: 0.75rem;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .tag.hd { background: #b71c1c; color: white; }
+        .tag.source { background: #0d47a1; color: white; }
+
+        /* --- Main Content Grid --- */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 25px;
+        }
+
+        @media (max-width: 768px) {
+            .content-grid { grid-template-columns: 1fr; }
+        }
+
+        /* --- Sidebar (Poster) --- */
+        .poster-container {
+            background: var(--card-bg);
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .poster-placeholder {
+            width: 100%;
+            height: 350px;
+            background: #2a2a2a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            border: 1px dashed var(--border);
+            margin-bottom: 15px;
+        }
+
+        .btn-download {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: var(--accent);
+            color: #000;
+            text-align: center;
+            font-weight: bold;
+            text-decoration: none;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-bottom: 10px;
+        }
+
+        .btn-download:hover { background: var(--accent-hover); }
+
+        /* --- Details Section --- */
+        .details-card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 1.1rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+            color: var(--text-main);
+        }
+
+        .meta-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #333;
+            font-size: 0.9rem;
+        }
+        
+        .meta-label { color: var(--text-muted); }
+        .meta-value { font-weight: 500; }
+
+        /* --- Technical Specs (NFO Style) --- */
+        .nfo-block {
+            background: var(--nfo-bg);
+            color: var(--text-muted);
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.85rem;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            white-space: pre;
+            border-left: 3px solid var(--accent);
+            margin-bottom: 20px;
+        }
+
+        /* --- Chapter List --- */
+        .chapter-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        .chapter-item {
+            background: #252525;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .chapter-time { color: var(--accent); }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-color); }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+        /* Toast Notification */
+        #toast {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 4px;
+            padding: 16px;
+            position: fixed;
+            z-index: 1;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+            border: 1px solid var(--accent);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        }
+
+        #toast.show { visibility: visible; animation: fadein 0.5s, fadeout 0.5s 2.5s; }
+
+        @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
+        @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Fantastic.Four.2005.1080p.Blu-ray.Remux.MPEG-2.DTS-HD.MA.5.1-EPSiLON</h1>
+        <div class="tags">
+            <span class="tag hd">1080p</span>
+            <span class="tag source">Blu-ray Remux</span>
+            <span class="tag">MPEG-2</span>
+            <span class="tag">DTS-HD MA 5.1</span>
+            <span class="tag">EPSiLON</span>
+            <span class="tag">22.4 GB</span>
+        </div>
+    </header>
+
+    <div class="content-grid">
+        <aside>
+            <div class="poster-container">
+                <div class="poster-placeholder">
+                    [Poster Image]
+                </div>
+                <button class="btn-download" onclick="copyMagnet()">
+                    &#129522; MAGNET LINK
+                </button>
+                <button class="btn-download" style="background-color: #333; color: white;">
+                    &#11015; TORRENT FILE
+                </button>
+            </div>
+        </aside>
+
+        <main>
+            <div class="details-card">
+                <h2>Movie Information</h2>
+                <div class="meta-row">
+                    <span class="meta-label">Title</span>
+                    <span class="meta-value">Fantastic Four (2005)</span>
+                </div>
+                <div class="meta-row">
+                    <span class="meta-label">Genre</span>
+                    <span class="meta-value">Action, Adventure, Fantasy</span>
+                </div>
+                <div class="meta-row">
+                    <span class="meta-label">Runtime</span>
+                    <span class="meta-value">1h 46m</span>
+                </div>
+                <div class="meta-row">
+                    <span class="meta-label">IMDb Rating</span>
+                    <span class="meta-value">&#9733; 5.7/10</span>
+                </div>
+                <br>
+                <p style="color: var(--text-muted); font-size: 0.95rem;">
+                    A group of astronauts gain superpowers after a cosmic radiation exposure and must use them to oppose the plans of their enemy, Doctor Victor Von Doom.
+                </p>
+            </div>
+
+            <div class="details-card">
+                <h2>Technical Specifications</h2>
+                <div class="nfo-block">
+GENERAL INFO
+Filename.......: Fantastic.Four.2005.1080p.Blu-ray.Remux.MPEG-2.DTS-HD.MA.5.1-EPSiLON.mkv
+Container......: Matroska
+Size...........: 22.4 GiB
+Duration.......: 1 h 46 min
+
+VIDEO
+Codec..........: MPEG-2 Video
+Resolution.....: 1920x1080
+Bitrate........: 24.5 Mb/s
+Frame Rate.....: 23.976 fps
+
+AUDIO
+Language.......: English
+Codec..........: DTS-HD Master Audio
+Channels.......: 5.1
+Bitrate........: 4109 kb/s (24-bit)
+
+SUBTITLES
+English (SDH), French, Spanish, Portuguese
+                </div>
+            </div>
+
+            <div class="details-card">
+                <h2>Chapters (32)</h2>
+                <div class="chapter-list">
+                    <div class="chapter-item"><span>01. Opening Logos</span><span class="chapter-time">00:00:00</span></div>
+                    <div class="chapter-item"><span>02. The Proposal</span><span class="chapter-time">00:03:15</span></div>
+                    <div class="chapter-item"><span>03. Von Doom Industries</span><span class="chapter-time">00:06:42</span></div>
+                    <div class="chapter-item"><span>04. Space Station</span><span class="chapter-time">00:10:05</span></div>
+                    <div class="chapter-item"><span>05. The Storm Approaches</span><span class="chapter-time">00:14:22</span></div>
+                    <div class="chapter-item"><span>06. Cosmic Radiation</span><span class="chapter-time">00:17:50</span></div>
+                    <div class="chapter-item"><span>07. Quarantine</span><span class="chapter-time">00:20:15</span></div>
+                    <div class="chapter-item"><span>08. Symptoms</span><span class="chapter-time">00:23:40</span></div>
+                    <div class="chapter-item"><span>09. Johnny’s Fever</span><span class="chapter-time">00:26:55</span></div>
+                    <div class="chapter-item"><span>10. The Thing Emerges</span><span class="chapter-time">00:30:10</span></div>
+                    <div class="chapter-item"><span>11. Bridge Rescue</span><span class="chapter-time">00:34:25</span></div>
+                    <div class="chapter-item"><span>12. Media Frenzy</span><span class="chapter-time">00:38:40</span></div>
+                    <div class="chapter-item"><span>13. The Baxter Building</span><span class="chapter-time">00:41:55</span></div>
+                    <div class="chapter-item"><span>14. Lab Tests</span><span class="chapter-time">00:45:12</span></div>
+                    <div class="chapter-item"><span>15. Ben’s Isolation</span><span class="chapter-time">00:48:30</span></div>
+                    <div class="chapter-item"><span>16. Victor’s Transformation</span><span class="chapter-time">00:52:05</span></div>
+                    <div class="chapter-item"><span>17. Sue and Reed</span><span class="chapter-time">00:55:20</span></div>
+                    <div class="chapter-item"><span>18. The Pub</span><span class="chapter-time">00:58:45</span></div>
+                    <div class="chapter-item"><span>19. Alicia Masters</span><span class="chapter-time">01:02:10</span></div>
+                    <div class="chapter-item"><span>20. Victor’s Manipulation</span><span class="chapter-time">01:05:35</span></div>
+                    <div class="chapter-item"><span>21. The Machine</span><span class="chapter-time">01:08:50</span></div>
+                    <div class="chapter-item"><span>22. Ben Is Cured?</span><span class="chapter-time">01:12:15</span></div>
+                    <div class="chapter-item"><span>23. Doom Strikes</span><span class="chapter-time">01:15:40</span></div>
+                    <div class="chapter-item"><span>24. Reed Captured</span><span class="chapter-time">01:18:55</span></div>
+                    <div class="chapter-item"><span>25. Heat Seeking Missile</span><span class="chapter-time">01:22:20</span></div>
+                    <div class="chapter-item"><span>26. Supernova</span><span class="chapter-time">01:25:35</span></div>
+                    <div class="chapter-item"><span>27. It’s Clobberin’ Time</span><span class="chapter-time">01:28:50</span></div>
+                    <div class="chapter-item"><span>28. Street Fight</span><span class="chapter-time">01:31:15</span></div>
+                    <div class="chapter-item"><span>29. Combined Powers</span><span class="chapter-time">01:35:40</span></div>
+                    <div class="chapter-item"><span>30. Doom Frozen</span><span class="chapter-time">01:39:05</span></div>
+                    <div class="chapter-item"><span>31. The Party</span><span class="chapter-time">01:42:20</span></div>
+                    <div class="chapter-item"><span>32. End Credits</span><span class="chapter-time">01:45:10</span></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer style="margin-top: 50px; text-align: center; color: #555; font-size: 0.8rem; border-top: 1px solid #333; padding-top: 20px;">
+        &copy; 2024 Private Tracker | API | RSS | Support
+    </footer>
+</div>
+
+<div id="toast">Magnet link copied to clipboard!</div>
+
+<script>
+    function copyMagnet() {
+        // Simulated Magnet Link for the specific release
+        const magnet = "magnet:?xt=urn:btih:7c5d8a9e4b3f2c1d0e9a8b7c6d5e4f3a2b1c0d9e&dn=Fantastic.Four.2005.1080p.Blu-ray.Remux.MPEG-2.DTS-HD.MA.5.1-EPSiLON&tr=http://tracker.example.com/announce";
+        
+        navigator.clipboard.writeText(magnet).then(() => {
+            const toast = document.getElementById("toast");
+            toast.className = "show";
+            setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 3000);
+        }).catch(err => {
+            console.error('Failed to copy: ', err);
+            alert("Failed to copy magnet link to clipboard.");
+        });
+    }
+</script>
+
+</body>
+</html>
