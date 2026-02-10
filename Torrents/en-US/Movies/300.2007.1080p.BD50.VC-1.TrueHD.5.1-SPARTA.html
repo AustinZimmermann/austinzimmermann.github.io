@@ -1,319 +1,496 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en-US">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-    <title>300.2007.1080p.BD50.VC-1.TrueHD.5.1-SPARTA - Torrent Details</title>
-    <style type="text/css">
-        /* 2007 Era Reset & Base Styles */
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download 300.2007.1080p.BD50.VC-1.TrueHD.5.1-SPARTA - SuperTorrents</title>
+    <style>
+        /* Retro 2007 Reset & Base Styles */
         body {
-            background-color: #1e1e1e;
-            color: #cccccc;
             font-family: Helvetica, sans-serif;
             font-size: 11px;
+            background-color: #eef2f7;
+            color: #333;
             margin: 0;
             padding: 0;
-            text-align: center;
         }
-        
-        a { color: #5b92e5; text-decoration: none; }
-        a:hover { text-decoration: underline; color: #fff; }
-        
+
+        a {
+            color: #2b5d92;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
         /* Layout Container */
-        #container {
+        .container {
             width: 900px;
             margin: 0 auto;
-            background-color: #2a2a2a;
-            border-left: 1px solid #444;
-            border-right: 1px solid #444;
-            text-align: left;
+            background-color: #ffffff;
+            border-left: 1px solid #ccc;
+            border-right: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            min-height: 100vh;
         }
 
         /* Header */
-        #header {
-            background-color: #333;
-            border-bottom: 4px solid #4a6b9a;
-            padding: 10px;
-            height: 40px;
+        .header {
+            background-color: #5c7b9c;
+            height: 80px;
+            color: white;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
-        
-        #logo {
-            float: left;
-            font-size: 18px;
-            font-weight: bold;
-            color: #fff;
+
+        .logo {
             font-family: 'Trebuchet MS', sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: -1px;
         }
-        
-        #nav {
-            float: right;
-            padding-top: 5px;
-        }
-        
-        #nav ul { list-style: none; margin: 0; padding: 0; }
-        #nav li { display: inline; margin-left: 15px; font-weight: bold; }
 
-        /* Content Area */
-        #content { padding: 15px; }
+        .logo span { color: #a3c2e0; }
 
-        h1.release-title {
-            font-size: 14px;
-            color: #fff;
-            background: #4a6b9a;
+        .search-box {
+            background: #476380;
             padding: 5px;
-            margin-top: 0;
-            border: 1px solid #000;
+            border: 1px solid #364e66;
         }
 
-        /* Data Tables */
-        table.data {
+        .search-box input[type="text"] {
+            font-size: 10px;
+            padding: 2px;
+            width: 200px;
+            border: 1px solid #ccc;
+        }
+
+        .search-box input[type="button"] {
+            font-size: 10px;
+            background: #ddd;
+            border: 1px solid #999;
+            cursor: pointer;
+        }
+
+        /* Nav Bar */
+        .nav {
+            background-color: #dbe4ed;
+            border-bottom: 1px solid #ccc;
+            padding: 6px 15px;
+            font-weight: bold;
+        }
+
+        .nav a { margin-right: 15px; color: #444; }
+
+        /* Main Content */
+        .main { padding: 15px; }
+
+        h1 {
+            font-size: 16px;
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+
+        /* Torrent Details Table */
+        .info-table {
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 20px;
-            background: #222;
         }
-        
-        table.data td, table.data th {
-            border: 1px solid #333;
-            padding: 5px;
+
+        .info-table td {
+            border: 1px solid #d0d0d0;
+            padding: 5px 8px;
             vertical-align: top;
         }
-        
-        table.data th {
-            background-color: #1a1a1a;
-            text-align: right;
-            width: 120px;
-            color: #999;
+
+        .label {
+            background-color: #f5f5f5;
+            font-weight: bold;
+            width: 140px;
+            color: #555;
         }
+
+        /* Stats Bar */
+        .stats-box {
+            background-color: #fffbe0;
+            border: 1px solid #e6db55;
+            padding: 10px;
+            margin-bottom: 15px;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        .green { color: green; font-weight: bold; }
+        .red { color: red; font-weight: bold; }
 
         /* Download Button Area */
-        .download-box {
-            background-color: #eff2f7;
-            border: 1px solid #4a6b9a;
-            padding: 10px;
+        .download-area {
             text-align: center;
-            margin-bottom: 15px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #eee;
+            margin-bottom: 20px;
         }
-        
-        .download-link {
+
+        .download-btn {
+            background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==') repeat-x #85b656; /* Placeholder gradient */
+            background-color: #85b656;
+            border: 1px solid #6e9646;
+            color: white !important;
             font-size: 14px;
             font-weight: bold;
-            color: #000;
-            background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Blue_disk_icon.svg/16px-Blue_disk_icon.svg.png') no-repeat left center;
-            padding-left: 20px;
+            padding: 10px 30px;
+            border-radius: 3px;
+            cursor: pointer;
         }
+
+        .download-btn:hover { background-color: #76a34a; text-decoration: none; }
+
+        /* File List Tree */
+        .file-tree {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #fcfcfc;
+            border: 1px solid #ddd;
+            padding: 10px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .tree-item { padding: 2px 0; white-space: nowrap; }
+        .folder-icon { color: #d4a017; font-weight: bold; margin-right: 5px; }
+        .file-icon { color: #999; margin-right: 5px; }
+        .size { float: right; color: #888; font-size: 10px; }
 
         /* NFO Block */
-        .nfo-box {
+        .nfo {
             background-color: #000;
-            border: 1px dashed #555;
-            padding: 10px;
+            color: #0f0;
             font-family: 'Courier New', monospace;
-            font-size: 10px;
-            color: #a0a0a0;
+            padding: 10px;
+            border: 1px solid #666;
             overflow: auto;
+            height: 200px;
+            font-size: 10px;
+            margin-bottom: 20px;
             white-space: pre;
-            margin-bottom: 20px;
         }
 
-        /* Images */
-        .covers {
+        /* Tabs */
+        .tabs {
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 10px;
+            padding-bottom: 0;
+        }
+        .tab {
+            display: inline-block;
+            padding: 5px 15px;
+            background: #eef2f7;
+            border: 1px solid #ccc;
+            border-bottom: none;
+            margin-right: 5px;
+            cursor: pointer;
+            position: relative;
+            top: 1px;
+        }
+        .tab.active {
+            background: #fff;
+            font-weight: bold;
+            border-bottom: 1px solid #fff;
+        }
+
+        .comments { margin-top: 20px; }
+        .comment {
+            border-bottom: 1px solid #eee;
+            padding: 10px 0;
+        }
+        .comment-meta {
+            font-size: 10px;
+            color: #888;
+            margin-bottom: 3px;
+        }
+
+        /* Fake Ad */
+        .fake-ad {
             text-align: center;
-            margin-bottom: 20px;
-        }
-        .covers img {
-            border: 4px solid #111;
-            margin: 5px;
-            max-width: 400px; /* Constrained for layout */
-        }
-
-        /* File List */
-        .filelist {
-            font-family: 'Courier New', monospace;
-            background: #111;
+            margin: 10px 0;
             padding: 10px;
-            border: 1px solid #333;
-        }
-
-        /* Footer */
-        #footer {
-            clear: both;
-            padding: 10px;
-            background-color: #151515;
-            text-align: center;
-            border-top: 1px solid #444;
+            background: #fffce6;
+            border: 1px dashed #e6db55;
             color: #666;
         }
-
-        /* Utility Colors */
-        .seeders { color: #00ff00; font-weight: bold; }
-        .leechers { color: #ff0000; font-weight: bold; }
-        .cat-icon { border: 0; vertical-align: middle; margin-right: 5px; }
-
     </style>
 </head>
 <body>
 
-<div id="container">
-    <div id="header">
-        <div id="logo">TORRENT-TRACKER.ORG</div>
-        <div id="nav">
-            <ul>
-                <li><a href="#">HOME</a></li>
-                <li><a href="#">BROWSE</a></li>
-                <li><a href="#">SEARCH</a></li>
-                <li><a href="#">UPLOAD</a></li>
-                <li><a href="#">FORUM</a></li>
-                <li><a href="#">LOGIN</a></li>
-            </ul>
+<div class="container">
+    <!-- Header -->
+    <div class="header">
+        <div class="logo">Super<span>Torrents</span></div>
+        <div class="search-box">
+            <input type="text" value="300" />
+            <select style="font-size: 10px;">
+                <option>All</option>
+                <option selected>Movies</option>
+                <option>Music</option>
+                <option>Games</option>
+                <option>Software</option>
+            </select>
+            <input type="button" value="Search" />
         </div>
     </div>
 
-    <div id="content">
+    <!-- Navigation -->
+    <div class="nav">
+        <a href="#">Home</a>
+        <a href="#">Browse</a>
+        <a href="#">Upload</a>
+        <a href="#">Top 100</a>
+        <a href="#">Forums</a>
+        <a href="#">Login</a>
+        <a href="#">Register</a>
+    </div>
+
+    <!-- Main Body -->
+    <div class="main">
         
-        <h1 class="release-title">300.2007.1080p.BD50.VC-1.TrueHD.5.1-SPARTA</h1>
-
-        <div class="download-box">
-            <a href="#" class="download-link">DOWNLOAD TORRENT</a> 
-            <span style="color:#000; margin-left:10px;">(25 KB)</span>
+        <div class="fake-ad">
+            <strong>ADVERTISEMENT</strong><br>
+            Play the new 300 Spartans browser game! No install needed. <a href="#">Click Here</a> to defend Sparta.
         </div>
 
-        <table class="data">
-            <tr>
-                <th>Category:</th>
-                <td>Movies &gt; Highres / Blu-ray</td>
-                <th>Date:</th>
-                <td>2007-07-31 18:42:05</td>
-            </tr>
-            <tr>
-                <th>Size:</th>
-                <td>22.4 GB</td>
-                <th>Uploader:</th>
-                <td><a href="#" style="color:#aa0000; font-weight:bold;">SPARTAN_R1P</a></td>
-            </tr>
-            <tr>
-                <th>S / L:</th>
-                <td><span class="seeders">1402</span> / <span class="leechers">388</span></td>
-                <th>Peers:</th>
-                <td>1790</td>
-            </tr>
-            <tr>
-                <th>Info Hash:</th>
-                <td colspan="3" style="font-family:monospace; font-size:10px;">c2b189c9e846059d6e87b7a1e0b5220a2e5d1a11</td>
-            </tr>
-        </table>
+        <h1>Details for torrent “300.2007.1080p.BD50.VC-1.TrueHD.5.1-SPARTA”</h1>
 
-        <div class="covers">
-            <img src="https://images.static-bluray.com/movies/covers/451_front.jpg" alt="Front Cover" />
-            <br />
-            <img src="https://images.static-bluray.com/movies/covers/451_back.jpg" alt="Back Cover" />
+        <div class="stats-box">
+            Seeds: <span class="green">14,203</span> &nbsp;|&nbsp; 
+            Leechers: <span class="red">8,591</span> &nbsp;|&nbsp; 
+            Completed: <span>45,120</span>
         </div>
 
-        <h3 style="border-bottom: 1px solid #444; padding-bottom:3px;">Description / NFO</h3>
-        <div class="nfo-box">
-                                     ░
-                                     ░
-        ░░▒▒▓▓██████████████████████████████████████████████▓▓▒▒░░
-      ░░▒▒▓▓██████████████████████████████████████████████████▓▓▒▒░░
-    ░░▒▒▓▓██████                                        ████████▓▓▒▒░░
-   ░░▒▒▓▓█████        S  P  A  R  T  A   (2007)           ███████▓▓▒▒░░
-    ░░▒▒▓▓██████                                        ████████▓▓▒▒░░
-      ░░▒▒▓▓██████████████████████████████████████████████████▓▓▒▒░░
-        ░░▒▒▓▓██████████████████████████████████████████████▓▓▒▒░░
-                                     ░
-                                     ░
-
-                300.2007.1080p.BD50.VC-1.TrueHD.5.1-SPARTA
-
-   ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-   █                                                                    █
-   █  RELEASE DATE....: 2007-07-31                                      █
-   █  THEATRE DATE....: 2007-03-09                                      █
-   █                                                                    █
-   █  VIDEO FORMAT....: VC-1 @ 24.8 Mbps                                █
-   █  RESOLUTION......: 1920x1080p                                      █
-   █  FRAME RATE......: 23.976 fps                                      █
-   █  ASPECT RATIO....: 2.40:1                                          █
-   █                                                                    █
-   █  AUDIO 1.........: English Dolby TrueHD 5.1 @ 1466 kbps (16-bit)   █
-   █  AUDIO 2.........: English Dolby Digital 5.1 @ 640 kbps            █
-   █  AUDIO 3.........: French Dolby Digital 5.1 @ 640 kbps             █
-   █  AUDIO 4.........: Spanish Dolby Digital 5.1 @ 640 kbps            █
-   █                                                                    █
-   █  SUBTITLES.......: English SDH, French, Spanish                    █
-   █                                                                    █
-   █  RUNTIME.........: 117 Minutes                                     █
-   █  SOURCE..........: Retail BD50                                     █
-   █  FILE SIZE.......: 22.4 GB (Main Movie)                            █
-   █                                                                    █
-   █  IMDB RATING.....: 7.6/10                                          █
-   █  IMDB URL........: http://www.imdb.com/title/tt0416449/            █
-   █                                                                    █
-   ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+        <div class="download-area">
+            <a href="#" class="download-btn" onclick="alert('This is a 2007 simulation. No file will be downloaded.'); return false;">DOWNLOAD TORRENT</a>
+            <br><span style="font-size: 9px; color: #666; margin-top: 5px; display: block;">(Get the .torrent file)</span>
         </div>
 
-        <h3 style="border-bottom: 1px solid #444; padding-bottom:3px;">Files</h3>
-        <div class="filelist">
-            <table width="100%" cellpadding="2" cellspacing="0" style="color:#999; font-size:10px;">
+        <div class="tabs">
+            <div class="tab active" onclick="switchTab('details')">Details</div>
+            <div class="tab" onclick="switchTab('files')">File List</div>
+            <div class="tab" onclick="switchTab('nfo')">NFO</div>
+        </div>
+
+        <!-- Details Tab -->
+        <div id="tab-details">
+            <table class="info-table">
                 <tr>
-                    <td align="left"><strong>Path / Filename</strong></td>
-                    <td align="right"><strong>Size</strong></td>
+                    <td class="label">Type:</td>
+                    <td>Movies &gt; Highres / Blu-ray</td>
                 </tr>
                 <tr>
-                    <td align="left" style="color:#fff;">300.2007.1080p.BD50.VC-1.TrueHD.5.1-SPARTA/</td>
-                    <td align="right"></td>
-                </tr>
-                 <tr>
-                    <td align="left">&nbsp;&nbsp;├─ sparta-300.nfo</td>
-                    <td align="right">4.2 KB</td>
+                    <td class="label">Total Size:</td>
+                    <td>42.6 GB (45,741,921,024 bytes)</td>
                 </tr>
                 <tr>
-                    <td align="left">&nbsp;&nbsp;└─ VOLUME_SET_ID.iso</td>
-                    <td align="right">22.4 GB</td>
+                    <td class="label">Files:</td>
+                    <td>148</td>
+                </tr>
+                <tr>
+                    <td class="label">Uploaded:</td>
+                    <td>2007-07-31 14:22:05 GMT</td>
+                </tr>
+                <tr>
+                    <td class="label">Uploader:</td>
+                    <td><a href="#">Leonidas_HD</a> [VIP]</td>
+                </tr>
+                <tr>
+                    <td class="label">Status:</td>
+                    <td style="color: green;">Verified</td>
+                </tr>
+                <tr>
+                    <td class="label">Hash:</td>
+                    <td style="font-family: monospace; font-size: 10px;">a8f4c2e1b3d5e7f9a8b6c4d2e1f3a5b7c9d1e3f5</td>
                 </tr>
             </table>
         </div>
 
-        <h3 style="border-bottom: 1px solid #444; padding-bottom:3px; margin-top:20px;">User Comments</h3>
-        <table class="data" style="background:#222;">
-            <tr>
-                <th style="width:100px; text-align:center;">
-                    <span style="color:#5b92e5;">MovieBuff88</span><br />
-                    <span style="font-size:9px;">User</span>
-                </th>
-                <td style="font-size:11px;">
-                    <div style="font-size:9px; color:#666; border-bottom:1px solid #333; margin-bottom:5px;">Posted: 2007-07-31 19:15</div>
-                    Finally! Waited for this since theaters. Is the grain bad on this transfer?
-                </td>
-            </tr>
-            <tr>
-                <th style="width:100px; text-align:center;">
-                    <span style="color:#aa0000;">SPARTAN_R1P</span><br />
-                    <span style="font-size:9px;">Uploader</span>
-                </th>
-                <td style="font-size:11px;">
-                    <div style="font-size:9px; color:#666; border-bottom:1px solid #333; margin-bottom:5px;">Posted: 2007-07-31 19:22</div>
-                    @MovieBuff88: The grain is heavy but that is how the director intended it. This is a 1:1 dump of the retail disc. Enjoy.
-                </td>
-            </tr>
-            <tr>
-                <th style="width:100px; text-align:center;">
-                    <span style="color:#5b92e5;">xx_Sephiroth_xx</span><br />
-                    <span style="font-size:9px;">Power User</span>
-                </th>
-                <td style="font-size:11px;">
-                    <div style="font-size:9px; color:#666; border-bottom:1px solid #333; margin-bottom:5px;">Posted: 2007-07-31 20:05</div>
-                    Thx for the upload! Seeding @ 10mbit!
-                </td>
-            </tr>
-        </table>
+        <!-- File List Tab -->
+        <div id="tab-files" style="display:none;">
+            <h3>Directory Structure</h3>
+            <div class="file-tree">
+                <!-- Root -->
+                <div class="tree-item">
+                    <span class="folder-icon">[DIR]</span>
+                    <span class="folder">300.2007.1080p.BD50.VC-1.TrueHD.5.1-SPARTA</span>
+                </div>
+                
+                <!-- BDMV Folder -->
+                <div class="tree-item" style="padding-left: 20px;">
+                    <span class="folder-icon">[DIR]</span>
+                    <span class="folder">BDMV</span>
+                </div>
+                <div class="tree-item" style="padding-left: 40px;">
+                    <span class="folder-icon">[DIR]</span>
+                    <span class="folder">AUXDATA</span>
+                </div>
+                <div class="tree-item" style="padding-left: 40px;">
+                    <span class="folder-icon">[DIR]</span>
+                    <span class="folder">BACKUP</span>
+                </div>
+                <div class="tree-item" style="padding-left: 40px;">
+                    <span class="folder-icon">[DIR]</span>
+                    <span class="folder">CLIPINF</span>
+                </div>
+                <div class="tree-item" style="padding-left: 40px;">
+                    <span class="folder-icon">[DIR]</span>
+                    <span class="folder">PLAYLIST</span>
+                </div>
+                <div class="tree-item" style="padding-left: 40px;">
+                    <span class="folder-icon">[DIR]</span>
+                    <span class="folder">STREAM</span>
+                </div>
+                <div class="tree-item" style="padding-left: 60px;">
+                    <span class="file-icon">&#8801;</span>
+                    <span class="file">00001.m2ts</span>
+                    <span class="size">41.2 GB</span>
+                </div>
+                <div class="tree-item" style="padding-left: 60px;">
+                    <span class="file-icon">&#8801;</span>
+                    <span class="file">00002.m2ts</span>
+                    <span class="size">120 MB</span>
+                </div>
+                <div class="tree-item" style="padding-left: 40px;">
+                    <span class="file-icon">&#8801;</span>
+                    <span class="file">index.bdmv</span>
+                    <span class="size">12 KB</span>
+                </div>
+                <div class="tree-item" style="padding-left: 40px;">
+                    <span class="file-icon">&#8801;</span>
+                    <span class="file">MovieObject.bdmv</span>
+                    <span class="size">4 KB</span>
+                </div>
+
+                <!-- CERTIFICATE Folder -->
+                <div class="tree-item" style="padding-left: 20px;">
+                    <span class="folder-icon">[DIR]</span>
+                    <span class="folder">CERTIFICATE</span>
+                </div>
+                <div class="tree-item" style="padding-left: 40px;">
+                    <span class="folder-icon">[DIR]</span>
+                    <span class="folder">BACKUP</span>
+                </div>
+
+                <!-- VOLUME_SET_ID Folder (Requested) -->
+                <div class="tree-item" style="padding-left: 20px;">
+                    <span class="folder-icon">[DIR]</span>
+                    <span class="folder">VOLUME_SET_ID</span>
+                </div>
+                 <div class="tree-item" style="padding-left: 40px;">
+                    <span class="file-icon">&#8801;</span>
+                    <span class="file">id.dat</span>
+                    <span class="size">64 B</span>
+                </div>
+
+                <!-- Loose Files -->
+                <div class="tree-item" style="padding-left: 20px;">
+                    <span class="file-icon">&#8801;</span>
+                    <span class="file">300-sparta.nfo</span>
+                    <span class="size">4.2 KB</span>
+                </div>
+                <div class="tree-item" style="padding-left: 20px;">
+                    <span class="file-icon">&#8801;</span>
+                    <span class="file">Proof.jpg</span>
+                    <span class="size">250 KB</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- NFO Tab -->
+        <div id="tab-nfo" style="display:none;">
+            <div class="nfo">
+   ___________________________________________________________________
+  |                                                                   |
+  |                        S  P  A  R  T  A                           |
+  |___________________________________________________________________|
+  
+   Release Name.....: 300.2007.1080p.BD50.VC-1.TrueHD.5.1-SPARTA
+   Release Date.....: 2007-07-31
+   Source...........: Blu-Ray Disc (Retail)
+   
+   Video Codec......: VC-1
+   Frame Size.......: 1920x1080p
+   Audio............: English TrueHD 5.1, English DD 5.1, French DD 5.1, Spanish DD 5.1
+   Subtitles........: English, French, Spanish
+   
+   Runtine..........: 1h 57m
+   File Size........: 42.6 GB
+   
+   Notes:
+   Enjoy the full Blu-ray structure. 
+   THIS IS SPARTA!
+   
+   Greets to all groups keeping the scene alive.
+            </div>
+        </div>
+
+        <!-- Comments -->
+        <div class="comments">
+            <h3>User Comments (4)</h3>
+            
+            <div class="comment">
+                <div class="comment-meta">#4 by <strong>MovieBuff07</strong> on 2007-07-31 16:20</div>
+                <div>First!! Thanks SPARTA. Downloading now but my connection is only 2Mbps :(</div>
+            </div>
+
+            <div class="comment">
+                <div class="comment-meta">#3 by <strong>HDSucksBandwidth</strong> on 2007-07-31 17:45</div>
+                <div>40GB?! Are you insane? How do I burn this? I only have DVD-R.</div>
+            </div>
+
+            <div class="comment">
+                <div class="comment-meta">#2 by <strong>SeedMaster</strong> on 2007-07-31 18:10</div>
+                <div>Seeding at 100Mbit. Go go go!</div>
+            </div>
+
+             <div class="comment">
+                <div class="comment-meta">#1 by <strong>Guest</strong> on 2007-07-31 19:00</div>
+                <div>Does this work on PS3?</div>
+            </div>
+        </div>
 
     </div>
 
-    <div id="footer">
-        &copy; 2007 TORRENT-TRACKER.ORG<br />
-        Valid XHTML 1.0 Transitional | CSS
+    <!-- Footer -->
+    <div class="footer">
+        &copy; 2007 SuperTorrents. All rights reserved.<br>
+        By using this site you agree to the Terms of Service.
+        <br><br>
+        [ <a href="#">RSS</a> ] [ <a href="#">Contact</a> ] [ <a href="#">DMCA</a> ]
     </div>
 </div>
+
+<script>
+    function switchTab(tabName) {
+        // Hide all contents
+        document.getElementById('tab-details').style.display = 'none';
+        document.getElementById('tab-files').style.display = 'none';
+        document.getElementById('tab-nfo').style.display = 'none';
+        
+        // Deactivate all tabs
+        var tabs = document.querySelectorAll('.tab');
+        for (var i = 0; i < tabs.length; i++) {
+            tabs[i].classList.remove('active');
+        }
+
+        // Activate selected
+        document.getElementById('tab-' + tabName).style.display = 'block';
+        event.target.classList.add('active');
+    }
+</script>
 
 </body>
 </html>
