@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>300.2007.1080p.BluRay.TrueHD.5.1.VC1-GEMINI - Details</title>
+    <style>
+        :root {
+            --bg-body: #121212;
+            --bg-panel: #1e1e1e;
+            --bg-header: #252525;
+            --text-main: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --accent: #00d4ff;
+            --accent-hover: #00b8db;
+            --border: #333;
+            --success: #4caf50;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: Helvetica, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--bg-header);
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 20px;
+        }
+        
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo { font-weight: bold; font-size: 1.2rem; color: var(--accent); }
+
+        /* Release Header */
+        .release-header {
+            background-color: var(--bg-panel);
+            padding: 20px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            margin-bottom: 20px;
+        }
+
+        .release-title {
+            font-size: 1.4rem;
+            font-family: 'Consolas', 'Monaco', monospace;
+            word-break: break-all;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .tags span {
+            display: inline-block;
+            background: #333;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            color: var(--accent);
+        }
+
+        /* Main Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .grid { grid-template-columns: 1fr; }
+        }
+
+        /* Sidebar (Poster & Stats) */
+        .sidebar-panel {
+            background-color: var(--bg-panel);
+            border: 1px solid var(--border);
+            padding: 15px;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .poster-placeholder {
+            width: 100%;
+            height: 300px;
+            background-color: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            border: 1px solid var(--border);
+        }
+
+        .download-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: var(--accent);
+            color: #121212;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 3px;
+            cursor: pointer;
+            border: none;
+            transition: background 0.2s;
+        }
+
+        .download-btn:hover { background-color: var(--accent-hover); }
+        
+        .magnet-btn {
+            background-color: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+        }
+        .magnet-btn:hover { background-color: rgba(0, 212, 255, 0.1); }
+
+        /* Content Area */
+        .content-panel {
+            background-color: var(--bg-panel);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+        }
+
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border);
+            background: var(--bg-header);
+        }
+
+        .tab {
+            padding: 12px 20px;
+            cursor: pointer;
+            border-right: 1px solid var(--border);
+            transition: background 0.2s;
+        }
+
+        .tab:hover { background-color: #333; }
+        .tab.active {
+            background-color: var(--bg-panel);
+            border-bottom: 2px solid var(--accent);
+            color: var(--accent);
+        }
+
+        .tab-content { padding: 20px; display: none; }
+        .tab-content.active { display: block; }
+
+        /* NFO / Tech Specs */
+        .nfo-block {
+            background-color: #000;
+            color: #0f0;
+            padding: 15px;
+            font-family: 'Consolas', monospace;
+            font-size: 0.9rem;
+            white-space: pre-wrap;
+            overflow-x: auto;
+            border-radius: 4px;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .data-table th, .data-table td {
+            text-align: left;
+            padding: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .data-table th { width: 30%; color: var(--text-muted); font-weight: normal; }
+
+        /* Notification */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--success);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+        .toast.show { opacity: 1; }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-bar">
+            <div class="logo">GEMINI TRACKER</div>
+            <div style="color: var(--text-muted);">Welcome, <span style="color: var(--text-main);">Guest</span></div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="release-header">
+            <h1 class="release-title">300.2007.1080p.BluRay.TrueHD.5.1.VC1-GEMINI</h1>
+            <div class="tags">
+                <span>1080p</span>
+                <span>BluRay</span>
+                <span>VC-1</span>
+                <span>TrueHD</span>
+                <span>Movies</span>
+            </div>
+        </div>
+
+        <div class="grid">
+            <aside class="sidebar-panel">
+                <div class="poster-placeholder">
+                    [ Movie Poster ]
+                </div>
+                
+                <button class="download-btn">Download .torrent</button>
+                <button class="download-btn magnet-btn" onclick="copyMagnet()">
+                    <span id="magnet-text">Copy Magnet</span>
+                </button>
+
+                <div style="margin-top: 20px; text-align: left; font-size: 0.9rem;">
+                    <p><strong>Size:</strong> 24.5 GB</p>
+                    <p><strong>Date:</strong> 2007-09-15</p>
+                    <p><strong>Snalched:</strong> 1,042</p>
+                    <p><strong>Seeders:</strong> <span style="color:var(--success)">42</span></p>
+                    <p><strong>Leechers:</strong> <span style="color:#f44336">2</span></p>
+                </div>
+            </aside>
+
+            <main class="content-panel">
+                <div class="tabs">
+                    <div class="tab active" onclick="switchTab('details')">Details</div>
+                    <div class="tab" onclick="switchTab('filelist')">File List</div>
+                    <div class="tab" onclick="switchTab('nfo')">NFO View</div>
+                </div>
+
+                <div id="details" class="tab-content active">
+                    <table class="data-table">
+                        <tr>
+                            <th>Release Name</th>
+                            <td>300.2007.1080p.BluRay.TrueHD.5.1.VC1-GEMINI</td>
+                        </tr>
+                        <tr>
+                            <th>Format</th>
+                            <td>Matroska (MKV)</td>
+                        </tr>
+                        <tr>
+                            <th>Video Bitrate</th>
+                            <td>28.5 Mbps</td>
+                        </tr>
+                        <tr>
+                            <th>Resolution</th>
+                            <td>1920x800</td>
+                        </tr>
+                        <tr>
+                            <th>Audio</th>
+                            <td>English TrueHD 5.1 @ 3400 kbps</td>
+                        </tr>
+                        <tr>
+                            <th>Subtitles</th>
+                            <td>English, French, Spanish</td>
+                        </tr>
+                        <tr>
+                            <th>Source</th>
+                            <td>BluRay Disc</td>
+                        </tr>
+                    </table>
+                    
+                    <h3 style="margin-top:20px; margin-bottom:10px; border-bottom:1px solid var(--border); padding-bottom:5px;">Description</h3>
+                    <p style="color: var(--text-muted);">
+                        King Leonidas of Sparta and a force of 300 men fight the Persians at Thermopylae in 480 B.C. 
+                        <br><br>
+                        Ripped by Team GEMINI. Enjoy consistent quality releases.
+                    </p>
+                </div>
+
+                <div id="filelist" class="tab-content">
+                    <ul style="list-style: none;">
+                        <li style="padding: 5px 0; border-bottom: 1px solid #333; display: flex; justify-content: space-between;">
+                            <span>300.2007.1080p.BluRay.TrueHD.5.1.VC1-GEMINI.mkv</span>
+                            <span style="color: var(--text-muted);">24.5 GB</span>
+                        </li>
+                        <li style="padding: 5px 0; border-bottom: 1px solid #333; display: flex; justify-content: space-between;">
+                            <span>Sample.mkv</span>
+                            <span style="color: var(--text-muted);">150 MB</span>
+                        </li>
+                        <li style="padding: 5px 0; border-bottom: 1px solid #333; display: flex; justify-content: space-between;">
+                            <span>Proof.jpg</span>
+                            <span style="color: var(--text-muted);">2.1 MB</span>
+                        </li>
+                        <li style="padding: 5px 0; border-bottom: 1px solid #333; display: flex; justify-content: space-between;">
+                            <span>gemini.nfo</span>
+                            <span style="color: var(--text-muted);">4 KB</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div id="nfo" class="tab-content">
+                    <div class="nfo-block">
+                        .___________________________.
+                        |      GEMINI RELEASES      |
+                        |___________________________|
+                        
+                        Release.......: 300 (2007)
+                        Filename......: 300.2007.1080p.BluRay.TrueHD.5.1.VC1-GEMINI
+                        Source........: BluRay
+                        Size..........: 24.5 GB
+                        
+                        Video.........: VC-1 @ 28.5 Mbps
+                        Audio.........: TrueHD 5.1
+                        Resolution....: 1920x800
+                        
+                        Notes:
+                        Enjoy the high bitrate VC-1 stream.
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <div id="toast" class="toast">Magnet Link Copied!</div>
+
+    <script>
+        // Simple Tab Switcher
+        function switchTab(tabId) {
+            // Hide all contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            // Deactivate all tabs
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Activate specific tab and content
+            document.getElementById(tabId).classList.add('active');
+            
+            // Highlight the clicked tab button (finding by text content matching logic or event bubbling)
+            // Simplified: loop to find the correct trigger for this demo
+            const tabs = document.querySelectorAll('.tab');
+            if(tabId === 'details') tabs[0].classList.add('active');
+            if(tabId === 'filelist') tabs[1].classList.add('active');
+            if(tabId === 'nfo') tabs[2].classList.add('active');
+        }
+
+        // Magnet Copy Simulation
+        function copyMagnet() {
+            // Fake magnet link for the template
+            const fakeLink = "magnet:?xt=urn:btih:7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b&dn=300.2007.1080p.BluRay.TrueHD.5.1.VC1-GEMINI";
+            
+            navigator.clipboard.writeText(fakeLink).then(() => {
+                const toast = document.getElementById('toast');
+                toast.classList.add('show');
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy', err);
+            });
+        }
+    </script>
+</body>
+</html>
