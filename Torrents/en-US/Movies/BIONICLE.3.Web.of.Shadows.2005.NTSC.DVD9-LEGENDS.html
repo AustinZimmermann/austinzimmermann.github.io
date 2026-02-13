@@ -1,256 +1,475 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-    <title>Download BIONICLE.3.Web.of.Shadows.2005.NTSC.DVD9-LEGENDS - TorrentSource</title>
-    <style type="text/css">
-        /* 2005 Era Styling */
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIONICLE.3.Web.of.Shadows.2005.NTSC.DVD9-LEGENDS :: TorTracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --bg-dark: #121212;
+            --bg-panel: #1e1e1e;
+            --bg-header: #2a2a2a;
+            --text-main: #cccccc;
+            --text-bright: #ffffff;
+            --link-color: #63b3ed;
+            --link-hover: #4299e1;
+            --border-color: #333333;
+            --accent-green: #48bb78;
+            --accent-red: #f56565;
+        }
+
         body {
-            background-color: #f0f0f0;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
             font-family: Helvetica, sans-serif;
-            font-size: 11px;
-            color: #333333;
-            margin: 0;
-            padding: 0;
+            font-size: 11px; /* Classic tracker font size */
         }
-        
-        a { color: #0044BB; text-decoration: none; }
-        a:hover { text-decoration: underline; }
-        
-        #container {
-            width: 780px; /* Standard resolution width for 800x600/1024x768 monitors */
+
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        a:hover {
+            color: var(--link-hover);
+            text-decoration: underline;
+        }
+
+        .tracker-container {
+            max-width: 1000px;
             margin: 0 auto;
-            background-color: #ffffff;
-            border: 1px solid #999999;
-        }
-
-        #header {
-            background-color: #336699;
-            color: #ffffff;
             padding: 10px;
-            font-weight: bold;
-            font-size: 18px;
-            border-bottom: 2px solid #003366;
         }
 
-        #nav {
-            background-color: #e6e6e6;
+        .panel {
+            background-color: var(--bg-panel);
+            border: 1px solid var(--border-color);
+            margin-bottom: 15px;
+        }
+
+        .panel-header {
+            background: linear-gradient(to bottom, #333, #222);
+            color: var(--text-bright);
             padding: 5px 10px;
-            border-bottom: 1px solid #cccccc;
-        }
-
-        h1 {
-            font-size: 14px;
-            color: #003366;
-            margin: 15px 10px 5px 10px;
-            border-bottom: 1px solid #cccccc;
-            padding-bottom: 3px;
+            font-weight: bold;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .data-table {
-            width: 95%;
-            margin: 10px auto;
+            width: 100%;
             border-collapse: collapse;
-            border: 1px solid #cccccc;
         }
 
         .data-table td, .data-table th {
-            border: 1px solid #cccccc;
-            padding: 4px;
+            padding: 5px 10px;
+            border: 1px solid var(--border-color);
+            vertical-align: top;
         }
 
         .data-table th {
-            background-color: #f5f5f5;
             text-align: right;
             width: 150px;
-            font-weight: bold;
+            background-color: #252525;
+            color: #aaa;
         }
 
-        .download-button {
-            display: block;
-            width: 200px;
-            margin: 20px auto;
-            padding: 10px;
-            background-color: #e1f0d3;
-            border: 2px solid #669933;
-            text-align: center;
-            font-weight: bold;
-            font-size: 14px;
-            color: #336600;
+        .nfo-block {
+            font-family: 'Courier New', 'Consolas', monospace;
+            white-space: pre;
+            background-color: #000;
+            color: #00dd00; /* Hacker green or classic NFO color */
+            padding: 15px;
+            overflow-x: auto;
+            font-size: 12px;
+            line-height: 1.2;
+            border: 1px solid var(--border-color);
         }
 
-        .nfo-box {
-            background-color: #000000;
-            color: #00FF00;
-            font-family: "Courier New", Courier, monospace;
+        .ratio-bar {
             font-size: 10px;
-            padding: 10px;
-            margin: 10px;
-            overflow: auto;
-            height: 300px;
-            border: 2px inset #999999;
+            color: #888;
+            padding: 5px 0;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 10px;
         }
 
-        .comment {
-            background-color: #f9f9f9;
-            border: 1px solid #e0e0e0;
-            margin: 5px 10px;
-            padding: 5px;
+        .tab-btn {
+            background: #2a2a2a;
+            border: 1px solid var(--border-color);
+            border-bottom: none;
+            color: #aaa;
+            padding: 8px 15px;
+            cursor: pointer;
+            margin-right: 2px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .tab-btn.active {
+            background: var(--bg-panel);
+            color: var(--text-bright);
+            border-bottom: 1px solid var(--bg-panel);
+            margin-bottom: -1px;
+            z-index: 10;
+            position: relative;
+        }
+
+        .download-btn {
+            background: linear-gradient(to bottom, #4a5568, #2d3748);
+            border: 1px solid #1a202c;
+            color: white;
+            padding: 5px 15px;
+            display: inline-block;
+            border-radius: 3px;
+            font-weight: bold;
+            text-shadow: 0 1px 1px rgba(0,0,0,0.5);
         }
         
-        .comment-header {
-            font-weight: bold;
-            color: #555;
-            margin-bottom: 3px;
+        .download-btn:hover {
+            background: linear-gradient(to bottom, #566176, #374052);
+            text-decoration: none;
+        }
+
+        .tag {
+            background-color: #2d3748;
+            border: 1px solid #4a5568;
+            padding: 1px 4px;
+            border-radius: 2px;
+            font-size: 9px;
+            margin-right: 3px;
+            color: #cbd5e0;
+        }
+
+        .file-list-row:nth-child(even) {
+            background-color: #252525;
         }
     </style>
 </head>
 <body>
 
-<div id="container">
-    <div id="header">
-        TorrentSource <span style="font-size: 10px; font-weight: normal;">:: The #1 Source for P2P</span>
-    </div>
-    
-    <div id="nav">
-        <a href="#">Home</a> | 
-        <a href="#">Search</a> | 
-        <a href="#">Browse</a> | 
-        <a href="#">Upload</a> | 
-        <a href="#">Forums</a> | 
-        <a href="#">Login</a>
-    </div>
-
-    <h1>Details for torrent: BIONICLE.3.Web.of.Shadows.2005.NTSC.DVD9-LEGENDS</h1>
-
-    <div class="download-button">
-        <a href="#" onclick="alert('Starting download of .torrent file...'); return false;">
-            [ DOWNLOAD TORRENT ]
-        </a>
+    <!-- Top Status Bar -->
+    <div class="bg-[#1a1a1a] border-b border-[#333]">
+        <div class="tracker-container flex justify-between items-center py-1">
+            <div class="font-bold text-gray-400">LEGENDTRACKER <span class="text-xs font-normal text-gray-600">v2.0</span></div>
+            <div class="text-[10px] text-gray-500">
+                Welcome, <span class="text-white">BioFan05</span> [ <a href="#">Logout</a> ] &nbsp;|&nbsp; 
+                Ratio: <span class="text-blue-400">2.45</span> &nbsp;|&nbsp; 
+                Up: <span class="text-green-500">450 GB</span> &nbsp;|&nbsp; 
+                Down: <span class="text-red-500">183 GB</span> &nbsp;|&nbsp; 
+                Bonus: <span class="text-yellow-500">1,200</span>
+            </div>
+        </div>
     </div>
 
-    <table class="data-table">
-        <tr>
-            <th>Type:</th>
-            <td>Movies &gt; DVD-R</td>
-        </tr>
-        <tr>
-            <th>Files:</th>
-            <td><a href="#" onclick="toggleFiles(); return false;">3 files</a></td>
-        </tr>
-        <tr>
-            <th>Size:</th>
-            <td>7.42 GB (7,969,177,600 bytes)</td>
-        </tr>
-        <tr>
-            <th>Added:</th>
-            <td>Tue Oct 11, 2005 14:32:01 GMT</td>
-        </tr>
-        <tr>
-            <th>Uploader:</th>
-            <td><a href="#">Visorak_Hunter</a></td>
-        </tr>
-        <tr>
-            <th>Peers:</th>
-            <td>
-                <span style="color: green;">Seeders: 142</span> | 
-                <span style="color: red;">Leechers: 389</span>
-            </td>
-        </tr>
-    </table>
-
-    <div id="file-list" style="display:none; margin: 10px 20px; border: 1px solid #ccc; padding: 5px;">
-        <strong>File List:</strong><br/>
-        BIONICLE_3_WEB_OF_SHADOWS.iso (7.4 GB)<br/>
-        BIONICLE.3.Web.of.Shadows.2005.NTSC.DVD9-LEGENDS.nfo (4.2 KB)<br/>
-        cover.jpg (120 KB)
+    <!-- Navigation -->
+    <div class="bg-[#222] border-b border-[#333] mb-4">
+        <div class="tracker-container py-2">
+            <nav class="flex gap-4 text-xs font-bold">
+                <a href="#">Home</a>
+                <a href="#">Torrents</a>
+                <a href="#">Requests</a>
+                <a href="#">Forums</a>
+                <a href="#">Top 10</a>
+                <a href="#">Rules</a>
+                <a href="#">Staff</a>
+            </nav>
+        </div>
     </div>
 
-    <h1>Description / NFO</h1>
-    <div class="nfo-box">
-<pre>
-*******************************************************************************
-               BIONICLE.3.Web.of.Shadows.2005.NTSC.DVD9-LEGENDS
-*******************************************************************************
+    <div class="tracker-container">
+        
+        <!-- Torrent Title Header -->
+        <div class="text-center mb-4">
+            <h1 class="text-lg font-bold text-white mb-1">BIONICLE.3.Web.of.Shadows.2005.NTSC.DVD9-LEGENDS</h1>
+            <div class="flex justify-center gap-2">
+                <span class="tag">Movies</span>
+                <span class="tag">DVD9</span>
+                <span class="tag">ISO</span>
+                <span class="tag">2005</span>
+                <span class="tag">Freeleech</span>
+            </div>
+        </div>
 
--------------------------------------------------------------------------------
-                              General Information
--------------------------------------------------------------------------------
-Type.................: Movie
-Platform.............: DVD
-Part Size............: 7.42 GB
-Image Format.........: .ISO
-Image Name...........: BIONICLE_3_WEB_OF_SHADOWS.iso
+        <!-- Download & Box Art Area -->
+        <div class="flex flex-col md:flex-row gap-4 mb-4">
+            
+            <!-- Cover Art -->
+            <div class="panel w-full md:w-64 flex-shrink-0 flex flex-col items-center p-2 text-center">
+                <div class="w-full h-80 bg-black flex items-center justify-center border border-[#333] mb-2 relative overflow-hidden group">
+                    <!-- Placeholder for cover art -->
+                    <div class="text-gray-600 text-xs text-center p-4">
+                        <svg class="w-16 h-16 mx-auto mb-2 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                        [Cover Image]<br>Bionicle 3
+                    </div>
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all"></div>
+                </div>
+                <button onclick="downloadTorrent()" class="download-btn w-full text-center mb-2">
+                    <svg class="w-3 h-3 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                    Download Torrent
+                </button>
+                <a href="#" onclick="copyMagnet()" class="text-xs text-blue-400 hover:text-white flex items-center">
+                    <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                    Copy Magnet Link
+                </a>
+            </div>
 
-Video Format.........: MPEG-2 (NTSC)
-Resolution...........: 720x480
-Audio................: Dolby Digital 5.1 English
-Subtitles............: English
-Menu.................: Yes
-Extras...............: Yes
+            <!-- Details Table -->
+            <div class="w-full">
+                <div class="panel">
+                    <div class="panel-header">Details</div>
+                    <table class="data-table">
+                        <tr>
+                            <th>Category</th>
+                            <td><a href="#">Movies</a> > <a href="#">DVD-R</a></td>
+                            <th>Uploaded</th>
+                            <td>2005-10-11 14:02:55 <span class="text-gray-600">(20 years ago)</span></td>
+                        </tr>
+                        <tr>
+                            <th>Size</th>
+                            <td>7.82 GB <span class="text-gray-500">(8,397,201,408 bytes)</span></td>
+                            <th>Uploader</th>
+                            <td><a href="#" class="font-bold text-yellow-500">LEGENDS_Bot</a></td>
+                        </tr>
+                        <tr>
+                            <th>Action</th>
+                            <td>
+                                <a href="#">Report</a> | <a href="#">Edit</a> | <a href="#">Request Reseed</a>
+                            </td>
+                            <th>Views</th>
+                            <td>12,403</td>
+                        </tr>
+                        <tr>
+                            <th>Snatched</th>
+                            <td><a href="#">4,201 times</a></td>
+                            <th>Peers</th>
+                            <td>
+                                <span class="text-green-500 font-bold">14 Seeders</span> | 
+                                <span class="text-red-500 font-bold">2 Leechers</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Info Hash</th>
+                            <td colspan="3" class="font-mono text-[10px] text-gray-500">89A3B2C1D4E5F67890123456789ABCDEF0123456</td>
+                        </tr>
+                    </table>
+                </div>
 
--------------------------------------------------------------------------------
-                                 Release Notes
--------------------------------------------------------------------------------
-Release Date: October 11, 2005
+                <!-- Description / Files Tabs -->
+                <div class="mt-4">
+                    <div class="flex border-b border-[#333] pl-2">
+                        <button class="tab-btn active" onclick="switchTab('description')">Description / NFO</button>
+                        <button class="tab-btn" onclick="switchTab('files')">File List (84)</button>
+                        <button class="tab-btn" onclick="switchTab('comments')">Comments (4)</button>
+                    </div>
+                </div>
 
-PLOT:
-The Toa Metru return to the city of Metru Nui to save the Matoran, 
-only to find the city overrun by the spider-like Visorak. 
-Mutated into Toa Hordika, they must release the Matoran from the 
-webs and defeat Roodaka and Sidorak.
+                <!-- Tab Content: Description -->
+                <div id="tab-description" class="panel border-t-0 p-4">
+                    <div class="flex justify-end mb-2">
+                        <button onclick="toggleNfoWrap()" class="text-[10px] text-gray-500 hover:text-white underline">[Toggle Word Wrap]</button>
+                    </div>
+                    
+                    <!-- THE NFO -->
+                    <div class="nfo-block" id="nfo-content">
+                                    LEGENDS PRESENTS...
+                    
+             BIONICLE 3: Web of Shadows (2005)
 
-DVD SPECS:
-- Full DVD9 Image (Untouched)
-- 11 Chapter stops included for easy scene selection.
-- Includes “BIONICLE Explorer” featurette.
+      Release Date ....: October 11, 2005
+      Release Size ....: 93x100mb
+      Source ..........: NTSC DVD9 Retail
+      Play Time .......: 76 mins
+      Resolution ......: 720x480 (NTSC)
+      Video Bitrate ...: 6800 kbps (avg)
+      Audio ...........: English DD 5.1, French DD 2.0, Spanish DD 2.0
+      Subtitles .......: English, French, Spanish
+      Menu ............: Yes
+      Extras ..........: Yes
 
-Ripping notes:
-Straight copy from the retail disc. 
-Burn with Nero or Alcohol 120% at 4x for best results.
+      GENRE ...........: Animation / Action / Sci-Fi
+      IMDB ............: http://www.imdb.com/title/tt0471588/
 
-Support the developers and Lego! If you like this movie, buy the DVD.
+      ___________________________________________________________________
+      
+      PLOT SUMMARY:
+      The Toa Metru return to Metru Nui to save the Matoran, but they
+      find the city overrun by mechanical spiders called Visorak. The Toa
+      are captured and mutated into Hordika, half-Toa half-Beast. 
+      They must find the Keetongu to reverse the mutation and save their
+      people before the Visorak queen, Roodaka, destroys them all.
 
-Enj0y! 
-- Visorak_Hunter
-</pre>
+      ___________________________________________________________________
+
+      GROUP NOTES:
+      Enjoy this quality release from your friends at LEGENDS.
+      Looking for dumps, 100mbit+ affils, and skilled rippers.
+      Contact us on IRC if you have something to offer.
+
+      GREETINGS:
+      To all the groups keeping the scene alive in '05.
+      RELOADED, HOODLUM, DEViANCE, HATRED.
+
+                    (c) 2005 LEGENDS
+                    </div>
+                </div>
+
+                <!-- Tab Content: Files -->
+                <div id="tab-files" class="panel border-t-0 hidden">
+                    <table class="w-full text-left">
+                        <thead>
+                            <tr class="bg-[#2a2a2a] text-gray-400 border-b border-[#333]">
+                                <th class="p-2 font-normal">Filename</th>
+                                <th class="p-2 font-normal w-24 text-right">Size</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-400 font-mono text-[10px]">
+                            <tr class="file-list-row border-b border-[#222]">
+                                <td class="p-1 pl-2">bionicle.3.web.of.shadows-legends.nfo</td>
+                                <td class="p-1 pr-2 text-right">2.4 KB</td>
+                            </tr>
+                            <tr class="file-list-row border-b border-[#222]">
+                                <td class="p-1 pl-2">leg-b3ws.r00</td>
+                                <td class="p-1 pr-2 text-right">95.3 MB</td>
+                            </tr>
+                            <tr class="file-list-row border-b border-[#222]">
+                                <td class="p-1 pl-2">leg-b3ws.r01</td>
+                                <td class="p-1 pr-2 text-right">95.3 MB</td>
+                            </tr>
+                            <tr class="file-list-row border-b border-[#222]">
+                                <td class="p-1 pl-2">... (80 files omitted) ...</td>
+                                <td class="p-1 pr-2 text-right">...</td>
+                            </tr>
+                            <tr class="file-list-row border-b border-[#222]">
+                                <td class="p-1 pl-2">leg-b3ws.r82</td>
+                                <td class="p-1 pr-2 text-right">95.3 MB</td>
+                            </tr>
+                            <tr class="file-list-row border-b border-[#222]">
+                                <td class="p-1 pl-2">leg-b3ws.rar</td>
+                                <td class="p-1 pr-2 text-right">95.3 MB</td>
+                            </tr>
+                            <tr class="file-list-row border-b border-[#222]">
+                                <td class="p-1 pl-2">leg-b3ws.sfv</td>
+                                <td class="p-1 pr-2 text-right">1.8 KB</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Tab Content: Comments -->
+                <div id="tab-comments" class="panel border-t-0 p-4 hidden">
+                    
+                    <!-- Comment 1 -->
+                    <div class="mb-4">
+                        <div class="bg-[#252525] p-1 px-2 border border-[#333] flex justify-between text-xs">
+                            <div><a href="#" class="font-bold text-white">MataNui_Fan</a> <span class="text-gray-500">| User</span></div>
+                            <div class="text-gray-500">2005-10-11 15:30</div>
+                        </div>
+                        <div class="p-2 border border-[#333] border-t-0 bg-[#1e1e1e] text-gray-300">
+                            First! Thanks LEGENDS for the quick release. My kid loves these movies.
+                        </div>
+                    </div>
+
+                    <!-- Comment 2 -->
+                    <div class="mb-4">
+                        <div class="bg-[#252525] p-1 px-2 border border-[#333] flex justify-between text-xs">
+                            <div><a href="#" class="font-bold text-red-500">SystemOp</a> <span class="text-gray-500">| SysOp</span></div>
+                            <div class="text-gray-500">2005-10-11 16:45</div>
+                        </div>
+                        <div class="p-2 border border-[#333] border-t-0 bg-[#1e1e1e] text-gray-300">
+                            Release verified. Great quality on the DVD9.
+                        </div>
+                    </div>
+
+                    <!-- Comment 3 -->
+                    <div class="mb-4">
+                        <div class="bg-[#252525] p-1 px-2 border border-[#333] flex justify-between text-xs">
+                            <div><a href="#" class="font-bold text-white">Leecher99</a> <span class="text-gray-500">| User</span></div>
+                            <div class="text-gray-500">2005-10-12 09:12</div>
+                        </div>
+                        <div class="p-2 border border-[#333] border-t-0 bg-[#1e1e1e] text-gray-300">
+                            Seed please! I'm stuck at 92%.
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-6">
+                        <a href="#" class="text-xs text-blue-400">[Add Comment]</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="text-center text-[10px] text-gray-600 mt-10 mb-4">
+            &copy; 2005-2006 LegendTracker. All Rights Reserved. <br>
+            Time: 0.045s | Queries: 12
+        </div>
+
     </div>
 
-    <h1>User Comments</h1>
-    
-    <div class="comment">
-        <div class="comment-header">User: ToaFire (Oct 11, 2005, 15:45)</div>
-        First?? Thx for the upload! Been waiting for this. Speeds are good.
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed bottom-4 right-4 bg-green-600 text-white px-4 py-2 rounded shadow-lg transform translate-y-20 transition-transform duration-300">
+        Action Successful
     </div>
 
-    <div class="comment">
-        <div class="comment-header">User: DVD_Ripper_X (Oct 11, 2005, 16:12)</div>
-        Is this the legit DVD9 or a re-encode? Size looks right. Will report back after burning.
-    </div>
+    <script>
+        function switchTab(tabName) {
+            // Hide all tabs
+            document.getElementById('tab-description').classList.add('hidden');
+            document.getElementById('tab-files').classList.add('hidden');
+            document.getElementById('tab-comments').classList.add('hidden');
 
-    <div class="comment">
-        <div class="comment-header">User: Guest (Oct 11, 2005, 18:00)</div>
-        plz seed i am stuck at 85%!!!!
-    </div>
+            // Deactivate all buttons
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
 
-    <br />
-    <div style="text-align: center; font-size: 10px; color: #999; margin-bottom: 20px;">
-        &copy; 2005 TorrentSource. All Rights Reserved. <br />
-        Valid XHTML 1.0 Transitional
-    </div>
+            // Show selected tab
+            document.getElementById(`tab-${tabName}`).classList.remove('hidden');
 
-</div>
-
-<script type="text/javascript">
-    function toggleFiles() {
-        var x = document.getElementById("file-list");
-        if (x.style.display === "none") {
-            x.style.display = "block";
-        } else {
-            x.style.display = "none";
+            // Activate button (simple approach based on click event, but since we pass name, we find by text content or index logic, simplified here by resetting specific button classes if we had IDs, but let's just re-render properly or use event.target in a real app. For this single file, let's just set the active class on the clicked element if passed, but I didn't pass 'this'. Let's do a simple lookup)
+            
+            // Re-selecting based on text for simplicity in this specific DOM structure
+            if(tabName === 'description') buttons[0].classList.add('active');
+            if(tabName === 'files') buttons[1].classList.add('active');
+            if(tabName === 'comments') buttons[2].classList.add('active');
         }
-    }
-</script>
 
+        function toggleNfoWrap() {
+            const nfo = document.getElementById('nfo-content');
+            if (nfo.style.whiteSpace === 'pre-wrap') {
+                nfo.style.whiteSpace = 'pre';
+            } else {
+                nfo.style.whiteSpace = 'pre-wrap';
+            }
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.innerText = message;
+            toast.classList.remove('translate-y-20');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20');
+            }, 3000);
+        }
+
+        function copyMagnet() {
+            const magnetLink = "magnet:?xt=urn:btih:89A3B2C1D4E5F67890123456789ABCDEF0123456&dn=BIONICLE.3.Web.of.Shadows.2005.NTSC.DVD9-LEGENDS&tr=udp://tracker.openbittorrent.com:80";
+            
+            // Create temporary input to copy
+            const el = document.createElement('textarea');
+            el.value = magnetLink;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            
+            showToast("Magnet link copied to clipboard!");
+        }
+
+        function downloadTorrent() {
+            showToast("Downloading .torrent file...");
+        }
+    </script>
 </body>
 </html>
