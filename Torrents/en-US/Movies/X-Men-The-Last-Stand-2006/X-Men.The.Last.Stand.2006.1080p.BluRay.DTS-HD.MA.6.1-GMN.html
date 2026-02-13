@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X-Men.The.Last.Stand.2006.1080p.BluRay.DTS-HD.MA.6.1-GMN - Torrent Details</title>
+    <style>
+        :root {
+            --bg-body: #121212;
+            --bg-panel: #1e1e1e;
+            --bg-header: #252525;
+            --text-main: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --accent: #e74c3c; /* Red accent for X-Men vibe */
+            --accent-hover: #c0392b;
+            --magnet: #27ae60;
+            --magnet-hover: #219150;
+            --border: #333;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            font-family: Helvetica, sans-serif;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        a { text-decoration: none; color: var(--text-main); transition: 0.2s; }
+        a:hover { color: var(--accent); }
+
+        /* Container */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            background: var(--bg-header);
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 20px;
+        }
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo { font-size: 1.5rem; font-weight: bold; color: var(--accent); letter-spacing: 1px; }
+        .search-bar input {
+            background: #000;
+            border: 1px solid var(--border);
+            padding: 8px 12px;
+            color: #fff;
+            border-radius: 4px;
+            width: 300px;
+        }
+
+        /* Main Grid */
+        .torrent-grid {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 20px;
+        }
+
+        /* Sidebar / Left Column */
+        .poster-card {
+            background: var(--bg-panel);
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+        .poster-img {
+            width: 100%;
+            height: auto;
+            border-radius: 2px;
+            display: block;
+        }
+        .stats-box {
+            margin-top: 15px;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px solid #333;
+        }
+        .stat-row:last-child { border-bottom: none; }
+        .seed { color: #2ecc71; font-weight: bold; }
+        .leech { color: #e74c3c; font-weight: bold; }
+
+        /* Main Content / Right Column */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .release-header {
+            background: var(--bg-panel);
+            padding: 20px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+        }
+        .release-title {
+            font-size: 1.4rem;
+            word-break: break-all;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+        .tags {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .tag {
+            background: #333;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            color: #ccc;
+        }
+
+        /* Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #fff;
+            border: none;
+            flex: 1;
+        }
+        .btn-magnet { background-color: var(--magnet); }
+        .btn-magnet:hover { background-color: var(--magnet-hover); color: #fff; }
+        .btn-download { background-color: var(--accent); }
+        .btn-download:hover { background-color: var(--accent-hover); color: #fff; }
+        .icon { margin-right: 8px; }
+
+        /* NFO / Description */
+        .panel {
+            background: var(--bg-panel);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+        }
+        .panel-header {
+            padding: 10px 15px;
+            background: #2a2a2a;
+            border-bottom: 1px solid var(--border);
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .panel-body {
+            padding: 15px;
+            display: block;
+        }
+        .nfo-text {
+            font-family: 'Courier New', Courier, monospace;
+            white-space: pre-wrap;
+            font-size: 0.85rem;
+            color: #d1d1d1;
+            overflow-x: auto;
+        }
+        
+        .file-list ul { list-style: none; }
+        .file-list li {
+            padding: 5px 0;
+            border-bottom: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+        }
+        .file-size { color: var(--text-muted); font-family: monospace; }
+
+        /* Hidden State for JS toggle */
+        .hidden { display: none; }
+        .toggle-icon { transition: transform 0.3s; }
+        .rotate { transform: rotate(180deg); }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .torrent-grid { grid-template-columns: 1fr; }
+            .poster-card { max-width: 300px; margin: 0 auto; }
+            .action-buttons { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-bar">
+            <div class="logo">TORRENT<span style="color:#fff">PRO</span></div>
+            <div class="search-bar">
+                <input type="text" placeholder="Search torrents...">
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="torrent-grid">
+            
+            <aside>
+                <div class="poster-card">
+                    <img src="https://image.tmdb.org/t/p/original/a2xicU8DpKtRizOHjQLC1JyCSRS.jpg" alt="X-Men The Last Stand Poster" class="poster-img">
+                    
+                    <div class="stats-box">
+                        <div class="stat-row">
+                            <span>Category:</span>
+                            <span>Movies / HD</span>
+                        </div>
+                        <div class="stat-row">
+                            <span>Size:</span>
+                            <span>12.4 GB</span>
+                        </div>
+                        <div class="stat-row">
+                            <span>Date:</span>
+                            <span>2023-11-04</span>
+                        </div>
+                        <div class="stat-row">
+                            <span>Seeds:</span>
+                            <span class="seed">2,451</span>
+                        </div>
+                        <div class="stat-row">
+                            <span>Leechers:</span>
+                            <span class="leech">112</span>
+                        </div>
+                        <div class="stat-row">
+                            <span>Uploader:</span>
+                            <a href="#" style="color: #3498db;">GMN</a>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <main class="main-content">
+                
+                <div class="release-header">
+                    <h1 class="release-title">X-Men.The.Last.Stand.2006.1080p.BluRay.DTS-HD.MA.6.1-GMN</h1>
+                    <div class="tags">
+                        <span class="tag">1080p</span>
+                        <span class="tag">BluRay</span>
+                        <span class="tag">DTS-HD MA</span>
+                        <span class="tag">x264</span>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button class="btn btn-magnet" onclick="copyMagnet()">
+                            <span class="icon">&#129522;</span> Magnet Link
+                        </button>
+                        <button class="btn btn-download" onclick="startDownload()">
+                            <span class="icon">&#11015;</span> Download Torrent
+                        </button>
+                    </div>
+                    <div id="copy-feedback" style="margin-top:10px; color: var(--magnet); font-size: 0.9rem; opacity: 0; transition: opacity 0.5s;">
+                        Magnet link copied to clipboard!
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-header" onclick="toggleSection('nfo-body', 'nfo-icon')">
+                        <span>Description / NFO</span>
+                        <span id="nfo-icon" class="toggle-icon">&#9660;</span>
+                    </div>
+                    <div id="nfo-body" class="panel-body">
+                        <div class="nfo-text">
+Plot:
+When a cure is found to treat mutations, lines are drawn amongst the X-Men—led by Professor Charles Xavier—and the Brotherhood, a band of powerful mutants organized under Xavier’s former ally, Magneto.
+
+General
+Filename.......: X-Men.The.Last.Stand.2006.1080p.BluRay.DTS-HD.MA.6.1-GMN.mkv
+Container......: Matroska
+Duration.......: 1 h 44 min
+Size...........: 12.4 GiB
+
+Video
+Codec..........: AVC High@L4.1
+Resolution.....: 1920x800
+Bitrate........: 14.5 Mb/s
+Frame Rate.....: 23.976 fps
+
+Audio
+Format.........: DTS-HD MA
+Channels.......: 6.1 (ES Matrix)
+Bitrate........: 4668 kb/s
+Language.......: English
+
+Subtitles
+Language.......: English, Spanish, French (SRT)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-header" onclick="toggleSection('files-body', 'files-icon')">
+                        <span>File List (4)</span>
+                        <span id="files-icon" class="toggle-icon">&#9660;</span>
+                    </div>
+                    <div id="files-body" class="panel-body file-list hidden">
+                        <ul>
+                            <li>
+                                <span>X-Men.The.Last.Stand.2006.1080p.BluRay.DTS-HD.MA.6.1-GMN.mkv</span>
+                                <span class="file-size">12.38 GB</span>
+                            </li>
+                            <li>
+                                <span>Sample.mkv</span>
+                                <span class="file-size">45.2 MB</span>
+                            </li>
+                            <li>
+                                <span>Proof.jpg</span>
+                                <span class="file-size">1.2 MB</span>
+                            </li>
+                            <li>
+                                <span>GMN.nfo</span>
+                                <span class="file-size">4.1 KB</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // Mock function to simulate copying a magnet link
+        function copyMagnet() {
+            // In a real scenario, this would be the actual magnet URI
+            const magnetLink = "magnet:?xt=urn:btih:0000000000000000000000000000000000000000&dn=X-Men.The.Last.Stand.2006.1080p.BluRay.DTS-HD.MA.6.1-GMN";
+            
+            navigator.clipboard.writeText(magnetLink).then(() => {
+                const feedback = document.getElementById('copy-feedback');
+                feedback.style.opacity = '1';
+                setTimeout(() => {
+                    feedback.style.opacity = '0';
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+
+        // Mock function for download button
+        function startDownload() {
+            alert("Downloading .torrent file...");
+        }
+
+        // Accordion toggle function
+        function toggleSection(bodyId, iconId) {
+            const body = document.getElementById(bodyId);
+            const icon = document.getElementById(iconId);
+            
+            if (body.classList.contains('hidden')) {
+                body.classList.remove('hidden');
+                icon.classList.add('rotate'); // Optional: rotate icon up
+                icon.innerHTML = '&#9650;';
+            } else {
+                body.classList.add('hidden');
+                icon.classList.remove('rotate');
+                icon.innerHTML = '&#9660;';
+            }
+        }
+    </script>
+</body>
+</html>
