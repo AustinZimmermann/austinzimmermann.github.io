@@ -3,348 +3,274 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fantastic.Four.2005.1080p.JPN.Blu-ray.Remux.MPEG-2.DTS-5.1-JPNBR - Torrent Detail</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>Fantastic.Four.2005.1080p.JPN.Blu-ray.Remux.MPEG-2.DTS.5.1-JPNBR - JPN-Tracker</title>
     <style>
-        body {
-            background-color: #1a1a1a;
-            color: #ccc;
-            font-family: sans-serif;
+        :root {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --accent: #00bcd4;
+            --text-main: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --seed-color: #4caf50;
+            --leech-color: #f44336;
+            --border: #333;
         }
-        .tracker-header {
-            background: linear-gradient(to bottom, #2c2c2c, #1f1f1f);
+
+        body {
+            font-family: Helvetica, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        /* Header */
+        .header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border);
+            background: linear-gradient(180deg, #252525 0%, #1e1e1e 100%);
+        }
+
+        .tag-container {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .tag {
+            font-size: 11px;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: bold;
+            color: #000;
+        }
+        .tag.free { background-color: #ffd700; } /* Freeleech */
+        .tag.bluray { background-color: #00bcd4; }
+
+        h1 {
+            font-size: 1.2rem;
+            margin: 0;
+            line-height: 1.4;
+            word-break: break-all;
+        }
+
+        /* Content Grid */
+        .content {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .poster img {
+            width: 100%;
+            border-radius: 4px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .details {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* Info Table */
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .info-table td {
+            padding: 8px 0;
             border-bottom: 1px solid #333;
         }
-        .torrent-box {
-            background-color: #252525;
-            border: 1px solid #333;
+
+        .label {
+            color: var(--text-muted);
+            width: 100px;
         }
-        .nfo-text {
-            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-            white-space: pre;
-            background-color: #000;
-            color: #00ff00;
-            overflow-x: auto;
-            font-size: 0.8rem;
-            line-height: 1.2;
+
+        .value {
+            font-weight: 500;
         }
-        .tag-freeleech {
-            background-color: #d4af37;
-            color: #000;
+
+        /* Stats Bar */
+        .stats-bar {
+            display: flex;
+            justify-content: space-between;
+            background: #2a2a2a;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 10px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .stat-val {
+            font-size: 1.1rem;
             font-weight: bold;
-            padding: 2px 6px;
-            border-radius: 2px;
-            font-size: 0.7rem;
         }
-        .tag-hd {
-            background-color: #3498db;
-            color: #fff;
-            padding: 2px 6px;
-            border-radius: 2px;
-            font-size: 0.7rem;
+
+        .seed { color: var(--seed-color); }
+        .leech { color: var(--leech-color); }
+
+        /* Actions */
+        .actions {
+            margin-top: auto;
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
             font-weight: bold;
+            transition: opacity 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 0.9rem;
         }
+
+        .btn:hover { opacity: 0.9; }
+
         .btn-download {
-            background: linear-gradient(to bottom, #4a90e2, #357abd);
-            border: 1px solid #2a5d8f;
+            background-color: var(--accent);
+            color: #000;
         }
-        .btn-download:hover {
-            background: linear-gradient(to bottom, #5aa0f2, #458acd);
+
+        .btn-magnet {
+            background-color: #333;
+            color: var(--text-main);
+            border: 1px solid #444;
         }
-        .data-row:nth-child(odd) {
-            background-color: #2a2a2a;
-        }
-        .data-row:nth-child(even) {
-            background-color: #252525;
+
+        /* Icons */
+        .icon { width: 16px; height: 16px; fill: currentColor; }
+
+        @media (max-width: 600px) {
+            .content { grid-template-columns: 1fr; }
+            .poster { max-width: 200px; margin: 0 auto; }
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col">
+<body>
 
-    <!-- Navbar -->
-    <nav class="tracker-header text-sm py-2 px-4 flex justify-between items-center shadow-lg">
-        <div class="flex items-center space-x-6">
-            <a href="#" class="text-xl font-bold text-gray-100 hover:text-white"><i class="fas fa-bolt text-yellow-500 mr-2"></i>J-Tracker</a>
-            <div class="hidden md:flex space-x-4">
-                <a href="#" class="hover:text-white">ホーム</a>
-                <a href="#" class="text-white font-bold">トレント</a>
-                <a href="#" class="hover:text-white">リクエスト</a>
-                <a href="#" class="hover:text-white">フォーラム</a>
-                <a href="#" class="hover:text-white">ルール</a>
-                <a href="#" class="hover:text-white">スタッフ</a>
-            </div>
+<div class="container">
+    <div class="header">
+        <div class="tag-container">
+            <span class="tag bluray">Blu-ray</span>
+            <span class="tag free">FREELEECH</span>
+            <span class="tag" style="background:#e0e0e0">MPEG-2</span>
         </div>
-        <div class="flex items-center space-x-4">
-            <div class="hidden md:block text-xs text-gray-400">
-                <span class="text-green-500"><i class="fas fa-arrow-up"></i> 12.4 TB</span>
-                <span class="text-red-500 ml-2"><i class="fas fa-arrow-down"></i> 450 GB</span>
-                <span class="text-yellow-500 ml-2">(Ratio: 28.2)</span>
-            </div>
-            <a href="#" class="hover:text-white"><i class="fas fa-user-circle fa-lg"></i></a>
-            <a href="#" class="hover:text-white"><i class="fas fa-envelope fa-lg"></i></a>
-        </div>
-    </nav>
-
-    <!-- Search Bar -->
-    <div class="bg-zinc-800 py-3 px-4 border-b border-zinc-700">
-        <div class="max-w-6xl mx-auto flex justify-center">
-            <input type="text" placeholder="検索..." class="bg-zinc-900 border border-zinc-600 text-gray-300 text-sm rounded-l px-3 py-1 w-96 focus:outline-none focus:border-blue-500">
-            <button class="bg-zinc-700 hover:bg-zinc-600 border border-zinc-600 border-l-0 text-gray-300 text-sm px-4 py-1 rounded-r">
-                <i class="fas fa-search"></i>
-            </button>
-        </div>
+        <h1>Fantastic.Four.2005.1080p.JPN.Blu-ray.Remux.MPEG-2.DTS-5.1-JPNBR</h1>
     </div>
 
-    <!-- Main Content -->
-    <main class="flex-grow container mx-auto p-4 max-w-6xl">
-        
-        <!-- Torrent Header -->
-        <div class="torrent-box p-4 rounded-t mb-4 shadow-md">
-            <h1 class="text-xl md:text-2xl font-bold text-gray-100 break-all">
-                Fantastic.Four.2005.1080p.JPN.Blu-ray.Remux.MPEG-2.DTS-5.1-JPNBR
-                <span class="tag-freeleech ml-2 uppercase">Freeleech</span>
-                <span class="tag-hd ml-1 uppercase">1080p</span>
-            </h1>
-            <div class="text-xs text-gray-500 mt-2 flex items-center space-x-4">
-                <span><i class="fas fa-clock mr-1"></i> 2025-02-13 14:20</span>
-                <span><i class="fas fa-user mr-1"></i> <a href="#" class="text-blue-400 hover:underline">JPNBR</a></span>
-                <span><i class="fas fa-eye mr-1"></i> 閲覧数: 1,204</span>
-                <span><i class="fas fa-bookmark mr-1"></i> お気に入り: 45</span>
-            </div>
+    <div class="content">
+        <div class="poster">
+            <img src="https://image.tmdb.org/t/p/original/cba6ju8CgRQVmbs86vfl0Nn91rB.jpg" alt="Fantastic Four Poster">
         </div>
 
-        <!-- Layout Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-            
-            <!-- Left Column: Poster -->
-            <div class="md:col-span-1">
-                <div class="torrent-box p-2 text-center rounded">
-                    <img src="https://image.tmdb.org/t/p/original/cba6ju8CgRQVmbs86vfl0Nn91rB.jpg" alt="Poster" class="w-full h-auto rounded border border-zinc-700 shadow-lg">
-                    <div class="mt-3 space-y-2">
-                        <button onclick="copyLink()" class="btn-download w-full text-white font-bold py-2 px-4 rounded shadow text-sm flex items-center justify-center">
-                            <i class="fas fa-download mr-2"></i> トレントをダウンロード
-                        </button>
-                        <button class="bg-zinc-700 hover:bg-zinc-600 text-white py-1 px-4 rounded w-full text-xs border border-zinc-600">
-                            <i class="fas fa-heart mr-1 text-red-500"></i> お礼を言う (Thank)
-                        </button>
-                    </div>
+        <div class="details">
+            <table class="info-table">
+                <tr>
+                    <td class="label">カテゴリー (Cat)</td>
+                    <td class="value">Movies / Blu-ray</td>
+                </tr>
+                <tr>
+                    <td class="label">サイズ (Size)</td>
+                    <td class="value">28.4 GiB</td>
+                </tr>
+                <tr>
+                    <td class="label">追加日 (Date)</td>
+                    <td class="value">2023-11-14 14:02:55</td>
+                </tr>
+                <tr>
+                    <td class="label">コーデック</td>
+                    <td class="value">MPEG-2 / DTS 5.1</td>
+                </tr>
+                <tr>
+                    <td class="label">アップローダー</td>
+                    <td class="value" style="color: var(--accent);">JPNBR_Team</td>
+                </tr>
+            </table>
+
+            <div class="stats-bar">
+                <div class="stat">
+                    <span class="stat-label">シード (Seeds)</span>
+                    <span class="stat-val seed">42</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">リーチ (Leechers)</span>
+                    <span class="stat-val leech">3</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">完了 (Completed)</span>
+                    <span class="stat-val">128</span>
                 </div>
             </div>
 
-            <!-- Right Column: Details & NFO -->
-            <div class="md:col-span-3 space-y-4">
-                
-                <!-- Info Table -->
-                <div class="torrent-box rounded overflow-hidden text-sm">
-                    <div class="bg-zinc-800 px-3 py-2 border-b border-zinc-700 font-bold text-gray-300">詳細情報</div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2">
-                        <div class="p-2 data-row flex justify-between border-b border-zinc-800 md:border-r">
-                            <span class="text-gray-500">カテゴリー</span>
-                            <span class="font-bold text-gray-300">Movies > Blu-ray</span>
-                        </div>
-                        <div class="p-2 data-row flex justify-between border-b border-zinc-800">
-                            <span class="text-gray-500">ファイルサイズ</span>
-                            <span class="font-bold text-gray-300">22.4 GB</span>
-                        </div>
-                        <div class="p-2 data-row flex justify-between border-b border-zinc-800 md:border-r">
-                            <span class="text-gray-500">シード数</span>
-                            <span class="font-bold text-green-500">42 <i class="fas fa-arrow-up text-xs"></i></span>
-                        </div>
-                        <div class="p-2 data-row flex justify-between border-b border-zinc-800">
-                            <span class="text-gray-500">リーチャー数</span>
-                            <span class="font-bold text-red-500">2 <i class="fas fa-arrow-down text-xs"></i></span>
-                        </div>
-                         <div class="p-2 data-row flex justify-between border-b border-zinc-800 md:border-r">
-                            <span class="text-gray-500">完了数</span>
-                            <span class="font-bold text-blue-400">128 回</span>
-                        </div>
-                         <div class="p-2 data-row flex justify-between border-b border-zinc-800">
-                            <span class="text-gray-500">情報ハッシュ</span>
-                            <span class="font-mono text-xs text-gray-400">3A9F...B2C1</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Description / NFO -->
-                <div class="torrent-box rounded overflow-hidden">
-                    <div class="bg-zinc-800 px-3 py-2 border-b border-zinc-700 font-bold text-gray-300 flex justify-between items-center">
-                        <span>説明 / NFO</span>
-                        <button class="text-xs text-blue-400 hover:underline" onclick="toggleNfo()">[表示切替]</button>
-                    </div>
-                    <div class="p-4 bg-black border-t border-zinc-700">
-                        <div class="text-center mb-4">
-                            <h2 class="text-yellow-500 font-bold text-lg">ファンタスティック・フォー ［超能力ユニット］</h2>
-                            <p class="text-gray-400 text-sm">Japanese Blu-ray Remux with Original MPEG-2 Video & DTS Dub</p>
-                        </div>
-                        
-                        <div class="nfo-text p-4 border border-zinc-800 rounded scrollbar-thin" id="nfo-container">
-           _   _ ______ ______        __             _ _   
-          | \ | |  ____/ __ \ \      / /            (_) |  
-          |  \| | |__ | |  | \ \ /\ / /_ _ _ __ ___  _| |_ 
-          | . ` |  __|| |  | |\ V  V / _` | '__/ _ \| | __|
-          | |\  | |   | |__| | \ /\ / (_| | | |  __/| | |_ 
-          |_| \_|_|    \____/   \/  \/ \__,_|_|  \___||_|\__|
-                                                             
-                     P R E S E N T S
-
-   Fantastic.Four.2005.1080p.JPN.BluRay.REMUX.MPEG2.DTS-5.1-JPNBR
-
-   Release Date ......: 2025-02-13
-   Theater Date ......: 2005-07-08
-   IMDb Release ......: 2005-07-08
-   Genre .............: Action, Adventure, Fantasy
-   Source ............: JPN Blu-ray Disc (MPEG-2)
-   Video Codec .......: MPEG-2 @ 16.5 Mbps
-   Resolution ........: 1920x1080p
-   Frame Rate ........: 23.976 fps
-   Audio 1 ...........: English DTS-HD MA 5.1 @ 3971 kbps (48kHz / 24-bit)
-   Audio 2 ...........: Japanese DTS 5.1 @ 768 kbps (Dub)
-   Subtitles .........: Japanese, English
-   Runtime ...........: 1h 46mn
-   Size ..............: 22.4 GB
-   IMDb Rating .......: 5.7/10
-   IMDb Link .........: https://www.imdb.com/title/tt0120667/
-
-   . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-
-   [ MOVIE INFORMATION ]
-
-   Original Title ....: Fantastic Four
-   Japanese Title ....: ファンタスティック・フォー ［超能力ユニット］
-   Director ..........: Tim Story
-   Cast ..............: Ioan Gruffudd, Jessica Alba, Chris Evans, 
-                        Michael Chiklis, Julian McMahon
-
-   [ PLOT SUMMARY (JA) ]
-
-   天才発明家のリード・リチャーズは、人間の進化に影響を与える宇宙嵐の実験
-   を行うため、元恋人のスー、彼女の弟ジョニー、パイロットのベンと共に宇宙
-   ステーションへ向かう。しかし、計算よりも早く宇宙嵐が到達し、5人は大量の
-   放射線を浴びてしまう。
-
-   地球に帰還後、彼らの体には異変が起き始める。リードは体がゴムのように伸
-   縮し、スーは透明化とバリア生成、ジョニーは発火と飛行能力、ベンは皮膚が
-   岩のように硬化し怪力男となってしまった。4人はその能力を世のために使うこ
-   とを決意し「ファンタスティック・フォー」を結成するが、実験の出資者であ
-   るビクターもまた、恐るべき電気の力を手に入れ、邪悪な「Dr.ドゥーム」へと
-   変貌していた⋯⋯。
-
-   [ NOTES ]
-   
-   Typical early Fox Blu-ray release using MPEG-2 codec instead of AVC. 
-   Remuxed untouched. Japanese DTS 5.1 dub included.
-   
-   Enjoy!
-
-   . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-
-                       G R O U P  N O T E S
-
-             We are looking for:
-             - Private 100Mbit+ sites for affil.
-             - JPN Blu-ray suppliers / cappers.
-             
-                   Greetings to all friends in the scene.
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Comments -->
-                <div class="torrent-box rounded overflow-hidden">
-                    <div class="bg-zinc-800 px-3 py-2 border-b border-zinc-700 font-bold text-gray-300">コメント (3)</div>
-                    <div class="divide-y divide-zinc-700">
-                        <!-- Comment 1 -->
-                        <div class="p-4 flex space-x-3">
-                            <div class="flex-shrink-0">
-                                <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold">K</div>
-                            </div>
-                            <div class="flex-grow">
-                                <div class="flex justify-between items-baseline mb-1">
-                                    <span class="font-bold text-blue-400">Keisuke88</span>
-                                    <span class="text-xs text-gray-500">1時間前</span>
-                                </div>
-                                <p class="text-sm text-gray-300">お疲れ様です！この初期のMPEG-2版を探していました。画質比較が楽しみです。</p>
-                            </div>
-                        </div>
-
-                        <!-- Comment 2 -->
-                        <div class="p-4 flex space-x-3">
-                            <div class="flex-shrink-0">
-                                <div class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center text-white font-bold">M</div>
-                            </div>
-                            <div class="flex-grow">
-                                <div class="flex justify-between items-baseline mb-1">
-                                    <span class="font-bold text-yellow-500">MovieFanJP</span>
-                                    <span class="text-xs text-gray-500">3時間前</span>
-                                </div>
-                                <p class="text-sm text-gray-300">吹き替え付き助かります。Thanks for the release!</p>
-                            </div>
-                        </div>
-                        
-                        <!-- Comment 3 -->
-                        <div class="p-4 flex space-x-3">
-                            <div class="flex-shrink-0">
-                                <div class="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold">A</div>
-                            </div>
-                            <div class="flex-grow">
-                                <div class="flex justify-between items-baseline mb-1">
-                                    <span class="font-bold text-gray-300">AnonUser</span>
-                                    <span class="text-xs text-gray-500">5時間前</span>
-                                </div>
-                                <p class="text-sm text-gray-300">Seeding at 1Gbps. Keep sharing!</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Post Comment Box -->
-                    <div class="p-4 bg-zinc-800 border-t border-zinc-700">
-                        <textarea class="w-full bg-zinc-900 border border-zinc-600 rounded p-2 text-sm text-white focus:outline-none focus:border-blue-500" rows="3" placeholder="コメントを入力..."></textarea>
-                        <div class="mt-2 text-right">
-                            <button class="bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold py-1 px-4 rounded">送信</button>
-                        </div>
-                    </div>
-                </div>
-
+            <div class="actions">
+                <button class="btn btn-download" onclick="triggerDownload()">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z" /></svg>
+                    トレントをDL
+                </button>
+                <button class="btn btn-magnet" onclick="copyMagnet()">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M3,3H9V5H5V21H13V15H15V23H3V3M11,13C9.9,13 9,12.11 9,11V5H11V11C11,11 11,11 11,11C11,11.55 11.45,12 12,12C12.55,12 13,11.55 13,11V5H15V11C15,13.21 13.21,15 11,15M21,3V13H19V5H17V3H21Z" /></svg>
+                    Magnet
+                </button>
             </div>
         </div>
-    </main>
+    </div>
+</div>
 
-    <!-- Footer -->
-    <footer class="bg-zinc-900 border-t border-zinc-800 mt-8 py-6 text-center text-xs text-gray-500">
-        <p>&copy; 2025 J-Tracker. All rights reserved.</p>
-        <div class="mt-2 space-x-2">
-            <a href="#" class="hover:text-gray-300">利用規約</a> |
-            <a href="#" class="hover:text-gray-300">プライバシーポリシー</a> |
-            <a href="#" class="hover:text-gray-300">お問い合わせ</a>
-        </div>
-    </footer>
+<script>
+    function triggerDownload() {
+        alert("ダウンロード開始: Fantastic.Four.2005.1080p.JPN.Blu-ray.Remux.MPEG-2.DTS.5.1-JPNBR.torrent");
+    }
 
-    <script>
-        function copyLink() {
-            // Simulated download action
-            const btn = document.querySelector('.btn-download');
-            const originalContent = btn.innerHTML;
-            
-            btn.innerHTML = '<i class="fas fa-check mr-2"></i> .torrentファイルを保存しました';
-            btn.classList.remove('btn-download');
-            btn.classList.add('bg-green-600', 'border-green-700');
+    function copyMagnet() {
+        // Mock magnet link behavior
+        const mockMagnet = "magnet:?xt=urn:btih:MOCKHASH123456789&dn=Fantastic.Four.2005.JPN.Remux";
+        navigator.clipboard.writeText(mockMagnet).then(() => {
+            const btn = document.querySelector('.btn-magnet');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = "コピーしました！"; // "Copied!"
+            btn.style.borderColor = "#4caf50";
             
             setTimeout(() => {
-                btn.innerHTML = originalContent;
-                btn.classList.add('btn-download');
-                btn.classList.remove('bg-green-600', 'border-green-700');
-            }, 3000);
-        }
+                btn.innerHTML = originalText;
+                btn.style.borderColor = "#444";
+            }, 2000);
+        });
+    }
+</script>
 
-        function toggleNfo() {
-            const nfo = document.getElementById('nfo-container');
-            if (nfo.style.display === 'none') {
-                nfo.style.display = 'block';
-            } else {
-                nfo.style.display = 'none';
-            }
-        }
-    </script>
 </body>
 </html>
