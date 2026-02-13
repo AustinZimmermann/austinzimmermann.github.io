@@ -1,545 +1,396 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LEGO.Hero.Factory.Rise.of.the.Rookies.2010.NTSC.DVD5-L3G0 - TorrentDetails</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        :root {
-            --bg-body: #eef2f5;
-            --bg-container: #ffffff;
-            --border-color: #b5cbe0;
-            --header-grad-start: #5c87b2;
-            --header-grad-end: #3f658c;
-            --text-main: #333333;
-            --text-muted: #666666;
-            --link-color: #2b5683;
-            --success-color: #3b8c3b;
-            --danger-color: #a82525;
-            --row-alt: #f4f8fb;
-            --highlight: #fffec2;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
+        /* Retro-inspired custom styles */
         body {
             font-family: Helvetica, sans-serif;
             font-size: 11px;
-            background-color: var(--bg-body);
-            color: var(--text-main);
-            margin: 0;
-            padding: 0;
-            line-height: 1.4;
-        }
-
-        a {
-            color: var(--link-color);
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 980px;
-            margin: 0 auto;
-            background: var(--bg-container);
-            border-left: 1px solid #ccc;
-            border-right: 1px solid #ccc;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            min-height: 100vh;
-        }
-
-        /* Header Area */
-        header {
-            background: linear-gradient(to bottom, #f9f9f9 0%, #e0e0e0 100%);
-            border-bottom: 1px solid #ccc;
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-family: 'Trebuchet MS', sans-serif;
-            font-size: 24px;
-            font-weight: bold;
-            color: #444;
-            text-shadow: 1px 1px 0 #fff;
-        }
-        .logo span { color: var(--header-grad-start); }
-
-        .search-bar {
-            display: flex;
-            gap: 5px;
-        }
-
-        input[type="text"] {
-            padding: 4px;
-            border: 1px solid #aaa;
-            width: 300px;
-            font-size: 11px;
-        }
-
-        button.btn-search {
-            background: linear-gradient(to bottom, #ffffff 0%, #dddddd 100%);
-            border: 1px solid #aaa;
-            padding: 3px 10px;
-            cursor: pointer;
-            font-size: 11px;
-            font-weight: bold;
+            background-color: #f8f8f8;
             color: #333;
         }
-
-        /* Nav */
-        nav {
-            background: var(--header-grad-end);
-            padding: 8px 20px;
-            color: white;
-            font-weight: bold;
-            border-top: 1px solid #7ea3c7;
-            border-bottom: 1px solid #204060;
+        .tracker-header {
+            background: linear-gradient(to bottom, #eff4f7 0%, #dbe6ec 100%);
+            border-bottom: 1px solid #9fb6c3;
         }
-
-        nav a {
-            color: white;
-            margin-right: 20px;
-            text-shadow: 0 1px 1px rgba(0,0,0,0.3);
-        }
-
-        /* Main Content */
-        .main {
-            padding: 20px;
-            display: grid;
-            grid-template-columns: 1fr 280px;
-            gap: 20px;
-        }
-
-        @media (max-width: 768px) {
-            .main { grid-template-columns: 1fr; }
-            .search-bar input { width: 150px; }
-        }
-
-        /* Torrent Header */
-        h1 {
-            font-size: 16px;
-            margin: 0 0 15px 0;
-            color: #222;
-            border-bottom: 1px solid #ccc;
-            padding-bottom: 5px;
-        }
-
-        .download-box {
-            background: #eef7e6;
-            border: 1px solid #9dc78d;
-            padding: 15px;
-            text-align: center;
-            margin-bottom: 20px;
-            border-radius: 4px;
-        }
-
-        .btn-download {
-            display: inline-block;
-            background: linear-gradient(to bottom, #6bbb6b 0%, #3b8c3b 100%);
-            border: 1px solid #2e702e;
-            color: white;
-            font-weight: bold;
-            font-size: 14px;
-            padding: 10px 30px;
-            border-radius: 3px;
-            text-shadow: 0 1px 1px rgba(0,0,0,0.3);
-            cursor: pointer;
-        }
-        .btn-download:hover { text-decoration: none; opacity: 0.9; }
-
-        .magnet-link {
-            display: inline-block;
-            margin-left: 10px;
-            color: #333;
-            font-size: 10px;
-        }
-
-        /* Details Table */
-        .data-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-        }
-
-        .data-table th, .data-table td {
-            padding: 6px 10px;
-            border: 1px solid #ddd;
-            vertical-align: top;
-        }
-
-        .data-table th {
-            background: #f0f0f0;
-            text-align: right;
-            width: 120px;
-            color: #555;
-            font-weight: bold;
-        }
-
-        /* Tabs */
-        .tabs {
-            border-bottom: 1px solid #ccc;
+        .content-box {
+            background-color: #fff;
+            border: 1px solid #d1d1d1;
             margin-bottom: 15px;
         }
-        .tab {
-            display: inline-block;
-            padding: 6px 15px;
-            background: #f9f9f9;
-            border: 1px solid #ccc;
-            border-bottom: none;
-            margin-right: 5px;
-            cursor: pointer;
-            position: relative;
-            top: 1px;
+        .content-header {
+            background: #e8eff3 url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjZmZmIj48L3JlY3Q+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNjY2MiPjwvcmVjdD4KPC9zdmc+') repeat;
+            padding: 8px 10px;
             font-weight: bold;
-            color: #666;
+            color: #4a6b82;
+            border-bottom: 1px solid #d1d1d1;
         }
-        .tab.active {
-            background: #fff;
-            color: #000;
-            border-bottom: 1px solid #fff;
-        }
-
-        /* File Tree */
-        .file-tree {
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 12px;
-            background: #fbfbfb;
-            border: 1px solid #e0e0e0;
-            padding: 15px;
-        }
-        .folder { color: #d69e2e; font-weight: bold; margin-bottom: 5px; display: block;}
-        .file { color: #444; margin-left: 20px; display: flex; justify-content: space-between; padding: 2px 0;}
-        .file-size { color: #888; }
-
-        /* NFO Box */
-        .nfo-box {
-            font-family: 'Courier New', Courier, monospace;
-            background: #f5f5f5;
-            border: 1px solid #ddd;
-            padding: 10px;
+        a { color: #2c6c96; text-decoration: none; }
+        a:hover { text-decoration: underline; color: #cc3300; }
+        .nfo-block {
+            font-family: 'Courier New', monospace;
             white-space: pre;
+            background-color: #000;
+            color: #0f0;
             overflow-x: auto;
-            font-size: 11px;
-            line-height: 1.2;
-            color: #333;
-            max-height: 300px;
-            overflow-y: auto;
-        }
-
-        /* Side Bar */
-        .sidebar-box {
-            border: 1px solid #ccc;
-            background: #fff;
-            margin-bottom: 15px;
-        }
-        .sidebar-header {
-            background: linear-gradient(to bottom, #f0f0f0 0%, #e0e0e0 100%);
-            padding: 6px 10px;
-            font-weight: bold;
-            border-bottom: 1px solid #ccc;
-            color: #333;
-        }
-        .sidebar-content {
-            padding: 10px;
-        }
-        .tag-cloud span {
-            display: inline-block;
-            padding: 2px 5px;
-            background: #eee;
-            margin: 2px;
-            border-radius: 3px;
-            color: #555;
             font-size: 10px;
+            line-height: 1.1;
         }
-
-        /* Comments */
-        .comment {
-            border: 1px solid #ddd;
-            margin-bottom: 10px;
-            background: #fff;
+        .data-table td { padding: 4px 8px; border-bottom: 1px solid #eee; }
+        .data-table tr:last-child td { border-bottom: none; }
+        .tab-active { background-color: #fff; border-bottom: 1px solid #fff; font-weight: bold; color: #000; }
+        .tab-inactive { background-color: #f0f0f0; color: #666; }
+        .magnet-btn {
+            background: linear-gradient(to bottom, #f7dfa5 0%, #f0c14b 100%);
+            border: 1px solid #a88734;
+            color: #111;
         }
-        .comment-header {
-            background: #f4f8fb;
-            padding: 5px 10px;
-            border-bottom: 1px solid #eee;
-            color: #666;
-            font-size: 10px;
-            display: flex;
-            justify-content: space-between;
+        .magnet-btn:hover { background: linear-gradient(to bottom, #f5d78e 0%, #eeb933 100%); }
+        .download-btn {
+            background: linear-gradient(to bottom, #99cc33 0%, #77a809 100%);
+            border: 1px solid #5d8406;
+            color: #fff !important;
+            text-shadow: 0 1px 0 rgba(0,0,0,0.2);
         }
-        .comment-body {
-            padding: 10px;
-            color: #333;
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 20px;
-            border-top: 1px solid #ccc;
-            color: #888;
-            font-size: 10px;
-            margin-top: 20px;
-        }
-
-        /* Icons */
-        .icon-magnet {
-            width: 12px;
-            height: 12px;
-            display: inline-block;
-            background: #cc0000;
-            margin-right: 3px;
-            border-radius: 50%;
-        }
-        .quality-indicator {
-            display: inline-block;
-            background: #3b8c3b;
-            color: white;
-            padding: 1px 4px;
-            border-radius: 2px;
-            font-size: 9px;
-            margin-left: 5px;
-        }
+        .download-btn:hover { background: linear-gradient(to bottom, #aadd44 0%, #88bb11 100%); text-decoration: none; }
     </style>
-</head>
-<body>
+    <script>
+        function switchTab(tabName) {
+            // Hide all tab content
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            // Remove active class from all tabs
+            document.querySelectorAll('.tab-btn').forEach(el => {
+                el.classList.remove('tab-active', 'border-b-white');
+                el.classList.add('tab-inactive', 'border-b-[#d1d1d1]');
+            });
+            
+            // Show selected content
+            document.getElementById(tabName + '-content').classList.remove('hidden');
+            // Activate selected tab
+            const btn = document.getElementById(tabName + '-btn');
+            btn.classList.add('tab-active', 'border-b-white');
+            btn.classList.remove('tab-inactive', 'border-b-[#d1d1d1]');
+        }
 
-<div class="container">
-    <header>
-        <div class="logo">Tor<span>Rentz</span>.eu</div>
-        <div class="search-bar">
-            <input type="text" value="LEGO Hero Factory Rise of the Rookies" placeholder="Search torrents...">
-            <button class="btn-search">Search</button>
+        function copyLink() {
+             const magnet = "magnet:?xt=urn:btih:5b6e2f1c8d4a9b3e7f0c2d1a5b8e4f9c6d3a1b2e&dn=LEGO.Hero.Factory.Rise.of.the.Rookies.2010.NTSC.DVD5-L3G0&tr=udp://tracker.openbittorrent.com:80";
+             navigator.clipboard.writeText(magnet).then(() => {
+                 alert("Magnet link copied to clipboard!");
+             });
+        }
+    </script>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- Header / Navigation -->
+    <header class="tracker-header py-4 px-4 shadow-sm">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-2">
+                <!-- Retro Logo Icon -->
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2c6c96" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+                <span class="text-2xl font-bold text-[#2c6c96] tracking-tighter">Bit<span class="text-[#555]">Swarm</span></span>
+            </div>
+            
+            <div class="flex-1 w-full md:max-w-lg mx-4">
+                <div class="flex">
+                    <input type="text" value="LEGO Hero Factory" class="w-full px-2 py-1 border border-[#aaa] text-sm focus:outline-none focus:border-[#2c6c96]" placeholder="Search torrents...">
+                    <button class="bg-[#e0e0e0] border border-l-0 border-[#aaa] px-4 text-xs font-bold hover:bg-[#d0d0d0]">SEARCH</button>
+                </div>
+                <div class="flex gap-4 text-[10px] mt-1 text-[#666]">
+                    <a href="#">Browse</a>
+                    <a href="#">Recent</a>
+                    <a href="#">Top 100</a>
+                    <a href="#">Upload</a>
+                    <a href="#">Community</a>
+                </div>
+            </div>
+
+            <div class="text-xs text-right hidden md:block">
+                <div>Welcome, <b>Guest</b></div>
+                <div><a href="#">Login</a> | <a href="#">Register</a></div>
+            </div>
         </div>
     </header>
 
-    <nav>
-        <a href="#">Home</a>
-        <a href="#">Browse</a>
-        <a href="#">Recent</a>
-        <a href="#">Top 100</a>
-        <a href="#">Upload</a>
-        <a href="#" style="float: right;">Login | Register</a>
-    </nav>
-
-    <div class="main">
-        <div class="content-col">
-            <h1>LEGO.Hero.Factory.Rise.of.the.Rookies.2010.NTSC.DVD5-L3G0 <span class="quality-indicator">VERIFIED</span></h1>
+    <!-- Main Content -->
+    <main class="flex-grow max-w-5xl mx-auto w-full p-4 grid grid-cols-1 md:grid-cols-12 gap-4">
+        
+        <!-- Left Column: Torrent Details -->
+        <div class="md:col-span-12">
             
-            <div class="download-box">
-                <a href="#" class="btn-download" onclick="alert('Starting download...'); return false;">
-                    &#x2b07; DOWNLOAD TORRENT
-                </a>
-                <div style="margin-top: 10px;">
-                    <a href="#" class="magnet-link" onclick="alert('Magnet link copied!'); return false;">
-                        <span style="color:red; font-weight:bold;">&cup;</span> Get Magnet Link
+            <!-- Breadcrumbs -->
+            <div class="text-[10px] mb-2 text-[#666]">
+                <a href="#">Home</a> &gt; <a href="#">Movies</a> &gt; <a href="#">DVD-R</a> &gt; LEGO.Hero.Factory.Rise.of.the.Rookies.2010.NTSC.DVD5-L3G0
+            </div>
+
+            <!-- Title Box -->
+            <div class="content-box p-4 bg-[#fcfcfc] text-center border-t-4 border-t-[#2c6c96]">
+                <h1 class="text-lg font-bold text-[#333] mb-2 break-all">LEGO.Hero.Factory.Rise.of.the.Rookies.2010.NTSC.DVD5-L3G0</h1>
+                
+                <div class="flex flex-wrap justify-center gap-3 mt-4">
+                    <button onclick="copyLink()" class="magnet-btn px-4 py-2 rounded-sm font-bold flex items-center gap-2 cursor-pointer shadow-sm">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M10.585 10.585a2 2 0 0 0 2.83 2.83l5.656-5.656a2 2 0 0 0-2.83-2.83l-5.656 5.656z"></path><path d="M7.757 7.757a2 2 0 0 0 2.83 2.83l5.656-5.656a2 2 0 0 0-2.83-2.83l-5.656 5.656z"></path><path d="M11 11l-3 3"></path><path d="M16 16l-3 3"></path></svg>
+                        Get Magnet
+                    </button>
+                    <a href="#" class="download-btn px-6 py-2 rounded-sm font-bold flex items-center gap-2 shadow-sm">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        Download Torrent
                     </a>
-                    &nbsp;|&nbsp; 
-                    <span>Size: 4.36 GB</span>
-                    &nbsp;|&nbsp; 
-                    <span>Files: 1</span>
                 </div>
             </div>
 
-            <div class="tabs">
-                <div class="tab active" onclick="switchTab('details')">Details</div>
-                <div class="tab" onclick="switchTab('files')">File List (1)</div>
-                <div class="tab" onclick="switchTab('comments')">Comments (3)</div>
-            </div>
-
-            <div id="tab-details" class="tab-content">
-                <table class="data-table">
-                    <tr>
-                        <th>Category</th>
-                        <td>Movies &gt; DVD</td>
-                    </tr>
-                    <tr>
-                        <th>Language</th>
-                        <td>English</td>
-                    </tr>
-                    <tr>
-                        <th>Total Size</th>
-                        <td>4.36 GB (4,681,293,824 bytes)</td>
-                    </tr>
-                    <tr>
-                        <th>Uploaded By</th>
-                        <td><a href="#">L3G0</a> <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Ccircle cx='5' cy='5' r='5' fill='%23ff9900'/%3E%3C/svg%3E" width="10" height="10" title="VIP"></td>
-                    </tr>
-                    <tr>
-                        <th>Added</th>
-                        <td>2010-11-16 14:32:01</td>
-                    </tr>
-                    <tr>
-                        <th>Peers</th>
-                        <td><span style="color:green; font-weight:bold;">1242 Seeders</span> / <span style="color:red; font-weight:bold;">348 Leechers</span></td>
-                    </tr>
-                </table>
-
-                <h3>Description</h3>
-                <div class="nfo-box">
-*******************************************************************************
-          LEGO.Hero.Factory.Rise.of.the.Rookies.2010.NTSC.DVD5-L3G0
-*******************************************************************************
-
--------------------------------------------------------------------------------
-                              General Information
--------------------------------------------------------------------------------
-Type.................: Movie
-Platform.............: DVD
-Part Size............: 4.36 GB
-Number of Parts......: 1
-Video Format.........: MPEG-2 (NTSC)
-Audio Format.........: AC3 5.1
-Genre................: Animation, Action
-Year.................: 2010
-
--------------------------------------------------------------------------------
-                                 Release Notes
--------------------------------------------------------------------------------
-A new team of heroes must prove themselves.
-
-Format: ISO
-Region: Free
-Ripped by: L3G0
-Date: 11/16/2010
-
-Enjoy the brick action! Seed after leeching!
-
--------------------------------------------------------------------------------
-Generated with Cool NFO Creator - http://fly.to/coolnfo
--------------------------------------------------------------------------------
+            <!-- Meta Data Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                
+                <!-- Technical Details -->
+                <div class="content-box">
+                    <div class="content-header">Torrent Details</div>
+                    <table class="w-full data-table text-[11px]">
+                        <tr class="bg-[#f9f9f9]">
+                            <td class="w-1/3 text-[#666]">Category:</td>
+                            <td><a href="#">Movies</a> > <a href="#">DVD-R</a></td>
+                        </tr>
+                        <tr>
+                            <td class="text-[#666]">Total Size:</td>
+                            <td>4.36 GB (4,682,192,201 bytes)</td>
+                        </tr>
+                        <tr class="bg-[#f9f9f9]">
+                            <td class="text-[#666]">Date Uploaded:</td>
+                            <td>2010-11-16 14:23:01 UTC</td>
+                        </tr>
+                        <tr>
+                            <td class="text-[#666]">Uploader:</td>
+                            <td><a href="#" class="font-bold text-[#a00]">SceneReleaser</a> <span class="text-[9px] text-white bg-[#cc3300] px-1 rounded">VIP</span></td>
+                        </tr>
+                        <tr class="bg-[#f9f9f9]">
+                            <td class="text-[#666]">Info Hash:</td>
+                            <td class="font-mono text-[10px]">5b6e2f1c8d4a9b3e7f0c2d1a5b8e4f9c6d3a1b2e</td>
+                        </tr>
+                    </table>
                 </div>
-            </div>
 
-            <div id="tab-files" class="tab-content" style="display:none;">
-                <div class="file-tree">
-                    <span class="folder"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%23dcb' d='M0 2h6l2 2h8v10H0z'/%3E%3C/svg%3E" width="12" height="12"> LEGO.Hero.Factory.Rise.of.the.Rookies.2010.NTSC.DVD5-L3G0</span>
-                    <div class="file">
-                        <span><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%23aaa' d='M3 1h10v14H3z'/%3E%3C/svg%3E" width="10" height="10"> LEGO_HERO_FACTORY_RISE_ROOKIES.iso</span>
-                        <span class="file-size">4.36 GB</span>
+                <!-- Health Stats -->
+                <div class="content-box">
+                    <div class="content-header">Swarm Health</div>
+                    <div class="p-4">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-[#666]">Seeders:</span>
+                            <span class="font-bold text-[#008000]">521</span>
+                        </div>
+                        <div class="w-full bg-[#eee] h-2 rounded-full overflow-hidden mb-4">
+                            <div class="bg-[#008000] h-full" style="width: 85%"></div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-[#666]">Leechers:</span>
+                            <span class="font-bold text-[#cc3300]">45</span>
+                        </div>
+                        <div class="w-full bg-[#eee] h-2 rounded-full overflow-hidden">
+                            <div class="bg-[#cc3300] h-full" style="width: 15%"></div>
+                        </div>
+                        
+                        <div class="mt-4 pt-4 border-t border-gray-100 text-center text-[10px] text-[#888]">
+                            Last Update: Just now
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div id="tab-comments" class="tab-content" style="display:none;">
-                <div class="comment">
-                    <div class="comment-header">
-                        <span><strong>BionicleFan99</strong></span>
-                        <span>Posted: 2010-11-16 15:45</span>
-                    </div>
-                    <div class="comment-body">
-                        First!! Thanks L3G0, been waiting for this rip. Is the quality good?
+            <!-- Tabs -->
+            <div class="flex border-b border-[#d1d1d1] mb-[-1px] relative z-10 px-2">
+                <button id="desc-btn" onclick="switchTab('desc')" class="tab-btn tab-active px-4 py-2 border border-b-0 border-[#d1d1d1] rounded-t mr-1 focus:outline-none">Description & NFO</button>
+                <button id="files-btn" onclick="switchTab('files')" class="tab-btn tab-inactive px-4 py-2 border border-b-0 border-[#d1d1d1] rounded-t mr-1 focus:outline-none">File List (76)</button>
+                <button id="comments-btn" onclick="switchTab('comments')" class="tab-btn tab-inactive px-4 py-2 border border-b-0 border-[#d1d1d1] rounded-t mr-1 focus:outline-none">Comments (3)</button>
+            </div>
+
+            <!-- Tab Content -->
+            <div class="content-box border-t-0 p-0">
+                
+                <!-- Description Tab -->
+                <div id="desc-content" class="tab-content">
+                    <div class="p-4">
+                        <div class="mb-4 font-bold text-sm">Release info:</div>
+                        
+                        <div class="nfo-block p-4 border border-[#333] mb-4 shadow-inner">
+  L3G0 PRESENTS
+
+  LEGO.Hero.Factory.Rise.of.the.Rookies.2010.NTSC.DVD5-L3G0
+
+  RELEASE DATE...: 2010-11-16
+  DVD DATE.......: 2010-11-16
+  SOURCE.........: R1 NTSC DVD9
+  VIDEO..........: CCE 6 Passes @ 4256 Kbps
+  AUDIO..........: English DD 5.1
+  SUBS...........: English, French
+  EXTRAS.........: Stripped (Warnings)
+  GENRE..........: Animation | Action | Family
+  RUNTIME........: 88 min
+
+  PLOT:
+  A new team of Heroes is born! Preston Stormer leading the rookies
+  Furno, Breez and Surge. They are the Hero Factory’s newest 
+  creation, designed to protect the galaxy from the forces of evil.
+
+  NOTES:
+  Enjoy this quality release from your friends at L3G0.
+  Greets to all groups keeping the scene alive in 2010!
+  
+                        </div>
+
+                        <div class="text-center text-[#666] text-xs mt-4">
+                            [ <a href="#">Report Torrent</a> ] [ <a href="#">Update Tracker</a> ]
+                        </div>
                     </div>
                 </div>
-                <div class="comment">
-                    <div class="comment-header">
-                        <span><strong>Xx_Sephiroth_xX</strong></span>
-                        <span>Posted: 2010-11-16 16:20</span>
+
+                <!-- Files Tab -->
+                <div id="files-content" class="tab-content hidden">
+                    <table class="w-full data-table text-[11px]">
+                        <thead>
+                            <tr class="bg-[#e8eff3] text-left">
+                                <th class="py-2 px-2 font-bold text-[#4a6b82]">Path / Filename</th>
+                                <th class="py-2 px-2 font-bold text-[#4a6b82] text-right">Size</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="px-2 font-mono">l3g0-lhfrotr.nfo</td>
+                                <td class="px-2 text-right">4.2 KB</td>
+                            </tr>
+                            <tr>
+                                <td class="px-2 font-mono">VIDEO_TS/VIDEO_TS.BUP</td>
+                                <td class="px-2 text-right">12.0 KB</td>
+                            </tr>
+                            <tr>
+                                <td class="px-2 font-mono">VIDEO_TS/VIDEO_TS.IFO</td>
+                                <td class="px-2 text-right">12.0 KB</td>
+                            </tr>
+                            <tr>
+                                <td class="px-2 font-mono">VIDEO_TS/VIDEO_TS.VOB</td>
+                                <td class="px-2 text-right">420.0 KB</td>
+                            </tr>
+                            <tr>
+                                <td class="px-2 font-mono">VIDEO_TS/VTS_01_0.BUP</td>
+                                <td class="px-2 text-right">84.0 KB</td>
+                            </tr>
+                            <tr>
+                                <td class="px-2 font-mono">VIDEO_TS/VTS_01_0.IFO</td>
+                                <td class="px-2 text-right">84.0 KB</td>
+                            </tr>
+                            <tr>
+                                <td class="px-2 font-mono">VIDEO_TS/VTS_01_1.VOB</td>
+                                <td class="px-2 text-right">1.0 GB</td>
+                            </tr>
+                            <tr>
+                                <td class="px-2 font-mono">VIDEO_TS/VTS_01_2.VOB</td>
+                                <td class="px-2 text-right">1.0 GB</td>
+                            </tr>
+                            <tr>
+                                <td class="px-2 font-mono">VIDEO_TS/VTS_01_3.VOB</td>
+                                <td class="px-2 text-right">1.0 GB</td>
+                            </tr>
+                            <tr>
+                                <td class="px-2 font-mono">VIDEO_TS/VTS_01_4.VOB</td>
+                                <td class="px-2 text-right">892.4 MB</td>
+                            </tr>
+                             <tr>
+                                <td class="px-2 italic text-[#888] pl-8">... and 66 rars</td>
+                                <td class="px-2 text-right text-[#888]">--</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Comments Tab -->
+                <div id="comments-content" class="tab-content hidden">
+                    <div class="bg-[#f0f0f0] p-2 text-xs border-b border-[#ddd]">
+                        Please <a href="#" class="font-bold">Login</a> or <a href="#" class="font-bold">Register</a> to post a comment.
                     </div>
-                    <div class="comment-body">
-                        Works great on my modded wii. Audio is crisp. Seeding at 500kb/s!
+                    
+                    <div class="p-4 space-y-4">
+                        <!-- Comment 1 -->
+                        <div class="flex gap-3">
+                            <div class="w-16 flex-shrink-0 text-center">
+                                <div class="w-12 h-12 bg-[#ddd] mx-auto border border-[#ccc] flex items-center justify-center text-[#888]">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                                </div>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex justify-between border-b border-[#eee] pb-1 mb-1">
+                                    <div><a href="#" class="font-bold text-[#2c6c96]">BrickMaster99</a> <span class="text-[#888] text-[10px]">(Ratio: 2.4)</span></div>
+                                    <div class="text-[#888] text-[10px]">2010-11-16 16:42</div>
+                                </div>
+                                <div class="text-xs leading-relaxed">
+                                    Thanks L3G0! Kids have been waiting for this one. Video quality is solid for a DVD5 compress. Audio is sync. A+++
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Comment 2 -->
+                        <div class="flex gap-3">
+                            <div class="w-16 flex-shrink-0 text-center">
+                                <div class="w-12 h-12 bg-[#ddd] mx-auto border border-[#ccc] flex items-center justify-center text-[#888]">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                                </div>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex justify-between border-b border-[#eee] pb-1 mb-1">
+                                    <div><a href="#" class="font-bold text-[#2c6c96]">BionicleFan</a> <span class="text-[#888] text-[10px]">(Ratio: 0.8)</span></div>
+                                    <div class="text-[#888] text-[10px]">2010-11-16 18:20</div>
+                                </div>
+                                <div class="text-xs leading-relaxed">
+                                    Is this NTSC or PAL? Title says NTSC but want to confirm.
+                                </div>
+                            </div>
+                        </div>
+
+                         <!-- Comment 3 (Reply) -->
+                        <div class="flex gap-3 ml-12 border-l-2 border-[#eee] pl-3">
+                            <div class="w-16 flex-shrink-0 text-center">
+                                <div class="w-12 h-12 bg-[#ddd] mx-auto border border-[#ccc] flex items-center justify-center text-[#888]">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                                </div>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex justify-between border-b border-[#eee] pb-1 mb-1">
+                                    <div><a href="#" class="font-bold text-[#a00]">SceneReleaser</a> <span class="bg-[#cc3300] text-white text-[9px] px-1 rounded">VIP</span></div>
+                                    <div class="text-[#888] text-[10px]">2010-11-16 18:45</div>
+                                </div>
+                                <div class="text-xs leading-relaxed">
+                                    @BionicleFan: It is NTSC as stated in the release name. Works fine on my R1 player.
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="comment">
-                    <div class="comment-header">
-                        <span><strong>Guest</strong></span>
-                        <span>Posted: 2010-11-16 18:02</span>
-                    </div>
-                    <div class="comment-body">
-                        plz seed i am stuck at 98%
-                    </div>
-                </div>
+
             </div>
 
         </div>
 
-        <div class="sidebar">
-            <div class="sidebar-box">
-                <div class="sidebar-header">Quick Stats</div>
-                <div class="sidebar-content">
-                    <div style="font-size:10px; margin-bottom: 5px;">
-                        <strong>Health:</strong> <div style="display:inline-block; width: 50px; height: 8px; background: #eee; border:1px solid #ccc;"><div style="width:100%; height:100%; background:#3b8c3b;"></div></div> 100%
-                    </div>
-                    <div style="font-size:10px;">
-                        <strong>Last checked:</strong> 12 mins ago
-                    </div>
-                </div>
-            </div>
+    </main>
 
-            <div class="sidebar-box">
-                <div class="sidebar-header">Related Torrents</div>
-                <div class="sidebar-content">
-                    <ul style="list-style:none; padding:0; margin:0; font-size:10px;">
-                        <li style="margin-bottom:5px;"><a href="#">Bionicle.The.Legend.Reborn.DVDRip.XviD-aXXo</a> <span style="color:#888">(700MB)</span></li>
-                        <li style="margin-bottom:5px;"><a href="#">Lego.Batman.The.Videogame-RELOADED</a> <span style="color:#888">(4.1GB)</span></li>
-                        <li style="margin-bottom:5px;"><a href="#">Toy.Story.3.2010.R5.LiNE.XviD-Vision</a> <span style="color:#888">(1.4GB)</span></li>
-                    </ul>
-                </div>
+    <!-- Footer -->
+    <footer class="bg-[#e8eff3] border-t border-[#d1d1d1] py-8 text-center text-[10px] text-[#666]">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="mb-2">
+                <a href="#">Home</a> | <a href="#">Torrents</a> | <a href="#">FAQ</a> | <a href="#">Support</a> | <a href="#">RSS</a> | <a href="#">API</a> | <a href="#">Privacy</a>
             </div>
-
-            <div class="sidebar-box">
-                <div class="sidebar-header">Sponsored Links</div>
-                <div class="sidebar-content" style="text-align:center;">
-                    <div style="background:#f9f9f9; border:1px dashed #ccc; padding:20px 10px; color:#aaa; font-size:10px;">
-                        Download High Speed with Usenet!<br><br>
-                        <button style="font-size:10px;">Sign Up</button>
-                    </div>
-                </div>
+            <div class="mb-4">
+                BitSwarm Tracker &copy; 2005-2010. All Rights Reserved.
             </div>
-
-            <div class="sidebar-box">
-                <div class="sidebar-header">Tags</div>
-                <div class="sidebar-content tag-cloud">
-                    <span>lego</span> <span>hero factory</span> <span>2010</span> <span>animation</span> <span>iso</span> <span>dvd</span> <span>ntsc</span> <span>kids</span>
-                </div>
+            <div class="text-[#888]">
+                Torrents are user-generated content. We do not host any files on our servers.<br>
+                Rendered in 0.045s.
             </div>
-        </div>
-    </div>
-
-    <footer>
-        &copy; 2003-2010 TorrentSite. All rights reserved.<br>
-        <div style="margin-top:5px;">
-            <a href="#">About</a> | <a href="#">Contact</a> | <a href="#">Terms</a> | <a href="#">DMCA</a>
-        </div>
-        <div style="margin-top:10px; font-size:9px;">
-            Torrents are just files. We host no content.
         </div>
     </footer>
-</div>
-
-<script>
-    function switchTab(tabName) {
-        // Hide all contents
-        var contents = document.getElementsByClassName('tab-content');
-        for (var i = 0; i < contents.length; i++) {
-            contents[i].style.display = 'none';
-        }
-        
-        // Show selected content
-        document.getElementById('tab-' + tabName).style.display = 'block';
-        
-        // Update tab classes
-        var tabs = document.getElementsByClassName('tab');
-        for (var i = 0; i < tabs.length; i++) {
-            tabs[i].classList.remove('active');
-        }
-        
-        // Find the clicked tab (simple approach finding by text content mostly)
-        // Since we passed the name, let's just re-query based on onclick attribute for simplicity in this mockup
-        var clickedTab = document.querySelector(`.tab[onclick="switchTab('${tabName}')"]`);
-        if(clickedTab) clickedTab.classList.add('active');
-    }
-</script>
 
 </body>
 </html>
