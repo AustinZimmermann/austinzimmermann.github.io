@@ -3,246 +3,384 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>스타워즈 에피소드 3: 시스의 복수 DVD 아카이브</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <!-- JSON-LD Structured Data -->
+    <title>스타워즈 에피소드 3: 시스의 복수 (DVD) - Home-Media.com</title>
+    
     <script type="application/ld+json">
     {
       "@context": "https://schema.org/",
       "@type": "Product",
-      "name": "스타워즈 에피소드 3: 시스의 복수 (2디스크 DVD)",
+      "name": "스타워즈 에피소드 3: 시스의 복수 (DVD)",
       "image": [
-        "https://i.postimg.cc/63dYB5pT/Front_cover.jpg",
-        "https://i.postimg.cc/85htTPzp/Back_cover.jpg"
+        "https://images.45cat.com/f/dv/star-wars-episode-iii-revenge-of-the-sith-31-dv.jpg",
+        "https://images.45cat.com/f/dv/star-wars-episode-iii-revenge-of-the-sith-20th-century-fox-10-dv.jpg"
       ],
-      "description": "2005년 11월 3일 20세기 폭스 홈 엔터테인먼트 코리아에서 출시한 《스타워즈》 프리퀄 삼부작의 완결편 DVD 에디션입니다.",
-      "sku": "8803252320696",
+      "description": "조지 루카스 감독의 스타워즈 프리퀄 3부작의 완결편. 아나킨 스카이워커가 다스 베이더로 변모하는 과정을 그린 SF 대작. 2-Disc 스페셜 에디션.",
       "brand": {
         "@type": "Brand",
-        "name": "Star Wars"
+        "name": "20th Century Fox Home Entertainment"
       },
-      "releaseDate": "2005-11-03",
+      "sku": "SW-EP3-DVD-KR",
+      "gtin13": "8809000000000",
       "offers": {
         "@type": "Offer",
+        "url": "http://home-media.com/product/starwars3",
         "priceCurrency": "KRW",
-        "availability": "https://schema.org/Discontinued",
-        "seller": {
-          "@type": "Organization",
-          "name": "20th Century Fox Home Entertainment Korea"
-        }
-      }
+        "price": "22000",
+        "priceValidUntil": "2006-11-03",
+        "availability": "https://schema.org/InStock",
+        "itemCondition": "https://schema.org/NewCondition"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "1250"
+      },
+      "datePublished": "2005-11-03"
     }
     </script>
+
     <style>
+        /* 2005 Era Reset & Typography */
         body {
-            font-family: Helvetica, sans-serif;
-            background-color: #0a0a0a;
-            color: #e5e5e5;
+            font-family: 'Gulim', 'Malgun Gothic', sans-serif; /* Classic Korean Web Fonts */
+            font-size: 12px;
+            color: #333;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            line-height: 1.5;
         }
-        .star-wars-gradient {
-            background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(20,20,20,1) 100%);
+
+        a { text-decoration: none; color: #004080; }
+        a:hover { text-decoration: underline; }
+
+        /* Layout Container */
+        .container {
+            width: 900px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-left: 1px solid #ccc;
+            border-right: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
-        .glow-gold {
-            text-shadow: 0 0 10px rgba(255, 232, 31, 0.7);
+
+        /* Header */
+        header {
+            background: linear-gradient(to bottom, #2b3e50, #1a2530);
+            color: #fff;
+            padding: 15px 20px;
+            border-bottom: 3px solid #cc0000;
+        }
+        .logo { font-size: 24px; font-weight: bold; letter-spacing: -1px; }
+        .nav-bar {
+            background-color: #e0e0e0;
+            padding: 8px 20px;
+            border-bottom: 1px solid #ccc;
+            font-size: 11px;
+        }
+        .breadcrumb { color: #666; margin-bottom: 10px; padding: 10px 20px 0; }
+
+        /* Main Product Area */
+        .product-main {
+            display: flex;
+            padding: 20px;
+            gap: 30px;
+        }
+
+        /* Image Gallery */
+        .gallery {
+            width: 350px;
+            text-align: center;
+        }
+        .main-image {
+            width: 300px;
+            height: auto;
+            border: 1px solid #ddd;
+            padding: 5px;
+            background: #fff;
+            margin-bottom: 10px;
+        }
+        .thumbnails img {
+            width: 60px;
+            height: auto;
+            border: 1px solid #ddd;
+            margin: 2px;
+            cursor: pointer;
+        }
+        .thumbnails img:hover { border-color: #cc0000; }
+
+        /* Product Info */
+        .info {
+            flex: 1;
+        }
+        h1 {
+            font-size: 18px;
+            color: #333;
+            margin: 0 0 10px 0;
+            border-bottom: 2px solid #333;
+            padding-bottom: 5px;
+        }
+        .subtitle {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        /* Price Table Style */
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 12px;
+        }
+        .price-table th {
+            text-align: left;
+            padding: 8px;
+            background-color: #f7f7f7;
+            border-bottom: 1px solid #ddd;
+            width: 100px;
+            color: #555;
+        }
+        .price-table td {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+        .price {
+            font-size: 16px;
+            color: #cc0000;
+            font-weight: bold;
+        }
+
+        /* Actions */
+        .actions {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        .btn-buy {
+            background: linear-gradient(to bottom, #ff9900, #ff6600);
+            border: 1px solid #cc5200;
+            color: white;
+            font-weight: bold;
+            padding: 10px 40px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        .btn-cart {
+            background: linear-gradient(to bottom, #f0f0f0, #d0d0d0);
+            border: 1px solid #999;
+            color: #333;
+            padding: 10px 20px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-right: 5px;
+            border-radius: 3px;
+        }
+
+        /* Tabs */
+        .tabs {
+            margin: 20px;
+            border-top: 2px solid #333;
+        }
+        .tab-buttons {
+            background: #eee;
+            overflow: hidden;
+        }
+        .tab-btn {
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 10px 20px;
+            background-color: #eee;
+            font-family: 'Gulim';
+            font-weight: bold;
+            color: #555;
+            border-right: 1px solid #ccc;
+        }
+        .tab-btn.active {
+            background-color: #fff;
+            color: #cc0000;
+            border-bottom: 1px solid #fff;
         }
         .tab-content {
-            display: none;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-top: none;
+            background: #fff;
+            min-height: 200px;
         }
-        .tab-content.active {
-            display: block;
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #999;
+            padding: 20px;
+            text-align: center;
+            font-size: 11px;
+            margin-top: 20px;
         }
     </style>
 </head>
-<body class="min-h-screen">
+<body>
 
-    <!-- Header Section -->
-    <header class="relative py-12 px-6 text-center border-b border-yellow-500/30 star-wars-gradient">
-        <div class="max-w-4xl mx-auto">
-            <h1 class="text-4xl md:text-6xl font-bold text-yellow-400 mb-4 glow-gold">STAR WARS</h1>
-            <h2 class="text-xl md:text-2xl font-light tracking-widest text-white uppercase">Episode III: Revenge of the Sith</h2>
-            <p class="mt-6 text-gray-400">2-Disc DVD Edition | Released: 2005. 11. 03</p>
+    <div class="container">
+        <header>
+            <div class="logo">Home-Media.com</div>
+        </header>
+        <div class="nav-bar">
+            DVD | VHS | OST | 게임 | 예약판매 | 베스트셀러 | 고객센터
         </div>
-    </header>
 
-    <main class="max-w-6xl mx-auto px-4 py-12">
-        <!-- Media Gallery -->
-        <section class="grid md:grid-cols-2 gap-8 mb-16">
-            <div class="space-y-4">
-                <div class="relative group overflow-hidden rounded-lg shadow-2xl border border-gray-800">
-                    <img id="main-viewer" src="https://i.postimg.cc/63dYB5pT/Front_cover.jpg" alt="DVD Front Cover" class="w-full h-auto transition-transform duration-500 group-hover:scale-105">
-                    <div class="absolute bottom-0 left-0 right-0 p-4 bg-black/60 backdrop-blur-sm">
-                        <p id="image-caption" class="text-sm font-medium">전면 커버 (Front Cover)</p>
-                    </div>
-                </div>
-                <div class="flex gap-4">
-                    <button onclick="updateImage('https://i.postimg.cc/63dYB5pT/Front_cover.jpg', '전면 커버 (Front Cover)')" class="w-24 h-24 rounded border-2 border-yellow-500 overflow-hidden opacity-100 hover:opacity-100 transition">
-                        <img src="https://i.postimg.cc/63dYB5pT/Front_cover.jpg" alt="Thumb 1" class="object-cover w-full h-full">
-                    </button>
-                    <button onclick="updateImage('https://i.postimg.cc/85htTPzp/Back_cover.jpg', '후면 커버 (Back Cover)')" class="w-24 h-24 rounded border-2 border-transparent overflow-hidden opacity-60 hover:opacity-100 transition">
-                        <img src="https://i.postimg.cc/85htTPzp/Back_cover.jpg" alt="Thumb 2" class="object-cover w-full h-full">
-                    </button>
-                </div>
-            </div>
-
-            <!-- Product Summary -->
-            <div class="flex flex-col justify-center">
-                <div class="bg-zinc-900/50 p-8 rounded-2xl border border-zinc-800">
-                    <span class="text-yellow-500 text-sm font-bold tracking-widest uppercase">Collector’s Archive</span>
-                    <h3 class="text-3xl font-bold mt-2 mb-4">시스의 복수 (DVD)</h3>
-                    <ul class="space-y-3 text-gray-300">
-                        <li class="flex justify-between border-b border-zinc-800 pb-2">
-                            <span>출시일</span>
-                            <span class="text-white">2005년 11월 3일</span>
-                        </li>
-                        <li class="flex justify-between border-b border-zinc-800 pb-2">
-                            <span>제작사</span>
-                            <span class="text-white">Lucasfilm Ltd.</span>
-                        </li>
-                        <li class="flex justify-between border-b border-zinc-800 pb-2">
-                            <span>배급사</span>
-                            <span class="text-white">20세기 폭스 홈 엔터테인먼트 코리아</span>
-                        </li>
-                        <li class="flex justify-between border-b border-zinc-800 pb-2">
-                            <span>디스크 구성</span>
-                            <span class="text-white">2-Discs (Dual Layer)</span>
-                        </li>
-                        <li class="flex justify-between border-b border-zinc-800 pb-2">
-                            <span>지역코드</span>
-                            <span class="text-white">3 (NTSC)</span>
-                        </li>
-                    </ul>
-                    <div class="mt-8">
-                        <div class="flex items-center gap-2 mb-4">
-                            <i class="fas fa-compact-disc text-yellow-500"></i>
-                            <span class="text-sm font-semibold">Technical Specs:</span>
-                        </div>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-zinc-800 rounded-full text-xs">Anamorphic 2.35:1</span>
-                            <span class="px-3 py-1 bg-zinc-800 rounded-full text-xs">Dolby Digital 5.1 EX</span>
-                            <span class="px-3 py-1 bg-zinc-800 rounded-full text-xs">English / Thai / Korean Subtitles</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Detailed Tabs -->
-        <section class="mb-16">
-            <div class="flex border-b border-zinc-800 mb-8">
-                <button onclick="showTab('disc1')" id="btn-disc1" class="px-6 py-3 font-bold border-b-2 border-yellow-500 text-yellow-500 transition">Disc 1: The Movie</button>
-                <button onclick="showTab('disc2')" id="btn-disc2" class="px-6 py-3 font-bold border-b-2 border-transparent text-gray-500 hover:text-white transition">Disc 2: Bonus Features</button>
-            </div>
-
-            <!-- Disc 1 Content -->
-            <div id="disc1" class="tab-content active animate-fade-in">
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div class="bg-zinc-900/30 p-6 rounded-xl border border-zinc-800">
-                        <h4 class="text-xl font-bold mb-4 text-white"><i class="fas fa-film mr-2 text-yellow-500"></i>본편 영화</h4>
-                        <p class="text-gray-400 leading-relaxed">
-                            제다이 기사단이 붕괴하고 아나킨 스카이워커가 어둠의 힘에 굴복하여 다스베이더가 되는 과정을 담은 프리퀄 시리즈의 장엄한 피날레입니다. THX 인증을 받은 최상의 디지털 영상과 오디오를 제공합니다.
-                        </p>
-                    </div>
-                    <div class="bg-zinc-900/30 p-6 rounded-xl border border-zinc-800">
-                        <h4 class="text-xl font-bold mb-4 text-white"><i class="fas fa-comment-dots mr-2 text-yellow-500"></i>음성 해설</h4>
-                        <ul class="list-disc list-inside text-gray-400 space-y-2">
-                            <li>조지 루카스 감독의 음성 해설</li>
-                            <li>릭 맥컬럼(제작), 롭 콜먼(애니메이션 감독)의 음성 해설</li>
-                            <li>존 놀, 로저 가옛(VFX 감독)의 음성 해설</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Disc 2 Content -->
-            <div id="disc2" class="tab-content animate-fade-in">
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="bg-zinc-900/30 p-6 rounded-xl border border-zinc-800">
-                        <h5 class="font-bold text-yellow-500 mb-3">다큐멘터리</h5>
-                        <ul class="text-sm text-gray-400 space-y-2">
-                            <li>• Within a Minute (심층 제작 과정)</li>
-                            <li>• The Chosen One (아나킨의 변화)</li>
-                            <li>• It’s All for Real (스턴트 제작)</li>
-                        </ul>
-                    </div>
-                    <div class="bg-zinc-900/30 p-6 rounded-xl border border-zinc-800">
-                        <h5 class="font-bold text-yellow-500 mb-3">삭제 장면</h5>
-                        <ul class="text-sm text-gray-400 space-y-2">
-                            <li>• 조지 루카스 및 릭 맥컬럼의 소개가 포함된 6개의 미공개 장면</li>
-                        </ul>
-                    </div>
-                    <div class="bg-zinc-900/30 p-6 rounded-xl border border-zinc-800">
-                        <h5 class="font-bold text-yellow-500 mb-3">프로모션 자료</h5>
-                        <ul class="text-sm text-gray-400 space-y-2">
-                            <li>• 뮤직 비디오 “A Hero Falls”</li>
-                            <li>• 티저 및 극장 예고편</li>
-                            <li>• 15개의 TV 광고 (TV Spots)</li>
-                            <li>• 포토 갤러리 및 웹 링크</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Synopsis -->
-        <section class="bg-yellow-500/5 p-8 rounded-3xl border border-yellow-500/10">
-            <h4 class="text-2xl font-bold mb-6 text-center">SYNOPSIS</h4>
-            <p class="max-w-3xl mx-auto text-center text-gray-300 leading-loose">
-                “클론 전쟁의 막바지, 제다이 기사단은 시스 군주 팔파틴의 거대한 음모에 직면한다. 아나킨 스카이워커는 사랑하는 이를 구하기 위해 금지된 힘의 유혹에 빠져들고, 마침내 은하계의 운명을 바꿀 비극적인 선택을 하게 된다. 제다이의 몰락과 제국의 탄생, 그 위대한 대서사시의 마침표!”
-            </p>
-        </section>
-    </main>
-
-    <footer class="mt-20 py-10 px-6 border-t border-zinc-800 text-center text-zinc-500 text-sm">
-        <p>&copy; 2005 Lucasfilm Ltd. & TM. All Rights Reserved.</p>
-        <p>Distributed by 20th Century Fox Home Entertainment Korea.</p>
-        <div class="mt-4 flex justify-center gap-6">
-            <i class="fab fa-dvd text-2xl"></i>
-            <span class="font-bold tracking-tighter">THX CERTIFIED</span>
-            <span class="font-bold tracking-tighter">DOLBY DIGITAL EX</span>
+        <div class="breadcrumb">
+            홈 > DVD > SF/판타지 > 스타워즈 시리즈
         </div>
-    </footer>
+
+        <main class="product-main">
+            <div class="gallery">
+                <img id="mainImg" class="main-image" src="https://images.45cat.com/f/dv/star-wars-episode-iii-revenge-of-the-sith-31-dv.jpg" alt="스타워즈 에피소드 3 DVD 커버">
+                <div class="thumbnails">
+                    <img src="https://images.45cat.com/f/dv/star-wars-episode-iii-revenge-of-the-sith-31-dv.jpg" onclick="changeImage(this.src)" alt="앞면">
+                    <img src="https://images.45cat.com/f/dv/star-wars-episode-iii-revenge-of-the-sith-20th-century-fox-10-dv.jpg" onclick="changeImage(this.src)" alt="디스크">
+                </div>
+            </div>
+
+            <div class="info">
+                <h1>스타워즈 에피소드 3: 시스의 복수 (2-Disc)</h1>
+                <div class="subtitle">Star Wars: Episode III – Revenge of the Sith</div>
+                
+                <table class="price-table">
+                    <tr>
+                        <th>소비자가</th>
+                        <td style="text-decoration: line-through;">25,300원</td>
+                    </tr>
+                    <tr>
+                        <th>판매가</th>
+                        <td><span class="price">22,000원</span> (13% 할인)</td>
+                    </tr>
+                    <tr>
+                        <th>마일리지</th>
+                        <td>220점 적립</td>
+                    </tr>
+                    <tr>
+                        <th>제작사</th>
+                        <td>20세기 폭스</td>
+                    </tr>
+                    <tr>
+                        <th>출시일</th>
+                        <td>2005년 11월 3일</td>
+                    </tr>
+                    <tr>
+                        <th>배송비</th>
+                        <td>2,500원 (3만원 이상 무료배송)</td>
+                    </tr>
+                    <tr>
+                        <th>상태</th>
+                        <td style="color: blue; font-weight: bold;">판매중 (당일발송)</td>
+                    </tr>
+                </table>
+
+                <div class="actions">
+                    <select style="padding: 5px; margin-bottom: 10px;">
+                        <option>수량 : 1개</option>
+                        <option>수량 : 2개</option>
+                    </select><br>
+                    <button class="btn-cart" onclick="addToCart()">장바구니 담기</button>
+                    <button class="btn-buy" onclick="buyNow()">바로 구매하기</button>
+                </div>
+            </div>
+        </main>
+
+        <div class="tabs">
+            <div class="tab-buttons">
+                <button class="tab-btn active" onclick="openTab('desc')">상품상세정보</button>
+                <button class="tab-btn" onclick="openTab('specs')">상세사양 (Spec)</button>
+                <button class="tab-btn" onclick="openTab('review')">회원리뷰 (12)</button>
+            </div>
+
+            <div id="desc" class="tab-content">
+                <h3>[작품설명]</h3>
+                <p><strong>전설은 끝났다! 《스타워즈》 신화의 마지막 퍼즐이 맞춰진다!</strong></p>
+                <p>전쟁! 공화국은 무너지고, 시스 군주는 제다이 기사단을 말살하려는 음모를 꾸민다. 아나킨 스카이워커는 사랑하는 파드메를 죽음에서 구하기 위해 포스의 어두운 면에 유혹을 느끼게 되고, 스승인 오비완 케노비와의 피할 수 없는 대결을 펼치게 되는데...</p>
+                <br>
+                <ul>
+                    <li>2005년 최고의 흥행 대작, 드디어 DVD 출시!</li>
+                    <li>영화 역사상 가장 슬프고도 장엄한 결말.</li>
+                    <li>조지 루카스 감독 및 제작진의 음성 해설 포함.</li>
+                </ul>
+            </div>
+
+            <div id="specs" class="tab-content" style="display:none;">
+                <h3>[DVD 사양]</h3>
+                <ul>
+                    <li><strong>화면비율:</strong> 2.35:1 Anamorphic Widescreen</li>
+                    <li><strong>오디오:</strong> Dolby Digital 5.1 EX (영어), Dolby Surround 2.0 (스페인어/포르투갈어)</li>
+                    <li><strong>자막:</strong> 한국어, 영어, 스페인어, 포르투갈어, 북경어, 태국어, 인도네시아어</li>
+                    <li><strong>러닝타임:</strong> 140분</li>
+                    <li><strong>디스크 수:</strong> 2 Disc Set</li>
+                    <li><strong>지역코드:</strong> 3 (한국/동남아)</li>
+                </ul>
+                <h3>[부가영상 (Special Features)]</h3>
+                <ul>
+                    <li>Within A Minute: The Making Of Episode III (다큐멘터리)</li>
+                    <li>The Chosen One (아나킨 스카이워커 특집)</li>
+                    <li>삭제 장면 (Deleted Scenes)</li>
+                    <li>웹 다큐멘터리 (Web Documentaries)</li>
+                </ul>
+            </div>
+
+            <div id="review" class="tab-content" style="display:none;">
+                <p><strong>김*수 (2005-11-04):</strong> ★★★★★ 최고의 화질과 사운드입니다. 소장가치 100%!</p>
+                <hr style="border:0; border-top:1px dashed #ccc;">
+                <p><strong>이*영 (2005-11-05):</strong> ★★★★★ 극장에서의 감동을 다시 한번 느꼈습니다.</p>
+                <hr style="border:0; border-top:1px dashed #ccc;">
+                <p><strong>박*철 (2005-11-06):</strong> ★★★★☆ 부가영상이 정말 풍부하네요.</p>
+            </div>
+        </div>
+
+        <footer>
+            상호: Home-Media Corp | 대표자: 홍길동 | 사업자등록번호: 123-45-67890<br>
+            주소: 서울특별시 강남구 역삼동 스타빌딩 3층<br>
+            Copyright © 2005 Home-Media.com All rights reserved.
+        </footer>
+    </div>
 
     <script>
-        // Image Gallery Logic
-        function updateImage(url, caption) {
-            const viewer = document.getElementById('main-viewer');
-            const captionEl = document.getElementById('image-caption');
-            const buttons = document.querySelectorAll('button[onclick^="updateImage"]');
-            
-            viewer.src = url;
-            captionEl.innerText = caption;
-
-            buttons.forEach(btn => {
-                if (btn.querySelector('img').src === url) {
-                    btn.classList.add('border-yellow-500', 'opacity-100');
-                    btn.classList.remove('border-transparent', 'opacity-60');
-                } else {
-                    btn.classList.remove('border-yellow-500', 'opacity-100');
-                    btn.classList.add('border-transparent', 'opacity-60');
-                }
-            });
+        // Image Switcher Logic
+        function changeImage(src) {
+            document.getElementById('mainImg').src = src;
         }
 
-        // Tab Switch Logic
-        function showTab(tabId) {
-            const tabs = document.querySelectorAll('.tab-content');
-            const buttons = [document.getElementById('btn-disc1'), document.getElementById('btn-disc2')];
+        // Tab Switching Logic
+        function openTab(tabName) {
+            var i;
+            var x = document.getElementsByClassName("tab-content");
+            var buttons = document.getElementsByClassName("tab-btn");
             
-            tabs.forEach(tab => {
-                tab.classList.remove('active');
-            });
-            document.getElementById(tabId).classList.add('active');
+            // Hide all tab content
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            
+            // Remove active class from buttons
+            for (i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove("active");
+            }
+            
+            // Show current tab and add active class
+            document.getElementById(tabName).style.display = "block";
+            event.currentTarget.classList.add("active");
+        }
 
-            buttons.forEach(btn => {
-                if (btn.id === 'btn-' + tabId) {
-                    btn.classList.add('border-yellow-500', 'text-yellow-500');
-                    btn.classList.remove('border-transparent', 'text-gray-500');
-                } else {
-                    btn.classList.remove('border-yellow-500', 'text-yellow-500');
-                    btn.classList.add('border-transparent', 'text-gray-500');
-                }
-            });
+        // Dummy Cart Logic
+        function addToCart() {
+            alert("장바구니에 상품이 담겼습니다.");
+        }
+
+        function buyNow() {
+            alert("결제 페이지로 이동합니다.");
         }
     </script>
 </body>
