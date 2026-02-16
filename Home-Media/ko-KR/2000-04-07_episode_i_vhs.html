@@ -2,268 +2,264 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>스타워즈 에피소드 1: 보이지 않는 위험 VHS (2000)</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Home-Media.com: 스타워즈 에피소드 1 (VHS)</title>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Product",
+      "name": "스타워즈 에피소드 1: 보이지 않는 위험 (VHS)",
+      "image": "https://example.com/starwars-ep1-vhs.jpg",
+      "description": "제다이 기사 콰이곤 진과 오비완 케노비의 모험을 다룬 스타워즈 시리즈의 첫 번째 에피소드. 한국어 자막 포함 비디오.",
+      "sku": "VHS-SW-EP1-KR",
+      "mpn": "20CF-2000-KR",
+      "brand": {
+        "@type": "Brand",
+        "name": "20th Century Fox Home Entertainment"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "http://www.home-media.com/kr/product/starwars-ep1",
+        "priceCurrency": "KRW",
+        "price": "22000",
+        "priceValidUntil": "2000-12-31",
+        "availability": "https://schema.org/InStock",
+        "itemCondition": "https://schema.org/NewCondition"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "124"
+      },
+      "releaseDate": "2000-04-07"
+    }
+    </script>
+
     <style>
-        :root {
-            --vhs-black: #1a1a1a;
-            --fox-gold: #fcc200;
-            --starwars-yellow: #FFE81F;
-        }
-
         body {
-            background-color: #050505;
+            background-color: #000000; /* Black background common in movie sites */
+            color: #CCCCCC;
+            font-family: "Gulim", "Dotum", Arial, sans-serif; /* Classic Korean web fonts */
+            font-size: 12px;
+            margin: 0;
+            padding: 0;
+            background-image: url('http://example.com/star-background.gif'); /* Placeholder for star field */
+        }
+
+        a:link { color: #FFFF00; text-decoration: none; } /* Star Wars Yellow */
+        a:visited { color: #CC9900; text-decoration: none; }
+        a:hover { color: #FF0000; text-decoration: underline; }
+
+        .container {
+            width: 760px; /* Standard resolution width for 800x600 monitors */
+            margin: 0 auto;
+            background-color: #1a1a1a;
+            border: 1px solid #333;
+        }
+
+        .header {
+            background-color: #000000;
+            text-align: center;
+            padding: 10px;
+            border-bottom: 2px solid #FFFF00;
+        }
+
+        .nav-bar {
+            background-color: #333333;
+            color: #FFFFFF;
+            padding: 5px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .product-title {
+            font-size: 18px;
+            color: #FFFF00;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .price-tag {
+            font-size: 16px;
+            color: #FF3333;
+            font-weight: bold;
+        }
+
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+        }
+        
+        .specs-table td {
+            border: 1px solid #555;
+            padding: 5px;
+        }
+
+        .specs-header {
+            background-color: #222;
+            color: #FFF;
+            width: 30%;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 11px;
+            padding: 20px;
+            border-top: 1px solid #555;
+            color: #666;
+        }
+        
+        /* Simulating the <blink> tag or flashy inputs */
+        .new-badge {
+            color: red;
+            font-weight: bold;
+            font-style: italic;
+        }
+        
+        button {
+            background-color: #000099;
             color: white;
-            font-family: Helvetica, sans-serif;
-            overflow-x: hidden;
-        }
-
-        .retro-text {
-            text-shadow: 3px 3px 0px rgba(0,0,0,0.8);
-        }
-
-        /* VHS Scanline Effect */
-        .vcr-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
-                        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-            background-size: 100% 4px, 3px 100%;
-            pointer-events: none;
-            z-index: 100;
-            opacity: 0.3;
-        }
-
-        .vhs-container {
-            perspective: 1000px;
-        }
-
-        .vhs-case {
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            transform-style: preserve-3d;
-            box-shadow: 20px 20px 50px rgba(0,0,0,0.8);
-        }
-
-        .vhs-case:hover {
-            transform: rotateY(-10deg) rotateX(5deg);
-        }
-
-        .glow-button {
-            background: linear-gradient(45deg, #fcc200, #ff8c00);
-            box-shadow: 0 0 15px rgba(252, 194, 0, 0.4);
-            transition: 0.3s;
-        }
-
-        .glow-button:hover {
-            box-shadow: 0 0 25px rgba(252, 194, 0, 0.7);
-            transform: scale(1.05);
-        }
-
-        /* VHS Tracking noise animation */
-        @keyframes tracking {
-            0% { transform: translateY(-100%); }
-            100% { transform: translateY(100%); }
-        }
-        .noise {
-            position: absolute;
-            width: 100%; height: 20px;
-            background: rgba(255,255,255,0.1);
-            filter: blur(5px);
-            animation: tracking 8s linear infinite;
-        }
-
-        .spec-box {
-            border: 2px solid var(--fox-gold);
-            background: rgba(20, 20, 20, 0.9);
-            position: relative;
-        }
-
-        .spec-box::before {
-            content: "VHS HI-FI STEREO";
-            position: absolute;
-            top: -12px;
-            left: 20px;
-            background: #000;
-            padding: 0 10px;
-            font-size: 0.7rem;
-            color: var(--fox-gold);
+            border: 2px outset #0000CC;
+            cursor: hand; /* IE 5.5 specific cursor */
+            padding: 5px 15px;
             font-weight: bold;
         }
     </style>
-    
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "VideoObject",
-      "name": "스타워즈 에피소드 1: 보이지 않는 위험 (VHS 한국판)",
-      "description": "20세기 폭스 홈 엔터테인먼트 코리아 정식 발매 VHS 비디오 테이프 정보",
-      "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/ko/c/cc/Star_Wars_Episode_I_The_Phantom_Menace_poster.jpg",
-      "uploadDate": "2000-04-07",
-      "duration": "PT2H16M",
-      "contentUrl": "#",
-      "publisher": {
-        "@type": "Organization",
-        "name": "20세기 폭스 홈 엔터테인먼트 코리아",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://upload.wikimedia.org/wikipedia/en/thumb/5/53/20th_Century_Fox_Home_Entertainment_logo.svg/1200px-20th_Century_Fox_Home_Entertainment_logo.svg.png"
-        }
-      },
-      "productionCompany": {
-        "@type": "Organization",
-        "name": "루카스필름 (Lucasfilm Ltd.)"
-      },
-      "director": {
-        "@type": "Person",
-        "name": "조지 루카스"
-      }
-    }
-    </script>
 </head>
-<body class="p-4 md:p-10 flex flex-col items-center">
-    <div class="vcr-overlay"></div>
-    <div class="noise"></div>
+<body>
 
-    <!-- Header Section -->
-    <header class="text-center mb-12 z-10">
-        <div class="inline-block border-b-2 border-yellow-500 mb-2">
-            <p class="text-sm tracking-widest text-yellow-500 font-bold">20th CENTURY FOX HOME ENTERTAINMENT KOREA PRESENTS</p>
-        </div>
-        <h1 class="retro-text text-4xl md:text-6xl text-white mt-4 italic">STAR WARS</h1>
-        <h2 class="retro-text text-2xl md:text-4xl text-yellow-400">에피소드 1: 보이지 않는 위험</h2>
-        <p class="mt-4 text-gray-400 font-bold italic underline decoration-yellow-600">2000. 04. 07 비디오 대여점 전국 출시!</p>
-    </header>
-
-    <main class="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-start z-10">
-        
-        <!-- VHS Visualization Container -->
-        <div class="vhs-container flex justify-center">
-            <div id="vhs-case" class="vhs-case relative w-64 md:w-80 h-96 md:h-[500px] bg-gray-900 border-r-4 border-black">
-                <!-- Front Cover Simulation -->
-                <div class="absolute inset-0 bg-cover bg-center rounded-sm overflow-hidden border-2 border-gray-700" 
-                     style="background-image: url('https://images.unsplash.com/photo-1594909122845-11baa439b7bf?q=80&w=2070&auto=format&fit=crop');">
-                    <div class="absolute inset-0 bg-black/40"></div>
-                    <div class="absolute inset-0 p-4 flex flex-col justify-between border-8 border-transparent">
-                        <div class="flex justify-between items-start">
-                            <div class="bg-yellow-500 text-black px-2 py-1 text-[10px] font-bold">전체 관람가</div>
-                            <div class="text-[10px] font-bold text-white text-right">HI-FI STEREO<br>DIGITALLY MASTERED</div>
-                        </div>
-                        <div class="text-center">
-                            <h3 class="text-yellow-400 font-black text-2xl leading-tight mb-2 drop-shadow-lg">스타워즈<br><span class="text-lg">에피소드 1</span></h3>
-                            <p class="text-[10px] text-gray-200">보이지 않는 위험</p>
-                        </div>
-                        <div class="flex justify-between items-end">
-                            <div class="w-12 h-8 bg-white/20 rounded-sm flex items-center justify-center">
-                                <span class="text-[8px]">FOX HOME</span>
-                            </div>
-                            <p class="text-[8px] text-gray-400">Lucasfilm Ltd.</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Plastic reflection -->
-                <div class="absolute inset-0 pointer-events-none bg-gradient-to-tr from-transparent via-white/5 to-white/10"></div>
-            </div>
-        </div>
-
-        <!-- Release Details -->
-        <div class="flex flex-col gap-6">
-            <section class="spec-box p-6 rounded-lg">
-                <h3 class="text-xl font-bold mb-4 text-yellow-500 border-b border-gray-700 pb-2">VHS 제품 정보</h3>
-                <ul class="space-y-3 text-sm md:text-base">
-                    <li class="flex justify-between"><span class="text-gray-400">출시일</span> <span class="font-bold">2000년 4월 7일</span></li>
-                    <li class="flex justify-between"><span class="text-gray-400">판매원</span> <span class="font-bold text-blue-400">20세기 폭스 홈 엔터테인먼트 코리아</span></li>
-                    <li class="flex justify-between"><span class="text-gray-400">상영시간</span> <span class="font-bold">136분</span></li>
-                    <li class="flex justify-between"><span class="text-gray-400">구성</span> <span class="font-bold">자막판 / 더빙판 (각 1팩)</span></li>
-                    <li class="flex justify-between"><span class="text-gray-400">화면비율</span> <span class="font-bold">4:3 Pan & Scan</span></li>
-                    <li class="flex justify-between"><span class="text-gray-400">음성</span> <span class="font-bold">Hi-Fi Stereo / Surround</span></li>
-                </ul>
-            </section>
-
-            <section class="bg-gray-800/50 p-6 rounded-lg border-l-4 border-yellow-500">
-                <h3 class="text-xl font-bold mb-4 italic">“은하계의 새로운 전설이 시작된다!”</h3>
-                <p class="text-gray-300 leading-relaxed text-sm">
-                    평화로운 나부 행성이 무역연합의 함대에 의해 봉쇄되자, 아미달라 여왕은 제다이 기사 콰이곤 진과 오비완 케노비의 도움을 받아 탈출한다. 
-                    사막의 행성 타투인에 불시착한 그들은 강력한 포스를 지닌 어린 노예 소년 아나킨 스카이워커를 만나게 되는데...
-                </p>
-            </section>
-
-            <div class="flex gap-4">
-                <button onclick="playVCR()" class="glow-button flex-1 py-4 rounded-full font-black text-black tracking-tighter text-lg uppercase">
-                    ▶ 비디오 재생
-                </button>
-                <button class="bg-gray-700 hover:bg-gray-600 px-6 py-4 rounded-full font-bold transition">
-                    소장 정보
-                </button>
-            </div>
-        </div>
-    </main>
-
-    <!-- Retro Footer -->
-    <footer class="mt-20 w-full max-w-6xl border-t border-gray-800 pt-10 pb-20 text-center">
-        <div class="flex justify-center mb-6 opacity-60 grayscale hover:grayscale-0 transition">
-             <!-- Placeholder for logos -->
-             <div class="flex gap-8 items-center text-xs font-bold text-gray-500">
-                <span>LUCASFILM</span>
-                <span class="text-2xl font-serif">20th CENTURY FOX</span>
-                <span>DOLBY SURROUND</span>
-             </div>
-        </div>
-        <p class="text-[10px] text-gray-500 leading-loose">
-            본 웹페이지는 2000년 당시의 분위기를 재현한 팬 메이드 페이지입니다.<br>
-            &copy; 2000 Lucasfilm Ltd. & TM. All Rights Reserved. Used Under Authorization.<br>
-            Distributed by 20th Century Fox Home Entertainment Korea.
-        </p>
-    </footer>
-
-    <!-- Overlay UI for "Playback" -->
-    <div id="vcr-screen" class="fixed inset-0 bg-black z-[200] hidden flex-col items-center justify-center">
-        <div class="w-full h-full relative overflow-hidden flex items-center justify-center">
-             <div id="playback-text" class="absolute top-10 left-10 text-green-500 font-mono text-4xl hidden">
-                PLAY ▶<br>00:00:01
-             </div>
-             <div class="text-center">
-                <p class="text-yellow-500 font-black text-3xl animate-pulse">화면 조정 중...</p>
-                <p class="text-gray-500 mt-4">비디오 헤드를 청소해 주십시오.</p>
-             </div>
-             <!-- Noise layers -->
-             <div class="absolute inset-0 opacity-20 pointer-events-none" style="background-image: url('https://media.giphy.com/media/oEI9uWUicKgS2UzYyN/giphy.gif'); background-size: cover;"></div>
-        </div>
-        <button onclick="stopVCR()" class="absolute bottom-10 bg-red-600 px-8 py-2 rounded text-white font-bold">STOP</button>
+<div class="container">
+    <div class="header">
+        <h1>HOME-MEDIA.COM</h1>
+        <marquee scrollamount="5" scrolldelay="100" bgcolor="#000000" style="color: #FFFF00; width: 100%;">
+            ★★★ 신작 입고! [스타워즈 에피소드 1] 비디오 출시! 절찬 판매중! ★★★
+        </marquee>
     </div>
 
-    <script>
-        function playVCR() {
-            const screen = document.getElementById('vcr-screen');
-            const text = document.getElementById('playback-text');
-            screen.classList.remove('hidden');
-            screen.classList.add('flex');
-            
-            setTimeout(() => {
-                text.classList.remove('hidden');
-            }, 1000);
-        }
+    <div class="nav-bar">
+        [ <a href="#">홈으로</a> ] | 
+        [ <a href="#">비디오 신작</a> ] | 
+        [ <a href="#">DVD 타이틀</a> ] | 
+        [ <a href="#">장바구니</a> ] | 
+        [ <a href="#">고객센터</a> ]
+    </div>
 
-        function stopVCR() {
-            const screen = document.getElementById('vcr-screen');
-            screen.classList.add('hidden');
-            screen.classList.remove('flex');
-        }
+    <table width="100%" cellpadding="10" border="0">
+        <tr>
+            <td width="150" valign="top" bgcolor="#111111">
+                <br>
+                <b>카테고리</b><br>
+                <hr size="1" color="#555">
+                • <a href="#">액션 / SF</a><br>
+                • <a href="#">드라마</a><br>
+                • <a href="#">공포 / 스릴러</a><br>
+                • <a href="#">애니메이션</a><br>
+                <br>
+                <b>검색</b><br>
+                <input type="text" size="10"> <input type="button" value="Go">
+            </td>
 
-        // Add subtle mouse tracking to the VHS case
-        const vhsCase = document.getElementById('vhs-case');
-        document.addEventListener('mousemove', (e) => {
-            if (window.innerWidth > 1024) {
-                const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
-                const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
-                vhsCase.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
-            }
-        });
+            <td valign="top">
+                <span class="new-badge">NEW!</span>
+                <div class="product-title">스타워즈 에피소드 1: 보이지 않는 위험 (VHS)</div>
+                <hr size="1" color="#FFFF00">
+                
+                <table width="100%" border="0">
+                    <tr>
+                        <td width="200" align="center" valign="top">
+                            <div style="width: 160px; height: 260px; background-color: #333; border: 2px solid #555; display: flex; align-items: center; justify-content: center;">
+                                <span style="color: #777;">[VHS Cover Image]</span>
+                            </div>
+                            <br>
+                            <font size="1">이미지를 클릭하면 확대됩니다.</font>
+                        </td>
+                        <td valign="top">
+                            <b>제작사:</b> 20세기 폭스 홈 엔터테인먼트<br>
+                            <b>출시일:</b> 2000년 4월 7일<br>
+                            <b>관람등급:</b> 전체 관람가<br>
+                            <b>자막:</b> 한국어 자막<br>
+                            <b>재생시간:</b> 136분<br>
+                            <br>
+                            <span class="price-tag">판매가: 22,000원</span> (적립금: 220원)<br>
+                            <br>
+                            
+                            <form name="orderForm">
+                                수량: 
+                                <select name="qty" id="qty">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                                <br><br>
+                                <button type="button" onclick="addToCart()">장바구니 담기</button>
+                                <button type="button" onclick="alert('즉시 구매 페이지로 이동합니다.');">즉시 구매</button>
+                            </form>
+                        </td>
+                    </tr>
+                </table>
 
-        document.addEventListener('mouseleave', () => {
-            vhsCase.style.transform = `rotateY(0deg) rotateX(0deg)`;
-        });
-    </script>
+                <br>
+                <b>[줄거리]</b><br>
+                <table width="100%" bgcolor="#222222" cellpadding="10">
+                    <tr>
+                        <td>
+                            은하계의 평화가 위협받고 있다. 무역 항로를 둘러싼 분쟁으로 인해 무역 연합은 나부 행성을 봉쇄한다. 은하 공화국의 의장은 이 분쟁을 해결하기 위해 두 명의 제다이 기사, 콰이곤 진과 오비완 케노비를 파견한다.<br><br>그들은 타투인 행성에서 강력한 포스를 지닌 소년 ‘아나킨 스카이워커’를 만나게 되고, 어둠 속에 숨어있던 시스의 존재가 드러나는데...
+                        </td>
+                    </tr>
+                </table>
+
+                <br>
+                <b>[상품 상세 정보]</b>
+                <table class="specs-table">
+                    <tr>
+                        <td class="specs-header">비디오 포맷</td>
+                        <td>VHS (NTSC)</td>
+                    </tr>
+                    <tr>
+                        <td class="specs-header">오디오</td>
+                        <td>Hi-Fi Stereo / Dolby Surround</td>
+                    </tr>
+                    <tr>
+                        <td class="specs-header">화면비</td>
+                        <td>Pan & Scan (4:3)</td>
+                    </tr>
+                    <tr>
+                        <td class="specs-header">배송비</td>
+                        <td>2,500원 (3만원 이상 구매시 무료)</td>
+                    </tr>
+                </table>
+
+            </td>
+        </tr>
+    </table>
+
+    <div class="footer">
+        Copyright &copy; 1999-2000 Home-Media.com Co., Ltd. All rights reserved.<br>
+        서울시 강남구 역삼동 123-45 | 고객센터: 02-123-4567<br>
+        <br>
+        <font color="#333333">Best viewed with Internet Explorer 5.0 at 800x600 resolution.</font>
+    </div>
+</div>
+
+<script type="text/javascript">
+    // 3. JavaScript (Simple, late-90s style logic)
+    function addToCart() {
+        var quantity = document.getElementById('qty').value;
+        var productName = "스타워즈 에피소드 1 (VHS)";
+        
+        // Classic alert confirmation
+        alert("상품명: " + productName + "\n수량: " + quantity + "개\n\n장바구니에 성공적으로 담겼습니다!");
+        
+        // Simulating a status bar update (very common in 90s)
+        window.status = "장바구니에 상품이 추가되었습니다.";
+        return false;
+    }
+
+    // Display current date at the bottom of the document (common feature)
+    var now = new Date();
+    console.log("Page loaded on: " + now);
+</script>
+
 </body>
 </html>
