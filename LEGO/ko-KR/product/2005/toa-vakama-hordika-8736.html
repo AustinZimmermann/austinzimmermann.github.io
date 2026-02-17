@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>LEGO.com 바이오니클® : 제품 : 토아 호디카 : 8736</title>
+    <meta name="description" content="자신의 야수 본능과 싸우는 토아 바카마 호디카! 로투카 스피너 발사 기능 포함.">
+    
+    <style>
+        /* 기본 리셋 및 폰트 설정 (Verdana는 2000년대 중반 웹의 표준이었습니다) */
+        body {
+            background-color: #0d0d0d;
+            background-image: linear-gradient(to bottom, #1a1a1a 0%, #000000 100%);
+            color: #cccccc;
+            font-family: sans-serif;
+            font-size: 11px;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* 메인 컨테이너 - 당시 모니터 해상도(800x600 ~ 1024x768) 고려하여 폭 고정 */
+        #container {
+            width: 760px;
+            background-color: #000000;
+            border-left: 1px solid #333;
+            border-right: 1px solid #333;
+            min-height: 100vh;
+        }
+
+        /* 헤더 섹션 */
+        header {
+            background-color: #cc0000; /* LEGO Red */
+            height: 45px;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            border-bottom: 3px solid #ffcc00;
+        }
+
+        .lego-logo {
+            background-color: #ff0000;
+            color: white;
+            font-weight: bold;
+            font-style: italic;
+            padding: 5px;
+            border: 2px solid white;
+            font-size: 16px;
+            margin-right: 15px;
+        }
+
+        .bionicle-bar {
+            background: url('https://upload.wikimedia.org/wikipedia/en/thumb/8/8c/Bionicle_logo.svg/300px-Bionicle_logo.svg.png') no-repeat left center;
+            background-size: contain;
+            height: 40px;
+            width: 150px;
+            filter: drop-shadow(0px 0px 5px #ff0000);
+        }
+
+        /* 네비게이션 (Breadcrumbs) */
+        .breadcrumbs {
+            background-color: #222;
+            padding: 5px 20px;
+            border-bottom: 1px solid #444;
+            color: #888;
+        }
+        .breadcrumbs a { color: #aaa; text-decoration: none; }
+        .breadcrumbs a:hover { text-decoration: underline; color: #fff; }
+
+        /* 제품 레이아웃 */
+        .product-area {
+            display: flex;
+            padding: 20px;
+            background-image: radial-gradient(circle at center, #2a0a0a 0%, #000000 80%);
+        }
+
+        .left-col {
+            width: 300px;
+            text-align: center;
+        }
+
+        .product-img {
+            border: 2px solid #555;
+            padding: 5px;
+            background: #000;
+            width: 280px;
+            height: auto;
+        }
+
+        .right-col {
+            width: 420px;
+            padding-left: 20px;
+        }
+
+        h1 {
+            font-size: 18px;
+            color: #ff3333;
+            text-transform: uppercase;
+            border-bottom: 2px solid #555;
+            padding-bottom: 5px;
+            margin-top: 0;
+            letter-spacing: 1px;
+        }
+
+        .product-meta {
+            font-size: 10px;
+            color: #888;
+            margin-bottom: 15px;
+        }
+
+        /* 2000년대 스타일 탭 메뉴 */
+        .tab-menu {
+            margin-top: 20px;
+            border-bottom: 1px solid #666;
+            height: 25px;
+        }
+        
+        .tab-btn {
+            background-color: #333;
+            border: 1px solid #666;
+            border-bottom: none;
+            color: #ccc;
+            padding: 5px 15px;
+            cursor: pointer;
+            font-size: 11px;
+            margin-right: 2px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+
+        .tab-btn.active {
+            background-color: #8b0000; /* Vakama Red */
+            color: white;
+            font-weight: bold;
+            border-color: #ff3333;
+        }
+
+        .tab-content {
+            background-color: #1a0505;
+            border: 1px solid #666;
+            border-top: none;
+            padding: 15px;
+            min-height: 150px;
+            line-height: 1.6;
+        }
+
+        .hidden { display: none; }
+
+        /* 구매 버튼 (입체감 강조) */
+        .buy-box {
+            margin-top: 20px;
+            background-color: #222;
+            border: 2px outset #444;
+            padding: 10px;
+            text-align: right;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price {
+            font-size: 14px;
+            font-weight: bold;
+            color: #ffcc00;
+        }
+
+        .btn-cart {
+            background-color: #cc6600;
+            border: 2px outset #ff9933;
+            color: white;
+            font-weight: bold;
+            padding: 5px 20px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-family: Verdana, sans-serif;
+        }
+
+        .btn-cart:active { border-style: inset; }
+
+        /* 카노카 클럽 배너 */
+        .kanoka-club {
+            margin-top: 20px;
+            background-color: #003366;
+            border: 1px solid #0066cc;
+            padding: 10px;
+            text-align: center;
+            font-size: 10px;
+            color: #66ccff;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 10px;
+            color: #555;
+            border-top: 1px solid #333;
+            margin-top: 30px;
+        }
+
+        /* 3D 효과 텍스트 */
+        .hordika-logo {
+            font-family: Impact, sans-serif;
+            font-size: 24px;
+            color: #000;
+            -webkit-text-stroke: 1px #486851; /* Green glow for Hordika venom */
+            text-shadow: 2px 2px 0px #486851;
+            margin-bottom: 10px;
+            display: block;
+        }
+    </style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Product",
+      "name": "토아 바카마 호디카",
+      "image": "https://www.lego.com/cdn/product-assets/product.img.pri/8736_prod.jpg",
+      "description": "반은 토아, 반은 야수! 비소락의 독에 감염된 바카마는 이제 자신의 야수적 본능과 싸워야 합니다. 로투카 스피너 발사 기능 포함.",
+      "brand": {
+        "@type": "Brand",
+        "name": "LEGO"
+      },
+      "sku": "8736",
+      "releaseDate": "2005-06-01",
+      "offers": {
+        "@type": "Offer",
+        "url": "https://www.lego.com/ko-kr/product/toa-vakama-hordika-8736",
+        "priceCurrency": "KRW",
+        "price": "14000",
+        "availability": "https://schema.org/InStock",
+        "itemCondition": "https://schema.org/NewCondition"
+      }
+    }
+    </script>
+</head>
+<body>
+
+<div id="container">
+    <header>
+        <div class="lego-logo">LEGO</div>
+        <div class="bionicle-bar" title="BIONICLE"></div>
+    </header>
+
+    <div class="breadcrumbs">
+        <a href="#">홈</a> &gt; <a href="#">제품</a> &gt; <a href="#">바이오니클®</a> &gt; <a href="#">토아 호디카</a> &gt; 8736 바카마
+    </div>
+
+    <div class="product-area">
+        <div class="left-col">
+            <img src="https://www.lego.com/cdn/product-assets/product.img.pri/8736_prod.jpg" alt="8736 Toa Vakama Hordika" class="product-img">
+            <div style="margin-top:10px; color:#ff3333; font-weight:bold;">
+                ★ KANOKA 클럽 포인트 포함
+            </div>
+        </div>
+
+        <div class="right-col">
+            <span class="hordika-logo">HORDIKA</span>
+            <h1>8736 토아 바카마 호디카</h1>
+            
+            <div class="product-meta">
+                제품 번호: 8736 | 연령: 7-16 | 부품수: 48
+            </div>
+
+            <div class="tab-menu">
+                <button class="tab-btn active" onclick="switchTab('desc')">제품 설명</button>
+                <button class="tab-btn" onclick="switchTab('stats')">능력치</button>
+                <button class="tab-btn" onclick="switchTab('weapon')">무기 정보</button>
+            </div>
+
+            <div id="desc" class="tab-content">
+                <strong>“나의 분노를 제어하지 못한다면, 나는 파괴될 것이다.”</strong><br><br>
+                비소락의 독에 감염된 불의 토아 바카마는 끔찍한 변이를 겪었습니다. 반은 영웅, 반은 야수인 ‘호디카’가 된 그는 이제 메트루 누이를 구하기 위해 싸우는 동시에, 자기 내면의 야수와도 싸워야 합니다.<br><br>
+                새로운 <strong>로투카 스피너</strong> 발사 기능이 탑재되어 있습니다!
+            </div>
+
+            <div id="stats" class="tab-content hidden">
+                <table style="width:100%; border-collapse: collapse; color:#ccc;">
+                    <tr><td style="border-bottom:1px solid #444; padding:5px;">힘 (Strength)</td><td style="color:#ff3333;">■■■■■■■■□□ (8/10)</td></tr>
+                    <tr><td style="border-bottom:1px solid #444; padding:5px;">민첩성 (Agility)</td><td style="color:#ff3333;">■■■■■■□□□□ (6/10)</td></tr>
+                    <tr><td style="border-bottom:1px solid #444; padding:5px;">지능 (Mind)</td><td style="color:#ff3333;">■■■■□□□□□□ (4/10)</td></tr>
+                    <tr><td style="padding:5px;">특수 능력</td><td>야수적 본능, 화염 제어</td></tr>
+                </table>
+            </div>
+
+            <div id="weapon" class="tab-content hidden">
+                <strong>블레이저 클로</strong><br><br>
+                바카마 호디카의 팔에 장착된 거대한 화염 갈고리입니다. 그는 이 무기를 사용하여 불의 에너지를 집중시켜 적을 녹여버리거나, 벽을 타고 오를 수 있습니다.<br><br>
+                <strong>로투카 스피너:</strong> 적중한 대상의 평형 감각을 빼앗아 중심을 잡지 못하게 만듭니다.
+            </div>
+
+            <div class="buy-box">
+                <div class="price">₩14,000</div>
+                <button class="btn-cart" onclick="addToCart()">장바구니 담기</button>
+            </div>
+
+            <div class="kanoka-club">
+                <strong>KANOKA CLUB</strong><br>
+                제품 박스 안의 카노카 코드를 입력하여<br>
+                웹 포인트와 독점 배경화면을 받으세요!
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    LEGO, the LEGO logo, and BIONICLE are trademarks of the LEGO Group.<br>
+    © 2005 The LEGO Group. All rights reserved.<br>
+    <br>
+    <a href="#" style="color:#666;">개인정보 보호정책</a> | <a href="#" style="color:#666;">이용약관</a>
+</footer>
+
+<script>
+    function switchTab(tabId) {
+        // 모든 탭 컨텐츠 숨기기
+        const contents = document.querySelectorAll('.tab-content');
+        contents.forEach(div => div.classList.add('hidden'));
+
+        // 모든 탭 버튼 비활성화 스타일
+        const buttons = document.querySelectorAll('.tab-btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
+
+        // 선택된 탭 보이기
+        document.getElementById(tabId).classList.remove('hidden');
+        
+        // 클릭된 버튼 활성화 스타일 (이벤트 타겟 찾기)
+        event.target.classList.add('active');
+    }
+
+    function addToCart() {
+        alert("장바구니에 [8736 토아 바카마 호디카]가 담겼습니다.\n(2005년 쇼핑몰 시뮬레이션)");
+    }
+</script>
+
+</body>
+</html>

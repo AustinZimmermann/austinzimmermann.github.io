@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>44007 OGRUM - LEGO® Hero Factory - Productos - LEGO.com (España)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Russo+One&family=Roboto:wght@400;700&display=swap');
+
+        :root {
+            /* Ogrum Specific Colors - Earthy & Toxic */
+            --hf-accent: #66CC00; /* Toxic Lime */
+            --hf-contrast: #8B4513; /* Earth Brown for Roots */
+            --hf-dark-green: #003300;
+            --hf-dark: #0f0f0f;
+            --hf-panel: #1a1a1a;
+            --hf-text: #ccc;
+            --lego-red: #d01012;
+        }
+
+        body {
+            background-color: #000;
+            color: var(--hf-text);
+            font-family: 'Roboto', sans-serif;
+            background-image: 
+                linear-gradient(rgba(10,5,0,0.92), rgba(0,0,0,0.96)),
+                url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMSIgZmlsbD0iIzMzMyIgLz48L3N2Zz4=');
+        }
+
+        .font-hero {
+            font-family: 'Russo One', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        /* Hexagon Clip Path for Images */
+        .hex-frame {
+            clip-path: polygon(10% 0, 100% 0, 100% 90%, 90% 100%, 0 100%, 0 10%);
+            transition: all 0.3s ease;
+        }
+        
+        .hex-btn {
+            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+        }
+
+        .glow-text {
+            text-shadow: 0 0 10px rgba(102, 204, 0, 0.7);
+        }
+
+        .nav-link:hover {
+            color: var(--hf-accent);
+            text-shadow: 0 0 8px var(--hf-accent);
+        }
+
+        .lego-btn {
+            background: linear-gradient(to bottom, #55aa00 0%, #3e8000 100%);
+            color: white;
+            font-weight: bold;
+            border: 1px solid #77cc00;
+        }
+        .lego-btn:hover {
+            background: #66cc00;
+            color: white;
+        }
+
+        .tech-border {
+            border: 1px solid #333;
+            position: relative;
+        }
+        .tech-border::after {
+            content: '';
+            position: absolute;
+            top: -1px; left: -1px;
+            width: 20px; height: 20px;
+            border-top: 2px solid var(--hf-accent);
+            border-left: 2px solid var(--hf-accent);
+        }
+        .tech-border::before {
+            content: '';
+            position: absolute;
+            bottom: -1px; right: -1px;
+            width: 20px; height: 20px;
+            border-bottom: 2px solid var(--hf-accent);
+            border-right: 2px solid var(--hf-accent);
+        }
+
+        /* Villain Specific Warning Strip */
+        .villain-strip {
+            background: repeating-linear-gradient(
+                45deg,
+                #221100,
+                #221100 10px,
+                #110800 10px,
+                #110800 20px
+            );
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Top Bar LEGO Global -->
+    <div class="bg-white text-xs text-gray-600 border-b border-gray-200">
+        <div class="container mx-auto px-4 h-8 flex items-center justify-between">
+            <div class="flex space-x-4">
+                <span class="cursor-pointer hover:underline">LEGO.com</span>
+                <span class="cursor-pointer hover:underline">Sobre nosotros</span>
+                <span class="cursor-pointer hover:underline">Ayuda</span>
+            </div>
+            <div class="flex items-center space-x-2">
+                <span>España</span>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Spain.svg" alt="ES" class="h-3 w-5 shadow-sm border border-gray-300">
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Bar -->
+    <header class="bg-gradient-to-b from-gray-100 to-gray-300 shadow-md relative z-50">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-6">
+                <!-- LEGO Logo -->
+                <div class="w-12 h-12 bg-[#d01012] flex items-center justify-center cursor-pointer shadow-md">
+                    <span class="text-white font-hero italic text-xl">LEGO</span>
+                </div>
+                
+                <nav class="hidden md:flex space-x-6 font-bold text-gray-700 text-sm uppercase tracking-wide">
+                    <a href="#" class="hover:text-green-600 transition">Productos</a>
+                    <a href="#" class="hover:text-green-600 transition">Juegos</a>
+                    <a href="#" class="hover:text-green-600 transition">Galería</a>
+                    <a href="#" class="hover:text-green-600 transition">Comunidad</a>
+                    <a href="#" class="hover:text-green-600 transition">Tienda</a>
+                </nav>
+            </div>
+
+            <div class="flex items-center space-x-4">
+                <div class="relative hidden sm:block">
+                    <input type="text" placeholder="Buscar..." class="pl-3 pr-8 py-1 rounded-full border border-gray-400 text-sm focus:outline-none focus:border-green-600 w-48">
+                    <i class="fas fa-search absolute right-3 top-1.5 text-gray-500"></i>
+                </div>
+                <div class="flex items-center text-gray-700 font-bold cursor-pointer">
+                    <i class="fas fa-shopping-basket text-xl mr-2"></i>
+                    <span class="hidden sm:inline">0,00 €</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Factory Brain Attack Branding Strip -->
+    <div class="bg-black border-b-4 border-[var(--hf-accent)] relative overflow-hidden">
+        <div class="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
+        <div class="container mx-auto px-4 py-4 flex items-center justify-between relative z-10">
+            <div class="flex items-center space-x-4">
+                <!-- Hero Factory Logo Simulation -->
+                <div class="border-2 border-gray-600 bg-gray-900 px-3 py-1 skew-x-[-10deg]">
+                    <h1 class="font-hero text-2xl text-white italic skew-x-[10deg] tracking-tighter">
+                        HERO <span class="text-[var(--hf-accent)]">FACTORY</span>
+                    </h1>
+                </div>
+                <span class="text-[var(--hf-accent)] font-bold tracking-widest text-sm hidden md:block animate-pulse">BRAIN ATTACK</span>
+            </div>
+            <nav class="text-xs md:text-sm text-gray-400 font-mono space-x-4">
+                <a href="#" class="nav-link">HÉROES</a>
+                <span class="text-gray-700">|</span>
+                <a href="#" class="nav-link text-white">VILLANOS</a>
+                <span class="text-gray-700">|</span>
+                <a href="#" class="nav-link">MISIÓN</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Breadcrumbs -->
+    <div class="bg-[#1a1a1a] text-gray-500 text-xs py-2 border-b border-[#333]">
+        <div class="container mx-auto px-4">
+            <a href="#" class="hover:text-white">Inicio</a> > 
+            <a href="#" class="hover:text-white">Productos</a> > 
+            <a href="#" class="hover:text-white">Hero Factory</a> > 
+            <span class="text-[var(--hf-accent)]">44007 OGRUM</span>
+        </div>
+    </div>
+
+    <!-- Main Product Content -->
+    <main class="flex-grow container mx-auto px-4 py-8">
+        
+        <div class="flex flex-col lg:flex-row gap-8">
+            
+            <!-- Left Column: Gallery -->
+            <div class="lg:w-7/12">
+                <div class="tech-border bg-[#111] p-1 mb-4">
+                    <!-- Main Image Placeholder with CSS Art -->
+                    <div class="relative w-full aspect-square bg-gradient-to-br from-[#1a1005] to-black flex items-center justify-center overflow-hidden group cursor-pointer hex-frame">
+                        <!-- Abstract Background Grid -->
+                        <div class="absolute inset-0" style="background-image: radial-gradient(#3a2005 1px, transparent 1px); background-size: 20px 20px; opacity: 0.3;"></div>
+                        
+                        <!-- Toxic Mist -->
+                        <div class="absolute w-full h-full bg-[radial-gradient(circle_at_center,_var(--hf-accent),_transparent_70%)] opacity-5 group-hover:opacity-20 transition duration-500"></div>
+
+                        <img src="https://www.lego.com/cdn/product-assets/product.img.pri/44007_prod.jpg">
+
+                        <div class="absolute top-4 right-4 bg-red-700 text-white font-bold px-3 py-1 text-xs transform rotate-2 shadow-lg border border-red-500">
+                            ¡CEREBRO MALVADO!
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Thumbnails -->
+                <div class="flex space-x-4 overflow-x-auto pb-2">
+                    <div class="w-24 h-24 bg-[#222] border border-gray-700 hover:border-[var(--hf-accent)] cursor-pointer flex items-center justify-center">
+                        <i class="fas fa-box text-3xl text-gray-500"></i>
+                    </div>
+                    <div class="w-24 h-24 bg-[#222] border border-gray-700 hover:border-[var(--hf-accent)] cursor-pointer flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-green-900 opacity-20"></div>
+                        <i class="fas fa-biohazard text-3xl text-[#66cc00]"></i>
+                    </div>
+                    <div class="w-24 h-24 bg-[#222] border border-gray-700 hover:border-[var(--hf-accent)] cursor-pointer flex items-center justify-center">
+                        <i class="fas fa-link text-3xl text-gray-400"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Product Info -->
+            <div class="lg:w-5/12 text-white">
+                <div class="mb-2 flex items-center space-x-2 text-sm text-gray-400 font-mono">
+                    <span>Artículo: 44007</span>
+                    <span>|</span>
+                    <span>Edad: 7-14</span>
+                    <span>|</span>
+                    <span>Piezas: 59</span>
+                    <span>|</span>
+                    <span class="text-[var(--hf-accent)]">Puntos VIP: 10</span>
+                </div>
+
+                <h1 class="font-hero text-4xl lg:text-5xl mb-2 italic text-gray-200">OGRUM</h1>
+                <h2 class="text-xl text-[var(--hf-accent)] font-bold mb-6 uppercase tracking-wider">¡La Bestia Vegetal Venenosa!</h2>
+
+                <div class="flex items-center space-x-2 mb-6">
+                    <div class="flex text-yellow-400 text-sm">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <a href="#reviews" class="text-xs text-gray-400 underline hover:text-white">Leer 2 opiniones</a>
+                </div>
+
+                <div class="bg-[#1a1a1a] p-6 rounded-sm border border-gray-800 mb-6 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4">
+                        <span class="text-3xl font-bold font-hero">9,99 €</span>
+                    </div>
+                    <div class="mt-8">
+                        <div class="flex items-center space-x-2 text-green-500 font-bold mb-4 text-sm">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Disponible ahora</span>
+                        </div>
+                        <button class="lego-btn hex-btn w-full py-4 text-lg uppercase tracking-wider shadow-lg hover:shadow-green-500/20 transition transform active:scale-95">
+                            Añadir a la bolsa
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <div class="prose prose-invert max-w-none text-sm leading-relaxed text-gray-300">
+                    <p class="mb-4 text-yellow-100 italic border-l-2 border-red-600 pl-3">
+                        "¡Alerta Héroes! Detectada nueva amenaza biológica."
+                    </p>
+                    <p class="mb-4">
+                        <strong class="text-white">¡A la sala de reuniones, Héroes de LEGO!</strong> Los sensores han detectado una nueva bestia peculiar. ¡Los cerebros malvados han transformado a un ogro en la bestia vegetal venenosa <strong>OGRUM</strong>!
+                    </p>
+                    <p class="mb-4">
+                        ¡Prepárate para esquivar sus enredaderas y pies de garra de raíz! Cuando empiece a balancear la maza de demolición, ¡es tu señal para correr! Neutraliza el cerebro malvado para dejar a esta planta bestial plantada en el suelo.
+                    </p>
+                    
+                    <ul class="list-none space-y-2 mt-4 pl-0">
+                        <li class="flex items-start">
+                            <i class="fas fa-chevron-right text-[var(--hf-accent)] mt-1 mr-2 text-xs"></i>
+                            Cuenta con cerebro malvado verde claro extraíble, mano de enredadera, pies de garra de raíz y maza de demolición devastadora.
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-chevron-right text-[var(--hf-accent)] mt-1 mr-2 text-xs"></i>
+                            Incluye un diseño altamente duradero y articulado con elementos verdes translúcidos.
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-chevron-right text-[var(--hf-accent)] mt-1 mr-2 text-xs"></i>
+                            ¡Combínalo con <a href="https://austinzimmermann.github.io/LEGO/es-ES/themes/Hero-Factory/products/44006" class="text-[var(--hf-accent)] underline">44006 BREEZ</a>!
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-chevron-right text-[var(--hf-accent)] mt-1 mr-2 text-xs"></i>
+                            ¡Incluye un código por valor de <strong>600 puntos</strong> para el juego móvil LEGO® Hero Factory Brain Attack!
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-chevron-right text-[var(--hf-accent)] mt-1 mr-2 text-xs"></i>
+                            Mide más de 18 cm de altura.
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="mt-8 flex space-x-4">
+                     <button class="text-gray-400 hover:text-white flex items-center text-xs uppercase font-bold border border-gray-600 px-4 py-2 hover:border-gray-400 transition">
+                        <i class="fas fa-heart mr-2"></i> Lista de deseos
+                    </button>
+                     <button class="text-gray-400 hover:text-white flex items-center text-xs uppercase font-bold border border-gray-600 px-4 py-2 hover:border-gray-400 transition">
+                        <i class="fas fa-exchange-alt mr-2"></i> Comparar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Combo Model Section -->
+        <div class="mt-16 border-t border-gray-800 pt-8">
+            <h3 class="font-hero text-2xl mb-6 text-center text-white">¡COMBINA Y POTENCIA!</h3>
+            <div class="bg-[#111] border border-[#222] p-8 relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[var(--hf-accent)] to-transparent"></div>
+                
+                <div class="flex flex-col md:flex-row items-center justify-center gap-8 text-center md:text-left">
+                    <div class="flex items-center space-x-4">
+                        <div class="text-center opacity-50 hover:opacity-100 transition">
+                            <div class="w-24 h-24 bg-gray-800 rounded-full flex items-center justify-center mb-2 mx-auto">
+                                <span class="font-bold text-gray-500">44007</span>
+                            </div>
+                            <span class="text-xs font-bold text-gray-500">OGRUM</span>
+                        </div>
+                        <i class="fas fa-plus text-2xl text-gray-600"></i>
+                        <div class="text-center group cursor-pointer">
+                            <div class="w-24 h-24 bg-gray-800 rounded-full flex items-center justify-center mb-2 mx-auto border-2 border-transparent group-hover:border-[var(--hf-accent)]">
+                                <span class="font-bold text-gray-300">44006</span>
+                            </div>
+                            <span class="text-xs font-bold text-gray-300 group-hover:text-[var(--hf-accent)]">BREEZ</span>
+                        </div>
+                    </div>
+                    
+                    <i class="fas fa-arrow-right text-3xl text-[var(--hf-accent)] animate-bounce hidden md:block"></i>
+                    
+                    <div class="bg-black border border-[var(--hf-accent)] p-4 rounded shadow-[0_0_15px_rgba(102,204,0,0.3)] max-w-md">
+                        <h4 class="font-bold text-white mb-2">MODELO COMBINADO</h4>
+                        <p class="text-xs text-gray-400 mb-3">Descarga las instrucciones para construir un modelo ultrasecreto combinando los sets 44007 OGRUM y 44006 BREEZ.</p>
+                        <button class="bg-gray-800 hover:bg-gray-700 text-white text-xs px-4 py-2 uppercase font-bold flex items-center">
+                            <i class="fas fa-download mr-2"></i> Descargar PDF
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabs Section -->
+        <div class="mt-12">
+            <div class="flex border-b border-gray-800">
+                <button class="px-6 py-3 text-sm font-bold text-[var(--hf-accent)] border-b-2 border-[var(--hf-accent)] bg-[#111]">Descripción</button>
+                <button class="px-6 py-3 text-sm font-bold text-gray-500 hover:text-white transition">Especificaciones</button>
+                <button class="px-6 py-3 text-sm font-bold text-gray-500 hover:text-white transition">Entregas y Devoluciones</button>
+            </div>
+            <div class="bg-[#111] p-6 text-gray-400 text-sm min-h-[150px]">
+                <p>¡Lucha contra la invasión de cerebros! OGRUM es una amenaza masiva con su maza giratoria y sus garras de raíz. ¡Ten cuidado con el cerebro verde que controla sus acciones!</p>
+                <br>
+                <p class="italic text-xs text-gray-600">LEGO, el logotipo de LEGO y Hero Factory son marcas comerciales de LEGO Group. ©2013 The LEGO Group.</p>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer 2013 Style -->
+    <footer class="bg-[#0a0a0a] border-t border-[#222] text-gray-500 text-xs py-10 mt-8">
+        <div class="container mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+            <div>
+                <h5 class="text-white font-bold mb-4 uppercase">Comprar</h5>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:underline">Búsqueda de set por tema</a></li>
+                    <li><a href="#" class="hover:underline">Novedades</a></li>
+                    <li><a href="#" class="hover:underline">Exclusivos</a></li>
+                    <li><a href="#" class="hover:underline">Tarjetas regalo</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="text-white font-bold mb-4 uppercase">Atención al cliente</h5>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:underline">Estado del pedido</a></li>
+                    <li><a href="#" class="hover:underline">Instrucciones de construcción</a></li>
+                    <li><a href="#" class="hover:underline">Piezas faltantes</a></li>
+                    <li><a href="#" class="hover:underline">Contáctanos</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="text-white font-bold mb-4 uppercase">Descubrir</h5>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:underline">LEGO Club</a></li>
+                    <li><a href="#" class="hover:underline">Juegos LEGO</a></li>
+                    <li><a href="#" class="hover:underline">LEGO Life</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="flex items-center space-x-4 mb-4">
+                    <i class="fab fa-facebook text-2xl hover:text-white cursor-pointer"></i>
+                    <i class="fab fa-twitter text-2xl hover:text-white cursor-pointer"></i>
+                    <i class="fab fa-youtube text-2xl hover:text-white cursor-pointer"></i>
+                </div>
+                <p>Cambiar región: <span class="text-white cursor-pointer hover:underline">España</span></p>
+            </div>
+        </div>
+        <div class="container mx-auto px-4 border-t border-[#222] pt-4 text-center">
+            <p>&copy; 2013 The LEGO Group. Todos los derechos reservados. El uso de este sitio implica la aceptación de las condiciones de uso.</p>
+            <div class="flex justify-center space-x-4 mt-2">
+                <a href="#" class="hover:text-white">Política de privacidad</a>
+                <a href="#" class="hover:text-white">Cookies</a>
+                <a href="#" class="hover:text-white">Aviso legal</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

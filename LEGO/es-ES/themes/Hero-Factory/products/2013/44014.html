@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>44014 ROCKA REACTOR - LEGO® Hero Factory - Productos - LEGO.com (España)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Russo+One&family=Roboto:wght@400;700&display=swap');
+
+        :root {
+            /* JET ROCKA Colors - Gold, Gunmetal & Trans-Green */
+            --hf-gold: #D4AF37;       /* Rocka Gold */
+            --hf-hero-green: #39FF14; /* HUD/Visor Green */
+            --hf-blue: #0047BB;       /* LEGO Blue */
+            --hf-dark: #1a1a1a;       /* Dark Background */
+            --hf-panel: #2d2d2d;      /* Tech Panel */
+            --hf-text: #e0e6ed;
+            --white: #ffffff;
+        }
+
+        body {
+            background-color: var(--hf-dark);
+            color: var(--hf-text);
+            font-family: 'Roboto', sans-serif;
+            /* Tech Grid Background - Aerial/Hangar Vibe */
+            background-image: 
+                linear-gradient(0deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4)),
+                radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.15) 0%, transparent 60%),
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+        }
+
+        .font-hero {
+            font-family: 'Russo One', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        /* Hero Frame - Angular, Precision, Tech */
+        .hero-frame {
+            clip-path: polygon(
+                10% 0, 100% 0, 100% 90%, 90% 100%, 0 100%, 0 10%
+            );
+            transition: all 0.3s ease;
+            border: 2px solid var(--hf-gold);
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.2);
+            position: relative;
+        }
+        
+        .hero-frame::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            clip-path: polygon(
+                10% 0, 100% 0, 100% 90%, 90% 100%, 0 100%, 0 10%
+            );
+            pointer-events: none;
+            z-index: 20;
+        }
+
+        .hero-frame:hover {
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.4);
+            transform: scale(1.01);
+        }
+
+        .hex-btn {
+            background: linear-gradient(135deg, #ffd700 0%, #b8860b 100%);
+            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+            color: #000;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        .hex-btn:hover {
+            background: linear-gradient(135deg, #ffe066 0%, #d4af37 100%);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
+        }
+
+        .tech-strip {
+            background: 
+                repeating-linear-gradient(90deg, #111, #111 20px, #222 20px, #222 40px);
+            border-top: 2px solid var(--hf-gold);
+            border-bottom: 2px solid var(--hf-gold);
+        }
+
+        .status-bar {
+            background: linear-gradient(90deg, transparent, var(--hf-gold), transparent);
+            height: 2px;
+            width: 100%;
+            margin: 10px 0;
+            opacity: 0.5;
+        }
+
+        @keyframes scanning {
+            0% { top: 0%; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+
+        .scan-line {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: var(--hf-hero-green);
+            box-shadow: 0 0 10px var(--hf-hero-green);
+            animation: scanning 3s infinite linear;
+            z-index: 30;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Top Bar LEGO Global -->
+    <div class="bg-white text-xs text-gray-600 border-b border-gray-200">
+        <div class="container mx-auto px-4 h-8 flex items-center justify-between">
+            <div class="flex space-x-4">
+                <span class="cursor-pointer hover:underline">LEGO.com</span>
+                <span class="cursor-pointer hover:underline">Sobre nosotros</span>
+                <span class="cursor-pointer hover:underline">Ayuda</span>
+            </div>
+            <div class="flex items-center space-x-2">
+                <span>España</span>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Spain.svg" alt="ES" class="h-3 w-5 shadow-sm border border-gray-300">
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Bar -->
+    <header class="bg-gradient-to-b from-gray-100 to-gray-300 shadow-md relative z-50">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-6">
+                <!-- LEGO Logo -->
+                <div class="w-12 h-12 bg-[#d01012] flex items-center justify-center cursor-pointer shadow-md">
+                    <span class="text-white font-hero italic text-xl">LEGO</span>
+                </div>
+                
+                <nav class="hidden md:flex space-x-6 font-bold text-gray-700 text-sm uppercase tracking-wide">
+                    <a href="#" class="hover:text-red-600 transition">Productos</a>
+                    <a href="#" class="hover:text-red-600 transition">Juegos</a>
+                    <a href="#" class="hover:text-red-600 transition">Galería</a>
+                    <a href="#" class="hover:text-red-600 transition">Comunidad</a>
+                    <a href="#" class="hover:text-red-600 transition">Tienda</a>
+                </nav>
+            </div>
+
+            <div class="flex items-center space-x-4">
+                <div class="relative hidden sm:block">
+                    <input type="text" placeholder="Buscar..." class="pl-3 pr-8 py-1 rounded-full border border-gray-400 text-sm focus:outline-none focus:border-red-600 w-48">
+                    <i class="fas fa-search absolute right-3 top-1.5 text-gray-500"></i>
+                </div>
+                <div class="flex items-center text-gray-700 font-bold cursor-pointer">
+                    <i class="fas fa-shopping-basket text-xl mr-2"></i>
+                    <span class="hidden sm:inline">34,99 €</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Factory Brain Attack Branding Strip -->
+    <div class="bg-black border-b-4 border-[var(--hf-gold)] relative overflow-hidden">
+        <div class="absolute inset-0 opacity-40 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
+        <!-- Hero blue/gold glow overlay -->
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-900/40 to-yellow-600/20 pointer-events-none"></div>
+        
+        <div class="container mx-auto px-4 py-4 flex items-center justify-between relative z-10">
+            <div class="flex items-center space-x-4">
+                <!-- Hero Factory Logo -->
+                <div class="border-2 border-gray-400 bg-gray-800 px-3 py-1 skew-x-[-10deg] shadow-[0_0_15px_rgba(255,255,255,0.3)]">
+                    <h1 class="font-hero text-2xl text-white italic skew-x-[10deg] tracking-tighter">
+                        HERO <span class="text-[var(--hf-gold)]">FACTORY</span>
+                    </h1>
+                </div>
+                <span class="text-white font-bold tracking-widest text-sm hidden md:block" style="font-family: monospace;">BRAIN ATTACK</span>
+            </div>
+            <nav class="text-xs md:text-sm text-gray-400 font-mono space-x-4">
+                <a href="#" class="nav-link text-white font-bold border-b border-[var(--hf-gold)]">HÉROES</a>
+                <span class="text-gray-600">|</span>
+                <a href="#" class="nav-link hover:text-white">VILLANOS</a>
+                <span class="text-gray-600">|</span>
+                <a href="#" class="nav-link hover:text-white">MISIÓN</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Breadcrumbs -->
+    <div class="bg-[#151515] text-gray-400 text-xs py-2 border-b border-gray-800">
+        <div class="container mx-auto px-4">
+            <a href="#" class="hover:text-white">Inicio</a> > 
+            <a href="#" class="hover:text-white">Productos</a> > 
+            <a href="#" class="hover:text-white">Hero Factory</a> > 
+            <span class="text-[var(--hf-gold)]">44014 JET ROCKA</span>
+        </div>
+    </div>
+
+    <!-- Main Product Content -->
+    <main class="flex-grow container mx-auto px-4 py-8">
+        
+        <div class="flex flex-col lg:flex-row gap-8">
+            
+            <!-- Left Column: Gallery -->
+            <div class="lg:w-7/12">
+                <div class="bg-[#111] p-1 mb-4 border border-gray-700 relative">
+                    <!-- Tech decorations -->
+                    <div class="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-[var(--hf-gold)]"></div>
+                    <div class="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-[var(--hf-gold)]"></div>
+
+                    <!-- Main Image Frame -->
+                    <div class="relative w-full aspect-square bg-gradient-to-br from-[#222] to-[#000] flex items-center justify-center overflow-hidden group hero-frame">
+                        
+                        <!-- HUD Elements (Hero Style) -->
+                        <div class="scan-line"></div>
+                        <div class="absolute bottom-4 left-4 flex space-x-1">
+                             <div class="w-2 h-6 bg-[var(--hf-hero-green)] opacity-80"></div>
+                             <div class="w-2 h-4 bg-[var(--hf-hero-green)] opacity-60"></div>
+                             <div class="w-2 h-2 bg-[var(--hf-hero-green)] opacity-40"></div>
+                        </div>
+
+                        <!-- Product Image -->
+                        <img src="https://www.lego.com/cdn/product-assets/product.img.pri/44014_prod.jpg" 
+                             alt="LEGO 44014 JET ROCKA" 
+                             class="relative z-10 transform transition duration-500 group-hover:scale-105 filter drop-shadow-[0_0_30px_rgba(212,175,55,0.15)]">
+
+                        <div class="absolute top-4 right-4 flex space-x-2">
+                             <div class="bg-[rgba(255,215,0,0.1)] text-[var(--hf-gold)] font-bold px-3 py-1 text-[10px] uppercase tracking-wider border border-[var(--hf-gold)] flex items-center backdrop-blur-sm">
+                                <i class="fas fa-shield-alt mr-2"></i> Héroe XL
+                            </div>
+                        </div>
+                        
+                        <!-- HUD Info -->
+                        <div class="absolute top-4 left-4 text-white text-[10px] font-mono opacity-80">
+                            <span class="text-[var(--hf-gold)]">UNIT: JET ROCKA</span><br>
+                            STATUS: AIRBORNE<br>
+                            WEAPON: PLASMA CANNONS
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Thumbnails -->
+                <div class="flex space-x-4 overflow-x-auto pb-2">
+                    <div class="w-20 h-20 bg-[#1a1a1a] border border-gray-700 hover:border-[var(--hf-gold)] cursor-pointer flex items-center justify-center transition">
+                        <i class="fas fa-fighter-jet text-2xl text-[var(--hf-gold)]"></i>
+                    </div>
+                    <div class="w-20 h-20 bg-[#1a1a1a] border border-gray-700 hover:border-[var(--hf-gold)] cursor-pointer flex items-center justify-center transition">
+                        <i class="fas fa-crosshairs text-2xl text-[var(--hf-hero-green)]"></i> <!-- Targeting Icon -->
+                    </div>
+                    <div class="w-20 h-20 bg-[#1a1a1a] border border-gray-700 hover:border-[var(--hf-gold)] cursor-pointer flex items-center justify-center transition">
+                         <i class="fas fa-shield-virus text-2xl text-white"></i> <!-- Defense Icon -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Product Info -->
+            <div class="lg:w-5/12 text-white">
+                <div class="mb-2 flex items-center space-x-2 text-sm text-gray-400 font-mono">
+                    <span>Artículo: 44014</span>
+                    <span>|</span>
+                    <span>Edad: 8-16</span>
+                    <span>|</span>
+                    <span>Piezas: 290</span>
+                    <span>|</span>
+                    <span class="text-[var(--hf-gold)]">Puntos VIP: 25</span>
+                </div>
+
+                <h1 class="font-hero text-4xl lg:text-5xl mb-2 italic text-white uppercase tracking-widest flex items-center">
+                    JET ROCKA <span class="text-[var(--hf-gold)] text-6xl ml-2">.</span>
+                </h1>
+                <h2 class="text-xl text-yellow-200 font-bold mb-6 uppercase tracking-wider">¡Defensa aérea de élite contra los cerebros!</h2>
+
+                <div class="flex items-center space-x-2 mb-6">
+                    <div class="flex text-[var(--hf-gold)] text-sm">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <a href="#reviews" class="text-xs text-gray-400 underline hover:text-white">Leer 12 opiniones</a>
+                </div>
+
+                <div class="bg-[#1a1a1a] p-6 rounded-sm border-l-4 border-[var(--hf-gold)] mb-6 relative overflow-hidden shadow-lg">
+                    <div class="absolute top-0 right-0 p-4">
+                        <span class="text-3xl font-bold font-hero text-white">34,99 €</span>
+                    </div>
+                    <div class="mt-8">
+                        <div class="flex items-center space-x-2 text-red-400 font-bold mb-4 text-sm">
+                            <i class="fas fa-times-circle"></i>
+                            <span>Producto retirado</span>
+                        </div>
+                        <button class="bg-gray-800 text-gray-400 border border-gray-600 w-full py-4 text-lg uppercase tracking-wider cursor-not-allowed opacity-60 font-hero">
+                            Agotado
+                        </button>
+                    </div>
+                    <div class="mt-4 text-center">
+                        <a href="#" class="text-xs text-[var(--hf-gold)] hover:underline uppercase font-bold">
+                            <i class="fas fa-search mr-1"></i> Buscar disponibilidad
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <div class="prose prose-invert max-w-none text-sm leading-relaxed text-gray-300">
+                    <p class="mb-4 text-yellow-100 italic border-l-2 border-[var(--hf-gold)] pl-3">
+                        “¡Atención, ROCKA! Los cerebros malvados han atravesado las defensas de LEGO® Hero Factory. Preséntate en la zona de reacondicionamiento para equiparte con el jetpack de alto secreto.”
+                    </p>
+                    <p class="mb-4">
+                        ¡Vuela en círculos alrededor de los cerebros malvados con <strong>ROCKA REACTOR</strong>! Equipado con propulsores de iones masivos, este modelo cuenta con una cabina protectora HUD que se abre, lanzadores de plasma duales, misiles y alas de plasma súper afiladas. ¡Utiliza su potencia de reactor para dominar los cielos!
+                    </p>
+                    
+                    <div class="status-bar"></div>
+
+                    <ul class="list-none space-y-2 mt-4 pl-0">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-[var(--hf-gold)] mt-1 mr-2"></i>
+                            Cuenta con un <strong>jetpack desmontable</strong> de gran tamaño con propulsores articulados.
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-[var(--hf-gold)] mt-1 mr-2"></i>
+                            Incluye pantalla HUD de protección abatible y lanzadores de esferas de plasma.
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-[var(--hf-gold)] mt-1 mr-2"></i>
+                            Desmonta el jetpack para equipar a otros héroes de Hero Factory con la tecnología aérea.
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-[var(--hf-gold)] mt-1 mr-2"></i>
+                            ¡Combate contra el villano <strong>44009 DRAGÓN ELECTRIZANTE</strong> en una batalla aérea épica!
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-[var(--hf-gold)] mt-1 mr-2"></i>
+                            Incluye un código por valor de <strong>3000 puntos</strong> para el juego móvil LEGO® Hero Factory Brain Attack.
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-[var(--hf-gold)] mt-1 mr-2"></i>
+                            Mide más de 24 cm de altura.
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="mt-8 flex space-x-4">
+                     <button class="text-gray-400 hover:text-white flex items-center text-xs uppercase font-bold border border-gray-600 px-4 py-2 hover:border-[var(--hf-gold)] transition">
+                        <i class="fas fa-heart mr-2"></i> Lista de deseos
+                    </button>
+                     <button class="text-gray-400 hover:text-white flex items-center text-xs uppercase font-bold border border-gray-600 px-4 py-2 hover:border-[var(--hf-gold)] transition">
+                        <i class="fas fa-file-alt mr-2"></i> Instrucciones
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Villain Encounter Section -->
+        <div class="mt-16 border-t border-gray-800 pt-8">
+            <h3 class="font-hero text-2xl mb-6 text-center text-white">¡MISIÓN DE COMBATE AÉREO!</h3>
+            <div class="tech-strip border border-gray-700 p-8 relative overflow-hidden bg-[#151515]">
+                
+                <div class="flex flex-col md:flex-row items-center justify-center gap-12 text-center md:text-left">
+                    <!-- Versus Logic -->
+                    <div class="flex items-center space-x-6">
+                        <div class="text-center relative cursor-pointer group">
+                             <div class="absolute -top-3 -right-3 bg-[var(--hf-gold)] text-black text-[10px] font-bold px-2 py-0.5 z-10 rounded-sm">HÉROES</div>
+                            <div class="w-32 h-32 bg-gray-800 flex items-center justify-center mb-2 mx-auto border-2 border-[var(--hf-gold)] shadow-[0_0_20px_rgba(212,175,55,0.3)] group-hover:scale-105 transition">
+                                <span class="font-hero text-3xl text-white">44014</span>
+                            </div>
+                            <span class="text-sm font-bold text-[var(--hf-gold)] uppercase tracking-wider">ROCKA REACTOR</span>
+                        </div>
+                        
+                        <div class="flex flex-col items-center">
+                            <span class="text-2xl font-hero text-gray-500 italic">VS</span>
+                            <div class="h-px w-12 bg-gray-600 my-2"></div>
+                        </div>
+                        
+                        <div class="text-center relative opacity-80 hover:opacity-100 transition">
+                            <div class="absolute -top-3 -right-3 bg-blue-600 text-white text-[10px] font-bold px-2 py-0.5 z-10 rounded-sm">VILLANOS</div>
+                            <div class="w-32 h-32 bg-gray-800 flex items-center justify-center mb-2 mx-auto border-2 border-blue-900 group-hover:border-blue-500 transition">
+                                <span class="font-hero text-3xl text-gray-400">44009</span>
+                            </div>
+                            <span class="text-sm font-bold text-blue-400 uppercase tracking-wider">DRAGÓN ELECTRIZANTE</span>
+                        </div>
+                    </div>
+                    
+                    <i class="fas fa-exclamation-triangle text-4xl text-[var(--hf-gold)] animate-pulse hidden md:block opacity-50"></i>
+                    
+                    <!-- Call to Action -->
+                    <div class="bg-[#1a1a1a] border-l-4 border-[var(--hf-gold)] p-6 shadow-xl max-w-lg relative">
+                        <div class="absolute -top-2 -right-2 text-[var(--hf-gold)] opacity-20 text-6xl font-hero">!</div>
+                        <h4 class="font-bold text-white mb-2 font-hero tracking-wide">OBJETIVO: DRAGÓN ELECTRIZANTE</h4>
+                        <p class="text-xs text-gray-400 mb-4 leading-relaxed">
+                            Los sensores detectan una criatura masiva electrificada en los cielos. Despliega el ROCKA REACTOR para interceptar al DRAGÓN ELECTRIZANTE antes de que sobrecargue la red eléctrica de la ciudad.
+                        </p>
+                        <button class="bg-[#D4AF37] hover:bg-[#b89628] text-black text-xs px-6 py-3 uppercase font-bold flex items-center transition shadow-lg w-full md:w-auto justify-center rounded-sm">
+                            <i class="fas fa-play-circle mr-2"></i> Ver Simulación de Batalla
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Technical Tabs -->
+        <div class="mt-12">
+            <div class="flex border-b border-gray-800">
+                <button class="px-6 py-3 text-sm font-bold text-white border-b-2 border-[var(--hf-gold)] bg-[#1a1a1a]">Especificaciones Técnicas</button>
+                <button class="px-6 py-3 text-sm font-bold text-gray-500 hover:text-white transition">Piezas (290)</button>
+                <button class="px-6 py-3 text-sm font-bold text-gray-500 hover:text-white transition">Reseñas (12)</button>
+            </div>
+            <div class="bg-[#1a1a1a] p-6 text-gray-400 text-sm min-h-[150px] border-b border-l border-r border-gray-800">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h5 class="text-[var(--hf-gold)] font-bold mb-2 text-xs uppercase">Capacidades de Vuelo</h5>
+                        <p class="mb-2">El módulo Jetpack XL proporciona capacidad de vuelo supersónico y maniobrabilidad VTOL (Despegue y Aterrizaje Vertical). Los estabilizadores de las alas permiten giros cerrados para perseguir objetivos aéreos ágiles.</p>
+                    </div>
+                    <div>
+                        <h5 class="text-[var(--hf-gold)] font-bold mb-2 text-xs uppercase">Armamento</h5>
+                        <ul class="text-xs space-y-1 font-mono text-gray-500">
+                            <li>> Cañones de Plasma Duales [Rango: 5km]</li>
+                            <li>> 4x Misiles de Impacto</li>
+                            <li>> Escudos de Energía Retráctiles</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer 2013 Style -->
+    <footer class="bg-[#050505] border-t border-[#222] text-gray-500 text-xs py-12 mt-12">
+        <div class="container mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+            <div>
+                <h5 class="text-white font-bold mb-4 uppercase tracking-wider">Comprar</h5>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:text-white transition">Búsqueda de set por tema</a></li>
+                    <li><a href="#" class="hover:text-white transition">Novedades</a></li>
+                    <li><a href="#" class="hover:text-white transition">Exclusivos</a></li>
+                    <li><a href="#" class="hover:text-white transition">Tarjeta Regalo LEGO</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="text-white font-bold mb-4 uppercase tracking-wider">Atención al cliente</h5>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:text-white transition">Estado del pedido</a></li>
+                    <li><a href="#" class="hover:text-white transition">Instrucciones de construcción</a></li>
+                    <li><a href="#" class="hover:text-white transition">Piezas faltantes</a></li>
+                    <li><a href="#" class="hover:text-white transition">Devoluciones</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="text-white font-bold mb-4 uppercase tracking-wider">Sobre LEGO</h5>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:text-white transition">Sobre LEGO Group</a></li>
+                    <li><a href="#" class="hover:text-white transition">Sala de prensa</a></li>
+                    <li><a href="#" class="hover:text-white transition">Sostenibilidad</a></li>
+                    <li><a href="#" class="hover:text-white transition">Declaración de transparencia</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="text-white font-bold mb-4 uppercase tracking-wider">Síguenos</h5>
+                <div class="flex items-center space-x-4 mb-6">
+                    <a href="#" class="w-8 h-8 flex items-center justify-center bg-gray-800 hover:bg-white hover:text-black transition rounded-sm"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="w-8 h-8 flex items-center justify-center bg-gray-800 hover:bg-white hover:text-black transition rounded-sm"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="w-8 h-8 flex items-center justify-center bg-gray-800 hover:bg-white hover:text-black transition rounded-sm"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="w-8 h-8 flex items-center justify-center bg-gray-800 hover:bg-white hover:text-black transition rounded-sm"><i class="fab fa-instagram"></i></a>
+                </div>
+                <div class="border border-gray-700 p-2 inline-block">
+                    <p class="mb-1">Región:</p>
+                    <div class="flex items-center text-white cursor-pointer hover:underline">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Spain.svg" alt="ES" class="h-3 w-5 mr-2">
+                        <strong>España</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container mx-auto px-4 border-t border-[#1a1a1a] pt-6 text-center">
+            <p class="mb-4">&copy; 2013 The LEGO Group. Todos los derechos reservados. El uso de este sitio implica la aceptación de los términos de uso.</p>
+            <div class="flex justify-center flex-wrap gap-4 text-gray-600">
+                <a href="#" class="hover:text-white transition">Política de privacidad</a>
+                <span>|</span>
+                <a href="#" class="hover:text-white transition">Cookies</a>
+                <span>|</span>
+                <a href="#" class="hover:text-white transition">Aviso legal</a>
+                <span>|</span>
+                <a href="#" class="hover:text-white transition">Términos de uso</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
