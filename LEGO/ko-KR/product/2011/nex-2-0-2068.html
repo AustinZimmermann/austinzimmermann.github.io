@@ -1,21 +1,467 @@
 <!DOCTYPE html>
-<html lang="ko-KR">
+<html lang="ko">
 <head>
-<title>넥스 2.0 - 2068 - 레고® 히어로 팩토리 - 제품 - LEGO.com KR</title>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="https://pages-themes.github.io/cayman/assets/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2068 넥스 2.0 - 제품 정보 | LEGO.com</title>
+    <meta name="description" content="히어로 팩토리의 통신 전문가 넥스 2.0! 공압식 핀서와 초강력 절단 블레이드로 파이어 로드 군단의 연료 탱크를 절단하십시오.">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Product",
+      "name": "넥스 2.0",
+      "image": [
+        "https://www.lego.com/cdn/product-assets/product.img.pri/2068_prod.jpg"
+      ],
+      "description": "히어로 팩토리의 기술 천재 넥스가 2.0 버전으로 돌아왔습니다. 거대한 파워 블레이드와 공압식 집게로 무장하여 악당들의 갑옷을 뚫어버리세요.",
+      "sku": "2068",
+      "mpn": "2068",
+      "brand": {
+        "@type": "Brand",
+        "name": "LEGO"
+      },
+      "review": {
+        "@type": "Review",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "4.5",
+          "bestRating": "5"
+        },
+        "author": {
+          "@type": "Person",
+          "name": "TechWizard"
+        }
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.6",
+        "reviewCount": "58"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://www.lego.com/ko-kr/product/nex-2-0-2068",
+        "priceCurrency": "KRW",
+        "price": "17000",
+        "priceValidUntil": "2011-12-31",
+        "itemCondition": "https://schema.org/NewCondition",
+        "availability": "https://schema.org/InStock"
+      }
+    }
+    </script>
+
+    <style>
+        /* 2011 Era Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Malgun Gothic", "Dotum", Arial, sans-serif;
+            background-color: #222;
+            background-image: linear-gradient(to bottom, #111 0%, #333 100%); 
+            color: #ddd;
+            line-height: 1.6;
+        }
+
+        /* Global Header */
+        .lego-header {
+            background-color: #ffcf00;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+            position: relative;
+            z-index: 100;
+        }
+
+        .lego-logo {
+            background-color: #e3000b;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: white;
+            font-weight: 900;
+            font-style: italic;
+            border: 2px solid white;
+            font-size: 14px;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .nav-crumbs {
+            font-size: 11px;
+            color: #222;
+            font-weight: bold;
+        }
+        .nav-crumbs a { text-decoration: none; color: #222; }
+        .nav-crumbs a:hover { text-decoration: underline; }
+
+        /* Main Layout */
+        .wrapper {
+            max-width: 960px;
+            margin: 0 auto;
+            background: #f4f4f4;
+            box-shadow: 0 0 40px rgba(255, 102, 0, 0.2); /* Orange Glow for Nex */
+            border-right: 1px solid #666;
+            border-left: 1px solid #666;
+            min-height: 800px;
+        }
+
+        /* Hero Factory Header */
+        .hf-top-bar {
+            background: #000;
+            border-bottom: 4px solid #ff6600; /* Nex Orange */
+            padding: 15px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPjxyZWN0IHdpZHRoPSI0IiBoZWlnaHQ9IjQiIGZpbGw9IiMwMDAiLz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSIjMzMzIi8+PC9zdmc+');
+        }
+
+        .hf-brand {
+            font-family: Impact, sans-serif;
+            font-size: 28px;
+            color: #fff;
+            font-style: italic;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .hf-brand span { color: #ff6600; }
+
+        .tech-status {
+            font-family: "Courier New", monospace;
+            color: #0f0; /* Green for tech/screens */
+            font-size: 12px;
+            border: 1px solid #0f0;
+            padding: 3px 8px;
+            background: rgba(0, 50, 0, 0.8);
+            text-transform: uppercase;
+        }
+
+        /* Content Body */
+        .content-body {
+            padding: 30px;
+            background: #fff;
+            color: #333;
+            display: flex;
+            gap: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .content-body { flex-direction: column; }
+        }
+
+        /* Left: Image */
+        .visual-area {
+            flex: 1;
+            border: 1px solid #ddd;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            background: radial-gradient(circle, #fff 0%, #eee 100%);
+        }
+
+        .product-img {
+            max-width: 100%;
+            height: auto;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        .product-img:hover { transform: scale(1.1); }
+
+        .zoom-icon {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: #333;
+            color: #fff;
+            padding: 5px;
+            font-size: 18px;
+            border-radius: 3px;
+            opacity: 0.7;
+        }
+
+        /* Right: Info */
+        .info-area {
+            flex: 1;
+        }
+
+        .product-title {
+            font-size: 32px;
+            font-weight: bold;
+            color: #ff6600;
+            margin-bottom: 5px;
+            font-family: Impact, sans-serif;
+            letter-spacing: 0.5px;
+        }
+
+        .product-sku {
+            color: #777;
+            font-size: 12px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .price {
+            font-size: 26px;
+            color: #d01012;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .desc-box {
+            background: #fafafa;
+            border-left: 5px solid #ff6600;
+            padding: 15px;
+            margin-bottom: 25px;
+            font-size: 14px;
+            color: #444;
+        }
+
+        /* Purchase Box */
+        .buy-box {
+            background: #eee;
+            padding: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .stock-msg {
+            color: #008000;
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .add-btn {
+            background: linear-gradient(to bottom, #ff9900 0%, #cc7a00 100%);
+            border: 1px solid #b36b00;
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 12px 0;
+            width: 100%;
+            cursor: pointer;
+            font-size: 16px;
+            text-shadow: 1px 1px 0 rgba(0,0,0,0.3);
+            border-radius: 4px;
+        }
+        .add-btn:hover { background: linear-gradient(to bottom, #ffad33 0%, #e68a00 100%); }
+
+        /* Tabs */
+        .tab-section {
+            padding: 0 30px 30px 30px;
+            background: #fff;
+        }
+
+        .tabs-header {
+            display: flex;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .tab-btn {
+            padding: 12px 25px;
+            background: #f1f1f1;
+            border: 1px solid #ddd;
+            border-bottom: none;
+            cursor: pointer;
+            margin-right: 4px;
+            font-weight: bold;
+            color: #666;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .tab-btn.active {
+            background: #fff;
+            color: #ff6600;
+            border-bottom: 2px solid #fff;
+            margin-bottom: -2px;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 25px 0;
+            color: #444;
+            min-height: 150px;
+        }
+        .tab-content.active { display: block; }
+
+        /* Footer */
+        .site-footer {
+            background: #1a1a1a;
+            color: #888;
+            padding: 30px;
+            text-align: center;
+            font-size: 11px;
+            border-top: 5px solid #ff6600;
+        }
+        .footer-links a { color: #888; text-decoration: none; margin: 0 10px; }
+        .footer-links a:hover { text-decoration: underline; }
+
+    </style>
 </head>
-<body style="font-family: sans-serif;">
-<main id="content" class="main-content" role="main">
-<h1>레고® 히어로 팩토리</h1>
-<h2>제품</h2>
-<h3 style="font-weight: bold;">
-<span id="number">2068</span>
-<span id="title">넥스 2.0</span>
-</h3>
-<p><img src="https://www.lego.com/cdn/product-assets/product.img.pri/2068_prod.jpg"></p>
-<p>히어로 팩토리의 신입 히어로 “넥스”가 2.0 업그레이드를 통해 더욱 강력해진 모습으로 돌아왔습니다. 최첨단 헤드기어와 정교한 센서를 장착한 넥스는 그 어떤 복잡한 기계 장치도 순식간에 수리하거나 해체할 수 있는 기술 전문가입니다. 이제 멀티 툴 블레이드를 손에 쥐고 뜨거운 열기로 가득한 전장으로 출동하여 악당들을 저지하세요!</p>
-<p style="font-size: 12px; text-align: center;">©2011 The LEGO Group. All rights reserved.</p>
-</main>  
+<body>
+
+    <!-- Header -->
+    <header class="lego-header">
+        <div class="lego-logo">LEGO</div>
+        <div class="nav-crumbs">
+            <a href="#">홈</a> &gt; 
+            <a href="#">제품</a> &gt; 
+            <a href="#">히어로 팩토리</a> &gt; 
+            <span>2068 넥스 2.0</span>
+        </div>
+    </header>
+
+    <div class="wrapper">
+        <!-- HF Brand Bar -->
+        <div class="hf-top-bar">
+            <div class="hf-brand">HERO <span>FACTORY</span></div>
+            <div class="tech-status">통신 링크 활성화</div>
+        </div>
+
+        <!-- Main Product Area -->
+        <div class="content-body">
+            <!-- Image -->
+            <div class="visual-area">
+                <img src="https://www.lego.com/cdn/product-assets/product.img.pri/2068_prod.jpg" alt="레고 히어로 팩토리 2068 넥스 2.0" class="product-img" id="mainImg">
+                <div class="zoom-icon">🔍</div>
+            </div>
+
+            <!-- Details -->
+            <div class="info-area">
+                <h1 class="product-title">넥스 2.0</h1>
+                <div class="product-sku">제품 번호: 2068 | 연령: 6-16 | 부품수: 31</div>
+                
+                <div class="price">₩17,000</div>
+
+                <div class="desc-box">
+                    <p><strong>“넥스, 들리나? 파이어 로드의 부하들이 탱커 스테이션 22의 연료를 노리고 있다. 자네의 기술력이 필요하다!”</strong></p>
+                    <br>
+                    <p>히어로 팩토리의 통신 전문가 넥스가 2.0 업그레이드를 마쳤습니다. 새로운 헤드기어에는 장거리 센서가 장착되어 있으며, 하이테크 멀티 툴에는 악당의 갑옷을 절단할 수 있는 날카로운 플라즈마 블레이드가 장착되어 있습니다.</p>
+                </div>
+
+                <div class="buy-box">
+                    <div class="stock-msg">✔ 재고 있음 (지금 주문 가능)</div>
+                    <div style="margin-bottom: 15px;">
+                        <label>수량: 
+                            <select style="padding: 5px;">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                            </select>
+                        </label>
+                    </div>
+                    <button class="add-btn" onclick="addToBag()">장바구니 담기</button>
+                    <div style="margin-top: 10px; font-size: 11px; color: #666;">* 30,000원 이상 구매 시 무료 배송</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tab-section">
+            <div class="tabs-header">
+                <div class="tab-btn active" onclick="openTab(event, 'details')">제품 상세</div>
+                <div class="tab-btn" onclick="openTab(event, 'specs')">기술 사양</div>
+                <div class="tab-btn" onclick="openTab(event, 'bi')">조립 설명서</div>
+            </div>
+
+            <div id="details" class="tab-content active">
+                <h3 style="color: #333; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 15px;">기술 전문가의 진화</h3>
+                <p>넥스 2.0은 팀 내에서 가장 뛰어난 기술적 지식을 자랑합니다. 그의 업그레이드된 장비는 다음과 같습니다:</p>
+                <ul style="margin-top: 15px; margin-left: 20px; list-style-type: square; line-height: 1.8;">
+                    <li><strong>멀티 툴 블레이드:</strong> 거대한 녹색 플라즈마 날이 장착되어 장애물을 절단하거나 적을 방어합니다.</li>
+                    <li><strong>공압식 핀서:</strong> 정밀한 작업과 강력한 악력을 동시에 제공하는 집게 팔.</li>
+                    <li><strong>강화 헤드기어:</strong> 탈부착 가능한 바이저와 안테나로 팀원들과 끊김 없는 통신을 유지합니다.</li>
+                    <li><strong>오렌지 히어로 코어:</strong> 가슴 중앙에 장착된 넥스의 파워 원천.</li>
+                </ul>
+            </div>
+
+            <div id="specs" class="tab-content">
+                <table style="width: 100%; font-size: 13px; border-collapse: collapse;">
+                    <tr style="background: #f9f9f9;">
+                        <td style="padding: 10px; border: 1px solid #eee; font-weight: bold; width: 30%;">제품명</td>
+                        <td style="padding: 10px; border: 1px solid #eee;">넥스 2.0</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid #eee; font-weight: bold;">제품 번호</td>
+                        <td style="padding: 10px; border: 1px solid #eee;">2068</td>
+                    </tr>
+                    <tr style="background: #f9f9f9;">
+                        <td style="padding: 10px; border: 1px solid #eee; font-weight: bold;">부품 수</td>
+                        <td style="padding: 10px; border: 1px solid #eee;">31개</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid #eee; font-weight: bold;">출시일</td>
+                        <td style="padding: 10px; border: 1px solid #eee;">2011년 1월</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="bi" class="tab-content">
+                <p>조립 설명서를 PDF로 다운로드하여 태블릿이나 컴퓨터에서 확인하세요.</p>
+                <div style="margin-top: 15px; padding: 15px; background: #eee; border: 1px dashed #999; display: inline-block;">
+                    <span style="color: #d01012; font-weight: bold;">PDF</span> 
+                    <a href="#" style="text-decoration: none; color: #333; font-weight: bold;">2068_Nex_2.0_Instructions.pdf (1.9 MB)</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <p>&copy; 2011 The LEGO Group. All rights reserved.</p>
+        <div class="footer-links" style="margin-top: 10px;">
+            <a href="#">이용 약관</a> | <a href="#">개인정보 취급방침</a> | <a href="#">LEGO.com 홈</a>
+        </div>
+    </footer>
+
+    <script>
+        // Tab Interaction
+        function openTab(evt, tabName) {
+            var i, content, btns;
+            
+            content = document.getElementsByClassName("tab-content");
+            for (i = 0; i < content.length; i++) {
+                content[i].style.display = "none";
+                content[i].classList.remove("active");
+            }
+
+            btns = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < btns.length; i++) {
+                btns[i].classList.remove("active");
+            }
+
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        // Add to Bag Alert
+        function addToBag() {
+            alert("넥스 2.0이 장바구니에 추가되었습니다! (데모)");
+        }
+
+        // Image Zoom
+        var img = document.getElementById("mainImg");
+        var isZoomed = false;
+        
+        img.addEventListener('click', function() {
+            if (!isZoomed) {
+                this.style.transform = "scale(1.3)";
+                isZoomed = true;
+            } else {
+                this.style.transform = "scale(1.0)";
+                isZoomed = false;
+            }
+        });
+    </script>
 </body>
 </html>
