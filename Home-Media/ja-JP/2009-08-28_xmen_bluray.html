@@ -3,232 +3,296 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>X-MEN [ブルーレイ] - 20世紀フォックス ホーム エンターテイメント ジャパン</title>
+    <title>X-MEN (Blu-ray) - 20世紀フォックス ホーム エンターテイメント ジャパン</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;900&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&display=swap');
-        
         body {
             font-family: 'Noto Sans JP', sans-serif;
             background-color: #050a14;
             color: #e2e8f0;
-            background-image: radial-gradient(circle at top, #1e293b 0%, #050a14 70%);
         }
-
-        .metallic-text {
-            background: linear-gradient(to bottom, #ffffff 0%, #a1a1a1 50%, #ffffff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: bold;
+        .fox-gradient {
+            background: linear-gradient(180deg, #1a2a44 0%, #050a14 100%);
         }
-
-        .product-card {
-            background: rgba(30, 41, 59, 0.5);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        .x-metal {
+            background: linear-gradient(135deg, #718096 0%, #2d3748 50%, #1a202c 100%);
+            box-shadow: 0 0 20px rgba(66, 153, 225, 0.3);
         }
-
+        .btn-purchase {
+            background: linear-gradient(to bottom, #f6ad55, #ed8936);
+            transition: all 0.3s ease;
+        }
+        .btn-purchase:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(237, 137, 54, 0.4);
+        }
         .tab-active {
-            border-bottom: 3px solid #3b82f6;
-            color: #3b82f6;
+            border-bottom: 3px solid #4299e1;
+            color: #4299e1;
         }
-
-        .fox-logo {
-            font-size: 1.2rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            font-weight: 800;
-            color: #facc15;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        .bluray-case {
+            perspective: 1000px;
         }
-
-        .nav-link:hover {
-            color: #3b82f6;
-            transition: 0.3s;
+        .case-inner {
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
         }
-        
-        .fade-in {
-            animation: fadeIn 0.8s ease-out forwards;
+        .flipped {
+            transform: rotateY(180deg);
         }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .case-front, .case-back {
+            backface-visibility: hidden;
+        }
+        .case-back {
+            transform: rotateY(180deg);
         }
     </style>
 </head>
-<body class="min-h-screen">
+<body>
 
     <!-- Header -->
-    <header class="border-b border-white/10 py-4 sticky top-0 z-50 bg-[#050a14]/90 backdrop-blur-md">
-        <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
-            <div class="fox-logo mb-2 md:mb-0">
-                20th Century Fox
-                <span class="block text-[8px] tracking-[0.4em] text-white">HOME ENTERTAINMENT JAPAN</span>
+    <header class="bg-black/80 sticky top-0 z-50 border-b border-blue-900/50 backdrop-blur-md">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <div class="text-xl font-black tracking-tighter text-white">
+                    20th <span class="text-blue-500">CENTURY FOX</span>
+                    <div class="text-[8px] tracking-[0.2em] uppercase -mt-1 text-gray-400">Home Entertainment</div>
+                </div>
             </div>
-            <nav class="flex space-x-6 text-sm font-medium">
-                <a href="#" class="nav-link">HOME</a>
-                <a href="#" class="nav-link">NEW RELEASE</a>
-                <a href="#" class="nav-link">CATALOG</a>
-                <a href="#" class="nav-link">SUPPORT</a>
+            <nav class="hidden md:flex space-x-6 text-sm font-medium">
+                <a href="#" class="hover:text-blue-400 transition">新作情報</a>
+                <a href="#" class="hover:text-blue-400 transition">カタログ</a>
+                <a href="#" class="hover:text-blue-400 transition">キャンペーン</a>
+                <a href="#" class="hover:text-blue-400 transition">サポート</a>
             </nav>
+            <div class="md:hidden text-2xl">☰</div>
         </div>
     </header>
 
-    <main class="container mx-auto px-4 py-8 max-w-6xl">
-        <!-- Breadcrumb -->
-        <div class="text-xs text-slate-400 mb-6">
-            HOME > 洋画 > アクション > X-MEN [ブルーレイ]
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+    <!-- Main Content -->
+    <main class="fox-gradient pt-8 pb-20">
+        <div class="container mx-auto px-4">
             
-            <!-- Product Images (Left Column) -->
-            <div class="lg:col-span-5 space-y-4 fade-in">
-                <div class="product-card rounded-lg overflow-hidden p-2 shadow-2xl">
-                    <img id="main-image" src="https://images.static-bluray.com/movies/covers/85558_slip.jpg" alt="X-MEN Blu-ray Front" class="w-full h-auto transition-opacity duration-500 rounded">
-                </div>
-                <div class="flex space-x-4">
-                    <button onclick="changeImage('https://images.static-bluray.com/movies/covers/85558_slip.jpg')" class="w-20 border border-white/20 hover:border-blue-500 rounded p-1 bg-white/5 transition">
-                        <img src="https://images.static-bluray.com/movies/covers/85558_slip.jpg" alt="Thumb 1" class="w-full">
-                    </button>
-                    <button onclick="changeImage('https://images.static-bluray.com/movies/covers/85558_slipback.jpg')" class="w-20 border border-white/20 hover:border-blue-500 rounded p-1 bg-white/5 transition">
-                        <img src="https://images.static-bluray.com/movies/covers/85558_slipback.jpg" alt="Thumb 2" class="w-full">
-                    </button>
-                </div>
-                <p class="text-xs text-slate-400 italic">※画像をクリックすると切り替わります</p>
-            </div>
-
-            <!-- Product Details (Right Column) -->
-            <div class="lg:col-span-7 space-y-6 fade-in">
-                <h1 class="text-4xl md:text-5xl metallic-text tracking-tighter italic">X-MEN</h1>
-                <p class="text-xl text-blue-400 font-bold italic">ブルーレイ [2枚組]</p>
-
-                <div class="space-y-2 border-l-4 border-blue-600 pl-4 py-2">
-                    <div class="flex text-sm">
-                        <span class="w-32 text-slate-400">発売日：</span>
-                        <span>2009/08/28</span>
+            <!-- Product Hero Section -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                
+                <!-- Left: Product Image -->
+                <div class="lg:col-span-5 flex flex-col items-center">
+                    <div class="bluray-case relative w-full max-w-[400px] aspect-[3/4]">
+                        <div id="caseInner" class="case-inner w-full h-full relative">
+                            <!-- Front -->
+                            <div class="case-front absolute inset-0 rounded-lg overflow-hidden shadow-2xl shadow-blue-900/40">
+                                <img src="https://images.static-bluray.com/movies/covers/85558_slip.jpg" 
+                                     alt="X-MEN Blu-ray Front" 
+                                     class="w-full h-full object-cover">
+                            </div>
+                            <!-- Back -->
+                            <div class="case-back absolute inset-0 rounded-lg overflow-hidden shadow-2xl">
+                                <img src="https://images.static-bluray.com/movies/covers/85558_slipback.jpg" 
+                                     alt="X-MEN Blu-ray Back" 
+                                     class="w-full h-full object-cover">
+                            </div>
+                        </div>
                     </div>
-                    <div class="flex text-sm">
-                        <span class="w-32 text-slate-400">希望小売価格：</span>
-                        <span>￥4,935（税込）</span>
+                    
+                    <div class="mt-6 flex space-x-4">
+                        <button onclick="toggleFlip(false)" class="px-4 py-2 bg-blue-900/50 rounded-full text-sm hover:bg-blue-800 transition">表面</button>
+                        <button onclick="toggleFlip(true)" class="px-4 py-2 bg-blue-900/50 rounded-full text-sm hover:bg-blue-800 transition">裏面</button>
                     </div>
-                    <div class="flex text-sm">
-                        <span class="w-32 text-slate-400">品番：</span>
-                        <span>FXXG-19942</span>
-                    </div>
+                    <p class="mt-4 text-xs text-gray-500">※画像はイメージです。実際の商品とは異なる場合があります。</p>
                 </div>
 
-                <!-- Tabs -->
-                <div class="mt-8">
-                    <div class="flex border-b border-white/10 text-sm overflow-x-auto">
-                        <button onclick="showTab('summary')" id="tab-summary" class="px-6 py-3 font-bold transition whitespace-nowrap tab-active">作品紹介</button>
-                        <button onclick="showTab('spec')" id="tab-spec" class="px-6 py-3 font-bold transition whitespace-nowrap">特典・仕様</button>
-                        <button onclick="showTab('cast')" id="tab-cast" class="px-6 py-3 font-bold transition whitespace-nowrap">キャスト＆スタッフ</button>
+                <!-- Right: Product Info -->
+                <div class="lg:col-span-7">
+                    <div class="mb-2 inline-block px-3 py-1 bg-blue-600 text-xs font-bold rounded">BLU-RAY DISC</div>
+                    <h1 class="text-4xl md:text-5xl font-black mb-2 tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">
+                        X-MEN
+                    </h1>
+                    <p class="text-xl text-blue-400 font-bold mb-6">2枚組 特別編</p>
+                    
+                    <div class="grid grid-cols-2 gap-4 mb-8 text-sm bg-black/40 p-4 rounded-xl border border-white/5">
+                        <div>
+                            <span class="text-gray-500 block">発売日</span>
+                            <span class="font-bold">2009/08/28</span>
+                        </div>
+                        <div>
+                            <span class="text-gray-500 block">希望小売価格</span>
+                            <span class="font-bold">¥4,700 (税抜)</span>
+                        </div>
+                        <div>
+                            <span class="text-gray-500 block">組枚数</span>
+                            <span class="font-bold">2枚組 (本編BD + 特典DVD)</span>
+                        </div>
+                        <div>
+                            <span class="text-gray-500 block">メーカー品番</span>
+                            <span class="font-bold uppercase tracking-tighter">FXXG-19942</span>
+                        </div>
                     </div>
 
-                    <!-- Tab Content: Summary -->
-                    <div id="content-summary" class="py-6 space-y-4">
-                        <p class="leading-relaxed text-slate-200">
-                            2000年、アメコミ映画の歴史を変えた衝撃作がついに高画質ブルーレイで登場。
-                            DNAの突然変異により超人的なパワーを持つ進化した人類＜ミュータント＞。彼らはその能力ゆえに人間から疎まれ、迫害されていた。人類との共存を目指すプロフェッサーX率いるX-MENと、人類の抹殺を企むマグニートー率いる一派。今、地球の存亡を賭けた壮絶な闘いが始まる！
+                    <div class="mb-8">
+                        <p class="text-gray-300 leading-relaxed italic mb-4">
+                            「人間か、ミュータントか――。究極の選択を迫られる近未来、人類の未来を懸けた闘いが今始まる。」
+                        </p>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            圧倒的パワーを誇るミュータント集団“X-MEN”の活躍を描いたSFアクション大作。ヒュー・ジャックマンを一躍スターダムに押し上げたウルヴァリン初登場の記念碑的作品。劇場公開版に未公開シーンを追加した1.5バージョン要素を含む豪華2枚組仕様。
                         </p>
                     </div>
 
-                    <!-- Tab Content: Spec -->
-                    <div id="content-spec" class="hidden py-6 space-y-6">
-                        <div class="space-y-4">
-                            <h3 class="text-blue-400 font-bold border-b border-blue-900/50 pb-1">ディスク1：本編BD</h3>
-                            <ul class="list-disc list-inside text-sm space-y-2 text-slate-300">
-                                <li>音声：英語 5.1ch DTS-HD マスター・オーディオ、日本語 5.1ch DTS</li>
-                                <li>字幕：日本語、英語</li>
-                                <li>ブライアン・シンガー監督による音声解説</li>
-                            </ul>
-                            
-                            <h3 class="text-blue-400 font-bold border-b border-blue-900/50 pb-1">ディスク2：特典BD</h3>
-                            <ul class="list-disc list-inside text-sm space-y-2 text-slate-300">
-                                <li>未公開シーン集（監督の音声解説付き）</li>
-                                <li>「X-MEN」製作秘話（計5種）</li>
-                                <li>マルチ・アングル機能によるメイキング映像</li>
-                                <li>未公開アート・ギャラリー、TVスポット、予告編集</li>
-                            </ul>
-                        </div>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <button class="btn-purchase flex-1 py-4 rounded-lg font-bold text-black flex items-center justify-center space-x-2">
+                            <span>🛒 オンラインストアで購入</span>
+                        </button>
+                        <button class="flex-1 py-4 bg-gray-800 rounded-lg font-bold border border-gray-700 hover:bg-gray-700 transition">
+                            予告編を視聴する
+                        </button>
                     </div>
+                </div>
+            </div>
 
-                    <!-- Tab Content: Cast -->
-                    <div id="content-cast" class="hidden py-6 grid grid-cols-2 gap-4 text-sm">
-                        <div>
-                            <p class="font-bold text-blue-400 mb-1">【キャスト】</p>
-                            <ul class="space-y-1">
-                                <li>ウルヴァリン：ヒュー・ジャックマン</li>
-                                <li>プロフェッサーX：パトリック・スチュワート</li>
-                                <li>マグニートー：イアン・マッケラン</li>
-                                <li>ストーム：ハル・ベリー</li>
-                                <li>ジーン：ファムケ・ヤンセン</li>
+            <!-- Detailed Specs Tabs -->
+            <div class="mt-20">
+                <div class="flex border-b border-gray-800 mb-8 overflow-x-auto">
+                    <button onclick="showTab('features')" id="tab-features" class="px-6 py-3 font-bold whitespace-nowrap tab-active transition">特典内容</button>
+                    <button onclick="showTab('cast')" id="tab-cast" class="px-6 py-3 font-bold whitespace-nowrap text-gray-500 hover:text-white transition">キャスト＆スタッフ</button>
+                    <button onclick="showTab('specs')" id="tab-specs" class="px-6 py-3 font-bold whitespace-nowrap text-gray-500 hover:text-white transition">商品仕様</button>
+                </div>
+
+                <!-- Tab: Features -->
+                <div id="content-features" class="tab-content">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="bg-white/5 p-6 rounded-2xl border border-white/5">
+                            <h3 class="text-blue-400 font-bold text-lg mb-4 flex items-center">
+                                <span class="mr-2">📀</span> DISC 1：本編ディスク
+                            </h3>
+                            <ul class="space-y-2 text-sm text-gray-300">
+                                <li>●ブライアン・シンガー監督による音声解説</li>
+                                <li>●イン・ムービー・コンテンツ：ボーナス・ビュー</li>
+                                <li>●未公開シーン集（監督の音声解説付き）</li>
+                                <li>●マーベル・コミック キャラクター・バイオグラフィ</li>
                             </ul>
                         </div>
-                        <div>
-                            <p class="font-bold text-blue-400 mb-1">【スタッフ】</p>
-                            <ul class="space-y-1">
-                                <li>監督：ブライアン・シンガー</li>
-                                <li>製作：ローレン・シュラー・ドナー</li>
-                                <li>脚本：デヴィッド・ヘイター</li>
+                        <div class="bg-white/5 p-6 rounded-2xl border border-white/5">
+                            <h3 class="text-blue-400 font-bold text-lg mb-4 flex items-center">
+                                <span class="mr-2">📀</span> DISC 2：特典ディスク
+                            </h3>
+                            <ul class="space-y-2 text-sm text-gray-300">
+                                <li>●メイキング・オブ・『X-MEN』</li>
+                                <li>●進化したミュータント：製作の舞台裏</li>
+                                <li>●インタビュー集（ブライアン・シンガー監督 他）</li>
+                                <li>●マルチ・アングル撮影風景</li>
+                                <li>●スクリーンテスト集</li>
+                                <li>●オリジナル予告編＆TVスポット集</li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
-                <!-- Buy Button Mockup -->
-                <div class="pt-6">
-                    <button class="w-full md:w-auto px-12 py-4 bg-gradient-to-r from-blue-700 to-blue-500 hover:from-blue-600 hover:to-blue-400 rounded-full font-bold shadow-lg transform active:scale-95 transition">
-                        ご購入はこちら
-                    </button>
+                <!-- Tab: Cast -->
+                <div id="content-cast" class="tab-content hidden">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                        <div>
+                            <p class="text-xs text-gray-500 mb-1 font-bold">ローガン / ウルヴァリン</p>
+                            <p class="text-white">ヒュー・ジャックマン</p>
+                            <p class="text-xs text-gray-400">(山路和弘)</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500 mb-1 font-bold">チャールズ・エグゼビア</p>
+                            <p class="text-white">パトリック・スチュワート</p>
+                            <p class="text-xs text-gray-400">(大木民夫)</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500 mb-1 font-bold">エリック / マグニートー</p>
+                            <p class="text-white">イアン・マッケラン</p>
+                            <p class="text-xs text-gray-400">(阪 脩)</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500 mb-1 font-bold">ストーム</p>
+                            <p class="text-white">ハル・ベリー</p>
+                            <p class="text-xs text-gray-400">(本田貴子)</p>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-white/5 col-span-full">
+                            <p class="text-sm"><span class="text-gray-500">監督：</span> ブライアン・シンガー</p>
+                            <p class="text-sm"><span class="text-gray-500">脚本：</span> デヴィッド・ヘイター</p>
+                            <p class="text-sm"><span class="text-gray-500">製作：</span> ローレン・シュラー・ドナー</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab: Specs -->
+                <div id="content-specs" class="tab-content hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm text-left border-collapse">
+                            <tr class="border-b border-white/5">
+                                <th class="py-3 text-gray-500 w-32">収録時間</th>
+                                <td class="py-3 text-white">本編約104分</td>
+                            </tr>
+                            <tr class="border-b border-white/5">
+                                <th class="py-3 text-gray-500">映像</th>
+                                <td class="py-3 text-white">1080p High Definition / シネマスコープ</td>
+                            </tr>
+                            <tr class="border-b border-white/5">
+                                <th class="py-3 text-gray-500">音声</th>
+                                <td class="py-3 text-white">
+                                    1. 英語 DTS-HD マスター・オーディオ 5.1ch<br>
+                                    2. 日本語 DTS 5.1ch
+                                </td>
+                            </tr>
+                            <tr class="border-b border-white/5">
+                                <th class="py-3 text-gray-500">字幕</th>
+                                <td class="py-3 text-white">1. 日本語字幕 2. 英語字幕</td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Back Cover Section -->
-        <div class="mt-20 fade-in">
-            <h2 class="text-2xl font-bold mb-6 border-b border-white/10 pb-2">パッケージ裏面</h2>
-            <div class="product-card rounded-lg overflow-hidden max-w-4xl mx-auto p-4">
-                <img src="https://images.static-bluray.com/movies/covers/85558_slipback.jpg" alt="X-MEN Blu-ray Back Cover" class="w-full h-auto rounded">
-            </div>
         </div>
     </main>
 
     <!-- Footer -->
-    <footer class="mt-20 border-t border-white/10 py-12 bg-black/40">
-        <div class="container mx-auto px-4 text-center text-xs text-slate-500 space-y-4">
-            <p>© 2009 Twentieth Century Fox Home Entertainment LLC. All Rights Reserved.</p>
-            <p>本ページの情報は発売当時のものであり、現在の情報と異なる場合があります。</p>
-            <div class="flex justify-center space-x-4">
-                <a href="#" class="hover:underline">利用規約</a>
-                <a href="#" class="hover:underline">プライバシーポリシー</a>
-                <a href="#" class="hover:underline">お問い合わせ</a>
+    <footer class="bg-black py-12 border-t border-gray-900">
+        <div class="container mx-auto px-4 text-center">
+            <div class="flex justify-center space-x-6 mb-8 text-xs text-gray-500 uppercase tracking-widest font-bold">
+                <a href="#" class="hover:text-white transition">Privacy Policy</a>
+                <a href="#" class="hover:text-white transition">Terms of Use</a>
+                <a href="#" class="hover:text-white transition">Contact Us</a>
             </div>
+            <p class="text-[10px] text-gray-600 leading-relaxed uppercase tracking-tighter">
+                X-MEN TM & © 2000 MARVEL CHARACTERS, INC. ALL RIGHTS RESERVED.<br>
+                © 2009 TWENTIETH CENTURY FOX HOME ENTERTAINMENT LLC. ALL RIGHTS RESERVED.<br>
+                TWENTIETH CENTURY FOX, FOX AND ASSOCIATED LOGOS ARE TRADEMARKS OF TWENTIETH CENTURY FOX FILM CORPORATION AND ITS RELATED ENTITIES.
+            </p>
         </div>
     </footer>
 
     <script>
-        function changeImage(url) {
-            const mainImg = document.getElementById('main-image');
-            mainImg.style.opacity = '0';
-            setTimeout(() => {
-                mainImg.src = url;
-                mainImg.style.opacity = '1';
-            }, 300);
+        function toggleFlip(isBack) {
+            const caseInner = document.getElementById('caseInner');
+            if (isBack) {
+                caseInner.classList.add('flipped');
+            } else {
+                caseInner.classList.remove('flipped');
+            }
         }
 
         function showTab(tabId) {
             // Hide all contents
-            ['summary', 'spec', 'cast'].forEach(id => {
-                document.getElementById('content-' + id).classList.add('hidden');
-                document.getElementById('tab-' + id).classList.remove('tab-active');
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+            // Remove active style from all tabs
+            document.querySelectorAll('button[id^="tab-"]').forEach(tab => {
+                tab.classList.remove('tab-active');
+                tab.classList.add('text-gray-500');
             });
 
-            // Show selected content
+            // Show current
             document.getElementById('content-' + tabId).classList.remove('hidden');
-            document.getElementById('tab-' + tabId).classList.add('tab-active');
+            const activeTab = document.getElementById('tab-' + tabId);
+            activeTab.classList.add('tab-active');
+            activeTab.classList.remove('text-gray-500');
+            activeTab.classList.add('text-white');
         }
     </script>
 </body>
