@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>White Cat | F-Zero Wiki | Fandom</title>
+    <style>
+        :root {
+            --bg-color: #f4f6f8;
+            --text-color: #3a3a3a;
+            --link-color: #0645ad;
+            --header-bg: #ffffff;
+            --border-color: #cdd2d7;
+            --infobox-bg: #f9f9f9;
+            --infobox-header: #ff4fa7; /* Pink to match White Cat */
+            --infobox-text: #ffffff;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #0e192b;
+            --text-color: #d5d9e0;
+            --link-color: #72a7ff;
+            --header-bg: #1d2c4d;
+            --border-color: #3a537d;
+            --infobox-bg: #152238;
+            --infobox-header: #cc3a83;
+            --infobox-text: #ffffff;
+        }
+
+        body {
+            font-family: sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Header / Navbar */
+        .global-navigation {
+            background-color: #000;
+            color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .wiki-header {
+            background-color: var(--header-bg);
+            border-bottom: 1px solid var(--border-color);
+            padding: 20px 40px;
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .theme-toggle {
+            background: #333;
+            color: #fff;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        /* Main Layout */
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            background-color: var(--header-bg);
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 5px;
+            margin-top: 0;
+        }
+
+        h2 {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+
+        /* Infobox */
+        .infobox {
+            float: right;
+            width: 300px;
+            background-color: var(--infobox-bg);
+            border: 1px solid var(--border-color);
+            margin: 0 0 20px 20px;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .infobox-title {
+            background-color: var(--infobox-header);
+            color: var(--infobox-text);
+            text-align: center;
+            font-weight: bold;
+            font-size: 18px;
+            padding: 5px;
+            border-radius: 3px;
+            margin-bottom: 10px;
+        }
+
+        .infobox-image {
+            text-align: center;
+            background-color: #fff;
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .infobox-image img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .infobox-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .infobox-table th, .infobox-table td {
+            padding: 8px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .infobox-table th {
+            text-align: left;
+            width: 40%;
+        }
+
+        /* Table of Contents */
+        .toc {
+            background-color: var(--infobox-bg);
+            border: 1px solid var(--border-color);
+            display: inline-block;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+
+        .toc-title {
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .toc-toggle {
+            cursor: pointer;
+            color: var(--link-color);
+            font-size: 12px;
+            margin-left: 15px;
+        }
+
+        .toc-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .toc-list li {
+            margin-bottom: 5px;
+        }
+
+        /* Machine Stats Table */
+        .stats-table {
+            width: 60%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .stats-table th, .stats-table td {
+            border: 1px solid var(--border-color);
+            padding: 8px;
+            text-align: center;
+        }
+
+        .stats-table th {
+            background-color: var(--infobox-bg);
+        }
+
+        .clear {
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="global-navigation">
+        <div>FANDOM</div>
+        <div>Search F-Zero Wiki...</div>
+    </div>
+
+    <div class="wiki-header">
+        <div>F-Zero Wiki</div>
+        <button class="theme-toggle" id="themeToggle">Toggle Dark Mode</button>
+    </div>
+
+    <div class="container">
+        
+        <aside class="infobox">
+            <div class="infobox-title">White Cat</div>
+            <div class="infobox-image">
+                <img src="https://placehold.co/250x150/eeeeee/999999?text=White+Cat+Image" alt="White Cat Machine">
+            </div>
+            <table class="infobox-table">
+                <tbody>
+                    <tr>
+                        <th>Machine Number</th>
+                        <td>02</td>
+                    </tr>
+                    <tr>
+                        <th>Pilot</th>
+                        <td><a href="Jody-Summer">Jody Summer</a></td>
+                    </tr>
+                    <tr>
+                        <th>Creator</th>
+                        <td>Galactic Space Federation</td>
+                    </tr>
+                    <tr>
+                        <th>Weight</th>
+                        <td>1,150 kg</td>
+                    </tr>
+                    <tr>
+                        <th>First Appearance</th>
+                        <td><i><a href="F-ZEro-X">F-Zero X</a></i></td>
+                    </tr>
+                </tbody>
+            </table>
+        </aside>
+
+        <h1>White Cat</h1>
+        
+        <p>The <strong>White Cat</strong> (Japanese: <span lang="ja">ホワイトキャット</span>, Hepburn: <i>Howaito Kyatto</i>) is a machine piloted by <a href="Jody-Summer">Jody Summer</a>, the renowned combat pilot of the Galactic Space Federation. First introduced in <i>F-Zero X</i>, the machine bears the number 02.</p>
+
+        <p>Built exclusively for Jody Summer, the White Cat possesses phenomenal cornering ability and grip, allowing it to navigate tight, technical tracks with ease. While its body strength and boost power are generally average, its handling makes it a favorite for beginners and veterans alike.</p>
+
+        <div class="toc" id="toc">
+            <div class="toc-title">
+                Contents 
+                <span class="toc-toggle" id="tocToggle">[hide]</span>
+            </div>
+            <ul class="toc-list" id="tocList">
+                <li><a href="#Characteristics">1 Characteristics</a></li>
+                <li><a href="#Profiles_and_Statistics">2 Profiles and Statistics</a>
+                    <ul>
+                        <li><a href="#F-Zero_X">2.1 F-Zero X</a></li>
+                        <li><a href="#F-Zero_GX">2.2 F-Zero GX</a></li>
+                    </ul>
+                </li>
+                <li><a href="#Trivia">3 Trivia</a></li>
+            </ul>
+        </div>
+
+        <h2 id="Characteristics">Characteristics</h2>
+        <p>The White Cat features a sleek, aerodynamic design heavily utilizing white and hot pink colors, resembling the feline creature it is named after. Due to Jody Summer’s affiliation with the Galactic Space Federation, the machine is equipped with state-of-the-art GSF technology to maximize grip.</p>
+
+        <h2 id="Profiles_and_Statistics">Profiles and Statistics</h2>
+
+        <h3 id="F-Zero_X"><i>F-Zero X</i></h3>
+        <p>The White Cat excels on tracks with sharp corners due to its high grip rating.</p>
+        <table class="stats-table">
+            <tr>
+                <th>Body</th>
+                <th>Boost</th>
+                <th>Grip</th>
+            </tr>
+            <tr>
+                <td>C</td>
+                <td>C</td>
+                <td>A</td>
+            </tr>
+        </table>
+
+        <h3 id="F-Zero_GX"><i>F-Zero GX</i></h3>
+        <p>In <i>F-Zero GX</i>, the White Cat maintains its excellent grip. Its boost duration is somewhat short, but the acceleration is quite high, making it a highly responsive machine for recovery.</p>
+        <table class="stats-table">
+            <tr>
+                <th>Body</th>
+                <th>Boost</th>
+                <th>Grip</th>
+            </tr>
+            <tr>
+                <td>C</td>
+                <td>C</td>
+                <td>A</td>
+            </tr>
+        </table>
+
+        <h2 id="Trivia">Trivia</h2>
+        <ul>
+            <li>In the anime <i>F-Zero: GP Legend</i>, the White Cat is occasionally seen utilizing weapons, reflecting Jody’s role in the Mobile Task Force.</li>
+            <li>Despite having a ‘C’ in Body, its actual durability in <i>F-Zero GX</i> makes it quite resilient compared to other light-weight machines.</li>
+        </ul>
+
+        <div class="clear"></div>
+    </div>
+
+    <script>
+        // Theme Toggle Logic
+        const themeToggleBtn = document.getElementById('themeToggle');
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'light');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        });
+
+        // Table of Contents Toggle Logic
+        const tocToggleBtn = document.getElementById('tocToggle');
+        const tocList = document.getElementById('tocList');
+        
+        tocToggleBtn.addEventListener('click', () => {
+            if (tocList.style.display === 'none') {
+                tocList.style.display = 'block';
+                tocToggleBtn.textContent = '[hide]';
+            } else {
+                tocList.style.display = 'none';
+                tocToggleBtn.textContent = '[show]';
+            }
+        });
+    </script>
+</body>
+</html>

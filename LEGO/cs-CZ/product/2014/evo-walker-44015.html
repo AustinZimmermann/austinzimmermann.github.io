@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="cs-CZ">
+<head>
+<meta charset="UTF-8">
+<title>44015 EVO WALKER | LEGO® Hero Factory</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+/* ====== 2014 LEGO Style Inspired Layout ====== */
+
+body {
+    margin: 0;
+    font-family: Helvetica, sans-serif;
+    background: #f4f4f4;
+    color: #222;
+}
+
+header {
+    background: #d01012;
+    color: white;
+    padding: 12px 20px;
+}
+
+header .logo {
+    font-weight: bold;
+    font-size: 22px;
+}
+
+nav {
+    background: #222;
+    color: white;
+    padding: 10px 20px;
+}
+
+nav a {
+    color: white;
+    margin-right: 20px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.container {
+    width: 960px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.2);
+}
+
+.product {
+    display: flex;
+    gap: 30px;
+}
+
+.product img {
+    width: 400px;
+    border: 1px solid #ccc;
+}
+
+.product-details {
+    flex: 1;
+}
+
+.price {
+    font-size: 24px;
+    color: #d01012;
+    font-weight: bold;
+}
+
+button {
+    background: #ffcf00;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background: #ffdb4d;
+}
+
+.tabs {
+    margin-top: 30px;
+}
+
+.tab-buttons button {
+    background: #ddd;
+    border: 1px solid #ccc;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.tab-buttons button.active {
+    background: #fff;
+    border-bottom: 1px solid white;
+}
+
+.tab-content {
+    border: 1px solid #ccc;
+    padding: 15px;
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+footer {
+    background: #222;
+    color: white;
+    padding: 20px;
+    margin-top: 40px;
+    text-align: center;
+    font-size: 12px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">LEGO®</div>
+</header>
+
+<nav>
+    <a href="#">Produkty</a>
+    <a href="#">Hry</a>
+    <a href="#">Videa</a>
+    <a href="#">Podpora</a>
+</nav>
+
+<div class="container">
+
+    <h1>44015 EVO WALKER</h1>
+    <p><strong>Téma:</strong> LEGO® Hero Factory</p>
+    <p><strong>Věk:</strong> 6-12</p>
+    <p><strong>Číslo produktu:</strong> 44015</p>
+    <p><strong>Počet dílků:</strong> 51</p>
+
+    <div class="product">
+        <img src="https://images.brickset.com/sets/images/44015-1.jpg" alt="44015 EVO WALKER">
+
+        <div class="product-details">
+            <div class="price">299 Kč</div>
+            <p>
+                Postav si výkonný bojový stroj EVO WALKER a vydej se do bitvy proti
+                zlým mimozemšťanům! Tento model je vybaven pohyblivými končetinami,
+                vystřelovačem a kokpitem pro figurku EVO.
+            </p>
+
+            <button onclick="addToCart()">Přidat do košíku</button>
+
+            <p id="cartMessage" style="color:green; font-weight:bold;"></p>
+        </div>
+    </div>
+
+    <div class="tabs">
+        <div class="tab-buttons">
+            <button class="active" onclick="openTab('description', this)">Popis</button>
+            <button onclick="openTab('features', this)">Vlastnosti</button>
+            <button onclick="openTab('reviews', this)">Recenze</button>
+        </div>
+
+        <div id="description" class="tab-content active">
+            <p>
+                EVO je připraven na další misi! Naskoč do jeho chodícího stroje
+                a vyraz do akce. EVO WALKER je ideální sada pro fanoušky LEGO® Hero Factory.
+            </p>
+        </div>
+
+        <div id="features" class="tab-content">
+            <ul>
+                <li>Obsahuje minifigurku EVO</li>
+                <li>Pohyblivé nohy a paže</li>
+                <li>Funkční vystřelovač</li>
+                <li>Jednoduché stavební instrukce</li>
+            </ul>
+        </div>
+
+        <div id="reviews" class="tab-content">
+            <p>★★★★★ – „Skvělá stavebnice pro malé fanoušky Hero Factory!“</p>
+            <p>★★★★☆ – „Rychlé sestavení a hodně zábavy.“</p>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    © 2014 The LEGO Group. Všechna práva vyhrazena.
+</footer>
+
+<script>
+function addToCart() {
+    document.getElementById("cartMessage").innerText = 
+        "Produkt byl přidán do košíku!";
+}
+
+function openTab(tabId, element) {
+    var contents = document.querySelectorAll(".tab-content");
+    var buttons = document.querySelectorAll(".tab-buttons button");
+
+    contents.forEach(function(content) {
+        content.classList.remove("active");
+    });
+
+    buttons.forEach(function(button) {
+        button.classList.remove("active");
+    });
+
+    document.getElementById(tabId).classList.add("active");
+    element.classList.add("active");
+}
+</script>
+
+</body>
+</html>

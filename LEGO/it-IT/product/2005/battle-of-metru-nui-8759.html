@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEGO.com BIONICLE - 8759 La battaglia di Metru Nui</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #333;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            font-family: Helvetica, sans-serif;
+        }
+
+        /* Internet Explorer 6 Chrome */
+        .ie-window {
+            background: #D4D0C8;
+            border: 2px solid;
+            border-color: #FFFFFF #808080 #808080 #FFFFFF;
+            width: 100%;
+            max-width: 1024px;
+            margin: 0 auto;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .ie-title-bar {
+            background: linear-gradient(90deg, #000080, #1084D0);
+            color: white;
+            padding: 3px 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            font-family: 'MS Sans Serif', sans-serif;
+            font-size: 12px;
+        }
+
+        .ie-menu-bar {
+            background: #D4D0C8;
+            border-bottom: 1px solid #808080;
+            padding: 2px 5px;
+            font-size: 11px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .ie-address-bar {
+            background: #D4D0C8;
+            padding: 4px;
+            border-bottom: 1px solid #808080;
+            display: flex;
+            align-items: center;
+            font-size: 11px;
+        }
+
+        .ie-address-input {
+            background: white;
+            border: 1px solid #808080;
+            flex-grow: 1;
+            margin-left: 5px;
+            padding: 2px 4px;
+            font-family: sans-serif;
+        }
+
+        /* LEGO.com Bionicle Theme Styling */
+        .bionicle-container {
+            background: #000 url('https://www.lego.com/r/catalogs/-/media/catalogs/bionicle/backgrounds/pattern.jpg') repeat;
+            color: #ccc;
+            min-height: 600px;
+            position: relative;
+            border: 1px solid #000;
+        }
+
+        .top-nav {
+            background: #000;
+            height: 80px;
+            border-bottom: 2px solid #444;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .lego-logo {
+            background: #e3000b;
+            color: white;
+            font-weight: bold;
+            padding: 10px;
+            font-size: 20px;
+            border: 2px solid white;
+            margin-right: 20px;
+        }
+
+        .product-stage {
+            background: radial-gradient(circle, #222 0%, #000 70%);
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .main-image-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            filter: drop-shadow(0 0 20px rgba(0, 255, 255, 0.2));
+        }
+
+        .glow-effect {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+            background: rgba(0, 150, 255, 0.1);
+            border-radius: 50%;
+            filter: blur(50px);
+            z-index: 0;
+        }
+
+        .product-info {
+            width: 100%;
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        .product-title {
+            color: #fff;
+            font-size: 32px;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #444;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .set-number {
+            color: #00aaff;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .description {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #bbb;
+        }
+
+        .sidebar-menu {
+            background: rgba(0,0,0,0.8);
+            border: 1px solid #333;
+            width: 200px;
+            position: absolute;
+            left: 20px;
+            top: 100px;
+        }
+
+        .sidebar-item {
+            padding: 8px 15px;
+            border-bottom: 1px solid #222;
+            font-size: 12px;
+            color: #888;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .sidebar-item:hover {
+            background: #111;
+            color: #00aaff;
+        }
+
+        .sidebar-item.active {
+            color: #fff;
+            border-left: 3px solid #00aaff;
+        }
+
+        .buy-box {
+            background: #222;
+            border: 1px solid #444;
+            padding: 20px;
+            margin-top: 20px;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .price {
+            font-size: 24px;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .btn-add {
+            background: #ffcc00;
+            color: #000;
+            font-weight: bold;
+            padding: 10px;
+            width: 100%;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .btn-add:hover {
+            background: #ffe066;
+        }
+
+        .footer-clock {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            background: #D4D0C8;
+            border-top: 1px solid #808080;
+            border-left: 1px solid #808080;
+            padding: 2px 10px;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .stat-bar {
+            background: #D4D0C8;
+            border-top: 1px solid #808080;
+            padding: 2px 5px;
+            font-size: 11px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .bionicle-flash-overlay {
+            pointer-events: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 100% 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ie-window">
+        <!-- IE6 Title Bar -->
+        <div class="ie-title-bar">
+            <div class="flex items-center gap-1">
+                <img src="https://www.google.com/s2/favicons?domain=lego.com" alt="icon" class="w-4 h-4">
+                <span>LEGO.com BIONICLE - 8759 La battaglia di Metru Nui - Microsoft Internet Explorer</span>
+            </div>
+            <div class="flex gap-1">
+                <div class="w-4 h-4 bg-[#D4D0C8] border border-white flex items-center justify-center text-black text-[8px]">_</div>
+                <div class="w-4 h-4 bg-[#D4D0C8] border border-white flex items-center justify-center text-black text-[8px]">□</div>
+                <div class="w-4 h-4 bg-[#D4D0C8] border border-white flex items-center justify-center text-black text-[8px] font-bold">X</div>
+            </div>
+        </div>
+
+        <!-- IE6 Menu Bar -->
+        <div class="ie-menu-bar">
+            <span>File</span>
+            <span>Modifica</span>
+            <span>Visualizza</span>
+            <span>Preferiti</span>
+            <span>Strumenti</span>
+            <span>?</span>
+        </div>
+
+        <!-- IE6 Address Bar -->
+        <div class="ie-address-bar">
+            <span class="mr-2">Indirizzo</span>
+            <div class="ie-address-input">http://www.lego.com/it-it/bionicle/products/8759.aspx</div>
+            <div class="ml-2 px-2 border border-[#808080] bg-white cursor-pointer">Vai</div>
+        </div>
+
+        <!-- Webpage Content -->
+        <div class="bionicle-container relative">
+            <div class="bionicle-flash-overlay"></div>
+            
+            <!-- Global Nav -->
+            <div class="top-nav">
+                <div class="lego-logo">LEGO</div>
+                <div class="flex gap-6 font-bold text-sm tracking-widest text-white uppercase italic">
+                    <span class="text-[#00aaff] border-b-2 border-[#00aaff]">Prodotti</span>
+                    <span>Storie</span>
+                    <span>Giochi</span>
+                    <span>Download</span>
+                    <span>Shop</span>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="sidebar-menu hidden md:block">
+                <div class="sidebar-item active">Toa Hordika</div>
+                <div class="sidebar-item">Visorak</div>
+                <div class="sidebar-item">Rahaga</div>
+                <div class="sidebar-item text-white bg-[#333]">Playsets</div>
+                <div class="sidebar-item">Titani</div>
+            </div>
+
+            <!-- Product Stage -->
+            <div class="product-stage">
+                <div class="main-image-container z-10">
+                    <div class="glow-effect"></div>
+                    <img src="https://img.bricklink.com/ItemImage/SN/0/8759-1.png" alt="8759 Battle for Metru Nui" class="relative z-10 w-full">
+                </div>
+
+                <div class="product-info">
+                    <div class="set-number">SET 8759</div>
+                    <h1 class="product-title">La battaglia di Metru Nui</h1>
+                    
+                    <div class="flex flex-col md:flex-row gap-8">
+                        <div class="flex-grow">
+                            <p class="description mb-4">
+                                Rivivi il leggendario scontro finale di Metru Nui! I Visorak hanno invaso la città delle leggende e spetta ai Toa Hordika liberarla. Questo incredibile set include la grande arena, catapulte funzionanti, e i temibili ragni Visorak pronti all’attacco.
+                            </p>
+                            <ul class="text-xs text-[#888] list-disc ml-4 space-y-1 font-sans">
+                                <li>Include 6 Toa Hordika e 6 Visorak in miniatura.</li>
+                                <li>Catapulta lancia-sfere Rhotuka funzionante!</li>
+                                <li>Il Grande Tempio è alto più di 50 cm.</li>
+                                <li>Oltre 600 pezzi per un’esperienza di costruzione epica.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="flex-shrink-0">
+                            <div class="buy-box">
+                                <div class="text-xs text-[#00aaff] mb-1">Prezzo consigliato</div>
+                                <div class="price">€ 89,90</div>
+                                <button class="btn-add">Aggiungi al Carrello</button>
+                                <div class="text-[10px] text-center mt-2 text-[#666]">Disponibilità immediata</div>
+                            </div>
+                            
+                            <div class="mt-4 flex gap-2 justify-center">
+                                <div class="w-8 h-8 border border-[#333] p-1"><img src="https://www.lego.com/favicon.ico" class="opacity-50 grayscale"></div>
+                                <div class="w-8 h-8 border border-[#333] p-1"><img src="https://www.lego.com/favicon.ico" class="opacity-50 grayscale"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bottom Banner -->
+            <div class="p-4 bg-black text-center text-[10px] text-[#444] uppercase tracking-widest border-t border-[#222]">
+                LEGO, il logo LEGO e BIONICLE sono marchi registrati del Gruppo LEGO. ©2005 The LEGO Group.
+            </div>
+        </div>
+
+        <!-- IE6 Status Bar -->
+        <div class="stat-bar">
+            <div class="flex gap-4">
+                <div class="flex items-center gap-1 border-r border-[#808080] pr-2">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==" class="w-4 h-4 bg-green-500">
+                    <span>Operazione completata</span>
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="border-l border-[#808080] pl-2">Sito attendibile</div>
+                <div class="border-l border-[#808080] pl-2 w-24 text-right">Internet</div>
+            </div>
+        </div>
+
+        <!-- Windows Taskbar Clock Placeholder -->
+        <div class="footer-clock">
+            <img src="https://www.google.com/s2/favicons?domain=microsoft.com" class="w-3 h-3 grayscale">
+            <span>17:53 - 28/10/2005</span>
+        </div>
+    </div>
+
+    <script>
+        // Adding a bit of 2005 "Flash" interaction feel
+        document.querySelectorAll('.sidebar-item').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                const audio = new Audio('https://www.soundjay.com/buttons/sounds/button-25.mp3');
+                audio.volume = 0.1;
+                // audio.play(); // Disabled for user experience, but captures the vibe
+            });
+        });
+    </script>
+</body>
+</html>

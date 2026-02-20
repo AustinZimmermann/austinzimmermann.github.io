@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2192 드릴도저 - 제품 정보 | LEGO.com</title>
+    <meta name="description" content="히어로 팩토리의 새로운 적, 파이어 로드의 부하 드릴도저! 강력한 터빈 구동식 드릴과 날카로운 발톱으로 탱크 스테이션 22를 공격합니다.">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Product",
+      "name": "드릴도저",
+      "image": [
+        "https://www.lego.com/cdn/product-assets/product.img.pri/2192_prod.jpg"
+      ],
+      "description": "파이어 로드의 무자비한 부하 드릴도저가 나타났습니다. 거대한 터빈 드릴로 무엇이든 뚫어버리고 마그마 스파이크 갑옷으로 무장했습니다.",
+      "sku": "2192",
+      "mpn": "2192",
+      "brand": {
+        "@type": "Brand",
+        "name": "LEGO"
+      },
+      "review": {
+        "@type": "Review",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "4.8",
+          "bestRating": "5"
+        },
+        "author": {
+          "@type": "Person",
+          "name": "FireVillainFan"
+        }
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.7",
+        "reviewCount": "42"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://www.lego.com/ko-kr/product/drilldozer-2192",
+        "priceCurrency": "KRW",
+        "price": "17000",
+        "priceValidUntil": "2011-12-31",
+        "itemCondition": "https://schema.org/NewCondition",
+        "availability": "https://schema.org/InStock"
+      }
+    }
+    </script>
+
+    <style>
+        /* 2011 Era Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Malgun Gothic", "Dotum", Arial, sans-serif;
+            background-color: #1a0500; /* Dark Lava Background */
+            background-image: repeating-linear-gradient(
+                45deg,
+                #1a0500,
+                #1a0500 10px,
+                #220a00 10px,
+                #220a00 20px
+            );
+            color: #ddd;
+            line-height: 1.6;
+        }
+
+        /* Global Header (Yellow) */
+        .lego-header {
+            background-color: #ffcf00;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+            position: relative;
+            z-index: 100;
+            border-bottom: 2px solid #b38f00;
+        }
+
+        .lego-logo {
+            background-color: #e3000b;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: white;
+            font-weight: 900;
+            font-style: italic;
+            border: 2px solid white;
+            font-size: 15px;
+            box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .breadcrumb-nav {
+            font-size: 11px;
+            color: #222;
+            font-weight: bold;
+        }
+        .breadcrumb-nav a { text-decoration: none; color: #222; }
+        .breadcrumb-nav a:hover { text-decoration: underline; }
+
+        /* Main Container */
+        .page-container {
+            max-width: 960px;
+            margin: 0 auto;
+            background: #2b2b2b;
+            min-height: 800px;
+            box-shadow: 0 0 50px rgba(255, 69, 0, 0.3); /* Lava Glow */
+            border: 1px solid #444;
+        }
+
+        /* Villain Header */
+        .villain-header {
+            background: linear-gradient(to right, #330000, #000);
+            padding: 15px 30px;
+            border-bottom: 4px solid #ff4500; /* Orange Red */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMCIgaGVpZ2h0PSIxMCI+PHBhdGggZD0iTTAgMTAgTDEwIDAgTTEwIDEwIEwwIDAiIHN0cm9rZT0iIzQ0MCIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9zdmc+');
+        }
+
+        .villain-title {
+            font-family: Impact, sans-serif;
+            font-size: 28px;
+            color: #ff4500;
+            font-style: italic;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 0px #000;
+        }
+
+        .warning-badge {
+            font-family: "Courier New", monospace;
+            color: #ff4500;
+            border: 2px dashed #ff4500;
+            padding: 5px 10px;
+            font-size: 14px;
+            font-weight: bold;
+            background: rgba(0, 0, 0, 0.8);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.7; }
+            50% { opacity: 1; }
+            100% { opacity: 0.7; }
+        }
+
+        /* Content Body */
+        .content-wrap {
+            padding: 30px;
+            display: flex;
+            gap: 30px;
+            background: #1f1f1f;
+        }
+
+        @media (max-width: 768px) {
+            .content-wrap { flex-direction: column; }
+        }
+
+        /* Image Box */
+        .img-viewer {
+            flex: 1;
+            background: #fff; /* White background for product contrast */
+            border: 4px solid #444;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            box-shadow: inset 0 0 20px #000;
+        }
+
+        .product-photo {
+            max-width: 100%;
+            height: auto;
+            transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            cursor: pointer;
+        }
+        .product-photo:hover { transform: scale(1.1); }
+
+        .villain-stamp {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #8b0000;
+            color: #fff;
+            padding: 5px 10px;
+            font-weight: bold;
+            font-family: Impact, sans-serif;
+            transform: rotate(-5deg);
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+            font-size: 14px;
+        }
+
+        /* Info Box */
+        .info-panel {
+            flex: 1;
+            color: #ccc;
+        }
+
+        .prod-h1 {
+            font-size: 36px;
+            font-weight: bold;
+            color: #ff4500;
+            margin-bottom: 5px;
+            font-family: Impact, sans-serif;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 0 #000;
+            border-bottom: 2px solid #555;
+            padding-bottom: 10px;
+        }
+
+        .sku-info {
+            color: #888;
+            font-size: 12px;
+            margin-bottom: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        .price-text {
+            font-size: 28px;
+            color: #ffcc00; /* Yellow price for contrast on dark */
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .lore-box {
+            background: #2a2a2a;
+            padding: 15px;
+            border: 1px solid #444;
+            border-left: 5px solid #ff4500;
+            font-size: 14px;
+            color: #ddd;
+            margin-bottom: 25px;
+            line-height: 1.7;
+        }
+
+        /* Action Panel */
+        .cart-actions {
+            background: #333;
+            padding: 20px;
+            border: 1px solid #555;
+            border-radius: 3px;
+        }
+
+        .stock-msg {
+            color: #76ff03; /* Bright Green */
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .btn-buy {
+            background: linear-gradient(to bottom, #d01012 0%, #8a0000 100%);
+            border: 1px solid #500;
+            color: #fff;
+            font-weight: bold;
+            padding: 14px 0;
+            width: 100%;
+            cursor: pointer;
+            font-size: 18px;
+            text-transform: uppercase;
+            text-shadow: 1px 1px 0 #000;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+        .btn-buy:hover { 
+            background: linear-gradient(to bottom, #ff3333 0%, #b30000 100%);
+            box-shadow: 0 0 10px #ff3333;
+        }
+
+        /* Tabs */
+        .tab-area {
+            padding: 0 30px 30px 30px;
+        }
+
+        .tab-headers {
+            display: flex;
+            border-bottom: 2px solid #555;
+        }
+
+        .tab-pill {
+            padding: 12px 25px;
+            background: #222;
+            border: 1px solid #444;
+            border-bottom: none;
+            margin-right: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #888;
+            border-radius: 5px 5px 0 0;
+            transition: color 0.2s;
+        }
+
+        .tab-pill:hover { color: #fff; }
+
+        .tab-pill.active {
+            background: #1f1f1f;
+            color: #ff4500;
+            border-bottom: 2px solid #1f1f1f;
+            margin-bottom: -2px;
+        }
+
+        .tab-body {
+            display: none;
+            padding: 25px;
+            background: #1f1f1f;
+            border: 1px solid #555;
+            border-top: none;
+            color: #ccc;
+            min-height: 150px;
+        }
+        .tab-body.active { display: block; }
+
+        /* Footer */
+        .site-footer {
+            background: #000;
+            color: #666;
+            padding: 30px;
+            text-align: center;
+            font-size: 11px;
+            border-top: 4px solid #333;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="lego-header">
+        <div class="lego-logo">LEGO</div>
+        <nav class="breadcrumb-nav">
+            <a href="#">홈</a> &gt; 
+            <a href="#">제품</a> &gt; 
+            <a href="#">히어로 팩토리</a> &gt; 
+            <span>2192 드릴도저</span>
+        </nav>
+    </header>
+
+    <div class="page-container">
+        <!-- Villain Header -->
+        <div class="villain-header">
+            <div class="villain-title">VILLAIN <span>ATTACK!</span></div>
+            <div class="warning-badge">경고: 접근 금지</div>
+        </div>
+
+        <!-- Product Content -->
+        <div class="content-wrap">
+            <!-- Left: Image -->
+            <div class="img-viewer">
+                <div class="villain-stamp">파이어 로드의 부하</div>
+                <img src="https://www.lego.com/cdn/product-assets/product.img.pri/2192_prod.jpg" alt="레고 히어로 팩토리 2192 드릴도저" class="product-photo" id="mainImg" onclick="toggleZoom()">
+                <div style="margin-top: 15px; font-size: 11px; color: #444;">클릭하여 무기 확대</div>
+            </div>
+
+            <!-- Right: Info -->
+            <div class="info-panel">
+                <h1 class="prod-h1">드릴도저</h1>
+                
+                <div class="sku-info">
+                    제품 번호: <strong>2192</strong> &nbsp;|&nbsp; 
+                    연령: <strong>6-16</strong> &nbsp;|&nbsp; 
+                    부품수: <strong>61</strong>
+                </div>
+
+                <div class="price-text">₩17,000</div>
+
+                <div class="lore-box">
+                    <p><strong>“히어로 놈들이 온다! 놈들의 갑옷을 뚫어버려라!”</strong></p>
+                    <br>
+                    <p>파이어 로드의 가장 무자비한 부하, 드릴도저는 땅을 파고 들어가 불쑥 튀어나와 공격하는 전문가입니다. 터빈으로 구동되는 거대한 드릴은 어떤 금속도 관통할 수 있으며, 날카로운 집게발과 용암 스파이크 갑옷은 히어로들에게 큰 위협이 됩니다. 조심하십시오!</p>
+                </div>
+
+                <div class="cart-actions">
+                    <div class="stock-msg">
+                        <span style="font-size:18px; margin-right:5px;">✓</span> 재고 있음
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <label style="font-weight: bold; font-size: 13px; color: #aaa;">수량:</label>
+                        <select style="padding: 5px; margin-left: 5px; background: #ddd;">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                        </select>
+                    </div>
+
+                    <button class="btn-buy" onclick="addToCart()">장바구니 담기</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab Details -->
+        <div class="tab-area">
+            <div class="tab-headers">
+                <div class="tab-pill active" onclick="openTab(event, 'features')">악당의 무기</div>
+                <div class="tab-pill" onclick="openTab(event, 'specs')">기술 사양</div>
+                <div class="tab-pill" onclick="openTab(event, 'bi')">조립 설명서</div>
+            </div>
+
+            <div id="features" class="tab-body active">
+                <h3 style="color: #ff4500; margin-bottom: 15px;">파괴를 위한 설계</h3>
+                <ul style="list-style-type: disc; margin-left: 20px; line-height: 1.8;">
+                    <li><strong>터빈 구동식 드릴:</strong> 초고속으로 회전하며 바위와 강철을 뚫는 주무기입니다.</li>
+                    <li><strong>파워 클로:</strong> 히어로의 무기를 낚아채거나 장애물을 제거하는 날카로운 집게손.</li>
+                    <li><strong>마그마 스파이크:</strong> 어깨와 등에 장착된 붉은 스파이크는 근접 전투 시 적에게 치명상을 입힙니다.</li>
+                    <li><strong>새로운 관절 시스템:</strong> 2.0 히어로와 동일한 볼 조인트 시스템을 사용하여 다양한 포즈가 가능합니다.</li>
+                    <li>높이 약 21cm의 위협적인 크기.</li>
+                </ul>
+            </div>
+
+            <div id="specs" class="tab-body">
+                <table style="width: 100%; border-collapse: collapse; font-size: 13px; color: #ccc;">
+                    <tr style="border-bottom: 1px solid #444;">
+                        <td style="padding: 10px; font-weight: bold; width: 30%;">제품명</td>
+                        <td style="padding: 10px;">드릴도저 (Drilldozer)</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #444;">
+                        <td style="padding: 10px; font-weight: bold;">제품 번호</td>
+                        <td style="padding: 10px;">2192</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #444;">
+                        <td style="padding: 10px; font-weight: bold;">출시년도</td>
+                        <td style="padding: 10px;">2011년 1월</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; font-weight: bold;">소속</td>
+                        <td style="padding: 10px;">파이어 로드 군단 (Fire Villains)</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="bi" class="tab-body">
+                <p>악당을 조립하여 히어로들을 위협하십시오.</p>
+                <div style="margin-top: 15px; padding: 15px; background: #333; border: 1px dashed #666; display: inline-block;">
+                    <span style="color: #ff4500; font-weight: bold;">PDF</span> 
+                    <a href="#" style="text-decoration: none; color: #ddd; margin-left: 5px;">2192_Drilldozer_Inst.pdf (2.4 MB)</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <p>&copy; 2011 The LEGO Group. All rights reserved.</p>
+        <div style="margin-top: 10px;">
+            <a href="#" style="color: #666; margin: 0 10px; text-decoration: none;">이용약관</a> | 
+            <a href="#" style="color: #666; margin: 0 10px; text-decoration: none;">개인정보 취급방침</a>
+        </div>
+    </footer>
+
+    <script>
+        // Tab Logic
+        function openTab(evt, tabName) {
+            var i, tabBody, tabPill;
+            
+            tabBody = document.getElementsByClassName("tab-body");
+            for (i = 0; i < tabBody.length; i++) {
+                tabBody[i].style.display = "none";
+                tabBody[i].classList.remove("active");
+            }
+
+            tabPill = document.getElementsByClassName("tab-pill");
+            for (i = 0; i < tabPill.length; i++) {
+                tabPill[i].classList.remove("active");
+            }
+
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        // Cart
+        function addToCart() {
+            alert("드릴도저를 장바구니에 담았습니다.\n경고: 다른 제품이 파괴되지 않도록 주의하십시오!");
+        }
+
+        // Image Effect
+        var isZoomed = false;
+        function toggleZoom() {
+            var img = document.getElementById("mainImg");
+            if (!isZoomed) {
+                img.style.transform = "scale(1.2) rotate(5deg)";
+                isZoomed = true;
+            } else {
+                img.style.transform = "scale(1.0) rotate(0deg)";
+                isZoomed = false;
+            }
+        }
+    </script>
+</body>
+</html>

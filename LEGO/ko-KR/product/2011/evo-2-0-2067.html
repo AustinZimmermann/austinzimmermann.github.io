@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2067 에보 2.0 - 제품 정보 | LEGO.com</title>
+    <meta name="description" content="히어로 팩토리의 중화기 전문가 에보 2.0! 가볍고 강력한 신형 갑옷과 플라즈마 빔으로 무장하여 파이어 로드 군단을 저지하십시오.">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Product",
+      "name": "에보 2.0",
+      "image": [
+        "https://www.lego.com/cdn/product-assets/product.img.pri/2067_prod.jpg"
+      ],
+      "description": "침착하고 냉철한 무기 전문가 에보가 2.0 버전으로 업그레이드되었습니다. 초경량 플레이트 갑옷과 고열을 발사하는 스태프로 무장했습니다.",
+      "sku": "2067",
+      "mpn": "2067",
+      "brand": {
+        "@type": "Brand",
+        "name": "LEGO"
+      },
+      "review": {
+        "@type": "Review",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "4.6",
+          "bestRating": "5"
+        },
+        "author": {
+          "@type": "Person",
+          "name": "HeavyGunner"
+        }
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.7",
+        "reviewCount": "65"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://www.lego.com/ko-kr/product/evo-2-0-2067",
+        "priceCurrency": "KRW",
+        "price": "17000",
+        "priceValidUntil": "2011-12-31",
+        "itemCondition": "https://schema.org/NewCondition",
+        "availability": "https://schema.org/InStock"
+      }
+    }
+    </script>
+
+    <style>
+        /* 2011 Era Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Malgun Gothic", "Dotum", Arial, sans-serif;
+            background-color: #0d0d0d;
+            background-image: linear-gradient(0deg, #111 25%, #1a1a1a 25%, #1a1a1a 50%, #111 50%, #111 75%, #1a1a1a 75%, #1a1a1a 100%);
+            background-size: 40px 40px;
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        /* Global Header */
+        .lego-header {
+            background-color: #ffcf00;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            border-bottom: 2px solid #e0b000;
+        }
+
+        .lego-logo-box {
+            background-color: #d01012;
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            border: 2px solid #fff;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+            font-weight: 900;
+            color: white;
+            font-style: italic;
+            font-size: 14px;
+        }
+
+        .breadcrumbs {
+            font-size: 11px;
+            color: #333;
+            font-weight: bold;
+        }
+        .breadcrumbs a { text-decoration: none; color: #333; }
+        .breadcrumbs a:hover { text-decoration: underline; }
+
+        /* Main Container */
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            background: #f0f0f0;
+            box-shadow: 0 0 30px #6b2e8f; /* Evo Purple Glow */
+            min-height: 800px;
+            border-left: 1px solid #444;
+            border-right: 1px solid #444;
+        }
+
+        /* Hero Factory Theme Header */
+        .hf-banner {
+            background: linear-gradient(to right, #222, #000);
+            padding: 15px 30px;
+            border-bottom: 4px solid #fec400; /* Evo Yellow */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .hf-logo {
+            font-family: Impact, sans-serif;
+            font-size: 28px;
+            color: #fff;
+            font-style: italic;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .hf-logo span { color: #fec400; }
+
+        .mission-alert {
+            font-family: monospace;
+            color: #fec400;
+            border: 1px solid #fec400;
+            padding: 2px 8px;
+            font-size: 12px;
+            animation: blink 2s infinite;
+        }
+
+        @keyframes blink { 50% { opacity: 0.5; } }
+
+        /* Product Layout */
+        .product-section {
+            display: flex;
+            padding: 40px;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9IiNjY2MiIG9wYWNpdHk9IjAuNSIvPjwvc3ZnPg==');
+            gap: 40px;
+        }
+
+        @media(max-width: 768px) {
+            .product-section { flex-direction: column; padding: 20px; }
+        }
+
+        /* Image Box */
+        .img-box {
+            flex: 1;
+            background: #fff;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 2px;
+            box-shadow: 3px 3px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            position: relative;
+        }
+
+        .main-img {
+            max-width: 100%;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        .main-img:hover { transform: scale(1.08); }
+
+        .new-badge {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            background: #d01012;
+            color: white;
+            padding: 5px 10px;
+            font-weight: bold;
+            font-size: 12px;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+            transform: rotate(-5deg);
+        }
+
+        /* Info Box */
+        .info-box {
+            flex: 1;
+            color: #333;
+        }
+
+        .product-name {
+            font-size: 32px;
+            font-weight: bold;
+            color: #000;
+            border-bottom: 2px solid #6b2e8f; /* Purple */
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .price-area {
+            font-size: 24px;
+            color: #d01012;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .story-text {
+            background: #fff;
+            padding: 15px;
+            border-left: 4px solid #fec400;
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 25px;
+            box-shadow: 1px 1px 3px rgba(0,0,0,0.05);
+        }
+
+        /* Controls */
+        .controls {
+            background: #e0e0e0;
+            padding: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .btn-cart {
+            background: linear-gradient(#fec400, #e0b000);
+            border: 1px solid #b8860b;
+            color: #333;
+            font-weight: bold;
+            padding: 10px 25px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            text-transform: uppercase;
+            text-shadow: 0 1px 0 rgba(255,255,255,0.4);
+        }
+        .btn-cart:hover { background: linear-gradient(#ffe066, #ffcc00); }
+
+        /* Tabs */
+        .tab-wrapper {
+            padding: 0 40px 40px 40px;
+        }
+
+        .tab-menu {
+            display: flex;
+            border-bottom: 1px solid #999;
+        }
+
+        .tab-item {
+            padding: 10px 20px;
+            background: #ddd;
+            margin-right: 5px;
+            cursor: pointer;
+            border-radius: 5px 5px 0 0;
+            color: #555;
+            font-weight: bold;
+            font-size: 13px;
+            border: 1px solid #ccc;
+            border-bottom: none;
+        }
+
+        .tab-item.active {
+            background: #fff;
+            color: #000;
+            padding-bottom: 11px;
+            margin-bottom: -1px;
+            border-bottom: 1px solid #fff;
+        }
+
+        .tab-panel {
+            background: #fff;
+            padding: 30px;
+            border: 1px solid #999;
+            border-top: none;
+            color: #333;
+            display: none;
+        }
+        .tab-panel.active { display: block; }
+
+        /* Footer */
+        .footer {
+            background: #333;
+            color: #888;
+            padding: 30px;
+            text-align: center;
+            font-size: 11px;
+            border-top: 5px solid #6b2e8f; /* Purple Line */
+        }
+    </style>
+</head>
+<body>
+
+    <header class="lego-header">
+        <div class="lego-logo-box">LEGO</div>
+        <div class="breadcrumbs">
+            <a href="#">홈</a> &gt; <a href="#">히어로 팩토리</a> &gt; <span>2067 에보 2.0</span>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- HF Header -->
+        <div class="hf-banner">
+            <div class="hf-logo">HERO <span>FACTORY</span></div>
+            <div class="mission-alert">시스템 상태: 온라인</div>
+        </div>
+
+        <!-- Product Main -->
+        <div class="product-section">
+            <div class="img-box">
+                <div class="new-badge">NEW 2011</div>
+                <img src="https://www.lego.com/cdn/product-assets/product.img.pri/2067_prod.jpg" alt="레고 히어로 팩토리 2067 에보 2.0" class="main-img" id="heroImage">
+                <div style="margin-top:10px; font-size: 10px; color: #999;">이미지를 클릭하여 확대보기</div>
+            </div>
+
+            <div class="info-box">
+                <h1 class="product-name">에보 2.0</h1>
+                
+                <div style="font-size: 12px; color: #666; margin-bottom: 15px;">
+                    제품 번호: <strong>2067</strong> | 연령: <strong>6-16</strong> | 부품수: <strong>31</strong>
+                </div>
+
+                <div class="price-area">₩17,000</div>
+
+                <div class="story-text">
+                    <p><strong>“에보, 들리나? 탱커 스테이션 22의 상황이 좋지 않다. 자네의 중화기 지원이 필요하다!”</strong></p>
+                    <br>
+                    <p>에보 2.0은 히어로 팩토리 최고의 무기 전문가입니다. 새로운 경량 갑옷은 민첩성을 높여주며, 보라색 히어로 코어가 빛나는 창 모양의 플라즈마 빔 발사기는 어떤 단단한 금속도 녹여버릴 수 있습니다. 파이어 로드의 부하들을 상대로 당신의 화력을 보여주십시오!</p>
+                </div>
+
+                <div class="controls">
+                    <div style="margin-bottom: 10px; color: #2e7d32; font-weight: bold; font-size: 13px;">
+                        ✔ 재고 있음
+                    </div>
+                    <label style="font-size: 12px; font-weight: bold; display: block; margin-bottom: 5px;">수량:</label>
+                    <select id="qty" style="margin-bottom: 15px; padding: 5px; width: 60px;">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                    </select>
+                    <button class="btn-cart" onclick="addToCart()">장바구니 담기</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tab-wrapper">
+            <div class="tab-menu">
+                <div class="tab-item active" onclick="setTab('desc', this)">제품 특징</div>
+                <div class="tab-item" onclick="setTab('specs', this)">기술 사양</div>
+                <div class="tab-item" onclick="setTab('build', this)">조립 설명서</div>
+            </div>
+
+            <div id="desc" class="tab-panel active">
+                <h3 style="color:#000; margin-bottom: 15px;">중화기 전문가의 귀환</h3>
+                <p>에보 2.0은 파이어 로드 군단의 위협에 맞서기 위해 특별히 업그레이드되었습니다. 그의 새로운 장비는 다음과 같습니다:</p>
+                <ul style="margin-top: 15px; margin-left: 20px; list-style-type: square; color: #444;">
+                    <li style="margin-bottom: 5px;"><strong>플라즈마 스태프:</strong> 긴 사거리와 강력한 열 에너지를 발사하는 창 형태의 무기.</li>
+                    <li style="margin-bottom: 5px;"><strong>강화 헤드기어:</strong> 통신 및 타겟팅 시스템이 내장된 노란색 헬멧.</li>
+                    <li style="margin-bottom: 5px;"><strong>보라색 히어로 코어:</strong> 에보의 상징적인 에너지원.</li>
+                    <li style="margin-bottom: 5px;">높이 17cm의 유연한 액션 피규어.</li>
+                </ul>
+            </div>
+
+            <div id="specs" class="tab-panel">
+                <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+                    <tr style="border-bottom: 1px solid #eee;">
+                        <td style="padding: 8px; font-weight: bold; width: 30%;">제품명</td>
+                        <td style="padding: 8px;">에보 2.0 (Evo 2.0)</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #eee;">
+                        <td style="padding: 8px; font-weight: bold;">제품 번호</td>
+                        <td style="padding: 8px;">2067</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #eee;">
+                        <td style="padding: 8px; font-weight: bold;">부품 수</td>
+                        <td style="padding: 8px;">31개</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 8px; font-weight: bold;">출시년도</td>
+                        <td style="padding: 8px;">2011</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="build" class="tab-panel">
+                <p><strong>조립 설명서 다운로드:</strong></p>
+                <div style="margin-top: 10px; padding: 10px; background: #eee; border: 1px dashed #999; display: inline-block;">
+                    <span style="color: #d01012; font-weight: bold;">PDF</span> 
+                    <a href="#" style="text-decoration: none; color: #333;">2067_Evo_2.0_Instructions.pdf (2.2 MB)</a>
+                </div>
+                <p style="margin-top: 10px; font-size: 12px; color: #666;">
+                    LEGO® 조립 설명서는 PDF 형식으로 제공됩니다. Adobe Reader가 필요할 수 있습니다.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <footer class="footer">
+        <div>&copy; 2011 The LEGO Group. All rights reserved.</div>
+        <div style="margin-top: 10px;">
+            <a href="#" style="color: #666; text-decoration: none; margin: 0 10px;">이용약관</a>
+            <a href="#" style="color: #666; text-decoration: none; margin: 0 10px;">개인정보처리방침</a>
+            <a href="#" style="color: #666; text-decoration: none; margin: 0 10px;">쿠키 정책</a>
+        </div>
+    </footer>
+
+    <script>
+        function setTab(tabId, element) {
+            // Hide all panels
+            var panels = document.getElementsByClassName('tab-panel');
+            for(var i=0; i<panels.length; i++) {
+                panels[i].style.display = 'none';
+            }
+            
+            // Deactivate all tabs
+            var tabs = document.getElementsByClassName('tab-item');
+            for(var i=0; i<tabs.length; i++) {
+                tabs[i].className = 'tab-item';
+            }
+
+            // Activate select
+            document.getElementById(tabId).style.display = 'block';
+            element.className = 'tab-item active';
+        }
+
+        function addToCart() {
+            var qty = document.getElementById('qty').value;
+            alert('에보 2.0 (수량: ' + qty + ')이(가) 장바구니에 담겼습니다.\n\n[데모 페이지: 실제 결제는 지원되지 않습니다]');
+        }
+
+        // Image Zoom
+        var img = document.getElementById('heroImage');
+        var zoomed = false;
+        img.addEventListener('click', function() {
+            if(!zoomed) {
+                this.style.transform = "scale(1.4)";
+                this.style.cursor = "zoom-out";
+                zoomed = true;
+            } else {
+                this.style.transform = "scale(1.0)";
+                this.style.cursor = "zoom-in";
+                zoomed = false;
+            }
+        });
+    </script>
+</body>
+</html>

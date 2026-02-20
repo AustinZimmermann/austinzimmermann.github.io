@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2063 스토머 2.0 - 제품 정보 | LEGO.com</title>
+    <meta name="description" content="레고® 히어로 팩토리 2.0 시리즈의 리더, 스토머 2.0을 만나보세요. 얼음 무기와 새로운 갑옷으로 무장했습니다.">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Product",
+      "name": "스토머 2.0",
+      "image": [
+        "https://www.lego.com/cdn/product-assets/product.img.pri/2063_prod.jpg"
+      ],
+      "description": "알파 팀의 리더 스토머가 2.0 버전으로 업그레이드되었습니다. 강력한 멀티 툴 아이스 무기와 강화된 갑옷으로 파이어 악당들에 맞서 싸우세요.",
+      "sku": "2063",
+      "mpn": "2063",
+      "brand": {
+        "@type": "Brand",
+        "name": "LEGO"
+      },
+      "review": {
+        "@type": "Review",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "4.8",
+          "bestRating": "5"
+        },
+        "author": {
+          "@type": "Person",
+          "name": "HeroFan2011"
+        }
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.7",
+        "reviewCount": "89"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://www.lego.com/ko-kr/product/stormer-2-0-2063",
+        "priceCurrency": "KRW",
+        "price": "17000",
+        "priceValidUntil": "2011-12-31",
+        "itemCondition": "https://schema.org/NewCondition",
+        "availability": "https://schema.org/InStock"
+      }
+    }
+    </script>
+
+    <style>
+        /* Reset & Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Malgun Gothic", "Dotum", Arial, sans-serif;
+            background-color: #000;
+            background-image: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* 2011 LEGO Global Header Imitation */
+        .lego-global-header {
+            background-color: #ffcf00;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .lego-logo-small {
+            background-color: #e3000b;
+            color: white;
+            font-weight: 900;
+            font-style: italic;
+            padding: 2px 5px;
+            font-family: sans-serif;
+            font-size: 18px;
+            border: 2px solid white;
+            margin-right: 20px;
+        }
+
+        .breadcrumb {
+            color: #333;
+            font-size: 12px;
+        }
+
+        .breadcrumb a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* Main Container */
+        .main-container {
+            max-width: 960px;
+            margin: 0 auto;
+            background: #e6e6e6; /* Light grey tech background */
+            min-height: 800px;
+            box-shadow: 0 0 20px rgba(255, 100, 0, 0.2);
+            border-left: 1px solid #333;
+            border-right: 1px solid #333;
+        }
+
+        /* Hero Factory Header */
+        .hf-header {
+            background: linear-gradient(to bottom, #2b2b2b 0%, #000000 100%);
+            padding: 15px 30px;
+            border-bottom: 4px solid #ff6600; /* HF Orange */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .hf-title {
+            color: #fff;
+            font-family: Impact, sans-serif;
+            font-style: italic;
+            text-transform: uppercase;
+            font-size: 32px;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px #ff6600;
+        }
+
+        .hf-subtitle {
+            color: #ff6600;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        /* Product Content */
+        .product-area {
+            display: flex;
+            padding: 30px;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MCIgaGVpZ2h0PSI1MCIgb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTAgMjUgTDI1IDAgTDUwIDI1IEwyNSA1MCBaIiBmaWxsPSIjMDAwIi8+PC9zdmc+'); /* Hex pattern */
+            gap: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .product-area {
+                flex-direction: column;
+            }
+        }
+
+        /* Left Column: Image */
+        .product-image-container {
+            flex: 1;
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .product-image {
+            max-width: 100%;
+            height: auto;
+            transition: transform 0.3s ease;
+            cursor: zoom-in;
+        }
+
+        .product-image:hover {
+            transform: scale(1.1);
+        }
+
+        /* Right Column: Details */
+        .product-details {
+            flex: 1;
+        }
+
+        .product-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #222;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ff6600;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .product-meta {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .product-price {
+            font-size: 24px;
+            font-weight: bold;
+            color: #d01012; /* LEGO Red price */
+            margin-bottom: 20px;
+        }
+
+        .stock-status {
+            color: #4b8b3b; /* Green */
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .stock-status::before {
+            content: '✔';
+            margin-right: 5px;
+            display: inline-block;
+            background: #4b8b3b;
+            color: white;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            text-align: center;
+            line-height: 16px;
+            font-size: 10px;
+        }
+
+        /* Retro Buttons */
+        .btn-add-to-bag {
+            background: linear-gradient(to bottom, #ffcf00 0%, #ff9900 100%);
+            border: 1px solid #cc7a00;
+            color: #333;
+            font-weight: bold;
+            padding: 12px 30px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            text-transform: uppercase;
+            box-shadow: 0 2px 2px rgba(0,0,0,0.2);
+            transition: all 0.2s;
+            display: inline-block;
+        }
+
+        .btn-add-to-bag:hover {
+            background: linear-gradient(to bottom, #ffe066 0%, #ffcc00 100%);
+        }
+
+        .btn-add-to-bag:active {
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+            transform: translateY(1px);
+        }
+
+        /* Tabs Section */
+        .tabs-container {
+            margin-top: 30px;
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .tabs-nav {
+            display: flex;
+            background: #f1f1f1;
+            border-bottom: 1px solid #ccc;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .tab-btn {
+            padding: 12px 20px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-weight: bold;
+            color: #666;
+            border-right: 1px solid #ddd;
+        }
+
+        .tab-btn.active {
+            background: #fff;
+            color: #333;
+            border-bottom: 1px solid #fff;
+            margin-bottom: -1px;
+        }
+
+        .tab-content {
+            padding: 25px;
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Features List */
+        .features-list {
+            list-style-type: square;
+            margin-left: 20px;
+            color: #444;
+        }
+
+        .features-list li {
+            margin-bottom: 8px;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #333;
+            color: #ccc;
+            padding: 20px;
+            text-align: center;
+            font-size: 12px;
+            margin-top: 20px;
+            border-top: 5px solid #ffcf00;
+        }
+
+        /* Badge */
+        .badge-20 {
+            background: #0088cc;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 10px;
+            text-shadow: 0 1px 1px rgba(0,0,0,0.3);
+            box-shadow: 0 2px 0 #005580;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Global LEGO Header -->
+    <div class="lego-global-header">
+        <div class="lego-logo-small">LEGO</div>
+        <div class="breadcrumb">
+            <a href="#">홈</a> &gt; 
+            <a href="#">제품</a> &gt; 
+            <a href="#">히어로 팩토리</a> &gt; 
+            <span>2063 스토머 2.0</span>
+        </div>
+    </div>
+
+    <!-- Main Content Wrapper -->
+    <div class="main-container">
+        
+        <!-- Hero Factory Brand Header -->
+        <div class="hf-header">
+            <div>
+                <div class="hf-title">HERO FACTORY</div>
+                <div class="hf-subtitle">우리는 히어로를 만든다</div>
+            </div>
+            <div style="text-align: right; color: #ccc; font-size: 12px;">
+                임무: 오딜 오브 파이어 (Ordeal of Fire)
+            </div>
+        </div>
+
+        <div class="product-area">
+            <!-- Left Column -->
+            <div class="product-image-container">
+                <div class="badge-20">2.0 업그레이드 완료</div>
+                <img src="https://www.lego.com/cdn/product-assets/product.img.pri/2063_prod.jpg" alt="레고 히어로 팩토리 2063 스토머 2.0" class="product-image" id="mainImage">
+                <div style="margin-top:10px; font-size: 11px; color:#888;">클릭하여 이미지 확대</div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="product-details">
+                <h1 class="product-title">스토머 2.0</h1>
+                
+                <div class="product-meta">
+                    제품 번호: <strong>2063</strong> &nbsp;|&nbsp; 
+                    연령: <strong>6-16</strong> &nbsp;|&nbsp; 
+                    부품수: <strong>31</strong>
+                </div>
+
+                <div class="product-price">₩17,000</div>
+                
+                <div class="stock-status">재고 있음 - 지금 주문 가능</div>
+
+                <div style="margin-bottom: 20px; font-size: 14px;">
+                    <p><strong>“알파 팀의 리더, 들리나? 탱크 스테이션 22에서 파이어 악당들이 공격 중이다!”</strong></p>
+                    <br>
+                    <p>스토머, 당신은 업그레이드가 필요합니다. 새로운 갑옷과 적의 불길을 얼려버릴 수 있는 아이스 무기로 무장하십시오. 너무 늦기 전에 어서 서두르세요!</p>
+                </div>
+
+                <!-- Input Quantity -->
+                <div style="margin-bottom: 20px;">
+                    <label for="qty" style="font-weight: bold; margin-right: 10px;">수량:</label>
+                    <select id="qty" style="padding: 5px;">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                    </select>
+                </div>
+
+                <button class="btn-add-to-bag" onclick="addToBag()">장바구니 담기</button>
+                <div style="margin-top: 15px; font-size: 12px; color: #666;">
+                    * 3만원 이상 구매 시 무료 배송
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabbed Content -->
+        <div style="padding: 0 30px 30px 30px;">
+            <div class="tabs-container">
+                <div class="tabs-nav">
+                    <button class="tab-btn active" onclick="openTab(event, 'desc')">제품 상세 정보</button>
+                    <button class="tab-btn" onclick="openTab(event, 'specs')">기술 사양</button>
+                    <button class="tab-btn" onclick="openTab(event, 'building')">조립 설명서</button>
+                </div>
+
+                <div id="desc" class="tab-content active">
+                    <h3>히어로 팩토리의 리더가 돌아왔습니다!</h3>
+                    <p style="margin-bottom: 15px;">스토머 2.0은 히어로 팩토리 알파 팀의 리더로서, 그 어느 때보다 강력해졌습니다. 미션 ‘불의 전쟁’을 수행하기 위해 특별히 제작된 내열성 갑옷과 헬멧을 착용하고 있습니다.</p>
+                    <ul class="features-list">
+                        <li>탈부착 가능한 헤드기어와 눈 보호용 고글 장착.</li>
+                        <li>아이스 블래스터가 장착된 멀티 툴 아이스 무기 포함.</li>
+                        <li>노란색 히어로 코어가 가슴에 장착됨.</li>
+                        <li>높이 약 17cm.</li>
+                    </ul>
+                </div>
+
+                <div id="specs" class="tab-content">
+                    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+                        <tr style="border-bottom: 1px solid #eee;">
+                            <td style="padding: 10px; font-weight: bold;">제품 번호</td>
+                            <td style="padding: 10px;">2063</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #eee;">
+                            <td style="padding: 10px; font-weight: bold;">출시 연도</td>
+                            <td style="padding: 10px;">2011</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #eee;">
+                            <td style="padding: 10px; font-weight: bold;">부품 수</td>
+                            <td style="padding: 10px;">31개</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; font-weight: bold;">포장 방식</td>
+                            <td style="padding: 10px;">캐니스터 (Canister)</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div id="building" class="tab-content">
+                    <p>PDF 조립 설명서를 다운로드하거나 LEGO® Building Instructions 앱을 확인하십시오.</p>
+                    <div style="margin-top: 15px; padding: 10px; background: #f9f9f9; border: 1px dashed #ccc; display: inline-block;">
+                        <span style="font-weight: bold; color: #d01012;">PDF</span> 2063_Stormer_2.0.pdf (2.4 MB)
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2011 The LEGO Group. 모든 권리 보유.</p>
+        <p style="margin-top: 5px;">LEGO, LEGO 로고 및 Hero Factory 로고는 LEGO Group의 상표입니다.</p>
+        <div style="margin-top: 10px;">
+            <a href="#" style="color: #999; text-decoration: none; margin: 0 10px;">이용 약관</a> | 
+            <a href="#" style="color: #999; text-decoration: none; margin: 0 10px;">개인정보 취급방침</a> | 
+            <a href="#" style="color: #999; text-decoration: none; margin: 0 10px;">LEGO.com 홈</a>
+        </div>
+    </div>
+
+    <script>
+        // Tab Functionality
+        function openTab(evt, tabName) {
+            var i, tabContent, tabBtn;
+
+            // Hide all content
+            tabContent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabContent.length; i++) {
+                tabContent[i].style.display = "none";
+                tabContent[i].className = tabContent[i].className.replace(" active", "");
+            }
+
+            // Deactivate all buttons
+            tabBtn = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tabBtn.length; i++) {
+                tabBtn[i].className = tabBtn[i].className.replace(" active", "");
+            }
+
+            // Show current tab and activate button
+            document.getElementById(tabName).style.display = "block";
+            document.getElementById(tabName).className += " active";
+            evt.currentTarget.className += " active";
+        }
+
+        // Add to Bag Simulation
+        function addToBag() {
+            var qty = document.getElementById("qty").value;
+            alert("스토머 2.0 (수량: " + qty + ") 제품이 장바구니에 담겼습니다!\n\n(참고: 이것은 2011년 레고 사이트의 복원 데모입니다. 실제 구매는 이루어지지 않습니다.)");
+        }
+
+        // Simple Image Zoom Effect (Old school JS style)
+        var img = document.getElementById('mainImage');
+        img.addEventListener('click', function() {
+            if(this.style.transform === "scale(1.5)") {
+                this.style.transform = "scale(1)";
+                this.style.cursor = "zoom-in";
+            } else {
+                this.style.transform = "scale(1.5)";
+                this.style.cursor = "zoom-out";
+            }
+        });
+    </script>
+</body>
+</html>

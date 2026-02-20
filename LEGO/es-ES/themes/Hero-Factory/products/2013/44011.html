@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>44011 BESTIA HELADA - LEGO® Hero Factory - Productos - LEGO.com (España)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Russo+One&family=Roboto:wght@400;700&family=Creepster&display=swap');
+
+        :root {
+            /* Frost Beast Colors - Wild Ice, Trans-Blue & Villain Accents */
+            --hf-blue: #0055BF;       /* LEGO Blue */
+            --hf-ice: #A5F2F3;        /* Ice Cyan */
+            --hf-trans-dark: #002040; /* Deep Trans Blue */
+            --hf-villain: #e8f4f8;    /* Pale Bone White */
+            --hf-dark: #02050a;       /* Abyss Black */
+            --hf-text: #e0e6ed;
+            --brain-glow: #00ffff;    /* Evil Brain Glow */
+            --lego-red: #d01012;
+        }
+
+        body {
+            background-color: var(--hf-dark);
+            color: var(--hf-text);
+            font-family: 'Roboto', sans-serif;
+            /* Chaotic Ice Fracture Background */
+            background-image: 
+                linear-gradient(135deg, rgba(165, 242, 243, 0.03) 25%, transparent 25%),
+                linear-gradient(225deg, rgba(165, 242, 243, 0.03) 25%, transparent 25%),
+                linear-gradient(315deg, rgba(165, 242, 243, 0.03) 25%, transparent 25%),
+                linear-gradient(45deg, rgba(165, 242, 243, 0.03) 25%, transparent 25%),
+                radial-gradient(circle at 80% 20%, rgba(0, 85, 191, 0.15) 0%, rgba(2, 8, 20, 1) 80%);
+            background-size: 60px 60px, 60px 60px, 60px 60px, 60px 60px, 100% 100%;
+        }
+
+        .font-hero {
+            font-family: 'Russo One', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .font-villain {
+             font-family: 'Russo One', sans-serif; /* Fallback safe font */
+             letter-spacing: 2px;
+        }
+
+        /* Villain Frame - Aggressive, jagged edges */
+        .villain-frame {
+            clip-path: polygon(
+                0 0, 20% 0, 25% 5%, 75% 5%, 80% 0, 100% 0, 
+                100% 85%, 95% 100%, 5% 100%, 0 85%
+            );
+            transition: all 0.3s ease;
+            border: 1px solid var(--hf-ice);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+            position: relative;
+        }
+        
+        .villain-frame::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border: 1px solid rgba(165, 242, 243, 0.3);
+            clip-path: polygon(
+                0 0, 20% 0, 25% 5%, 75% 5%, 80% 0, 100% 0, 
+                100% 85%, 95% 100%, 5% 100%, 0 85%
+            );
+            pointer-events: none;
+            z-index: 20;
+        }
+
+        .hex-btn {
+            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+        }
+
+        /* Villain Button - Icy/Aggressive */
+        .villain-btn {
+            background: linear-gradient(to bottom, #0066cc 0%, #003366 100%);
+            color: white;
+            font-weight: bold;
+            border: 1px solid #4da6ff;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+        }
+        .villain-btn:hover {
+            background: linear-gradient(to bottom, #0088ff 0%, #004488 100%);
+            box-shadow: 0 0 20px rgba(165, 242, 243, 0.4);
+        }
+
+        .tech-border {
+            border: 1px solid #1a3a5a;
+            position: relative;
+            background: rgba(0, 10, 20, 0.8);
+        }
+        /* Corner accents - Villain Style */
+        .tech-border::after {
+            content: '';
+            position: absolute;
+            top: -1px; right: -1px;
+            width: 20px; height: 20px;
+            border-top: 2px solid var(--hf-ice);
+            border-right: 2px solid var(--hf-ice);
+        }
+        .tech-border::before {
+            content: '';
+            position: absolute;
+            bottom: -1px; left: -1px;
+            width: 20px; height: 20px;
+            border-bottom: 2px solid var(--hf-ice);
+            border-left: 2px solid var(--hf-ice);
+        }
+
+        /* Hero Strip - Circuit pattern */
+        .hero-strip {
+            background: 
+                repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(255, 0, 0, 0.05) 10px, rgba(255, 0, 0, 0.05) 20px),
+                linear-gradient(0deg, #051020 0%, #000 100%);
+            border-color: #ff3333;
+        }
+        
+        @keyframes pulse-brain {
+            0% { text-shadow: 0 0 5px var(--brain-glow); opacity: 0.8; }
+            50% { text-shadow: 0 0 20px var(--brain-glow), 0 0 10px white; opacity: 1; }
+            100% { text-shadow: 0 0 5px var(--brain-glow); opacity: 0.8; }
+        }
+        .animate-brain {
+            animation: pulse-brain 2s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Top Bar LEGO Global -->
+    <div class="bg-white text-xs text-gray-600 border-b border-gray-200">
+        <div class="container mx-auto px-4 h-8 flex items-center justify-between">
+            <div class="flex space-x-4">
+                <span class="cursor-pointer hover:underline">LEGO.com</span>
+                <span class="cursor-pointer hover:underline">Sobre nosotros</span>
+                <span class="cursor-pointer hover:underline">Ayuda</span>
+            </div>
+            <div class="flex items-center space-x-2">
+                <span>España</span>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Spain.svg" alt="ES" class="h-3 w-5 shadow-sm border border-gray-300">
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Bar -->
+    <header class="bg-gradient-to-b from-gray-100 to-gray-300 shadow-md relative z-50">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-6">
+                <!-- LEGO Logo -->
+                <div class="w-12 h-12 bg-[#d01012] flex items-center justify-center cursor-pointer shadow-md">
+                    <span class="text-white font-hero italic text-xl">LEGO</span>
+                </div>
+                
+                <nav class="hidden md:flex space-x-6 font-bold text-gray-700 text-sm uppercase tracking-wide">
+                    <a href="#" class="hover:text-red-600 transition">Productos</a>
+                    <a href="#" class="hover:text-red-600 transition">Juegos</a>
+                    <a href="#" class="hover:text-red-600 transition">Galería</a>
+                    <a href="#" class="hover:text-red-600 transition">Comunidad</a>
+                    <a href="#" class="hover:text-red-600 transition">Tienda</a>
+                </nav>
+            </div>
+
+            <div class="flex items-center space-x-4">
+                <div class="relative hidden sm:block">
+                    <input type="text" placeholder="Buscar..." class="pl-3 pr-8 py-1 rounded-full border border-gray-400 text-sm focus:outline-none focus:border-red-600 w-48">
+                    <i class="fas fa-search absolute right-3 top-1.5 text-gray-500"></i>
+                </div>
+                <div class="flex items-center text-gray-700 font-bold cursor-pointer">
+                    <i class="fas fa-shopping-basket text-xl mr-2"></i>
+                    <span class="hidden sm:inline">0,00 €</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Factory Brain Attack Branding Strip (Villain Theme) -->
+    <div class="bg-black border-b-4 border-[var(--hf-ice)] relative overflow-hidden">
+        <div class="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/dark-matter.png')]"></div>
+        <!-- Villain haze overlay -->
+        <div class="absolute inset-0 bg-gradient-to-l from-cyan-900/30 to-transparent pointer-events-none"></div>
+        
+        <div class="container mx-auto px-4 py-4 flex items-center justify-between relative z-10">
+            <div class="flex items-center space-x-4">
+                <!-- Hero Factory Logo Simulation -->
+                <div class="border-2 border-gray-500 bg-gray-900 px-3 py-1 skew-x-[-10deg] shadow-[0_0_15px_rgba(165,242,243,0.3)]">
+                    <h1 class="font-hero text-2xl text-white italic skew-x-[10deg] tracking-tighter">
+                        HERO <span class="text-[var(--hf-ice)] animate-brain">FACTORY</span>
+                    </h1>
+                </div>
+                <span class="text-white font-bold tracking-widest text-sm hidden md:block" style="font-family: monospace;">BRAIN ATTACK</span>
+            </div>
+            <nav class="text-xs md:text-sm text-gray-400 font-mono space-x-4">
+                <a href="#" class="nav-link hover:text-white">HÉROES</a>
+                <span class="text-gray-600">|</span>
+                <a href="#" class="nav-link text-white font-bold border-b border-[var(--hf-ice)]">VILLANOS</a>
+                <span class="text-gray-600">|</span>
+                <a href="#" class="nav-link hover:text-white">MISIÓN</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Breadcrumbs -->
+    <div class="bg-[#081018] text-gray-500 text-xs py-2 border-b border-[#1a2a3a]">
+        <div class="container mx-auto px-4">
+            <a href="#" class="hover:text-[var(--hf-ice)]">Inicio</a> > 
+            <a href="#" class="hover:text-[var(--hf-ice)]">Productos</a> > 
+            <a href="#" class="hover:text-[var(--hf-ice)]">Hero Factory</a> > 
+            <span class="text-white">44011 BESTIA HELADA</span>
+        </div>
+    </div>
+
+    <!-- Main Product Content -->
+    <main class="flex-grow container mx-auto px-4 py-8">
+        
+        <div class="flex flex-col lg:flex-row gap-8">
+            
+            <!-- Left Column: Gallery -->
+            <div class="lg:w-7/12">
+                <div class="tech-border p-1 mb-4">
+                    <!-- Main Image Placeholder with CSS Art -->
+                    <div class="relative w-full aspect-square bg-gradient-to-br from-[#05101a] to-[#000] flex items-center justify-center overflow-hidden group cursor-pointer villain-frame">
+                        <!-- Cracked Ice Background -->
+                        <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(circle, transparent 20%, #000 120%), repeating-linear-gradient(45deg, rgba(165,242,243,0.1) 0px, transparent 2px, transparent 10px);"></div>
+                        
+                        <!-- Cold Aura -->
+                        <div class="absolute w-full h-full bg-[radial-gradient(circle_at_center,_rgba(165,242,243,0.1),_transparent_60%)]"></div>
+
+                        <!-- Product Image -->
+                        <img src="https://www.lego.com/cdn/product-assets/product.img.pri/44011_prod.jpg" alt="44011 BESTIA HELADA" class="relative z-10 transform transition duration-500 group-hover:scale-105 filter drop-shadow-[0_0_25px_rgba(165,242,243,0.4)]">
+
+                        <div class="absolute bottom-4 left-4 flex space-x-2">
+                             <div class="bg-[rgba(20,0,0,0.8)] text-red-400 font-bold px-3 py-1 text-[10px] uppercase tracking-wider border border-red-900">
+                                <i class="fas fa-skull mr-1"></i> Villano
+                            </div>
+                        </div>
+                        
+                        <!-- HUD Elements (Villain Style) -->
+                        <div class="absolute top-4 right-4 text-[var(--hf-ice)] text-[10px] font-mono opacity-80 text-right">
+                            <span class="animate-pulse text-red-500">THREAT: EXTREME</span><br>
+                            TEMP: -200°C<br>
+                            STATUS: INFECTED
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Thumbnails -->
+                <div class="flex space-x-4 overflow-x-auto pb-2">
+                    <div class="w-24 h-24 bg-[#0a1525] border border-gray-700 hover:border-[var(--hf-ice)] cursor-pointer flex items-center justify-center transition">
+                        <i class="fas fa-box text-3xl text-gray-500"></i>
+                    </div>
+                    <div class="w-24 h-24 bg-[#0a1525] border border-gray-700 hover:border-[var(--hf-ice)] cursor-pointer flex items-center justify-center relative overflow-hidden transition">
+                        <i class="fas fa-dragon text-3xl text-[var(--hf-ice)]"></i>
+                    </div>
+                    <div class="w-24 h-24 bg-[#0a1525] border border-gray-700 hover:border-[var(--hf-ice)] cursor-pointer flex items-center justify-center transition">
+                        <i class="fas fa-icicles text-3xl text-blue-300"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Product Info -->
+            <div class="lg:w-5/12 text-white">
+                <div class="mb-2 flex items-center space-x-2 text-sm text-gray-400 font-mono">
+                    <span>Artículo: 44011</span>
+                    <span>|</span>
+                    <span>Edad: 7-14</span>
+                    <span>|</span>
+                    <span>Piezas: 60</span>
+                    <span>|</span>
+                    <span class="text-[var(--hf-ice)]">Puntos VIP: 10</span>
+                </div>
+
+                <h1 class="font-villain text-4xl lg:text-5xl mb-2 italic text-white uppercase text-shadow-lg tracking-widest">BESTIA HELADA</h1>
+                <h2 class="text-xl text-[var(--hf-ice)] font-bold mb-6 uppercase tracking-wider">¡El hielo cobra vida y ataca!</h2>
+
+                <div class="flex items-center space-x-2 mb-6">
+                    <div class="flex text-yellow-400 text-sm">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <a href="#reviews" class="text-xs text-gray-400 underline hover:text-white">Leer 3 opiniones</a>
+                </div>
+
+                <div class="bg-[#081018] p-6 rounded-sm border border-[var(--hf-ice)]/30 mb-6 relative overflow-hidden shadow-[inset_0_0_20px_rgba(0,0,0,0.8)]">
+                    <div class="absolute top-0 right-0 p-4">
+                        <span class="text-3xl font-bold font-hero text-white">12,99 €</span>
+                    </div>
+                    <div class="mt-8">
+                        <div class="flex items-center space-x-2 text-red-400 font-bold mb-4 text-sm">
+                            <i class="fas fa-times-circle"></i>
+                            <span>Producto retirado</span>
+                        </div>
+                        <button class="bg-gray-700 text-gray-400 hex-btn w-full py-4 text-lg uppercase tracking-wider cursor-not-allowed border border-gray-600">
+                            No disponible
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <div class="prose prose-invert max-w-none text-sm leading-relaxed text-gray-300">
+                    <p class="mb-4 text-cyan-100 italic border-l-2 border-[var(--hf-ice)] pl-3">
+                        “¡ALERTA HÉROES! Los cerebros malvados han transformado una criatura de hielo gigante en la feroz BESTIA HELADA.”
+                    </p>
+                    <p class="mb-4">
+                        <strong>¡Lanza un ataque helado con la BESTIA HELADA!</strong> Primero, evita sus peligrosos dientes de hielo con púas, sus afiladas garras de escarcha, su enorme hoja de escarcha con colmillos y su resistente armadura de hielo. ¡Luego captúrala, extrae el cerebro malvado y devuelve a la bestia a donde pertenece!
+                    </p>
+                    
+                    <ul class="list-none space-y-2 mt-4 pl-0">
+                        <li class="flex items-start">
+                            <i class="fas fa-caret-right text-[var(--hf-ice)] mt-1 mr-2"></i>
+                            Cuenta con un <strong>cerebro malvado azul claro extraíble</strong>, dientes de hielo con púas y garras de escarcha afiladas.
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-caret-right text-[var(--hf-ice)] mt-1 mr-2"></i>
+                            Armado con una enorme hoja de escarcha con colmillos y armadura de hielo resistente.
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-caret-right text-[var(--hf-ice)] mt-1 mr-2"></i>
+                            ¡Articulaciones totalmente posables y elementos translúcidos de hielo!
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-caret-right text-[var(--hf-ice)] mt-1 mr-2"></i>
+                            Separa el cerebro malvado para devolver a la bestia a su estado normal.
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-caret-right text-[var(--hf-ice)] mt-1 mr-2"></i>
+                            ¡Combínalo con <a href="#" class="text-[var(--hf-ice)] underline font-bold">44010 STORMER</a>!
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-caret-right text-[var(--hf-ice)] mt-1 mr-2"></i>
+                            Incluye un código por valor de <strong>600 puntos</strong> para el juego móvil LEGO® Hero Factory Brain Attack.
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-caret-right text-[var(--hf-ice)] mt-1 mr-2"></i>
+                            Mide más de 19 cm de altura.
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="mt-8 flex space-x-4">
+                     <button class="text-gray-400 hover:text-white flex items-center text-xs uppercase font-bold border border-gray-600 px-4 py-2 hover:border-[var(--hf-ice)] transition">
+                        <i class="fas fa-heart mr-2"></i> Lista de deseos
+                    </button>
+                     <button class="text-gray-400 hover:text-white flex items-center text-xs uppercase font-bold border border-gray-600 px-4 py-2 hover:border-[var(--hf-ice)] transition">
+                        <i class="fas fa-exchange-alt mr-2"></i> Comparar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Combo Model Section -->
+        <div class="mt-16 border-t border-gray-800 pt-8">
+            <h3 class="font-hero text-2xl mb-6 text-center text-white">¡CONSTRUYE EL MODELO DEFINITIVO!</h3>
+            <div class="hero-strip border border-[#1a3a5a] p-8 relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-red-600 to-transparent"></div>
+                
+                <div class="flex flex-col md:flex-row items-center justify-center gap-8 text-center md:text-left">
+                    <div class="flex items-center space-x-4">
+                        <div class="text-center opacity-100 transition">
+                            <div class="w-24 h-24 bg-gray-900 rounded-full flex items-center justify-center mb-2 mx-auto border-2 border-[var(--hf-ice)] shadow-[0_0_15px_rgba(165,242,243,0.3)]">
+                                <span class="font-bold text-white">44011</span>
+                            </div>
+                            <span class="text-xs font-bold text-[var(--hf-ice)]">BESTIA HELADA</span>
+                        </div>
+                        <i class="fas fa-plus text-2xl text-gray-500"></i>
+                        <div class="text-center group cursor-pointer opacity-70 hover:opacity-100 transition">
+                            <div class="w-24 h-24 bg-gray-900 rounded-full flex items-center justify-center mb-2 mx-auto border-2 border-transparent group-hover:border-white">
+                                <span class="font-bold text-gray-300">44010</span>
+                            </div>
+                            <span class="text-xs font-bold text-gray-300 group-hover:text-white">STORMER</span>
+                        </div>
+                    </div>
+                    
+                    <i class="fas fa-arrow-right text-3xl text-white animate-pulse hidden md:block"></i>
+                    
+                    <div class="bg-[#051020] border border-gray-600 p-4 rounded shadow-lg max-w-md">
+                        <h4 class="font-bold text-white mb-2">MODELO COMBINADO</h4>
+                        <p class="text-xs text-gray-400 mb-3">Descarga las instrucciones para construir una versión más grande y aterradora combinando la Bestia Helada con el héroe Stormer.</p>
+                        <button class="bg-[#0055BF] hover:bg-[#004499] text-white text-xs px-4 py-2 uppercase font-bold flex items-center transition border border-blue-400">
+                            <i class="fas fa-download mr-2"></i> Descargar PDF
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabs Section -->
+        <div class="mt-12">
+            <div class="flex border-b border-gray-800">
+                <button class="px-6 py-3 text-sm font-bold text-[var(--hf-ice)] border-b-2 border-[var(--hf-ice)] bg-[#0b1828]">Detalles</button>
+                <button class="px-6 py-3 text-sm font-bold text-gray-500 hover:text-white transition">Piezas</button>
+                <button class="px-6 py-3 text-sm font-bold text-gray-500 hover:text-white transition">Reseñas</button>
+            </div>
+            <div class="bg-[#0b1828] p-6 text-gray-400 text-sm min-h-[150px]">
+                <p>Las criaturas nativas de hielo del planeta han sido infectadas por los cerebros malvados. Esta Bestia Helada es una fuerza de destrucción imparable, capaz de congelar cualquier cosa que toque. Su armadura de cristal de hielo es casi impenetrable, y su espada puede cortar a través del metal más duro como si fuera papel. Solo un héroe con tecnología térmica avanzada tiene oportunidad contra ella.</p>
+                <br>
+                <p class="italic text-xs text-gray-600">LEGO, el logotipo de LEGO y Hero Factory son marcas comerciales de LEGO Group. ©2013 The LEGO Group.</p>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer 2013 Style -->
+    <footer class="bg-[#050505] border-t border-[#222] text-gray-500 text-xs py-10 mt-8">
+        <div class="container mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+            <div>
+                <h5 class="text-white font-bold mb-4 uppercase">Comprar</h5>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:underline">Búsqueda de set por tema</a></li>
+                    <li><a href="#" class="hover:underline">Novedades</a></li>
+                    <li><a href="#" class="hover:underline">Exclusivos</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="text-white font-bold mb-4 uppercase">Atención al cliente</h5>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:underline">Estado del pedido</a></li>
+                    <li><a href="#" class="hover:underline">Instrucciones de construcción</a></li>
+                    <li><a href="#" class="hover:underline">Piezas faltantes</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="text-white font-bold mb-4 uppercase">Descubrir</h5>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:underline">LEGO Club</a></li>
+                    <li><a href="#" class="hover:underline">Juegos LEGO</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="flex items-center space-x-4 mb-4">
+                    <i class="fab fa-facebook text-2xl hover:text-white cursor-pointer"></i>
+                    <i class="fab fa-twitter text-2xl hover:text-white cursor-pointer"></i>
+                    <i class="fab fa-youtube text-2xl hover:text-white cursor-pointer"></i>
+                </div>
+                <p>Cambiar región: <span class="text-white cursor-pointer hover:underline">España</span></p>
+            </div>
+        </div>
+        <div class="container mx-auto px-4 border-t border-[#222] pt-4 text-center">
+            <p>&copy; 2013 The LEGO Group. Todos los derechos reservados.</p>
+            <div class="flex justify-center space-x-4 mt-2">
+                <a href="#" class="hover:text-white">Política de privacidad</a>
+                <a href="#" class="hover:text-white">Cookies</a>
+                <a href="#" class="hover:text-white">Aviso legal</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEGO.com 바이오니클 : 제품 : 8741 토아 누주 호디카</title>
+    <style>
+        /* --- 2005 Era Reset & Base Styles --- */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #0b0d10; /* Dark Bionicle vibe */
+            background-image: repeating-linear-gradient(45deg, #1a1a1a 25%, transparent 25%, transparent 75%, #1a1a1a 75%, #1a1a1a), repeating-linear-gradient(45deg, #1a1a1a 25%, #0b0d10 25%, #0b0d10 75%, #1a1a1a 75%, #1a1a1a);
+            background-position: 0 0, 10px 10px;
+            background-size: 20px 20px;
+            font-family: Verdana, Arial, sans-serif;
+            color: #ccc;
+            font-size: 11px;
+        }
+
+        a { text-decoration: none; color: #ffcc00; }
+        a:hover { text-decoration: underline; }
+
+        /* --- Layout Container (Fixed width common in 2005) --- */
+        #container {
+            width: 760px;
+            margin: 0 auto;
+            background: #000;
+            border-left: 2px solid #333;
+            border-right: 2px solid #333;
+            box-shadow: 0 0 20px rgba(0,0,0,0.8);
+        }
+
+        /* --- Header (LEGO Global Style) --- */
+        #header {
+            background-color: #ffcc00;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            border-bottom: 3px solid #d01012;
+        }
+
+        .lego-logo {
+            background-color: #d01012;
+            color: white;
+            font-weight: bold;
+            font-style: italic;
+            padding: 5px 10px;
+            font-size: 18px;
+            border: 2px solid white;
+            box-shadow: 2px 2px 0px rgba(0,0,0,0.3);
+            margin-right: 20px;
+            font-family: sans-serif;
+        }
+
+        .nav-links a {
+            color: #000;
+            font-weight: bold;
+            margin-right: 15px;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        /* --- Bionicle Branding Section --- */
+        #bionicle-header {
+            background: linear-gradient(to bottom, #2c3e50, #000);
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 2px solid #555;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #bionicle-header h1 {
+            font-family: "Arial Black", sans-serif;
+            color: #eceff1;
+            font-size: 32px;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px #0ff;
+            z-index: 2;
+            margin: 0;
+        }
+        
+        /* Pseudo-element for "Web of Shadows" feel */
+        #bionicle-header::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle, transparent 20%, #000 90%);
+            z-index: 1;
+        }
+
+        /* --- Main Content Area --- */
+        #content {
+            display: flex;
+            padding: 20px;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjMjIyIi8+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiMzMzMiLz4KPC9zdmc+');
+        }
+
+        /* --- Sidebar --- */
+        #sidebar {
+            width: 160px;
+            background-color: #111;
+            border: 1px solid #444;
+            padding: 10px;
+            margin-right: 20px;
+        }
+
+        .side-btn {
+            display: block;
+            background: linear-gradient(#444, #222);
+            color: #fff;
+            padding: 8px;
+            margin-bottom: 5px;
+            border: 1px solid #666;
+            text-align: center;
+            font-weight: bold;
+            font-size: 10px;
+        }
+        .side-btn:hover {
+            background: linear-gradient(#555, #333);
+            color: #0ff;
+            cursor: pointer;
+        }
+
+        /* --- Product Detail --- */
+        #product-area {
+            flex: 1;
+            background-color: rgba(0,0,0,0.5);
+            border: 1px solid #555;
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .prod-image-container {
+            flex: 0 0 300px;
+            text-align: center;
+            border: 1px solid #333;
+            background: #000;
+            padding: 10px;
+            margin-right: 20px;
+            position: relative;
+        }
+
+        .prod-image-container img {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #222;
+        }
+
+        /* Simulate the Rhotuka Spinner Glow */
+        .glow-effect {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(200, 230, 255, 0.2) 0%, transparent 70%);
+            pointer-events: none;
+            animation: pulse 3s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+
+        .prod-details {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        h2 {
+            color: #fff;
+            font-size: 18px;
+            border-bottom: 1px solid #666;
+            padding-bottom: 5px;
+            margin-top: 0;
+        }
+
+        .item-number {
+            color: #aaa;
+            font-size: 10px;
+            margin-bottom: 15px;
+        }
+
+        .description {
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 11px;
+        }
+
+        .lore-box {
+            background-color: #1a2630;
+            border-left: 3px solid #64b5f6;
+            padding: 10px;
+            margin-bottom: 20px;
+            font-style: italic;
+            color: #e1f5fe;
+        }
+
+        .features {
+            list-style-type: square;
+            padding-left: 20px;
+            color: #999;
+        }
+        .features li { margin-bottom: 5px; }
+
+        .price-tag {
+            font-size: 16px;
+            color: #ffcc00;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .cta-button {
+            background: linear-gradient(to bottom, #ff9900, #cc6600);
+            border: 2px outset #ffcc00;
+            color: black;
+            font-weight: bold;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 12px;
+            display: inline-block;
+        }
+        .cta-button:active {
+            border-style: inset;
+            transform: translateY(1px);
+        }
+
+        /* --- Footer --- */
+        #footer {
+            background-color: #222;
+            color: #666;
+            padding: 15px;
+            text-align: center;
+            font-size: 10px;
+            border-top: 1px solid #444;
+        }
+
+        .legal-links a { color: #666; margin: 0 5px; }
+    </style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Product",
+      "name": "LEGO Bionicle 8741 Toa Hordika Nuju",
+      "image": "https://www.lego.com/cdn/product-assets/product.img.pri/8741_prod.jpg",
+      "description": "토아 호디카 누주와 함께 비소락 군단에 맞서 싸우세요! 얼음의 힘과 강력한 로투카 스피너가 포함되어 있습니다.",
+      "brand": {
+        "@type": "Brand",
+        "name": "LEGO"
+      },
+      "sku": "8741",
+      "releaseDate": "2005-06-01",
+      "offers": {
+        "@type": "Offer",
+        "url": "https://www.lego.com/ko-kr/product/toa-nuju-hordika-8741",
+        "priceCurrency": "KRW",
+        "price": "17000",
+        "availability": "https://schema.org/InStock",
+        "itemCondition": "https://schema.org/NewCondition"
+      }
+    }
+    </script>
+</head>
+<body>
+
+<div id="container">
+    <header id="header">
+        <div class="lego-logo">LEGO</div>
+        <nav class="nav-links">
+            <a href="#">제품</a>
+            <a href="#">게임</a>
+            <a href="#">클럽</a>
+            <a href="#">쇼핑</a>
+        </nav>
+    </header>
+
+    <div id="bionicle-header">
+        <h1>BIONICLE</h1>
+    </div>
+
+    <div id="content">
+        <aside id="sidebar">
+            <div class="side-btn">:: 홈 ::</div>
+            <div class="side-btn">:: 스토리 ::</div>
+            <div class="side-btn">:: 제품 목록 ::</div>
+            <div class="side-btn">:: 다운로드 ::</div>
+            <div class="side-btn">:: 카노카 클럽 ::</div>
+            <br>
+            <div style="text-align:center; color:#555; font-size:9px;">
+                METRU NUI<br>ARCHIVES
+            </div>
+        </aside>
+
+        <main id="product-area">
+            <div class="prod-image-container">
+                <div class="glow-effect"></div>
+                <img src="https://www.lego.com/cdn/product-assets/product.img.pri/8741_prod.jpg" alt="8741 토아 누주 호디카">
+                <div style="margin-top:10px; color:#64b5f6; font-size:10px; cursor:pointer;" onclick="spinRhotuka()">
+                    [ + 크게 보기 ]
+                </div>
+            </div>
+
+            <div class="prod-details">
+                <h2>8741 토아 누주 호디카</h2>
+                <div class="item-number">Item: 8741 | 연령: 7+ | 부품수: 48</div>
+
+                <div class="lore-box">
+                    “반은 토아, 반은 짐승...”<br>
+                    비소락의 독에 감염된 누주는 더 이상 예전의 지혜로운 토아가 아닙니다. 그의 본능적인 전투 능력만이 어둠 속에서 빛을 발합니다.
+                </div>
+
+                <p class="description">
+                    거미 군단 비소락에 맞서 싸우기 위해 누주는 야수의 본능을 받아들였습니다. 
+                    그의 얼음 스파이크 도구는 벽을 기어오르거나 적을 얼어붙게 만드는 데 사용됩니다. 
+                    등에 장착된 <strong>로투카 스피너</strong>를 발사하여 적을 무력화하세요!
+                </p>
+
+                <ul class="features">
+                    <li>실제 발사 가능한 은색 로투카 스피너 포함!</li>
+                    <li>팔의 기어 작동으로 전투 액션 구현.</li>
+                    <li>설명서를 통해 다른 호디카 제품과 합체 가능.</li>
+                </ul>
+
+                <hr style="border: 0; border-top: 1px solid #444; margin: 20px 0;">
+
+                <div class="price-tag">₩ 17,000</div>
+
+                <button class="cta-button" onclick="addToBag()">장바구니에 담기 &gt;</button>
+                <br><br>
+                <a href="#" style="color:#888; font-size:10px;">> 위시리스트 추가</a>
+            </div>
+        </main>
+    </div>
+
+    <footer id="footer">
+        <div class="legal-links">
+            <a href="#">LEGO.com 홈</a> | 
+            <a href="#">개인정보취급방침</a> | 
+            <a href="#">법적 고지</a> | 
+            <a href="#">회사 소개</a>
+        </div>
+        <p>LEGO, LEGO 로고 및 BIONICLE은 LEGO Group의 상표입니다.<br>
+        &copy; 2005 The LEGO Group. All rights reserved.</p>
+    </footer>
+</div>
+
+<script>
+    // Simple JS for 2005-era interactivity
+    function addToBag() {
+        alert("장바구니에 8741 토아 호디카 누주 제품이 담겼습니다.\n(가상 시뮬레이션입니다)");
+    }
+
+    function spinRhotuka() {
+        const img = document.querySelector('.prod-image-container img');
+        // Simple zoom effect simulation
+        if (img.style.transform === "scale(1.5)") {
+            img.style.transform = "scale(1)";
+            img.style.transition = "transform 0.3s";
+        } else {
+            img.style.transform = "scale(1.5)";
+            img.style.transition = "transform 0.3s";
+            img.style.zIndex = "10";
+            img.style.position = "relative";
+        }
+    }
+</script>
+
+</body>
+</html>
