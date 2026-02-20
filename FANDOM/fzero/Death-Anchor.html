@@ -10,6 +10,7 @@
             font-family: sans-serif;
             background-color: #f2f2f2;
             color: #3a3a3a;
+            line-height: 1.5;
         }
         .fandom-header {
             background-color: #002a32;
@@ -22,12 +23,10 @@
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
         .infobox {
-            width: 300px;
+            width: 100%;
             background: #f8f9fa;
             border: 1px solid #c8ccd1;
             padding: 10px;
-            float: right;
-            margin-left: 20px;
             margin-bottom: 20px;
             border-radius: 4px;
         }
@@ -36,191 +35,239 @@
             color: #002a32;
             text-align: center;
             font-weight: bold;
-            padding: 5px;
+            padding: 8px;
             border-radius: 2px;
             margin-bottom: 10px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
         }
         .stat-table th {
             text-align: left;
             width: 40%;
             font-size: 0.85rem;
             color: #54595d;
+            padding: 4px 0;
+            border-bottom: 1px solid #eaecf0;
         }
         .stat-table td {
             font-size: 0.85rem;
+            padding: 4px 0;
+            border-bottom: 1px solid #eaecf0;
         }
         .tab-active {
             border-bottom: 3px solid #00d6d6;
-            color: #00d6d6;
+            color: #002a32;
         }
         .comment-box {
             border-top: 1px solid #e5e7eb;
             margin-top: 40px;
             padding-top: 20px;
         }
+        .fandom-accent { color: #00d6d6; }
+        .content-heading {
+            border-bottom: 1px solid #a2a9b1;
+            padding-bottom: 3px;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
     </style>
 </head>
-<body>
+<body class="flex flex-col min-h-screen">
 
-<!-- Fandom Style Top Bar -->
+<!-- Top Navigation Bar -->
 <header class="fandom-header p-3 flex justify-between items-center sticky top-0 z-50">
     <div class="flex items-center gap-4">
         <div class="font-bold text-xl tracking-tighter">FANDOM</div>
         <div class="h-6 w-px bg-white/20"></div>
         <div class="text-sm font-semibold uppercase tracking-wider">F-Zero Wiki</div>
     </div>
-    <div class="flex items-center gap-4 text-sm">
-        <button class="hover:underline">Explore</button>
-        <button class="bg-[#00d6d6] text-[#002a32] px-3 py-1 rounded font-bold">SIGN IN</button>
+    <div class="hidden md:flex items-center gap-6 text-sm font-medium">
+        <button class="hover:text-[#00d6d6]">EXPLORE</button>
+        <button class="hover:text-[#00d6d6]">MACHINES</button>
+        <button class="hover:text-[#00d6d6]">PILOTS</button>
+        <button class="bg-[#00d6d6] text-[#002a32] px-4 py-1.5 rounded-sm font-bold">SIGN IN</button>
     </div>
 </header>
 
-<div class="wiki-container min-h-screen pb-10">
-    <!-- Hero/Banner area -->
-    <div class="bg-[#002a32] h-32 w-full flex items-end px-8 pb-4">
-        <h1 class="text-white text-4xl font-bold italic tracking-tight">Death Anchor</h1>
-    </div>
-
-    <!-- Main Navigation Tabs -->
-    <nav class="flex px-8 border-b border-gray-200">
-        <button onclick="switchTab('overview')" id="tab-overview" class="py-4 px-6 font-semibold tab-active">Overview</button>
-        <button onclick="switchTab('history')" id="tab-history" class="py-4 px-6 font-semibold text-gray-500 hover:text-gray-700">History</button>
-        <button onclick="switchTab('stats')" id="tab-stats" class="py-4 px-6 font-semibold text-gray-500 hover:text-gray-700">Statistics</button>
+<div class="wiki-container flex-1">
+    <!-- Breadcrumbs -->
+    <nav class="px-8 py-3 text-xs text-gray-500 bg-gray-50 flex gap-2">
+        <a href="#" class="hover:underline">F-Zero Wiki</a>
+        <span>&gt;</span>
+        <a href="#" class="hover:underline">Machines</a>
+        <span>&gt;</span>
+        <span class="font-bold">Death Anchor</span>
     </nav>
 
-    <div class="p-8 flex flex-col md:flex-row gap-8">
-        <!-- Content Area -->
-        <main class="flex-1">
-            <div id="content-overview" class="tab-content">
-                <p class="text-lg leading-relaxed mb-6">
-                    The <b>Death Anchor</b> (<span lang="ja">デスアンカー</span>, <i>Desu Ankā</i>) is a high-performance racing machine in the <i>F-Zero</i> series. Piloted by the notorious villain <b>Zoda</b>, it is easily recognized by its dark purple chassis and the menacing skull emblem featured prominently on its nose.
-                </p>
-                
-                <h2 class="text-2xl font-bold border-b border-gray-300 pb-2 mb-4">Description</h2>
-                <p class="mb-4">
-                    The Death Anchor was originally a missile stolen from the Galactic Federation. Zoda’s technicians modified the propulsion systems and added a cockpit to convert it into a racing craft. Because of its military origins, the machine possesses incredible acceleration and top speed, but suffers from a notoriously fragile hull.
-                </p>
-                <p class="mb-4">
-                    In <i>F-Zero GX</i>, the Death Anchor is considered a “top-tier” machine for expert players. Its <b>Boost Rank A</b> allows it to sustain incredible speeds, but its <b>Body Rank E</b> means a single collision at high velocity can lead to a machine explosion.
-                </p>
+    <!-- Page Title Area -->
+    <div class="px-8 pt-6 pb-2">
+        <h1 class="text-4xl font-serif font-bold text-[#002a32] mb-1">Death Anchor</h1>
+        <hr class="border-gray-200">
+    </div>
 
-                <h2 class="text-2xl font-bold border-b border-gray-300 pb-2 mb-4">Pilot</h2>
-                <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-lg">
-                    <img src="https://placehold.co/100x100/331a4d/ffffff?text=ZODA" alt="Zoda" class="rounded border border-gray-300">
-                    <div>
-                        <h3 class="font-bold text-lg">Zoda</h3>
-                        <p class="text-sm text-gray-600">Zoda is the leader of a cult of followers who aim to take over the universe. He is the arch-nemesis of Captain Falcon and Super Arrow.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div id="content-history" class="tab-content hidden">
-                <h2 class="text-2xl font-bold border-b border-gray-300 pb-2 mb-4">History</h2>
-                <ul class="list-disc ml-6 space-y-4">
-                    <li><b>F-Zero X:</b> Debuted as Zoda’s signature craft. Notable for its high speed and difficult handling.</li>
-                    <li><b>F-Zero GX:</b> Featured with improved visual details, including glowing thrusters and a more defined skull motif.</li>
-                    <li><b>F-Zero: GP Legend:</b> Appears as a recurring antagonist machine in the anime-based series.</li>
-                </ul>
-            </div>
-
-            <div id="content-stats" class="tab-content hidden">
-                <h2 class="text-2xl font-bold border-b border-gray-300 pb-2 mb-4">Technical Specifications (GX)</h2>
-                <table class="w-full border-collapse border border-gray-200">
-                    <tr class="bg-gray-100">
-                        <th class="border border-gray-200 p-2 text-left">Category</th>
-                        <th class="border border-gray-200 p-2 text-left">Value</th>
-                    </tr>
-                    <tr>
-                        <td class="border border-gray-200 p-2">Body Rank</td>
-                        <td class="border border-gray-200 p-2 font-bold text-red-600">E</td>
-                    </tr>
-                    <tr>
-                        <td class="border border-gray-200 p-2">Boost Rank</td>
-                        <td class="border border-gray-200 p-2 font-bold text-green-600">A</td>
-                    </tr>
-                    <tr>
-                        <td class="border border-gray-200 p-2">Grip Rank</td>
-                        <td class="border border-gray-200 p-2 font-bold text-yellow-600">C</td>
-                    </tr>
-                    <tr>
-                        <td class="border border-gray-200 p-2">Weight</td>
-                        <td class="border border-gray-200 p-2">1620 kg</td>
-                    </tr>
-                </table>
-            </div>
-
-            <!-- Persistent Comments Section -->
-            <section class="comment-box">
-                <h2 class="text-xl font-bold mb-4">Community Notes & Strategy</h2>
-                <div class="mb-6 bg-blue-50 p-4 rounded-lg border border-blue-100">
-                    <p class="text-xs text-blue-800 font-bold uppercase mb-2">Logged in as:</p>
-                    <p id="user-id-display" class="text-sm font-mono text-blue-900 break-all bg-white p-2 rounded border border-blue-200"></p>
-                </div>
-                
-                <div class="flex gap-2 mb-6">
-                    <input type="text" id="comment-input" placeholder="Add a racing tip or lore note..." class="flex-1 border border-gray-300 rounded p-2 focus:ring-2 focus:ring-[#00d6d6] outline-none">
-                    <button id="submit-comment" class="bg-[#002a32] text-white px-6 py-2 rounded font-bold hover:bg-[#004d5a] transition-colors">Post</button>
-                </div>
-
-                <div id="comments-list" class="space-y-4">
-                    <!-- Comments loaded here -->
-                    <div class="text-center py-10 text-gray-400">Loading community notes...</div>
-                </div>
-            </section>
-        </main>
-
-        <!-- Sidebar Infobox -->
-        <aside class="w-full md:w-[300px]">
-            <div class="infobox shadow-md w-full ml-0">
+    <!-- Main Content Layout -->
+    <div class="p-8 flex flex-col lg:flex-row gap-10">
+        
+        <!-- Sidebar Infobox (Mobile First) -->
+        <aside class="order-1 lg:order-2 w-full lg:w-[320px] flex-shrink-0">
+            <div class="infobox shadow-sm">
                 <div class="infobox-header">Death Anchor</div>
                 <div class="mb-4">
-                    <img src="https://mutecity.org/w/images/4/43/Death_Anchor.png" alt="Death Anchor" class="w-full border border-gray-300 rounded">
-                    <p class="text-[10px] text-gray-500 text-center mt-1">Death Anchor in <i>F-Zero GX</i></p>
+                    <!-- Machine Image -->
+                    <img src="https://mutecity.org/w/images/4/43/Death_Anchor.png" 
+                         alt="Death Anchor" 
+                         class="w-full border border-gray-300 rounded bg-white p-2">
+                    <p class="text-[10px] text-gray-500 text-center mt-2 italic">The Death Anchor as it appears in F-Zero GX</p>
                 </div>
                 
-                <table class="stat-table w-full">
+                <table class="stat-table w-full mb-4">
                     <tr><th>Pilot</th><td><a href="Zoda" class="text-blue-600 hover:underline">Zoda</a></td></tr>
-                    <tr><th>Machine Number</th><td>13</td></tr>
+                    <tr><th>Number</th><td>13</td></tr>
                     <tr><th>Weight</th><td>1620 kg</td></tr>
-                    <tr><th>Engine</th><td>DS-021x4</td></tr>
-                    <tr><th>First Appearance</th><td><i>F-Zero X</i> (N64, 1998)</td></tr>
+                    <tr><th>Engine</th><td>ZZ-2236x1</td></tr>
+                    <tr><th>Creator</th><td>Secret Society Deathriddle</td></tr>
+                    <tr><th>Origin</th><td>Galactic Federation Missile</td></tr>
                 </table>
 
                 <div class="bg-gray-200 h-px my-3"></div>
                 
                 <div class="text-[10px] font-bold text-gray-400 uppercase mb-2">Machine Ratings</div>
-                <div class="grid grid-cols-3 gap-1 text-center">
-                    <div class="bg-red-100 p-1 border border-red-200">
-                        <div class="text-[9px] text-red-800 uppercase">Body</div>
-                        <div class="font-bold text-red-600">E</div>
+                <div class="grid grid-cols-3 gap-2 text-center">
+                    <div class="bg-red-50 p-2 border border-red-200 rounded">
+                        <div class="text-[9px] text-red-800 uppercase font-bold">Body</div>
+                        <div class="text-lg font-black text-red-600">E</div>
                     </div>
-                    <div class="bg-green-100 p-1 border border-green-200">
-                        <div class="text-[9px] text-green-800 uppercase">Boost</div>
-                        <div class="font-bold text-green-600">A</div>
+                    <div class="bg-green-50 p-2 border border-green-200 rounded">
+                        <div class="text-[9px] text-green-800 uppercase font-bold">Boost</div>
+                        <div class="text-lg font-black text-green-600">A</div>
                     </div>
-                    <div class="bg-yellow-100 p-1 border border-yellow-200">
-                        <div class="text-[9px] text-yellow-800 uppercase">Grip</div>
-                        <div class="font-bold text-yellow-600">C</div>
+                    <div class="bg-yellow-50 p-2 border border-yellow-200 rounded">
+                        <div class="text-[9px] text-yellow-800 uppercase font-bold">Grip</div>
+                        <div class="text-lg font-black text-yellow-600">C</div>
                     </div>
                 </div>
             </div>
         </aside>
+
+        <!-- Main Content Area -->
+        <main class="order-2 lg:order-1 flex-1">
+            <!-- Navigation Tabs -->
+            <nav class="flex border-b border-gray-200 mb-6">
+                <button onclick="switchTab('overview')" id="tab-overview" class="py-2 px-4 font-semibold text-sm tab-active transition-all">Overview</button>
+                <button onclick="switchTab('history')" id="tab-history" class="py-2 px-4 font-semibold text-sm text-gray-400 hover:text-gray-700 transition-all">History</button>
+                <button onclick="switchTab('stats')" id="tab-stats" class="py-2 px-4 font-semibold text-sm text-gray-400 hover:text-gray-700 transition-all">Technical Stats</button>
+            </nav>
+
+            <div id="content-overview" class="tab-content">
+                <p class="text-[15px] leading-relaxed mb-6">
+                    The <b>Death Anchor</b> (<span lang="ja">デスアンカー</span>, <i>Desu Ankā</i>) is a high-performance racing machine in the <i>F-Zero</i> series. It is the signature craft of the villainous <b>Zoda</b> and is widely regarded as one of the most dangerous machines on the circuit—both for its opponents and its pilot.
+                </p>
+                
+                <h2 class="text-xl font-bold content-heading">Design and Origin</h2>
+                <p class="mb-4">
+                    Unlike most F-Zero machines which are built from the ground up for racing, the Death Anchor was originally an <b>interplanetary ballistic missile</b>. Stolen from the Galactic Space Federation by the secret society known as <b>Deathriddle</b>, it was extensively remodeled into a racing craft. 
+                </p>
+                <p class="mb-4">
+                    The machine retains many of its original military characteristics, including a sleek, missile-like aerodynamic frame and incredibly powerful propulsion systems. A little-known fact among fans is that the machine still contains an active <b>self-destruct device</b> inside, a detail that Zoda is reportedly unaware of.
+                </p>
+
+                <h2 class="text-xl font-bold content-heading">Pilot: Zoda</h2>
+                <div class="flex flex-col sm:flex-row items-center gap-6 p-6 bg-[#f8f9fa] rounded-lg border border-gray-200 mt-4">
+                    <img src="https://placehold.co/120x120/1a1a2e/ffffff?text=ZODA" alt="Zoda Pilot" class="rounded-full shadow-md border-2 border-[#00d6d6]">
+                    <div>
+                        <h3 class="font-bold text-lg text-[#002a32]">Zoda</h3>
+                        <p class="text-sm text-gray-600 italic mb-2">“The Incarnation of Evil”</p>
+                        <p class="text-sm leading-relaxed text-gray-700">
+                            Zoda is the leader of a cult-like organization and a long-time rival of Captain Falcon. Known for his manic personality and ruthless tactics, he uses the Death Anchor to spread terror across the F-Zero Grand Prix. In <i>F-Zero: GP Legend</i>, his backstory is expanded as a recurring antagonist.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="content-history" class="tab-content hidden">
+                <h2 class="text-xl font-bold content-heading">Game Appearances</h2>
+                <div class="space-y-6">
+                    <div class="border-l-4 border-[#00d6d6] pl-4">
+                        <h3 class="font-bold text-lg">F-Zero X</h3>
+                        <p class="text-sm text-gray-600">Debuted with a weight of 1620 kg. It established the machine’s reputation for having a “paper-thin” body but a terrifyingly fast boost.</p>
+                    </div>
+                    <div class="border-l-4 border-[#00d6d6] pl-4">
+                        <h3 class="font-bold text-lg">F-Zero GX</h3>
+                        <p class="text-sm text-gray-600">Gained three small fins in the back and a lighter blue color scheme. Considered an S-tier machine for experts due to its “Momentum Turbo Slide” (MTS) potential and high top speed.</p>
+                    </div>
+                    <div class="border-l-4 border-[#00d6d6] pl-4">
+                        <h3 class="font-bold text-lg">F-Zero Climax</h3>
+                        <p class="text-sm text-gray-600">Introduces the <b>Hyper Death Anchor</b>, a version piloted by Hyper Zoda with a Body rank of C and even higher weight (1670 kg).</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="content-stats" class="tab-content hidden">
+                <h2 class="text-xl font-bold content-heading">Technical Specifications (GX)</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="p-4 bg-gray-50 rounded border border-gray-200">
+                        <span class="text-xs font-bold text-gray-400 block uppercase">Max Unboosted Speed</span>
+                        <span class="text-xl font-bold text-[#002a32]">1054 km/h</span>
+                    </div>
+                    <div class="p-4 bg-gray-50 rounded border border-gray-200">
+                        <span class="text-xs font-bold text-gray-400 block uppercase">Max Boost Speed</span>
+                        <span class="text-xl font-bold text-green-600">1422 km/h</span>
+                    </div>
+                </div>
+                
+                <h3 class="font-bold mt-6 mb-2">Handling Profile</h3>
+                <ul class="list-disc ml-5 text-sm space-y-2 text-gray-700">
+                    <li><b>Acceleration:</b> Average. Requires effective boosting to reach top speeds quickly.</li>
+                    <li><b>Cornering:</b> Stiff. Harder to initiate turns than lighter machines, but maintains line well once committed.</li>
+                    <li><b>Durability:</b> Minimal. The E-Rank Body means it can only take a few hits from walls or opponents before exploding.</li>
+                </ul>
+            </div>
+
+            <!-- Strategy & Comments Section -->
+            <section class="comment-box">
+                <div class="flex items-center gap-2 mb-4">
+                    <h2 class="text-xl font-bold text-[#002a32]">Community Tips & Lore</h2>
+                    <span class="bg-[#00d6d6]/20 text-[#002a32] text-[10px] font-bold px-2 py-0.5 rounded">LIVE</span>
+                </div>
+
+                <div class="bg-blue-50/50 p-4 rounded border border-blue-100 mb-6">
+                    <p class="text-[10px] text-blue-800 font-bold uppercase mb-1">Editor ID:</p>
+                    <code id="user-id-display" class="text-xs text-blue-900 bg-white px-2 py-1 rounded border border-blue-200">Checking authorization...</code>
+                </div>
+                
+                <div class="flex gap-2 mb-8">
+                    <input type="text" id="comment-input" placeholder="Add a racing strategy or trivia..." class="flex-1 border border-gray-300 rounded-sm p-3 text-sm focus:ring-1 focus:ring-[#00d6d6] outline-none">
+                    <button id="submit-comment" class="bg-[#002a32] text-white px-6 rounded-sm font-bold text-sm hover:bg-[#004d5a] transition-all">PUBLISH</button>
+                </div>
+
+                <div id="comments-list" class="space-y-4">
+                    <div class="animate-pulse flex flex-col gap-4">
+                        <div class="h-16 bg-gray-100 rounded w-full"></div>
+                        <div class="h-16 bg-gray-100 rounded w-full"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
     </div>
 </div>
 
-<footer class="bg-[#002a32] text-white p-10 text-center mt-auto">
-    <p class="text-sm opacity-60">F-Zero and all related characters are trademarks of Nintendo.</p>
-    <p class="text-xs mt-2 opacity-40">Wiki content created for demonstration purposes.</p>
+<footer class="bg-[#002a32] text-white p-12 mt-auto border-t-4 border-[#00d6d6]">
+    <div class="max-w-4xl mx-auto text-center">
+        <div class="font-bold text-2xl tracking-tighter mb-4">FANDOM</div>
+        <p class="text-xs opacity-60 leading-relaxed">
+            F-Zero is a registered trademark of Nintendo. This wiki page is a fan-made demonstration. 
+            All images and character designs are property of their respective owners.
+        </p>
+    </div>
 </footer>
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
     import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-    import { getFirestore, doc, setDoc, onSnapshot, collection, query, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+    import { getFirestore, doc, onSnapshot, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-    // Firebase Configuration from environment
     const firebaseConfig = JSON.parse(__firebase_config);
-    const appId = typeof __app_id !== 'undefined' ? __app_id : 'fzero-death-anchor-wiki';
+    const appId = typeof __app_id !== 'undefined' ? __app_id : 'death-anchor-wiki';
     
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
@@ -245,44 +292,40 @@
         }
     });
 
-    // Load Comments from Public Collection
+    // Real-time Comments
     function loadComments() {
-        // Path: /artifacts/{appId}/public/data/comments
         const commentsRef = collection(db, 'artifacts', appId, 'public', 'data', 'comments');
         
         onSnapshot(commentsRef, (snapshot) => {
-            const commentsList = document.getElementById('comments-list');
-            commentsList.innerHTML = '';
+            const list = document.getElementById('comments-list');
+            list.innerHTML = '';
             
             const docs = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-            // Sort by timestamp in memory (Firestore sort usually needs composite index)
             docs.sort((a, b) => (b.timestamp?.seconds || 0) - (a.timestamp?.seconds || 0));
 
             if (docs.length === 0) {
-                commentsList.innerHTML = '<p class="text-gray-400 italic text-center py-4">No community notes yet. Be the first to share a tip!</p>';
+                list.innerHTML = '<div class="text-center py-6 text-gray-400 italic border-2 border-dashed border-gray-100 rounded">Be the first to contribute to the Death Anchor strategy guide.</div>';
                 return;
             }
 
             docs.forEach(data => {
                 const commentEl = document.createElement('div');
-                commentEl.className = 'bg-white border border-gray-200 p-4 rounded shadow-sm';
+                commentEl.className = 'bg-white border-l-2 border-[#00d6d6] p-4 shadow-sm';
                 commentEl.innerHTML = `
-                    <div class="flex justify-between items-start mb-2">
-                        <span class="text-[10px] font-mono text-gray-400 bg-gray-50 px-2 py-1 rounded truncate max-w-[200px]">${data.userId}</span>
-                        <span class="text-[10px] text-gray-400 italic">${data.timestamp ? new Date(data.timestamp.seconds * 1000).toLocaleDateString() : 'Just now'}</span>
+                    <div class="flex justify-between items-center mb-1">
+                        <span class="text-[9px] font-bold text-gray-400 uppercase tracking-widest">${data.userId}</span>
+                        <span class="text-[9px] text-gray-400">${data.timestamp ? new Date(data.timestamp.seconds * 1000).toLocaleDateString() : 'Just now'}</span>
                     </div>
-                    <p class="text-gray-700 text-sm">${sanitizeHTML(data.text)}</p>
+                    <p class="text-gray-800 text-sm leading-relaxed">${sanitizeHTML(data.text)}</p>
                 `;
-                commentsList.appendChild(commentEl);
+                list.appendChild(commentEl);
             });
         });
     }
 
-    // Submit Comment
     async function submitComment() {
         const input = document.getElementById('comment-input');
         const text = input.value.trim();
-        
         if (!text || !currentUserId) return;
 
         try {
@@ -293,12 +336,9 @@
                 timestamp: serverTimestamp()
             });
             input.value = '';
-        } catch (err) {
-            console.error("Error adding comment:", err);
-        }
+        } catch (err) { console.error("Error adding comment:", err); }
     }
 
-    // Tab Switching Logic
     window.switchTab = (tabId) => {
         const tabs = ['overview', 'history', 'stats'];
         tabs.forEach(t => {
@@ -307,11 +347,11 @@
             if (t === tabId) {
                 content.classList.remove('hidden');
                 tabBtn.classList.add('tab-active');
-                tabBtn.classList.remove('text-gray-500');
+                tabBtn.classList.remove('text-gray-400');
             } else {
                 content.classList.add('hidden');
                 tabBtn.classList.remove('tab-active');
-                tabBtn.classList.add('text-gray-500');
+                tabBtn.classList.add('text-gray-400');
             }
         });
     };
