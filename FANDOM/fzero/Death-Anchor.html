@@ -1,189 +1,243 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Death Anchor | F-Zero Wiki</title>
-<style>
-  /* --- CSS --- */
-  body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    background-color: #f4f6f8;
-    color: #3a3a3a;
-    margin: 0;
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Death Anchor | F-Zero Wiki | FANDOM</title>
+    <style>
+        :root {
+            --fandom-bg: #1e232b;
+            --fandom-accent: #fa005a;
+            --fandom-card: #282d38;
+            --fandom-text: #e6e6e6;
+            --fandom-border: #3e4452;
+        }
 
-  .wiki-container {
-    max-width: 900px;
-    width: 100%;
-    background: #ffffff;
-    padding: 30px;
-    border: 1px solid #cccccc;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-  }
+        body {
+            font-family: sans-serif;
+            background-color: var(--fandom-bg);
+            color: var(--fandom-text);
+            margin: 0;
+            line-height: 1.6;
+        }
 
-  .wiki-header {
-    border-bottom: 2px solid #a2a9b1;
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-  }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 30px;
+        }
 
-  .wiki-header h1 {
-    margin: 0;
-    font-size: 2em;
-    font-family: 'Georgia', serif;
-  }
+        /* Header Styles */
+        header {
+            grid-column: 1 / -1;
+            border-bottom: 2px solid var(--fandom-border);
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
 
-  .wiki-content {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
+        h1 {
+            font-size: 2.5rem;
+            margin: 0;
+            color: white;
+        }
 
-  .main-text {
-    flex: 1;
-    min-width: 300px;
-    line-height: 1.6;
-    font-size: 1.05em;
-  }
+        /* Main Content */
+        .content-main img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
 
-  .main-text h2 {
-    border-bottom: 1px solid #a2a9b1;
-    padding-bottom: 5px;
-    margin-top: 30px;
-  }
+        .description {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
 
-  /* Infobox Styling */
-  .infobox {
-    width: 300px;
-    border: 1px solid #a2a9b1;
-    background-color: #f8f9fa;
-    padding: 15px;
-    font-size: 0.9em;
-    float: right;
-  }
+        /* Sidebar / Infobox */
+        .infobox {
+            background-color: var(--fandom-card);
+            border: 1px solid var(--fandom-border);
+            border-radius: 4px;
+            padding: 15px;
+            align-self: start;
+        }
 
-  .infobox h2 {
-    text-align: center;
-    background-color: #002366;
-    color: #ffffff;
-    margin: -15px -15px 15px -15px;
-    padding: 10px;
-    font-size: 1.2em;
-  }
+        .infobox-title {
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.4rem;
+            background-color: var(--fandom-accent);
+            padding: 10px;
+            margin: -15px -15px 15px -15px;
+            border-radius: 4px 4px 0 0;
+        }
 
-  .infobox img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto 15px;
-    cursor: pointer;
-  }
+        .infobox-image {
+            text-align: center;
+            margin-bottom: 15px;
+            background: #000;
+            padding: 10px;
+        }
 
-  .infobox table {
-    width: 100%;
-    border-collapse: collapse;
-  }
+        .infobox-data {
+            width: 100%;
+            border-collapse: collapse;
+        }
 
-  .infobox th, .infobox td {
-    padding: 8px 5px;
-    border-bottom: 1px solid #eaecf0;
-  }
+        .infobox-data th {
+            text-align: left;
+            padding: 5px;
+            font-size: 0.9rem;
+            color: #999;
+            width: 40%;
+        }
 
-  .infobox th {
-    text-align: left;
-    width: 35%;
-    font-weight: bold;
-  }
+        .infobox-data td {
+            padding: 5px;
+            font-size: 0.9rem;
+        }
 
-  /* F-Zero Stat Grade Colors */
-  .stat-box {
-    display: inline-block;
-    padding: 2px 8px;
-    border-radius: 4px;
-    font-weight: bold;
-    color: #fff;
-    text-align: center;
-    min-width: 15px;
-  }
-  .stat-E { background-color: #e74c3c; } /* Red for bad */
-  .stat-A { background-color: #2ecc71; } /* Green for great */
-  .stat-C { background-color: #f1c40f; color: #333; } /* Yellow for average */
-</style>
+        /* Stats Tabs */
+        .stats-container {
+            margin-top: 30px;
+            background: var(--fandom-card);
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            border-bottom: 1px solid var(--fandom-border);
+            margin-bottom: 15px;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            color: var(--fandom-text);
+            font-weight: bold;
+        }
+
+        .tab.active {
+            border-bottom: 3px solid var(--fandom-accent);
+            color: var(--fandom-accent);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .stat-bar {
+            background: #444;
+            height: 10px;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+
+        .stat-fill {
+            background: var(--fandom-accent);
+            height: 100%;
+            border-radius: 5px;
+        }
+
+        @media (max-width: 800px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            .infobox {
+                order: -1;
+            }
+        }
+    </style>
 </head>
 <body>
 
-  <div class="wiki-container">
-    <header class="wiki-header">
-      <h1 id="page-title">Loading...</h1>
+<div class="container">
+    <header>
+        <h1>Death Anchor</h1>
+        <p>From F-Zero Wiki, the ultimate F-Zero resource</p>
     </header>
-    
-    <main class="wiki-content">
-      <section class="main-text">
-        <p id="lore-intro"></p>
-        <h2>Design & Mechanics</h2>
-        <p id="lore-extra"></p>
-      </section>
 
-      <aside class="infobox">
-        <h2 id="info-title"></h2>
-        <img src="https://mutecity.org/w/images/4/43/Death_Anchor.png" alt="Death Anchor" id="info-image">
-        <table>
-          <tbody id="info-table">
-            </tbody>
+    <div class="content-main">
+        <div class="description">
+            <p>The <strong>Death Anchor</strong> (<span lang="ja">デスアンカー</span>, <i>Desu Ankā</i>) is a high-speed racing machine in the <em>F-Zero</em> series. It is piloted by <strong>Zoda</strong>, the leader of a cult and a long-time criminal rival of Captain Falcon. Known for its extreme speed and terrifying volatility, the Death Anchor is a “glass cannon” in every sense of the word.</p>
+            
+            <p>Created by the secret organization <strong>BS Group</strong>, the machine was designed specifically to outpace any Galactic Federation pursuit vessel. While it boasts some of the highest top speeds in the grand prix, its paper-thin armor makes it a dangerous gamble for any pilot.</p>
+        </div>
+
+        <h3>History</h3>
+        <p>The Death Anchor first appeared in <em>F-Zero X</em> and has been Zoda’s signature ride ever since. Its design features a sleek, needle-like nose and massive rear engines, reflecting Zoda’s “win at any cost” mentality. In the anime <em>F-Zero: GP Legend</em>, the machine is depicted as a bio-mechanical terror that can even operate autonomously under Zoda's influence.</p>
+
+        <div class="stats-container">
+            <h3>Machine Performance</h3>
+            <div class="tabs">
+                <button class="tab active" onclick="openTab(event, 'fzero-x')">F-Zero X</button>
+                <button class="tab" onclick="openTab(event, 'fzero-gx')">F-Zero GX</button>
+            </div>
+
+            <div id="fzero-x" class="tab-content active">
+                <p><strong>Body:</strong> E | <strong>Boost:</strong> A | <strong>Grip:</strong> C</p>
+                <p>In <i>F-Zero X</i>, the Death Anchor is notorious for its incredible boost but fragile frame. A single collision at high speed can often result in a “Retired” status.</p>
+            </div>
+
+            <div id="fzero-gx" class="tab-content">
+                <p><strong>Body:</strong> E</p>
+                <div class="stat-bar"><div class="stat-fill" style="width: 20%;"></div></div>
+                <p><strong>Boost:</strong> A</p>
+                <div class="stat-bar"><div class="stat-fill" style="width: 95%;"></div></div>
+                <p><strong>Grip:</strong> C</p>
+                <div class="stat-bar"><div class="stat-fill" style="width: 50%;"></div></div>
+                <p style="margin-top:15px;">Weight: 1620 kg</p>
+            </div>
+        </div>
+    </div>
+
+    <aside class="infobox">
+        <div class="infobox-title">Death Anchor</div>
+        <div class="infobox-image">
+            <div style="height: 150px; display: flex; align-items: center; justify-content: center; border: 1px dashed #555;">
+                <span style="color: #777;"><img src="https://static.wikia.nocookie.net/fzero/images/b/bf/Death-anchor.jpg"></span>
+            </div>
+        </div>
+        <table class="infobox-data">
+            <tr><th>Pilot</th><td>Zoda</td></tr>
+            <tr><th>Machine Number</th><td>13</td></tr>
+            <tr><th>First Appearance</th><td><i>F-Zero X</i> (N64, 1998)</td></tr>
+            <tr><th>Manufacturer</th><td>BS Group</td></tr>
+            <tr><th>Engine</th><td>RB48×4</td></tr>
+            <tr><th>Max Speed</th><td>1044 km/h</td></tr>
+            <tr><th>Total Weight</th><td>1620 kg</td></tr>
         </table>
-      </aside>
-    </main>
-  </div>
+    </aside>
+</div>
 
 <script>
-  // --- JSON ---
-  const deathAnchorData = {
-    "name": "Death Anchor",
-    "pilot": "Zoda",
-    "number": 13,
-    "creator": "Deathriddle",
-    "weight": "1620 kg",
-    "engine": "ZZ-2236x1",
-    "stats": {
-      "body": "E",
-      "boost": "A",
-      "grip": "C"
-    },
-    "lore": "The <strong>Death Anchor</strong> is Zoda’s signature racing machine, making its debut in <em>F-Zero X</em>. It was originally an interplanetary ballistic missile designed by the Galactic Space Federation. However, it was stolen and heavily remodeled into an F-Zero machine by the secretive criminal society known as Deathriddle.",
-    "extra": "Because the chassis was originally intended to be the ultimate planetary weapon, it still contains an active self-destruct device deep inside its circuitry. This terrifying fact is completely unknown to Zoda. On the track, the Death Anchor is renowned for its explosive <strong>Boost (A)</strong> power, making it incredibly fast but highly dangerous due to its weak <strong>Body (E)</strong>."
-  };
-
-  // --- JavaScript ---
-  document.addEventListener("DOMContentLoaded", () => {
-    // 1. Populate standard text fields
-    document.getElementById("page-title").textContent = deathAnchorData.name;
-    document.getElementById("info-title").textContent = deathAnchorData.name;
-    document.getElementById("lore-intro").innerHTML = deathAnchorData.lore;
-    document.getElementById("lore-extra").innerHTML = deathAnchorData.extra;
-
-    // 2. Build the infobox table dynamically
-    const tableBody = document.getElementById("info-table");
-    const infoboxRows = [
-      { label: "Pilot", value: `<a href="#">${deathAnchorData.pilot}</a>` },
-      { label: "Number", value: deathAnchorData.number },
-      { label: "Creator", value: deathAnchorData.creator },
-      { label: "Weight", value: deathAnchorData.weight },
-      { label: "Engine", value: deathAnchorData.engine },
-      { label: "Body", value: `<span class="stat-box stat-${deathAnchorData.stats.body}">${deathAnchorData.stats.body}</span>` },
-      { label: "Boost", value: `<span class="stat-box stat-${deathAnchorData.stats.boost}">${deathAnchorData.stats.boost}</span>` },
-      { label: "Grip", value: `<span class="stat-box stat-${deathAnchorData.stats.grip}">${deathAnchorData.stats.grip}</span>` }
-    ];
-
-    infoboxRows.forEach(row => {
-      const tr = document.createElement("tr");
-      tr.innerHTML = `<th>${row.label}</th><td>${row.value}</td>`;
-      tableBody.appendChild(tr);
-    });
-  });
+    function openTab(evt, gameName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tab-content");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+            tabcontent[i].classList.remove("active");
+        }
+        tablinks = document.getElementsByClassName("tab");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(gameName).style.display = "block";
+        document.getElementById(gameName).classList.add("active");
+        evt.currentTarget.className += " active";
+    }
 </script>
+
 </body>
 </html>
