@@ -4,315 +4,197 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>レディング (ペンシルベニア州) - Wikipedia</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
             font-family: sans-serif;
             background-color: #f6f6f6;
-            color: #202122;
+            margin: 0;
+            display: flex;
+        }
+
+        /* Sidebar Navigation */
+        #mw-navigation {
+            width: 160px;
+            padding: 1em;
+            font-size: 0.75em;
+        }
+        #mw-navigation a {
+            color: #0645ad;
+            text-decoration: none;
+        }
+
+        /* Main Content Area */
+        #content {
+            background-color: #ffffff;
+            border: 1px solid #a7d7f9;
+            border-right: none;
+            padding: 1.5em;
+            flex-grow: 1;
             line-height: 1.6;
         }
 
-        .mw-body {
-            background-color: #ffffff;
-            border: 1px solid #a2a9b1;
-            padding: 1.25em 1.5em;
-            margin-left: 176px;
-            min-height: 100vh;
-        }
-
-        /* Sidebar Mockup */
-        .sidebar {
-            width: 176px;
-            position: absolute;
-            left: 0;
-            top: 0;
-            padding: 1em 0.5em;
-            font-size: 0.75rem;
-        }
-
-        .sidebar img {
-            width: 150px;
-            margin-bottom: 1em;
-        }
-
-        /* Wikipedia Headings */
         h1 {
-            font-size: 1.8rem;
+            font-family: 'Linux Libertine', 'Georgia', serif;
+            font-size: 1.8em;
             border-bottom: 1px solid #a2a9b1;
             margin-bottom: 0.25em;
-            padding-bottom: 0;
-        }
-
-        h2 {
-            font-size: 1.5rem;
-            border-bottom: 1px solid #a2a9b1;
-            margin-top: 1.5em;
-            margin-bottom: 0.5em;
-            font-weight: bold;
-        }
-
-        h3 {
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-top: 1.2em;
         }
 
         /* Infobox Style */
         .infobox {
             float: right;
-            width: 300px;
+            width: 280px;
             background-color: #f8f9fa;
             border: 1px solid #a2a9b1;
-            padding: 0.5em;
+            padding: 5px;
             margin-left: 1em;
-            margin-bottom: 1em;
-            font-size: 0.85rem;
+            font-size: 88%;
         }
-
         .infobox th {
             background-color: #cedff2;
-            text-align: left;
-            padding: 0.2em 0.4em;
-            width: 40%;
-        }
-
-        .infobox td {
-            padding: 0.2em 0.4em;
-        }
-
-        .infobox-title {
-            background-color: #cedff2;
             text-align: center;
-            font-weight: bold;
-            font-size: 1.1rem;
+            padding: 0.2em;
+        }
+        .infobox td {
+            padding: 0.2em;
+        }
+        .infobox-image {
+            text-align: center;
         }
 
-        /* Table of Contents */
-        .toc {
-            display: inline-block;
+        /* TOC - Table of Contents */
+        #toc {
             background-color: #f8f9fa;
             border: 1px solid #a2a9b1;
-            padding: 0.5em 1em;
-            margin: 1em 0;
-            font-size: 0.9rem;
+            padding: 10px;
+            display: inline-block;
+            font-size: 95%;
+            margin-top: 1em;
         }
-
         .toc-title {
             font-weight: bold;
             text-align: center;
-            margin-bottom: 0.5em;
         }
 
-        .toc ul {
-            list-style: none;
-            padding-left: 0;
+        /* Section Headings */
+        h2 {
+            border-bottom: 1px solid #a2a9b1;
+            margin-top: 1.5em;
         }
 
-        .toc li {
-            margin-bottom: 0.2em;
-        }
+        /* Links */
+        a { color: #0645ad; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .new { color: #ba0000; } /* Broken links */
 
-        .wikilink {
-            color: #0645ad;
-            text-decoration: none;
-        }
-
-        .wikilink:hover {
-            text-decoration: underline;
-        }
-
-        /* Mobile Adjustments */
-        @media (max-width: 768px) {
-            .mw-body { margin-left: 0; }
-            .sidebar { display: none; }
-            .infobox { float: none; width: 100%; margin-left: 0; }
+        footer {
+            margin-top: 2em;
+            font-size: 0.8em;
+            color: #54595d;
         }
     </style>
 </head>
 <body>
 
-    <!-- Fake Sidebar -->
-    <div class="sidebar">
-        <img src="https://placehold.co/150x50/ffffff/0645ad?text=Wikipedia" alt="Logo">
-        <div class="space-y-4">
-            <div>
-                <p class="font-bold border-b mb-1">案内</p>
-                <ul>
-                    <li><a href="#" class="wikilink">メインページ</a></li>
-                    <li><a href="#" class="wikilink">コミュニティ・ポータル</a></li>
-                    <li><a href="#" class="wikilink">最近の出来事</a></li>
-                    <li><a href="#" class="wikilink">新しいページ</a></li>
-                    <li><a href="#" class="wikilink">おまかせ表示</a></li>
-                </ul>
-            </div>
-        </div>
+<div id="mw-navigation">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/b/bb/Wikipedia-logo-v2.svg" width="120" alt="Wiki Logo">
+    <p><b>案内</b></p>
+    <ul>
+        <li><a href="#">メインページ</a></li>
+        <li><a href="#">コミュニティ・ポータル</a></li>
+        <li><a href="#">最近の出来事</a></li>
+        <li><a href="#">新しいページ</a></li>
+        <li><a href="#">おまかせ表示</a></li>
+    </ul>
+</div>
+
+<div id="content">
+    <h1>レディング (ペンシルベニア州)</h1>
+    <p>出典: フリー百科事典『ウィキペディア（Wikipedia）』</p>
+
+    <table class="infobox">
+        <tr><th colspan="2">レディング<br>Reading</th></tr>
+        <tr class="infobox-image">
+            <td colspan="2">
+                <div style="background: #ddd; height: 120px; display: flex; align-items: center; justify-content: center;">
+                    [市旗の画像]
+                </div>
+                <small>レディング市旗</small>
+            </td>
+        </tr>
+        <tr><th>愛称</th><td>Pretzel City (プレッツェルの街)</td></tr>
+        <tr><th colspan="2" style="background:#cedff2;">位置</th></tr>
+        <tr class="infobox-image">
+            <td colspan="2">
+                <div style="background: #eee; height: 150px; display: flex; align-items: center; justify-content: center;">
+                    [ペンシルベニア州内での位置図]
+                </div>
+            </td>
+        </tr>
+        <tr><th>国</th><td>アメリカ合衆国</td></tr>
+        <tr><th>州</th><td>ペンシルベニア州</td></tr>
+        <tr><th>郡</th><td>バークス郡</td></tr>
+        <tr><th colspan="2" style="background:#cedff2;">統計</th></tr>
+        <tr><th>人口 (2020年)</th><td>95,112人</td></tr>
+        <tr><th>面積</th><td>26.21 km²</td></tr>
+    </table>
+
+    <p>
+        <b>レディング</b>（Reading [ˈrɛdɪŋ]）は、<a href="#">アメリカ合衆国</a><a href="#">ペンシルベニア州</a>東部の都市。同州<a href="Berks-County-Pennsylvania">バークス郡</a>の郡庁所在地である。
+    </p>
+    <p>
+        人口は95,112人（2020年国勢調査）。州内では<a href="Philadelphia-Pennsylvania">フィラデルフィア</a>、<a href="Pittsburgh-Pennsylvania">ピッツバーグ</a>、<a href="Allentown-Pennsylvania">アレンタウン</a>に次ぐ第4の都市である。
+    </p>
+
+    <div id="toc">
+        <div class="toc-title">目次</div>
+        <ul>
+            <li>1 <a href="#history">歴史</a></li>
+            <li>2 <a href="#geography">地理</a></li>
+            <li>3 <a href="#economy">経済</a></li>
+            <li>4 <a href="#sightseeing">名所</a></li>
+        </ul>
     </div>
 
-    <!-- Main Content Area -->
-    <div class="mw-body">
-        <div id="content">
-            <h1>レディング (ペンシルベニア州)</h1>
-            <p class="text-sm italic text-gray-600 mb-4">出典: フリー百科事典『ウィキペディア（Wikipedia）』</p>
+    <h2 id="history">歴史</h2>
+    <p>
+        1748年、ウィリアム・ペンの息子たち（リチャードとトーマス・ペン）によって設立された。市名はイングランドの<a href="#">レディング</a>にちなんで名付けられた。
+    </p>
+    <p>
+        かつては鉄道輸送の要衝であり、ボードゲーム『<a href="#">モノポリー</a>』に登場する「リーディング鉄道」の本拠地として世界的に知られている。
+    </p>
 
-            <!-- Infobox -->
-            <table class="infobox">
-                <tr>
-                    <th colspan="2" class="infobox-title">レディング<br><span class="font-normal text-sm">Reading</span></th>
-                </tr>
-                <tr>
-                    <td colspan="2" class="text-center py-2">
-                        <img src="https://placehold.co/280x180/e2e2e2/666666?text=Reading+City+Skyline" alt="市街地の風景" class="mx-auto border">
-                        <p class="text-xs mt-1">レディング市街地の遠景</p>
-                    </td>
-                </tr>
-                <tr>
-                    <th>国</th>
-                    <td>アメリカ合衆国</td>
-                </tr>
-                <tr>
-                    <th>州</th>
-                    <td>ペンシルベニア州</td>
-                </tr>
-                <tr>
-                    <th>郡</th>
-                    <td><a href="#" class="wikilink">バークス郡</a></td>
-                </tr>
-                <tr>
-                    <th>設立</th>
-                    <td>1748年</td>
-                </tr>
-                <tr>
-                    <th>法人化</th>
-                    <td>1847年（市）</td>
-                </tr>
-                <tr>
-                    <th colspan="2" class="infobox-title">地理</th>
-                </tr>
-                <tr>
-                    <th>座標</th>
-                    <td>北緯40度20分30秒 西経75度55分35秒</td>
-                </tr>
-                <tr>
-                    <th>総面積</th>
-                    <td>26.23 km²</td>
-                </tr>
-                <tr>
-                    <th colspan="2" class="infobox-title">人口（2020年）</th>
-                </tr>
-                <tr>
-                    <th>総計</th>
-                    <td>95,112人</td>
-                </tr>
-                <tr>
-                    <th>密度</th>
-                    <td>3,626人/km²</td>
-                </tr>
-                <tr>
-                    <th>公式ウェブサイト</th>
-                    <td><a href="https://www.readingpa.gov" class="wikilink">readingpa.gov</a></td>
-                </tr>
-            </table>
+    <h2 id="geography">地理</h2>
+    <p>
+        レディングはフィラデルフィアの北西約100kmに位置する。市内を<a href="#" class="new">スクーカル川</a>が流れている。
+    </p>
 
-            <p>
-                <b>レディング</b>（Reading）は、<a href="#" class="wikilink">アメリカ合衆国</a><a href="#" class="wikilink">ペンシルベニア州</a>の都市。<a href="#" class="wikilink">バークス郡</a>の郡庁所在地である。
-            </p>
-            <p>
-                人口は95,112人（2020年国勢調査）で、州内では<a href="#" class="wikilink">フィラデルフィア</a>、<a href="#" class="wikilink">ピッツバーグ</a>、<a href="#" class="wikilink">アレンタウン</a>に次いで第4位の都市である。フィラデルフィアの北西約90キロメートルに位置しており、広域的にはデラウェア・バレーの一部と見なされることもある。かつては鉄鋼業と鉄道（<a href="#" class="wikilink">レディング鉄道</a>）で栄え、「プレッツェル・シティ（Pretzel City）」の愛称でも知られる。
-            </p>
+    <h2 id="economy">経済</h2>
+    <p>
+        古くから重工業と鉄道で発展したが、現在はサービス業や教育、医療が中心となっている。また、多くのプレッツェル工場があることから「世界のプレッツェルの首都」とも呼ばれる。
+    </p>
 
-            <!-- Table of Contents -->
-            <div class="toc">
-                <div class="toc-title">目次</div>
-                <ul>
-                    <li>1 <a href="#history" class="wikilink">歴史</a></li>
-                    <li>2 <a href="#geography" class="wikilink">地理</a></li>
-                    <li>3 <a href="#demographics" class="wikilink">人口動態</a></li>
-                    <li>4 <a href="#economy" class="wikilink">経済</a></li>
-                    <li>5 <a href="#culture" class="wikilink">文化・観光</a></li>
-                    <li>6 <a href="#references" class="wikilink">脚注</a></li>
-                </ul>
-            </div>
+    <h2 id="sightseeing">名所</h2>
+    <ul>
+        <li><b>パゴダ (The Pagoda)</b> - マウント・ペンの頂上に立つ日本式の五重塔。市のシンボルとなっている。</li>
+        <li><b>レディング・パブリック・ミュージアム</b> - 芸術、科学、文明の歴史を展示する博物館。</li>
+    </ul>
 
-            <h2 id="history">歴史</h2>
-            <p>
-                レディングの地名は、イギリスのバークシャーにある同名の都市（<a href="#" class="wikilink">レディング</a>）に由来する。1748年、ウィリアム・ペンの息子であるリチャード・ペンとトーマス・ペンによって設立された。
-            </p>
-            <p>
-                19世紀には、<a href="#" class="wikilink">レディング鉄道</a>の拠点として急速に発展した。この鉄道はアメリカ最大級の軍需・産業用輸送網の一つとなり、ボードゲーム「<a href="#" class="wikilink">モノポリー</a>」に登場する4つの鉄道の一つとしても世界的に有名である。鉄鋼業、繊維業、製造業が集積し、20世紀前半までペンシルベニア州東部の主要な工業都市として繁栄を極めた。
-            </p>
-            <p>
-                しかし、20世紀後半の脱工業化の流れの中で重工業が衰退し、人口流出と経済的困窮に直面した。2011年には、人口65,000人以上の都市の中で「全米で最も貧しい小都市」として報じられたこともあったが、21世紀に入り、都市再開発や医療・教育分野への経済シフトが進められている。
-            </p>
+    <hr>
+    <footer>
+        最終更新 2024年1月1日 (月) 12:00 （日時は個人設定で未設定ならばUTC）。
+    </footer>
+</div>
 
-            <h2 id="geography">地理</h2>
-            <p>
-                レディングはペンシルベニア州南東部に位置し、<a href="#" class="wikilink">スクーキル川</a>の東岸に沿って広がっている。市の東部にはペン山（Mount Penn）がそびえ、その山頂付近には街のシンボルである「パゴダ（五重塔）」が位置している。
-            </p>
-            <p>
-                気候は、温暖湿潤気候（Cfa）に属する。夏は高温多湿で、冬は寒く降雪も見られる。
-            </p>
+<script>
+    // Simple Wikipedia-like interaction: Toggle TOC
+    document.querySelector('.toc-title').addEventListener('click', function() {
+        const list = this.nextElementSibling;
+        list.style.display = list.style.display === 'none' ? 'block' : 'none';
+        this.style.cursor = 'pointer';
+    });
+    document.querySelector('.toc-title').style.cursor = 'pointer';
+</script>
 
-            <h2 id="demographics">人口動態</h2>
-            <p>
-                2020年の国勢調査によると、市の人口は95,112人である。近年の最大の特徴は、ヒスパニック（ラティーノ）人口の急増である。2020年時点で人口の約69%がヒスパニック系であり、プエルトリコ系やドミニカ系住民が多い。
-            </p>
-            <p>
-                平均年齢は約31歳と若く、ペンシルベニア州内の他の主要都市と比較しても活気ある人口構成となっている。
-            </p>
-
-            <h2 id="economy">経済</h2>
-            <p>
-                かつては製造業が中心であったが、現在の主な雇用主はヘルスケア、教育、サービス業である。
-            </p>
-            <ul>
-                <li><b>医療:</b> レディング病院（Reading Hospital）は地域最大級の雇用主の一つである。</li>
-                <li><b>製造:</b> カーペンター・テクノロジー社（特殊合金製造）が本社を置いている。</li>
-                <li><b>小売:</b> 以前は「アウトレットの首都」として知られていたが、現在はより多様な商業形態へと移行している。</li>
-            </ul>
-
-            <h2 id="culture">文化・観光</h2>
-            <div class="float-right ml-4 mb-4 text-center border p-2 bg-gray-50">
-                <img src="https://placehold.co/200x250/d2d2d2/333333?text=The+Pagoda" alt="パゴダ">
-                <p class="text-xs mt-1">ペン山に立つパゴダ</p>
-            </div>
-            <h3>観光スポット</h3>
-            <ul>
-                <li><b>パゴダ (The Pagoda):</b> 1908年に建設された日本式の五重塔風建築。ペン山の頂上に位置し、夜間にはライトアップされ、市内を一望できる。</li>
-                <li><b>レディング公共博物館:</b> 美術、自然史、科学に関する広範なコレクションを展示している。</li>
-                <li><b>ファースト・エナジー・スタジアム:</b> フィラデルフィア・フィリーズ傘下のAA級チーム、<a href="#" class="wikilink">レディング・ファイト・フィンズ</a>の本拠地。</li>
-            </ul>
-
-            <h2 id="references">脚注</h2>
-            <div class="text-xs border-t pt-2 space-y-1">
-                <p>1. ^ "QuickFacts: Reading city, Pennsylvania". United States Census Bureau. 2024年2月参照.</p>
-                <p>2. ^ 「全米で最も貧しい街、レディング」ニューヨーク・タイムズ、2011年9月26日号.</p>
-            </div>
-
-            <div class="mt-8 bg-[#f8f9fa] border border-[#a2a9b1] p-2 text-xs">
-                <b>カテゴリ:</b> <a href="#" class="wikilink">ペンシルベニア州の都市</a> | <a href="#" class="wikilink">バークス郡 (ペンシルベニア州)</a> | <a href="#" class="wikilink">ペンシルベニア州の郡庁所在地</a>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Smooth scrolling for TOC links
-        document.querySelectorAll('.toc a').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                const targetElement = document.getElementById(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 20,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Wikipedia style text selection behavior (minimal JS for demo)
-        console.log("Reading, PA Wikipedia mockup loaded.");
-    </script>
 </body>
 </html>
