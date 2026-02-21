@@ -1,239 +1,321 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>X-Men (Blu-ray) - 20th Century Fox Home Entertainment</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
             --fox-blue: #002d62;
-            --fox-gold: #c5a059;
-            --steel-grey: #2c3e50;
-            --bg-dark: #0a0a0a;
+            --fox-gold: #f5b041;
+            --bluray-blue: #00aaff;
         }
 
         body {
-            font-family: sans-serif;
-            background-color: var(--bg-dark);
-            color: #e0e0e0;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
+            font-family: Helvetica, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
         }
 
-        header {
-            background: linear-gradient(to bottom, #1a1a1a, #000);
-            padding: 20px;
-            border-bottom: 2px solid var(--fox-gold);
-            text-align: center;
+        .hero-gradient {
+            background: linear-gradient(180deg, var(--fox-blue) 0%, #001a3a 100%);
         }
 
-        .container {
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.05);
+        .product-card {
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            overflow: hidden;
+            background: white;
         }
 
-        .product-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-        }
-
-        .image-viewer {
-            text-align: center;
-        }
-
-        .main-img {
-            width: 100%;
-            max-width: 400px;
-            border-radius: 5px;
-            box-shadow: 0 0 20px rgba(0, 150, 255, 0.3);
-            transition: transform 0.3s ease;
-            cursor: pointer;
-        }
-
-        .thumbnail-container {
-            margin-top: 15px;
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .thumb {
-            width: 60px;
-            height: 80px;
-            object-fit: cover;
-            border: 2px solid transparent;
-            cursor: pointer;
-            border-radius: 4px;
-        }
-
-        .thumb:hover, .thumb.active {
-            border-color: var(--fox-gold);
-        }
-
-        .details h1 {
-            color: #fff;
-            font-size: 2.5em;
-            margin-top: 0;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .badge {
-            background: var(--fox-blue);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 4px;
-            font-size: 0.8em;
-            font-weight: bold;
+        .spec-label {
+            font-weight: 700;
+            color: var(--fox-blue);
+            width: 140px;
             display: inline-block;
-            margin-bottom: 10px;
         }
 
-        .specs-table {
+        .tab-active {
+            border-bottom: 4px solid var(--fox-blue);
+            color: var(--fox-blue);
+            font-weight: 700;
+        }
+
+        .case-preview {
+            perspective: 1000px;
+        }
+
+        .case-inner {
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+
+        .case-inner.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .case-front, .case-back {
+            backface-visibility: hidden;
+            border-radius: 10px;
+        }
+
+        .case-back {
+            transform: rotateY(180deg);
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            margin-top: 20px;
-            border-collapse: collapse;
+            height: 100%;
         }
 
-        .specs-table td {
-            padding: 10px 0;
-            border-bottom: 1px solid #333;
-        }
-
-        .label {
-            color: var(--fox-gold);
-            font-weight: bold;
-            width: 150px;
-        }
-
-        .features {
-            margin-top: 30px;
-            padding: 20px;
-            background: rgba(0, 45, 98, 0.2);
-            border-left: 4px solid var(--fox-blue);
-        }
-
-        .btn-buy {
-            display: block;
-            width: 100%;
-            padding: 15px;
-            background: linear-gradient(to bottom, #d4af37, #a68a2d);
-            color: #000;
-            text-align: center;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.2em;
-            border-radius: 5px;
-            margin-top: 20px;
-            transition: 0.3s;
-        }
-
-        .btn-buy:hover {
-            filter: brightness(1.2);
-        }
-
-        footer {
-            text-align: center;
-            padding: 40px;
-            font-size: 0.8em;
-            color: #666;
-        }
-
-        @media (max-width: 768px) {
-            .product-grid { grid-template-columns: 1fr; }
+        .fox-logo {
+            font-weight: 900;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+            font-style: italic;
         }
     </style>
 </head>
 <body>
 
-<header>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/1/11/20th_Century_Fox_Home_Entertainment_logo.svg" alt="20th Century Fox Home Entertainment" height="60">
-</header>
-
-<div class="container">
-    <div class="product-grid">
-        <div class="image-viewer">
-            <img id="mainDisplay" src="https://i.postimg.cc/BQdn2FwC/Front_cover.jpg" alt="X-Men Blu-ray Front" class="main-img">
-            <div class="thumbnail-container">
-                <img src="https://i.postimg.cc/BQdn2FwC/Front_cover.jpg" class="thumb active" onclick="updateImage(this, 'front')">
-                <img src="https://i.postimg.cc/PrB51DFV/Back_cover.jpg" class="thumb" onclick="updateImage(this, 'back')">
+    <!-- Header -->
+    <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="fox-logo text-2xl text-blue-900">
+                    20<span class="text-yellow-600">th</span> Century Fox
+                </div>
+                <div class="hidden md:block h-6 w-px bg-gray-300 mx-4"></div>
+                <div class="hidden md:block text-xs font-bold text-gray-500 tracking-widest uppercase">
+                    Home Entertainment
+                </div>
             </div>
-            <p style="font-size: 0.8em; color: #888; margin-top: 10px;">Click thumbnails to toggle view</p>
+            <nav class="hidden md:flex space-x-6 text-sm font-bold text-gray-600">
+                <a href="#" class="hover:text-blue-800 uppercase">Movies</a>
+                <a href="#" class="hover:text-blue-800 uppercase">Blu-ray™</a>
+                <a href="#" class="hover:text-blue-800 uppercase">Digital</a>
+                <a href="#" class="hover:text-blue-800 uppercase">Support</a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <button class="text-gray-600"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <button class="bg-blue-600 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider hover:bg-blue-700 transition">Buy Now</button>
+            </div>
         </div>
+    </header>
 
-        <div class="details">
-            <span class="badge">Blu-ray</span>
-            <h1>X-Men</h1>
-            <p>The evolution begins. In a world where mutants exist, two groups emerge: the X-Men, who seek peace, and the Brotherhood, who seek human extinction.</p>
-            
-            <table class="specs-table">
-                <tr>
-                    <td class="label">Release Date</td>
-                    <td>April 21, 2009</td>
-                </tr>
-                <tr>
-                    <td class="label">UPC</td>
-                    <td>024543575283</td>
-                </tr>
-                <tr>
-                    <td class="label">Format</td>
-                    <td>2-Disc Blu-ray Set</td>
-                </tr>
-                <tr>
-                    <td class="label">Studio</td>
-                    <td>20th Century Fox</td>
-                </tr>
-                <tr>
-                    <td class="label">Aspect Ratio</td>
-                    <td>2.35:1</td>
-                </tr>
-            </table>
-
-            <div class="features">
-                <strong>Bonus Features Include:</strong>
-                <ul>
-                    <li>Enhanced for Blu-ray High Definition</li>
-                    <li>Audio Commentary by Bryan Singer</li>
-                    <li>Deleted Scenes & Outtakes</li>
-                    <li>The Mutant Watch Documentary</li>
-                </ul>
-            </div>
-
-            <a href="#" class="btn-buy">ADD TO CART</a>
+    <!-- Breadcrumbs -->
+    <div class="bg-gray-100 py-2">
+        <div class="container mx-auto px-4 text-xs text-gray-500">
+            Home > Blu-ray > Sci-Fi & Fantasy > X-Men (2000)
         </div>
     </div>
-</div>
 
-<footer>
-    &copy; 2009 Twentieth Century Fox Home Entertainment LLC. All Rights Reserved. <br>
-    “X-Men” and all related characters TM & &copy; 2000 Marvel Entertainment Group, Inc.
-</footer>
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="flex flex-col lg:flex-row gap-12">
+            
+            <!-- Product Images Section -->
+            <div class="lg:w-1/3">
+                <div class="case-preview relative mb-6">
+                    <div id="caseToggle" class="case-inner relative w-full aspect-[3/4]">
+                        <!-- Front Cover -->
+                        <div class="case-front w-full h-full shadow-2xl">
+                            <img src="https://i.postimg.cc/BQdn2FwC/Front_cover.jpg" alt="X-Men Blu-ray Front Cover" class="w-full h-full object-cover rounded-md border border-gray-300" onerror="this.src='https://via.placeholder.com/600x800?text=X-Men+Front+Cover'">
+                        </div>
+                        <!-- Back Cover -->
+                        <div class="case-back w-full h-full shadow-2xl">
+                            <img src="https://i.postimg.cc/PrB51DFV/Back_cover.jpg" alt="X-Men Blu-ray Back Cover" class="w-full h-full object-cover rounded-md border border-gray-300" onerror="this.src='https://via.placeholder.com/600x800?text=X-Men+Back+Cover'">
+                        </div>
+                    </div>
+                    <div class="mt-4 text-center">
+                        <button onclick="toggleFlip()" class="text-blue-600 font-bold text-sm hover:underline">
+                            <i class="fa-solid fa-rotate mr-2"></i> Click to view Back Cover
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-white p-4 rounded-lg border border-gray-200 flex flex-col items-center">
+                        <i class="fa-solid fa-compact-disc text-3xl text-gray-400 mb-2"></i>
+                        <span class="text-xs font-bold uppercase">2-Disc Set</span>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg border border-gray-200 flex flex-col items-center">
+                        <i class="fa-solid fa-clapperboard text-3xl text-gray-400 mb-2"></i>
+                        <span class="text-xs font-bold uppercase">Digital Copy</span>
+                    </div>
+                </div>
+            </div>
 
-<script>
-    function updateImage(element, side) {
-        const mainImg = document.getElementById('mainDisplay');
-        const thumbs = document.querySelectorAll('.thumb');
-        
-        // Update source
-        mainImg.src = element.src;
-        
-        // Update active state
-        thumbs.forEach(t => t.classList.remove('active'));
-        element.classList.add('active');
-        
-        // Subtle animation
-        mainImg.style.opacity = '0';
-        setTimeout(() => {
-            mainImg.style.opacity = '1';
-        }, 50);
-    }
-</script>
+            <!-- Product Info Section -->
+            <div class="lg:w-2/3">
+                <div class="mb-2">
+                    <span class="bg-blue-100 text-blue-800 text-[10px] font-extrabold px-2 py-1 rounded uppercase tracking-tighter">Blu-ray™ + Digital Copy</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-black text-blue-900 mb-2 uppercase italic tracking-tighter">X-Men</h1>
+                <p class="text-xl text-gray-600 mb-6 font-light">The first chapter in the legendary X-Men cinematic universe.</p>
+                
+                <div class="flex items-center space-x-4 mb-8">
+                    <div class="flex text-yellow-500">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <span class="text-sm text-gray-500 font-bold">(4.5/5 based on 2,400 reviews)</span>
+                </div>
 
+                <!-- Tabs -->
+                <div class="border-b border-gray-200 mb-6 flex space-x-8">
+                    <button onclick="switchTab('synopsis')" id="btn-synopsis" class="pb-4 text-sm uppercase tracking-widest tab-active">Synopsis</button>
+                    <button onclick="switchTab('details')" id="btn-details" class="pb-4 text-sm uppercase tracking-widest text-gray-500 hover:text-blue-900">Technical Specs</button>
+                    <button onclick="switchTab('extras')" id="btn-extras" class="pb-4 text-sm uppercase tracking-widest text-gray-500 hover:text-blue-900">Special Features</button>
+                </div>
+
+                <!-- Tab Content: Synopsis -->
+                <div id="content-synopsis" class="tab-pane space-y-4">
+                    <p class="leading-relaxed text-gray-700">
+                        In a world where some people are born with extraordinary genetic mutations, humanity treats them with fear and distrust. Professor Charles Xavier (Patrick Stewart) runs a school for “gifted” youngsters, training them to use their powers for the benefit of mankind. 
+                    </p>
+                    <p class="leading-relaxed text-gray-700">
+                        But a radical group of mutants, led by the powerful Magneto (Ian McKellen), believes mutants should rule over humans. Now, the X-Men—including Wolverine (Hugh Jackman), Storm (Halle Berry), and Cyclops (James Marsden)—must stop Magneto’s plan to transform the world’s leaders into mutants at a global summit.
+                    </p>
+                </div>
+
+                <!-- Tab Content: Details -->
+                <div id="content-details" class="tab-pane hidden space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm bg-gray-50 p-6 rounded-lg">
+                        <div>
+                            <p class="mb-2"><span class="spec-label">Release Date:</span> April 21, 2009</p>
+                            <p class="mb-2"><span class="spec-label">UPC:</span> 024543575283</p>
+                            <p class="mb-2"><span class="spec-label">Studio:</span> 20th Century Fox</p>
+                            <p class="mb-2"><span class="spec-label">Rating:</span> PG-13</p>
+                        </div>
+                        <div>
+                            <p class="mb-2"><span class="spec-label">Runtime:</span> 104 Minutes</p>
+                            <p class="mb-2"><span class="spec-label">Video:</span> 1080p High Definition</p>
+                            <p class="mb-2"><span class="spec-label">Audio:</span> DTS-HD Master Audio 5.1</p>
+                            <p class="mb-2"><span class="spec-label">Aspect Ratio:</span> 2.35:1</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Content: Extras -->
+                <div id="content-extras" class="tab-pane hidden">
+                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-2">
+                        <li><strong>In-Movie Experience:</strong> Behind-the-scenes footage and interviews during playback.</li>
+                        <li><strong>Deleted Scenes:</strong> With optional commentary by Bryan Singer.</li>
+                        <li><strong>The Mutant Watch:</strong> Archival featurette.</li>
+                        <li><strong>Charlie Rose Interview:</strong> With Bryan Singer.</li>
+                        <li><strong>Trailers & TV Spots:</strong> Original theatrical marketing campaign.</li>
+                        <li><strong>Marvel Universe Trailers:</strong> Exclusive looks at other Marvel properties.</li>
+                    </ul>
+                </div>
+
+                <div class="mt-10 p-6 bg-blue-900 text-white rounded-xl flex flex-col md:flex-row items-center justify-between">
+                    <div>
+                        <div class="text-blue-300 text-xs font-bold uppercase mb-1">Suggested Retail Price</div>
+                        <div class="text-3xl font-black italic">$29.98</div>
+                    </div>
+                    <div class="flex space-x-4 mt-4 md:mt-0">
+                        <button class="bg-yellow-500 text-blue-900 px-8 py-3 rounded-md font-black uppercase hover:bg-yellow-400 transition transform hover:scale-105">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-200 mt-20 py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center border-b border-gray-300 pb-8 mb-8">
+                <div class="fox-logo text-3xl text-gray-500 mb-6 md:mb-0">
+                    20<span class="text-gray-400">th</span> Century Fox
+                </div>
+                <div class="flex space-x-6 text-2xl text-gray-400">
+                    <i class="fa-brands fa-facebook hover:text-blue-600 cursor-pointer"></i>
+                    <i class="fa-brands fa-twitter hover:text-blue-400 cursor-pointer"></i>
+                    <i class="fa-brands fa-instagram hover:text-pink-600 cursor-pointer"></i>
+                    <i class="fa-brands fa-youtube hover:text-red-600 cursor-pointer"></i>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-xs text-gray-500 font-bold uppercase tracking-widest">
+                <div class="space-y-3">
+                    <p class="text-gray-800">Company</p>
+                    <a href="#" class="block hover:text-blue-900">About Fox</a>
+                    <a href="#" class="block hover:text-blue-900">Careers</a>
+                    <a href="#" class="block hover:text-blue-900">Press</a>
+                </div>
+                <div class="space-y-3">
+                    <p class="text-gray-800">Support</p>
+                    <a href="#" class="block hover:text-blue-900">FAQ</a>
+                    <a href="#" class="block hover:text-blue-900">Contact Us</a>
+                    <a href="#" class="block hover:text-blue-900">Redeem Digital</a>
+                </div>
+                <div class="space-y-3">
+                    <p class="text-gray-800">Legal</p>
+                    <a href="#" class="block hover:text-blue-900">Privacy Policy</a>
+                    <a href="#" class="block hover:text-blue-900">Terms of Use</a>
+                </div>
+                <div class="space-y-3 text-right col-span-2 md:col-span-1">
+                    <p class="mb-2 italic text-[10px] normal-case font-normal">
+                        © 2009 Twentieth Century Fox Home Entertainment LLC. All Rights Reserved. “Twentieth Century Fox”, “Fox” and their associated logos are the property of Twentieth Century Fox Film Corporation and are used under license.
+                    </p>
+                    <div class="flex justify-end space-x-2">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Blu-ray_Disc_logo.svg/2560px-Blu-ray_Disc_logo.svg.png" alt="Blu-ray Logo" class="h-4 opacity-50 grayscale">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Notification Box -->
+    <div id="msgBox" class="fixed bottom-10 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white px-6 py-3 rounded-full shadow-2xl transition-opacity opacity-0 pointer-events-none z-[100]">
+        Added to collection!
+    </div>
+
+    <script>
+        // Flip animation
+        function toggleFlip() {
+            document.getElementById('caseToggle').classList.toggle('flipped');
+        }
+
+        // Tab Switching Logic
+        function switchTab(tabName) {
+            // Hide all panes
+            document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.add('hidden'));
+            // Remove active style from all buttons
+            document.querySelectorAll('button[id^="btn-"]').forEach(btn => {
+                btn.classList.remove('tab-active');
+                btn.classList.add('text-gray-500');
+            });
+
+            // Show selected pane
+            document.getElementById('content-' + tabName).classList.remove('hidden');
+            // Add active style to selected button
+            document.getElementById('btn-' + tabName).classList.add('tab-active');
+            document.getElementById('btn-' + tabName).classList.remove('text-gray-500');
+        }
+
+        // Add to Cart Simulation
+        const buyBtn = document.querySelector('button.bg-yellow-500');
+        buyBtn.addEventListener('click', () => {
+            const msg = document.getElementById('msgBox');
+            msg.style.opacity = '1';
+            setTimeout(() => {
+                msg.style.opacity = '0';
+            }, 2000);
+        });
+
+        // Initialize view
+        window.onload = () => {
+            console.log("X-Men Blu-ray page loaded.");
+        }
+    </script>
 </body>
 </html>
