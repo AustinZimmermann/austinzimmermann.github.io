@@ -1,206 +1,299 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="en-US">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>X-Men: The Last Stand Blu-ray | 20th Century Fox Home Entertainment</title>
-    <style>
+    <style type="text/css">
         :root {
-            --fox-blue: #002d62;
-            --xmen-gold: #f5c518;
-            --dark-bg: #0a0a0a;
-            --card-bg: #1a1a1a;
-            --text-gray: #cccccc;
-        }
+    --fox-blue: #002244;
+    --fox-gold: #d4af37;
+    --bd-blue: #0055ff;
+    --text-light: #e0e0e0;
+    --text-dark: #333;
+}
 
-        body {
-            font-family: Helvetica, sans-serif;
-            background-color: var(--dark-bg);
-            color: white;
-            margin: 0;
-            line-height: 1.6;
-        }
+body {
+    font-family: Helvetcia, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: var(--text-dark);
+}
 
-        header {
-            background: linear-gradient(to bottom, #001a33, #000);
-            padding: 20px;
-            text-align: center;
-            border-bottom: 2px solid var(--fox-blue);
-        }
+.fox-header {
+    background-color: var(--fox-blue);
+    color: white;
+    padding: 15px 0;
+    border-bottom: 4px solid var(--fox-gold);
+}
 
-        .container {
-            max-width: 1000px;
-            margin: 20px auto;
-            padding: 20px;
-        }
+.header-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
 
-        .product-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: start;
-        }
+.header-container h1 {
+    font-size: 1.2rem;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
 
-        .image-gallery {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 15px;
+}
 
-        .product-image {
-            width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 0 20px rgba(0, 45, 98, 0.5);
-            border: 1px solid #333;
-            transition: transform 0.3s ease;
-        }
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
 
-        .product-image:hover {
-            transform: scale(1.02);
-        }
+nav a:hover {
+    color: var(--fox-gold);
+}
 
-        .details h1 {
-            color: var(--xmen-gold);
-            font-size: 2.5em;
-            margin-top: 0;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
+.product-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    background: white;
+    padding: 30px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
 
-        .meta-info {
-            background: var(--card-bg);
-            padding: 20px;
-            border-radius: 8px;
-            border-left: 4px solid var(--fox-blue);
-        }
+.hidden {
+    display: none !important;
+}
 
-        .price-tag {
-            font-size: 1.8em;
-            color: #fff;
-            margin: 15px 0;
-        }
+#product-content {
+    display: flex;
+    gap: 40px;
+}
 
-        .btn-buy {
-            background-color: #0056b3;
-            color: white;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 5px;
-            font-weight: bold;
-            cursor: pointer;
-            width: 100%;
-            font-size: 1.1em;
-            text-transform: uppercase;
-        }
+.product-left img {
+    max-width: 100%;
+    border: 5px solid var(--bd-blue);
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
 
-        .btn-buy:hover {
-            background-color: #007bff;
-        }
+.product-right {
+    flex: 1;
+}
 
-        .features-list {
-            margin-top: 30px;
-            list-style: none;
-            padding: 0;
-        }
+#movie-title {
+    font-size: 2.5rem;
+    color: var(--fox-blue);
+    margin-top: 0;
+    margin-bottom: 10px;
+}
 
-        .features-list li {
-            padding: 8px 0;
-            border-bottom: 1px solid #333;
-            color: var(--text-gray);
-        }
+.meta-data {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+}
 
-        footer {
-            text-align: center;
-            padding: 40px;
-            font-size: 0.8em;
-            color: #666;
-        }
+.badge {
+    padding: 4px 8px;
+    border-radius: 3px;
+    color: white;
+    font-weight: bold;
+}
 
-        @media (max-width: 768px) {
-            .product-grid { grid-template-columns: 1fr; }
-        }
+.badge.format {
+    background-color: var(--bd-blue);
+}
+
+.badge.rating {
+    background-color: #444;
+}
+
+.synopsis {
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.features-box {
+    background: #f9f9f9;
+    border-left: 4px solid var(--fox-gold);
+    padding: 15px;
+    margin-bottom: 25px;
+}
+
+.features-box h3 {
+    margin-top: 0;
+    color: var(--fox-blue);
+}
+
+.features-box ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.purchase-box {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+}
+
+.price {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #b12704;
+}
+
+.buy-button {
+    background-color: var(--fox-gold);
+    color: var(--fox-blue);
+    border: none;
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.buy-button:hover {
+    background-color: #ebd169;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 0.8rem;
+    color: #666;
+}
     </style>
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org/",
-      "@type": "Product",
-      "name": "X-Men: The Last Stand (Blu-ray)",
-      "image": [
-        "https://images.static-bluray.com/products/7/208_2_original.jpg",
-        "https://images.static-bluray.com/products/7/208_3_original.jpg"
-      ],
-      "description": "Experience the climax of the original X-Men trilogy in high definition. The mutant cure has been discovered, and the lines are drawn.",
-      "sku": "FOX-XM3-BR",
-      "brand": {
-        "@type": "Brand",
-        "name": "20th Century Fox Home Entertainment"
-      },
-      "releaseDate": "2006-11-14",
-      "offers": {
-        "@type": "Offer",
-        "url": "https://www.foxconnect.com/x-men-the-last-stand-blu-ray",
-        "priceCurrency": "USD",
-        "price": "29.99",
-        "availability": "https://schema.org/InStock"
-      }
-    }
-    </script>
 </head>
 <body>
-
-<header>
-    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/05/20th_Century_Fox_Home_Entertainment_logo.svg/300px-20th_Century_Fox_Home_Entertainment_logo.svg.png" alt="20th Century Fox Home Entertainment" height="60">
-</header>
-
-<div class="container">
-    <div class="product-grid">
-        <div class="image-gallery">
-            <img src="https://images.static-bluray.com/products/7/208_2_original.jpg" alt="X-Men The Last Stand Blu-ray Front Cover" class="product-image">
-            <img src="https://images.static-bluray.com/products/7/208_3_original.jpg" alt="X-Men The Last Stand Blu-ray Back Cover" class="product-image">
+    <header class="fox-header">
+        <div class="header-container">
+            <h1>20th Century Fox Home Entertainment</h1>
+            <nav>
+                <ul>
+                    <li><a href="#">New Releases</a></li>
+                    <li><a href="#">Blu-ray</a></li>
+                    <li><a href="#">DVD</a></li>
+                    <li><a href="#">Catalog</a></li>
+                </ul>
+            </nav>
         </div>
+    </header>
 
-        <div class="details">
-            <h1>X-Men: The Last Stand</h1>
-            <p><strong>Format:</strong> Blu-ray™ + Digital Copy</p>
-            
-            <div class="meta-info">
-                <p><strong>Release Date:</strong> November 14, 2006</p>
-                <p><strong>Studio:</strong> 20th Century Fox</p>
-                <p><strong>Rating:</strong> PG-13</p>
-                <div class="price-tag">$29.99</div>
-                <button class="btn-buy" onclick="addToCart()">Add to Collection</button>
+    <main class="product-container">
+        <div id="loading">Loading product details...</div>
+        
+        <div id="product-content" class="hidden">
+            <div class="product-left">
+                <img id="cover-image" src="" alt="Blu-ray Cover" />
             </div>
-
-            <h3>Special Features:</h3>
-            <ul class="features-list">
-                <li>Director and Writer Commentaries</li>
-                <li>Deleted Scenes with Optional Commentary</li>
-                <li>“The Phoenix Saga” In-Depth Documentary</li>
-                <li>High-Definition 1080p Video</li>
-                <li>DTS-HD Master Audio 6.1</li>
-            </ul>
+            
+            <div class="product-right">
+                <h2 id="movie-title"></h2>
+                <div class="meta-data">
+                    <span id="format-badge" class="badge format"></span>
+                    <span id="rating-badge" class="badge rating"></span>
+                    <span class="release-date">Released: <strong id="release-date"></strong></span>
+                </div>
+                
+                <p id="synopsis" class="synopsis"></p>
+                
+                <div class="features-box">
+                    <h3>Special Features</h3>
+                    <ul id="features-list"></ul>
+                </div>
+                
+                <div class="purchase-box">
+                    <div class="price" id="price"></div>
+                    <button id="buy-btn" class="buy-button">Add to Cart</button>
+                </div>
+            </div>
         </div>
-    </div>
+    </main>
 
-    <hr style="margin-top: 50px; border-color: #333;">
-    
-    <section>
-        <h3>Synopsis</h3>
-        <p style="color: var(--text-gray);">In the final chapter of the <i>X-Men</i> trilogy, a “cure” for mutations threatens to alter the course of history. For the first time, mutants have a choice: retain their uniqueness, though it isolates and alienates them, or give up their powers to become human. The opposing viewpoints of mutant leaders Charles Xavier, who preaches tolerance, and Magneto, who believes in the survival of the fittest, are put to the ultimate test - triggering the war to end all wars.</p>
-    </section>
-</div>
+    <footer>
+        <p>&copy; 2006 Twentieth Century Fox Home Entertainment LLC. All Rights Reserved.</p>
+    </footer>
 
-<footer>
-    &copy; 2006 Twentieth Century Fox Home Entertainment LLC. All Rights Reserved. <br>
-    "X-Men" and all related characters are TM and &copy; Marvel Entertainment, LLC.
-</footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    // In a real environment, you would use fetch('product.json')
+    // For this example, we simulate the fetch response with a Promise
+    const fetchProductData = () => {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                const jsonData = {
+                  "productId": "fox-xmen-3-bd-06",
+                  "title": "X-Men: The Last Stand",
+                  "format": "Blu-ray",
+                  "studio": "20th Century Fox Home Entertainment",
+                  "releaseDate": "November 14, 2006",
+                  "price": 29.99,
+                  "rating": "PG-13",
+                  "synopsis": "Experience the awesome power of The X-Men’s epic, final battle. After a controversial “cure” is discovered, mutants can choose to retain their superhuman abilities or give up their unique gifts and become “normal”. When peaceful mutant leader Charles Xavier clashes with his militant counterpart, Magneto, the battle lines are drawn for the war to end all wars.",
+                  "audio": "English 6.1 DTS-HD Master Audio, French 5.1 Dolby Digital, Spanish 5.1 Dolby Digital",
+                  "subtitles": "English, Spanish"
+                  "specialFeatures": [
+                    "Audio Commentary by Director Brett Ratner and Writers",
+                    "Audio Commentary by Producers",
+                    "Deleted Scenes and Alternate Endings",
+                    "Fox Feature: The Mutant Watch",
+                    "1080p High Definition Video"
+                  ],
+                  "coverImageUrl": "https://images.static-bluray.com/movies/covers/208_large.jpg"
+                };
+                resolve(jsonData);
+            }, 500); // Simulating network delay
+        });
+    };
 
-<script>
-    function addToCart() {
-        alert('This classic Blu-ray has been added to your shopping cart!');
-    }
-</script>
+    // Load and populate data
+    fetchProductData().then(data => {
+        // Hide loading, show content
+        document.getElementById('loading').classList.add('hidden');
+        document.getElementById('product-content').classList.remove('hidden');
 
+        // Populate elements
+        document.getElementById('cover-image').src = data.coverImageUrl;
+        document.getElementById('movie-title').textContent = data.title;
+        document.getElementById('format-badge').textContent = data.format;
+        document.getElementById('rating-badge').textContent = data.rating;
+        document.getElementById('release-date').textContent = data.releaseDate;
+        document.getElementById('audio').textContent = data.audio;
+        document.getElementById('subtitles').textContent = data.subtitles;
+        document.getElementById('synopsis').textContent = data.synopsis;
+        document.getElementById('price').textContent = `$${data.price.toFixed(2)}`;
+
+        // Populate special features list
+        const featuresList = document.getElementById('features-list');
+        data.specialFeatures.forEach(feature => {
+            const li = document.createElement('li');
+            li.textContent = feature;
+            featuresList.appendChild(li);
+        });
+
+        // Add to cart functionality
+        document.getElementById('buy-btn').addEventListener('click', () => {
+            alert(`Added ${data.title} (${data.format}) to your cart for $${data.price}!`);
+        });
+    });
+});
+    </script>
 </body>
 </html>
