@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메딕 - 팀 포트리스 2 위키 (Team Fortress Wiki)</title>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://wiki.teamfortress.com/wiki/Medic/ko"
+      },
+      "headline": "메딕 (팀 포트리스 2)",
+      "description": "《팀 포트리스 2》의 지원 병과인 메딕에 대한 위키 문서입니다.",
+      "image": "https://wiki.teamfortress.com/w/images/thumb/2/26/Medic.png/500px-Medic.png",
+      "author": {
+        "@type": "Organization",
+        "name": "Team Fortress Wiki Contributors"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Team Fortress Wiki",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://wiki.teamfortress.com/w/images/wiki.png"
+        }
+      },
+      "about": {
+        "@type": "Person",
+        "name": "미스터 루트비히 (Mr. Ludwig)",
+        "alternateName": "메딕 (Medic)",
+        "jobTitle": "용병 (지원)"
+      }
+    }
+    </script>
+
+    <style>
+        :root {
+            --tf2-orange: #E47225;
+            --tf2-red: #B8383B;
+            --tf2-dark: #2A2A2A;
+            --wiki-bg: #F6F6F6;
+            --content-bg: #FFFFFF;
+            --border-color: #A7D7F9;
+            --text-main: #222222;
+            --link-color: #0645AD;
+            --medic-cross: #D32F2F; /* 메딕 특유의 십자가 색상 느낌 */
+        }
+
+        body {
+            font-family: 'Malgun Gothic', '맑은 고딕', sans-serif;
+            background-color: var(--wiki-bg);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--tf2-dark);
+            color: white;
+            padding: 15px 30px;
+            border-bottom: 4px solid var(--tf2-orange);
+            display: flex;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: var(--content-bg);
+            padding: 30px;
+            border: 1px solid #CCC;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            gap: 30px;
+        }
+
+        .main-content {
+            flex: 1;
+        }
+
+        h1.article-title {
+            border-bottom: 1px solid #AAA;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        /* Infobox Styling */
+        .infobox {
+            width: 300px;
+            background-color: #F9F9F9;
+            border: 1px solid #AAA;
+            padding: 10px;
+            float: right;
+            margin-left: 20px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .infobox-header {
+            background-color: var(--tf2-red); 
+            color: white;
+            text-align: center;
+            padding: 8px;
+            font-weight: bold;
+            font-size: 18px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        .infobox-header::before {
+            content: "+";
+            position: absolute;
+            left: 10px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .infobox img {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 10px 0;
+            background-color: #E2E2E2;
+            border: 1px solid #CCC;
+        }
+
+        .infobox table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .infobox th, .infobox td {
+            border-bottom: 1px solid #DDD;
+            padding: 8px 4px;
+            text-align: left;
+        }
+
+        .infobox th {
+            width: 35%;
+            background-color: #EFEFEF;
+        }
+
+        /* Table of Contents */
+        .toc {
+            background-color: #F8F9FA;
+            border: 1px solid #A2A9B1;
+            padding: 15px;
+            display: inline-block;
+            margin-bottom: 20px;
+            min-width: 250px;
+        }
+
+        .toc-title {
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 10px;
+            cursor: pointer;
+            user-select: none;
+        }
+        
+        .toc-title:hover {
+            color: var(--tf2-orange);
+        }
+
+        .toc-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .toc-list li {
+            margin-bottom: 5px;
+        }
+
+        .toc-list a {
+            text-decoration: none;
+            color: var(--link-color);
+        }
+
+        .toc-list a:hover {
+            text-decoration: underline;
+        }
+
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Quote box */
+        .quote {
+            background-color: #F2F2F2;
+            border-left: 4px solid var(--medic-cross);
+            padding: 15px;
+            font-style: italic;
+            margin: 20px 0;
+        }
+        
+        .quote span {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        .highlight-text {
+            color: var(--medic-cross);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>팀 포트리스 2 공식 위키 (한국어)</h1>
+    </header>
+
+    <div class="container">
+        <div class="main-content">
+            <h1 class="article-title">메딕</h1>
+
+            <aside class="infobox">
+                <div class="infobox-header">메딕<br>>Medic</div>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Transparent.gif/1px-Transparent.gif" style="height: 250px;" alt="메딕 이미지 (플레이스홀더)" title="메딕 공식 렌더링">
+                <table>
+                    <tbody>
+                        <tr>
+                            <th>본명</th>
+                            <td>미스터 루트비히 (Mr. Ludwig)</td>
+                        </tr>
+                        <tr>
+                            <th>국적</th>
+                            <td>🇩🇪 독일 (슈투트가르트)</td>
+                        </tr>
+                        <tr>
+                            <th>역할</th>
+                            <td>지원 (Support)</td>
+                        </tr>
+                        <tr>
+                            <th>체력</th>
+                            <td>150 (과치료 시 225)</td>
+                        </tr>
+                        <tr>
+                            <th>이동 속도</th>
+                            <td>107% (320 v)</td>
+                        </tr>
+                        <tr>
+                            <th>성우</th>
+                            <td>로빈 앳킨 다운스 (Robin Atkin Downes)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </aside>
+
+            <div class="quote">
+                “자, 수술을 시작해 볼까?” (Let’s go practice medicine.)
+                <span>— 메딕을 만나다 (Meet the Medic)</span>
+            </div>
+
+            <p><strong>메딕(Medic)</strong>은 독일 슈투트가르트 출신의 의료진으로, 의료 윤리 따위는 안중에도 없는 광기 어린 매드 사이언티스트입니다. 비록 환자의 골격을 훔친 사건으로 의사 면허를 박탈당했지만, 《팀 포트리스 2》에서 아군을 치료하고 생존시키는 데 있어 그를 대체할 수 있는 병과는 없습니다.</p>
+
+            <p>메딕은 전투에 직접 나서기보다는 <strong>메디 건(Medi Gun)</strong>을 사용해 부상당한 동료들의 체력을 회복시키고, 최대 체력의 150%까지 <strong>과치료(Overheal)</strong>를 해줄 수 있습니다. 또한 치료를 통해 게이지를 100% 모으면 일시적으로 자신과 치료 대상을 무적 상태로 만드는 <span class="highlight-text">우버차지(ÜberCharge)</span>를 발동하여 교착 상태인 전선을 단숨에 돌파할 수 있는 핵심적인 역할을 담당합니다.</p>
+
+            <div class="toc" id="toc">
+                <div class="toc-title" onclick="toggleTOC()">목차 (숨기기/보이기)</div>
+                <ul class="toc-list" id="toc-list">
+                    <li><a href="#bio">1. 배경 설정 (Bio)</a></li>
+                    <li><a href="#ubercharge">2. 우버차지 (ÜberCharge)</a></li>
+                    <li><a href="#strategy">3. 기본 전략</a></li>
+                    <li><a href="#weapons">4. 무기</a></li>
+                </ul>
+            </div>
+
+            <h2 id="bio">배경 설정 (Bio)</h2>
+            <hr>
+            <p>본명은 미스터 루트비히(Mr. Ludwig)입니다. 그는 사람을 치유하는 것보다 인체를 해부하고 실험하는 것에 더 큰 흥미를 느낍니다. 팀 용병들의 심장에 기계 장치를 이식하여 우버차지의 엄청난 에너지를 견딜 수 있게 만든 장본인이기도 합니다. 그의 어깨나 실험실에는 피 묻은 하얀 비둘기인 '아르키메데스(Archimedes)'를 포함한 여러 마리의 애완 비둘기들이 서식하고 있습니다.</p>
+
+            <h2 id="ubercharge">버차지 (ÜberCharge)</h2>
+            <hr>
+            <p>메딕 플레이의 꽃이자 팀 포트리스 2의 전황을 뒤집는 가장 강력한 기술입니다. 메딕이 아군을 치료하면 우버차지 게이지가 차오르며, 100%가 되었을 때 마우스 우클릭으로 발동할 수 있습니다. 장착한 메디 건의 종류에 따라 우버차지의 효과가 다릅니다.</p>
+            <ul>
+                <li><strong>기본 메디 건:</strong> 8초 동안 메딕과 치료 대상이 모든 피해에 면역(무적)이 됩니다. 센트리 건 방어선을 철거할 때 필수적입니다.</li>
+                <li><strong>크리츠크리크 (Kritzkrieg):</strong> 8초 동안 치료 대상의 모든 공격이 100% 치명타로 적중합니다. 단, 무적 상태가 되지는 않으므로 주의가 필요합니다.</li>
+                <li><strong>응급조치 (Quick-Fix):</strong> 치료 속도가 300% 증가하고, 메딕과 치료 대상이 밀려남(Knockback) 효과에 면역이 됩니다.</li>
+            </ul>
+
+            <h2 id="strategy">기본 전략</h2>
+            <hr>
+            <ul>
+                <li><strong>생존이 최우선:</strong> 메딕이 죽으면 우버차지 게이지가 모두 사라집니다. 적 스나이퍼의 헤드샷과 스파이의 백스탭을 항상 경계하고 아군의 뒤에 안전하게 위치하세요.</li>
+                <li><strong>치료의 우선순위:</strong> 전선에서 싸우고 있는 전투 병과(헤비, 솔저, 데모맨)를 주로 치료하되, 불에 타거나 체력이 붉은색인 아군을 먼저 살려내는 센스가 필요합니다.</li>
+                <li><strong>속도 동기화:</strong> 스카웃을 치료하면 메딕의 이동 속도가 스카웃과 동일하게 빨라집니다. 이를 이용해 전방으로 빠르게 합류하거나 위험에서 벗어날 수 있습니다.</li>
+            </ul>
+
+            <h2 id="weapons">무기</h2>
+            <hr>
+            <table border="1" style="border-collapse: collapse; width: 100%; text-align: left;" cellpadding="8">
+                <tr style="background-color: #EFEFEF;">
+                    <th>무기 슬롯</th>
+                    <th>기본 무기</th>
+                    <th>대표적인 해제 무기</th>
+                </tr>
+                <tr>
+                    <td><strong>주 무기 (Primary)</strong></td>
+                    <td>주사기총 (Syringe Gun)</td>
+                    <td>십자군의 쇠뇌 (Crusader’s Crossbow), 블루서거 (Blutsauger)</td>
+                </tr>
+                <tr>
+                    <td><strong>보조 무기 (Secondary)</strong></td>
+                    <td>메디 건 (Medi Gun)</td>
+                    <td>크리츠크리크 (Kritzkrieg), 예방접종기 (Vaccinator)</td>
+                </tr>
+                <tr>
+                    <td><strong>근접 무기 (Melee)</strong></td>
+                    <td>뼈톱 (Bonesaw)</td>
+                    <td>우버톱 (Ubersaw), 절단기 (Amputator)</td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+
+    <script>
+        // Toggle the visibility of the Table of Contents
+        function toggleTOC() {
+            const tocList = document.getElementById('toc-list');
+            if (tocList.style.display === 'none') {
+                tocList.style.display = 'block';
+            } else {
+                tocList.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
