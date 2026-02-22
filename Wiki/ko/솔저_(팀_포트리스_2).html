@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>솔저 - 한국 팀 포트리스 위키</title>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "솔저 (팀 포트리스 2)",
+      "description": "무장한 채로 미쳐 돌아가는 미국의 애국자 솔저는 튼튼하고 다양한 용도로 쓰일 수 있는 공격형 병과입니다.",
+      "author": {
+        "@type": "Organization",
+        "name": "Korean Team Fortress Wiki"
+      },
+      "about": {
+        "@type": "Person",
+        "name": "제인 도 (Jane Doe)",
+        "alternateName": "Soldier",
+        "jobTitle": "공격 (Offense)"
+      }
+    }
+    </script>
+
+    <style>
+        /* CSS Variables for Team Colors */
+        :root {
+            --team-red: #B8383B;
+            --team-red-dark: #8c2325;
+            --team-blu: #5885A2;
+            --team-blu-dark: #3b5a6e;
+            --bg-dark: #2A2625;
+            --text-light: #EBE2CA;
+            --wiki-panel: #3B3635;
+            --accent-orange: #d87513;
+            
+            /* Default to RED */
+            --current-team: var(--team-red);
+            --current-team-dark: var(--team-red-dark);
+        }
+
+        body {
+            font-family: sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--current-team);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 5px solid var(--current-team-dark);
+            transition: background-color 0.3s ease;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 0px #000;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1100px;
+            margin: 20px auto;
+            padding: 0 20px;
+            gap: 20px;
+        }
+
+        .main-content {
+            flex: 3;
+            min-width: 300px;
+        }
+
+        .infobox {
+            flex: 1;
+            min-width: 250px;
+            background-color: var(--wiki-panel);
+            border: 2px solid var(--current-team);
+            padding: 15px;
+            border-radius: 5px;
+            height: fit-content;
+        }
+
+        .infobox h2 {
+            text-align: center;
+            background-color: var(--current-team);
+            margin: -15px -15px 15px -15px;
+            padding: 10px;
+            border-radius: 3px 3px 0 0;
+            text-shadow: 1px 1px 0px #000;
+        }
+
+        .infobox table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .infobox th, .infobox td {
+            padding: 8px;
+            border-bottom: 1px solid #555;
+            text-align: left;
+        }
+
+        .infobox th {
+            color: var(--accent-orange);
+            width: 40%;
+        }
+
+        .quote-box {
+            background-color: #1a1817;
+            border-left: 4px solid var(--accent-orange);
+            padding: 15px;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        /* Tabs for Weapons using JS */
+        .tab-container {
+            margin-top: 20px;
+        }
+
+        .tab-buttons {
+            display: flex;
+            gap: 5px;
+        }
+
+        .tab-btn {
+            background-color: var(--wiki-panel);
+            color: var(--text-light);
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            transition: background-color 0.2s;
+            font-weight: bold;
+        }
+
+        .tab-btn.active, .tab-btn:hover {
+            background-color: var(--current-team);
+        }
+
+        .tab-content {
+            background-color: var(--wiki-panel);
+            padding: 20px;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .controls {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .team-btn {
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            border: 2px solid #fff;
+            color: white;
+            border-radius: 5px;
+            margin: 0 5px;
+        }
+
+        .btn-red { background-color: var(--team-red); }
+        .btn-blu { background-color: var(--team-blu); }
+
+    </style>
+</head>
+<body>
+
+    <header id="wiki-header">
+        <h1>솔저</h1>
+        <p>한국 팀 포트리스 2 위키</p>
+    </header>
+
+    <div class="controls">
+        <button class="team-btn btn-red" onclick="switchTeam('RED')">RED 팀</button>
+        <button class="team-btn btn-blu" onclick="switchTeam('BLU')">BLU 팀</button>
+    </div>
+
+    <div class="container">
+        <main class="main-content">
+            <div class="quote-box">
+                “전투의 결과가 승리라면, 당연히 싸워야 한다! 선자 가라사대! 그리고 내가 그분보다는 쬐끔 더 잘 알지. 왜냐하면 내가 발명했거든! 그리고 완벽해질 때까지 단 한 명도 빠짐없이 패고 또 팼기 때문이지!”<br>
+                — 솔저를 만나다 (Meet the Soldier)
+            </div>
+
+            <section>
+                <h2>개요</h2>
+                <p>무장한 채로 미쳐 돌아가는 미국의 애국자 <strong>솔저</strong>(<span lang="en">Soldier</span>)는 튼튼하고 다양한 용도로 쓰일 수 있는 공격형 병과입니다. 훌륭한 생존력과 이동성, 화력을 갖춘 솔저는 《팀 포트리스 2》에서 가장 유연한 병과 중 하나입니다.</p>
+                <p>그의 유명한 기술인 <strong>로켓 점프(Rocket Jump)</strong>를 사용하면, 자신의 체력을 일부 희생하는 대신 상상을 초월하는 위치로 날아올라 적의 허를 찌를 수 있습니다.</p>
+            </section>
+
+            <section class="tab-container">
+                <h2>기본 무기 (Default Weapons)</h2>
+                <div class="tab-buttons">
+                    <button class="tab-btn active" onclick="openTab(event, 'primary')">주무기</button>
+                    <button class="tab-btn" onclick="openTab(event, 'secondary')">보조무기</button>
+                    <button class="tab-btn" onclick="openTab(event, 'melee')">근접무기</button>
+                </div>
+
+                <div id="primary" class="tab-content active">
+                    <h3>로켓 발사기 (Rocket Launcher)</h3>
+                    <p>솔저의 상징적인 무기입니다. 폭발 피해를 주며, 적의 발밑을 쏴서 공중으로 띄우거나 벽과 바닥에 쏴서 로켓 점프를 할 수 있습니다.</p>
+                    <ul>
+                        <li><strong>장탄수:</strong> 4 / 20</li>
+                        <li><strong>피해량:</strong> 90 (기본) / 270 (치명타)</li>
+                    </ul>
+                </div>
+
+                <div id="secondary" class="tab-content">
+                    <h3>산탄총 (Shotgun)</h3>
+                    <p>근거리에서 높은 피해를 주는 든든한 보조 무기입니다. 로켓 발사기의 탄약이 떨어졌거나, 자신에게 폭발 피해를 입히기 싫은 근접 상황에서 유용합니다.</p>
+                    <ul>
+                        <li><strong>장탄수:</strong> 6 / 32</li>
+                        <li><strong>피해량:</strong> 60 (기본) / 180 (치명타)</li>
+                    </ul>
+                </div>
+
+                <div id="melee" class="tab-content">
+                    <h3>삽 (Shovel)</h3>
+                    <p>미군 지급용 야전삽입니다. 탄약이 모두 떨어졌을 때 최후의 수단으로 적의 두개골을 함몰시킬 때 사용합니다.</p>
+                    <ul>
+                        <li><strong>피해량:</strong> 65 (기본) / 195 (치명타)</li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+
+        <aside class="infobox">
+            <h2>솔저 정보</h2>
+            <table>
+                <tr>
+                    <th>본명</th>
+                    <td>제인 도 (Jane Doe)</td>
+                </tr>
+                <tr>
+                    <th>출신지</th>
+                    <td>미국 중서부 (USA)</td>
+                </tr>
+                <tr>
+                    <th>역할</th>
+                    <td>공격 (Offense)</td>
+                </tr>
+                <tr>
+                    <th>체력</th>
+                    <td>200 (기본)<br>300 (과치료)</td>
+                </tr>
+                <tr>
+                    <th>이동 속도</th>
+                    <td>80% (기본)<br>240v (초당 단위)</td>
+                </tr>
+                <tr>
+                    <th>성우</th>
+                    <td>릭 메이 (Rick May)</td>
+                </tr>
+            </table>
+        </aside>
+    </div>
+
+    <script>
+        // Function to switch between RED and BLU team themes
+        function switchTeam(team) {
+            const root = document.documentElement;
+            if (team === 'RED') {
+                root.style.setProperty('--current-team', 'var(--team-red)');
+                root.style.setProperty('--current-team-dark', 'var(--team-red-dark)');
+            } else if (team === 'BLU') {
+                root.style.setProperty('--current-team', 'var(--team-blu)');
+                root.style.setProperty('--current-team-dark', 'var(--team-blu-dark)');
+            }
+        }
+
+        // Function for Weapon Tabs
+        function openTab(evt, weaponType) {
+            // Hide all tab contents
+            const tabContents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove("active");
+            }
+
+            // Remove 'active' class from all buttons
+            const tabBtns = document.getElementsByClassName("tab-btn");
+            for (let i = 0; i < tabBtns.length; i++) {
+                tabBtns[i].classList.remove("active");
+            }
+
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            document.getElementById(weaponType).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+    </script>
+</body>
+</html>
