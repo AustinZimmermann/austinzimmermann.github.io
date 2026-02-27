@@ -1,0 +1,587 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Terminator (1984) -- Listing (Mock)</title>
+  <style>
+    :root{
+      --bg:#0b1020;
+      --panel:#101a33;
+      --panel2:#0f1730;
+      --text:#e7ecff;
+      --muted:#a9b3d6;
+      --accent:#6ea8fe;
+      --good:#25d366;
+      --warn:#ffcc66;
+      --bad:#ff5c7a;
+      --border:rgba(255,255,255,.08);
+      --shadow: 0 14px 40px rgba(0,0,0,.35);
+      --radius: 18px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: Helvetica, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    }
+
+    *{ box-sizing: border-box; }
+    body{
+      margin:0;
+      font-family: var(--sans);
+      background: radial-gradient(1200px 600px at 20% -10%, rgba(110,168,254,.18), transparent 60%),
+                  radial-gradient(900px 500px at 110% 10%, rgba(255,92,122,.10), transparent 50%),
+                  var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    a{ color: var(--accent); text-decoration: none; }
+    a:hover{ text-decoration: underline; }
+
+    .wrap{ max-width: 1100px; margin: 0 auto; padding: 22px 16px 60px; }
+
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      padding: 14px 16px;
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 12px;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      font-weight: 700;
+      letter-spacing: .4px;
+      white-space: nowrap;
+    }
+    .dot{
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px rgba(110,168,254,.18);
+    }
+
+    .search{
+      flex: 1;
+      display:flex;
+      gap: 10px;
+      justify-content:center;
+    }
+    .search input{
+      width: min(560px, 100%);
+      background: rgba(0,0,0,.25);
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 12px 14px;
+      outline: none;
+    }
+    .search input:focus{ border-color: rgba(110,168,254,.5); box-shadow: 0 0 0 4px rgba(110,168,254,.14); }
+
+    .actions{
+      display:flex;
+      gap: 8px;
+      align-items:center;
+      white-space: nowrap;
+    }
+
+    .btn{
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 10px 12px;
+      cursor: pointer;
+      display:inline-flex;
+      gap: 8px;
+      align-items:center;
+      transition: transform .06s ease, background .16s ease, border-color .16s ease;
+      user-select:none;
+    }
+    .btn:hover{ background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.16); }
+    .btn:active{ transform: translateY(1px); }
+
+    main{ margin-top: 18px; display:grid; gap: 16px; }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 340px 1fr;
+      gap: 16px;
+    }
+
+    @media (max-width: 980px){
+      .grid{ grid-template-columns: 1fr; }
+      header{ position: relative; top: 0; }
+      .search{ justify-content: stretch; }
+    }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+
+    .card h2{
+      margin:0;
+      padding: 14px 16px;
+      font-size: 16px;
+      letter-spacing: .3px;
+      color: rgba(255,255,255,.92);
+      border-bottom: 1px solid var(--border);
+      background: rgba(0,0,0,.18);
+    }
+
+    .pad{ padding: 16px; }
+
+    .poster{
+      aspect-ratio: 2/3;
+      border-radius: 14px;
+      background:
+        radial-gradient(900px 500px at 20% 10%, rgba(110,168,254,.22), transparent 45%),
+        radial-gradient(700px 420px at 90% 30%, rgba(255,92,122,.18), transparent 50%),
+        linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.02));
+      border: 1px solid var(--border);
+      display:flex;
+      align-items:flex-end;
+      justify-content:flex-start;
+      padding: 14px;
+      position: relative;
+    }
+
+    .poster .tag{
+      font-size: 12px;
+      color: rgba(255,255,255,.92);
+      background: rgba(0,0,0,.35);
+      border: 1px solid var(--border);
+      padding: 6px 10px;
+      border-radius: 999px;
+      backdrop-filter: blur(8px);
+    }
+
+    .title{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .title h1{ margin:0; font-size: 22px; line-height: 1.2; }
+    .subtitle{ color: var(--muted); font-size: 13px; margin-top: 6px; }
+
+    .pills{ display:flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 2px; }
+    .pill{
+      font-size: 12px;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,.25);
+      padding: 6px 10px;
+      border-radius: 999px;
+      color: rgba(255,255,255,.90);
+    }
+
+    .meta{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .kv{
+      padding: 12px;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,.20);
+      border-radius: 14px;
+    }
+
+    .kv .k{ font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .9px; }
+    .kv .v{ font-size: 13px; margin-top: 6px; font-family: var(--mono); word-break: break-word; }
+
+    .notice{
+      padding: 12px 14px;
+      border: 1px dashed rgba(255,255,255,.18);
+      border-radius: 14px;
+      color: rgba(255,255,255,.86);
+      background: rgba(0,0,0,.20);
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    .table{
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .table th,
+    .table td{
+      border-bottom: 1px solid var(--border);
+      padding: 12px 12px;
+      text-align:left;
+      vertical-align: middle;
+    }
+    .table th{ color: var(--muted); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: .8px; }
+
+    .mono{ font-family: var(--mono); }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap: 6px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,.22);
+      font-size: 12px;
+      color: rgba(255,255,255,.92);
+      white-space: nowrap;
+    }
+
+    .badge.good{ border-color: rgba(37,211,102,.35); }
+    .badge.warn{ border-color: rgba(255,204,102,.40); }
+    .badge.bad{ border-color: rgba(255,92,122,.35); }
+
+    .small{ font-size: 12px; color: var(--muted); }
+
+    .row{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items:center;
+      justify-content: space-between;
+    }
+
+    .copy{
+      display:flex;
+      gap: 8px;
+      align-items:center;
+      flex-wrap: wrap;
+    }
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,.65);
+      border: 1px solid rgba(255,255,255,.16);
+      color: rgba(255,255,255,.92);
+      padding: 10px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      opacity: 0;
+      pointer-events:none;
+      transition: opacity .2s ease, transform .2s ease;
+      backdrop-filter: blur(10px);
+    }
+    .toast.show{ opacity: 1; transform: translateX(-50%) translateY(-6px); }
+
+    footer{
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 12px;
+      text-align:center;
+      opacity: .9;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand" aria-label="Site">
+        <span class="dot" aria-hidden="true"></span>
+        <span>Index</span>
+      </div>
+
+      <div class="search" role="search">
+        <input id="q" type="search" placeholder="Search listings…" autocomplete="off" />
+      </div>
+
+      <div class="actions">
+        <button class="btn" id="toggleTheme" type="button" title="Toggle contrast">
+          <span aria-hidden="true">🌓</span>
+          <span class="small">Theme</span>
+        </button>
+        <button class="btn" id="copyTitle" type="button" title="Copy release name">
+          <span aria-hidden="true">⧉</span>
+          <span class="small">Copy</span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <div class="grid">
+        <section class="card" aria-label="Poster and quick facts">
+          <h2>Overview</h2>
+          <div class="pad">
+            <div class="poster" aria-label="Poster placeholder">
+              <span class="tag">1080p • Remux</span>
+            </div>
+
+            <div class="pills" aria-label="Tags">
+              <span class="pill">Movie</span>
+              <span class="pill">1984</span>
+              <span class="pill">Blu-ray</span>
+              <span class="pill">MPEG-2</span>
+              <span class="pill">LPCM 5.1</span>
+              <span class="pill">GHOST</span>
+            </div>
+
+            <div class="meta" aria-label="Key values">
+              <div class="kv">
+                <div class="k">Release name</div>
+                <div class="v" id="releaseName">The.Terminator.1984.1080p.Blu-ray.Remux.MPEG-2.LPCM.5.1-GHOST</div>
+              </div>
+              <div class="kv">
+                <div class="k">Category</div>
+                <div class="v">Movies / Action / Sci‑Fi</div>
+              </div>
+              <div class="kv">
+                <div class="k">Language</div>
+                <div class="v">en-US</div>
+              </div>
+              <div class="kv">
+                <div class="k">Safety note</div>
+                <div class="v">Mock UI only</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="card" aria-label="Listing details">
+          <h2>Listing</h2>
+          <div class="pad">
+            <div class="title">
+              <div>
+                <h1 id="pageTitle">The Terminator <span class="small">(1984)</span></h1>
+                <div class="subtitle">Release listing layout (HTML/CSS/JavaScript) -- no download links included.</div>
+              </div>
+              <span class="badge good" id="statusBadge" title="Example health badge">
+                <span aria-hidden="true">●</span>
+                <span>Active</span>
+              </span>
+            </div>
+
+            <div class="notice" role="note">
+              This page is a <b>front‑end mock</b> for a media listing. It intentionally does not include torrent files, magnet links, trackers, or any instructions for infringement.
+              Replace the sample data with your own legitimate distribution details if needed.
+            </div>
+
+            <div class="row" style="margin-top:12px;">
+              <div class="copy">
+                <button class="btn" type="button" id="copyRelease">
+                  <span aria-hidden="true">⧉</span>
+                  Copy release name
+                </button>
+                <button class="btn" type="button" id="copyJson">
+                  <span aria-hidden="true">{ }</span>
+                  Copy JSON
+                </button>
+              </div>
+              <div class="small">Updated: <span id="updatedAt"></span></div>
+            </div>
+
+            <div style="margin-top:14px; overflow:auto; border-radius:14px; border:1px solid var(--border);">
+              <table class="table" aria-label="Technical details">
+                <thead>
+                  <tr>
+                    <th>Field</th>
+                    <th>Value</th>
+                    <th>Notes</th>
+                  </tr>
+                </thead>
+                <tbody id="detailsBody"></tbody>
+              </table>
+            </div>
+
+            <div style="margin-top:14px; display:grid; gap: 10px;">
+              <div class="kv">
+                <div class="k">Description</div>
+                <div class="v" style="font-family:var(--sans); line-height:1.45;">
+                  A clean listing card for <span class="mono">The.Terminator.1984…</span> with searchable fields, copy buttons, and client‑side rendering.
+                  Swap the placeholder poster area for an actual image, and wire actions to your own backend.
+                </div>
+              </div>
+
+              <div class="kv">
+                <div class="k">Rules / Tips</div>
+                <div class="v" style="font-family:var(--sans); line-height:1.5;">
+                  • Keep titles normalized and consistent (dots vs spaces).<br />
+                  • Use server‑side validation for any user-submitted metadata.<br />
+                  • Don’t expose sensitive IP/logging info in the UI.<br />
+                  • For accessibility, ensure buttons have labels and good contrast.
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+      </div>
+
+      <section class="card" aria-label="Similar listings">
+        <h2>Similar (sample)</h2>
+        <div class="pad" style="overflow:auto;">
+          <table class="table" aria-label="Similar results table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Quality</th>
+                <th>Audio</th>
+                <th>Group</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="similarBody"></tbody>
+          </table>
+          <div class="small" style="margin-top:10px;">Tip: use the search box to filter these rows by any text.</div>
+        </div>
+      </section>
+
+      <footer>
+        Mock listing UI -- static front-end only.
+      </footer>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const listing = {
+      title: "The Terminator",
+      year: 1984,
+      language: "en-US",
+      releaseName: "The.Terminator.1984.1080p.Blu-ray.Remux.MPEG-2.LPCM.5.1-GHOST",
+      details: [
+        { field: "Source", value: "Blu-ray", note: "Remux (no re-encode implied)" },
+        { field: "Resolution", value: "1920×1080", note: "1080p" },
+        { field: "Video", value: "MPEG-2", note: "As labeled in release name" },
+        { field: "Audio", value: "LPCM 5.1", note: "Lossless PCM" },
+        { field: "Container", value: "(your choice)", note: "e.g., MKV for remux workflows" },
+        { field: "Subtitles", value: "(optional)", note: "List included subs here" },
+        { field: "Uploader", value: "GHOST", note: "Release group tag" },
+        { field: "Size", value: "(placeholder)", note: "Populate from your backend" },
+        { field: "Hash", value: "(redacted)", note: "Do not publish if you shouldn't" }
+      ]
+    };
+
+    const similar = [
+      { title: "The Terminator (1984)", quality: "1080p Remux", audio: "DTS-HD MA 5.1", group: "SAMPLE", status: "Active" },
+      { title: "The Terminator (1984)", quality: "2160p HDR", audio: "TrueHD Atmos", group: "SAMPLE", status: "Active" },
+      { title: "The Terminator (1984)", quality: "1080p Encode", audio: "AAC 5.1", group: "SAMPLE", status: "Stalled" },
+      { title: "Terminator 2 (1991)", quality: "1080p Remux", audio: "DTS-HD MA 5.1", group: "SAMPLE", status: "Active" }
+    ];
+
+    const $ = (sel) => document.querySelector(sel);
+    const toast = $("#toast");
+
+    function showToast(msg){
+      toast.textContent = msg;
+      toast.classList.add("show");
+      window.clearTimeout(showToast._t);
+      showToast._t = window.setTimeout(()=> toast.classList.remove("show"), 1700);
+    }
+
+    function renderDetails(){
+      const tbody = $("#detailsBody");
+      tbody.innerHTML = "";
+      for(const d of listing.details){
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td class="mono">${escapeHtml(d.field)}</td>
+          <td>${escapeHtml(d.value)}</td>
+          <td class="small">${escapeHtml(d.note)}</td>
+        `;
+        tbody.appendChild(tr);
+      }
+
+      const sbody = $("#similarBody");
+      sbody.innerHTML = "";
+      for(const r of similar){
+        const tr = document.createElement("tr");
+        const badgeClass = r.status === "Active" ? "good" : (r.status === "Stalled" ? "warn" : "bad");
+        tr.innerHTML = `
+          <td>${escapeHtml(r.title)}</td>
+          <td class="mono">${escapeHtml(r.quality)}</td>
+          <td class="mono">${escapeHtml(r.audio)}</td>
+          <td class="mono">${escapeHtml(r.group)}</td>
+          <td><span class="badge ${badgeClass}">${escapeHtml(r.status)}</span></td>
+        `;
+        sbody.appendChild(tr);
+      }
+
+      $("#updatedAt").textContent = new Date().toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" });
+    }
+
+    function escapeHtml(s){
+      return String(s)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function copyText(text){
+      navigator.clipboard.writeText(text)
+        .then(()=> showToast("Copied to clipboard"))
+        .catch(()=> showToast("Copy failed (permission?)"));
+    }
+
+    function filterTables(q){
+      const query = q.trim().toLowerCase();
+      const tables = [$("#detailsBody"), $("#similarBody")];
+      for(const tbody of tables){
+        for(const tr of tbody.querySelectorAll("tr")){
+          const text = tr.textContent.toLowerCase();
+          tr.style.display = text.includes(query) ? "" : "none";
+        }
+      }
+    }
+
+    function toggleTheme(){
+      // Simple high-contrast toggle by flipping a few CSS vars.
+      const root = document.documentElement;
+      const current = getComputedStyle(root).getPropertyValue("--bg").trim();
+      const light = current === "#f6f7fb";
+
+      if(!light){
+        root.style.setProperty("--bg", "#f6f7fb");
+        root.style.setProperty("--panel", "#ffffff");
+        root.style.setProperty("--panel2", "#ffffff");
+        root.style.setProperty("--text", "#111827");
+        root.style.setProperty("--muted", "#4b5563");
+        root.style.setProperty("--border", "rgba(17,24,39,.10)");
+        showToast("Light theme");
+      }else{
+        root.style.removeProperty("--bg");
+        root.style.removeProperty("--panel");
+        root.style.removeProperty("--panel2");
+        root.style.removeProperty("--text");
+        root.style.removeProperty("--muted");
+        root.style.removeProperty("--border");
+        showToast("Dark theme");
+      }
+    }
+
+    // Wire up UI
+    $("#copyRelease").addEventListener("click", () => copyText(listing.releaseName));
+    $("#copyTitle").addEventListener("click", () => copyText(listing.title + " (" + listing.year + ")"));
+    $("#copyJson").addEventListener("click", () => copyText(JSON.stringify(listing, null, 2)));
+    $("#toggleTheme").addEventListener("click", toggleTheme);
+
+    $("#q").addEventListener("input", (e) => filterTables(e.target.value));
+
+    // Initial render
+    renderDetails();
+  </script>
+</body>
+</html>
