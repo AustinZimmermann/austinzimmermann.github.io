@@ -1,587 +1,361 @@
-<!doctype html>
-<html lang="en-US">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>The Terminator (1984) -- Listing (Mock)</title>
-  <style>
-    :root{
-      --bg:#0b1020;
-      --panel:#101a33;
-      --panel2:#0f1730;
-      --text:#e7ecff;
-      --muted:#a9b3d6;
-      --accent:#6ea8fe;
-      --good:#25d366;
-      --warn:#ffcc66;
-      --bad:#ff5c7a;
-      --border:rgba(255,255,255,.08);
-      --shadow: 0 14px 40px rgba(0,0,0,.35);
-      --radius: 18px;
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      --sans: Helvetica, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-    }
-
-    *{ box-sizing: border-box; }
-    body{
-      margin:0;
-      font-family: var(--sans);
-      background: radial-gradient(1200px 600px at 20% -10%, rgba(110,168,254,.18), transparent 60%),
-                  radial-gradient(900px 500px at 110% 10%, rgba(255,92,122,.10), transparent 50%),
-                  var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-    }
-
-    a{ color: var(--accent); text-decoration: none; }
-    a:hover{ text-decoration: underline; }
-
-    .wrap{ max-width: 1100px; margin: 0 auto; padding: 22px 16px 60px; }
-
-    header{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 12px;
-      padding: 14px 16px;
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      position: sticky;
-      top: 12px;
-      z-index: 10;
-      backdrop-filter: blur(10px);
-    }
-
-    .brand{
-      display:flex;
-      align-items:center;
-      gap: 10px;
-      font-weight: 700;
-      letter-spacing: .4px;
-      white-space: nowrap;
-    }
-    .dot{
-      width: 12px;
-      height: 12px;
-      border-radius: 999px;
-      background: var(--accent);
-      box-shadow: 0 0 0 6px rgba(110,168,254,.18);
-    }
-
-    .search{
-      flex: 1;
-      display:flex;
-      gap: 10px;
-      justify-content:center;
-    }
-    .search input{
-      width: min(560px, 100%);
-      background: rgba(0,0,0,.25);
-      border: 1px solid var(--border);
-      color: var(--text);
-      border-radius: 999px;
-      padding: 12px 14px;
-      outline: none;
-    }
-    .search input:focus{ border-color: rgba(110,168,254,.5); box-shadow: 0 0 0 4px rgba(110,168,254,.14); }
-
-    .actions{
-      display:flex;
-      gap: 8px;
-      align-items:center;
-      white-space: nowrap;
-    }
-
-    .btn{
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,.04);
-      color: var(--text);
-      border-radius: 999px;
-      padding: 10px 12px;
-      cursor: pointer;
-      display:inline-flex;
-      gap: 8px;
-      align-items:center;
-      transition: transform .06s ease, background .16s ease, border-color .16s ease;
-      user-select:none;
-    }
-    .btn:hover{ background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.16); }
-    .btn:active{ transform: translateY(1px); }
-
-    main{ margin-top: 18px; display:grid; gap: 16px; }
-
-    .grid{
-      display:grid;
-      grid-template-columns: 340px 1fr;
-      gap: 16px;
-    }
-
-    @media (max-width: 980px){
-      .grid{ grid-template-columns: 1fr; }
-      header{ position: relative; top: 0; }
-      .search{ justify-content: stretch; }
-    }
-
-    .card{
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-    }
-
-    .card h2{
-      margin:0;
-      padding: 14px 16px;
-      font-size: 16px;
-      letter-spacing: .3px;
-      color: rgba(255,255,255,.92);
-      border-bottom: 1px solid var(--border);
-      background: rgba(0,0,0,.18);
-    }
-
-    .pad{ padding: 16px; }
-
-    .poster{
-      aspect-ratio: 2/3;
-      border-radius: 14px;
-      background:
-        radial-gradient(900px 500px at 20% 10%, rgba(110,168,254,.22), transparent 45%),
-        radial-gradient(700px 420px at 90% 30%, rgba(255,92,122,.18), transparent 50%),
-        linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.02));
-      border: 1px solid var(--border);
-      display:flex;
-      align-items:flex-end;
-      justify-content:flex-start;
-      padding: 14px;
-      position: relative;
-    }
-
-    .poster .tag{
-      font-size: 12px;
-      color: rgba(255,255,255,.92);
-      background: rgba(0,0,0,.35);
-      border: 1px solid var(--border);
-      padding: 6px 10px;
-      border-radius: 999px;
-      backdrop-filter: blur(8px);
-    }
-
-    .title{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap: 12px;
-      margin-bottom: 10px;
-    }
-
-    .title h1{ margin:0; font-size: 22px; line-height: 1.2; }
-    .subtitle{ color: var(--muted); font-size: 13px; margin-top: 6px; }
-
-    .pills{ display:flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 2px; }
-    .pill{
-      font-size: 12px;
-      border: 1px solid var(--border);
-      background: rgba(0,0,0,.25);
-      padding: 6px 10px;
-      border-radius: 999px;
-      color: rgba(255,255,255,.90);
-    }
-
-    .meta{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-top: 14px;
-    }
-
-    .kv{
-      padding: 12px;
-      border: 1px solid var(--border);
-      background: rgba(0,0,0,.20);
-      border-radius: 14px;
-    }
-
-    .kv .k{ font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .9px; }
-    .kv .v{ font-size: 13px; margin-top: 6px; font-family: var(--mono); word-break: break-word; }
-
-    .notice{
-      padding: 12px 14px;
-      border: 1px dashed rgba(255,255,255,.18);
-      border-radius: 14px;
-      color: rgba(255,255,255,.86);
-      background: rgba(0,0,0,.20);
-      font-size: 13px;
-      line-height: 1.35;
-    }
-
-    .table{
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 13px;
-    }
-    .table th,
-    .table td{
-      border-bottom: 1px solid var(--border);
-      padding: 12px 12px;
-      text-align:left;
-      vertical-align: middle;
-    }
-    .table th{ color: var(--muted); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: .8px; }
-
-    .mono{ font-family: var(--mono); }
-
-    .badge{
-      display:inline-flex;
-      align-items:center;
-      gap: 6px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: rgba(0,0,0,.22);
-      font-size: 12px;
-      color: rgba(255,255,255,.92);
-      white-space: nowrap;
-    }
-
-    .badge.good{ border-color: rgba(37,211,102,.35); }
-    .badge.warn{ border-color: rgba(255,204,102,.40); }
-    .badge.bad{ border-color: rgba(255,92,122,.35); }
-
-    .small{ font-size: 12px; color: var(--muted); }
-
-    .row{
-      display:flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      align-items:center;
-      justify-content: space-between;
-    }
-
-    .copy{
-      display:flex;
-      gap: 8px;
-      align-items:center;
-      flex-wrap: wrap;
-    }
-
-    .toast{
-      position: fixed;
-      left: 50%;
-      bottom: 18px;
-      transform: translateX(-50%);
-      background: rgba(0,0,0,.65);
-      border: 1px solid rgba(255,255,255,.16);
-      color: rgba(255,255,255,.92);
-      padding: 10px 12px;
-      border-radius: 999px;
-      font-size: 13px;
-      opacity: 0;
-      pointer-events:none;
-      transition: opacity .2s ease, transform .2s ease;
-      backdrop-filter: blur(10px);
-    }
-    .toast.show{ opacity: 1; transform: translateX(-50%) translateY(-6px); }
-
-    footer{
-      margin-top: 18px;
-      color: var(--muted);
-      font-size: 12px;
-      text-align:center;
-      opacity: .9;
-    }
-  </style>
-</head>
-<body>
-  <div class="wrap">
-    <header>
-      <div class="brand" aria-label="Site">
-        <span class="dot" aria-hidden="true"></span>
-        <span>Index</span>
-      </div>
-
-      <div class="search" role="search">
-        <input id="q" type="search" placeholder="Search listings…" autocomplete="off" />
-      </div>
-
-      <div class="actions">
-        <button class="btn" id="toggleTheme" type="button" title="Toggle contrast">
-          <span aria-hidden="true">🌓</span>
-          <span class="small">Theme</span>
-        </button>
-        <button class="btn" id="copyTitle" type="button" title="Copy release name">
-          <span aria-hidden="true">⧉</span>
-          <span class="small">Copy</span>
-        </button>
-      </div>
-    </header>
-
-    <main>
-      <div class="grid">
-        <section class="card" aria-label="Poster and quick facts">
-          <h2>Overview</h2>
-          <div class="pad">
-            <div class="poster" aria-label="Poster placeholder">
-              <span class="tag">1080p • Remux</span>
-            </div>
-
-            <div class="pills" aria-label="Tags">
-              <span class="pill">Movie</span>
-              <span class="pill">1984</span>
-              <span class="pill">Blu-ray</span>
-              <span class="pill">MPEG-2</span>
-              <span class="pill">LPCM 5.1</span>
-              <span class="pill">GHOST</span>
-            </div>
-
-            <div class="meta" aria-label="Key values">
-              <div class="kv">
-                <div class="k">Release name</div>
-                <div class="v" id="releaseName">The.Terminator.1984.1080p.Blu-ray.Remux.MPEG-2.LPCM.5.1-GHOST</div>
-              </div>
-              <div class="kv">
-                <div class="k">Category</div>
-                <div class="v">Movies / Action / Sci‑Fi</div>
-              </div>
-              <div class="kv">
-                <div class="k">Language</div>
-                <div class="v">en-US</div>
-              </div>
-              <div class="kv">
-                <div class="k">Safety note</div>
-                <div class="v">Mock UI only</div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="card" aria-label="Listing details">
-          <h2>Listing</h2>
-          <div class="pad">
-            <div class="title">
-              <div>
-                <h1 id="pageTitle">The Terminator <span class="small">(1984)</span></h1>
-                <div class="subtitle">Release listing layout (HTML/CSS/JavaScript) -- no download links included.</div>
-              </div>
-              <span class="badge good" id="statusBadge" title="Example health badge">
-                <span aria-hidden="true">●</span>
-                <span>Active</span>
-              </span>
-            </div>
-
-            <div class="notice" role="note">
-              This page is a <b>front‑end mock</b> for a media listing. It intentionally does not include torrent files, magnet links, trackers, or any instructions for infringement.
-              Replace the sample data with your own legitimate distribution details if needed.
-            </div>
-
-            <div class="row" style="margin-top:12px;">
-              <div class="copy">
-                <button class="btn" type="button" id="copyRelease">
-                  <span aria-hidden="true">⧉</span>
-                  Copy release name
-                </button>
-                <button class="btn" type="button" id="copyJson">
-                  <span aria-hidden="true">{ }</span>
-                  Copy JSON
-                </button>
-              </div>
-              <div class="small">Updated: <span id="updatedAt"></span></div>
-            </div>
-
-            <div style="margin-top:14px; overflow:auto; border-radius:14px; border:1px solid var(--border);">
-              <table class="table" aria-label="Technical details">
-                <thead>
-                  <tr>
-                    <th>Field</th>
-                    <th>Value</th>
-                    <th>Notes</th>
-                  </tr>
-                </thead>
-                <tbody id="detailsBody"></tbody>
-              </table>
-            </div>
-
-            <div style="margin-top:14px; display:grid; gap: 10px;">
-              <div class="kv">
-                <div class="k">Description</div>
-                <div class="v" style="font-family:var(--sans); line-height:1.45;">
-                  A clean listing card for <span class="mono">The.Terminator.1984…</span> with searchable fields, copy buttons, and client‑side rendering.
-                  Swap the placeholder poster area for an actual image, and wire actions to your own backend.
-                </div>
-              </div>
-
-              <div class="kv">
-                <div class="k">Rules / Tips</div>
-                <div class="v" style="font-family:var(--sans); line-height:1.5;">
-                  • Keep titles normalized and consistent (dots vs spaces).<br />
-                  • Use server‑side validation for any user-submitted metadata.<br />
-                  • Don’t expose sensitive IP/logging info in the UI.<br />
-                  • For accessibility, ensure buttons have labels and good contrast.
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </section>
-      </div>
-
-      <section class="card" aria-label="Similar listings">
-        <h2>Similar (sample)</h2>
-        <div class="pad" style="overflow:auto;">
-          <table class="table" aria-label="Similar results table">
-            <thead>
-              <tr>
-                <th>Title</th>
-                <th>Quality</th>
-                <th>Audio</th>
-                <th>Group</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody id="similarBody"></tbody>
-          </table>
-          <div class="small" style="margin-top:10px;">Tip: use the search box to filter these rows by any text.</div>
-        </div>
-      </section>
-
-      <footer>
-        Mock listing UI -- static front-end only.
-      </footer>
-    </main>
-  </div>
-
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
-
-  <script>
-    const listing = {
-      title: "The Terminator",
-      year: 1984,
-      language: "en-US",
-      releaseName: "The.Terminator.1984.1080p.Blu-ray.Remux.MPEG-2.LPCM.5.1-GHOST",
-      details: [
-        { field: "Source", value: "Blu-ray", note: "Remux (no re-encode implied)" },
-        { field: "Resolution", value: "1920×1080", note: "1080p" },
-        { field: "Video", value: "MPEG-2", note: "As labeled in release name" },
-        { field: "Audio", value: "LPCM 5.1", note: "Lossless PCM" },
-        { field: "Container", value: "(your choice)", note: "e.g., MKV for remux workflows" },
-        { field: "Subtitles", value: "(optional)", note: "List included subs here" },
-        { field: "Uploader", value: "GHOST", note: "Release group tag" },
-        { field: "Size", value: "(placeholder)", note: "Populate from your backend" },
-        { field: "Hash", value: "(redacted)", note: "Do not publish if you shouldn't" }
-      ]
-    };
-
-    const similar = [
-      { title: "The Terminator (1984)", quality: "1080p Remux", audio: "DTS-HD MA 5.1", group: "SAMPLE", status: "Active" },
-      { title: "The Terminator (1984)", quality: "2160p HDR", audio: "TrueHD Atmos", group: "SAMPLE", status: "Active" },
-      { title: "The Terminator (1984)", quality: "1080p Encode", audio: "AAC 5.1", group: "SAMPLE", status: "Stalled" },
-      { title: "Terminator 2 (1991)", quality: "1080p Remux", audio: "DTS-HD MA 5.1", group: "SAMPLE", status: "Active" }
-    ];
-
-    const $ = (sel) => document.querySelector(sel);
-    const toast = $("#toast");
-
-    function showToast(msg){
-      toast.textContent = msg;
-      toast.classList.add("show");
-      window.clearTimeout(showToast._t);
-      showToast._t = window.setTimeout(()=> toast.classList.remove("show"), 1700);
-    }
-
-    function renderDetails(){
-      const tbody = $("#detailsBody");
-      tbody.innerHTML = "";
-      for(const d of listing.details){
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
-          <td class="mono">${escapeHtml(d.field)}</td>
-          <td>${escapeHtml(d.value)}</td>
-          <td class="small">${escapeHtml(d.note)}</td>
-        `;
-        tbody.appendChild(tr);
-      }
-
-      const sbody = $("#similarBody");
-      sbody.innerHTML = "";
-      for(const r of similar){
-        const tr = document.createElement("tr");
-        const badgeClass = r.status === "Active" ? "good" : (r.status === "Stalled" ? "warn" : "bad");
-        tr.innerHTML = `
-          <td>${escapeHtml(r.title)}</td>
-          <td class="mono">${escapeHtml(r.quality)}</td>
-          <td class="mono">${escapeHtml(r.audio)}</td>
-          <td class="mono">${escapeHtml(r.group)}</td>
-          <td><span class="badge ${badgeClass}">${escapeHtml(r.status)}</span></td>
-        `;
-        sbody.appendChild(tr);
-      }
-
-      $("#updatedAt").textContent = new Date().toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" });
-    }
-
-    function escapeHtml(s){
-      return String(s)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
-    }
-
-    function copyText(text){
-      navigator.clipboard.writeText(text)
-        .then(()=> showToast("Copied to clipboard"))
-        .catch(()=> showToast("Copy failed (permission?)"));
-    }
-
-    function filterTables(q){
-      const query = q.trim().toLowerCase();
-      const tables = [$("#detailsBody"), $("#similarBody")];
-      for(const tbody of tables){
-        for(const tr of tbody.querySelectorAll("tr")){
-          const text = tr.textContent.toLowerCase();
-          tr.style.display = text.includes(query) ? "" : "none";
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Terminator (1984) 1080p Blu-ray Remux - GHOST</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: Helvetica, 'Inter', sans-serif;
+            background-color: #0a0a0b;
+            color: #e2e8f0;
         }
-      }
-    }
+        .terminator-gradient {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        }
+        .accent-red {
+            color: #ef4444;
+            text-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
+        }
+        .btn-magnet {
+            background: linear-gradient(to right, #ef4444, #b91c1c);
+            transition: all 0.3s ease;
+        }
+        .btn-magnet:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .status-dot {
+            height: 8px;
+            width: 8px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 6px;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
 
-    function toggleTheme(){
-      // Simple high-contrast toggle by flipping a few CSS vars.
-      const root = document.documentElement;
-      const current = getComputedStyle(root).getPropertyValue("--bg").trim();
-      const light = current === "#f6f7fb";
+    <!-- Navigation -->
+    <nav class="border-b border-slate-800 bg-slate-900/80 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center gap-2">
+                    <div class="bg-red-600 p-1.5 rounded-lg">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    </div>
+                    <span class="text-xl font-bold tracking-tighter italic">CYBER<span class="text-red-500">TRACK</span></span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-400">
+                    <a href="#" class="hover:text-white transition">Browse</a>
+                    <a href="#" class="hover:text-white transition">Top 100</a>
+                    <a href="#" class="hover:text-white transition">Community</a>
+                    <a href="#" class="text-red-400">Upload</a>
+                </div>
 
-      if(!light){
-        root.style.setProperty("--bg", "#f6f7fb");
-        root.style.setProperty("--panel", "#ffffff");
-        root.style.setProperty("--panel2", "#ffffff");
-        root.style.setProperty("--text", "#111827");
-        root.style.setProperty("--muted", "#4b5563");
-        root.style.setProperty("--border", "rgba(17,24,39,.10)");
-        showToast("Light theme");
-      }else{
-        root.style.removeProperty("--bg");
-        root.style.removeProperty("--panel");
-        root.style.removeProperty("--panel2");
-        root.style.removeProperty("--text");
-        root.style.removeProperty("--muted");
-        root.style.removeProperty("--border");
-        showToast("Dark theme");
-      }
-    }
+                <div class="flex items-center gap-4">
+                    <div class="relative hidden sm:block">
+                        <input type="text" placeholder="Search torrents..." class="bg-slate-800 border-none rounded-full py-1.5 px-4 text-sm w-64 focus:ring-2 focus:ring-red-500 transition">
+                    </div>
+                    <button class="bg-slate-800 p-2 rounded-full hover:bg-slate-700 transition">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-    // Wire up UI
-    $("#copyRelease").addEventListener("click", () => copyText(listing.releaseName));
-    $("#copyTitle").addEventListener("click", () => copyText(listing.title + " (" + listing.year + ")"));
-    $("#copyJson").addEventListener("click", () => copyText(JSON.stringify(listing, null, 2)));
-    $("#toggleTheme").addEventListener("click", toggleTheme);
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        
+        <!-- Header Section -->
+        <div class="mb-8">
+            <nav class="flex text-xs text-slate-500 mb-4 uppercase tracking-widest font-bold">
+                <a href="#" class="hover:text-red-500">Movies</a>
+                <span class="mx-2">/</span>
+                <a href="#" class="hover:text-red-500">Blu-ray</a>
+                <span class="mx-2">/</span>
+                <span class="text-slate-300">The Terminator (1984)</span>
+            </nav>
+            <h1 class="text-2xl md:text-4xl font-extrabold text-white leading-tight">
+                The.Terminator.1984.1080p.Blu-ray.Remux.MPEG-2.LPCM.5.1-GHOST
+            </h1>
+            <div class="flex flex-wrap gap-4 mt-4 text-sm">
+                <span class="flex items-center bg-green-500/10 text-green-400 px-3 py-1 rounded-full border border-green-500/20 font-bold">
+                    <span class="status-dot bg-green-500"></span> 2,481 Seeders
+                </span>
+                <span class="flex items-center bg-blue-500/10 text-blue-400 px-3 py-1 rounded-full border border-blue-500/20 font-bold">
+                    <span class="status-dot bg-blue-500"></span> 142 Leechers
+                </span>
+                <span class="text-slate-400 flex items-center bg-slate-800/50 px-3 py-1 rounded-full">
+                    Size: 28.42 GB
+                </span>
+                <span class="text-slate-400 flex items-center bg-slate-800/50 px-3 py-1 rounded-full">
+                    Added: 2 days ago
+                </span>
+            </div>
+        </div>
 
-    $("#q").addEventListener("input", (e) => filterTables(e.target.value));
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <!-- Left Column: Media & Synopsis -->
+            <div class="lg:col-span-2 space-y-8">
+                
+                <!-- Poster & Quick Info -->
+                <div class="glass-card rounded-2xl overflow-hidden flex flex-col md:flex-row">
+                    <div class="md:w-1/3">
+                        <img src="https://placehold.co/600x900/1e293b/ef4444?text=THE+TERMINATOR+1984" alt="Movie Poster" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x900?text=Poster+Unavailable'">
+                    </div>
+                    <div class="p-6 md:w-2/3 flex flex-col">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h2 class="text-2xl font-bold text-white mb-1">The Terminator</h2>
+                                <p class="text-slate-400 italic">“In the Year of Darkness, 2029, the rulers of this planet devised the ultimate plan. They would reshape the Future by changing the Past.”</p>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-3xl font-black text-yellow-500">8.1</div>
+                                <div class="text-[10px] text-slate-500 font-bold uppercase">IMDB Rating</div>
+                            </div>
+                        </div>
 
-    // Initial render
-    renderDetails();
-  </script>
+                        <div class="grid grid-cols-2 gap-4 text-sm border-t border-slate-700/50 pt-4 mt-auto">
+                            <div>
+                                <span class="block text-slate-500 uppercase text-[10px] font-bold">Director</span>
+                                <span class="text-white font-semibold">James Cameron</span>
+                            </div>
+                            <div>
+                                <span class="block text-slate-500 uppercase text-[10px] font-bold">Runtime</span>
+                                <span class="text-white font-semibold">107 min</span>
+                            </div>
+                            <div>
+                                <span class="block text-slate-500 uppercase text-[10px] font-bold">Genre</span>
+                                <span class="text-white font-semibold">Action, Sci-Fi</span>
+                            </div>
+                            <div>
+                                <span class="block text-slate-500 uppercase text-[10px] font-bold">Language</span>
+                                <span class="text-white font-semibold">English (LPCM 5.1)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button id="magnetBtn" class="btn-magnet flex-1 py-4 rounded-xl flex items-center justify-center gap-3 font-bold text-lg">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9v3h3V9c0-2.21 1.79-4 4-4s4 1.79 4 4v3h3V9c0-3.87-3.13-7-7-7zm0 15c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm7-3h-1v-2c0-3.31-2.69-6-6-6s-6 2.69-6 6v2H5c-1.1 0-2 .9-2 2v5c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-5c0-1.1-.9-2-2-2z"/></svg>
+                        Magnet Download
+                    </button>
+                    <button class="flex-1 bg-slate-800 hover:bg-slate-700 py-4 rounded-xl flex items-center justify-center gap-3 font-bold text-lg border border-slate-700 transition">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                        Torrent File
+                    </button>
+                </div>
+
+                <!-- Technical Specs -->
+                <div class="glass-card rounded-2xl p-6">
+                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                        <svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                        Technical Specifications
+                    </h3>
+                    <div class="bg-slate-900/50 rounded-lg p-4 font-mono text-xs md:text-sm text-slate-300 overflow-x-auto whitespace-pre leading-relaxed">
+GENERAL INFO
+Filename.......: The.Terminator.1984.1080p.Blu-ray.Remux.MPEG-2.LPCM.5.1-GHOST.mkv
+Format.........: Matroska (MKV)
+File Size......: 28.42 GiB
+Duration.......: 01:47:12
+
+VIDEO INFO
+Codec ID.......: MPEG-2 Video
+Resolution.....: 1920x1080
+Aspect Ratio...: 16:9
+Frame Rate.....: 23.976 fps
+Bitrate........: 32.5 Mbps
+
+AUDIO INFO
+Audio #1.......: English LPCM 5.1 @ 4608 kbps
+Audio #2.......: English AC3 5.1 @ 640 kbps (Compatibility)
+
+SUBTITLES
+English (SDH), Spanish, French, German
+                    </div>
+                </div>
+
+                <!-- Plot -->
+                <div class="glass-card rounded-2xl p-6">
+                    <h3 class="text-xl font-bold mb-4">Synopsis</h3>
+                    <p class="text-slate-300 leading-relaxed">
+                        A cyborg assassin from 2029, known as a Terminator, is sent back in time to 1984 to kill Sarah Connor, whose unborn son will one day lead humanity in a war against Skynet, a hostile artificial intelligence. A human soldier named Kyle Reese is also sent back to protect Sarah, leading to a desperate chase across Los Angeles.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Right Column: Sidebar -->
+            <div class="space-y-6">
+                
+                <!-- Uploader Info -->
+                <div class="glass-card rounded-2xl p-6 border-l-4 border-red-500">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 rounded-full bg-slate-700 flex items-center justify-center text-xl font-bold text-white">G</div>
+                        <div>
+                            <div class="font-bold text-white flex items-center gap-1">
+                                GHOST
+                                <svg class="w-4 h-4 text-blue-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                            </div>
+                            <div class="text-xs text-slate-500 font-bold uppercase">Trusted VIP Uploader</div>
+                        </div>
+                    </div>
+                    <div class="space-y-2 text-sm text-slate-400">
+                        <div class="flex justify-between">
+                            <span>Uploads:</span>
+                            <span class="text-white">1,242</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Reputation:</span>
+                            <span class="text-green-500 font-bold">+18.4k</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Screenshots -->
+                <div class="glass-card rounded-2xl p-6">
+                    <h3 class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-4">Screenshots</h3>
+                    <div class="grid grid-cols-2 gap-2">
+                        <img src="https://placehold.co/400x225/0f172a/64748b?text=Screenshot+1" class="rounded-lg cursor-pointer hover:opacity-80 transition">
+                        <img src="https://placehold.co/400x225/0f172a/64748b?text=Screenshot+2" class="rounded-lg cursor-pointer hover:opacity-80 transition">
+                        <img src="https://placehold.co/400x225/0f172a/64748b?text=Screenshot+3" class="rounded-lg cursor-pointer hover:opacity-80 transition">
+                        <img src="https://placehold.co/400x225/0f172a/64748b?text=Screenshot+4" class="rounded-lg cursor-pointer hover:opacity-80 transition">
+                    </div>
+                </div>
+
+                <!-- Related Torrents -->
+                <div class="glass-card rounded-2xl p-6">
+                    <h3 class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-4">Similar Releases</h3>
+                    <div class="space-y-4">
+                        <div class="group cursor-pointer">
+                            <h4 class="text-sm font-semibold text-slate-300 group-hover:text-red-400 transition">Terminator.2.Judgment.Day.1991.REMASTERED.1080p.BluRay.x264</h4>
+                            <div class="flex gap-2 text-[10px] mt-1 text-slate-500 font-bold">
+                                <span class="text-green-500">S: 1.2k</span>
+                                <span>14.2 GB</span>
+                            </div>
+                        </div>
+                        <div class="group cursor-pointer">
+                            <h4 class="text-sm font-semibold text-slate-300 group-hover:text-red-400 transition">The.Terminator.1984.4K.HEVC.REMUX.HDR10-RARBG</h4>
+                            <div class="flex gap-2 text-[10px] mt-1 text-slate-500 font-bold">
+                                <span class="text-green-500">S: 842</span>
+                                <span>52.1 GB</span>
+                            </div>
+                        </div>
+                        <div class="group cursor-pointer">
+                            <h4 class="text-sm font-semibold text-slate-300 group-hover:text-red-400 transition">Aliens.1986.Special.Edition.1080p.BluRay.Remux-EPSiLON</h4>
+                            <div class="flex gap-2 text-[10px] mt-1 text-slate-500 font-bold">
+                                <span class="text-green-500">S: 412</span>
+                                <span>31.8 GB</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Comments Section -->
+        <div class="mt-12 lg:w-2/3">
+            <h3 class="text-2xl font-bold mb-6 flex items-center gap-2">
+                Comments 
+                <span class="bg-slate-800 text-slate-400 text-xs py-1 px-2 rounded ml-2">12</span>
+            </h3>
+            
+            <div class="space-y-6">
+                <!-- Single Comment -->
+                <div class="glass-card p-4 rounded-xl">
+                    <div class="flex justify-between mb-2">
+                        <div class="flex items-center gap-2">
+                            <span class="font-bold text-red-400 text-sm">cyber_punk99</span>
+                            <span class="text-[10px] text-slate-500">3 hours ago</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <button class="text-xs text-slate-500 hover:text-green-400">Upvote (+12)</button>
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-300">Fantastic remux. The LPCM audio track is incredible on a decent home theater setup. Thanks GHOST!</p>
+                </div>
+
+                <!-- Comment Input -->
+                <div class="bg-slate-900/50 p-4 rounded-xl border border-dashed border-slate-700">
+                    <textarea placeholder="Write a comment..." class="w-full bg-transparent border-none focus:ring-0 text-sm h-24 resize-none mb-2" id="commentArea"></textarea>
+                    <div class="flex justify-between items-center">
+                        <span class="text-[10px] text-slate-500 uppercase font-bold tracking-widest">Logged in as: User123</span>
+                        <button class="bg-red-600 hover:bg-red-700 text-white text-xs font-bold py-2 px-4 rounded-lg transition" onclick="document.getElementById('commentArea').value = ''">Post Comment</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-20 border-t border-slate-800 py-12 bg-slate-950">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <div class="flex justify-center items-center gap-2 mb-6">
+                <div class="bg-red-600 p-1.5 rounded-lg opacity-50">
+                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                </div>
+                <span class="text-sm font-bold tracking-tighter italic text-slate-500">CYBER<span class="text-slate-600">TRACK</span></span>
+            </div>
+            <div class="flex flex-wrap justify-center gap-6 text-xs text-slate-600 font-bold uppercase tracking-widest mb-8">
+                <a href="#" class="hover:text-red-500">DMCA</a>
+                <a href="#" class="hover:text-red-500">Privacy</a>
+                <a href="#" class="hover:text-red-500">Contact</a>
+                <a href="#" class="hover:text-red-500">RSS Feed</a>
+            </div>
+            <p class="text-[10px] text-slate-700 max-w-xl mx-auto uppercase">
+                Notice: We do not store any files on our server. We only index metadata and magnet links provided by users. Use at your own risk.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Toast Notification Container -->
+    <div id="toast" class="fixed bottom-8 right-8 bg-red-600 text-white px-6 py-3 rounded-full font-bold shadow-2xl opacity-0 transform translate-y-12 transition-all duration-300 pointer-events-none">
+        Magnet link copied to clipboard!
+    </div>
+
+    <script>
+        // Copy to clipboard function for Magnet button
+        document.getElementById('magnetBtn').addEventListener('click', function() {
+            const magnetLink = "magnet:?xt=urn:btih:8f3c7d6e5a4b3c2d1e0f9a8b7c6d5e4f3a2b1c0&dn=The.Terminator.1984.1080p.Blu-ray.Remux.MPEG-2.LPCM.5.1-GHOST";
+            
+            // Create temporary input
+            const tempInput = document.createElement("input");
+            tempInput.value = magnetLink;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            
+            try {
+                document.execCommand('copy');
+                showToast();
+            } catch (err) {
+                console.error('Failed to copy', err);
+            }
+            
+            document.body.removeChild(tempInput);
+        });
+
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.remove('opacity-0', 'translate-y-12');
+            toast.classList.add('opacity-100', 'translate-y-0');
+            
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-12');
+                toast.classList.remove('opacity-100', 'translate-y-0');
+            }, 3000);
+        }
+    </script>
 </body>
 </html>
