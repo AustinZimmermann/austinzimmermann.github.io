@@ -1,206 +1,779 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>X-Men: The Last Stand (Blu-ray) - 20th Century Fox Home Entertainment</title>
-    
-    <style>
-        body {
-            font-family: Helvetica, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #002244;
-            color: #fff;
-            padding: 20px;
-            text-align: center;
-            border-bottom: 4px solid #d4af37;
-        }
-        .container {
-            max-width: 1000px;
-            margin: 30px auto;
-            background: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            display: flex;
-            flex-wrap: wrap;
-            gap: 40px;
-        }
-        .image-gallery {
-            flex: 1;
-            min-width: 300px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .main-image {
-            width: 100%;
-            max-width: 350px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            margin-bottom: 15px;
-        }
-        .thumbnails {
-            display: flex;
-            gap: 15px;
-        }
-        .thumbnails img {
-            width: 80px;
-            cursor: pointer;
-            border: 2px solid transparent;
-            border-radius: 4px;
-            transition: border 0.2s ease;
-        }
-        .thumbnails img:hover {
-            border: 2px solid #002244;
-        }
-        .product-details {
-            flex: 2;
-            min-width: 300px;
-        }
-        .product-details h1 {
-            font-size: 2.2em;
-            margin-top: 0;
-            color: #002244;
-        }
-        .price {
-            font-size: 1.5em;
-            color: #b12704;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-        .specs {
-            list-style-type: none;
-            padding: 0;
-            margin-bottom: 20px;
-        }
-        .specs li {
-            padding: 8px 0;
-            border-bottom: 1px solid #eee;
-        }
-        .specs li strong {
-            display: inline-block;
-            width: 150px;
-        }
-        .description {
-            line-height: 1.6;
-            margin-top: 20px;
-        }
-        .btn-buy {
-            background-color: #d4af37;
-            color: #002244;
-            border: none;
-            padding: 15px 30px;
-            font-size: 1.1em;
-            font-weight: bold;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background 0.3s;
-        }
-        .btn-buy:hover {
-            background-color: #c19b28;
-        }
-        footer {
-            text-align: center;
-            padding: 20px;
-            font-size: 0.9em;
-            color: #777;
-        }
-    </style>
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org/",
-      "@type": "Product",
-      "name": "X-Men: The Last Stand (Blu-ray)",
-      "image": [
-        "https://images.static-bluray.com/products/7/208_2_original.jpg",
-        "https://images.static-bluray.com/products/7/208_3_original.jpg"
-      ],
-      "description": "Experience the awesome power of The X-Men’s epic, final battle. Join well-known mutant heroes and villains as they meet a cadre of all-new warriors in the most spectacular chapter of the X-Men motion picture trilogy.",
-      "brand": {
-        "@type": "Brand",
-        "name": "20th Century Fox Home Entertainment"
-      },
-      "releaseDate": "2006-11-14",
-      "offers": {
-        "@type": "Offer",
-        "url": "https://www.foxconnect.com/x-men-the-last-stand-bluray",
-        "priceCurrency": "USD",
-        "price": "39.99",
-        "itemCondition": "https://schema.org/NewCondition",
-        "availability": "https://schema.org/InStock"
-      }
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=7" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>20th Century Fox Home Entertainment - X-Men: The Last Stand (Blu-ray)</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #7a8087;
+      font: 12px/1.35 Tahoma, Arial, Helvetica, sans-serif;
+      color: #222;
     }
-    </script>
+
+    a { color: #003399; text-decoration: underline; }
+    img { border: 0; }
+
+    #browser {
+      width: 1180px;
+      margin: 22px auto;
+      border: 1px solid #5d656d;
+      background: #d4d0c8;
+      box-shadow: 0 2px 8px rgba(0,0,0,.35);
+    }
+
+    .titlebar {
+      height: 28px;
+      color: #fff;
+      font-weight: bold;
+      background: linear-gradient(#0a246a, #a6caf0);
+      border-bottom: 1px solid #6d87b1;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .titlebar .caption {
+      padding: 6px 12px;
+      white-space: nowrap;
+      font-size: 12px;
+      text-shadow: 0 1px 0 rgba(0,0,0,.25);
+    }
+
+    .window-buttons {
+      position: absolute;
+      top: 4px;
+      right: 6px;
+    }
+
+    .window-buttons span {
+      display: inline-block;
+      width: 20px;
+      height: 18px;
+      margin-left: 2px;
+      border: 1px solid #1f3f70;
+      background: #dbe9f7;
+      color: #113366;
+      text-align: center;
+      line-height: 16px;
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      font-weight: bold;
+    }
+
+    .menubar,
+    .toolbar,
+    .statusbar {
+      background: #ece9d8;
+      border-bottom: 1px solid #b8b4a8;
+      color: #000;
+    }
+
+    .menubar { padding: 4px 10px; }
+    .menubar span { margin-right: 18px; }
+
+    .toolbar {
+      padding: 5px 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .toolbtn {
+      border: 1px solid #aca899;
+      background: linear-gradient(#ffffff, #d6d3ce);
+      padding: 3px 7px;
+      min-width: 54px;
+      text-align: center;
+      color: #333;
+    }
+
+    .address-wrap {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      width: 100%;
+      margin-top: 2px;
+    }
+
+    .label {
+      color: #333;
+      font-size: 11px;
+      padding-left: 2px;
+    }
+
+    .addressbar {
+      flex: 1;
+      border: 1px solid #7f9db9;
+      background: #fff;
+      padding: 4px 6px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+    }
+
+    .go {
+      border: 1px solid #aca899;
+      background: linear-gradient(#ffffff, #d6d3ce);
+      padding: 3px 12px;
+      font-weight: bold;
+    }
+
+    #viewport {
+      background: #fff;
+      min-height: 900px;
+      border-top: 1px solid #f5f5f5;
+    }
+
+    .site-top {
+      background: #0b1f50 url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="80"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="%230d3b8e"/><stop offset="1" stop-color="%2309142f"/></linearGradient></defs><rect width="1200" height="80" fill="url(%23g)"/><circle cx="980" cy="18" r="2" fill="rgba(255,255,255,0.55)"/><circle cx="1000" cy="30" r="1.5" fill="rgba(255,255,255,0.45)"/><circle cx="920" cy="22" r="1.3" fill="rgba(255,255,255,0.45)"/></svg>') repeat-x;
+      color: #fff;
+      border-bottom: 4px solid #b88a17;
+    }
+
+    .site-top-inner {
+      width: 980px;
+      margin: 0 auto;
+      padding: 18px 0 14px;
+      position: relative;
+    }
+
+    .brand {
+      font: bold 28px Georgia, 'Times New Roman', serif;
+      letter-spacing: .3px;
+      text-transform: uppercase;
+      color: #f3d77b;
+      text-shadow: 0 1px 0 #000;
+    }
+
+    .tagline {
+      font-size: 11px;
+      margin-top: 2px;
+      color: #d6def8;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .searchbox {
+      position: absolute;
+      right: 0;
+      top: 22px;
+      font-size: 11px;
+    }
+
+    .searchbox input {
+      width: 200px;
+      border: 1px solid #999;
+      padding: 3px 5px;
+      font: 11px Tahoma, Arial, sans-serif;
+    }
+
+    .searchbox button {
+      border: 1px solid #7d5a00;
+      background: #f1cb58;
+      padding: 3px 8px;
+      font: bold 11px Tahoma, Arial, sans-serif;
+      cursor: pointer;
+    }
+
+    .main-nav {
+      background: #2d4f9d;
+      border-top: 1px solid rgba(255,255,255,.22);
+      border-bottom: 1px solid #15306b;
+    }
+
+    .main-nav .inner {
+      width: 980px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+
+    .main-nav a {
+      display: inline-block;
+      padding: 8px 14px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      border-right: 1px solid #4065b8;
+    }
+
+    .main-nav a.active { background: #f3d77b; color: #1f2d4a; }
+
+    .page {
+      width: 980px;
+      margin: 0 auto;
+      padding: 10px 0 28px;
+    }
+
+    .crumbs {
+      font-size: 11px;
+      color: #666;
+      margin-bottom: 10px;
+    }
+
+    .hero {
+      border: 1px solid #b9c2d0;
+      background: #f7f8fb;
+      margin-bottom: 12px;
+    }
+
+    .hero-header {
+      background: linear-gradient(#fdfefe, #dbe4f2);
+      border-bottom: 1px solid #bcc8db;
+      padding: 10px 12px;
+      font: bold 22px Georgia, 'Times New Roman', serif;
+      color: #27395d;
+    }
+
+    .hero-body {
+      display: grid;
+      grid-template-columns: 255px 1fr 220px;
+      gap: 14px;
+      padding: 14px;
+    }
+
+    .cover-box {
+      border: 1px solid #98a7c2;
+      background: #fff;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .cover-box img {
+      width: 208px;
+      box-shadow: 0 1px 4px rgba(0,0,0,.25);
+    }
+
+    .zoom-note {
+      margin-top: 8px;
+      font-size: 11px;
+      color: #666;
+    }
+
+    .details h2 {
+      margin: 0 0 6px;
+      font-size: 16px;
+      color: #24385a;
+    }
+
+    .meta-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0 14px;
+      font-size: 12px;
+    }
+
+    .meta-table th,
+    .meta-table td {
+      padding: 6px 7px;
+      border-bottom: 1px solid #d6dce7;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    .meta-table th {
+      width: 145px;
+      background: #eef2f8;
+      color: #2b3b58;
+      font-weight: bold;
+    }
+
+    .description {
+      margin: 0 0 12px;
+      color: #333;
+    }
+
+    .tabbar {
+      margin: 12px 0 0;
+      border-bottom: 1px solid #b8c3d8;
+    }
+
+    .tabbar a {
+      display: inline-block;
+      padding: 7px 10px;
+      margin-right: 4px;
+      border: 1px solid #b8c3d8;
+      border-bottom: 0;
+      background: #edf2fa;
+      text-decoration: none;
+      color: #27406c;
+      font-weight: bold;
+    }
+
+    .tabbar a.active {
+      background: #fff;
+      position: relative;
+      top: 1px;
+    }
+
+    .buybox {
+      border: 1px solid #c5b588;
+      background: #fff7de;
+      padding: 12px;
+      font-size: 12px;
+      height: fit-content;
+    }
+
+    .price {
+      font: bold 24px Georgia, 'Times New Roman', serif;
+      color: #8d1b10;
+      margin: 6px 0;
+    }
+
+    .cta,
+    .small-cta {
+      display: block;
+      width: 100%;
+      border: 1px solid #8d6a0c;
+      background: linear-gradient(#ffd978, #d6a621);
+      color: #2d2200;
+      text-decoration: none;
+      text-align: center;
+      padding: 8px 0;
+      font-weight: bold;
+      margin: 8px 0 0;
+    }
+
+    .small-cta {
+      background: linear-gradient(#fefefe, #ddd7c8);
+      border: 1px solid #b6aa8d;
+      padding: 6px 0;
+      color: #333;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 680px 286px;
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    .panel {
+      border: 1px solid #c6cfde;
+      background: #fff;
+      margin-bottom: 12px;
+    }
+
+    .panel h3 {
+      margin: 0;
+      padding: 8px 10px;
+      background: linear-gradient(#fdfefe, #dbe4f2);
+      border-bottom: 1px solid #c6cfde;
+      color: #27395d;
+      font-size: 14px;
+    }
+
+    .panel .body {
+      padding: 10px;
+    }
+
+    .spec-grid {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    .spec-grid td {
+      padding: 6px 7px;
+      border-bottom: 1px solid #e2e7ef;
+      vertical-align: top;
+    }
+
+    .spec-grid td.label {
+      width: 170px;
+      background: #f4f6fa;
+      font-weight: bold;
+      color: #34445f;
+      padding-left: 7px;
+    }
+
+    .bonus-list,
+    .sidebar-list {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .bonus-list li,
+    .sidebar-list li {
+      margin: 0 0 6px;
+    }
+
+    .related-item {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 10px;
+      border-bottom: 1px dotted #ccd4e1;
+      padding-bottom: 10px;
+    }
+
+    .thumb {
+      width: 52px;
+      height: 72px;
+      border: 1px solid #aab5c7;
+      background: linear-gradient(#2150af, #0d1d4d);
+      position: relative;
+      overflow: hidden;
+      color: #fff;
+      text-align: center;
+      font-size: 10px;
+      font-weight: bold;
+      line-height: 1.15;
+      padding-top: 8px;
+      box-sizing: border-box;
+    }
+
+    .thumb:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 16px;
+      background: rgba(0,0,0,.22);
+    }
+
+    .footer {
+      width: 980px;
+      margin: 0 auto;
+      padding: 18px 0 28px;
+      color: #666;
+      font-size: 11px;
+      text-align: center;
+    }
+
+    .statusbar {
+      padding: 4px 8px;
+      font-size: 11px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .muted { color: #666; }
+    .rating { color: #9d7500; font-weight: bold; }
+    .badge {
+      display: inline-block;
+      padding: 1px 5px;
+      border: 1px solid #9aa9c3;
+      background: #edf2fa;
+      color: #30425f;
+      font-size: 10px;
+      font-weight: bold;
+      margin-left: 5px;
+    }
+
+    .promo {
+      padding: 8px;
+      border: 1px solid #d8d8d8;
+      background: #f9f9f9;
+      font-size: 11px;
+      color: #444;
+    }
+
+    .disclaimer {
+      margin-top: 10px;
+      font-size: 11px;
+      color: #555;
+      background: #fbfbfb;
+      border: 1px dotted #cfcfcf;
+      padding: 8px;
+    }
+  </style>
 </head>
 <body>
-
-    <header>
-        <h2>20th Century Fox Home Entertainment</h2>
-    </header>
-
-    <div class="container">
-        <div class="image-gallery">
-            <img id="mainProductImage" class="main-image" src="https://images.static-bluray.com/products/7/208_2_original.jpg" alt="X-Men: The Last Stand Blu-ray Front Cover">
-            <div class="thumbnails">
-                <img src="https://images.static-bluray.com/products/7/208_2_original.jpg" alt="Front Cover Thumbnail" onclick="changeImage('https://images.static-bluray.com/products/7/208_2_original.jpg')">
-                <img src="https://images.static-bluray.com/products/7/208_3_original.jpg" alt="Back Cover Thumbnail" onclick="changeImage('https://images.static-bluray.com/products/7/208_3_original.jpg')">
-            </div>
-        </div>
-
-        <div class="product-details">
-            <h1>X-Men: The Last Stand (Blu-ray)</h1>
-            <div class="price">$39.99 SRP</div>
-            
-            <ul class="specs">
-                <li><strong>Studio:</strong> 20th Century Fox Home Entertainment</li>
-                <li><strong>Format:</strong> Blu-ray Disc</li>
-                <li><strong>Release Date:</strong> November 14, 2006</li>
-                <li><strong>Video:</strong> 1080p High Definition / 2.40:1</li>
-                <li><strong>Audio:</strong> 
-                    <ul>
-                        <li>English 6.1 DTS-HD Master Audio</li>
-                        <li>French 5.1 Dolby Digital</li>
-                        <li>Spanish 5.1 Dolby Digital</li>
-                    </ul>
-                <li><strong>Subtitles:</strong> English, Spansih</li>
-                <li><strong>Rating:</strong> PG-13</li>
-            </ul>
-
-            <button class="btn-buy">Add to Cart</button>
-
-            <div class="description">
-                <h3>Synopsis</h3>
-                <p>Experience the awesome power of The X-Men’s epic, final battle. Join well-known mutant heroes and villains, and meet a cadre of all-new warriors—including Angel, Beast, Juggernaut and Colossus—in this thrilling, explosive adventure!</p>
-                <p>After a controversial “cure” is discovered, mutants can choose to retain their superhuman abilities or give up their unique gifts and become “normal”. When peaceful mutant leader Charles Xavier (Patrick Stewart) clashes with his militant counterpart, Magneto (Ian McKellen), the battle lines are drawn for the war to end all wars.</p>
-            </div>
-        </div>
+  <div id="browser">
+    <div class="titlebar">
+      <div class="caption">20th Century Fox Home Entertainment - X-Men: The Last Stand (Blu-ray) - Microsoft Internet Explorer</div>
+      <div class="window-buttons"><span>—</span><span>□</span><span>×</span></div>
+    </div>
+    <div class="menubar"><span>File</span><span>Edit</span><span>View</span><span>Favorites</span><span>Tools</span><span>Help</span></div>
+    <div class="toolbar">
+      <div class="toolbtn">Back</div>
+      <div class="toolbtn">Forward</div>
+      <div class="toolbtn">Stop</div>
+      <div class="toolbtn">Refresh</div>
+      <div class="toolbtn">Home</div>
+      <div class="address-wrap">
+        <span class="label">Address</span>
+        <div class="addressbar" id="addressBar">http://www.foxhome.com/details.php?sku=22454339579</div>
+        <button class="go" id="goBtn">Go</button>
+      </div>
     </div>
 
-    <footer>
-        &copy;2006 Twentieth Century Fox Home Entertainment. All Rights Reserved.
-    </footer>
+    <div id="viewport">
+      <div class="site-top">
+        <div class="site-top-inner">
+          <div class="brand">20th Century Fox</div>
+          <div class="tagline">Home Entertainment</div>
+          <div class="searchbox">
+            <input id="searchInput" type="text" value="Search titles, actors, genres" />
+            <button id="searchBtn">Search</button>
+          </div>
+        </div>
+      </div>
 
-    <script>
-        function changeImage(imageUrl) {
-            const mainImage = document.getElementById('mainProductImage');
-            mainImage.src = imageUrl;
-            
-            // Basic accessibility enhancement: Update alt text based on selected image
-            if(imageUrl.includes("208_2")) {
-                mainImage.alt = "X-Men: The Last Stand Blu-ray Front Cover";
-            } else {
-                mainImage.alt = "X-Men: The Last Stand Blu-ray Back Cover";
-            }
+      <div class="main-nav">
+        <div class="inner">
+          <a href="#" class="active">DVD &amp; Blu-ray</a>
+          <a href="#">New Releases</a>
+          <a href="#">Coming Soon</a>
+          <a href="#">Catalog</a>
+          <a href="#">Promotions</a>
+          <a href="#">Support</a>
+        </div>
+      </div>
+
+      <div class="page">
+        <div class="crumbs">Home &gt; DVD &amp; Blu-ray &gt; Action / Sci-Fi &gt; X-Men: The Last Stand <span class="badge">Blu-ray Disc</span></div>
+
+        <div class="hero">
+          <div class="hero-header">X-Men: The Last Stand (Blu-ray)</div>
+          <div class="hero-body">
+            <div class="cover-box">
+              <img src="https://images.static-bluray.com/movies/covers/208_front.jpg" alt="X-Men: The Last Stand Blu-ray cover" />
+              <div class="zoom-note"><a href="#" id="zoomLink">Click image to enlarge</a></div>
+            </div>
+
+            <div class="details">
+              <h2>The battle lines are drawn.</h2>
+              <p class="description">
+                A pharmaceutical company announces that it has developed a "cure" for the mutant gene, and the X-Men must decide whether mutation is a gift or a disease. When opposing philosophies collide, Professor Xavier and Magneto lead their followers toward one last stand.
+              </p>
+
+              <table class="meta-table">
+                <tr><th>Studio</th><td>20th Century Fox Home Entertainment</td></tr>
+                <tr><th>Street Date</th><td>November 14, 2006</td></tr>
+                <tr><th>Suggested Retail</th><td>$39.98</td></tr>
+                <tr><th>Running Time</th><td>104 minutes</td></tr>
+                <tr><th>Rating</th><td>PG-13</td></tr>
+                <tr><th>Genre</th><td>Action / Adventure / Sci-Fi / Comic Book</td></tr>
+                <tr><th>Format</th><td>Blu-ray Disc, Widescreen 2.35:1, 1080p High Definition</td></tr>
+                <tr><th>Audio</th><td>English 6.1 DTS-HD Master Audio; French 5.1 Dolby Digital; Spanish 5.1 Dolby Digital</td></tr>
+                <tr><th>Subtitles</th><td>English, Spanish</td></tr>
+                <tr><th>UPC</th><td>024543395799</td></tr>
+              </table>
+
+              <div class="tabbar">
+                <a href="#overview" class="tab active" data-tab="overview">Overview</a>
+                <a href="#specs" class="tab" data-tab="specs">Specs</a>
+                <a href="#extras" class="tab" data-tab="extras">Special Features</a>
+              </div>
+            </div>
+
+            <div class="buybox">
+              <div><strong>Now Available on Blu-ray Disc</strong></div>
+              <div class="price">$39.98</div>
+              <div>Item #: 22454339579</div>
+              <div class="muted" style="margin-top:6px;">Availability: In Stock</div>
+              <a class="cta" href="#">Add to Cart</a>
+              <a class="small-cta" href="#">Add to Wish List</a>
+              <a class="small-cta" href="#">Email a Friend</a>
+              <div class="disclaimer">This simulator recreates the style of a late-2006 studio product page and includes period-appropriate layout, copy blocks, navigation, and merchandising conventions.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="split">
+          <div>
+            <div class="panel tab-panel" id="overview" style="display:block;">
+              <h3>Synopsis</h3>
+              <div class="body">
+                <p>
+                  The controversial "cure" creates a rift in the mutant community, and the conflict escalates when Magneto rallies an army to oppose humanity's attempt to change mutantkind forever. With loyalties tested and destinies rewritten, the X-Men face their most dangerous and emotional conflict yet.
+                </p>
+                <p>
+                  Directed by Brett Ratner and starring Hugh Jackman, Halle Berry, Ian McKellen, Patrick Stewart, Famke Janssen, Kelsey Grammer, Anna Paquin, Rebecca Romijn, Shawn Ashmore and Elliot Page.
+                </p>
+                <div class="promo">
+                  Experience one of Fox's early Blu-ray releases in a period-inspired storefront presentation, complete with high-definition branding, classic category rails, and an Internet Explorer window shell.
+                </div>
+              </div>
+            </div>
+
+            <div class="panel tab-panel" id="specs" style="display:none;">
+              <h3>Disc Specifications</h3>
+              <div class="body">
+                <table class="spec-grid">
+                  <tr><td class="label">Disc Format</td><td>Blu-ray Disc (Region A)</td></tr>
+                  <tr><td class="label">Video</td><td>1080p High Definition / AVC (MPEG-4)</td></tr>
+                  <tr><td class="label">Aspect Ratio</td><td>2.35:1 Widescreen</td></tr>
+                  <tr><td class="label">Audio</td><td>English 6.1 DTS-HD Master Audio; French Dolby Digital 5.1; Spanish Dolby Digital 5.1</td></tr>
+                  <tr><td class="label">Closed Captioning</td><td>English</td></tr>
+                  <tr><td class="label">Subtitles</td><td>English, Spanish</td></tr>
+                  <tr><td class="label">Language</td><td>English / French / Spanish</td></tr>
+                  <tr><td class="label">Packaging</td><td>Keep case with Blu-ray blue banner artwork</td></tr>
+                  <tr><td class="label">Catalog Number</td><td>22454339579</td></tr>
+                  <tr><td class="label">UPC</td><td>024543395799</td></tr>
+                </table>
+              </div>
+            </div>
+
+            <div class="panel tab-panel" id="extras" style="display:none;">
+              <h3>Special Features</h3>
+              <div class="body">
+                <ul class="bonus-list">
+                  <li>Commentary by Brett Ratner, Simon Kinberg and Zak Penn</li>
+                  <li>Commentary by producers Lauren Shuler Donner, Ralph Winter and Avi Arad</li>
+                  <li>Deleted scenes</li>
+                  <li>Alternative endings</li>
+                  <li>Featurettes and behind-the-scenes material</li>
+                  <li>High-definition supplemental content presented in AVC</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="panel">
+              <h3>Customers Also Viewed</h3>
+              <div class="body">
+                <div class="related-item">
+                  <div class="thumb">X-MEN</div>
+                  <div><a href="#">X-Men 1.5</a><br /><span class="rating">★★★★☆</span><br /><span class="muted">DVD / Collector's Edition</span></div>
+                </div>
+                <div class="related-item">
+                  <div class="thumb">X2</div>
+                  <div><a href="#">X2: X-Men United</a><br /><span class="rating">★★★★☆</span><br /><span class="muted">DVD / Action Sci-Fi</span></div>
+                </div>
+                <div class="related-item">
+                  <div class="thumb">F4</div>
+                  <div><a href="#">Fantastic Four</a><br /><span class="rating">★★★☆☆</span><br /><span class="muted">Blu-ray Disc</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel">
+              <h3>Browse Categories</h3>
+              <div class="body">
+                <ul class="sidebar-list">
+                  <li><a href="#">Action &amp; Adventure</a></li>
+                  <li><a href="#">Sci-Fi &amp; Fantasy</a></li>
+                  <li><a href="#">Comic Book Movies</a></li>
+                  <li><a href="#">Blu-ray New Releases</a></li>
+                  <li><a href="#">Gift Ideas</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="panel">
+              <h3>System Notes</h3>
+              <div class="body">
+                <div class="muted">Recommended browser: Internet Explorer 6 or later on Windows.</div>
+                <div class="muted" style="margin-top:8px;">Best viewed at 1024 x 768 resolution or higher.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        © 2006 Twentieth Century Fox Home Entertainment LLC. All rights reserved. &nbsp;|&nbsp; Terms of Use &nbsp;|&nbsp; Privacy Policy &nbsp;|&nbsp; Contact Us
+      </div>
+    </div>
+
+    <div class="statusbar">
+      <div id="statusText">Done</div>
+      <div>Internet | Protected Mode: Off</div>
+    </div>
+  </div>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "X-Men: The Last Stand (Blu-ray)",
+    "image": [
+      "https://images.static-bluray.com/movies/covers/208_front.jpg"
+    ],
+    "description": "Blu-ray release of the 2006 film X-Men: The Last Stand from 20th Century Fox Home Entertainment.",
+    "brand": {
+      "@type": "Brand",
+      "name": "20th Century Fox Home Entertainment"
+    },
+    "sku": "22454339579",
+    "gtin12": "024543395799",
+    "category": "Blu-ray Disc",
+    "offers": {
+      "@type": "Offer",
+      "priceCurrency": "USD",
+      "price": "39.98",
+      "availability": "https://schema.org/InStock",
+      "url": "http://www.foxhome.com/details.php?sku=22454339579"
+    },
+    "isRelatedTo": {
+      "@type": "Movie",
+      "name": "X-Men: The Last Stand",
+      "datePublished": "2006-05-26",
+      "director": {
+        "@type": "Person",
+        "name": "Brett Ratner"
+      },
+      "actor": [
+        { "@type": "Person", "name": "Hugh Jackman" },
+        { "@type": "Person", "name": "Halle Berry" },
+        { "@type": "Person", "name": "Ian McKellen" },
+        { "@type": "Person", "name": "Patrick Stewart" }
+      ],
+      "duration": "PT104M",
+      "contentRating": "PG-13"
+    }
+  }
+  </script>
+
+  <script>
+    (function () {
+      var tabs = document.getElementsByClassName('tab');
+      var panels = document.getElementsByClassName('tab-panel');
+      var statusText = document.getElementById('statusText');
+
+      function showTab(targetId) {
+        for (var i = 0; i < tabs.length; i++) {
+          tabs[i].className = tabs[i].className.replace(' active', '');
         }
-    </script>
+        for (var j = 0; j < panels.length; j++) {
+          panels[j].style.display = 'none';
+        }
+        document.getElementById(targetId).style.display = 'block';
+      }
 
+      for (var i = 0; i < tabs.length; i++) {
+        tabs[i].onclick = function (e) {
+          if (e && e.preventDefault) e.preventDefault();
+          this.className += ' active';
+          showTab(this.getAttribute('data-tab'));
+          statusText.innerHTML = 'Opened ' + this.innerHTML + ' section';
+          return false;
+        };
+      }
+
+      document.getElementById('searchBtn').onclick = function () {
+        var value = document.getElementById('searchInput').value;
+        statusText.innerHTML = 'Searching for: ' + value;
+        alert('Search results are not connected in this simulator.\n\nQuery: ' + value);
+      };
+
+      document.getElementById('goBtn').onclick = function () {
+        statusText.innerHTML = 'Navigating to ' + document.getElementById('addressBar').innerHTML;
+        alert('This is a static simulator of a late-2006 product page.');
+      };
+
+      document.getElementById('zoomLink').onclick = function (e) {
+        if (e && e.preventDefault) e.preventDefault();
+        var img = document.querySelector('.cover-box img');
+        if (img.style.width === '320px') {
+          img.style.width = '208px';
+          statusText.innerHTML = 'Image returned to standard size';
+        } else {
+          img.style.width = '320px';
+          statusText.innerHTML = 'Image enlarged';
+        }
+        return false;
+      };
+    })();
+  </script>
 </body>
 </html>
