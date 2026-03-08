@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cars 3 | Disney+</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #040714;
+            color: #f9f9f9;
+            overflow-x: hidden;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(to right, #040714 10%, rgba(4, 7, 20, 0.8) 30%, rgba(4, 7, 20, 0) 60%),
+                        linear-gradient(to top, #040714 5%, rgba(4, 7, 20, 0) 30%);
+        }
+
+        .btn-primary {
+            background-color: #f9f9f9;
+            color: #040714;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .btn-primary:hover {
+            background-color: #c0c0c0;
+            transform: scale(1.05);
+        }
+
+        .btn-secondary {
+            background-color: rgba(0, 0, 0, 0.6);
+            border: 1.5px solid #f9f9f9;
+            color: #f9f9f9;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .btn-secondary:hover {
+            background-color: #f9f9f9;
+            color: #040714;
+            transform: scale(1.05);
+        }
+
+        .nav-link {
+            position: relative;
+            color: #f9f9f9;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .nav-link:hover {
+            opacity: 1;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #f9f9f9;
+            transition: width 0.2s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #040714;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #31343e;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4a4e5a;
+        }
+    </style>
+
+    <!-- Structured Data: JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Movie",
+      "name": "Cars 3",
+      "image": "https://image.tmdb.org/t/p/original/4mlS1MitcOqdPLhxEFyk9Qwf5rr.jpg",
+      "description": "Blindsided by a new generation of blazing-fast racers, the legendary Lightning McQueen is suddenly pushed out of the sport he loves. To get back in the game, he will need the help of an eager young race technician with her own plan to win, inspiration from the late Fabulous Hudson Hornet, and a few unexpected turns.",
+      "dateCreated": "2017-06-16",
+      "director": {
+        "@type": "Person",
+        "name": "Brian Fee"
+      },
+      "duration": "PT1H42M",
+      "genre": ["Animation", "Family", "Adventure", "Comedy"],
+      "contentRating": "G",
+      "offers": {
+        "@type": "Offer",
+        "url": "https://www.disneyplus.com/movies/cars-3/3RIn6VnN0E8f",
+        "offeredBy": {
+          "@type": "Organization",
+          "name": "Disney+"
+        }
+      }
+    }
+    </script>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 w-full z-50 px-8 py-4 flex items-center justify-between bg-transparent transition-colors duration-300" id="main-nav">
+        <div class="flex items-center space-x-10">
+            <a href="#">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Disney%2B_logo.svg/1280px-Disney%2B_logo.svg.png" 
+                     alt="Disney+" 
+                     class="h-12"
+                     onerror="this.src='https://placehold.co/120x60/000000/ffffff?text=Disney+'">
+            </a>
+            <div class="hidden lg:flex space-x-6 uppercase tracking-widest text-xs font-bold">
+                <a href="#" class="nav-link flex items-center"><span class="mr-2">🏠</span> Home</a>
+                <a href="#" class="nav-link flex items-center"><span class="mr-2">🔍</span> Search</a>
+                <a href="#" class="nav-link flex items-center"><span class="mr-2">➕</span> Watchlist</a>
+                <a href="#" class="nav-link flex items-center"><span class="mr-2">⭐</span> Originals</a>
+                <a href="#" class="nav-link flex items-center"><span class="mr-2">🎬</span> Movies</a>
+                <a href="#" class="nav-link flex items-center"><span class="mr-2">📺</span> Series</a>
+            </div>
+        </div>
+        <div class="flex items-center">
+            <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-sm font-bold border-2 border-transparent hover:border-white cursor-pointer transition-all">
+                LM
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative w-full h-screen">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://image.tmdb.org/t/p/original/4mlS1MitcOqdPLhxEFyk9Qwf5rr.jpg" 
+                 alt="Cars 3 Hero" 
+                 class="w-full h-full object-cover object-center">
+            <div class="absolute inset-0 hero-gradient"></div>
+        </div>
+
+        <!-- Content Overlay -->
+        <div class="relative z-10 h-full flex flex-col justify-center px-8 md:px-16 lg:px-24 max-w-4xl">
+            <!-- Animated Title Logo Area (Mocked with Text if logo not separate) -->
+            <div class="mb-6 opacity-0 translate-y-4 transition-all duration-700 delay-300" id="hero-content">
+                <h1 class="text-6xl md:text-8xl font-black italic tracking-tighter mb-2 uppercase">Cars 3</h1>
+                <div class="flex items-center space-x-3 text-sm md:text-base font-semibold opacity-80 mb-6">
+                    <span class="bg-gray-700 px-2 py-0.5 rounded">G</span>
+                    <span>2017</span>
+                    <span>•</span>
+                    <span>1h 42m</span>
+                    <span>•</span>
+                    <span>Animation, Family, Comedy</span>
+                </div>
+                
+                <p class="text-lg md:text-xl leading-relaxed opacity-90 mb-8 max-w-2xl">
+                    Blindsided by a new generation of blazing-fast racers, the legendary Lightning McQueen is suddenly pushed out of the sport he loves. To get back in the game, he'll need the help of an eager young race technician.
+                </p>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-wrap gap-4">
+                    <button class="btn-primary flex items-center px-8 py-3 rounded text-lg font-bold uppercase tracking-widest">
+                        <svg class="w-6 h-6 mr-2 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        Play
+                    </button>
+                    <button class="btn-secondary flex items-center px-8 py-3 rounded text-lg font-bold uppercase tracking-widest">
+                        Trailer
+                    </button>
+                    <button class="w-12 h-12 rounded-full border-2 border-white flex items-center justify-center bg-black bg-opacity-40 hover:bg-white hover:text-black transition-all">
+                        <span class="text-2xl font-light">＋</span>
+                    </button>
+                    <button class="w-12 h-12 rounded-full border-2 border-white flex items-center justify-center bg-black bg-opacity-40 hover:bg-white hover:text-black transition-all">
+                        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92z"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Sections -->
+    <main class="relative z-10 px-8 md:px-16 -mt-20 pb-20">
+        
+        <!-- Suggestions Carousel -->
+        <section class="mb-12">
+            <h2 class="text-xl font-semibold mb-4 tracking-wider opacity-80">SUGGESTED FOR YOU</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                <!-- Card 1 -->
+                <div class="relative group cursor-pointer overflow-hidden rounded-lg border-2 border-transparent hover:border-white hover:scale-105 transition-all duration-300 shadow-2xl">
+                    <img src="https://image.tmdb.org/t/p/w500/vD76h3W6I6mCdf5Y0qH2K8T0J4x.jpg" alt="Cars" class="w-full h-auto" onerror="this.src='https://placehold.co/300x450/111/fff?text=Cars'">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all"></div>
+                </div>
+                <!-- Card 2 -->
+                <div class="relative group cursor-pointer overflow-hidden rounded-lg border-2 border-transparent hover:border-white hover:scale-105 transition-all duration-300 shadow-2xl">
+                    <img src="https://image.tmdb.org/t/p/w500/oo9mZcy9Arf97wd9Y7GaoQpS9BT.jpg" alt="Cars 2" class="w-full h-auto" onerror="this.src='https://placehold.co/300x450/111/fff?text=Cars+2'">
+                </div>
+                <!-- Card 3 -->
+                <div class="relative group cursor-pointer overflow-hidden rounded-lg border-2 border-transparent hover:border-white hover:scale-105 transition-all duration-300 shadow-2xl">
+                    <img src="https://image.tmdb.org/t/p/w500/t6Sna7hYPNfS79BIP9S6qPbhSgn.jpg" alt="Planes" class="w-full h-auto" onerror="this.src='https://placehold.co/300x450/111/fff?text=Planes'">
+                </div>
+                <!-- Card 4 -->
+                <div class="relative group cursor-pointer overflow-hidden rounded-lg border-2 border-transparent hover:border-white hover:scale-105 transition-all duration-300 shadow-2xl">
+                    <img src="https://image.tmdb.org/t/p/w500/409S6UunXUfE73qXF9WkSAtO9L4.jpg" alt="Planes: Fire & Rescue" class="w-full h-auto" onerror="this.src='https://placehold.co/300x450/111/fff?text=Planes+2'">
+                </div>
+                <!-- Card 5 -->
+                <div class="relative group cursor-pointer overflow-hidden rounded-lg border-2 border-transparent hover:border-white hover:scale-105 transition-all duration-300 shadow-2xl">
+                    <img src="https://image.tmdb.org/t/p/w500/hE2cy7uFIzbrjP8HT6fBeLQ9WHk.jpg" alt="Toy Story 4" class="w-full h-auto" onerror="this.src='https://placehold.co/300x450/111/fff?text=Toy+Story+4'">
+                </div>
+                <!-- Card 6 -->
+                <div class="relative group cursor-pointer overflow-hidden rounded-lg border-2 border-transparent hover:border-white hover:scale-105 transition-all duration-300 shadow-2xl">
+                    <img src="https://image.tmdb.org/t/p/w500/fTuxNlgvTSInS6T6m9p8TCH9O9.jpg" alt="Turbo" class="w-full h-auto" onerror="this.src='https://placehold.co/300x450/111/fff?text=Turbo'">
+                </div>
+            </div>
+        </section>
+
+        <!-- Details / Tabs Section -->
+        <section class="mt-20 max-w-6xl mx-auto">
+            <div class="flex space-x-12 border-b border-gray-700 mb-8 overflow-x-auto no-scrollbar">
+                <button class="pb-4 text-xl font-bold border-b-4 border-white whitespace-nowrap">SUGGESTED</button>
+                <button class="pb-4 text-xl font-bold text-gray-400 hover:text-white transition-colors whitespace-nowrap">EXTRAS</button>
+                <button class="pb-4 text-xl font-bold text-gray-400 hover:text-white transition-colors whitespace-nowrap">DETAILS</button>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">Cars 3</h3>
+                    <p class="text-gray-300 leading-relaxed mb-6">
+                        Lightning McQueen sets out to prove to a new generation of racers that he's still the best race car in the world. But he's going to need help from an eager young race technician, Cruz Ramirez, and inspiration from the late Fabulous Hudson Hornet to compete on Piston Cup Racing's biggest stage.
+                    </p>
+                    <div class="grid grid-cols-2 gap-y-4 text-sm">
+                        <div>
+                            <span class="block text-gray-500 font-bold uppercase tracking-widest text-xs mb-1">Duration</span>
+                            <span>1h 42m</span>
+                        </div>
+                        <div>
+                            <span class="block text-gray-500 font-bold uppercase tracking-widest text-xs mb-1">Release Date</span>
+                            <span>June 16, 2017</span>
+                        </div>
+                        <div>
+                            <span class="block text-gray-500 font-bold uppercase tracking-widest text-xs mb-1">Genre</span>
+                            <span>Animation, Comedy, Adventure</span>
+                        </div>
+                        <div>
+                            <span class="block text-gray-500 font-bold uppercase tracking-widest text-xs mb-1">Director</span>
+                            <span>Brian Fee</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-900 bg-opacity-50 p-6 rounded-xl border border-gray-800">
+                    <h4 class="font-bold text-lg mb-4">Starring</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li>Owen Wilson as Lightning McQueen</li>
+                        <li>Cristela Alonzo as Cruz Ramirez</li>
+                        <li>Chris Cooper as Smokey</li>
+                        <li>Nathan Fillion as Sterling</li>
+                        <li>Larry the Cable Guy as Mater</li>
+                        <li>Armie Hammer as Jackson Storm</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black py-12 px-8 text-center text-xs text-gray-500">
+        <div class="flex flex-wrap justify-center space-x-6 mb-8">
+            <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+            <a href="#" class="hover:text-white transition-colors">Subscriber Agreement</a>
+            <a href="#" class="hover:text-white transition-colors">Help</a>
+            <a href="#" class="hover:text-white transition-colors">Supported Devices</a>
+            <a href="#" class="hover:text-white transition-colors">About Disney+</a>
+            <a href="#" class="hover:text-white transition-colors">Interest-Based Ads</a>
+        </div>
+        <p class="mb-4">© Disney. All Rights Reserved. Disney+ is a trademark of Disney Enterprises, Inc.</p>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Disney%2B_logo.svg/1280px-Disney%2B_logo.svg.png" 
+             alt="Disney+" 
+             class="h-8 mx-auto opacity-50 filter grayscale">
+    </footer>
+
+    <!-- Custom Alert/Message Box Component -->
+    <div id="custom-alert" class="fixed inset-0 z-[100] flex items-center justify-center hidden bg-black bg-opacity-80 backdrop-blur-sm">
+        <div class="bg-[#1a1d29] p-8 rounded-2xl border border-gray-700 max-w-md w-full mx-4 shadow-2xl text-center">
+            <h3 id="alert-title" class="text-2xl font-bold mb-4">Notification</h3>
+            <p id="alert-message" class="text-gray-300 mb-8">Message goes here.</p>
+            <button onclick="closeAlert()" class="btn-primary px-10 py-3 rounded-full font-bold uppercase tracking-widest w-full">Got it</button>
+        </div>
+    </div>
+
+    <script>
+        // Hero Section Entry Animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const heroContent = document.getElementById('hero-content');
+            setTimeout(() => {
+                heroContent.classList.remove('opacity-0', 'translate-y-4');
+                heroContent.classList.add('opacity-100', 'translate-y-0');
+            }, 100);
+        });
+
+        // Sticky Nav Change
+        window.onscroll = function() {
+            const nav = document.getElementById('main-nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-[#040714]', 'shadow-xl');
+                nav.classList.remove('bg-transparent');
+            } else {
+                nav.classList.remove('bg-[#040714]', 'shadow-xl');
+                nav.classList.add('bg-transparent');
+            }
+        };
+
+        // Utility: Custom Alert
+        function showAlert(title, message) {
+            document.getElementById('alert-title').innerText = title;
+            document.getElementById('alert-message').innerText = message;
+            document.getElementById('custom-alert').classList.remove('hidden');
+        }
+
+        function closeAlert() {
+            document.getElementById('custom-alert').classList.add('hidden');
+        }
+
+        // Button Interactions
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const text = this.innerText.trim();
+                if (text === 'PLAY') {
+                    showAlert("Starting Movie", "Sit back and enjoy Cars 3! Reconnecting to race stream...");
+                } else if (text === 'TRAILER') {
+                    showAlert("Trailer", "Loading high-octane preview. Get ready for Jackson Storm!");
+                } else if (this.innerText === '＋') {
+                    this.innerText = '✓';
+                    this.classList.add('bg-white', 'text-black');
+                    showAlert("Watchlist", "Cars 3 has been added to your watchlist.");
+                } else if (this.innerText === '✓') {
+                    this.innerText = '＋';
+                    this.classList.remove('bg-white', 'text-black');
+                }
+            });
+        });
+
+        // Click on suggestion cards
+        document.querySelectorAll('section div div.relative').forEach(card => {
+            card.addEventListener('click', function() {
+                const movieName = this.querySelector('img').alt;
+                showAlert("Navigating", `Taking you to the page for ${movieName}...`);
+            });
+        });
+    </script>
+</body>
+</html>
