@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Смотреть Гарфилд (2004) | Disney+</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #040714;
+            color: #f9f9f9;
+            overflow-x: hidden;
+        }
+
+        /* Эффект градиента Disney+ поверх изображения */
+        .hero-gradient {
+            background: linear-gradient(to right, #040714 5%, rgba(4, 7, 20, 0.8) 30%, rgba(4, 7, 20, 0) 60%),
+                        linear-gradient(to top, #040714 10%, rgba(4, 7, 20, 0) 30%);
+        }
+
+        .btn-glass {
+            background: rgba(249, 249, 249, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .btn-glass:hover {
+            background: rgba(249, 249, 249, 0.2);
+            transform: scale(1.05);
+        }
+
+        .play-btn {
+            background-color: #f9f9f9;
+            color: #040714;
+            transition: all 0.3s ease;
+        }
+
+        .play-btn:hover {
+            background-color: #c0c0c0;
+            transform: scale(1.05);
+        }
+
+        /* Анимация появления */
+        .fade-in {
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Кастомный скроллбар */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #040714;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #31343e;
+            border-radius: 10px;
+        }
+    </style>
+
+    <!-- JSON-LD для SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Movie",
+      "name": "Гарфилд",
+      "alternativeHeadline": "Garfield",
+      "image": "https://disney.images.edge.bamgrid.com/ripcut-delivery/v1/variant/disney/149c7e36-ead7-431a-93cf-bbcd9813406f/scale?width=2880&format=webp",
+      "director": {
+        "@type": "Person",
+        "name": "Питер Хьюит"
+      },
+      "dateCreated": "2004",
+      "duration": "PT1H20M",
+      "description": "Обаятельный рыжий кот Гарфилд считает себя центром вселенной, пока в его доме не появляется щенок Одди. Теперь жизнь ленивого кота переворачивается с ног на голову!",
+      "genre": ["Семейный", "Комедия", "Фэнтези"],
+      "contentRating": "6+",
+      "offers": {
+        "@type": "Offer",
+        "url": "https://www.disneyplus.com",
+        "availability": "https://schema.org/InStock"
+      }
+    }
+    </script>
+</head>
+<body>
+
+    <!-- Навигация -->
+    <nav class="fixed top-0 w-full z-50 flex items-center justify-between px-8 py-4 bg-transparent transition-colors duration-300" id="navbar">
+        <div class="flex items-center space-x-8">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg" alt="Disney Plus" class="h-10">
+            <div class="hidden md:flex space-x-6 text-sm font-semibold tracking-widest uppercase">
+                <a href="#" class="hover:text-white text-gray-400 flex items-center"><i data-lucide="home" class="w-4 h-4 mr-2"></i> Главная</a>
+                <a href="#" class="hover:text-white text-gray-400 flex items-center"><i data-lucide="search" class="w-4 h-4 mr-2"></i> Поиск</a>
+                <a href="#" class="hover:text-white text-gray-400 flex items-center"><i data-lucide="plus" class="w-4 h-4 mr-2"></i> Мой список</a>
+                <a href="#" class="hover:text-white text-gray-400 flex items-center"><i data-lucide="tv" class="w-4 h-4 mr-2"></i> Фильмы</a>
+            </div>
+        </div>
+        <div class="flex items-center space-x-4">
+            <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-sm font-bold border-2 border-gray-500 cursor-pointer">
+                Г
+            </div>
+        </div>
+    </nav>
+
+    <!-- Основной контент (Hero Section) -->
+    <main class="relative min-h-screen flex items-center overflow-hidden">
+        <!-- Фоновое изображение -->
+        <div class="absolute inset-0 z-0">
+            <img 
+                src="https://disney.images.edge.bamgrid.com/ripcut-delivery/v1/variant/disney/149c7e36-ead7-431a-93cf-bbcd9813406f/scale?width=2880&format=webp" 
+                alt="Garfield Background" 
+                class="w-full h-full object-cover object-center scale-105"
+                onerror="this.src='https://placehold.co/1920x1080/040714/ffffff?text=Garfield+2004'"
+            >
+            <div class="absolute inset-0 hero-gradient"></div>
+        </div>
+
+        <!-- Информация о фильме -->
+        <div class="relative z-10 px-8 md:px-20 max-w-3xl fade-in">
+            <!-- Логотип или заголовок -->
+            <h1 class="text-5xl md:text-7xl font-bold mb-4 drop-shadow-2xl">ГАРФИЛД</h1>
+            
+            <!-- Метаданные -->
+            <div class="flex items-center space-x-4 mb-6 text-sm md:text-base font-medium text-gray-300">
+                <span class="border border-gray-400 px-2 py-0.5 rounded">6+</span>
+                <span>2004</span>
+                <span>1 ч 20 мин</span>
+                <span>Семейный, Комедия</span>
+            </div>
+
+            <!-- Описание -->
+            <p class="text-lg md:text-xl text-gray-200 mb-8 leading-relaxed max-w-xl">
+                Обаятельный рыжий кот Гарфилд считает себя центром вселенной, пока в его доме не появляется щенок Одди. Теперь жизнь ленивого кота переворачивается с ног на голову! Чтобы вернуть свое спокойствие, Гарфилд решается на невероятное приключение.
+            </p>
+
+            <!-- Кнопки действий -->
+            <div class="flex flex-wrap gap-4 mb-12">
+                <button class="play-btn flex items-center px-8 py-3 rounded-md font-bold text-lg uppercase tracking-wider shadow-lg">
+                    <i data-lucide="play" class="fill-current w-6 h-6 mr-3"></i> Смотреть
+                </button>
+                <button class="btn-glass flex items-center px-6 py-3 rounded-md font-bold text-lg uppercase tracking-wider text-white border border-gray-500">
+                    Трейлер
+                </button>
+                <button class="btn-glass p-3 rounded-full border border-gray-500 text-white" title="Добавить в список">
+                    <i data-lucide="plus" class="w-6 h-6"></i>
+                </button>
+                <button class="btn-glass p-3 rounded-full border border-gray-500 text-white" title="Групповой просмотр">
+                    <i data-lucide="users" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Дополнительные разделы -->
+    <section class="relative z-10 px-8 md:px-20 py-12 -mt-20">
+        <h2 class="text-2xl font-semibold mb-6 text-gray-300 uppercase tracking-widest">Похожее</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
+            <!-- Карточки-заглушки для стиля -->
+            <div class="bg-gray-800 aspect-[2/3] rounded-lg transition-transform hover:scale-105 hover:ring-4 ring-white/30 cursor-pointer overflow-hidden">
+                <img src="https://placehold.co/400x600/1a1d29/ffffff?text=Гарфилд+2" alt="Similar Movie" class="w-full h-full object-cover">
+            </div>
+            <div class="bg-gray-800 aspect-[2/3] rounded-lg transition-transform hover:scale-105 hover:ring-4 ring-white/30 cursor-pointer overflow-hidden">
+                <img src="https://placehold.co/400x600/1a1d29/ffffff?text=101+Далматинец" alt="Similar Movie" class="w-full h-full object-cover">
+            </div>
+            <div class="bg-gray-800 aspect-[2/3] rounded-lg transition-transform hover:scale-105 hover:ring-4 ring-white/30 cursor-pointer overflow-hidden">
+                <img src="https://placehold.co/400x600/1a1d29/ffffff?text=Коты-аристократы" alt="Similar Movie" class="w-full h-full object-cover">
+            </div>
+            <div class="bg-gray-800 aspect-[2/3] rounded-lg transition-transform hover:scale-105 hover:ring-4 ring-white/30 cursor-pointer overflow-hidden">
+                <img src="https://placehold.co/400x600/1a1d29/ffffff?text=Болт" alt="Similar Movie" class="w-full h-full object-cover">
+            </div>
+            <div class="bg-gray-800 aspect-[2/3] rounded-lg transition-transform hover:scale-105 hover:ring-4 ring-white/30 cursor-pointer overflow-hidden">
+                <img src="https://placehold.co/400x600/1a1d29/ffffff?text=Леди+и+Бродяга" alt="Similar Movie" class="w-full h-full object-cover">
+            </div>
+        </div>
+    </section>
+
+    <!-- Скрытое сообщение (замена alert) -->
+    <div id="messageBox" class="fixed bottom-10 left-1/2 -translate-x-1/2 bg-blue-600 text-white px-8 py-4 rounded-xl shadow-2xl opacity-0 transition-opacity pointer-events-none z-[100]">
+        Фильм добавлен в ваш список просмотра!
+    </div>
+
+    <script>
+        // Инициализация иконок
+        lucide.createIcons();
+
+        // Обработка прозрачности навигации при скролле
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-[#040714]');
+                navbar.classList.remove('bg-transparent');
+            } else {
+                navbar.classList.add('bg-transparent');
+                navbar.classList.remove('bg-[#040714]');
+            }
+        });
+
+        // Демонстрация взаимодействия
+        const plusBtn = document.querySelector('[title="Добавить в список"]');
+        const messageBox = document.getElementById('messageBox');
+
+        plusBtn.addEventListener('click', () => {
+            messageBox.classList.remove('opacity-0');
+            setTimeout(() => {
+                messageBox.classList.add('opacity-0');
+            }, 3000);
+        });
+
+        // Эффект параллакса для фона (легкий)
+        window.addEventListener('mousemove', (e) => {
+            const bg = document.querySelector('.absolute.inset-0.z-0 img');
+            const x = (window.innerWidth / 2 - e.pageX) / 50;
+            const y = (window.innerHeight / 2 - e.pageY) / 50;
+            bg.style.transform = `scale(1.05) translate(${x}px, ${y}px)`;
+        });
+    </script>
+</body>
+</html>
