@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cars 2 | Disney+</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Movie",
+      "name": "Cars 2",
+      "image": "https://image.tmdb.org/t/p/original/4BS8tgBNWg2jPiDlBwM2iJe1xB7.jpg",
+      "description": "Star racecar Lightning McQueen and his pal Mater head overseas to compete in the World Grand Prix race. But the road to the championship becomes rocky as Mater gets caught up in an intriguing adventure of his own: international espionage.",
+      "datePublished": "2011-06-24",
+      "director": {
+        "@type": "Person",
+        "name": "John Lasseter"
+      },
+      "genre": ["Animation", "Adventure", "Comedy", "Family"],
+      "duration": "PT1H46M"
+    }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #040714;
+            color: #f9f9f9;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .disney-gradient {
+            background: linear-gradient(to right, #040714 10%, rgba(4, 7, 20, 0.8) 40%, rgba(4, 7, 20, 0) 80%);
+        }
+
+        .disney-gradient-bottom {
+            background: linear-gradient(to top, #040714 5%, rgba(4, 7, 20, 0) 50%);
+        }
+
+        .tab-active {
+            border-bottom: 3px solid #f9f9f9;
+            color: #f9f9f9;
+        }
+
+        .movie-card:hover {
+            transform: scale(1.05);
+            border: 3px solid rgba(249, 249, 249, 0.8);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #f9f9f9;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 w-full z-50 px-8 py-4 flex items-center justify-between bg-transparent transition-colors duration-300" id="main-nav">
+        <div class="flex items-center space-x-8">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Disney%2B_logo.svg/1280px-Disney%2B_logo.svg.png" alt="Disney+" class="h-12">
+            <div class="hidden md:flex space-x-6 uppercase text-xs tracking-widest font-semibold">
+                <a href="#" class="nav-link relative flex items-center space-x-2"><span>Home</span></a>
+                <a href="#" class="nav-link relative flex items-center space-x-2"><span>Search</span></a>
+                <a href="#" class="nav-link relative flex items-center space-x-2"><span>Watchlist</span></a>
+                <a href="#" class="nav-link relative flex items-center space-x-2"><span>Originals</span></a>
+                <a href="#" class="nav-link relative flex items-center space-x-2"><span>Movies</span></a>
+                <a href="#" class="nav-link relative flex items-center space-x-2"><span>Series</span></a>
+            </div>
+        </div>
+        <div class="flex items-center space-x-4">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-blue-600 to-purple-600 border-2 border-gray-400"></div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen w-full overflow-hidden">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://image.tmdb.org/t/p/original/4BS8tgBNWg2jPiDlBwM2iJe1xB7.jpg" alt="Cars 2 Backdrop" class="w-full h-full object-cover">
+            <div class="absolute inset-0 disney-gradient"></div>
+            <div class="absolute inset-0 disney-gradient-bottom"></div>
+        </div>
+
+        <!-- Content -->
+        <div class="relative z-10 flex flex-col justify-center h-full px-8 md:px-16 pt-20 max-w-2xl">
+            <h1 class="text-5xl md:text-7xl font-bold mb-4 drop-shadow-2xl">CARS 2</h1>
+            
+            <div class="flex items-center space-x-3 text-sm font-medium mb-6 text-gray-300">
+                <span class="bg-gray-700 px-2 py-0.5 rounded text-xs uppercase">4K Ultra HD</span>
+                <span>•</span>
+                <span>2011</span>
+                <span>•</span>
+                <span>1h 46m</span>
+                <span>•</span>
+                <span class="border border-gray-400 px-1 text-xs">G</span>
+            </div>
+
+            <p class="text-lg md:text-xl text-gray-200 mb-8 leading-relaxed">
+                Star racecar Lightning McQueen and his pal Mater head overseas to compete in the World Grand Prix race. But the road to the championship becomes rocky as Mater gets caught up in international espionage.
+            </p>
+
+            <div class="flex flex-wrap gap-4 items-center">
+                <button class="bg-white text-black px-8 py-3 rounded font-bold text-lg hover:bg-gray-200 transition flex items-center space-x-2">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    <span>PLAY</span>
+                </button>
+                <button class="bg-black/50 border-2 border-white text-white px-8 py-3 rounded font-bold text-lg hover:bg-white hover:text-black transition uppercase">
+                    Trailer
+                </button>
+                <button id="watchlist-btn" class="w-12 h-12 rounded-full border-2 border-white flex items-center justify-center bg-black/30 hover:bg-white/20 transition">
+                    <svg id="watchlist-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                </button>
+                <button class="w-12 h-12 rounded-full border-2 border-white flex items-center justify-center bg-black/30 hover:bg-white/20 transition">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                </button>
+            </div>
+
+            <div class="mt-8 text-gray-400 text-sm italic">
+                Animation, Adventure, Comedy, Family
+            </div>
+        </div>
+    </section>
+
+    <!-- Details/Tabs Section -->
+    <section class="px-8 md:px-16 py-12 relative -mt-20 z-20">
+        <div class="flex space-x-12 border-b border-gray-700 mb-8 text-lg font-semibold text-gray-400 overflow-x-auto">
+            <button class="pb-4 transition tab-trigger tab-active" data-tab="suggested">SUGGESTED</button>
+            <button class="pb-4 transition tab-trigger" data-tab="extras">EXTRAS</button>
+            <button class="pb-4 transition tab-trigger" data-tab="details">DETAILS</button>
+        </div>
+
+        <!-- Tab Content: Suggested -->
+        <div id="suggested" class="tab-content grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+            <!-- Suggested Items -->
+            <div class="movie-card rounded-lg overflow-hidden transition duration-300 border-2 border-transparent">
+                <img src="https://image.tmdb.org/t/p/w500/uY7Lp9v7p61E7Bw8z8n6n8f8n.jpg" alt="Cars" class="w-full h-auto">
+            </div>
+            <div class="movie-card rounded-lg overflow-hidden transition duration-300 border-2 border-transparent">
+                <img src="https://image.tmdb.org/t/p/w500/8Xcrz1v1zVlA6m3l9k6l9n8f.jpg" alt="Cars 3" class="w-full h-auto">
+            </div>
+            <div class="movie-card rounded-lg overflow-hidden transition duration-300 border-2 border-transparent">
+                <img src="https://image.tmdb.org/t/p/w500/9eS08f.jpg" alt="Planes" class="w-full h-auto">
+            </div>
+            <div class="movie-card rounded-lg overflow-hidden transition duration-300 border-2 border-transparent">
+                <img src="https://image.tmdb.org/t/p/w500/6A5n8f.jpg" alt="Planes Fire & Rescue" class="w-full h-auto">
+            </div>
+            <div class="movie-card rounded-lg overflow-hidden transition duration-300 border-2 border-transparent">
+                <img src="https://image.tmdb.org/t/p/w500/l9n8f.jpg" alt="Toy Story" class="w-full h-auto">
+            </div>
+        </div>
+
+        <!-- Tab Content: Extras -->
+        <div id="extras" class="tab-content hidden grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="group cursor-pointer">
+                <div class="relative overflow-hidden rounded-lg aspect-video">
+                    <img src="https://image.tmdb.org/t/p/w500/4BS8tgBNWg2jPiDlBwM2iJe1xB7.jpg" class="w-full h-full object-cover group-hover:scale-105 transition">
+                    <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                        <svg class="w-12 h-12" fill="white" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
+                <h4 class="mt-2 font-semibold">The Making of <i>Cars 2</i></h4>
+            </div>
+            <div class="group cursor-pointer">
+                <div class="relative overflow-hidden rounded-lg aspect-video">
+                    <img src="https://image.tmdb.org/t/p/w500/4BS8tgBNWg2jPiDlBwM2iJe1xB7.jpg" class="w-full h-full object-cover group-hover:scale-105 transition">
+                    <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                        <svg class="w-12 h-12" fill="white" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
+                <h4 class="mt-2 font-semibold">Deleted Scenes</h4>
+            </div>
+        </div>
+
+        <!-- Tab Content: Details -->
+        <div id="details" class="tab-content hidden grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div>
+                <h3 class="text-2xl font-bold mb-4">Cars 2</h3>
+                <p class="text-gray-400 mb-6">Lightning McQueen and Mater are back! This time they take their talents across the ocean to compete in the first-ever World Grand Prix. While McQueen focuses on the race, Mater finds himself caught up in an international conspiracy involving secret agents and alternative fuels.</p>
+                <div class="grid grid-cols-2 gap-4 text-sm">
+                    <div>
+                        <span class="text-gray-500 block uppercase tracking-tighter">Release Date</span>
+                        <span>June 24, 2011</span>
+                    </div>
+                    <div>
+                        <span class="text-gray-500 block uppercase tracking-tighter">Genre</span>
+                        <span>Family, Animation, Comedy</span>
+                    </div>
+                    <div>
+                        <span class="text-gray-500 block uppercase tracking-tighter">Director</span>
+                        <span>John Lasseter</span>
+                    </div>
+                    <div>
+                        <span class="text-gray-500 block uppercase tracking-tighter">Studio</span>
+                        <span>Pixar</span>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-gray-900/50 p-6 rounded-lg border border-gray-800">
+                <h3 class="text-xl font-bold mb-4">Cast</h3>
+                <ul class="space-y-2 text-gray-300">
+                    <li>Owen Wilson - Lightning McQueen</li>
+                    <li>Larry the Cable Guy - Mater</li>
+                    <li>Michael Caine - Finn McMissile</li>
+                    <li>Emily Mortimer - Holley Shiftwell</li>
+                    <li>John Turturro - Francesco Bernoulli</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="px-8 md:px-16 py-12 flex flex-col items-center space-y-6 opacity-60 text-xs">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Disney%2B_logo.svg/1280px-Disney%2B_logo.svg.png" class="h-8 mb-4">
+        <div class="flex flex-wrap justify-center gap-6">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Subscriber Agreement</a>
+            <a href="#">Help</a>
+            <a href="#">Supported Devices</a>
+            <a href="#">About Us</a>
+            <a href="#">Interest-Based Ads</a>
+        </div>
+        <p>© 2024 Disney and its related entities. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Firebase Configuration and Logic -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, getDoc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Global Variables
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'disney-plus-clone';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {
+            apiKey: "dummy-key",
+            authDomain: "dummy.firebaseapp.com",
+            projectId: "dummy-project",
+            storageBucket: "dummy.appspot.com",
+            messagingSenderId: "000",
+            appId: "000"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
+
+        let currentUser = null;
+        let inWatchlist = false;
+
+        // Sign In
+        const login = async () => {
+            if (typeof __initial_auth_token !== 'undefined') {
+                await signInWithCustomToken(auth, __initial_auth_token);
+            } else {
+                await signInAnonymously(auth);
+            }
+        };
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                currentUser = user;
+                const userId = user.uid;
+                
+                // Real-time Watchlist status
+                const watchlistRef = doc(db, 'artifacts', appId, 'users', userId, 'movies', 'cars2');
+                onSnapshot(watchlistRef, (docSnap) => {
+                    const icon = document.getElementById('watchlist-icon');
+                    if (docSnap.exists() && docSnap.data().active) {
+                        inWatchlist = true;
+                        icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>'; // Checkmark
+                    } else {
+                        inWatchlist = false;
+                        icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>'; // Plus
+                    }
+                });
+            }
+        });
+
+        // Watchlist Toggle
+        document.getElementById('watchlist-btn').addEventListener('click', async () => {
+            if (!currentUser) return;
+            const userId = currentUser.uid;
+            const watchlistRef = doc(db, 'artifacts', appId, 'users', userId, 'movies', 'cars2');
+            
+            await setDoc(watchlistRef, {
+                title: 'Cars 2',
+                active: !inWatchlist,
+                addedAt: new Date().toISOString()
+            });
+        });
+
+        login();
+
+        // UI Tab Switcher
+        const triggers = document.querySelectorAll('.tab-trigger');
+        const contents = document.querySelectorAll('.tab-content');
+
+        triggers.forEach(trigger => {
+            trigger.addEventListener('click', () => {
+                const target = trigger.getAttribute('data-tab');
+                
+                // UI feedback
+                triggers.forEach(t => t.classList.remove('tab-active'));
+                trigger.classList.add('tab-active');
+
+                // Content visibility
+                contents.forEach(c => {
+                    if (c.id === target) {
+                        c.classList.remove('hidden');
+                    } else {
+                        c.classList.add('hidden');
+                    }
+                });
+            });
+        });
+
+        // Sticky Nav Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('main-nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-[#040714]');
+            } else {
+                nav.classList.remove('bg-[#040714]');
+            }
+        });
+
+    </script>
+</body>
+</html>
