@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X-Men: The Last Stand | Disney+</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #040714;
+            color: #f9f9f9;
+            overflow-x: hidden;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(70deg, #040714 20%, rgba(4, 7, 20, 0.8) 40%, transparent 100%);
+        }
+
+        .bottom-gradient {
+            background: linear-gradient(to top, #040714 5%, transparent 100%);
+        }
+
+        .play-btn {
+            background-color: #f9f9f9;
+            color: #000;
+            transition: all 0.2s ease;
+        }
+
+        .play-btn:hover {
+            background-color: #c0c0c0;
+            transform: scale(1.05);
+        }
+
+        .action-btn {
+            background-color: rgba(0, 0, 0, 0.6);
+            border: 1.5px solid #f9f9f9;
+            color: #f9f9f9;
+            transition: all 0.2s ease;
+        }
+
+        .action-btn:hover {
+            background-color: #f9f9f9;
+            color: #000;
+        }
+
+        .nav-item {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #f9f9f9;
+            transition: width 0.3s ease;
+        }
+
+        .nav-item:hover::after {
+            width: 100%;
+        }
+
+        .card-zoom:hover img {
+            transform: scale(1.05);
+            border: 3px solid rgba(249, 249, 249, 0.8);
+        }
+        
+        .message-box {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #1a1d29;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid #31343e;
+            z-index: 100;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+    </style>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Movie",
+      "name": "X-Men: The Last Stand",
+      "image": "https://image.tmdb.org/t/p/original/caS9mIkYfbQRzXKY0b0do3KCZ8k.jpg",
+      "description": "When a cure is found to treat mutations, lines are drawn amongst the X-Men and the Brotherhood, a band of powerful mutants organized under Magneto.",
+      "datePublished": "2006-05-26",
+      "director": {
+        "@type": "Person",
+        "name": "Brett Ratner"
+      },
+      "genre": ["Action", "Sci-Fi"],
+      "duration": "PT1H44M"
+    }
+    </script>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 flex items-center justify-between px-8 py-4 bg-gradient-to-b from-[#040714] to-transparent">
+        <div class="flex items-center gap-10">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Disney%2B_logo.svg/1280px-Disney%2B_logo.svg.png" 
+                 alt="Disney+" 
+                 class="h-10 cursor-pointer"
+                 onerror="this.src='https://placehold.co/120x60/040714/f9f9f9?text=Disney+'">
+            
+            <div class="hidden md:flex gap-6 font-semibold text-xs tracking-[1.5px] uppercase">
+                <span class="nav-item">Home</span>
+                <span class="nav-item">Search</span>
+                <span class="nav-item">Watchlist</span>
+                <span class="nav-item">Movies</span>
+                <span class="nav-item">Series</span>
+            </div>
+        </div>
+        <div class="flex items-center gap-4">
+            <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center font-bold">JD</div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="relative w-full h-[95vh]">
+        <!-- Background Poster -->
+        <div class="absolute inset-0 w-full h-full">
+            <img src="https://image.tmdb.org/t/p/original/caS9mIkYfbQRzXKY0b0do3KCZ8k.jpg" 
+                 alt="X-Men: The Last Stand Background" 
+                 class="w-full h-full object-cover object-top">
+            <div class="absolute inset-0 hero-gradient"></div>
+            <div class="absolute inset-0 bottom-gradient"></div>
+        </div>
+
+        <!-- Content Container -->
+        <div class="relative h-full flex flex-col justify-center px-12 md:px-20 max-w-4xl z-10">
+            <!-- Title Graphic (Simulated with Text for accessibility) -->
+            <h1 class="text-5xl md:text-7xl font-bold mb-4 tracking-tight uppercase italic drop-shadow-2xl">
+                X-Men<br><span class="text-3xl md:text-5xl font-light">The Last Stand</span>
+            </h1>
+
+            <!-- Meta info -->
+            <div class="flex items-center gap-3 text-sm font-medium mb-6 opacity-80">
+                <span class="bg-gray-800 px-2 py-0.5 rounded">12+</span>
+                <span>2006</span>
+                <span>•</span>
+                <span>1h 44m</span>
+                <span>•</span>
+                <span>Science Fiction, Action</span>
+            </div>
+
+            <!-- Buttons -->
+            <div class="flex flex-wrap items-center gap-4 mb-8">
+                <button onclick="showMessage('Preparing your experience...')" class="play-btn flex items-center gap-3 px-8 py-3 rounded uppercase font-bold text-sm tracking-wider">
+                    <svg viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                        <path d="M8 5v14l11-7z" />
+                    </svg>
+                    Play
+                </button>
+                <button onclick="showMessage('Playing Trailer...')" class="action-btn flex items-center gap-3 px-8 py-3 rounded uppercase font-bold text-sm tracking-wider">
+                    Trailer
+                </button>
+                <button class="action-btn p-3 rounded-full" title="Add to Watchlist">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-6 h-6">
+                        <path d="M12 5v14M5 12h14" />
+                    </svg>
+                </button>
+                <button class="action-btn p-3 rounded-full" title="GroupWatch">
+                    <svg viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Description -->
+            <p class="text-lg text-gray-200 leading-relaxed max-w-2xl">
+                When a “cure” for mutation is discovered, the X-Men must decide whether to renounce their powers or face a final battle that could end mutants once and for all. Magneto’s Brotherhood rises while Jean Grey returns as the unstoppable Phoenix.
+            </p>
+        </div>
+    </div>
+
+    <!-- Related Section -->
+    <div class="px-12 md:px-20 -mt-20 relative z-20 mb-20">
+        <h3 class="text-xl font-semibold mb-6 tracking-wide text-gray-300">More Like This</h3>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6">
+            <!-- Suggested Movie 1 -->
+            <div class="card-zoom relative aspect-[2/3] rounded-lg overflow-hidden bg-gray-900 shadow-2xl transition-all duration-300 cursor-pointer">
+                <img src="https://image.tmdb.org/t/p/w500/2797v99O9bt7gPBbs9g3698z7tU.jpg" 
+                     alt="X-Men" 
+                     class="w-full h-full object-cover transition-transform duration-300"
+                     onerror="this.src='https://placehold.co/500x750/1a1d29/f9f9f9?text=X-Men'">
+            </div>
+            <!-- Suggested Movie 2 -->
+            <div class="card-zoom relative aspect-[2/3] rounded-lg overflow-hidden bg-gray-900 shadow-2xl transition-all duration-300 cursor-pointer">
+                <img src="https://image.tmdb.org/t/p/w500/mNOn8n7I3716YJjTIsK7C04AAtY.jpg" 
+                     alt="X2" 
+                     class="w-full h-full object-cover transition-transform duration-300"
+                     onerror="this.src='https://placehold.co/500x750/1a1d29/f9f9f9?text=X2'">
+            </div>
+            <!-- Suggested Movie 3 -->
+            <div class="card-zoom relative aspect-[2/3] rounded-lg overflow-hidden bg-gray-900 shadow-2xl transition-all duration-300 cursor-pointer">
+                <img src="https://image.tmdb.org/t/p/w500/7pZ669N8674P1XjXz1n09zM8mI0.jpg" 
+                     alt="X-Men: First Class" 
+                     class="w-full h-full object-cover transition-transform duration-300"
+                     onerror="this.src='https://placehold.co/500x750/1a1d29/f9f9f9?text=First+Class'">
+            </div>
+            <!-- Suggested Movie 4 -->
+            <div class="card-zoom relative aspect-[2/3] rounded-lg overflow-hidden bg-gray-900 shadow-2xl transition-all duration-300 cursor-pointer">
+                <img src="https://image.tmdb.org/t/p/w500/969U7AFun6uX2p9Vg9m87Uv9Y8p.jpg" 
+                     alt="Days of Future Past" 
+                     class="w-full h-full object-cover transition-transform duration-300"
+                     onerror="this.src='https://placehold.co/500x750/1a1d29/f9f9f9?text=DOFP'">
+            </div>
+            <!-- Suggested Movie 5 -->
+            <div class="card-zoom relative aspect-[2/3] rounded-lg overflow-hidden bg-gray-900 shadow-2xl transition-all duration-300 cursor-pointer">
+                <img src="https://image.tmdb.org/t/p/w500/6oom5QOTv0vYvY86vS5v9Wf8T9z.jpg" 
+                     alt="Logan" 
+                     class="w-full h-full object-cover transition-transform duration-300"
+                     onerror="this.src='https://placehold.co/500x750/1a1d29/f9f9f9?text=Logan'">
+            </div>
+        </div>
+    </div>
+
+    <!-- Details Tab Section -->
+    <div class="px-12 md:px-20 pb-20">
+        <div class="flex gap-10 border-b border-gray-700 mb-8">
+            <button class="pb-4 border-b-2 border-white font-bold tracking-[2px] uppercase text-sm">Details</button>
+            <button class="pb-4 text-gray-500 font-bold tracking-[2px] uppercase text-sm hover:text-white transition-colors">Extras</button>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-12 text-gray-300">
+            <div>
+                <h4 class="text-white mb-2 font-semibold">Director</h4>
+                <p class="mb-6">Brett Ratner</p>
+                
+                <h4 class="text-white mb-2 font-semibold">Starring</h4>
+                <p>Hugh Jackman, Halle Berry, Ian McKellen, Patrick Stewart, Famke Janssen, Kelsey Grammer</p>
+            </div>
+            <div>
+                <h4 class="text-white mb-2 font-semibold">Synopsis</h4>
+                <p>The discovery of a “cure” for mutations leads to a turning point for mutants everywhere. They may now choose to remain unique, though isolated, or give up their powers to fit in. As opposing viewpoints lead to a final confrontation, the X-Men must decide who they are and what they are willing to fight for.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Modal -->
+    <div id="modal" class="message-box text-center">
+        <p id="modal-text" class="text-xl font-semibold mb-6"></p>
+        <button onclick="closeMessage()" class="action-btn px-6 py-2 rounded font-bold">Close</button>
+    </div>
+
+    <script>
+        function showMessage(text) {
+            const modal = document.getElementById('modal');
+            const modalText = document.getElementById('modal-text');
+            modalText.innerText = text;
+            modal.style.display = 'block';
+        }
+
+        function closeMessage() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target == modal) {
+                closeMessage();
+            }
+        }
+    </script>
+</body>
+</html>
