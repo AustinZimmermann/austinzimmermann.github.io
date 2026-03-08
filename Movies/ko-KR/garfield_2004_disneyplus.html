@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>가필드 | 디즈니+</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <style>
+        :root {
+            --bg-color: #040714;
+            --text-color: #f9f9f9;
+            --btn-primary-bg: #f9f9f9;
+            --btn-primary-text: #0f1014;
+            --btn-secondary-bg: rgba(0, 0, 0, 0.6);
+            --btn-secondary-border: #f9f9f9;
+            --meta-text: #cacaca;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Helvetica, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        /* 내비게이션 바 (더미) */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 40px;
+            display: flex;
+            align-items: center;
+            z-index: 100;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* 히어로 섹션 (배경 이미지 및 콘텐츠) */
+        .hero {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background-image: url('https://image.tmdb.org/t/p/original/6SSEa1OfqrHGg7XTLNTxbyyioRB.jpg');
+            background-size: cover;
+            background-position: center top;
+            background-repeat: no-repeat;
+        }
+
+        /* 그라데이션 오버레이 (텍스트 가독성 확보) */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, #040714 5%, rgba(4,7,20,0.6) 40%, rgba(4,7,20,0) 100%),
+                        linear-gradient(to top, #040714 0%, rgba(4,7,20,0) 30%);
+            z-index: 1;
+        }
+
+        /* 영화 정보 콘텐츠 영역 */
+        .content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 5vw;
+            margin-top: 10vh;
+        }
+
+        .movie-title {
+            font-size: 5rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+        }
+
+        .meta-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--meta-text);
+            margin-bottom: 25px;
+        }
+
+        .age-rating {
+            background-color: #333;
+            border: 1px solid #666;
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: white;
+        }
+
+        .synopsis {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            max-width: 600px;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
+        }
+
+        /* 버튼 컨테이너 */
+        .actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 28px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+        }
+
+        .btn-play {
+            background-color: var(--btn-primary-bg);
+            color: var(--btn-primary-text);
+        }
+
+        .btn-play:hover {
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+
+        .btn-add {
+            background-color: var(--btn-secondary-bg);
+            color: var(--text-color);
+            border: 1px solid var(--btn-secondary-border);
+        }
+
+        .btn-add:hover {
+            background-color: var(--btn-secondary-border);
+            color: var(--btn-primary-text);
+        }
+
+        /* 아이콘 더미 스타일 */
+        .icon {
+            font-size: 1.2rem;
+            line-height: 1;
+        }
+
+        /* 반응형 디자인 */
+        @media (max-width: 768px) {
+            .movie-title { font-size: 3rem; }
+            .overlay {
+                background: linear-gradient(to top, #040714 10%, rgba(4,7,20,0.8) 50%, rgba(4,7,20,0) 100%);
+            }
+            .content {
+                margin-top: 40vh;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Movie",
+        "name": "가필드",
+        "alternateName": "Garfield",
+        "image": "https://image.tmdb.org/t/p/original/6SSEa1OfqrHGg7XTLNTxbyyioRB.jpg",
+        "datePublished": "2004-06-11",
+        "duration": "PT80M",
+        "genre": ["코미디", "가족", "애니메이션"],
+        "description": "세상에서 제일 게으르고 식탐 많은 고양이 가필드! 주인의 사랑을 독차지하던 가필드의 평화로운 일상에 귀여운 강아지 오디가 등장한다. 질투를 느끼던 가필드는 오디가 위험에 처하자 그를 구하기 위해 난생처음 집 밖으로 모험을 떠나게 되는데...",
+        "director": {
+            "@type": "Person",
+            "name": "피터 휴잇"
+        },
+        "actor": [
+            {
+                "@type": "Person",
+                "name": "빌 머레이"
+            },
+            {
+                "@type": "Person",
+                "name": "브레킨 메이어"
+            },
+            {
+                "@type": "Person",
+                "name": "제니퍼 러브 휴잇"
+            }
+        ],
+        "offers": {
+            "@type": "Offer",
+            "url": "https://www.disneyplus.com/ko-kr",
+            "availability": "https://schema.org/InStock",
+            "price": "0",
+            "priceCurrency": "KRW",
+            "eligibleRegion": {
+                "@type": "Country",
+                "name": "KR"
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Disney+</div>
+    </header>
+
+    <main class="hero">
+        <div class="overlay"></div>
+        <div class="content">
+            <h1 class="movie-title">가필드</h1>
+            
+            <div class="meta-info">
+                <span class="age-rating">전체관람가</span>
+                <span>2004</span>
+                <span>•</span>
+                <span>1시간 20분</span>
+                <span>•</span>
+                <span>가족, 코미디</span>
+            </div>
+
+            <p class="synopsis">
+                세상에서 제일 게으르고 식탐 많은 고양이 가필드! 주인의 사랑을 독차지하던 평화로운 일상에 귀여운 강아지 오디가 나타난다. 오디에게 질투를 느끼던 가필드는 오디가 위험에 처하자, 그를 구하기 위해 난생처음 안락한 집 밖으로 좌충우돌 모험을 떠나게 되는데...
+            </p>
+
+            <div class="actions">
+                <button class="btn-play" id="playBtn">
+                    <span class="icon">▶</span> 재생
+                </button>
+                <button class="btn-add" id="addBtn">
+                    <span class="icon">+</span> 관심 콘텐츠
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const playBtn = document.getElementById('playBtn');
+            const addBtn = document.getElementById('addBtn');
+
+            // 재생 버튼 클릭 이벤트
+            playBtn.addEventListener('click', () => {
+                alert('영화 ‘가필드’ 재생을 준비 중입니다. (디즈니+ 스트리밍 서버 연결 필요)');
+            });
+
+            // 관심 콘텐츠 추가 버튼 클릭 이벤트
+            addBtn.addEventListener('click', function() {
+                const iconSpan = this.querySelector('.icon');
+                
+                if (iconSpan.textContent === '+') {
+                    iconSpan.textContent = '✓';
+                    alert('"가필드"가 관심 콘텐츠에 추가되었습니다.');
+                } else {
+                    iconSpan.textContent = '+';
+                    alert('"가필드"가 관심 콘텐츠에서 삭제되었습니다.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
