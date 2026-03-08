@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cars | Disney+</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Movie",
+      "name": "Cars",
+      "image": "https://image.tmdb.org/t/p/original/sd4xN5xi8tKRPrJOWwNiZEile7f.jpg",
+      "description": "A hot-shot race-car named Lightning McQueen gets waylaid in Radiator Springs, where he finds the true meaning of friendship and family.",
+      "datePublished": "2006-06-09",
+      "director": {
+        "@type": "Person",
+        "name": "John Lasseter"
+      },
+      "genre": ["Animation", "Adventure", "Comedy", "Family"],
+      "duration": "PT1H57M",
+      "contentRating": "G"
+    }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #040714;
+            color: #f9f9f9;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* Disney+ Gradient Overlays */
+        .hero-overlay {
+            background: linear-gradient(to right, #040714 5%, rgba(4, 7, 20, 0.8) 30%, rgba(4, 7, 20, 0) 50%);
+        }
+
+        .hero-bottom-overlay {
+            background: linear-gradient(to top, #040714 10%, rgba(4, 7, 20, 0) 40%);
+        }
+
+        .nav-gradient {
+            background: linear-gradient(to bottom, rgba(4, 7, 20, 0.8) 0%, rgba(4, 7, 20, 0) 100%);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #040714;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #40424e;
+            border-radius: 10px;
+        }
+
+        .btn-primary {
+            background-color: #f9f9f9;
+            color: #040714;
+            transition: all 0.2s ease-in-out;
+        }
+        .btn-primary:hover {
+            background-color: #c0c0c0;
+            transform: scale(1.05);
+        }
+
+        .btn-secondary {
+            background-color: rgba(0, 0, 0, 0.6);
+            border: 1.5px solid #f9f9f9;
+            color: #f9f9f9;
+            transition: all 0.2s ease-in-out;
+        }
+        .btn-secondary:hover {
+            background-color: #f9f9f9;
+            color: #040714;
+            transform: scale(1.05);
+        }
+
+        .movie-card {
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border: 3px solid rgba(249, 249, 249, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .movie-card:hover {
+            transform: scale(1.05);
+            border-color: rgba(249, 249, 249, 0.8);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+
+        .tab-active {
+            border-bottom: 3px solid #f9f9f9;
+            color: #f9f9f9;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 px-8 py-4 flex items-center justify-between nav-gradient">
+        <div class="flex items-center space-x-8">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/64/Disney%2B_2024.svg" alt="Disney+" class="h-10 md:h-12">
+            
+            <div class="hidden lg:flex space-x-6 text-sm font-semibold tracking-widest uppercase">
+                <a href="#" class="flex items-center space-x-2 hover:underline underline-offset-8">
+                    <span>Home</span>
+                </a>
+                <a href="#" class="flex items-center space-x-2 hover:underline underline-offset-8">
+                    <span>Search</span>
+                </a>
+                <a href="#" class="flex items-center space-x-2 hover:underline underline-offset-8">
+                    <span>Watchlist</span>
+                </a>
+                <a href="#" class="flex items-center space-x-2 hover:underline underline-offset-8">
+                    <span>Movies</span>
+                </a>
+            </div>
+        </div>
+        <div class="flex items-center">
+            <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center font-bold border-2 border-gray-400">
+                JD
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative w-full h-[70vh] md:h-screen overflow-hidden">
+        <!-- Background Image -->
+        <img src="https://image.tmdb.org/t/p/original/sd4xN5xi8tKRPrJOWwNiZEile7f.jpg" 
+             alt="Cars Background" 
+             class="absolute top-0 right-0 w-full h-full object-cover object-center md:object-right-top"
+             onerror="this.src='https://placehold.co/1920x1080/040714/f9f9f9?text=Cars+Background'">
+        
+        <!-- Overlays -->
+        <div class="absolute inset-0 hero-overlay"></div>
+        <div class="absolute inset-0 hero-bottom-overlay"></div>
+
+        <!-- Content Content -->
+        <div class="absolute bottom-0 left-0 w-full p-8 md:p-16 mb-12 md:mb-24 flex flex-col items-start z-10">
+            <!-- Movie Title (Mockup Text Title since we don't have the logo PNG) -->
+            <h1 class="text-5xl md:text-8xl font-black italic tracking-tighter mb-4 drop-shadow-lg">CARS</h1>
+            
+            <!-- Metadata -->
+            <div class="flex items-center space-x-3 text-sm md:text-base font-medium text-gray-300 mb-6">
+                <span class="bg-gray-700 px-2 py-0.5 rounded text-xs">G</span>
+                <span>2006</span>
+                <span>•</span>
+                <span>1h 57m</span>
+                <span>•</span>
+                <span>Animation, Family, Comedy</span>
+            </div>
+
+            <!-- Actions -->
+            <div class="flex flex-wrap gap-4 mb-8">
+                <button id="playBtn" class="btn-primary flex items-center space-x-3 px-8 py-3 rounded font-bold uppercase tracking-widest text-sm">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    <span>Play</span>
+                </button>
+                <button class="btn-secondary flex items-center space-x-3 px-8 py-3 rounded font-bold uppercase tracking-widest text-sm">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                    <span>Watchlist</span>
+                </button>
+                <button class="btn-secondary p-3 rounded-full flex items-center justify-center">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5v-9l6 4.5-6 4.5z"/></svg>
+                </button>
+            </div>
+
+            <!-- Description -->
+            <p class="max-w-xl text-base md:text-lg text-gray-200 leading-relaxed line-clamp-3 md:line-clamp-none">
+                Lightning McQueen is a hotshot rookie race car who’s pulling out all the stops to win the Piston Cup Championship. But when he unexpectedly detours to the sleepy town of Radiator Springs, he discovers that life is about the journey, not the finish line.
+            </p>
+        </div>
+    </header>
+
+    <!-- Tabs/Content Sections -->
+    <main class="relative z-10 -mt-16 md:-mt-32 px-8 md:px-16 pb-20">
+        <!-- Tabs -->
+        <div class="flex space-x-12 mb-8 border-b border-gray-800 text-gray-400 font-bold tracking-widest text-sm uppercase">
+            <button class="pb-4 tab-active hover:text-white transition">Suggested</button>
+            <button class="pb-4 hover:text-white transition">Extras</button>
+            <button class="pb-4 hover:text-white transition">Details</button>
+        </div>
+
+        <!-- Suggested Movies Grid -->
+        <section id="suggested" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
+            <!-- Cars 2 -->
+            <div class="movie-card cursor-pointer">
+                <img src="https://placehold.co/400x600/1a1d29/f9f9f9?text=Cars+2" alt="Cars 2" class="w-full aspect-[2/3] object-cover">
+            </div>
+            <!-- Cars 3 -->
+            <div class="movie-card cursor-pointer">
+                <img src="https://placehold.co/400x600/1a1d29/f9f9f9?text=Cars+3" alt="Cars 3" class="w-full aspect-[2/3] object-cover">
+            </div>
+            <!-- Planes -->
+            <div class="movie-card cursor-pointer">
+                <img src="https://placehold.co/400x600/1a1d29/f9f9f9?text=Planes" alt="Planes" class="w-full aspect-[2/3] object-cover">
+            </div>
+            <!-- Mater's Tall Tales -->
+            <div class="movie-card cursor-pointer">
+                <img src="https://placehold.co/400x600/1a1d29/f9f9f9?text=Mater+Tales" alt="Mater's Tall Tales" class="w-full aspect-[2/3] object-cover">
+            </div>
+            <!-- Toy Story -->
+            <div class="movie-card cursor-pointer">
+                <img src="https://placehold.co/400x600/1a1d29/f9f9f9?text=Toy+Story" alt="Toy Story" class="w-full aspect-[2/3] object-cover">
+            </div>
+            <!-- Ratatouille -->
+            <div class="movie-card cursor-pointer">
+                <img src="https://placehold.co/400x600/1a1d29/f9f9f9?text=Ratatouille" alt="Ratatouille" class="w-full aspect-[2/3] object-cover">
+            </div>
+        </section>
+    </main>
+
+    <!-- Feedback Message (Custom UI instead of Alert) -->
+    <div id="toast" class="fixed bottom-10 left-1/2 -translate-x-1/2 bg-white text-black px-6 py-3 rounded-full font-bold shadow-2xl opacity-0 transition-opacity duration-300 pointer-events-none z-[100]">
+        Starting movie...
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-[#040714] border-t border-gray-900 py-12 flex flex-col items-center space-y-6 text-xs text-gray-500">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/64/Disney%2B_2024.svg" alt="Disney+" class="h-8 opacity-70">
+        <div class="flex flex-wrap justify-center gap-6">
+            <a href="#" class="hover:text-white">Privacy Policy</a>
+            <a href="#" class="hover:text-white">Subscriber Agreement</a>
+            <a href="#" class="hover:text-white">Help</a>
+            <a href="#" class="hover:text-white">Supported Devices</a>
+            <a href="#" class="hover:text-white">About Us</a>
+        </div>
+        <p>&copy; 2024 Disney and its related entities. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const playBtn = document.getElementById('playBtn');
+            const toast = document.getElementById('toast');
+
+            // Handle Play Button Interaction
+            playBtn.addEventListener('click', () => {
+                showToast("Now streaming: Cars (2006)");
+            });
+
+            function showToast(message) {
+                toast.textContent = message;
+                toast.style.opacity = '1';
+                setTimeout(() => {
+                    toast.style.opacity = '0';
+                }, 3000);
+            }
+
+            // Simple parallax effect for the hero on scroll
+            window.addEventListener('scroll', () => {
+                const scroll = window.scrollY;
+                const heroImage = document.querySelector('header img');
+                if (window.innerWidth > 768) {
+                    heroImage.style.transform = `translateY(${scroll * 0.4}px)`;
+                }
+            });
+
+            // Smooth Tab Switching Mockup
+            const tabs = document.querySelectorAll('main > div > button');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(t => t.classList.remove('tab-active'));
+                    tab.classList.add('tab-active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
