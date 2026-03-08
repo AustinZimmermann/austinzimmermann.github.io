@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Смотреть Тачки 3 (2017) | Disney+ Russia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Movie",
+      "name": "Тачки 3",
+      "alternativeHeadline": "Cars 3",
+      "image": "https://image.tmdb.org/t/p/original/4mlS1MitcOqdPLhxEFyk9Qwf5rr.jpg",
+      "datePublished": "2017-06-15",
+      "genre": ["Анимация", "Приключения", "Драма", "Спорт"],
+      "director": {
+        "@type": "Person",
+        "name": "Брайан Фи"
+      },
+      "description": "Появилось новое поколение невероятно быстрых гонщиков, и легендарный Молния Маккуин внезапно оказывается вытесненным из спорта, который он так любит. Чтобы вернуться в игру, ему понадобится помощь молодого гоночного инженера Крус Рамирес.",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "6.7",
+        "bestRating": "10",
+        "ratingCount": "18200"
+      }
+    }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #040714;
+            color: #f9f9f9;
+            overflow-x: hidden;
+        }
+
+        /* Disney+ Cinematic Overlays */
+        .hero-gradient {
+            background: linear-gradient(to right, #040714 5%, rgba(4, 7, 20, 0.95) 25%, rgba(4, 7, 20, 0.6) 50%, rgba(4, 7, 20, 0) 100%);
+        }
+
+        .hero-mobile-gradient {
+            background: linear-gradient(to top, #040714 30%, rgba(4, 7, 20, 0.8) 60%, rgba(4, 7, 20, 0) 100%);
+        }
+
+        .nav-blur {
+            backdrop-filter: blur(25px);
+            background-color: rgba(4, 7, 20, 0.75);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .btn-play {
+            transition: all 0.25s cubic-bezier(0.2, 0, 0.4, 1);
+            background-color: #f9f9f9;
+            color: #000;
+        }
+
+        .btn-play:hover {
+            transform: scale(1.04);
+            background-color: #d1d1d1;
+        }
+
+        .btn-icon {
+            transition: all 0.25s ease;
+            background-color: rgba(0, 0, 0, 0.5);
+            border: 2px solid #f9f9f9;
+        }
+
+        .btn-icon:hover {
+            background-color: #f9f9f9;
+            color: #000;
+        }
+
+        .card-item {
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .card-item:hover {
+            transform: scale(1.06) translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.8);
+            z-index: 20;
+        }
+
+        /* Lightning McQueen Color Accents */
+        .text-accent {
+            color: #e62429; /* McQueen Red */
+        }
+        
+        .border-accent {
+            border-color: #e62429;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #040714;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-red-600 selection:text-white">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-500 px-6 lg:px-12 py-5 flex items-center justify-between">
+        <div class="flex items-center gap-10">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg" alt="Disney+" class="h-10 lg:h-12 pointer-events-none">
+            
+            <div class="hidden lg:flex items-center gap-8 text-[13px] font-black tracking-[1.8px] uppercase">
+                <a href="#" class="flex items-center gap-3 text-gray-400 hover:text-white transition-colors duration-300">
+                    <i data-lucide="home" class="w-5 h-5"></i> ГЛАВНАЯ
+                </a>
+                <a href="#" class="flex items-center gap-3 text-gray-400 hover:text-white transition-colors duration-300">
+                    <i data-lucide="search" class="w-5 h-5"></i> ПОИСК
+                </a>
+                <a href="#" class="flex items-center gap-3 text-gray-400 hover:text-white transition-colors duration-300">
+                    <i data-lucide="plus" class="w-5 h-5"></i> СПИСОК
+                </a>
+                <a href="#" class="flex items-center gap-3 text-white transition-colors duration-300 relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-full after:h-0.5 after:bg-white">
+                    <i data-lucide="film" class="w-5 h-5"></i> ФИЛЬМЫ
+                </a>
+            </div>
+        </div>
+        
+        <div class="flex items-center gap-5">
+            <div class="hidden sm:block text-right">
+                <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Профиль</p>
+                <p class="text-xs font-bold">МОЛНИЯ</p>
+            </div>
+            <div class="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center border-2 border-white/20 cursor-pointer overflow-hidden shadow-lg">
+                <span class="font-black italic">95</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative min-h-screen flex items-center overflow-hidden">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://image.tmdb.org/t/p/original/4mlS1MitcOqdPLhxEFyk9Qwf5rr.jpg" 
+                 alt="Cars 3 Background" 
+                 class="w-full h-full object-cover object-center scale-105"
+                 onerror="this.src='https://placehold.co/1920x1080/040714/f9f9f9?text=Тачки+3'">
+            <div class="absolute inset-0 hero-gradient hidden lg:block"></div>
+            <div class="absolute inset-0 hero-mobile-gradient lg:hidden"></div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="relative z-10 px-6 lg:px-24 w-full mt-24 lg:mt-0">
+            <div class="max-w-3xl">
+                <!-- Branding -->
+                <div class="mb-6 animate-pulse">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Disney-Pixar_logo.svg" alt="Pixar" class="h-6 opacity-80 invert">
+                </div>
+
+                <!-- Title -->
+                <h1 class="text-6xl lg:text-9xl font-black italic tracking-tighter text-white uppercase drop-shadow-2xl mb-4 leading-none">
+                    ТАЧКИ <span class="text-accent">3</span>
+                </h1>
+
+                <!-- Tags -->
+                <div class="flex flex-wrap items-center gap-4 text-xs lg:text-sm font-bold text-gray-200 mb-8 uppercase tracking-widest">
+                    <span class="bg-white/10 px-2 py-1 rounded border border-white/20">6+</span>
+                    <span>2017</span>
+                    <span>1ч 42мин</span>
+                    <span class="flex items-center gap-2"><i data-lucide="info" class="w-4 h-4 text-accent"></i> Спортивная драма</span>
+                </div>
+
+                <!-- Description -->
+                <p class="text-base lg:text-xl text-gray-300 leading-relaxed mb-10 drop-shadow-lg max-w-2xl font-medium">
+                    Ослепленный новым поколением невероятно быстрых гонщиков во главе с Джексоном Штормом, легендарный Молния Маккуин внезапно оказывается вытесненным из спорта, который он так любит. Чтобы вернуться, ему понадобится помощь Крус Рамирес — энергичного гоночного инженера, у которой есть свой план на победу.
+                </p>
+
+                <!-- Action Controls -->
+                <div class="flex flex-wrap gap-4 items-center">
+                    <button class="btn-play px-12 py-4 rounded-md font-black flex items-center gap-3 text-sm lg:text-base tracking-[2px] shadow-xl">
+                        <i data-lucide="play" class="fill-current w-6 h-6"></i> СМОТРЕТЬ
+                    </button>
+                    <button class="bg-black/40 hover:bg-white/10 transition border-2 border-white px-10 py-4 rounded-md font-black text-sm lg:text-base tracking-[2px] backdrop-blur-md">
+                        ТРЕЙЛЕР
+                    </button>
+                    
+                    <button class="btn-icon w-14 h-14 rounded-full flex items-center justify-center shadow-lg" title="Добавить в список">
+                        <i data-lucide="plus" class="w-7 h-7"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Content Sections -->
+    <main class="relative z-10 -mt-10 lg:-mt-24 px-6 lg:px-24 pb-20">
+        
+        <!-- Collection Row -->
+        <div class="mb-16">
+            <h2 class="text-xl lg:text-2xl font-black mb-6 tracking-wide text-gray-100 uppercase italic">Трилогия «Тачки»</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                
+                <!-- Part 1 -->
+                <div class="card-item group relative aspect-[16/9] rounded-xl overflow-hidden cursor-pointer bg-gray-900 border border-white/10">
+                    <img src="https://image.tmdb.org/t/p/w500/sd4xN5xi8tKRPrJOWwNiZEile7f.jpg" alt="Тачки 1" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 p-4 flex flex-col justify-end">
+                        <p class="text-xs font-black uppercase">Тачки</p>
+                        <p class="text-[10px] text-accent font-bold">2006</p>
+                    </div>
+                </div>
+
+                <!-- Part 2 -->
+                <div class="card-item group relative aspect-[16/9] rounded-xl overflow-hidden cursor-pointer bg-gray-900 border border-white/10">
+                    <img src="https://image.tmdb.org/t/p/w500/4BS8tgBNWg2jPiDlBwM2iJe1xB7.jpg" alt="Тачки 2" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 p-4 flex flex-col justify-end">
+                        <p class="text-xs font-black uppercase">Тачки 2</p>
+                        <p class="text-[10px] text-accent font-bold">2011</p>
+                    </div>
+                </div>
+
+                <!-- Part 3 (Active) -->
+                <div class="card-item group relative aspect-[16/9] rounded-xl overflow-hidden cursor-pointer bg-gray-900 border-2 border-red-600 ring-4 ring-red-600/20">
+                    <img src="https://image.tmdb.org/t/p/w500/4mlS1MitcOqdPLhxEFyk9Qwf5rr.jpg" alt="Тачки 3" class="w-full h-full object-cover brightness-110">
+                    <div class="absolute top-2 right-2 bg-red-600 text-[10px] font-black px-2 py-0.5 rounded uppercase tracking-tighter">Вы смотрите</div>
+                </div>
+
+                <!-- Cars on the Road -->
+                <div class="card-item group relative aspect-[16/9] rounded-xl overflow-hidden cursor-pointer bg-gray-900 border border-white/10">
+                    <img src="https://image.tmdb.org/t/p/w500/uX78TI2H9YvYTMpZ7v6mN1p6aZ8.jpg" alt="Тачки на дороге" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 p-4 flex flex-col justify-end">
+                        <p class="text-xs font-black uppercase">Тачки на дороге</p>
+                        <p class="text-[10px] text-accent font-bold">2022</p>
+                    </div>
+                </div>
+                
+                <!-- Extra Material -->
+                <div class="card-item group relative aspect-[16/9] rounded-xl overflow-hidden cursor-pointer bg-gray-900 border border-white/10">
+                    <img src="https://image.tmdb.org/t/p/w500/uYfS2W39YxR2x67T88aU2F6oK6w.jpg" alt="Самолеты" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 p-4 flex flex-col justify-end">
+                        <p class="text-xs font-black uppercase">Самолеты</p>
+                        <p class="text-[10px] text-accent font-bold">2013</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Movie Details -->
+        <section class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 text-sm text-gray-400 border-t border-white/5 pt-16">
+            <div>
+                <h3 class="text-white font-black mb-6 uppercase tracking-widest text-xs italic underline decoration-red-600 decoration-2 underline-offset-8">О фильме</h3>
+                <p class="mb-4">Молния Маккуин должен доказать, что он все еще способен на победу в эру высокотехнологичных гонок. Потрясающая анимация и глубокий сюжет о наставничестве.</p>
+                <div class="space-y-2">
+                    <div class="flex justify-between"><span>Студия</span><span class="text-white">Pixar</span></div>
+                    <div class="flex justify-between"><span>Бюджет</span><span class="text-white">$175 млн</span></div>
+                </div>
+            </div>
+            
+            <div>
+                <h3 class="text-white font-black mb-6 uppercase tracking-widest text-xs italic underline decoration-red-600 decoration-2 underline-offset-8">Создатели</h3>
+                <div class="space-y-4">
+                    <div>
+                        <p class="text-[10px] uppercase font-bold text-gray-500">Режиссер</p>
+                        <p class="text-white font-medium">Брайан Фи</p>
+                    </div>
+                    <div>
+                        <p class="text-[10px] uppercase font-bold text-gray-500">Продюсер</p>
+                        <p class="text-white font-medium">Кевин Реэр</p>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-white font-black mb-6 uppercase tracking-widest text-xs italic underline decoration-red-600 decoration-2 underline-offset-8">Актеры (голоса)</h3>
+                <ul class="text-white space-y-1 font-medium">
+                    <li>Оуэн Уилсон (Молния)</li>
+                    <li>Кристела Алонсо (Крус)</li>
+                    <li>Арми Хаммер (Шторм)</li>
+                    <li>Крис Купер (Выхлоп)</li>
+                    <li>Нэйтан Филлион (Стерлинг)</li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="text-white font-black mb-6 uppercase tracking-widest text-xs italic underline decoration-red-600 decoration-2 underline-offset-8">Особенности</h3>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[10px] font-bold">DOLBY ATMOS</span>
+                    <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[10px] font-bold">HDR10+</span>
+                    <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[10px] font-bold">ULTRA HD</span>
+                    <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[10px] font-bold">MULTILINGUAL</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#040714] py-20 px-6 lg:px-24 border-t border-white/5">
+        <div class="flex flex-col items-center">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg" alt="Disney+" class="h-8 opacity-40 mb-12">
+            
+            <nav class="flex flex-wrap justify-center gap-x-10 gap-y-4 text-[11px] font-bold text-gray-500 uppercase tracking-[2px] mb-12">
+                <a href="#" class="hover:text-white transition">Поддержка</a>
+                <a href="#" class="hover:text-white transition">Устройства</a>
+                <a href="#" class="hover:text-white transition">Конфиденциальность</a>
+                <a href="#" class="hover:text-white transition">Правила сообщества</a>
+                <a href="#" class="hover:text-white transition">Cookies</a>
+            </nav>
+            
+            <p class="text-[10px] text-gray-600 text-center max-w-3xl leading-relaxed font-medium">
+                © 2024 Disney и связанные с ним лица. Pixar Animation Studios. «Тачки 3» (2017). Все права защищены. <br>
+                Disney+ Russia — ваш дом для лучших историй Pixar, Marvel, Star Wars и National Geographic.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Interactive Layer -->
+    <script>
+        // Icons
+        lucide.createIcons();
+
+        // Navbar Animation on Scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 30) {
+                navbar.classList.add('nav-blur', 'py-3', 'shadow-2xl');
+                navbar.classList.remove('py-5');
+            } else {
+                navbar.classList.remove('nav-blur', 'py-3', 'shadow-2xl');
+                navbar.classList.add('py-5');
+            }
+        });
+
+        // Interactive Buttons feedback
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('mouseenter', () => {
+                if(!btn.classList.contains('btn-play')) {
+                   btn.style.borderColor = '#e62429';
+                }
+            });
+            btn.addEventListener('mouseleave', () => {
+                if(!btn.classList.contains('btn-play')) {
+                   btn.style.borderColor = btn.classList.contains('btn-icon') ? '#f9f9f9' : 'white';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
