@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Люди Икс 2 | Disney+</title>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Movie",
+      "name": "Люди Икс 2",
+      "alternateName": "X2: X-Men United",
+      "image": "https://image.tmdb.org/t/p/original/s8ftvFvafWWEhApISamHx32bx6h.jpg",
+      "datePublished": "2003-05-01",
+      "director": {
+        "@type": "Person",
+        "name": "Bryan Singer"
+      },
+      "description": "Люди Икс подвергаются нападению неизвестного мутанта, после чего правительство начинает масштабную операцию против них. Мутантам приходится объединиться со своими старыми врагами, чтобы выжить.",
+      "genre": ["Action", "Sci-Fi", "Adventure"],
+      "duration": "PT2H13M",
+      "contentRating": "12+"
+    }
+    </script>
+
+    <style>
+        /* CSS Styling */
+        :root {
+            --bg-color: #040714;
+            --text-color: #f9f9f9;
+            --btn-primary: #f9f9f9;
+            --btn-primary-text: #000000;
+            --btn-secondary: rgba(0, 0, 0, 0.6);
+            --btn-secondary-border: #f9f9f9;
+            --nav-bg: transparent;
+            --nav-scroll-bg: #040714;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Avenir', 'Segoe UI', Roboto, Helvetica, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        /* Navigation Bar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 72px;
+            padding: 0 36px;
+            display: flex;
+            align-items: center;
+            background-color: var(--nav-bg);
+            transition: background-color 0.3s ease;
+            z-index: 100;
+        }
+
+        nav.scrolled {
+            background-color: var(--nav-scroll-bg);
+        }
+
+        .logo img {
+            width: 80px;
+            margin-top: 5px;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            margin-left: 40px;
+            gap: 25px;
+        }
+
+        .nav-links li {
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 1.42px;
+            text-transform: uppercase;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .nav-links li::after {
+            content: '';
+            height: 2px;
+            background: white;
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -6px;
+            opacity: 0;
+            transform-origin: left center;
+            transform: scaleX(0);
+            transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
+        }
+
+        .nav-links li:hover::after {
+            opacity: 1;
+            transform: scaleX(1);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 5vw;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+            background-image: url('https://image.tmdb.org/t/p/original/s8ftvFvafWWEhApISamHx32bx6h.jpg');
+            background-size: cover;
+            background-position: top center;
+        }
+
+        /* Gradient Overlay for Text Legibility */
+        .hero-background::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, #040714 5%, transparent 60%),
+                        linear-gradient(to top, #040714 0%, transparent 40%);
+        }
+
+        .hero-content {
+            max-width: 650px;
+            margin-top: 50px;
+            z-index: 1;
+        }
+
+        .movie-logo {
+            width: 100%;
+            max-width: 350px;
+            margin-bottom: 30px;
+        }
+
+        .meta-data {
+            font-size: 12px;
+            font-weight: 600;
+            color: #cacaca;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .age-rating {
+            border: 1px solid #cacaca;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        /* Action Buttons */
+        .controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 24px;
+            height: 56px;
+            border-radius: 4px;
+            font-size: 15px;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.2s ease;
+            border: none;
+        }
+
+        .btn-play {
+            background-color: var(--btn-primary);
+            color: var(--btn-primary-text);
+        }
+
+        .btn-play:hover {
+            background-color: rgba(249, 249, 249, 0.8);
+        }
+
+        .btn-trailer {
+            background-color: var(--btn-secondary);
+            color: var(--text-color);
+            border: 1px solid var(--btn-secondary-border);
+        }
+
+        .btn-trailer:hover {
+            background-color: var(--btn-primary);
+            color: var(--btn-primary-text);
+        }
+
+        .btn-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 2px solid white;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 24px;
+            color: white;
+            transition: all 0.2s ease;
+        }
+
+        .btn-icon:hover {
+            background-color: white;
+            color: black;
+        }
+
+        .description {
+            font-size: 20px;
+            line-height: 1.5;
+            color: #f9f9f9;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="navbar">
+        <div class="logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/64/Disney%2B_2024.svg" alt="Disney+ Logo">
+        </div>
+        <ul class="nav-links">
+            <li>Главная</li>
+            <li>Поиск</li>
+            <li>Мой список</li>
+            <li>Оригиналы</li>
+            <li>Фильмы</li>
+            <li>Сериалы</li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="hero-background"></div>
+            
+            <div class="hero-content">
+                <img src="https://image.tmdb.org/t/p/original/d6OOhlLtYjsAIlxwfigw50eXsfq.png" alt="Люди Икс 2" class="movie-logo">
+                
+                <div class="meta-data">
+                    <span class="age-rating">12+</span>
+                    <span>2003</span>
+                    <span>•</span>
+                    <span>2 ч 13 мин</span>
+                    <span>•</span>
+                    <span>Фантастика, Боевик, Приключения</span>
+                </div>
+
+                <div class="controls">
+                    <button class="btn btn-play" id="playBtn">
+                        <span style="margin-right: 10px;">▶</span> Смотреть
+                    </button>
+                    <button class="btn btn-trailer" id="trailerBtn">
+                        Трейлер
+                    </button>
+                    <div class="btn-icon" title="Добавить в список">+</div>
+                    <div class="btn-icon" title="Совместный просмотр">👥</div>
+                </div>
+
+                <p class="description">
+                    Люди Икс подвергаются нападению неизвестного мутанта, после чего правительство начинает масштабную операцию против них. Мутантам приходится объединиться со своими старыми врагами, чтобы выжить.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. Navigation bar background change on scroll
+            const navbar = document.getElementById('navbar');
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // 2. Simple interactive events for buttons
+            const playBtn = document.getElementById('playBtn');
+            const trailerBtn = document.getElementById('trailerBtn');
+
+            playBtn.addEventListener('click', () => {
+                alert('Запуск фильма «Люди Икс 2» (2003)...');
+            });
+
+            trailerBtn.addEventListener('click', () => {
+                alert('Воспроизведение трейлера...');
+            });
+        });
+    </script>
+
+</body>
+</html>
