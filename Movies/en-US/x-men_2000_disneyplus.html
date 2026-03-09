@@ -3,332 +3,291 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>X-Men (2000) | Watch on Disney+</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <!-- JSON-LD Structured Data -->
+    <title>X-Men (2000) | Disney+</title>
+    
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Movie",
       "name": "X-Men",
-      "alternateName": "X-Men 1",
       "image": "https://image.tmdb.org/t/p/original/3QUVzbcNyfGe3ocWkYAT8emK8Co.jpg",
-      "description": "Two mutants come to a private academy for their kind whose resident superhero team must oppose a terrorist organization with similar powers.",
-      "datePublished": "2000-07-14",
+      "dateCreated": "2000-07-14",
       "director": {
         "@type": "Person",
         "name": "Bryan Singer"
       },
-      "actor": [
-        { "@type": "Person", "name": "Hugh Jackman" },
-        { "@type": "Person", "name": "Patrick Stewart" },
-        { "@type": "Person", "name": "Ian McKellen" },
-        { "@type": "Person", "name": "Famke Janssen" },
-        { "@type": "Person", "name": "Halle Berry" }
-      ],
-      "genre": ["Action", "Adventure", "Sci-Fi"],
-      "duration": "PT1H44M",
-      "contentRating": "PG-13"
+      "description": "Two mutants come to a private academy for their kind whose resident superhero team must oppose a terrorist organization with similar powers.",
+      "genre": ["Action", "Science Fiction", "Adventure"],
+      "contentRating": "PG-13",
+      "duration": "PT1H44M"
     }
     </script>
+
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #040714;
-            color: #f9f9f9;
+        /* Base Reset & Variables */
+        :root {
+            --bg-color: #040714;
+            --text-primary: #f9f9f9;
+            --text-secondary: #cacaca;
+            --btn-hover: rgba(249, 249, 249, 0.2);
+        }
+
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Avenir', 'Helvetica Neue', Helvetica, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
             overflow-x: hidden;
         }
 
-        /* Disney+ Signature Background Gradient */
-        .page-container {
-            background: radial-gradient(circle at top center, #1a1d29 0%, #040714 100%);
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 40px;
+            z-index: 100;
+            background: linear-gradient(to bottom, rgba(4, 7, 20, 0.8) 0%, transparent 100%);
+        }
+
+        .disney-logo {
+            width: 80px;
+            cursor: pointer;
+        }
+
+        /* Hero Section & Background */
+        .hero {
+            position: relative;
             min-height: 100vh;
+            display: flex;
+            align-items: center;
         }
 
         .hero-bg {
-            position: fixed;
+            position: absolute;
             top: 0;
             right: 0;
             width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.4;
-            mask-image: linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 100%),
-                        linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
-            -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%),
-                                linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
-            background-image: url('https://image.tmdb.org/t/p/original/3QUVzbcNyfGe3ocWkYAT8emK8Co.jpg');
+            height: 100vh;
+            background-image: 
+                linear-gradient(to right, #040714 15%, transparent 60%),
+                linear-gradient(to top, #040714 5%, transparent 40%),
+                url('https://image.tmdb.org/t/p/original/3QUVzbcNyfGe3ocWkYAT8emK8Co.jpg');
             background-size: cover;
             background-position: top right;
+            z-index: 0;
         }
 
-        .btn-play {
-            background-color: #f9f9f9;
-            color: #000;
-            transition: all 0.2s ease;
-        }
-        .btn-play:hover {
-            background-color: #c0c0c0;
-            transform: scale(1.05);
-        }
-
-        .btn-secondary {
-            background-color: rgba(0, 0, 0, 0.6);
-            border: 1px solid #f9f9f9;
-            transition: all 0.2s ease;
-        }
-        .btn-secondary:hover {
-            background-color: #f9f9f9;
-            color: #000;
-        }
-
-        .nav-link {
+        /* Main Content Container */
+        .content {
             position: relative;
-            color: #f9f9f9;
+            z-index: 10;
+            max-width: 650px;
+            padding: 0 5%;
+            margin-top: 80px; /* Offset for nav */
+        }
+
+        .movie-logo {
+            width: 100%;
+            max-width: 350px;
+            margin-bottom: 25px;
+            filter: drop-shadow(0px 4px 8px rgba(0,0,0,0.8));
+        }
+
+        /* Metadata (Year, Rating, Duration, Genre) */
+        .metadata {
+            display: flex;
+            align-items: center;
+            gap: 15px;
             font-size: 13px;
-            letter-spacing: 1.42px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+        }
+
+        .rating {
+            border: 1px solid var(--text-secondary);
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+
+        /* Action Buttons */
+        .actions {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        button {
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 15px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease-in-out;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
         }
-        .nav-link::after {
-            content: '';
-            height: 2px;
-            background: #f9f9f9;
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: -6px;
-            opacity: 0;
-            transform: scaleX(0);
-            transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        .nav-link:hover::after {
-            opacity: 1;
-            transform: scaleX(1);
+
+        .play-btn {
+            background-color: var(--text-primary);
+            color: black;
+            border: none;
+            padding: 12px 24px;
         }
 
-        .content-card {
-            box-shadow: rgb(0 0 0 / 69%) 0px 26px 30px -10px, rgb(0 0 0 / 73%) 0px 16px 10px -10px;
-            transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
-            border: 3px solid rgba(249, 249, 249, 0.1);
-            border-radius: 4px;
-        }
-        .content-card:hover {
-            box-shadow: rgb(0 0 0 / 80%) 0px 40px 58px -16px, rgb(0 0 0 / 72%) 0px 30px 22px -10px;
-            transform: scale(1.05);
-            border-color: rgba(249, 249, 249, 0.8);
+        .play-btn:hover {
+            background-color: rgba(255, 255, 255, 0.75);
         }
 
-        .custom-modal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.9);
-            z-index: 100;
-            justify-content: center;
-            align-items: center;
+        .play-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+            fill: black;
+        }
+
+        .trailer-btn {
+            background-color: rgba(0, 0, 0, 0.6);
+            color: var(--text-primary);
+            border: 1px solid var(--text-primary);
+            padding: 12px 24px;
+        }
+
+        .trailer-btn:hover {
+            background-color: var(--text-primary);
+            color: black;
+        }
+
+        .icon-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.6);
+            border: 2px solid var(--text-primary);
+            color: var(--text-primary);
+            font-size: 24px;
+            font-weight: 300;
+        }
+
+        .icon-btn:hover {
+            background-color: var(--text-primary);
+            color: black;
+        }
+
+        /* Description / Synopsis */
+        .description {
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--text-primary);
+            font-weight: 400;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-bg {
+                background-image: 
+                    linear-gradient(to top, #040714 30%, transparent 80%),
+                    url('https://image.tmdb.org/t/p/original/3QUVzbcNyfGe3ocWkYAT8emK8Co.jpg');
+                background-position: top center;
+            }
+            .hero {
+                align-items: flex-end;
+                padding-bottom: 40px;
+            }
+            .content {
+                padding: 0 20px;
+                text-align: center;
+                margin-top: 0;
+            }
+            .movie-logo {
+                max-width: 250px;
+                margin: 0 auto 20px auto;
+            }
+            .metadata {
+                justify-content: center;
+            }
+            .actions {
+                justify-content: center;
+            }
         }
     </style>
 </head>
 <body>
 
-    <div class="page-container">
-        <!-- Background Layer -->
+    <nav>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/64/Disney%2B_2024.svg" alt="Disney+ Logo" class="disney-logo">
+    </nav>
+
+    <main class="hero">
         <div class="hero-bg"></div>
-
-        <!-- Navigation Bar -->
-        <nav class="flex items-center px-10 h-[72px] bg-transparent fixed top-0 w-full z-50 transition-colors duration-300" id="mainNav">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Disney%2B_logo.svg/1280px-Disney%2B_logo.svg.png" 
-                 alt="Disney+" class="w-20 mr-8 cursor-pointer">
+        
+        <div class="content">
+            <img src="https://image.tmdb.org/t/p/original/qkDbPsV76eU9ldQsHhjmEzjeeox.png" alt="X-Men" class="movie-logo">
             
-            <div class="hidden md:flex items-center space-x-6">
-                <a href="#" class="nav-link flex items-center">
-                    <span class="mr-2">🏠</span> Home
-                </a>
-                <a href="#" class="nav-link flex items-center">
-                    <span class="mr-2">🔍</span> Search
-                </a>
-                <a href="#" class="nav-link flex items-center">
-                    <span class="mr-2">➕</span> Watchlist
-                </a>
-                <a href="#" class="nav-link flex items-center">
-                    <span class="mr-2">⭐</span> Originals
-                </a>
-                <a href="#" class="nav-link flex items-center">
-                    <span class="mr-2">🎬</span> Movies
-                </a>
+            <div class="metadata">
+                <span>2000</span>
+                <span class="rating">PG-13</span>
+                <span>1h 44m</span>
+                <span>Science Fiction, Action</span>
             </div>
 
-            <div class="ml-auto flex items-center space-x-4">
-                <div class="text-right">
-                    <div class="text-[12px] opacity-60">User</div>
-                    <div class="font-bold text-sm">Professor X</div>
-                </div>
-                <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center font-bold">PX</div>
-            </div>
-        </nav>
-
-        <!-- Main Content Section -->
-        <main class="relative pt-32 px-6 md:px-12 lg:px-20 pb-20">
-            <!-- Movie Identity -->
-            <div class="max-w-3xl animate-in fade-in duration-700 slide-in-from-left-5">
-                <!-- Title Logo (Text fallback for branding) -->
-                <h1 class="text-5xl md:text-7xl font-bold tracking-tighter mb-4 italic uppercase">X-Men</h1>
-                
-                <!-- Controls -->
-                <div class="flex flex-wrap items-center gap-4 mb-8">
-                    <button onclick="showMessage('Starting playback...')" class="btn-play px-8 py-3 rounded uppercase font-bold text-sm flex items-center">
-                        <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                        Play
-                    </button>
-                    <button onclick="openTrailer()" class="btn-secondary px-8 py-3 rounded uppercase font-bold text-sm flex items-center">
-                        Trailer
-                    </button>
-                    <button class="w-11 h-11 rounded-full border border-white flex items-center justify-center text-2xl hover:bg-white hover:text-black transition-all">
-                        +
-                    </button>
-                    <button class="w-11 h-11 rounded-full border border-white flex items-center justify-center text-xl hover:bg-white hover:text-black transition-all">
-                        👥
-                    </button>
-                </div>
-
-                <!-- Metadata -->
-                <div class="flex items-center space-x-3 text-sm font-light opacity-90 mb-4">
-                    <span>2000</span>
-                    <span class="border px-1 text-[10px] font-bold">PG-13</span>
-                    <span>1h 44m</span>
-                    <span>Action, Adventure, Sci-Fi</span>
-                </div>
-
-                <!-- Description -->
-                <p class="text-lg leading-relaxed mb-10 text-gray-300 max-w-2xl">
-                    In a world where mutants (humans with a genetic variation that allows them to possess superhuman powers) are feared and detested, two mutants come to a private academy for their kind whose resident superhero team must oppose a terrorist organization with similar powers.
-                </p>
-
-                <!-- Detailed Tabs -->
-                <div class="border-b border-gray-700 mb-8 flex space-x-8 text-sm uppercase tracking-widest pb-2">
-                    <span class="cursor-pointer border-b-2 border-white pb-2">Details</span>
-                    <span class="cursor-pointer opacity-50 hover:opacity-100 transition-opacity pb-2">Trailers & Extras</span>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm opacity-80">
-                    <div>
-                        <h3 class="font-bold mb-2">Director</h3>
-                        <p class="mb-4">Bryan Singer</p>
-                        <h3 class="font-bold mb-2">Starring</h3>
-                        <p>Hugh Jackman, Patrick Stewart, Ian McKellen, Famke Janssen, Halle Berry, James Marsden</p>
-                    </div>
-                    <div>
-                        <h3 class="font-bold mb-2">Release Date</h3>
-                        <p class="mb-4">July 14, 2000</p>
-                        <h3 class="font-bold mb-2">Studio</h3>
-                        <p>20th Century Studios, Marvel Entertainment</p>
-                    </div>
-                </div>
+            <div class="actions">
+                <button class="play-btn" id="playMovie">
+                    <svg class="play-icon" viewBox="0 0 24 24">
+                        <path d="M6 4l15 8-15 8z"></path>
+                    </svg>
+                    Play
+                </button>
+                <button class="trailer-btn" id="playTrailer">Trailer</button>
+                <button class="icon-btn" title="Add to Watchlist">+</button>
+                <button class="icon-btn" title="Group Watch">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path>
+                    </svg>
+                </button>
             </div>
 
-            <!-- Suggested Rail -->
-            <div class="mt-20">
-                <h2 class="text-xl font-bold mb-6 tracking-wide uppercase opacity-80">Related Content</h2>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
-                    <!-- Suggested Items -->
-                    <div class="content-card overflow-hidden">
-                        <img src="https://image.tmdb.org/t/p/w500/2L9S7877S8ST680v339Ufw7S33p.jpg" alt="X2" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/500x750/1a1d29/white?text=X2+United'">
-                    </div>
-                    <div class="content-card overflow-hidden">
-                        <img src="https://image.tmdb.org/t/p/w500/vU7D32qAicG7A5B7PndLzV4YitR.jpg" alt="The Last Stand" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/500x750/1a1d29/white?text=The+Last+Stand'">
-                    </div>
-                    <div class="content-card overflow-hidden">
-                        <img src="https://image.tmdb.org/t/p/w500/7LAL8qS0SOf882I8vH6p0unub6U.jpg" alt="First Class" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/500x750/1a1d29/white?text=First+Class'">
-                    </div>
-                    <div class="content-card overflow-hidden">
-                        <img src="https://image.tmdb.org/t/p/w500/fnbjc00u79vT9S9z96S9Zh8r9UX.jpg" alt="Logan" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/500x750/1a1d29/white?text=Logan'">
-                    </div>
-                    <div class="content-card overflow-hidden">
-                        <img src="https://image.tmdb.org/t/p/w500/p9XyY9362oG3KxOatFshn8mUjK1.jpg" alt="Marvel Studios" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/500x750/1a1d29/white?text=The+Wolverine'">
-                    </div>
-                </div>
-            </div>
-        </main>
-
-        <!-- Footer -->
-        <footer class="px-12 py-12 flex flex-col items-center justify-center opacity-60 text-xs space-y-6 bg-[#040714]">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Disney%2B_logo.svg/1280px-Disney%2B_logo.svg.png" 
-                 alt="Disney+" class="w-16">
-            <div class="flex flex-wrap justify-center gap-6">
-                <a href="#" class="hover:text-white transition">Privacy Policy</a>
-                <a href="#" class="hover:text-white transition">Subscriber Agreement</a>
-                <a href="#" class="hover:text-white transition">Help</a>
-                <a href="#" class="hover:text-white transition">Supported Devices</a>
-                <a href="#" class="hover:text-white transition">About Us</a>
-                <a href="#" class="hover:text-white transition">Interest-based Ads</a>
-            </div>
-            <p>© Disney. All Rights Reserved.</p>
-        </footer>
-
-        <!-- Modal for Alerts -->
-        <div id="msgModal" class="custom-modal">
-            <div class="bg-[#1a1d29] p-8 rounded-lg shadow-2xl max-w-sm w-full text-center border border-gray-700">
-                <h2 id="msgTitle" class="text-xl font-bold mb-4">Notification</h2>
-                <p id="msgBody" class="mb-6 opacity-80"></p>
-                <button onclick="closeModal()" class="w-full btn-play py-3 rounded font-bold">CLOSE</button>
-            </div>
+            <p class="description">
+                In a world where mutants (evolved super-powered humans) exist and are discriminated against, two groups form for an inevitable clash: the supremacist Brotherhood, and the pacifist X-Men.
+            </p>
         </div>
-
-        <!-- Trailer Modal (Mock) -->
-        <div id="trailerModal" class="custom-modal">
-            <div class="relative w-[90%] max-w-4xl aspect-video bg-black rounded-xl overflow-hidden shadow-2xl border border-gray-700">
-                <div class="absolute inset-0 flex items-center justify-center text-center p-10">
-                    <div>
-                        <h2 class="text-2xl font-bold mb-4">X-Men (2000) Official Trailer</h2>
-                        <p class="opacity-60 mb-6 italic">Video player initialization simulated...</p>
-                        <div class="w-full bg-gray-800 h-1 rounded-full mb-6">
-                            <div class="bg-blue-600 h-full w-1/3 rounded-full"></div>
-                        </div>
-                    </div>
-                </div>
-                <button onclick="closeTrailer()" class="absolute top-4 right-4 text-3xl font-light hover:text-red-500">&times;</button>
-            </div>
-        </div>
-    </div>
+    </main>
 
     <script>
-        // Scroll Effect for Navigation
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('mainNav');
-            if (window.scrollY > 50) {
-                nav.style.backgroundColor = '#040714';
-            } else {
-                nav.style.backgroundColor = 'transparent';
-            }
-        });
+        document.addEventListener('DOMContentLoaded', () => {
+            const playBtn = document.getElementById('playMovie');
+            const trailerBtn = document.getElementById('playTrailer');
 
-        // Modal Logic
-        function showMessage(text) {
-            document.getElementById('msgBody').innerText = text;
-            document.getElementById('msgModal').style.display = 'flex';
-        }
+            playBtn.addEventListener('click', () => {
+                // In a real app, this would route to the video player component
+                alert('Starting playback for X-Men (2000)...');
+            });
 
-        function openTrailer() {
-            document.getElementById('trailerModal').style.display = 'flex';
-        }
-
-        function closeTrailer() {
-            document.getElementById('trailerModal').style.display = 'none';
-        }
-
-        function closeModal() {
-            document.getElementById('msgModal').style.display = 'none';
-        }
-
-        // Close on escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closeModal();
-                closeTrailer();
-            }
+            trailerBtn.addEventListener('click', () => {
+                alert('Opening trailer modal...');
+            });
+            
+            // Subtle parallax effect on background
+            window.addEventListener('mousemove', (e) => {
+                const bg = document.querySelector('.hero-bg');
+                const x = e.clientX / window.innerWidth;
+                const y = e.clientY / window.innerHeight;
+                bg.style.transform = `translate(-${x * 10}px, -${y * 10}px) scale(1.05)`;
+            });
         });
     </script>
+
 </body>
 </html>
