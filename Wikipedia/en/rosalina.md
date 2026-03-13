@@ -21,7 +21,7 @@ Since her debut, Rosalina has become a recurring character in the *Mario* series
 | **Species** | Human |
 | **Title** | Watcher of the Cosmos |
 
-—
+***
 
 ## Concept and Creation
 
