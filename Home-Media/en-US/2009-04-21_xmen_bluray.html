@@ -3,449 +3,319 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>X-Men (2-Disc Set) Blu-ray Explorer</title>
+    <title>X-Men (Blu-ray) - 20th Century Fox Home Entertainment</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
-        
+        :root {
+            --fox-blue: #002d62;
+            --fox-gold: #f5b041;
+            --bluray-blue: #00aaff;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #FAFAF9; /* Warm neutral background */
-            color: #292524;
+            font-family: Helvetica, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
         }
 
-        /* Strict Chart Container Styling */
-        .chart-container {
-            position: relative;
+        .hero-gradient {
+            background: linear-gradient(180deg, var(--fox-blue) 0%, #001a3a 100%);
+        }
+
+        .product-card {
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            background: white;
+        }
+
+        .spec-label {
+            font-weight: 700;
+            color: var(--fox-blue);
+            width: 140px;
+            display: inline-block;
+        }
+
+        .tab-active {
+            border-bottom: 4px solid var(--fox-blue);
+            color: var(--fox-blue);
+            font-weight: 700;
+        }
+
+        .case-preview {
+            perspective: 1000px;
+        }
+
+        .case-inner {
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+
+        .case-inner.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .case-front, .case-back {
+            backface-visibility: hidden;
+            border-radius: 10px;
+        }
+
+        .case-back {
+            transform: rotateY(180deg);
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 300px;
-            max-height: 350px;
+            height: 100%;
         }
 
-        @media (min-width: 768px) {
-            .chart-container {
-                height: 350px;
-            }
-        }
-
-        /* Custom Interactive Elements */
-        .tab-btn {
-            transition: all 0.3s ease;
-        }
-        .tab-btn.active {
-            color: #b45309; /* Warm accent color */
-            border-bottom-width: 4px;
-            border-color: #b45309;
-            font-weight: 600;
-        }
-        
-        .card-hover:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
-
-        /* Custom Scrollbar for content areas */
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f5f5f4; 
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #d6d3d1; 
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #a8a29e; 
+        .fox-logo {
+            font-weight: 900;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+            font-style: italic;
         }
     </style>
 </head>
-<body class="antialiased min-h-screen flex flex-col">
+<body>
 
-    <!-- Chosen Palette: Warm Stone & Amber (Backgrounds: FAFAF9, F5F5F4. Text: 292524. Accents: b45309, d97706) -->
-    <!-- Application Structure Plan: A dashboard-style layout with a persistent header for core metadata and a tabbed navigation system. The structure is chosen to prevent overwhelming the user with a massive wall of text. The report is broken into logical, task-oriented views: 'Overview' for the premise, 'Tech Specs' for A/V enthusiasts, 'Special Features' for bonus content exploration, and 'Cast & Crew' for personnel. This allows users to selectively engage with the data they care about most. -->
-    <!-- Visualization & Content Choices: 
-         1. Overview: Clean text presentation with a prominent hero image for immediate context. 
-         2. Tech Specs: A CSS Grid of styled 'cards' to make tabular data more readable and scannable.
-         3. Special Features: A Chart.js Doughnut chart to visually categorize the sheer volume of bonus content, paired with an interactive toggle list for Disc 1 vs Disc 2 exploration.
-         4. Cast & Crew: A flex-wrap layout of character cards for quick visual scanning. 
-         All choices use standard HTML/CSS/JS and Canvas (Chart.js), strictly avoiding SVG/Mermaid. -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
-
-    <!-- Header Section -->
-    <header class="bg-stone-100 border-b border-stone-200 sticky top-0 z-10 shadow-sm">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-            <div class="flex flex-col md:flex-row items-center gap-6">
-                <!-- Cover Image -->
-                <div class="flex-shrink-0">
-                    <img src="https://images.static-bluray.com/movies/covers/3736_front.jpg" alt="X-Men Blu-ray Cover" class="w-32 md:w-40 rounded shadow-lg border border-stone-300">
+    <!-- Header -->
+    <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="fox-logo text-2xl text-blue-900">
+                    20<span class="text-yellow-600">th</span> Century Fox
                 </div>
-                <!-- Title and Meta -->
-                <div class="text-center md:text-left flex-1">
-                    <h1 class="text-3xl md:text-4xl font-bold text-stone-800 tracking-tight">X-Men</h1>
-                    <p class="text-lg text-stone-600 mt-1 font-medium">Blu-ray 2-Disc Set</p>
-                    
-                    <div class="mt-4 flex flex-wrap justify-center md:justify-start gap-3 text-sm">
-                        <span class="bg-stone-200 text-stone-700 px-3 py-1 rounded-full font-semibold">&#9202; 104 Min</span>
-                        <span class="bg-stone-200 text-stone-700 px-3 py-1 rounded-full font-semibold">&#127916; PG-13</span>
-                        <span class="bg-stone-200 text-stone-700 px-3 py-1 rounded-full font-semibold">&#128197; Released: Apr 21, 2009</span>
-                        <span class="bg-stone-200 text-stone-700 px-3 py-1 rounded-full font-semibold">&#127970; 20th Century Fox</span>
+                <div class="hidden md:block h-6 w-px bg-gray-300 mx-4"></div>
+                <div class="hidden md:block text-xs font-bold text-gray-500 tracking-widest uppercase">
+                    Home Entertainment
+                </div>
+            </div>
+            <nav class="hidden md:flex space-x-6 text-sm font-bold text-gray-600">
+                <a href="#" class="hover:text-blue-800 uppercase">Movies</a>
+                <a href="#" class="hover:text-blue-800 uppercase">Blu-ray™</a>
+                <a href="#" class="hover:text-blue-800 uppercase">Digital</a>
+                <a href="#" class="hover:text-blue-800 uppercase">Support</a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <button class="text-gray-600"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <button class="bg-blue-600 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider hover:bg-blue-700 transition">Buy Now</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumbs -->
+    <div class="bg-gray-100 py-2">
+        <div class="container mx-auto px-4 text-xs text-gray-500">
+            Home > Blu-ray > Sci-Fi & Fantasy > X-Men (2000)
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="flex flex-col lg:flex-row gap-12">
+            
+            <!-- Product Images Section -->
+            <div class="lg:w-1/3">
+                <div class="case-preview relative mb-6">
+                    <div id="caseToggle" class="case-inner relative w-full aspect-[3/4]">
+                        <!-- Front Cover -->
+                        <div class="case-front w-full h-full shadow-2xl">
+                            <img src="https://i.postimg.cc/BQdn2FwC/Front_cover.jpg" alt="X-Men Blu-ray Front Cover" class="w-full h-full object-cover rounded-md border border-gray-300" onerror="this.src='https://via.placeholder.com/600x800?text=X-Men+Front+Cover'">
+                        </div>
+                        <!-- Back Cover -->
+                        <div class="case-back w-full h-full shadow-2xl">
+                            <img src="https://i.postimg.cc/PrB51DFV/Back_cover.jpg" alt="X-Men Blu-ray Back Cover" class="w-full h-full object-cover rounded-md border border-gray-300" onerror="this.src='https://via.placeholder.com/600x800?text=X-Men+Back+Cover'">
+                        </div>
+                    </div>
+                    <div class="mt-4 text-center">
+                        <button onclick="toggleFlip()" class="text-blue-600 font-bold text-sm hover:underline">
+                            <i class="fa-solid fa-rotate mr-2"></i> Click to view Back Cover
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-white p-4 rounded-lg border border-gray-200 flex flex-col items-center">
+                        <i class="fa-solid fa-compact-disc text-3xl text-gray-400 mb-2"></i>
+                        <span class="text-xs font-bold uppercase">2-Disc Set</span>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg border border-gray-200 flex flex-col items-center">
+                        <i class="fa-solid fa-clapperboard text-3xl text-gray-400 mb-2"></i>
+                        <span class="text-xs font-bold uppercase">Digital Copy</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Info Section -->
+            <div class="lg:w-2/3">
+                <div class="mb-2">
+                    <span class="bg-blue-100 text-blue-800 text-[10px] font-extrabold px-2 py-1 rounded uppercase tracking-tighter">Blu-ray™ + Digital Copy</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-black text-blue-900 mb-2 uppercase italic tracking-tighter">X-Men</h1>
+                <p class="text-xl text-gray-600 mb-6 font-light">The first chapter in the legendary X-Men cinematic universe.</p>
+                
+                <div class="flex items-center space-x-4 mb-8">
+                    <div class="flex text-yellow-500">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <span class="text-sm text-gray-500 font-bold">(4.5/5 based on 2,400 reviews)</span>
+                </div>
+
+                <!-- Tabs -->
+                <div class="border-b border-gray-200 mb-6 flex space-x-8">
+                    <button onclick="switchTab('synopsis')" id="btn-synopsis" class="pb-4 text-sm uppercase tracking-widest tab-active">Synopsis</button>
+                    <button onclick="switchTab('details')" id="btn-details" class="pb-4 text-sm uppercase tracking-widest text-gray-500 hover:text-blue-900">Technical Specs</button>
+                    <button onclick="switchTab('extras')" id="btn-extras" class="pb-4 text-sm uppercase tracking-widest text-gray-500 hover:text-blue-900">Special Features</button>
+                </div>
+
+                <!-- Tab Content: Synopsis -->
+                <div id="content-synopsis" class="tab-pane space-y-4">
+                    <p class="leading-relaxed text-gray-700">
+                        In a world where some people are born with extraordinary genetic mutations, humanity treats them with fear and distrust. Professor Charles Xavier (Patrick Stewart) runs a school for "gifted" youngsters, training them to use their powers for the benefit of mankind. 
+                    </p>
+                    <p class="leading-relaxed text-gray-700">
+                        But a radical group of mutants, led by the powerful Magneto (Ian McKellen), believes mutants should rule over humans. Now, the X-Men--including Wolverine (Hugh Jackman), Storm (Halle Berry), and Cyclops (James Marsden)--must stop Magneto’s plan to transform the world’s leaders into mutants at a global summit.
+                    </p>
+                </div>
+
+                <!-- Tab Content: Details -->
+                <div id="content-details" class="tab-pane hidden space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm bg-gray-50 p-6 rounded-lg">
+                        <div>
+                            <p class="mb-2"><span class="spec-label">Release Date:</span> April 21, 2009</p>
+                            <p class="mb-2"><span class="spec-label">UPC:</span> 024543575283</p>
+                            <p class="mb-2"><span class="spec-label">Studio:</span> 20th Century Fox</p>
+                            <p class="mb-2"><span class="spec-label">Rating:</span> PG-13</p>
+                        </div>
+                        <div>
+                            <p class="mb-2"><span class="spec-label">Runtime:</span> 104 Minutes</p>
+                            <p class="mb-2"><span class="spec-label">Video:</span> 1080p High Definition</p>
+                            <p class="mb-2"><span class="spec-label">Audio:</span> DTS-HD Master Audio 5.1</p>
+                            <p class="mb-2"><span class="spec-label">Aspect Ratio:</span> 2.35:1</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Content: Extras -->
+                <div id="content-extras" class="tab-pane hidden">
+                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-2">
+                        <li><strong>In-Movie Experience:</strong> Behind-the-scenes footage and interviews during playback.</li>
+                        <li><strong>Deleted Scenes:</strong> With optional commentary by Bryan Singer.</li>
+                        <li><strong>The Mutant Watch:</strong> Archival featurette.</li>
+                        <li><strong>Charlie Rose Interview:</strong> With Bryan Singer.</li>
+                        <li><strong>Trailers & TV Spots:</strong> Original theatrical marketing campaign.</li>
+                        <li><strong>Marvel Universe Trailers:</strong> Exclusive looks at other Marvel properties.</li>
+                    </ul>
+                </div>
+
+                <div class="mt-10 p-6 bg-blue-900 text-white rounded-xl flex flex-col md:flex-row items-center justify-between">
+                    <div>
+                        <div class="text-blue-300 text-xs font-bold uppercase mb-1">Suggested Retail Price</div>
+                        <div class="text-3xl font-black italic">$29.98</div>
+                    </div>
+                    <div class="flex space-x-4 mt-4 md:mt-0">
+                        <button class="bg-yellow-500 text-blue-900 px-8 py-3 rounded-md font-black uppercase hover:bg-yellow-400 transition transform hover:scale-105">
+                            Add to Cart
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
-        
-        <!-- Navigation Tabs -->
-        <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex overflow-x-auto border-t border-stone-200 mt-6" id="nav-tabs">
-            <button class="tab-btn active px-6 py-4 text-stone-500 font-medium whitespace-nowrap focus:outline-none" data-target="view-overview">Overview</button>
-            <button class="tab-btn px-6 py-4 text-stone-500 font-medium whitespace-nowrap focus:outline-none" data-target="view-specs">Tech Specs</button>
-            <button class="tab-btn px-6 py-4 text-stone-500 font-medium whitespace-nowrap focus:outline-none" data-target="view-features">Special Features</button>
-            <button class="tab-btn px-6 py-4 text-stone-500 font-medium whitespace-nowrap focus:outline-none" data-target="view-cast">Cast & Crew</button>
-        </nav>
-    </header>
-
-    <!-- Main Content Area -->
-    <main class="flex-grow w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-
-        <!-- VIEW: OVERVIEW -->
-        <section id="view-overview" class="view-section animate-fade-in block">
-            <div class="max-w-3xl">
-                <h2 class="text-2xl font-bold text-stone-800 mb-4 border-b-2 border-amber-600 inline-block pb-1">Film Synopsis</h2>
-                <p class="text-stone-600 mb-6 italic">This section provides the core narrative summary of the film as presented on the physical release, outlining the world-building, key character mutations, and the central conflict.</p>
-                
-                <div class="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-stone-100 leading-relaxed text-stone-700 space-y-4 text-lg">
-                    <p>Witness the evolution of spectacular action and excitement in this dazzling “feast of fantasy” unlike anything you’ve ever seen before. Born into a world filled with prejudice are children who possess extraordinary and dangerous powers—the result of unique genetic mutations.</p>
-                    
-                    <ul class="list-disc list-inside ml-4 space-y-2 text-stone-600">
-                        <li><strong class="text-stone-800">Cyclops</strong> unleashes bolts of energy from his eyes.</li>
-                        <li><strong class="text-stone-800">Storm</strong> can manipulate the weather at will.</li>
-                        <li><strong class="text-stone-800">Rogue</strong> absorbs the life force of anyone she touches.</li>
-                    </ul>
-
-                    <p>But under the tutelage of Professor Xavier (Patrick Stewart), these and other outcasts learn to harness their powers for the good of mankind.</p>
-
-                    <p>Now they must protect those who fear them as they wage a war against Magneto (Ian McKellen), who believes humans and mutants can never co-exist and has a sinister plan for the future!</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- VIEW: TECH SPECS -->
-        <section id="view-specs" class="view-section hidden">
-            <h2 class="text-2xl font-bold text-stone-800 mb-4 border-b-2 border-amber-600 inline-block pb-1">Technical Specifications</h2>
-            <p class="text-stone-600 mb-8 max-w-2xl">This section details the audio and visual presentation standards of this specific Blu-ray release. The grid format allows audiophiles and videophiles to quickly parse the encoding formats, resolutions, and language support included on the disc.</p>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="specs-container">
-                <!-- Populated by JS -->
-            </div>
-        </section>
-
-        <!-- VIEW: SPECIAL FEATURES -->
-        <section id="view-features" class="view-section hidden">
-            <h2 class="text-2xl font-bold text-stone-800 mb-4 border-b-2 border-amber-600 inline-block pb-1">Bonus Content &amp; Features</h2>
-            <p class="text-stone-600 mb-8 max-w-2xl">This section visualizes the distribution of bonus materials across the 2-disc set. Use the chart to understand the types of content provided, and interact with the disc toggles below to explore the specific featurettes, commentaries, and archives included.</p>
-
-            <div class="flex flex-col lg:flex-row gap-8 items-start">
-                
-                <!-- Visualization Column -->
-                <div class="w-full lg:w-1/3 bg-white p-6 rounded-xl shadow-sm border border-stone-100 flex flex-col justify-center">
-                    <h3 class="text-lg font-bold text-stone-800 mb-2 text-center">Feature Breakdown</h3>
-                    <p class="text-xs text-stone-500 text-center mb-4">Proportion of bonus content by category</p>
-                    <div class="chart-container">
-                        <canvas id="featuresChart"></canvas>
-                    </div>
-                </div>
-
-                <!-- Interactive List Column -->
-                <div class="w-full lg:w-2/3 bg-white p-6 rounded-xl shadow-sm border border-stone-100">
-                    <div class="flex space-x-2 mb-6 border-b border-stone-200 pb-2">
-                        <button id="btn-disc1" class="px-4 py-2 bg-amber-600 text-white rounded font-medium focus:outline-none transition-colors hover:bg-amber-700">Disc 1: The Movie</button>
-                        <button id="btn-disc2" class="px-4 py-2 bg-stone-200 text-stone-700 rounded font-medium focus:outline-none transition-colors hover:bg-stone-300">Disc 2: Evolution</button>
-                    </div>
-
-                    <div id="features-list-container" class="space-y-4">
-                        <!-- Populated by JS -->
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- VIEW: CAST & CREW -->
-        <section id="view-cast" class="view-section hidden">
-            <h2 class="text-2xl font-bold text-stone-800 mb-4 border-b-2 border-amber-600 inline-block pb-1">Personnel</h2>
-            <p class="text-stone-600 mb-8 max-w-2xl">This section lists the primary creative forces behind the camera and the ensemble cast bringing the mutant characters to life. The structured cards separate production crew from starring roles for clarity.</p>
-
-            <div class="mb-10">
-                <h3 class="text-xl font-bold text-stone-700 mb-4 flex items-center gap-2">&#127909; Production Crew</h3>
-                <div class="flex flex-wrap gap-4" id="crew-container">
-                    <!-- Populated by JS -->
-                </div>
-            </div>
-
-            <div>
-                <h3 class="text-xl font-bold text-stone-700 mb-4 flex items-center gap-2">&#128101; Starring Cast</h3>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="cast-container">
-                    <!-- Populated by JS -->
-                </div>
-            </div>
-        </section>
-
     </main>
 
-    <footer class="bg-stone-800 text-stone-400 py-6 mt-12">
-        <div class="max-w-6xl mx-auto px-4 text-center text-sm">
-            Interactive Dashboard based on 20th Century Fox Home Entertainment product data.
+    <!-- Footer -->
+    <footer class="bg-gray-200 mt-20 py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center border-b border-gray-300 pb-8 mb-8">
+                <div class="fox-logo text-3xl text-gray-500 mb-6 md:mb-0">
+                    20<span class="text-gray-400">th</span> Century Fox
+                </div>
+                <div class="flex space-x-6 text-2xl text-gray-400">
+                    <i class="fa-brands fa-facebook hover:text-blue-600 cursor-pointer"></i>
+                    <i class="fa-brands fa-twitter hover:text-blue-400 cursor-pointer"></i>
+                    <i class="fa-brands fa-instagram hover:text-pink-600 cursor-pointer"></i>
+                    <i class="fa-brands fa-youtube hover:text-red-600 cursor-pointer"></i>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-xs text-gray-500 font-bold uppercase tracking-widest">
+                <div class="space-y-3">
+                    <p class="text-gray-800">Company</p>
+                    <a href="#" class="block hover:text-blue-900">About Fox</a>
+                    <a href="#" class="block hover:text-blue-900">Careers</a>
+                    <a href="#" class="block hover:text-blue-900">Press</a>
+                </div>
+                <div class="space-y-3">
+                    <p class="text-gray-800">Support</p>
+                    <a href="#" class="block hover:text-blue-900">FAQ</a>
+                    <a href="#" class="block hover:text-blue-900">Contact Us</a>
+                    <a href="#" class="block hover:text-blue-900">Redeem Digital</a>
+                </div>
+                <div class="space-y-3">
+                    <p class="text-gray-800">Legal</p>
+                    <a href="#" class="block hover:text-blue-900">Privacy Policy</a>
+                    <a href="#" class="block hover:text-blue-900">Terms of Use</a>
+                </div>
+                <div class="space-y-3 text-right col-span-2 md:col-span-1">
+                    <p class="mb-2 italic text-[10px] normal-case font-normal">
+                        © 2009 Twentieth Century Fox Home Entertainment LLC. All Rights Reserved. "Twentieth Century Fox", "Fox" and their associated logos are the property of Twentieth Century Fox Film Corporation and are used under license.
+                    </p>
+                    <div class="flex justify-end space-x-2">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Blu-ray_Disc_logo.svg/2560px-Blu-ray_Disc_logo.svg.png" alt="Blu-ray Logo" class="h-4 opacity-50 grayscale">
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
 
-    <!-- Application Logic -->
+    <!-- Custom Notification Box -->
+    <div id="msgBox" class="fixed bottom-10 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white px-6 py-3 rounded-full shadow-2xl transition-opacity opacity-0 pointer-events-none z-[100]">
+        Added to collection!
+    </div>
+
     <script>
-        // --- Data Storage --- //
-        const data = {
-            specs: [
-                { title: "Video Resolution", value: "1080p High Definition", icon: "&#128250;" },
-                { title: "Aspect Ratio", value: "Widescreen 2.35:1", icon: "&#128208;" },
-                { title: "Video Codec", value: "MPEG-4 AVC", icon: "&#128190;" },
-                { title: "Primary Audio", value: "English DTS-HD Master Audio 5.1", icon: "&#128266;" },
-                { title: "Additional Audio", value: "English, Spanish, French, Portuguese (Dolby Digital 5.1)", icon: "&#127897;" },
-                { title: "Subtitles", value: "English SDH, Spanish, Portuguese, Cantonese, Korean, Mandarin", icon: "&#128172;" },
-                { title: "Disc Format", value: "BD-50 (Dual Layer)", icon: "&#128191;" }
-            ],
-            features: {
-                disc1: [
-                    { name: "Audio Commentary", desc: "Director Bryan Singer and Brian Peck." },
-                    { name: "Enhanced Viewing Mode", desc: "View deleted/extended scenes and behind-the-scenes vignettes as you watch the movie." },
-                    { name: "Deleted/Extended Scenes", desc: "Six scenes with optional commentary." },
-                    { name: "Fox Special: “The Mutant Watch”", desc: "A mock TV news program exploring the world of X-Men." },
-                    { name: "Bryan Singer Interview", desc: "A sit-down interview with the director." },
-                    { name: "Animatics", desc: "Visual storyboards for the Wolverine vs. Sabretooth and Train Station fights." },
-                    { name: "Art Gallery", desc: "Extensive collection of character designs and production art." },
-                    { name: "TV Spots & Music Promo", desc: "Promotional marketing materials." },
-                    { name: "Marvel Universal Trailers", desc: "HD trailers for the X-Men franchise and other Marvel films." }
-                ],
-                disc2: [
-                    { name: "The Uncanny Suspects", desc: "A look at the casting process." },
-                    { name: "X-Factors", desc: "Featurette on the look and costume design of the mutants." },
-                    { name: "Production Documentary Scrapbook", desc: "A multi-part look at the filming process." },
-                    { name: "The Special Effects of The X-Men", desc: "Breaking down the film’s visual effects sequences." },
-                    { name: "Reflection of The X-Men", desc: "Retrospective featurette on the film’s impact." }
-                ]
-            },
-            castAndCrew: {
-                crew: [
-                    { role: "Director", name: "Bryan Singer" },
-                    { role: "Producers", name: "Lauren Shuler Donner, Ralph Winter" },
-                    { role: "Screenplay", name: "David Hayter" }
-                ],
-                cast: [
-                    { actor: "Hugh Jackman", character: "Logan / Wolverine" },
-                    { actor: "Patrick Stewart", character: "Professor Charles Xavier" },
-                    { actor: "Ian McKellen", character: "Erik Lehnsherr / Magneto" },
-                    { actor: "Famke Janssen", character: "Jean Grey" },
-                    { actor: "James Marsden", character: "Scott Summers / Cyclops" },
-                    { actor: "Halle Berry", character: "Ororo Munroe / Storm" },
-                    { actor: "Anna Paquin", character: "Marie / Rogue" },
-                    { actor: "Rebecca Romijn-Stamos", character: "Mystique" },
-                    { actor: "Ray Park", character: "Toad" },
-                    { actor: "Tyler Mane", character: "Sabretooth" }
-                ]
-            }
-        };
+        // Flip animation
+        function toggleFlip() {
+            document.getElementById('caseToggle').classList.toggle('flipped');
+        }
 
-        // --- State Management --- //
-        let currentDisc = 'disc1';
-        let chartInstance = null;
-
-        // --- Core Interaction & Rendering --- //
-
-        // 1. Navigation Logic
-        const tabs = document.querySelectorAll('.tab-btn');
-        const views = document.querySelectorAll('.view-section');
-
-        tabs.forEach(tab => {
-            tab.addEventListener('click', (e) => {
-                // Remove active class from all tabs
-                tabs.forEach(t => t.classList.remove('active'));
-                // Add active class to clicked tab
-                e.target.classList.add('active');
-
-                // Hide all views
-                views.forEach(v => {
-                    v.classList.add('hidden');
-                    v.classList.remove('block');
-                });
-
-                // Show target view
-                const targetId = e.target.getAttribute('data-target');
-                const targetView = document.getElementById(targetId);
-                targetView.classList.remove('hidden');
-                targetView.classList.add('block');
-
-                // Render Chart if features view is activated and chart doesn't exist
-                if (targetId === 'view-features' && !chartInstance) {
-                    renderChart();
-                }
+        // Tab Switching Logic
+        function switchTab(tabName) {
+            // Hide all panes
+            document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.add('hidden'));
+            // Remove active style from all buttons
+            document.querySelectorAll('button[id^="btn-"]').forEach(btn => {
+                btn.classList.remove('tab-active');
+                btn.classList.add('text-gray-500');
             });
+
+            // Show selected pane
+            document.getElementById('content-' + tabName).classList.remove('hidden');
+            // Add active style to selected button
+            document.getElementById('btn-' + tabName).classList.add('tab-active');
+            document.getElementById('btn-' + tabName).classList.remove('text-gray-500');
+        }
+
+        // Add to Cart Simulation
+        const buyBtn = document.querySelector('button.bg-yellow-500');
+        buyBtn.addEventListener('click', () => {
+            const msg = document.getElementById('msgBox');
+            msg.style.opacity = '1';
+            setTimeout(() => {
+                msg.style.opacity = '0';
+            }, 2000);
         });
 
-        // 2. Render Specs
-        const renderSpecs = () => {
-            const container = document.getElementById('specs-container');
-            data.specs.forEach(spec => {
-                const card = document.createElement('div');
-                card.className = 'bg-white p-5 rounded-xl border border-stone-200 shadow-sm card-hover flex items-start gap-4';
-                card.innerHTML = `
-                    <div class="text-3xl text-amber-600">${spec.icon}</div>
-                    <div>
-                        <h4 class="text-sm font-bold text-stone-500 uppercase tracking-wider">${spec.title}</h4>
-                        <p class="text-stone-800 font-medium mt-1 leading-snug">${spec.value}</p>
-                    </div>
-                `;
-                container.appendChild(card);
-            });
-        };
-
-        // 3. Render Special Features List
-        const renderFeaturesList = (discKey) => {
-            const container = document.getElementById('features-list-container');
-            container.innerHTML = ''; // Clear existing
-            
-            data.features[discKey].forEach(feat => {
-                const item = document.createElement('div');
-                item.className = 'p-4 rounded-lg bg-stone-50 border border-stone-100 hover:bg-stone-100 transition-colors';
-                item.innerHTML = `
-                    <h4 class="font-bold text-stone-800 text-lg">&#9656; ${feat.name}</h4>
-                    <p class="text-stone-600 mt-1 pl-4 border-l-2 border-amber-300 ml-1">${feat.desc}</p>
-                `;
-                container.appendChild(item);
-            });
-        };
-
-        // Disc Toggle Logic
-        document.getElementById('btn-disc1').addEventListener('click', (e) => {
-            if (currentDisc === 'disc1') return;
-            currentDisc = 'disc1';
-            e.target.classList.replace('bg-stone-200', 'bg-amber-600');
-            e.target.classList.replace('text-stone-700', 'text-white');
-            
-            const btn2 = document.getElementById('btn-disc2');
-            btn2.classList.replace('bg-amber-600', 'bg-stone-200');
-            btn2.classList.replace('text-white', 'text-stone-700');
-            
-            renderFeaturesList('disc1');
-        });
-
-        document.getElementById('btn-disc2').addEventListener('click', (e) => {
-            if (currentDisc === 'disc2') return;
-            currentDisc = 'disc2';
-            e.target.classList.replace('bg-stone-200', 'bg-amber-600');
-            e.target.classList.replace('text-stone-700', 'text-white');
-            
-            const btn1 = document.getElementById('btn-disc1');
-            btn1.classList.replace('bg-amber-600', 'bg-stone-200');
-            btn1.classList.replace('text-white', 'text-stone-700');
-            
-            renderFeaturesList('disc2');
-        });
-
-        // 4. Render Cast & Crew
-        const renderCastAndCrew = () => {
-            const crewContainer = document.getElementById('crew-container');
-            data.castAndCrew.crew.forEach(c => {
-                const badge = document.createElement('div');
-                badge.className = 'bg-stone-200 text-stone-800 px-4 py-2 rounded-lg font-medium border border-stone-300 shadow-sm';
-                badge.innerHTML = `<span class="text-stone-500 text-xs uppercase block tracking-wide">${c.role}</span> ${c.name}`;
-                crewContainer.appendChild(badge);
-            });
-
-            const castContainer = document.getElementById('cast-container');
-            data.castAndCrew.cast.forEach(c => {
-                const card = document.createElement('div');
-                card.className = 'bg-white p-4 rounded-xl border border-stone-200 shadow-sm flex flex-col justify-between card-hover';
-                card.innerHTML = `
-                    <div class="font-bold text-lg text-stone-800">${c.character}</div>
-                    <div class="text-amber-700 font-medium text-sm mt-2 pt-2 border-t border-stone-100 flex items-center gap-1">
-                        &#127917; ${c.actor}
-                    </div>
-                `;
-                castContainer.appendChild(card);
-            });
-        };
-
-        // 5. Render Chart.js
-        const renderChart = () => {
-            const ctx = document.getElementById('featuresChart').getContext('2d');
-            
-            // Categorized data based on the source report
-            const chartData = {
-                labels: ['Documentaries & Featurettes', 'Commentary', 'Deleted Scenes', 'Galleries & Promos', 'Interactive/Other'],
-                datasets: [{
-                    data: [6, 1, 1, 3, 2], // Count of items in each category across both discs
-                    backgroundColor: [
-                        '#d97706', // amber-600
-                        '#0369a1', // sky-700
-                        '#15803d', // green-700
-                        '#be123c', // rose-700
-                        '#57534e'  // stone-600
-                    ],
-                    borderWidth: 2,
-                    borderColor: '#ffffff'
-                }]
-            };
-
-            chartInstance = new Chart(ctx, {
-                type: 'doughnut',
-                data: chartData,
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false, // Essential for respecting container dimensions
-                    plugins: {
-                        legend: {
-                            position: 'bottom',
-                            labels: {
-                                padding: 15,
-                                font: {
-                                    family: "'Inter', sans-serif",
-                                    size: 11
-                                },
-                                usePointStyle: true,
-                            }
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    let label = context.label || '';
-                                    if (label) {
-                                        label += ': ';
-                                    }
-                                    if (context.parsed !== null) {
-                                        label += context.parsed + ' feature(s)';
-                                    }
-                                    return label;
-                                }
-                            }
-                        }
-                    },
-                    cutout: '65%',
-                    animation: {
-                        animateScale: true,
-                        animateRotate: true
-                    }
-                }
-            });
-        };
-
-        // --- Initialization --- //
-        document.addEventListener('DOMContentLoaded', () => {
-            renderSpecs();
-            renderFeaturesList('disc1'); // Init with disc 1
-            renderCastAndCrew();
-        });
-
+        // Initialize view
+        window.onload = () => {
+            console.log("X-Men Blu-ray page loaded.");
+        }
     </script>
 </body>
 </html>
