@@ -1,250 +1,372 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>xXx (Blu-ray, 2002) - Sony Pictures Home Entertainment</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <title>Sony Pictures Home Entertainment - xXx (Blu-ray)</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
     <style>
+        /* IE6-era Reset and Base Styles */
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0a0a0a;
-            color: #e5e5e5;
+            background-color: #FFFFFF;
+            margin: 0px;
+            padding: 0px;
+            font-family: Helvetica, sans-serif;
+            font-size: 11px;
+            color: #333333;
         }
-        .hero-gradient {
-            background: linear-gradient(to bottom, rgba(10,10,10,0.4) 0%, rgba(10,10,10,1) 100%);
+
+        /* Windows XP / IE6 UI Simulation */
+        #ie-chrome {
+            background: #ebeadb;
+            border-bottom: 2px solid #999;
+            padding: 2px;
+            width: 100%;
         }
-        .bluray-case {
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            transition: transform 0.3s ease;
+
+        #address-bar {
+            background: #FFF;
+            border: 1px solid #7F9DB9;
+            padding: 2px;
+            font-size: 12px;
+            margin: 2px 10px;
+            display: block;
         }
-        .bluray-case:hover {
-            transform: scale(1.02);
+
+        /* Sony Pictures Header (2006 Style) */
+        #header {
+            background-color: #000000;
+            height: 80px;
+            border-bottom: 3px solid #003366;
+            position: relative;
         }
-        .spec-label {
-            color: #9ca3af;
-            font-size: 0.875rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+
+        #sony-logo {
+            padding: 20px;
+            color: #FFFFFF;
+            font-weight: bold;
+            font-size: 24px;
+            letter-spacing: 2px;
+        }
+
+        #nav-main {
+            background-color: #003366;
+            height: 25px;
+            color: #FFF;
+            padding: 5px 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* Main Layout */
+        #container {
+            width: 780px;
+            margin: 0 auto;
+            border-left: 1px solid #CCCCCC;
+            border-right: 1px solid #CCCCCC;
+            background-color: #FFFFFF;
+            min-height: 600px;
+        }
+
+        .breadcrumb {
+            padding: 10px;
+            color: #666;
+            font-size: 10px;
+        }
+
+        #product-content {
+            padding: 20px;
+        }
+
+        /* Sidebar info */
+        #sidebar {
+            float: right;
+            width: 200px;
+            padding: 10px;
+            background-color: #F4F4F4;
+            border: 1px solid #DDD;
+        }
+
+        .price-box {
+            font-size: 18px;
+            color: #CC0000;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .buy-button {
+            background-color: #FFCC00;
+            border: 1px solid #996600;
+            padding: 5px;
+            text-align: center;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        /* Movie Details */
+        #movie-display {
+            float: left;
+            width: 500px;
+        }
+
+        #cover-art-container {
+            float: left;
+            margin-right: 20px;
+            width: 240px;
+            text-align: center;
+        }
+
+        .cover-img {
+            width: 220px;
+            border: 1px solid #000;
+            cursor: pointer;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .format-badge {
+            background-color: #004b91;
+            color: white;
+            padding: 3px 8px;
+            font-weight: bold;
+            font-size: 14px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 22px;
+            margin: 0 0 10px 0;
+            color: #000;
+        }
+
+        .synopsis {
+            line-height: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 11px;
+        }
+
+        .specs-table td {
+            padding: 5px;
+            border-bottom: 1px solid #EEE;
+        }
+
+        .specs-label {
+            font-weight: bold;
+            width: 100px;
+            color: #666;
+        }
+
+        /* Back Cover Modal Simulation */
+        #modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+        }
+
+        #modal-content {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            background: #FFF;
+            padding: 10px;
+            border: 5px solid #003366;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: -30px;
+            right: 0;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        #footer {
+            clear: both;
+            border-top: 1px solid #CCCCCC;
+            padding: 20px;
+            text-align: center;
+            font-size: 10px;
+            color: #999;
+            margin-top: 40px;
+        }
+
+        .tab-nav {
+            margin-top: 20px;
+            border-bottom: 1px solid #003366;
+            height: 25px;
+        }
+
+        .tab {
+            float: left;
+            padding: 5px 15px;
+            background: #EEE;
+            border: 1px solid #CCC;
+            border-bottom: none;
+            margin-right: 5px;
+            cursor: pointer;
+        }
+
+        .tab.active {
+            background: #003366;
+            color: #FFF;
+            border-color: #003366;
+        }
+
+        #clock {
+            float: right;
+            padding: 5px;
+            font-weight: bold;
+            color: #333;
         }
     </style>
-
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org/",
-      "@type": "Product",
-      "name": "xXx (Blu-ray, 2002)",
-      "image": "https://images.45cat.com/d/dv/xxx-2002-16-dv-d.jpg",
-      "description": "The first high-definition release of the high-octane spy thriller xXx starring Vin Diesel. Released by Sony Pictures Home Entertainment.",
-      "brand": {
-        "@type": "Brand",
-        "name": "Sony Pictures Home Entertainment"
-      },
-      "releaseDate": "2006-06-20",
-      "offers": {
-        "@type": "Offer",
-        "priceCurrency": "USD",
-        "availability": "https://schema.org/InStock",
-        "itemCondition": "https://schema.org/NewCondition"
-      },
-      "additionalProperty": [
-        {
-          "@type": "PropertyValue",
-          "name": "Format",
-          "value": "Blu-ray"
-        },
-        {
-          "@type": "PropertyValue",
-          "name": "Video Resolution",
-          "value": "1080p"
-        },
-        {
-          "@type": "PropertyValue",
-          "name": "Aspect Ratio",
-          "value": "2.40:1"
-        }
-      ]
-    }
-    </script>
 </head>
-<body class="antialiased">
+<body>
 
-    <!-- Navigation -->
-    <nav class="p-6 flex justify-between items-center border-b border-white/10">
-        <div class="text-2xl font-extrabold tracking-tighter text-red-600 italic">xXx</div>
-        <div class="hidden md:flex space-x-8 text-sm font-medium uppercase tracking-widest">
-            <a href="#details" class="hover:text-red-500 transition">Details</a>
-            <a href="#specs" class="hover:text-red-500 transition">Specs</a>
-            <a href="#special-features" class="hover:text-red-500 transition">Features</a>
-        </div>
-        <button id="buyButton" class="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-full font-bold text-sm transition-all transform active:scale-95">
-            COLLECT NOW
-        </button>
-    </nav>
+<!-- IE6 Interface Emulation -->
+<div id="ie-chrome">
+    <div style="padding: 2px;">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAG1JREFUeNpi/P//PwMlgImBQsCiAAtEM8idYMTmX7AL8CpgY8AG/mNzAdIBeA3AZ8DPf8SAsZ0D6AG8BvznPzEG/AALuInhP7oB9KqBeXSD6GULYxY9vA88Z8X998AAYyY9vA88x9SAbAogwAByGGRK2W2r2QAAAABJRU5ErkJggg==" align="absmiddle">
+        <b>Microsoft Internet Explorer</b>
+        <div id="clock">June 20, 2006</div>
+    </div>
+    <div style="background:#f1f1f1; border-top:1px solid #fff; border-bottom:1px solid #999; padding:2px;">
+        <span style="margin:0 5px;">File</span>
+        <span style="margin:0 5px;">Edit</span>
+        <span style="margin:0 5px;">View</span>
+        <span style="margin:0 5px;">Favorites</span>
+        <span style="margin:0 5px;">Tools</span>
+        <span style="margin:0 5px;">Help</span>
+    </div>
+    <div id="address-bar">
+        Address: http://www.sonypictures.com/homevideo/xxx/index.html
+    </div>
+</div>
 
-    <!-- Hero Section -->
-    <main class="max-w-7xl mx-auto px-4 py-12 lg:py-24">
-        <div class="grid lg:grid-cols-2 gap-12 items-center">
-            <!-- Product Image -->
-            <div class="flex justify-center relative group">
-                <div class="absolute -inset-1 bg-gradient-to-r from-red-600 to-blue-600 rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
-                <img 
-                    src="https://images.45cat.com/d/dv/xxx-2002-16-dv-d.jpg" 
-                    alt="xXx 2002 Blu-ray Cover" 
-                    class="relative bluray-case rounded-sm border border-white/20 w-full max-w-md"
-                    onerror="this.src='https://placehold.co/400x500/1a1a1a/ffffff?text=xXx+Blu-ray'"
-                >
-            </div>
-
-            <!-- Product Details -->
-            <div id="details">
-                <div class="mb-4">
-                    <span class="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-sm uppercase mr-2">Blu-ray</span>
-                    <span class="text-gray-400 text-sm">Released June 20, 2006</span>
-                </div>
-                <h1 class="text-5xl lg:text-7xl font-extrabold mb-6 tracking-tight">xXx <span class="text-gray-500">(2002)</span></h1>
-                
-                <p class="text-xl text-gray-300 mb-8 leading-relaxed">
-                    Extreme sports athlete Xander Cage (Vin Diesel) is recruited by the government to take on a special mission. This landmark 2006 release was one of the very first titles available on the Blu-ray format, showcasing the power of high-definition home cinema.
-                </p>
-
-                <!-- Technical Highlights -->
-                <div id="specs" class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12 border-y border-white/10 py-8">
-                    <div>
-                        <p class="spec-label">Resolution</p>
-                        <p class="font-semibold text-white">1080p High-Def</p>
-                    </div>
-                    <div>
-                        <p class="spec-label">Audio</p>
-                        <p class="font-semibold text-white">Uncompressed PCM 5.1</p>
-                    </div>
-                    <div>
-                        <p class="spec-label">Codec</p>
-                        <p class="font-semibold text-white">MPEG-2</p>
-                    </div>
-                    <div>
-                        <p class="spec-label">Aspect Ratio</p>
-                        <p class="font-semibold text-white">2.40:1</p>
-                    </div>
-                </div>
-
-                <div class="flex flex-wrap gap-4">
-                    <button class="flex-1 min-w-[200px] bg-white text-black font-bold py-4 rounded-lg hover:bg-gray-200 transition text-center uppercase tracking-widest">
-                        Add to Collection
-                    </button>
-                    <button class="flex-1 min-w-[200px] bg-transparent border-2 border-white/20 text-white font-bold py-4 rounded-lg hover:bg-white/10 transition uppercase tracking-widest">
-                        Watch Trailer
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Secondary Content -->
-        <section id="special-features" class="mt-24">
-            <h2 class="text-3xl font-bold mb-12 flex items-center">
-                <span class="w-12 h-1 bg-red-600 mr-4"></span>
-                Special Features
-            </h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-zinc-900 p-8 rounded-2xl border border-white/5">
-                    <h3 class="text-red-500 font-bold mb-4 uppercase tracking-tighter">Commentary</h3>
-                    <p class="text-gray-400">Feature-length audio commentary with director Rob Cohen.</p>
-                </div>
-                <div class="bg-zinc-900 p-8 rounded-2xl border border-white/5">
-                    <h3 class="text-red-500 font-bold mb-4 uppercase tracking-tighter">Behind the Scenes</h3>
-                    <p class="text-gray-400">“A New Breed of Secret Agent” – An in-depth look at the making of the film’s stunts.</p>
-                </div>
-                <div class="bg-zinc-900 p-8 rounded-2xl border border-white/5">
-                    <h3 class="text-red-500 font-bold mb-4 uppercase tracking-tighter">Visual Effects</h3>
-                    <p class="text-gray-400">Breakdowns of the cutting-edge CGI used for the extreme sports sequences.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Technical Metadata -->
-        <section class="mt-24 bg-zinc-900/50 p-8 rounded-2xl border border-white/10">
-            <h2 class="text-xl font-bold mb-6">Disc Specifications</h2>
-            <div class="grid md:grid-cols-2 gap-x-12 gap-y-4 text-sm">
-                <div class="flex justify-between border-b border-white/5 py-2">
-                    <span class="text-gray-500">Studio</span>
-                    <span>Sony Pictures Home Entertainment</span>
-                </div>
-                <div class="flex justify-between border-b border-white/5 py-2">
-                    <span class="text-gray-500">Region Code</span>
-                    <span>A (United States)</span>
-                </div>
-                <div class="flex justify-between border-b border-white/5 py-2">
-                    <span class="text-gray-500">Disc Size</span>
-                    <span>25GB Single Layer</span>
-                </div>
-                <div class="flex justify-between border-b border-white/5 py-2">
-                    <span class="text-gray-500">Subtitles</span>
-                    <span>English, French, Spanish, Portuguese, Thai</span>
-                </div>
-                <div class="flex justify-between border-b border-white/5 py-2">
-                    <span class="text-gray-500">Feature Runtime</span>
-                    <span>124 Minutes</span>
-                </div>
-                <div class="flex justify-between border-b border-white/5 py-2">
-                    <span class="text-gray-500">Original Release</span>
-                    <span>August 9, 2002</span>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="mt-24 border-t border-white/10 p-12 text-center text-gray-600 text-sm">
-        <p>&copy; 2026 Movie Collectors Archive. All movie assets belong to Sony Pictures.</p>
-        <p class="mt-2 uppercase tracking-widest text-[10px]">Reference ID: SPHE-XXX-2006-US</p>
-    </footer>
-
-    <!-- Notification Container for JS -->
-    <div id="toast" class="fixed bottom-8 right-8 bg-white text-black px-6 py-3 rounded-lg font-bold shadow-2xl translate-y-24 transition-transform duration-300 z-50">
-        Item added to your collection!
+<div id="container">
+    <div id="header">
+        <div id="sony-logo">SONY PICTURES</div>
+        <div style="position:absolute; right:20px; top:30px; color:#AAA;">HOME ENTERTAINMENT</div>
+    </div>
+    
+    <div id="nav-main">
+        MOVIES &nbsp; | &nbsp; TV SHOWS &nbsp; | &nbsp; BLU-RAY &nbsp; | &nbsp; DIGITAL &nbsp; | &nbsp; UMD
     </div>
 
-    <script>
-        // Simple Interaction logic
-        const buyButton = document.getElementById('buyButton');
-        const toast = document.getElementById('toast');
+    <div class="breadcrumb">
+        Home > Movies > Action > xXx > Blu-ray Edition
+    </div>
 
-        function showToast(message) {
-            toast.textContent = message;
-            toast.classList.remove('translate-y-24');
-            setTimeout(() => {
-                toast.classList.add('translate-y-24');
-            }, 3000);
-        }
+    <div id="product-content">
+        <div id="sidebar">
+            <div class="price-box">$28.95</div>
+            <div style="font-size:10px; margin-bottom:10px;">MSRP: $38.96 (Save 25%)</div>
+            <div class="buy-button">ADD TO CART</div>
+            <div style="font-size:11px; color:#0066CC;">
+                - Pre-order now!<br>
+                - Shipping June 27, 2006
+            </div>
+            <hr>
+            <div style="margin-top:10px; font-weight:bold;">Recommended:</div>
+            <div style="font-size:10px; margin-top:5px;">
+                <img src="https://images.static-bluray.com/movies/covers/33_front.jpg" width="50" style="vertical-align:middle; margin-right:5px;border:1px solid #CCC;">
+                The Fifth Element
+            </div>
+        </div>
 
-        buyButton.addEventListener('click', () => {
-            showToast('Added to Wishlist!');
-        });
+        <div id="movie-display">
+            <div id="cover-art-container">
+                <div class="format-badge">BLU-RAY DISC</div>
+                <img src="https://images.static-bluray.com/movies/covers/70_front.jpg" 
+                     class="cover-img" 
+                     id="main-cover" 
+                     alt="xXx Blu-ray Front Cover"
+                     onerror="this.src='https://via.placeholder.com/220x280?text=xXx+Front+Cover'">
+                <div style="font-size:10px; color:#0066CC; text-decoration:underline; cursor:pointer;" onclick="showBack()">
+                    View Back Cover
+                </div>
+            </div>
 
-        // Add some dynamic parallax-ish effect to the image on mouse move
-        const card = document.querySelector('.bluray-case');
-        document.addEventListener('mousemove', (e) => {
-            if (window.innerWidth > 1024) {
-                const xAxis = (window.innerWidth / 2 - e.pageX) / 50;
-                const yAxis = (window.innerHeight / 2 - e.pageY) / 50;
-                card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg) scale(1.02)`;
-            }
-        });
+            <h1>xXx (2002)</h1>
+            <div class="synopsis">
+                Xander Cage (Vin Diesel) is a notorious underground thrill-seeker who, until now, has been deemed untouchable by the law. But when NSA Agent Augustus Gibbons convinces Cage to infiltrate a ruthless Russian crime ring, this new breed of secret agent must use every extreme skill in his arsenal to combat an intelligent, cohesive and ruthless enemy.
+            </div>
 
-        document.addEventListener('mouseleave', () => {
-            card.style.transform = `rotateY(0deg) rotateX(0deg) scale(1)`;
-        });
+            <div class="tab-nav">
+                <div class="tab active">Specifications</div>
+                <div class="tab">Special Features</div>
+                <div class="tab">Reviews</div>
+            </div>
 
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
+            <table class="specs-table">
+                <tr>
+                    <td class="specs-label">Release Date:</td>
+                    <td>June 20, 2006</td>
+                </tr>
+                <tr>
+                    <td class="specs-label">Rating:</td>
+                    <td>PG-13</td>
+                </tr>
+                <tr>
+                    <td class="specs-label">Runtime:</td>
+                    <td>124 Minutes</td>
+                </tr>
+                <tr>
+                    <td class="specs-label">Video:</td>
+                    <td>1080p High Definition / 2.40:1</td>
+                </tr>
+                <tr>
+                    <td class="specs-label">Audio:</td>
+                    <td>English Uncompressed PCM 5.1</td>
+                </tr>
+                <tr>
+                    <td class="specs-label">Subtitles:</td>
+                    <td>English, French, Spanish, Portuguese, Thai</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="footer">
+        &copy; 2006 Sony Pictures Home Entertainment. All Rights Reserved.<br>
+        “Blu-ray Disc” and the Blu-ray logo are trademarks of the Blu-ray Disc Association.
+    </div>
+</div>
+
+<!-- Modal for Back Cover -->
+<div id="modal-overlay" onclick="hideBack()">
+    <div id="modal-content" onclick="event.stopPropagation()">
+        <span class="close-btn" onclick="hideBack()">[CLOSE X]</span>
+        <img src="https://images.static-bluray.com/movies/covers/70_back.jpg" 
+             style="height: 500px; border:1px solid #000;" 
+             alt="xXx Blu-ray Back Cover"
+             onerror="this.src='https://via.placeholder.com/400x500?text=xXx+Back+Cover'">
+    </div>
+</div>
+
+<script>
+    function showBack() {
+        document.getElementById('modal-overlay').style.display = 'block';
+    }
+
+    function hideBack() {
+        document.getElementById('modal-overlay').style.display = 'none';
+    }
+
+    // Update time to simulate June 20, 2006
+    window.onload = function() {
+        console.log("Sony Pictures - xXx Product Page Loaded (Simulated Date: June 20, 2006)");
+    }
+</script>
+
 </body>
 </html>
