@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sony Pictures Home Entertainment - Dragon Tales: Say Hola to Enrique</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tahoma:wght@400;700&display=swap');
+
+        :root {
+            --win-blue: #245edb;
+            --win-bg: #ece9d8;
+            --ie-gray: #d4d0c8;
+            --sony-blue: #003366;
+        }
+
+        body {
+            background-color: #3a6ea5; /* Classic XP Desktop Blue */
+            font-family: 'Tahoma', 'Verdana', sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        /* IE6 Window Frame */
+        .ie-window {
+            width: 95%;
+            max-width: 1000px;
+            background: var(--ie-gray);
+            border: 3px solid var(--win-blue);
+            border-radius: 8px 8px 0 0;
+            box-shadow: 4px 4px 10px rgba(0,0,0,0.5);
+            overflow: hidden;
+        }
+
+        .title-bar {
+            background: linear-gradient(to right, #245edb 0%, #3f8cf3 9%, #245edb 18%, #245edb 92%, #3371e3 100%);
+            color: white;
+            padding: 3px 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            font-size: 13px;
+            text-shadow: 1px 1px 1px #000;
+        }
+
+        .title-buttons {
+            display: flex;
+            gap: 2px;
+        }
+
+        .btn-win {
+            width: 21px;
+            height: 21px;
+            background: #ebebeb;
+            border: 1px solid #ffffff;
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: black;
+            font-size: 10px;
+            font-weight: bold;
+            box-shadow: inset -1px -1px 1px #808080;
+        }
+
+        .btn-close { background: #e04343; color: white; }
+
+        /* Address Bar Area */
+        .toolbar {
+            background: var(--ie-gray);
+            border-bottom: 1px solid #808080;
+            padding: 2px 5px;
+            font-size: 11px;
+        }
+
+        .menu-bar { display: flex; gap: 10px; padding-bottom: 2px; }
+
+        .address-bar {
+            display: flex;
+            align-items: center;
+            background: white;
+            border: 1px solid #7f9db9;
+            padding: 2px 5px;
+            margin: 2px 0;
+        }
+
+        .address-bar img { height: 14px; margin-right: 5px; }
+
+        /* Sony Website Content */
+        .web-content {
+            background: white;
+            height: 600px;
+            overflow-y: scroll;
+            color: #333;
+        }
+
+        header.sony-header {
+            background-color: black;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px solid var(--sony-blue);
+        }
+
+        .sony-logo {
+            font-family: serif;
+            font-weight: bold;
+            font-size: 24px;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            font-size: 12px;
+            display: flex;
+            gap: 15px;
+            text-transform: uppercase;
+        }
+
+        .main-container {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        .product-image-box {
+            border: 1px solid #ccc;
+            padding: 10px;
+            box-shadow: 2px 2px 5px #eee;
+            text-align: center;
+        }
+
+        .product-image-box img {
+            width: 100%;
+            height: auto;
+            border: 1px solid #000;
+        }
+
+        .dvd-badge {
+            background: #cc0000;
+            color: white;
+            padding: 5px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 12px;
+        }
+
+        .product-info h1 {
+            font-size: 28px;
+            color: var(--sony-blue);
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        .price-box {
+            background: #f4f4f4;
+            padding: 15px;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+
+        .btn-buy {
+            background: linear-gradient(to bottom, #ffdb00, #e1ad00);
+            border: 1px solid #a38100;
+            padding: 10px 20px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid var(--sony-blue);
+            margin-top: 20px;
+        }
+
+        .tab {
+            padding: 8px 15px;
+            background: #eee;
+            margin-right: 2px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .tab.active {
+            background: var(--sony-blue);
+            color: white;
+        }
+
+        .tab-content {
+            padding: 20px 0;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .footer {
+            background: #333;
+            color: #999;
+            padding: 20px;
+            font-size: 11px;
+            text-align: center;
+        }
+
+        .xp-status-bar {
+            background: var(--ie-gray);
+            border-top: 1px solid #808080;
+            padding: 2px 10px;
+            font-size: 11px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Modal for interactions */
+        #alert-box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--ie-gray);
+            border: 2px solid var(--win-blue);
+            width: 300px;
+            z-index: 100;
+            display: none;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .alert-header {
+            background: var(--win-blue);
+            color: white;
+            padding: 2px 5px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .alert-body {
+            padding: 20px;
+            font-size: 13px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="ie-window">
+    <!-- IE6 Title Bar -->
+    <div class="title-bar">
+        <div class="flex items-center gap-2">
+            <svg width="16" height="16" viewBox="0 0 16 16"><rect width="16" height="16" fill="#3a6ea5"/><text x="2" y="12" fill="white" font-size="10" font-family="serif">e</text></svg>
+            Sony Pictures - Dragon Tales: Say Hola to Enrique - Microsoft Internet Explorer
+        </div>
+        <div class="title-buttons">
+            <div class="btn-win">_</div>
+            <div class="btn-win">□</div>
+            <div class="btn-win btn-close">X</div>
+        </div>
+    </div>
+
+    <!-- Toolbar -->
+    <div class="toolbar">
+        <div class="menu-bar">
+            <span>File</span>
+            <span>Edit</span>
+            <span>View</span>
+            <span>Favorites</span>
+            <span>Tools</span>
+            <span>Help</span>
+        </div>
+        <div class="flex items-center gap-2 mt-1">
+            <button class="px-2 py-0.5 border border-transparent hover:border-gray-400">Back</button>
+            <button class="px-2 py-0.5 border border-transparent hover:border-gray-400">Forward</button>
+            <button class="px-2 py-0.5 border border-transparent hover:border-gray-400">Stop</button>
+            <button class="px-2 py-0.5 border border-transparent hover:border-gray-400">Refresh</button>
+            <button class="px-2 py-0.5 border border-transparent hover:border-gray-400 font-bold">Home</button>
+        </div>
+        <div class="address-bar">
+            <span class="text-gray-500 mr-2">Address</span>
+            <input type="text" class="w-full outline-none text-xs" value="http://www.sonypictures.com/homevideo/dragontales-sayholatoenrique/index.html" readonly>
+            <span class="ml-2 text-blue-800 font-bold">Go</span>
+        </div>
+    </div>
+
+    <!-- Web Page Content -->
+    <div class="web-content" id="webContent">
+        <header class="sony-header">
+            <div class="sony-logo">SONY</div>
+            <nav class="nav-links">
+                <a href="#">Movies</a>
+                <a href="#">TV Shows</a>
+                <a href="#">Home Video</a>
+                <a href="#">Games</a>
+            </nav>
+        </header>
+
+        <div class="main-container">
+            <!-- Sidebar / Image -->
+            <div class="product-image-box">
+                <img src="https://images.45cat.com/f/dv/dragon-tales-say-hola-to-enrique-dv.jpg" alt="Dragon Tales DVD Cover" onerror="this.src='https://placehold.co/260x360?text=Dragon+Tales+DVD'">
+                <div class="dvd-badge">DVD VIDEO</div>
+                <p class="text-xs mt-4 text-gray-500 italic">Click to enlarge</p>
+                
+                <div class="mt-4 border-t pt-4 text-left">
+                    <h4 class="font-bold text-sm">Product Details</h4>
+                    <ul class="text-xs space-y-1 mt-2">
+                        <li><strong>Release Date:</strong> Jan 24, 2006</li>
+                        <li><strong>Run Time:</strong> 64 Minutes</li>
+                        <li><strong>Rating:</strong> Not Rated</li>
+                        <li><strong>Audio:</strong> English, Spanish</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Product Description -->
+            <div class="product-info">
+                <p class="text-xs text-gray-500 uppercase tracking-widest font-bold">Columbia TriStar Home Entertainment</p>
+                <h1>Dragon Tales: Say Hola to Enrique</h1>
+                
+                <div class="price-box">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <span class="text-gray-600 line-through text-sm">MSRP: $14.95</span>
+                            <div class="text-2xl font-bold text-red-700">Now: $12.99</div>
+                        </div>
+                        <button class="btn-buy" onclick="showIEAlert('Added to your Shopping Cart!')">Add to Cart</button>
+                    </div>
+                    <p class="text-xs mt-2 text-green-700">In Stock - Ready to ship for January delivery!</p>
+                </div>
+
+                <div class="tabs">
+                    <div class="tab active" onclick="switchTab('synopsis', this)">Synopsis</div>
+                    <div class="tab" onclick="switchTab('bonus', this)">Bonus Features</div>
+                    <div class="tab" onclick="switchTab('specs', this)">Technical Specs</div>
+                </div>
+
+                <div id="tab-content" class="tab-content">
+                    <div id="synopsis">
+                        <p class="mb-4">Embark on a magical journey to Dragon Land with Emmy and Max as they welcome their new neighbor, Enrique, to the group! In <strong>“Say Hola to Enrique,”</strong> our friends learn about the importance of making new friends feel welcome while exploring cultural differences and learning Spanish words along the way.</p>
+                        <p>Join Ord, Cassie, Zak, and Wheezie in these heart-warming adventures that prove friendship knows no language barriers!</p>
+                    </div>
+                </div>
+
+                <div class="mt-8">
+                    <h3 class="font-bold border-b mb-4">Related Titles</h3>
+                    <div class="flex gap-4">
+                        <div class="w-24 text-center">
+                            <div class="bg-gray-200 aspect-[3/4] mb-1 flex items-center justify-center text-[10px] border border-gray-400">Sky's the Limit</div>
+                            <span class="text-[10px]">Dragon Tales</span>
+                        </div>
+                        <div class="w-24 text-center">
+                            <div class="bg-gray-200 aspect-[3/4] mb-1 flex items-center justify-center text-[10px] border border-gray-400">Believe in Yourself</div>
+                            <span class="text-[10px]">Dragon Tales</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>&copy; 2006 Sony Pictures Home Entertainment Inc. All Rights Reserved.</p>
+            <p class="mt-2">Privacy Policy | Terms of Use | Contact Us</p>
+            <img src="https://images.45cat.com/f/dv/dragon-tales-say-hola-to-enrique-columbia-tristar-dv.jpg" alt="Columbia Logo" class="mx-auto mt-4 h-12 opacity-50 grayscale hover:grayscale-0 cursor-pointer">
+        </footer>
+    </div>
+
+    <!-- Status Bar -->
+    <div class="xp-status-bar">
+        <div>Done</div>
+        <div class="border-l border-gray-400 pl-2 pr-10">Internet</div>
+    </div>
+</div>
+
+<!-- Custom "IE Alert" -->
+<div id="alert-box">
+    <div class="alert-header">Microsoft Internet Explorer</div>
+    <div class="alert-body">
+        <p id="alert-msg"></p>
+        <button class="mt-4 px-6 py-1 bg-gray-200 border border-gray-500 hover:bg-gray-300" onclick="closeAlert()">OK</button>
+    </div>
+</div>
+
+<script>
+    const contentData = {
+        synopsis: `<p class="mb-4">Embark on a magical journey to Dragon Land with Emmy and Max as they welcome their new neighbor, Enrique, to the group! In <strong>“Say Hola to Enrique,”</strong> our friends learn about the importance of making new friends feel welcome while exploring cultural differences and learning Spanish words along the way.</p>
+                   <p>Join Ord, Cassie, Zak, and Wheezie in these heart-warming adventures that prove friendship knows no language barriers!</p>`,
+        bonus: `<ul class="list-disc ml-6 space-y-2">
+                    <li>“Dragon Adventures” Interactive Game</li>
+                    <li>Sing-Along Songs with Spanish lyrics</li>
+                    <li>English & Spanish Language Tracks</li>
+                    <li>Trailers for other Dragon Tales releases</li>
+                </ul>`,
+        specs: `<table class="w-full text-sm border-collapse">
+                    <tr class="border-b">
+                        <td class="py-1 font-bold">Aspect Ratio:</td>
+                        <td>Full Frame (1.33:1)</td>
+                    </tr>
+                    <tr class="border-b">
+                        <td class="py-1 font-bold">Audio:</td>
+                        <td>Dolby Digital 2.0 Stereo</td>
+                    </tr>
+                    <tr class="border-b">
+                        <td class="py-1 font-bold">Subtitles:</td>
+                        <td>English, French</td>
+                    </tr>
+                    <tr class="border-b">
+                        <td class="py-1 font-bold">Region:</td>
+                        <td>Region 1 (USA/Canada)</td>
+                    </tr>
+                </table>`
+    };
+
+    function switchTab(tabName, el) {
+        // Update tabs
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        el.classList.add('active');
+        
+        // Update content
+        document.getElementById('tab-content').innerHTML = contentData[tabName];
+    }
+
+    function showIEAlert(msg) {
+        document.getElementById('alert-msg').innerText = msg;
+        document.getElementById('alert-box').style.display = 'block';
+    }
+
+    function closeAlert() {
+        document.getElementById('alert-box').style.display = 'none';
+    }
+
+    // Scroll to top on load
+    window.onload = function() {
+        document.getElementById('webContent').scrollTop = 0;
+        console.log("Internet Explorer 6.0 simulation loaded. Current Date: Jan 24, 2006.");
+    };
+</script>
+
+</body>
+</html>
