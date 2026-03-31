@@ -3,246 +3,148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>X-MEN：ファイナル ディシジョン | 20世紀フォックス ホーム エンターテイメント</title>
+    <title>X-MEN：ファイナル ディシジョン (Blu-ray) - 20世紀フォックス ホーム エンターテイメント ジャパン</title>
     <style>
         :root {
-            --fox-blue: #001a33;
-            --fox-gold: #c5a059;
-            --text-gray: #cccccc;
+            --x-blue: #003366;
+            --x-silver: #c0c0c0;
+            --accent: #ffcc00;
         }
 
         body {
-            background-color: #000;
-            color: #fff;
-            font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+            background-color: #0a0a0a;
+            color: #ffffff;
+            font-family: sans-serif;
             margin: 0;
-            padding: 0;
-            line-height: 1.6;
-        }
-
-        header {
-            background: linear-gradient(to bottom, #111, #000);
-            padding: 20px;
-            text-align: center;
-            border-bottom: 2px solid var(--fox-gold);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
 
         .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .product-main {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 40px;
-            margin-top: 20px;
-        }
-
-        .product-images {
-            flex: 1;
-            min-width: 300px;
+            width: 90%;
+            max-width: 900px;
+            background: linear-gradient(145deg, #1a1a1a, #000);
+            border: 1px solid #333;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 0 30px rgba(0, 51, 102, 0.5);
             text-align: center;
         }
 
-        .product-images img {
-            max-width: 100%;
-            height: auto;
-            border: 1px solid #444;
-            box-shadow: 0 0 20px rgba(0, 100, 255, 0.3);
+        .header h1 {
+            font-size: 2rem;
+            letter-spacing: 2px;
+            border-bottom: 2px solid var(--x-blue);
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+        }
+
+        .jacket-gallery {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .jacket-gallery img {
+            width: 280px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.8);
+            transition: transform 0.3s ease, border 0.3s ease;
+            border: 2px solid transparent;
             cursor: pointer;
-            transition: transform 0.3s;
         }
 
-        .product-images img:hover {
-            transform: scale(1.02);
+        .jacket-gallery img:hover {
+            transform: scale(1.05);
+            border-color: var(--x-blue);
         }
 
-        .product-info {
-            flex: 1.5;
-            min-width: 300px;
+        .info-panel {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: left;
+            display: inline-block;
+            margin-top: 10px;
         }
 
-        .release-date {
-            color: var(--fox-gold);
-            font-weight: bold;
+        .info-item {
+            margin: 10px 0;
             font-size: 1.1rem;
         }
 
-        h1 {
-            font-size: 2.2rem;
-            margin: 10px 0;
-            letter-spacing: 2px;
-            border-left: 5px solid var(--fox-gold);
-            padding-left: 15px;
+        .label {
+            color: var(--x-silver);
+            font-weight: bold;
+            margin-right: 10px;
         }
 
-        .price {
-            font-size: 1.5rem;
-            color: #fff;
-            margin-bottom: 20px;
+        .highlight {
+            color: var(--accent);
         }
 
-        .btn-buy {
-            background: linear-gradient(to bottom, #d4af37, #8a6d3b);
-            color: #000;
+        button {
+            margin-top: 20px;
             padding: 12px 30px;
+            background-color: var(--x-blue);
+            color: white;
             border: none;
-            border-radius: 3px;
-            font-weight: bold;
+            border-radius: 5px;
             cursor: pointer;
-            text-transform: uppercase;
-        }
-
-        .spec-table {
-            width: 100%;
-            margin-top: 30px;
-            border-collapse: collapse;
-            font-size: 0.9rem;
-        }
-
-        .spec-table th, .spec-table td {
-            border-bottom: 1px solid #333;
-            padding: 10px;
-            text-align: left;
-        }
-
-        .spec-table th {
-            width: 30%;
-            color: var(--fox-gold);
-        }
-
-        .tabs {
-            margin-top: 40px;
-            display: flex;
-            border-bottom: 1px solid #444;
-        }
-
-        .tab {
-            padding: 10px 20px;
-            cursor: pointer;
-            background: #111;
-            margin-right: 5px;
-        }
-
-        .tab.active {
-            background: var(--fox-gold);
-            color: #000;
             font-weight: bold;
+            transition: background 0.3s;
         }
 
-        .content-pane {
-            display: none;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.05);
+        button:hover {
+            background-color: #004d99;
         }
 
-        .content-pane.active {
-            display: block;
-        }
-
-        footer {
-            text-align: center;
-            font-size: 0.8rem;
-            color: #666;
-            padding: 40px 0;
-            border-top: 1px solid #222;
+        @media (max-width: 600px) {
+            .jacket-gallery img { width: 100%; }
         }
     </style>
 </head>
 <body>
 
-<header>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/20th_Century_Fox_Home_Entertainment_logo.svg/200px-200px.png" alt="20th Century Fox Home Entertainment" width="150">
-</header>
-
 <div class="container">
-    <div class="product-main">
-        <div class="product-images">
-            <img id="mainImage" src="https://images.static-bluray.com/movies/covers/85555_slip.jpg" alt="X-MEN：ファイナル ディシジョン ジャケット表面">
-            <p style="font-size: 0.8rem; color: #888; margin-top: 10px;">画像をタップで裏面を切り替え</p>
-        </div>
+    <header class="header">
+        <h1>X-MEN：ファイナル ディシジョン</h1>
+    </header>
 
-        <div class="product-info">
-            <p class="release-date">2009年8月28日発売</p>
-            <h1>X-MEN：ファイナル ディシジョン<br><span style="font-size: 1.2rem;">（2枚組ブルーレイ＆DVD）</span></h1>
-            <p class="price">希望小売価格：￥4,743（税抜）</p>
-            
-            <p>究極のパワーが、すべてを無に帰す。シリーズ最大級のスケールで描かれる完結編が、ブルーレイでさらに鮮やかに！</p>
-            
-            <button class="btn-buy">今すぐ購入</button>
-
-            <table class="spec-table">
-                <tr>
-                    <th>品番</th>
-                    <td>FXXG-29988</td>
-                </tr>
-                <tr>
-                    <th>ディスク仕様</th>
-                    <td>2枚組（Blu-ray + 特典ディスク）</td>
-                </tr>
-                <tr>
-                    <th>音声</th>
-                    <td>1.英：DTS-HD Master Audio 6.1ch<br>2.日：DTS 5.1ch</td>
-                </tr>
-                <tr>
-                    <th>字幕</th>
-                    <td>日本語 / 英語</td>
-                </tr>
-            </table>
-        </div>
+    <div class="jacket-gallery">
+        <img id="frontJacket" src="https://images.static-bluray.com/movies/covers/85555_slip.jpg" alt="Front Cover">
+        <img id="backJacket" src="https://images.static-bluray.com/movies/covers/85555_slipback.jpg" alt="Back Cover">
     </div>
 
-    <div class="tabs">
-        <div class="tab active" onclick="showTab('story')">ストーリー</div>
-        <div class="tab" onclick="showTab('bonus')">特典映像</div>
+    <div class="info-panel">
+        <div class="info-item"><span class="label">フォーマット</span>： Blu-ray (2枚組)</div>
+        <div class="info-item"><span class="label">発売日</span>： 2009/08/28</div>
+        <div class="info-item"><span class="label">販売元</span>： 20世紀フォックス ホーム エンターテイメント ジャパン</div>
+        <div class="info-item"><span class="label">ステータス</span>： <span class="highlight">ULTIMATE EDITION</span></div>
     </div>
 
-    <div id="story" class="content-pane active">
-        <p>ミュータントの能力を消し去る新薬“キュア”が開発された。人間として生きるか、ミュータントとして生きるか。究極の選択を迫られる中、プロフェッサーXとマグニートーの対立は激化。かつてない規模の全面戦争へと突入していく……。</p>
-    </div>
-
-    <div id="bonus" class="content-pane">
-        <ul>
-            <li>未公開シーン集（ブレット・ラトナー監督による音声解説付）</li>
-            <li>もうひとつのエンディング（ブレット・ラトナー監督による音声解説付）</li>
-            <li>イースター・エッグ：ビーストのダンス</li>
-            <li>メイキング・ドキュメンタリー集</li>
-            <li>イン-ムービー・コンテンツ（ブルーレイ独自のJava機能）</li>
-        </ul>
+    <div>
+        <button onclick="toggleView()">ジャケットを切り替え</button>
     </div>
 </div>
 
-<footer>
-    © 2009 Twentieth Century Fox Home Entertainment LLC. All Rights Reserved.
-</footer>
-
 <script>
-    // ジャケット画像の切り替え（表と裏）
-    const mainImg = document.getElementById('mainImage');
-    const frontSrc = "https://images.static-bluray.com/movies/covers/85555_slip.jpg";
-    const backSrc = "https://images.static-bluray.com/movies/covers/85555_slipback.jpg";
-    
-    mainImg.addEventListener('click', function() {
-        if (this.src.includes('85555_slip.jpg')) {
-            this.src = backSrc;
-        } else {
-            this.src = frontSrc;
-        }
-    });
-
-    // タブの切り替え
-    function showTab(tabId) {
-        document.querySelectorAll('.content-pane').forEach(pane => {
-            pane.classList.remove('active');
-        });
-        document.querySelectorAll('.tab').forEach(tab => {
-            tab.classList.remove('active');
-        });
+    function toggleView() {
+        const front = document.getElementById('frontJacket');
+        const back = document.getElementById('backJacket');
         
-        document.getElementById(tabId).classList.add('active');
-        event.currentTarget.classList.add('active');
+        // シンプルなフェード効果のシミュレーション
+        if (front.style.order === "1") {
+            front.style.order = "0";
+            back.style.order = "1";
+        } else {
+            front.style.order = "1";
+            back.style.order = "0";
+        }
     }
 </script>
 
