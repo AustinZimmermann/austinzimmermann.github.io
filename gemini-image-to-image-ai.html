@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini Image-to-Image AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: #f8fafc;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .image-container {
+            aspect-ratio: 1 / 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-radius: 0.75rem;
+            background: #020617;
+            position: relative;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .loader {
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-top: 3px solid var(--accent);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .hidden { display: none !important; }
+        
+        #drop-zone.drag-over {
+            border-color: var(--accent);
+            background: rgba(59, 130, 246, 0.1);
+        }
+    </style>
+</head>
+<body class="min-h-screen p-4 md:p-8">
+    <div class="max-w-6xl mx-auto">
+        <!-- Header -->
+        <header class="mb-12 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500 mb-4">
+                Gemini AI Image Transformer
+            </h1>
+            <p class="text-slate-400 text-lg">Transform your images using natural language prompts.</p>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Left Column: Input -->
+            <div class="space-y-6">
+                <div class="glass-panel p-6 rounded-2xl shadow-xl">
+                    <h2 class="text-xl font-semibold mb-4 flex items-center">
+                        <i class="fas fa-upload mr-2 text-blue-400"></i> Source Image
+                    </h2>
+                    
+                    <div id="drop-zone" class="border-2 border-dashed border-slate-700 rounded-xl p-8 text-center transition-all cursor-pointer hover:border-slate-500 mb-4">
+                        <input type="file" id="file-input" class="hidden" accept="image/*">
+                        <div id="upload-placeholder">
+                            <i class="fas fa-cloud-arrow-up text-4xl text-slate-500 mb-3"></i>
+                            <p class="text-slate-300">Click to upload or drag and drop</p>
+                            <p class="text-slate-500 text-sm mt-1">PNG, JPG or WebP</p>
+                        </div>
+                        <div id="input-preview-container" class="hidden">
+                            <img id="input-preview" src="" alt="Preview" class="mx-auto rounded-lg shadow-lg">
+                            <button id="remove-btn" class="mt-4 text-sm text-red-400 hover:text-red-300">
+                                <i class="fas fa-trash mr-1"></i> Remove Image
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <label class="block">
+                            <span class="text-slate-300 text-sm font-medium mb-1 block">Transformation Prompt</span>
+                            <textarea id="prompt-input" rows="3" 
+                                class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all"
+                                placeholder="e.g., 'Turn this photo into an oil painting' or 'Add a cyberpunk sunset in the background'"></textarea>
+                        </label>
+
+                        <button id="generate-btn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-all flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed">
+                            <span>Transform Image</span>
+                            <i class="fas fa-wand-sparkles ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Output -->
+            <div class="space-y-6">
+                <div class="glass-panel p-6 rounded-2xl shadow-xl h-full flex flex-col">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-xl font-semibold flex items-center">
+                            <i class="fas fa-magic mr-2 text-purple-400"></i> AI Result
+                        </h2>
+                        <button id="download-btn" class="hidden text-sm bg-slate-700 hover:bg-slate-600 px-3 py-1 rounded text-white transition-all">
+                            <i class="fas fa-download mr-1"></i> Save
+                        </button>
+                    </div>
+
+                    <div class="image-container flex-grow">
+                        <!-- Default State -->
+                        <div id="result-placeholder" class="text-center p-8">
+                            <i class="fas fa-image text-6xl text-slate-800 mb-4"></i>
+                            <p class="text-slate-500">Your transformed image will appear here</p>
+                        </div>
+
+                        <!-- Loading State -->
+                        <div id="loading-overlay" class="hidden absolute inset-0 bg-slate-900/80 flex flex-col items-center justify-center z-10">
+                            <div class="loader mb-4"></div>
+                            <p class="text-blue-400 font-medium animate-pulse">Gemini is imagining...</p>
+                        </div>
+
+                        <!-- Error State -->
+                        <div id="error-box" class="hidden text-center p-6 text-red-400">
+                            <i class="fas fa-circle-exclamation text-4xl mb-3"></i>
+                            <p id="error-message">Something went wrong.</p>
+                        </div>
+
+                        <!-- Success Image -->
+                        <img id="result-image" src="" alt="AI Output" class="hidden">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="mt-12 text-center text-slate-500 text-sm">
+            <p>Powered by Gemini 2.5 Flash Image Preview</p>
+        </footer>
+    </div>
+
+    <script>
+        const apiKey = ""; // Environment handles this
+        const model = "gemini-2.5-flash-image-preview";
+        
+        const fileInput = document.getElementById('file-input');
+        const dropZone = document.getElementById('drop-zone');
+        const promptInput = document.getElementById('prompt-input');
+        const generateBtn = document.getElementById('generate-btn');
+        const inputPreview = document.getElementById('input-preview');
+        const inputContainer = document.getElementById('input-preview-container');
+        const uploadPlaceholder = document.getElementById('upload-placeholder');
+        const removeBtn = document.getElementById('remove-btn');
+        
+        const resultImage = document.getElementById('result-image');
+        const resultPlaceholder = document.getElementById('result-placeholder');
+        const loadingOverlay = document.getElementById('loading-overlay');
+        const errorBox = document.getElementById('error-box');
+        const errorMessage = document.getElementById('error-message');
+        const downloadBtn = document.getElementById('download-btn');
+
+        let base64Image = null;
+
+        // --- File Upload Logic ---
+
+        dropZone.addEventListener('click', () => fileInput.click());
+
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('drag-over');
+        });
+
+        ['dragleave', 'drop'].forEach(event => {
+            dropZone.addEventListener(event, () => dropZone.classList.remove('drag-over'));
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            const file = e.dataTransfer.files[0];
+            if (file) handleFile(file);
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) handleFile(file);
+        });
+
+        removeBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            resetInput();
+        });
+
+        function handleFile(file) {
+            if (!file.type.startsWith('image/')) {
+                showError("Please upload a valid image file.");
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const result = e.target.result;
+                base64Image = result.split(',')[1];
+                inputPreview.src = result;
+                uploadPlaceholder.classList.add('hidden');
+                inputContainer.classList.remove('hidden');
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function resetInput() {
+            base64Image = null;
+            fileInput.value = '';
+            inputPreview.src = '';
+            uploadPlaceholder.classList.remove('hidden');
+            inputContainer.classList.add('hidden');
+        }
+
+        // --- Generation Logic ---
+
+        generateBtn.addEventListener('click', async () => {
+            const prompt = promptInput.value.trim();
+
+            if (!base64Image) {
+                showError("Please upload an image first.");
+                return;
+            }
+
+            if (!prompt) {
+                showError("Please enter a prompt describing the change.");
+                return;
+            }
+
+            setLoading(true);
+
+            try {
+                const response = await callGeminiImageToImage(prompt, base64Image);
+                if (response) {
+                    displayResult(response);
+                } else {
+                    throw new Error("No image data returned from AI.");
+                }
+            } catch (err) {
+                showError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        });
+
+        async function callGeminiImageToImage(prompt, imageData, retries = 0) {
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+            
+            const payload = {
+                contents: [
+                    {
+                        parts: [
+                            { text: prompt },
+                            { 
+                                inlineData: { 
+                                    mimeType: "image/png", 
+                                    data: imageData 
+                                } 
+                            }
+                        ]
+                    }
+                ],
+                generationConfig: {
+                    responseModalities: ["TEXT", "IMAGE"]
+                }
+            };
+
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    if (response.status === 429 && retries < 5) {
+                        const delay = Math.pow(2, retries) * 1000;
+                        await new Promise(r => setTimeout(r, delay));
+                        return callGeminiImageToImage(prompt, imageData, retries + 1);
+                    }
+                    throw new Error(errorData.error?.message || "Failed to generate image.");
+                }
+
+                const result = await response.json();
+                const imagePart = result.candidates?.[0]?.content?.parts?.find(p => p.inlineData);
+                
+                return imagePart ? imagePart.inlineData.data : null;
+
+            } catch (err) {
+                throw err;
+            }
+        }
+
+        function setLoading(isLoading) {
+            generateBtn.disabled = isLoading;
+            loadingOverlay.classList.toggle('hidden', !isLoading);
+            errorBox.classList.add('hidden');
+            if (isLoading) {
+                resultImage.classList.add('hidden');
+                resultPlaceholder.classList.add('hidden');
+            }
+        }
+
+        function displayResult(base64Data) {
+            const dataUrl = `data:image/png;base64,${base64Data}`;
+            resultImage.src = dataUrl;
+            resultImage.classList.remove('hidden');
+            downloadBtn.classList.remove('hidden');
+            
+            downloadBtn.onclick = () => {
+                const link = document.createElement('a');
+                link.href = dataUrl;
+                link.download = `gemini-edit-${Date.now()}.png`;
+                link.click();
+            };
+        }
+
+        function showError(msg) {
+            errorMessage.textContent = msg;
+            errorBox.classList.remove('hidden');
+            resultPlaceholder.classList.add('hidden');
+            resultImage.classList.add('hidden');
+            downloadBtn.classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
