@@ -3,302 +3,248 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>X-MEN：ファイナル ディシジョン Blu-ray ＜2枚組＞ - 20世紀フォックス ホーム エンターテイメント ジャパン</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>【Blu-ray】 X-MEN：ファイナル ディシジョン ＜2枚組＞ - 20世紀フォックス ホーム エンターテイメント ジャパン</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;900&display=swap');
-        
+        :root {
+            --fox-blue: #001a33;
+            --fox-gold: #c5a059;
+            --text-gray: #cccccc;
+        }
+
         body {
-            font-family: 'Noto Sans JP', sans-serif;
-            background-color: #05070a;
-            color: #e2e8f0;
-            overflow-x: hidden;
+            background-color: #000;
+            color: #fff;
+            font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
         }
 
-        .x-gradient-text {
-            background: linear-gradient(to bottom, #ffffff 0%, #94a3b8 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        header {
+            background: linear-gradient(to bottom, #111, #000);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 2px solid var(--fox-gold);
         }
 
-        .metallic-border {
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: linear-gradient(145deg, rgba(30, 41, 59, 0.4), rgba(15, 23, 42, 0.4));
-            backdrop-filter: blur(10px);
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
         }
 
-        .hero-glow {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 150%;
-            height: 150%;
-            background: radial-gradient(circle, rgba(37, 99, 235, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
-            z-index: -1;
+        .product-main {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-top: 20px;
         }
 
-        .card-flip-container {
-            perspective: 1000px;
+        .product-images {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
         }
 
-        .card-flip-inner {
-            position: relative;
+        .product-images img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            box-shadow: 0 0 20px rgba(0, 100, 255, 0.3);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .product-images img:hover {
+            transform: scale(1.02);
+        }
+
+        .product-info {
+            flex: 1.5;
+            min-width: 300px;
+        }
+
+        .release-date {
+            color: var(--fox-gold);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin: 10px 0;
+            letter-spacing: 2px;
+            border-left: 5px solid var(--fox-gold);
+            padding-left: 15px;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .btn-buy {
+            background: linear-gradient(to bottom, #d4af37, #8a6d3b);
+            color: #000;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 3px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .spec-table {
             width: 100%;
-            height: 100%;
-            transition: transform 0.8s;
-            transform-style: preserve-3d;
+            margin-top: 30px;
+            border-collapse: collapse;
+            font-size: 0.9rem;
         }
 
-        .card-flip-container.flipped .card-flip-inner {
-            transform: rotateY(180deg);
+        .spec-table th, .spec-table td {
+            border-bottom: 1px solid #333;
+            padding: 10px;
+            text-align: left;
         }
 
-        .card-front, .card-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            border-radius: 0.5rem;
-            overflow: hidden;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        .spec-table th {
+            width: 30%;
+            color: var(--fox-gold);
         }
 
-        .card-back {
-            transform: rotateY(180deg);
+        .tabs {
+            margin-top: 40px;
+            display: flex;
+            border-bottom: 1px solid #444;
         }
 
-        .tab-content {
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            background: #111;
+            margin-right: 5px;
+        }
+
+        .tab.active {
+            background: var(--fox-gold);
+            color: #000;
+            font-weight: bold;
+        }
+
+        .content-pane {
             display: none;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
         }
-        .tab-content.active {
+
+        .content-pane.active {
             display: block;
-            animation: fadeIn 0.5s ease-out;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .btn-purchase {
-            background: linear-gradient(90deg, #1e40af, #3b82f6);
-            transition: all 0.3s ease;
-        }
-        .btn-purchase:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+        footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #666;
+            padding: 40px 0;
+            border-top: 1px solid #222;
         }
     </style>
 </head>
 <body>
 
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 bg-black/80 backdrop-blur-md border-b border-white/10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <div class="text-2xl font-black tracking-tighter text-white italic">X-MEN<span class="text-blue-500">:</span>FD</div>
-            <div class="hidden md:flex space-x-8 text-sm font-medium uppercase tracking-widest">
-                <a href="#about" class="hover:text-blue-400 transition">About</a>
-                <a href="#package" class="hover:text-blue-400 transition">Package</a>
-                <a href="#details" class="hover:text-blue-400 transition">Details</a>
-            </div>
-            <button class="bg-blue-600 px-4 py-2 rounded text-xs font-bold uppercase tracking-tighter hover:bg-blue-500 transition">Buy Now</button>
-        </div>
-    </nav>
+<header>
+    <span style="font-size: 140%;"><b>20th CENTURY FOX HOME ENTERTAINMENT</b></span>
+</header>
 
-    <!-- Hero Section -->
-    <header class="relative pt-32 pb-20 px-4 overflow-hidden">
-        <div class="hero-glow"></div>
-        <div class="max-w-5xl mx-auto text-center relative z-10">
-            <p class="text-blue-400 font-bold tracking-[0.3em] mb-4 text-sm animate-pulse">2009.08.28 RELEASE</p>
-            <h1 class="text-5xl md:text-8xl font-black mb-6 x-gradient-text italic tracking-tighter">
-                X-MEN：ファイナル ディシジョン
-            </h1>
-            <p class="text-xl md:text-2xl text-slate-400 font-light max-w-2xl mx-auto mb-10 leading-relaxed">
-                すべての運命が、ここへ。究極の「治療法」をめぐる人類とミュータントの最終戦争。
-            </p>
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <span class="px-4 py-2 border border-white/20 rounded-full text-xs font-semibold tracking-widest bg-white/5 uppercase">Blu-ray 2-Disc Set</span>
-                <span class="text-slate-500 font-medium">発売元：20世紀フォックス ホーム エンターテイメント ジャパン</span>
-            </div>
+<div class="container">
+    <div class="product-main">
+        <div class="product-images">
+            <img id="mainImage" src="https://images.static-bluray.com/movies/covers/85555_slip.jpg" alt="X-MEN：ファイナル ディシジョン ジャケット表面">
+            <p style="font-size: 0.8rem; color: #888; margin-top: 10px;">画像をタップで裏面を切り替え</p>
         </div>
-    </header>
 
-    <!-- Package Display -->
-    <section id="package" class="py-20 px-4 bg-gradient-to-b from-transparent to-slate-900/30">
-        <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div class="product-info">
+            <p class="release-date">2009年8月28日発売</p>
+            <h1>X-MEN：ファイナル ディシジョン<br><span style="font-size: 1.2rem;">（2枚組ブルーレイ＆DVD）</span></h1>
+            <p class="price">希望小売価格：￥4,743（税抜）</p>
             
-            <!-- 3D Card -->
-            <div class="flex flex-col items-center">
-                <div class="card-flip-container w-full max-w-[400px] aspect-[3/4]" id="packageCard">
-                    <div class="card-flip-inner">
-                        <div class="card-front bg-slate-800">
-                            <img src="https://images.static-bluray.com/movies/covers/85555_slip.jpg" 
-                                 alt="Front Cover" 
-                                 class="w-full h-full object-cover"
-                                 onerror="this.src='https://via.placeholder.com/400x560/1e293b/ffffff?text=X-MEN+FRONT'">
-                        </div>
-                        <div class="card-back bg-slate-800">
-                            <!-- Hypothetical URL based on pattern, fallback to front if broken -->
-                            <img src="https://images.static-bluray.com/movies/covers/85555_back.jpg" 
-                                 alt="Back Cover" 
-                                 class="w-full h-full object-cover"
-                                 onerror="this.src='https://via.placeholder.com/400x560/1e293b/ffffff?text=X-MEN+BACK'">
-                        </div>
-                    </div>
-                </div>
-                <div class="mt-8 flex gap-4">
-                    <button onclick="toggleCard()" class="px-6 py-2 bg-white/10 hover:bg-white/20 rounded-full text-sm font-medium transition flex items-center gap-2 border border-white/10">
-                        <i class="fa-solid fa-rotate"></i> カバーを回転
-                    </button>
-                </div>
-            </div>
+            <p>究極のパワーが、すべてを無に帰す。シリーズ最大級のスケールで描かれる完結編が、ブルーレイでさらに鮮やかに！</p>
+            
+            <button class="btn-buy">今すぐ購入</button>
 
-            <!-- Description -->
-            <div>
-                <h2 class="text-3xl font-bold mb-6 italic border-l-4 border-blue-600 pl-4">究極の選択。</h2>
-                <div class="space-y-6 text-slate-300 leading-relaxed">
-                    <p>全世界大ヒットシリーズ第3弾が、驚愕のハイビジョン映像で登場。2枚組の豪華仕様には、本編を凌駕する膨大な特典映像を収録。デジタル・コピー機能も備えた決定版（2009年当時）。</p>
-                    
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="metallic-border p-4 rounded-lg">
-                            <h3 class="text-blue-400 font-bold text-xs uppercase mb-1">Disc 1</h3>
-                            <p class="text-sm">本編 (104分)<br>音声解説・各種予告</p>
-                        </div>
-                        <div class="metallic-border p-4 rounded-lg">
-                            <h3 class="text-blue-400 font-bold text-xs uppercase mb-1">Disc 2</h3>
-                            <p class="text-sm">特典映像集<br>デジタル・コピー</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <table class="spec-table">
+                <tr>
+                    <th>品番</th>
+                    <td>FXXG-29986</td>
+                </tr>
+                <tr>
+                    <th>ディスク仕様</th>
+                    <td>2枚組（Blu-ray + 特典ディスク）</td>
+                </tr>
+                <tr>
+                    <th>音声</th>
+                    <td>1. 英語 DTS-HD マスター・オーディオ 6.1ch<br>2. 日本語 DTS 5.1ch</td>
+                </tr>
+                <tr>
+                    <th>字幕</th>
+                    <td>日本語 / 英語</td>
+                </tr>
+            </table>
         </div>
-    </section>
+    </div>
 
-    <!-- Detailed Tabs -->
-    <section id="details" class="py-20 px-4">
-        <div class="max-w-4xl mx-auto">
-            <div class="flex border-b border-white/10 mb-8 overflow-x-auto no-scrollbar">
-                <button onclick="openTab('story')" class="tab-btn px-6 py-4 text-sm font-bold tracking-widest uppercase border-b-2 border-transparent active text-blue-500 border-blue-500" id="defaultOpen">Story</button>
-                <button onclick="openTab('cast')" class="tab-btn px-6 py-4 text-sm font-bold tracking-widest uppercase border-b-2 border-transparent">Cast & Staff</button>
-                <button onclick="openTab('specs')" class="tab-btn px-6 py-4 text-sm font-bold tracking-widest uppercase border-b-2 border-transparent">Specifications</button>
-            </div>
+    <div class="tabs">
+        <div class="tab active" onclick="showTab('story')">ストーリー</div>
+        <div class="tab" onclick="showTab('bonus')">特典映像</div>
+    </div>
 
-            <!-- Tab: Story -->
-            <div id="story" class="tab-content active space-y-6">
-                <p class="text-lg leading-relaxed text-slate-300">
-                    ミュータントを人間に変える新薬「キュア」が開発された。これによりミュータント界は揺れる。「人間になれる」と喜ぶ者と、アイデンティティの否定だと憤る者。<br><br>
-                    プロフェッサーXは共存を願うが、マグニートーは人類との全面戦争を選択。さらに、死んだはずのジーン・グレイが最強の破壊神「フェニックス」として復活し、事態は最悪の局面へ向かう。X-MENは史上最大の決戦に挑む。
-                </p>
-            </div>
+    <div id="story" class="content-pane active">
+        <p>ミュータントの能力を消し去る新薬“キュア”が開発された。人間として生きるか、ミュータントとして生きるか。究極の選択を迫られる中、プロフェッサーXとマグニートーの対立は激化。かつてない規模の全面戦争へと突入していく……。</p>
+    </div>
 
-            <!-- Tab: Cast -->
-            <div id="cast" class="tab-content space-y-6">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <ul class="space-y-2">
-                        <li class="flex justify-between border-b border-white/5 pb-2">
-                            <span class="text-slate-400">ウルヴァリン</span>
-                            <span class="font-bold">ヒュー・ジャックマン</span>
-                        </li>
-                        <li class="flex justify-between border-b border-white/5 pb-2">
-                            <span class="text-slate-400">ストーム</span>
-                            <span class="font-bold">ハル・ベリー</span>
-                        </li>
-                        <li class="flex justify-between border-b border-white/5 pb-2">
-                            <span class="text-slate-400">マグニートー</span>
-                            <span class="font-bold">イアン・マッケラン</span>
-                        </li>
-                        <li class="flex justify-between border-b border-white/5 pb-2">
-                            <span class="text-slate-400">プロフェッサーX</span>
-                            <span class="font-bold">パトリック・スチュワート</span>
-                        </li>
-                        <li class="flex justify-between border-b border-white/5 pb-2">
-                            <span class="text-slate-400">ジーン・グレイ</span>
-                            <span class="font-bold">ファムケ・ヤンセン</span>
-                        </li>
-                    </ul>
-                    <div class="bg-blue-900/20 p-6 rounded-lg border border-blue-500/20">
-                        <h4 class="text-blue-400 font-bold mb-2">Director</h4>
-                        <p class="text-xl font-bold mb-4">ブレット・ラトナー</p>
-                        <h4 class="text-blue-400 font-bold mb-2">Music</h4>
-                        <p>ジョン・パウエル</p>
-                    </div>
-                </div>
-            </div>
+    <div id="bonus" class="content-pane">
+        <ul>
+            <li>未公開シーン集（ブレット・ラトナー監督による音声解説付）</li>
+            <li>もうひとつのエンディング（ブレット・ラトナー監督による音声解説付）</li>
+            <li>イースター・エッグ：ビーストのダンス</li>
+            <li>メイキング・ドキュメンタリー集</li>
+            <li>イン-ムービー・コンテンツ（ブルーレイ独自のJava機能）</li>
+        </ul>
+    </div>
+</div>
 
-            <!-- Tab: Specs -->
-            <div id="specs" class="tab-content space-y-4">
-                <div class="bg-black/40 p-6 rounded-xl border border-white/5 space-y-4">
-                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-2">
-                        <span class="text-slate-400">音声</span>
-                        <span class="font-medium text-sm">英語：DTS-HD マスター・オーディオ 6.1ch、日本語：DTS 5.1ch</span>
-                    </div>
-                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 border-t border-white/5 pt-4">
-                        <span class="text-slate-400">字幕</span>
-                        <span class="font-medium text-sm">日本語、英語、吹替用字幕</span>
-                    </div>
-                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 border-t border-white/5 pt-4">
-                        <span class="text-slate-400">画面サイズ</span>
-                        <span class="font-medium text-sm">1080p Hi-Def (2.40:1) シネマスコープサイズ</span>
-                    </div>
-                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 border-t border-white/5 pt-4">
-                        <span class="text-slate-400">品番</span>
-                        <span class="font-medium text-sm">FXXG-29986</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<footer>
+    © 2009 Twentieth Century Fox Home Entertainment LLC. All Rights Reserved.
+</footer>
 
-    <!-- Footer CTA -->
-    <footer class="py-20 bg-black text-center px-4">
-        <div class="max-w-2xl mx-auto">
-            <h3 class="text-2xl font-bold mb-8 italic">さあ、ファイナル ディシジョンを。</h3>
-            <button class="btn-purchase w-full md:w-auto px-12 py-4 rounded-full font-black text-lg tracking-widest uppercase mb-12">
-                Buy Now
-            </button>
-            <div class="pt-10 border-t border-white/10 text-slate-600 text-xs tracking-widest space-y-2">
-                <p>&copy; 2009 Twentieth Century Fox Home Entertainment LLC. All Rights Reserved.</p>
-                <p>20th Century Fox, Marvel, and associated logos are trademarks of respective owners.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Tab switching logic
-        function openTab(tabName) {
-            let i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("tab-content");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].classList.remove("active");
-            }
-            tablinks = document.getElementsByClassName("tab-btn");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].classList.remove("text-blue-500", "border-blue-500");
-            }
-            document.getElementById(tabName).classList.add("active");
-            event.currentTarget.classList.add("text-blue-500", "border-blue-500");
+<script>
+    // ジャケット画像の切り替え（表と裏）
+    const mainImg = document.getElementById('mainImage');
+    const frontSrc = "https://images.static-bluray.com/movies/covers/85555_slip.jpg";
+    const backSrc = "https://images.static-bluray.com/movies/covers/85555_slipback.jpg";
+    
+    mainImg.addEventListener('click', function() {
+        if (this.src.includes('85555_slip.jpg')) {
+            this.src = backSrc;
+        } else {
+            this.src = frontSrc;
         }
+    });
 
-        // Card flip logic
-        function toggleCard() {
-            const container = document.getElementById('packageCard');
-            container.classList.toggle('flipped');
-        }
-
-        // Sticky Navbar reveal on scroll
-        let lastScroll = 0;
-        window.addEventListener('scroll', () => {
-            const currentScroll = window.pageYOffset;
-            const nav = document.querySelector('nav');
-            if (currentScroll > lastScroll && currentScroll > 100) {
-                nav.style.transform = 'translateY(-100%)';
-            } else {
-                nav.style.transform = 'translateY(0)';
-            }
-            lastScroll = currentScroll;
+    // タブの切り替え
+    function showTab(tabId) {
+        document.querySelectorAll('.content-pane').forEach(pane => {
+            pane.classList.remove('active');
         });
-    </script>
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.classList.remove('active');
+        });
+        
+        document.getElementById(tabId).classList.add('active');
+        event.currentTarget.classList.add('active');
+    }
+</script>
+
 </body>
 </html>
