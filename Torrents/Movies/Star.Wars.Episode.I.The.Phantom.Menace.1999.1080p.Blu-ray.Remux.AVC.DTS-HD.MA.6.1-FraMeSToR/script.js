@@ -1,7 +1,15 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const dlBtn = document.getElementById('dlBtn');
+function downloadAlert() {
+    const folderName = document.getElementById('folder-name').innerText;
+    alert("Requesting .torrent for: " + folderName);
+    console.log("Download initiated for release: FraMeSToR");
+}
 
-    dlBtn.addEventListener('click', () => {
-        alert('Torrent file download started: Star.Wars.Episode.I.The.Phantom.Menace.1999.1080p.Blu-ray.Remux.AVC.DTS-HD.MA.6.1-FraMeSToR.torrent');
-    });
-});
+// Optional: Change header background on scroll
+window.onscroll = function() {
+    const header = document.querySelector('header');
+    if (window.scrollY > 50) {
+        header.style.backgroundColor = '#000';
+    } else {
+        header.style.backgroundColor = '#1f1f1f';
+    }
+};
