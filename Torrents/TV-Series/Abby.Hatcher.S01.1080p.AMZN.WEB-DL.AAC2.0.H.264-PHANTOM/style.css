@@ -1,0 +1,100 @@
+:root {
+    --primary: #e91e63;
+    --bg: #121212;
+    --card-bg: #1e1e1e;
+    --text: #ffffff;
+    --text-dim: #b0b0b0;
+}
+
+body {
+    font-family: Helvetica, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    margin: 0;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://image.tmdb.org/t/p/original/eaICMIigEShZEcpp1StYuRg1gdw.jpg');
+    background-size: cover;
+    background-position: center 20%;
+    text-align: center;
+    padding: 60px 20px;
+    border-bottom: 3px solid var(--primary);
+}
+
+.release-tagline {
+    font-family: monospace;
+    color: var(--primary);
+    background: rgba(0,0,0,0.6);
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 4px;
+}
+
+.torrent-header {
+    display: flex;
+    gap: 30px;
+    margin-top: -50px;
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.poster img {
+    width: 200px;
+    border-radius: 4px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.info h2 { margin-top: 0; color: var(--primary); }
+
+.specs {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.btn-download {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: transform 0.2s;
+}
+
+.btn-download:hover { transform: scale(1.05); }
+
+.folder-view {
+    background: #000;
+    padding: 20px;
+    border-radius: 5px;
+    font-family: monospace;
+    font-size: 0.9rem;
+}
+
+#fileContainer {
+    list-style: none;
+    color: #00ff00; /* Classic terminal green */
+}
+
+li { margin: 5px 0; border-bottom: 1px solid #222; padding-bottom: 2px; }
+
+@media (max-width: 768px) {
+    .torrent-header { flex-direction: column; align-items: center; text-align: center; margin-top: 20px; }
+    .specs { grid-template-columns: 1fr; }
+}
