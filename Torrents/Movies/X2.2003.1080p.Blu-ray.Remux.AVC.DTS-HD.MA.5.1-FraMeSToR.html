@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X2 (2003) - Safari macOS Simulator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --safari-bg: rgba(246, 246, 246, 0.85);
+            --window-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.5), 0 30px 60px -30px rgba(0, 0, 0, 0.6);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            background: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=3540&ixlib=rb-4.0.3') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .safari-window {
+            width: 95vw;
+            max-width: 1200px;
+            height: 85vh;
+            background: #ffffff;
+            border-radius: 18px;
+            box-shadow: var(--window-shadow);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border: 0.5px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+        }
+
+        .safari-toolbar {
+            background: var(--safari-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            height: 85px;
+            display: flex;
+            flex-direction: column;
+            padding: 0 16px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            flex-shrink: 0;
+            z-index: 10;
+        }
+
+        .toolbar-top {
+            display: flex;
+            align-items: center;
+            height: 42px;
+            padding-top: 4px;
+        }
+
+        .traffic-lights {
+            display: flex;
+            gap: 8px;
+            width: 70px;
+        }
+
+        .light {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .red { background: #ff5f57; }
+        .yellow { background: #ffbd2e; }
+        .green { background: #28c940; }
+
+        .address-bar-container {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            padding: 0 40px;
+        }
+
+        .address-bar {
+            width: 100%;
+            max-width: 600px;
+            background: rgba(0, 0, 0, 0.05);
+            height: 30px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            color: #555;
+            gap: 8px;
+        }
+
+        .toolbar-bottom {
+            display: flex;
+            align-items: center;
+            height: 43px;
+            gap: 20px;
+            padding-left: 4px;
+        }
+
+        .browser-content {
+            flex-grow: 1;
+            overflow-y: auto;
+            background: #ffffff;
+        }
+
+        /* Tracker Custom Styles */
+        .torrent-card {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .title-header {
+            border-left: 4px solid #3b82f6;
+            padding-left: 15px;
+            margin-bottom: 30px;
+        }
+
+        .folder-name {
+            font-family: 'ui-monospace', 'SFMono-Regular', Menlo, monospace;
+            background: #f3f4f6;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: #4b5563;
+            display: inline-block;
+            margin-top: 8px;
+        }
+
+        .nfo-viewer {
+            background: #0f172a;
+            color: #94a3b8;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 24px;
+            border-radius: 12px;
+            font-size: 13px;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            border: 1px solid #1e293b;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .download-action {
+            background: linear-gradient(to bottom, #3b82f6, #2563eb);
+            color: white;
+            padding: 16px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .download-action:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .download-action:active {
+            transform: translateY(0);
+        }
+
+        .status-tag {
+            padding: 2px 10px;
+            border-radius: 99px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .tag-active { background: #dcfce7; color: #166534; }
+        
+        .image-fallback {
+            background-color: #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            aspect-ratio: 2/3;
+        }
+    </style>
+
+    <!-- JSON-LD for Movie Metadata -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Movie",
+      "name": "X2",
+      "alternateName": "X2: X-Men United",
+      "image": "https://image.tmdb.org/t/p/original/bWMw0FMsY8DICgrQnrTSWbzEgtr.jpg",
+      "description": "The X-Men band together to find a mutant assassin who has made an attempt on the President's life, while the Mutant Academy is attacked by military forces.",
+      "datePublished": "2003-05-02",
+      "director": {
+        "@type": "Person",
+        "name": "Bryan Singer"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "7.4",
+        "bestRating": "10",
+        "ratingCount": "9850"
+      }
+    }
+    </script>
+</head>
+<body>
+
+    <div class="safari-window">
+        <!-- Safari Chrome -->
+        <div class="safari-toolbar">
+            <div class="toolbar-top">
+                <div class="traffic-lights">
+                    <div class="light red"></div>
+                    <div class="light yellow"></div>
+                    <div class="light green"></div>
+                </div>
+                <div class="address-bar-container">
+                    <div class="address-bar">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6zm9 14H6V10h12v10zm-6-3c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"/></svg>
+                        <span>torrent-leech.pro/details.php?id=384920</span>
+                    </div>
+                </div>
+                <div style="width: 70px;"></div>
+            </div>
+            <div class="toolbar-bottom">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8m-16-4l8-8 8 8m-8-8v16"/></svg>
+                <div class="flex-grow"></div>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+            </div>
+        </div>
+
+        <!-- Site Content -->
+        <div class="browser-content">
+            <div class="torrent-card">
+                
+                <div class="title-header">
+                    <h1 class="text-3xl font-black text-gray-900 leading-tight">X2 (2003) 1080p Blu-ray Remux AVC DTS-HD MA 5.1-FraMeSToR</h1>
+                    <div class="folder-name">Folder: X2.2003.1080p.Blu-ray.Remux.AVC.DTS-HD.MA.5.1-FraMeSToR</div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+                    <!-- Left: Poster and Quick Stats -->
+                    <div class="lg:col-span-4">
+                        <img src="https://image.tmdb.org/t/p/original/bWMw0FMsY8DICgrQnrTSWbzEgtr.jpg" 
+                             class="w-full rounded-xl shadow-2xl mb-6 border border-gray-100" 
+                             alt="X2 Poster">
+                        <div class="image-fallback hidden">
+                            <span class="text-gray-400 font-bold">X2 POSTER</span>
+                        </div>
+
+                        <div class="bg-gray-50 rounded-2xl p-6 border border-gray-200">
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="text-sm text-gray-500 uppercase tracking-tighter font-bold">Health</span>
+                                <span class="status-tag tag-active">Excellent</span>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600 text-sm">Seeders</span>
+                                    <span class="text-green-600 font-bold">284</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600 text-sm">Leechers</span>
+                                    <span class="text-red-500 font-bold">12</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600 text-sm">Size</span>
+                                    <span class="font-bold">34.18 GB</span>
+                                </div>
+                            </div>
+                            
+                            <button id="mainDl" class="download-action mt-6 w-full">
+                                DOWNLOAD .TORRENT
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Right: Info and NFO -->
+                    <div class="lg:col-span-8">
+                        <div class="mb-8">
+                            <h3 class="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
+                                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                Release Information
+                            </h3>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-6 text-sm">
+                                <div>
+                                    <p class="text-gray-400 mb-1 uppercase text-[10px] font-black tracking-widest">Video Codec</p>
+                                    <p class="font-semibold text-gray-700">MPEG-4 AVC</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-400 mb-1 uppercase text-[10px] font-black tracking-widest">Audio</p>
+                                    <p class="font-semibold text-gray-700">DTS-HD MA 5.1</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-400 mb-1 uppercase text-[10px] font-black tracking-widest">Resolution</p>
+                                    <p class="font-semibold text-gray-700">1920x1080</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-400 mb-1 uppercase text-[10px] font-black tracking-widest">Source</p>
+                                    <p class="font-semibold text-gray-700">Retail Blu-ray</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-400 mb-1 uppercase text-[10px] font-black tracking-widest">Uploader</p>
+                                    <p class="font-semibold text-blue-600 underline">FraMeSToR</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-8">
+                            <h3 class="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
+                                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                                Technical NFO File
+                            </h3>
+                            <div class="nfo-viewer">
+GENERAL INFO
+--------------------------------------------------
+RELEASE NAME....: X2.2003.1080p.Blu-ray.Remux.AVC.DTS-HD.MA.5.1-FraMeSToR
+RELEASE DATE....: 2024-03-12
+DURATON.........: 2h 14mn
+SIZE............: 34.18 GB
+CONTAINER.......: Matroska
+
+VIDEO INFO
+--------------------------------------------------
+CODEC...........: AVC High@L4.1
+RESOLUTION......: 1920x1080
+ASPECT RATIO....: 2.40:1
+FRAME RATE......: 23.976 fps
+BITRATE.........: 29.5 Mbps
+
+AUDIO INFO
+--------------------------------------------------
+AUDIO...........: English DTS-HD MA 5.1 @ 4250 kbps
+SUBS............: English, Spanish, French, German
+
+GREETINGS TO
+--------------------------------------------------
+FraMeSToR, EPSiLON, HighCode, and all our friends!
+                            </div>
+                        </div>
+
+                        <div class="bg-blue-50 border border-blue-100 p-4 rounded-xl">
+                            <p class="text-sm text-blue-800 font-medium">
+                                <span class="font-bold">Staff Note:</span> This is a Remux, meaning it is a bit-perfect copy of the video and audio streams from the retail disc. Best quality available.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-20 pt-8 border-t border-gray-100 text-center text-gray-400 text-xs">
+                    Bit-Tracker v5.1.0 • Using Safari 17.4 on macOS Sonoma Simulation
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Feedback Message Box -->
+    <div id="msgBox" class="fixed bottom-10 left-1/2 -translate-x-1/2 bg-gray-900 text-white px-6 py-3 rounded-full opacity-0 transition-opacity duration-300 pointer-events-none text-sm font-medium z-50">
+        Torrent file added to download queue.
+    </div>
+
+    <script>
+        const dlBtn = document.getElementById('mainDl');
+        const msgBox = document.getElementById('msgBox');
+
+        dlBtn.addEventListener('click', function() {
+            // Simulated interaction
+            this.style.opacity = '0.7';
+            this.innerText = 'PREPARING...';
+            
+            setTimeout(() => {
+                this.style.opacity = '1';
+                this.innerText = 'DOWNLOADING';
+                this.style.background = '#059669'; // Success green
+                
+                // Show floating message (custom UI instead of alert)
+                msgBox.style.opacity = '1';
+                setTimeout(() => {
+                    msgBox.style.opacity = '0';
+                }, 3000);
+            }, 800);
+        });
+
+        // Close window interaction
+        document.querySelector('.red').addEventListener('click', () => {
+            document.querySelector('.safari-window').style.transform = 'scale(0.95)';
+            document.querySelector('.safari-window').style.opacity = '0';
+            document.querySelector('.safari-window').style.transition = 'all 0.3s ease';
+            setTimeout(() => {
+                location.reload(); // Reset simulation
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
