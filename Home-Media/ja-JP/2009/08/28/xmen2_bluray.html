@@ -1,268 +1,229 @@
 <!DOCTYPE html>
-<html lang="ja-JP">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>X-MEN2 2枚組ブルーレイ - 製品情報｜20世紀フォックス</title>
+    <title>X-MEN2 [Blu-ray] - 20世紀フォックス ホーム エンターテイメント ジャパン</title>
     <style>
-        :root {
-            --fox-blue: #002d5b;
-            --x-metal: #333d47;
-            --text-silver: #e0e0e0;
-            --accent-blue: #00a0e9;
-        }
-
+        /* Retro IE/Windows Styles */
         body {
-            background-color: #050505;
-            color: var(--text-silver);
-            font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+            font-family: sans-serif;
+            background-color: #FFFFFF;
             margin: 0;
             padding: 0;
-            line-height: 1.6;
+            font-size: 12px;
+            color: #333;
         }
 
-        header {
-            background: linear-gradient(to bottom, #1a1a1a, #000);
-            padding: 20px;
-            text-align: center;
-            border-bottom: 2px solid var(--accent-blue);
+        #ie-header {
+            background: linear-gradient(to bottom, #ebeadb 0%, #d2d2c1 100%);
+            border-bottom: 1px solid #999;
+            padding: 5px;
+            font-size: 11px;
+            color: #000;
         }
 
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        .product-main {
+        #browser-bar {
+            background-color: #f0f0e0;
+            border-bottom: 2px solid #ccc;
+            padding: 4px;
             display: flex;
-            gap: 40px;
-            flex-wrap: wrap;
-            margin-bottom: 60px;
+            align-items: center;
         }
 
-        .product-images {
-            flex: 1;
-            min-width: 300px;
+        .address-bar {
+            background: white;
+            border: 1px solid #7f9db9;
+            padding: 2px 5px;
+            width: 80%;
+            margin-left: 10px;
+        }
+
+        #main-container {
+            width: 800px;
+            margin: 20px auto;
+            border: 1px solid #ccc;
+            padding: 15px;
+            box-shadow: 2px 2px 5px #aaa;
+        }
+
+        .fox-header {
+            background-color: #003366;
+            color: gold;
+            padding: 10px;
+            font-family: "Arial Black", sans-serif;
             text-align: center;
+            border-bottom: 3px solid gold;
         }
 
-        .product-images img {
-            max-width: 100%;
-            height: auto;
-            box-shadow: 0 0 20px rgba(0, 160, 233, 0.4);
-            border-radius: 5px;
-            cursor: pointer;
-            transition: transform 0.3s ease;
+        .product-flex {
+            display: flex;
+            margin-top: 20px;
         }
 
-        .product-images img:hover {
-            transform: scale(1.02);
+        .cover-art {
+            width: 250px;
+            margin-right: 20px;
         }
 
-        .product-info {
-            flex: 1.5;
-            min-width: 300px;
+        .cover-art img {
+            width: 100%;
+            border: 1px solid #333;
+            box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+        }
+
+        .details {
+            flex: 1;
         }
 
         h1 {
-            font-size: 2.5rem;
+            font-size: 20px;
+            color: #003366;
             margin-top: 0;
-            color: #fff;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            border-bottom: 1px solid #ccc;
         }
 
-        .release-date {
-            font-size: 1.2rem;
-            color: var(--accent-blue);
+        .price-tag {
+            font-size: 18px;
+            color: #CC0000;
             font-weight: bold;
-            margin-bottom: 20px;
+            margin: 10px 0;
         }
 
         .spec-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
-            background: rgba(255,255,255,0.05);
+            margin-top: 15px;
         }
 
         .spec-table th, .spec-table td {
-            padding: 12px;
-            border-bottom: 1px solid #444;
+            border: 1px solid #ddd;
+            padding: 8px;
             text-align: left;
         }
 
         .spec-table th {
+            background-color: #f2f2f2;
             width: 30%;
-            background: rgba(0, 160, 233, 0.1);
         }
 
-        .tabs {
-            display: flex;
-            margin-top: 40px;
-            border-bottom: 1px solid var(--accent-blue);
-        }
-
-        .tab {
-            padding: 10px 25px;
-            cursor: pointer;
-            background: #222;
-            margin-right: 5px;
-            border-radius: 5px 5px 0 0;
-        }
-
-        .tab.active {
-            background: var(--accent-blue);
-            color: white;
-        }
-
-        .tab-content {
-            display: none;
-            padding: 30px;
-            background: rgba(255,255,255,0.03);
-            border-bottom: 1px solid #444;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        ul {
-            padding-left: 20px;
-        }
-
-        footer {
+        .footer {
+            margin-top: 30px;
             text-align: center;
-            padding: 40px;
-            font-size: 0.8rem;
-            color: #777;
+            font-size: 10px;
+            color: #666;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
         }
 
-        .btn-buy {
-            display: inline-block;
-            background: #d9534f;
-            color: white;
-            padding: 15px 40px;
-            text-decoration: none;
+        .buy-button {
+            background: linear-gradient(to bottom, #ffec8b, #eedc82);
+            border: 1px solid #a68b00;
+            padding: 10px 20px;
+            cursor: pointer;
             font-weight: bold;
-            border-radius: 3px;
-            margin-top: 20px;
-            transition: background 0.3s;
-        }
-
-        .btn-buy:hover {
-            background: #c9302c;
+            margin-top: 10px;
         }
     </style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Product",
+      "name": "X-MEN2 (2-Disc Set) Blu-ray",
+      "image": "https://images.static-bluray.com/movies/covers/85557_slip.jpg",
+      "description": "20th Century Fox Home Entertainment Japan release of X2: X-Men United.",
+      "sku": "FXXG-24224",
+      "mpn": "4988142743427",
+      "brand": {
+        "@type": "Brand",
+        "name": "20th Century Fox"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "http://foxjapan.com/x2-bluray",
+        "priceCurrency": "JPY",
+        "price": "4935",
+        "availability": "https://schema.org/InStock",
+        "itemCondition": "https://schema.org/NewCondition"
+      }
+    }
+    </script>
 </head>
 <body>
 
-<header>
-    <div style="font-size: 1.5rem; font-weight: bold; letter-spacing: 2px;">20th CENTURY FOX HOME ENTERTAINMENT</div>
-</header>
+    <div id="ie-header">X-MEN2 [Blu-ray] - Microsoft Internet Explorer</div>
+    <div id="browser-bar">
+        <span>Address:</span>
+        <div class="address-bar">http://www.foxjapan.com/bluray/product/FXXG-24224/</div>
+    </div>
 
-<div class="container">
-    <div class="product-main">
-        <div class="product-images">
-            <img id="main-cover" src="https://images.static-bluray.com/movies/covers/85557_slip.jpg" alt="X-MEN2 ブルーレイ ジャケット">
-            <p style="margin-top:15px; font-size: 0.9rem;">画像をタップで裏面を表示</p>
+    <div id="main-container">
+        <div class="fox-header">
+            20th CENTURY FOX HOME ENTERTAINMENT
         </div>
 
-        <div class="product-info">
-            <h1>X-MEN2 <br><span style="font-size: 1.5rem;">2枚組ブルーレイ</span></h1>
-            <p class="release-date">2009年8月28日発売</p>
-            <p><strong>究極の進化を遂げた、最強のエンターテイメント！</strong><br>
-            ブライアン・シンガー監督が放つ、SFアクションの最高峰。新たなミュータントの出現、そして宿敵マグニートーとの共闘。すべてがスケールアップした第2弾が、待望のブルーレイで登場。</p>
-            
-            <table class="spec-table">
-                <tr><th>品番</th><td>FXXG-24224</td></tr>
-                <tr><th>価格</th><td>￥4,743（税抜）</td></tr>
-                <tr><th>枚数</th><td>2枚組（BD50G×2）</td></tr>
-                <tr><th>本編尺</th><td>134分</td></tr>
-            </table>
+        <div class="product-flex">
+            <div class="cover-art">
+                <img src="https://images.static-bluray.com/movies/covers/85557_slip.jpg" alt="X-MEN2 Blu-ray Cover">
+                <p style="text-align:center; font-size:10px;">※画像はイメージです</p>
+            </div>
 
-            <a href="#" class="btn-buy">購入はこちら（外部サイト）</a>
+            <div class="details">
+                <h1>X-MEN2 (2枚組) [Blu-ray]</h1>
+                <p>さらなる進化を遂げた、究極のSFアクション大作！<br>
+                新旧のミュータントが入り乱れる興奮の第2弾が、高画質・高音質のBlu-rayで登場。</p>
+                
+                <div class="price-tag">希望小売価格：￥4,935 (税込)</div>
+                <button class="buy-button" onclick="alert('ショッピングカートに追加されました')">カートに入れる</button>
+
+                <table class="spec-table">
+                    <tr>
+                        <th>品番</th>
+                        <td>FXXG-24224</td>
+                    </tr>
+                    <tr>
+                        <th>発売日</th>
+                        <td>2009/08/28</td>
+                    </tr>
+                    <tr>
+                        <th>ディスク枚数</th>
+                        <td>2枚 (Blu-ray Disc)</td>
+                    </tr>
+                    <tr>
+                        <th>音声</th>
+                        <td>1. 英語 DTS-HD マスター・オーディオ 5.1ch<br>2. 日本語 DTS 5.1ch</td>
+                    </tr>
+                    <tr>
+                        <th>字幕</th>
+                        <td>日本語、英語</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div style="margin-top:20px;">
+            <h3>特典内容 (Disc 2)</h3>
+            <ul>
+                <li>ブライアン・シンガー監督による音声解説</li>
+                <li>未公開シーン集</li>
+                <li>ミュータントの秘密：ドキュメンタリー</li>
+                <li>スティル・ギャラリー</li>
+            </ul>
+        </div>
+
+        <div class="footer">
+            &copy; 2009 Twentieth Century Fox Home Entertainment LLC. All Rights Reserved.
         </div>
     </div>
 
-    <div class="tabs">
-        <div class="tab active" onclick="openTab(event, 'bonus')">特典映像</div>
-        <div class="tab" onclick="openTab(event, 'spec')">仕様詳細</div>
-        <div class="tab" onclick="openTab(event, 'story')">ストーリー</div>
-    </div>
-
-    <div id="bonus" class="tab-content active">
-        <h3>豪華2枚組に収録される充実の特典</h3>
-        <p>【Disc 1】</p>
-        <ul>
-            <li>ブライアン・シンガー監督らによる音声解説</li>
-            <li>マーベル・ドット・コム提供：トリビア・トラック</li>
-        </ul>
-        <p>【Disc 2】</p>
-        <ul>
-            <li>ドキュメンタリー：ミュータントの歴史</li>
-            <li>メイキング：視覚効果の魔法</li>
-            <li>未公開シーン集（監督解説付き）</li>
-            <li>ギャラリー：キャラクター・デザイン／セット・デザイン</li>
-            <li>ブルーレイ限定：インタラクティブ・コンテンツ</li>
-        </ul>
-    </div>
-
-    <div id="spec" class="tab-content">
-        <h3>ディスク仕様</h3>
-        <ul>
-            <li><strong>映像：</strong> 1080p Hi-Def シネマスコープ</li>
-            <li><strong>音声：</strong>
-                <ol>
-                    <li>英語 5.1ch DTS-HD マスター・オーディオ</li>
-                    <li>日本語 5.1ch DTS</li>
-                </ol>
-            </li>
-            <li><strong>字幕：</strong> 日本語 / 英語</li>
-        </ul>
-    </div>
-
-    <div id="story" class="tab-content">
-        <h3>STORY</h3>
-        <p>ミュータント登録法案を巡る論争が続く中、大統領暗殺未遂事件が発生。犯人はテレポート能力を持つミュータントだった。この事件を機に、人類とミュータントの緊張は一気に高まり、軍のストライカー大佐はX教授の邸宅を急襲する。逃げ延びたウルヴァリンたちは、かつての宿敵マグニートーと手を組み、共通の敵に立ち向かうことを決意するが……。</p>
-    </div>
-</div>
-
-<footer>
-    <p>&copy; 2009 Twentieth Century Fox Home Entertainment LLC. All Rights Reserved.</p>
-</footer>
-
-<script>
-    // タブ切り替え機能
-    function openTab(evt, tabName) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tab-content");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-            tabcontent[i].classList.remove("active");
-        }
-        tablinks = document.getElementsByClassName("tab");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-        document.getElementById(tabName).style.display = "block";
-        document.getElementById(tabName).classList.add("active");
-        evt.currentTarget.className += " active";
-    }
-
-    // 画像切り替え（表面・裏面）
-    const mainImg = document.getElementById('main-cover');
-    const frontImg = "https://images.static-bluray.com/movies/covers/85557_slip.jpg";
-    const backImg = "https://images.static-bluray.com/movies/covers/85557_slipback.jpg";
-    
-    mainImg.addEventListener('click', function() {
-        if (this.src === frontImg) {
-            this.src = backImg;
-        } else {
-            this.src = frontImg;
-        }
-    });
-</script>
-
+    <script>
+        console.log("X-MEN2 Simulator Initialized for IE Mode.");
+        // Simple JS for interaction
+        window.onload = function() {
+            if(window.innerWidth < 800) {
+                alert("This page is optimized for a resolution of 1024x768.");
+            }
+        };
+    </script>
 </body>
 </html>
