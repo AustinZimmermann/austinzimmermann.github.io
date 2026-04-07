@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Wars: Η Επίθεση των Κλώνων (Επεισόδιο II) | Disney+</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #040714;
+            color: #f9f9f9;
+            font-family: sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .hero-section {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            background-image: linear-gradient(to right, #040714 10%, rgba(4, 7, 20, 0.6) 40%, rgba(4, 7, 20, 0) 80%), 
+                              url('https://image.tmdb.org/t/p/original/abwxHfymXGAbbH3lo9PDEJEfvtW.jpg');
+            background-size: cover;
+            background-position: center top;
+        }
+
+        .gradient-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30vh;
+            background: linear-gradient(to top, #040714, transparent);
+        }
+
+        .nav-glass {
+            background: linear-gradient(to bottom, rgba(4, 7, 20, 0.8), transparent);
+            transition: background 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: #f9f9f9;
+            color: #040714;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .btn-primary:hover {
+            background-color: #c0c0c0;
+            transform: scale(1.05);
+        }
+
+        .btn-secondary {
+            background-color: rgba(0, 0, 0, 0.6);
+            border: 1.5px solid #f9f9f9;
+            color: #f9f9f9;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .btn-secondary:hover {
+            background-color: #f9f9f9;
+            color: #040714;
+            transform: scale(1.05);
+        }
+
+        .card-zoom:hover {
+            transform: scale(1.05);
+            border-color: rgba(249, 249, 249, 0.8);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+
+        .tab-active {
+            border-bottom: 2px solid #f9f9f9;
+            color: #f9f9f9;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #040714;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #31343e;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 px-8 py-4 flex items-center justify-between nav-glass">
+        <div class="flex items-center gap-8">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/64/Disney%2B_2024.svg" alt="Disney+" class="h-12">
+            <div class="hidden md:flex gap-6 uppercase text-sm font-semibold tracking-widest text-gray-300">
+                <a href="#" class="hover:text-white flex items-center gap-2"><i class="fas fa-home"></i> ΑΡΧΙΚΗ</a>
+                <a href="#" class="hover:text-white flex items-center gap-2"><i class="fas fa-search"></i> ΑΝΑΖΗΤΗΣΗ</a>
+                <a href="#" class="hover:text-white flex items-center gap-2"><i class="fas fa-plus"></i> ΛΙΣΤΑ</a>
+                <a href="#" class="hover:text-white flex items-center gap-2"><i class="fas fa-star"></i> ORIGINALS</a>
+                <a href="#" class="hover:text-white flex items-center gap-2"><i class="fas fa-film"></i> ΤΑΙΝΙΕΣ</a>
+            </div>
+        </div>
+        <div class="flex items-center gap-4">
+            <span class="text-sm hidden sm:block">User Profile</span>
+            <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center border-2 border-transparent hover:border-white cursor-pointer">
+                <i class="fas fa-user"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Content -->
+    <section class="hero-section">
+        <div class="max-w-2xl z-10">
+            <img src="https://image.tmdb.org/t/p/original/2E3pzxhqTLNk9WUVfmQDY6F1cBp.png" alt="Attack of the Clones Logo" class="w-full max-w-md mb-6 drop-shadow-2xl">
+            
+            <div class="flex items-center gap-3 mb-6 text-sm font-medium">
+                <span class="bg-gray-800 px-2 py-0.5 rounded border border-gray-600">12+</span>
+                <span>2002</span>
+                <span>2ώ 22λ</span>
+                <span>Επιστημονική Φαντασία, Περιπέτεια</span>
+            </div>
+
+            <p class="text-lg text-gray-200 mb-8 leading-relaxed">
+                Δέκα χρόνια μετά την εισβολή στον Naboo, ο Anakin Skywalker και ο Obi-Wan Kenobi καλούνται να προστατεύσουν την Padmé Amidala από μια απόπειρα δολοφονίας, ενώ ο γαλαξίας βρίσκεται στα πρόθυρα ενός εμφυλίου πολέμου.
+            </p>
+
+            <div class="flex flex-wrap gap-4">
+                <button class="btn-primary px-8 py-3 rounded font-bold flex items-center gap-3">
+                    <i class="fas fa-play"></i> ΠΑΡΑΚΟΛΟΥΘΗΣΗ
+                </button>
+                <button class="btn-secondary px-8 py-3 rounded font-bold flex items-center gap-3">
+                    <i class="fas fa-play-circle"></i> TRAILER
+                </button>
+                <button class="bg-black/50 border border-white/50 w-12 h-12 rounded-full flex items-center justify-center hover:bg-white hover:text-black transition-all">
+                    <i class="fas fa-plus"></i>
+                </button>
+                <button class="bg-black/50 border border-white/50 w-12 h-12 rounded-full flex items-center justify-center hover:bg-white hover:text-black transition-all">
+                    <i class="fas fa-users"></i>
+                </button>
+            </div>
+
+            <div class="mt-8 text-sm text-gray-400">
+                <span class="font-bold text-white">Γλώσσες:</span> English [Audio Description], Ελληνικά, English, more...
+            </div>
+        </div>
+        <div class="gradient-overlay"></div>
+    </section>
+
+    <!-- Tabs & Details -->
+    <section class="px-8 -mt-20 relative z-20 pb-20">
+        <div class="flex gap-10 border-b border-gray-700 mb-8 text-lg font-semibold text-gray-400 uppercase tracking-widest">
+            <button class="pb-4 tab-active">Προτεινομενα</button>
+            <button class="pb-4 hover:text-white transition-colors">Περισσοτερα</button>
+            <button class="pb-4 hover:text-white transition-colors">Λεπτομερειες</button>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+            <!-- Recommendation 1 -->
+            <div class="group">
+                <div class="aspect-[16/9] rounded-lg overflow-hidden border-2 border-gray-700 card-zoom transition-all cursor-pointer relative bg-gray-900">
+                    <img src="https://image.tmdb.org/t/p/w500/6v996TjYm961oyO968pAnC9S9I0.jpg" alt="Episode III" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/500x281/1a1d29/f9f9f9?text=Star+Wars+III'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                        <span class="text-sm font-bold">Star Wars: Revenge of the Sith</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Recommendation 2 -->
+            <div class="group">
+                <div class="aspect-[16/9] rounded-lg overflow-hidden border-2 border-gray-700 card-zoom transition-all cursor-pointer relative bg-gray-900">
+                    <img src="https://image.tmdb.org/t/p/w500/mS9XZzK1p6uR890F3ZatJ40S8yM.jpg" alt="Episode I" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/500x281/1a1d29/f9f9f9?text=Star+Wars+I'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                        <span class="text-sm font-bold">Star Wars: The Phantom Menace</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Recommendation 3 -->
+            <div class="group">
+                <div class="aspect-[16/9] rounded-lg overflow-hidden border-2 border-gray-700 card-zoom transition-all cursor-pointer relative bg-gray-900">
+                    <img src="https://image.tmdb.org/t/p/w500/ojS9S1I8a74e503h6uK9W6vWp5B.jpg" alt="Clone Wars" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/500x281/1a1d29/f9f9f9?text=Clone+Wars'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                        <span class="text-sm font-bold">Star Wars: The Clone Wars</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Recommendation 4 -->
+            <div class="group">
+                <div class="aspect-[16/9] rounded-lg overflow-hidden border-2 border-gray-700 card-zoom transition-all cursor-pointer relative bg-gray-900">
+                    <img src="https://image.tmdb.org/t/p/w500/kS6L4yJ4eYp_8FfS3R89_j6fS3l.jpg" alt="The Mandalorian" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/500x281/1a1d29/f9f9f9?text=Mandalorian'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                        <span class="text-sm font-bold">The Mandalorian</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Recommendation 5 -->
+            <div class="group">
+                <div class="aspect-[16/9] rounded-lg overflow-hidden border-2 border-gray-700 card-zoom transition-all cursor-pointer relative bg-gray-900">
+                    <img src="https://image.tmdb.org/t/p/w500/7WsyChvgySbsT9U79pS1Iwq96Yx.jpg" alt="Empire Strikes Back" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/500x281/1a1d29/f9f9f9?text=Star+Wars+V'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                        <span class="text-sm font-bold">Star Wars: Empire Strikes Back</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Area -->
+    <footer class="bg-[#040714] border-t border-gray-800 py-10 px-8 text-center text-xs text-gray-500">
+        <div class="flex justify-center gap-6 mb-6 text-gray-400">
+            <a href="#" class="hover:text-white">Πολιτική Απορρήτου</a>
+            <a href="#" class="hover:text-white">Συμφωνία Συνδρομητή</a>
+            <a href="#" class="hover:text-white">Βοήθεια</a>
+            <a href="#" class="hover:text-white">Υποστηριζόμενες Συσκευές</a>
+            <a href="#" class="hover:text-white">Σχετικά με εμάς</a>
+        </div>
+        <p>© 2024 Disney and its related entities. All rights reserved. TM & © Lucasfilm Ltd.</p>
+    </footer>
+
+    <script>
+        // Simple scroll listener for navbar background
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.backgroundColor = '#040714';
+            } else {
+                nav.style.background = 'linear-gradient(to bottom, rgba(4, 7, 20, 0.8), transparent)';
+            }
+        });
+    </script>
+</body>
+</html>
