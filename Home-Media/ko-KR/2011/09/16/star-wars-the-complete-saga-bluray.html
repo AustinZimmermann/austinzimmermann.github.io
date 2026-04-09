@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Wars: The Complete Saga - 2011 Blu-ray Release</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Apple SD Gothic Neo', sans-serif;
+            background-color: #0a0a0a;
+            color: #e5e5e5;
+            overflow-x: hidden;
+        }
+
+        .star-wars-font {
+            font-weight: 900;
+            letter-spacing: -0.05em;
+            text-transform: uppercase;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: #ffe81f;
+            box-shadow: 0 0 20px rgba(255, 232, 31, 0.2);
+        }
+
+        .hero-gradient {
+            background: radial-gradient(circle at center, rgba(30, 60, 114, 0.3) 0%, rgba(10, 10, 10, 1) 70%);
+        }
+
+        .gold-text {
+            color: #ffe81f;
+        }
+
+        .btn-primary {
+            background-color: #ffe81f;
+            color: #000;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            background-color: #fffb00;
+        }
+
+        .disc-icon {
+            filter: drop-shadow(0 0 5px rgba(255, 232, 31, 0.5));
+        }
+
+        /* Animation for the starfield */
+        #stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <canvas id="stars"></canvas>
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-black/80 border-b border-white/10 px-6 py-4 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <h1 class="star-wars-font text-2xl gold-text">STAR WARS</h1>
+            <div class="hidden md:flex space-x-8 text-sm font-bold uppercase tracking-widest">
+                <a href="#overview" class="hover:text-yellow-400 transition">개요</a>
+                <a href="#discs" class="hover:text-yellow-400 transition">디스크 구성</a>
+                <a href="#specs" class="hover:text-yellow-400 transition">사양</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="overview" class="relative pt-20 pb-32 hero-gradient overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-center gap-12">
+            <div class="w-full lg:w-1/2 flex justify-center">
+                <div class="relative group">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-yellow-500 rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+                    <img 
+                        src="https://images.static-bluray.com/movies/covers/75673_front.jpg" 
+                        alt="Star Wars The Complete Saga Blu-ray Cover" 
+                        class="relative rounded-lg shadow-2xl w-full max-w-md border border-white/10"
+                    >
+                </div>
+            </div>
+            <div class="w-full lg:w-1/2 text-center lg:text-left">
+                <h2 class="text-blue-400 font-bold tracking-widest mb-2">20세기 폭스 홈 엔터테인먼트</h2>
+                <h1 class="text-5xl md:text-6xl font-black mb-6 star-wars-font leading-tight">
+                    스타워즈: 컴플리트 사가 <br>
+                    <span class="gold-text">블루레이 컬렉션</span>
+                </h1>
+                <p class="text-xl text-gray-400 mb-8 leading-relaxed">
+                    2011년 9월 16일, 대한민국 정식 발매. 에피소드 I부터 VI까지, 그리고 40시간 이상의 방대한 보너스 영상이 담긴 9개의 디스크로 스타워즈의 모든 전설을 고화질로 경험하십시오.
+                </p>
+                <div class="flex flex-wrap justify-center lg:justify-start gap-4">
+                    <div class="bg-white/10 px-4 py-2 rounded-full border border-white/20 flex items-center gap-2">
+                        <i class="fas fa-compact-disc text-yellow-400"></i>
+                        <span>9디스크 세트</span>
+                    </div>
+                    <div class="bg-white/10 px-4 py-2 rounded-full border border-white/20 flex items-center gap-2">
+                        <i class="fas fa-calendar-alt text-blue-400"></i>
+                        <span>2011. 09. 16.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Disc Details Section -->
+    <section id="discs" class="py-24 bg-black">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-black star-wars-font mb-4">디스크 구성 및 보너스 영상</h2>
+                <div class="w-24 h-1 bg-yellow-400 mx-auto"></div>
+            </div>
+
+            <div id="disc-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Discs will be injected here by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Specs -->
+    <section id="specs" class="py-24 bg-zinc-900/50">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="glass-card rounded-2xl p-8 md:p-12">
+                <h2 class="text-3xl font-black star-wars-font mb-8 text-center gold-text">상세 사양</h2>
+                <div class="space-y-6">
+                    <div class="flex justify-between border-b border-white/10 pb-4">
+                        <span class="text-gray-400">배급사</span>
+                        <span class="font-bold text-white">20세기 폭스 홈 엔터테인먼트</span>
+                    </div>
+                    <div class="flex justify-between border-b border-white/10 pb-4">
+                        <span class="text-gray-400">비디오</span>
+                        <span class="font-bold text-white">1080p High Definition (2.35:1)</span>
+                    </div>
+                    <div class="flex justify-between border-b border-white/10 pb-4">
+                        <span class="text-gray-400">오디오</span>
+                        <span class="font-bold text-white">영어 DTS-HD 마스터 오디오 6.1</span>
+                    </div>
+                    <div class="flex justify-between border-b border-white/10 pb-4">
+                        <span class="text-gray-400">자막</span>
+                        <span class="font-bold text-white">한국어, 영어, 광동어, 북경어 등</span>
+                    </div>
+                    <div class="flex justify-between border-b border-white/10 pb-4">
+                        <span class="text-gray-400">지역코드</span>
+                        <span class="font-bold text-white">A (한국 포함)</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-400">발매일</span>
+                        <span class="font-bold text-white italic">2011년 9월 16일</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-white/10 text-center">
+        <div class="max-w-7xl mx-auto px-6">
+            <p class="text-gray-500 text-sm">
+                &copy; 2011 Lucasfilm Ltd. & TM. All Rights Reserved. Distributed by 20th Century Fox Home Entertainment.
+            </p>
+            <p class="text-gray-600 text-xs mt-2">
+                이 페이지는 스타워즈 컴플리트 사가 블루레이 발매 정보를 바탕으로 제작되었습니다.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Data structure representing the 9 discs
+        const sagaData = [
+            { id: 1, title: "에피소드 I: 보이지 않는 위험", type: "Main Feature", color: "blue" },
+            { id: 2, title: "에피소드 II: 클론의 습격", type: "Main Feature", color: "blue" },
+            { id: 3, title: "에피소드 III: 시스의 복수", type: "Main Feature", color: "blue" },
+            { id: 4, title: "에피소드 IV: 새로운 희망", type: "Main Feature", color: "green" },
+            { id: 5, title: "에피소드 V: 제국의 역습", type: "Main Feature", color: "green" },
+            { id: 6, title: "에피소드 VI: 제다이의 귀환", type: "Main Feature", color: "green" },
+            { id: 7, title: "에피소드 I-III 보너스", type: "Bonus Archive", color: "yellow", desc: "삭제 장면, 인터뷰, 모델 및 코스튬 등" },
+            { id: 8, title: "에피소드 IV-VI 보너스", type: "Bonus Archive", color: "yellow", desc: "고전 아카이브, 삭제 장면, 특수효과 등" },
+            { id: 9, title: "다큐멘터리 및 특전", type: "Bonus Documentaries", color: "yellow", desc: "제작 비하인드, 40시간 이상의 영상" }
+        ];
+
+        // Starfield background effect
+        function initStars() {
+            const canvas = document.getElementById('stars');
+            const ctx = canvas.getContext('2d');
+            let width, height;
+
+            function resize() {
+                width = window.innerWidth;
+                height = window.innerHeight;
+                canvas.width = width;
+                canvas.height = height;
+            }
+
+            window.addEventListener('resize', resize);
+            resize();
+
+            const stars = Array.from({ length: 200 }, () => ({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                size: Math.random() * 1.5,
+                speed: Math.random() * 0.5 + 0.1
+            }));
+
+            function animate() {
+                ctx.clearRect(0, 0, width, height);
+                ctx.fillStyle = '#ffffff';
+                
+                stars.forEach(star => {
+                    ctx.beginPath();
+                    ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    star.y += star.speed;
+                    if (star.y > height) star.y = 0;
+                });
+
+                requestAnimationFrame(animate);
+            }
+            animate();
+        }
+
+        // Render Discs
+        function renderDiscs() {
+            const container = document.getElementById('disc-container');
+            container.innerHTML = sagaData.map(disc => `
+                <div class="glass-card p-6 rounded-xl flex items-start gap-4">
+                    <div class="flex-shrink-0 w-12 h-12 rounded-full border-2 border-dashed flex items-center justify-center 
+                        ${disc.color === 'yellow' ? 'border-yellow-400 text-yellow-400' : 'border-blue-400 text-blue-400'}">
+                        <i class="fas fa-compact-disc text-xl"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-gray-500">Disc ${disc.id}</span>
+                        <h3 class="text-lg font-bold mb-1">${disc.title}</h3>
+                        <p class="text-sm text-gray-400">${disc.desc || '고화질 본편 영상 및 음성 해설 포함'}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Initialize on load
+        window.onload = () => {
+            initStars();
+            renderDiscs();
+        };
+
+        // Smooth scroll for anchors
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
