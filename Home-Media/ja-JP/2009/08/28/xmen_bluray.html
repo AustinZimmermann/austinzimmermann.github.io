@@ -2,193 +2,353 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>X-MEN [Blu-ray] - 20世紀フォックス ホーム エンターテイメント</title>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org/",
-      "@type": "Product",
-      "name": "X-MEN (Blu-ray)",
-      "image": "https://images.static-bluray.com/movies/covers/85558_slip.jpg",
-      "description": "20th Century Fox Home Entertainment Japanese Release",
-      "sku": "FXXG-19942",
-      "releaseDate": "2009-08-28",
-      "offers": {
-        "@type": "Offer",
-        "priceCurrency": "JPY",
-        "price": "4935",
-        "availability": "https://schema.org/InStock"
-      }
-    }
-    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X-MEN 2枚組ブルーレイセット インタラクティブ・ダッシュボード</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        /* Internet Explorer / Windows 7 Era Styling */
         body {
-            background-color: #f0f0f0;
-            font-family: sans-serif;
-            margin: 0;
-            padding: 0;
+            font-family: "Hiragino Kaku Gothic Pro", sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
         }
-
-        #ie-header {
-            background: linear-gradient(to bottom, #ebf3fe 0%, #d9e8fb 100%);
-            border-bottom: 1px solid #7da2ce;
-            padding: 5px 10px;
-            font-size: 12px;
-        }
-
-        #address-bar {
-            background: white;
-            border: 1px solid #91b0d7;
-            padding: 3px;
-            margin: 5px 0;
-            color: #333;
-        }
-
-        #main-container {
-            width: 980px;
-            margin: 20px auto;
-            background: white;
-            border: 1px solid #ccc;
-            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
-        }
-
-        #fox-header {
-            background-color: #002d62;
-            padding: 15px;
-            text-align: center;
-        }
-
-        #fox-header img { height: 40px; }
-
-        .product-section {
-            display: flex;
-            padding: 30px;
-        }
-
-        .product-image {
-            flex: 0 0 320px;
-            text-align: center;
-        }
-
-        .product-image img {
-            width: 280px;
-            border: 1px solid #ddd;
-            padding: 5px;
-            background: #fff;
-        }
-
-        .product-info {
-            flex: 1;
-            padding-left: 40px;
-        }
-
-        h1 {
-            font-size: 24px;
-            color: #333;
-            border-bottom: 2px solid #002d62;
-            padding-bottom: 10px;
-            margin-top: 0;
-        }
-
-        .price-box {
-            background: #f9f9f9;
-            border: 1px solid #eee;
-            padding: 15px;
-            margin: 20px 0;
-        }
-
-        .spec-table {
+        .chart-container {
+            position: relative;
             width: 100%;
-            border-collapse: collapse;
-            font-size: 13px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
         }
-
-        .spec-table th {
-            text-align: left;
-            background: #f2f2f2;
-            padding: 8px;
-            border: 1px solid #ddd;
-            width: 120px;
+        .tab-active {
+            border-bottom: 2px solid #2563eb;
+            color: #2563eb;
+            font-weight: 700;
         }
-
-        .spec-table td {
-            padding: 8px;
-            border: 1px solid #ddd;
+        .tab-inactive {
+            color: #64748b;
+            border-bottom: 2px solid transparent;
         }
-
-        .btn-buy {
-            background: linear-gradient(to bottom, #ffdb70, #eebb00);
-            border: 1px solid #c6a000;
-            padding: 10px 30px;
-            font-weight: bold;
-            cursor: pointer;
-            border-radius: 3px;
+        .tab-inactive:hover {
+            color: #334155;
+            border-bottom: 2px solid #cbd5e1;
+        }
+        .fade-in {
+            animation: fadeIn 0.4s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
-<body>
+<body class="antialiased min-h-screen pb-12">
 
-<div id="ie-header">
-    <div>Internet Explorer - [http://video.foxjapan.com/blu-ray/x-men/]</div>
-    <div id="address-bar">http://video.foxjapan.com/blu-ray/x-men/detail.php?id=FXXG-19942</div>
-</div>
+<!-- Chosen Palette: Slate and Warm Neutral with Blue Accents (bg-slate-50, text-slate-800, accent-blue-600, surface-white) -->
+<!-- Application Structure Plan: The SPA is structured as a product dashboard. It uses a top hero section for immediate product identification, followed by an interactive two-column layout. The left column focuses on product imagery and basic purchasing stats. The right column uses an interactive tab system to let users explore the narrative context (Synopsis) and technical details (Disc Contents) without scrolling excessively. The bottom section uses data visualization (Radar Chart) to summarize the qualitative evaluation of the Blu-ray's features, translating text reviews into easily digestible metrics. This structure prioritizes ease of consumption, allowing users to drill down into specific details (like Disc 1 vs Disc 2) only when interested. -->
+<!-- Visualization & Content Choices: 
+1. Product Cover & Stats -> Goal: Inform -> Method: HTML Grid Layout with Unicode Icons -> Interaction: Hover states on stats -> Justification: Provides immediate visual recognition and quick facts without SVG.
+2. Synopsis & Content -> Goal: Organize/Inform -> Method: Interactive Tab Navigation (Vanilla JS) -> Interaction: Click to switch views -> Justification: Prevents text overload, allows users to choose their exploration path.
+3. Feature Evaluation -> Goal: Compare/Summarize -> Method: Chart.js Radar Chart -> Interaction: Hover tooltips -> Justification: Translates qualitative review text ("Overwhelming quality", "High immersion") into a quantitative visual summary. Uses Canvas, no SVG. -->
+<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
 
-<div id="main-container">
-    <div id="fox-header">
-        <span style="color:white; font-weight:bold; font-size:20px;">20th CENTURY FOX HOME ENTERTAINMENT</span>
-    </div>
-
-    <div class="product-section">
-        <div class="product-image">
-            <img src="https://images.static-bluray.com/movies/covers/85558_slip.jpg" alt="X-MEN Blu-ray Cover">
-            <p style="font-size:11px; color:#666;">※画像はイメージです</p>
+    <header class="bg-white shadow-sm border-b border-slate-200 pt-8 pb-6 mb-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="text-3xl md:text-4xl font-bold text-slate-900 mb-2">『X-MEN』2枚組ブルーレイセット</h1>
+            <p class="text-lg text-slate-600">製品概要・仕様 インタラクティブ・ダッシュボード</p>
         </div>
+    </header>
 
-        <div class="product-info">
-            <h1>X-MEN<br><span style="font-size:16px;">ブルーレイ＆DVDセット（2枚組）</span></h1>
-            
-            <p>魂を揺さぶる、究極のSFアクション・エンターテイメント！<br>
-            20世紀フォックスが贈る、驚愕のハイビジョン映像で蘇るミュータントたちの戦い。</p>
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
 
-            <div class="price-box">
-                <span style="font-size:14px;">希望小売価格：</span>
-                <span style="font-size:22px; color:#b00; font-weight:bold;">￥4,935</span> (税込)
-                <br><br>
-                <button class="btn-buy" onclick="alert('Proceeding to Checkout...');">カートに入れる</button>
+        <section class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 md:p-8">
+            <h2 class="text-2xl font-bold text-slate-800 mb-4 border-l-4 border-blue-600 pl-3">ダッシュボードの目的</h2>
+            <p class="text-slate-600 leading-relaxed">
+                このアプリケーションは、2009年8月に発売された『X-MEN』2枚組ブルーレイセットの製品情報を直感的に探索できるダッシュボードです。左側の製品基本情報から、右側のインタラクティブなタブを切り替えることで、作品解説や各ディスクの収録内容（本編仕様、豪華特典）の詳細を確認できます。さらに下部では、本製品のクオリティを視覚化した評価チャートをご覧いただけます。
+            </p>
+        </section>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <div class="lg:col-span-4 space-y-6">
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col items-center p-6">
+                    <img src="https://images.static-bluray.com/movies/covers/85558_slip.jpg" alt="X-MEN Blu-ray Cover" class="w-full max-w-[250px] rounded shadow-md hover:scale-105 transition-transform duration-300" onerror="this.src='https://via.placeholder.com/250x350?text=Image+Not+Found'">
+                    <div class="mt-6 w-full space-y-3 text-sm">
+                        <div class="flex justify-between items-center p-3 bg-slate-50 rounded border border-slate-100 hover:bg-slate-100 transition-colors">
+                            <span class="text-slate-500 font-bold">📅 発売日</span>
+                            <span class="text-slate-800">2009年8月28日</span>
+                        </div>
+                        <div class="flex justify-between items-center p-3 bg-slate-50 rounded border border-slate-100 hover:bg-slate-100 transition-colors">
+                            <span class="text-slate-500 font-bold">🏢 発売元</span>
+                            <span class="text-slate-800 text-right">20世紀フォックス<br>ホーム エンターテイメント</span>
+                        </div>
+                        <div class="flex justify-between items-center p-3 bg-slate-50 rounded border border-slate-100 hover:bg-slate-100 transition-colors">
+                            <span class="text-slate-500 font-bold">🏷️ 品番</span>
+                            <span class="text-slate-800">FXXG-19942</span>
+                        </div>
+                        <div class="flex justify-between items-center p-3 bg-slate-50 rounded border border-slate-100 hover:bg-slate-100 transition-colors">
+                            <span class="text-slate-500 font-bold">💰 価格</span>
+                            <span class="text-slate-800 text-lg font-bold text-blue-700">4,935円<span class="text-xs text-slate-500 font-normal">（税込）</span></span>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <table class="spec-table">
-                <tr>
-                    <th>発売日</th>
-                    <td>2009年8月28日</td>
-                </tr>
-                <tr>
-                    <th>品番</th>
-                    <td>FXXG-19942</td>
-                </tr>
-                <tr>
-                    <th>ディスク枚数</th>
-                    <td>2枚 (Blu-ray 1枚 + 特典DVD 1枚)</td>
-                </tr>
-                <tr>
-                    <th>音声</th>
-                    <td>1.英語 5.1ch DTS-HD マスター・オーディオ<br>2.日本語 5.1ch DTS</td>
-                </tr>
-                <tr>
-                    <th>字幕</th>
-                    <td>1.日本語字幕 2.英語字幕</td>
-                </tr>
-            </table>
+            <div class="lg:col-span-8">
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden h-full">
+                    <div class="flex border-b border-slate-200 bg-slate-50">
+                        <button id="btn-synopsis" class="flex-1 py-4 px-6 text-center text-sm font-medium focus:outline-none tab-active transition-colors">
+                            📖 作品解説
+                        </button>
+                        <button id="btn-disc1" class="flex-1 py-4 px-6 text-center text-sm font-medium focus:outline-none tab-inactive transition-colors">
+                            🎬 Disc 1 (本編)
+                        </button>
+                        <button id="btn-disc2" class="flex-1 py-4 px-6 text-center text-sm font-medium focus:outline-none tab-inactive transition-colors">
+                            🎁 Disc 2 (特典)
+                        </button>
+                    </div>
+
+                    <div class="p-6 md:p-8 min-h-[400px]">
+                        <div id="content-synopsis" class="fade-in block">
+                            <h3 class="text-xl font-bold text-slate-800 mb-4">SFアクション大作の金字塔</h3>
+                            <p class="text-slate-700 leading-relaxed mb-4">
+                                本作は、突然変異によって超能力を得たミュータントたちの葛藤と、人類との共存を巡る対立を描いたSFアクション大作である。
+                            </p>
+                            <div class="bg-blue-50 border border-blue-100 rounded-lg p-5 mt-6">
+                                <h4 class="font-bold text-blue-900 mb-2">対立する2つの正義</h4>
+                                <ul class="space-y-3">
+                                    <li class="flex items-start">
+                                        <span class="text-blue-600 mr-2">🛡️</span>
+                                        <span class="text-slate-700"><strong>X-MEN:</strong> プロフェッサーX率いる、人類との共存を望む正義のミュータント・グループ。</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-red-500 mr-2">⚔️</span>
+                                        <span class="text-slate-700"><strong>ブラザーフッド:</strong> マグニートー率いる、人類を支配しようとする過激派組織。</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <p class="text-slate-600 italic mt-6 border-l-2 border-slate-300 pl-4">
+                                重厚な人間ドラマと共に展開される本作は、後のアメコミ映画ブームの先駆けとなった記念碑的作品として高く評価されている。
+                            </p>
+                        </div>
+
+                        <div id="content-disc1" class="fade-in hidden">
+                            <h3 class="text-xl font-bold text-slate-800 mb-4">本編ディスク仕様</h3>
+                            <p class="text-slate-600 mb-6">劇場公開時の本編を高精細な映像で収録。ブルーレイならではのインタラクティブ機能や高音質フォーマットを搭載。</p>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="bg-slate-50 p-4 rounded-lg border border-slate-100">
+                                    <h4 class="font-bold text-slate-700 mb-3 border-b border-slate-200 pb-2">📺 映像・音声</h4>
+                                    <ul class="text-sm text-slate-600 space-y-2">
+                                        <li><span class="font-semibold text-slate-800">映像:</span> 1080p Hi-Def / ワイドスクリーン（2.35:1）</li>
+                                        <li><span class="font-semibold text-slate-800">音声1:</span> 英語 DTS-HD マスター・オーディオ 5.1ch (ロスレス)</li>
+                                        <li><span class="font-semibold text-slate-800">音声2:</span> 英語 ドルビーデジタル 5.1ch</li>
+                                        <li><span class="font-semibold text-slate-800">音声3:</span> 日本語 DTS 5.1ch</li>
+                                        <li><span class="font-semibold text-slate-800">字幕:</span> 日本語、英語</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-slate-50 p-4 rounded-lg border border-slate-100">
+                                    <h4 class="font-bold text-slate-700 mb-3 border-b border-slate-200 pb-2">✨ 収録特典</h4>
+                                    <ul class="text-sm text-slate-600 space-y-2 list-disc list-inside">
+                                        <li>ブライアン・シンガー監督による音声解説</li>
+                                        <li>ビハインド・ザ・シーン<br><span class="text-xs text-slate-400 ml-4">（ピクチャー・イン・ピクチャー機能対応）</span></li>
+                                        <li>イン-ムービー・ギャラリー</li>
+                                        <li>未公開シーン集（音声解説付）</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="content-disc2" class="fade-in hidden">
+                            <h3 class="text-xl font-bold text-slate-800 mb-4">特典ディスク（ブルーレイ）</h3>
+                            <p class="text-slate-600 mb-6">膨大なメイキング映像や、作品の裏側に迫るドキュメンタリーをブルーレイ画質で大容量収録。</p>
+                            
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                                <div class="bg-white border border-slate-200 rounded p-3 text-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all cursor-default">
+                                    <div class="text-2xl mb-2">🎥</div>
+                                    <div class="text-sm font-semibold text-slate-700">『X-MEN』の軌跡</div>
+                                </div>
+                                <div class="bg-white border border-slate-200 rounded p-3 text-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all cursor-default">
+                                    <div class="text-2xl mb-2">👽</div>
+                                    <div class="text-sm font-semibold text-slate-700">特殊メイクの裏側</div>
+                                </div>
+                                <div class="bg-white border border-slate-200 rounded p-3 text-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all cursor-default">
+                                    <div class="text-2xl mb-2">🎨</div>
+                                    <div class="text-sm font-semibold text-slate-700">プロダクション・デザイン</div>
+                                </div>
+                                <div class="bg-white border border-slate-200 rounded p-3 text-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all cursor-default">
+                                    <div class="text-2xl mb-2">🎤</div>
+                                    <div class="text-sm font-semibold text-slate-700">キャストインタビュー</div>
+                                </div>
+                                <div class="bg-white border border-slate-200 rounded p-3 text-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all cursor-default">
+                                    <div class="text-2xl mb-2">📺</div>
+                                    <div class="text-sm font-semibold text-slate-700">予告編・TVスポット</div>
+                                </div>
+                                <div class="bg-white border border-slate-200 rounded p-3 text-center shadow-sm hover:shadow-md hover:border-blue-300 transition-all cursor-default">
+                                    <div class="text-2xl mb-2">📸</div>
+                                    <div class="text-sm font-semibold text-slate-700">フォト・ギャラリー</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
-<script>
-    // Console log for simulated legacy environment check
-    console.log("Compatibility Mode: Internet Explorer 8 (Simulated)");
-    
-    document.title = "X-MEN | 20世紀フォックス ホーム エンターテイメント";
-</script>
+        <section class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 md:p-8 mt-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-800 mb-4 border-l-4 border-blue-600 pl-3">特徴と評価</h2>
+                    <h3 class="text-lg font-semibold text-blue-700 mb-3">ファン必携の決定版クオリティ</h3>
+                    <p class="text-slate-600 leading-relaxed mb-4">
+                        2009年にリリースされた本ブルーレイセットは、従来のDVD版では表現しきれなかった細部の質感を圧倒的なクオリティで再現しています。サイクロップスのオプティック・ブラストや、ストームの天候操縦など、ミュータントたちの能力がHD画質で鮮やかに蘇ります。
+                    </p>
+                    <p class="text-slate-600 leading-relaxed">
+                        特筆すべきは、英語音声に採用された<strong>「DTS-HD マスター・オーディオ」</strong>です。このロスレス音声フォーマットにより、ホームシアター環境において非常に高い没入感を提供し、ファンにとって決定版とも言える内容に仕上がっています。
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-center font-bold text-slate-700 mb-2">製品パフォーマンス視覚化</h3>
+                    <p class="text-center text-xs text-slate-500 mb-4">※評価テキストに基づく推計指標</p>
+                    <div class="chart-container">
+                        <canvas id="evaluationChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
 
+    </main>
+
+    <footer class="text-center text-slate-500 text-sm mt-12 pb-8">
+        <p>This interactive dashboard is based on the provided Source Report.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btnSynopsis = document.getElementById('btn-synopsis');
+            const btnDisc1 = document.getElementById('btn-disc1');
+            const btnDisc2 = document.getElementById('btn-disc2');
+
+            const contentSynopsis = document.getElementById('content-synopsis');
+            const contentDisc1 = document.getElementById('content-disc1');
+            const contentDisc2 = document.getElementById('content-disc2');
+
+            const buttons = [btnSynopsis, btnDisc1, btnDisc2];
+            const contents = [contentSynopsis, contentDisc1, contentDisc2];
+
+            function switchTab(activeIndex) {
+                buttons.forEach((btn, index) => {
+                    if (index === activeIndex) {
+                        btn.classList.remove('tab-inactive');
+                        btn.classList.add('tab-active');
+                    } else {
+                        btn.classList.remove('tab-active');
+                        btn.classList.add('tab-inactive');
+                    }
+                });
+
+                contents.forEach((content, index) => {
+                    if (index === activeIndex) {
+                        content.classList.remove('hidden');
+                        content.classList.add('block');
+                    } else {
+                        content.classList.remove('block');
+                        content.classList.add('hidden');
+                    }
+                });
+            }
+
+            btnSynopsis.addEventListener('click', () => switchTab(0));
+            btnDisc1.addEventListener('click', () => switchTab(1));
+            btnDisc2.addEventListener('click', () => switchTab(2));
+
+            const ctx = document.getElementById('evaluationChart').getContext('2d');
+            const evaluationChart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['映像の細部表現', '音声没入感 (DTS-HD)', '特典の充実度', 'インタラクティブ性', 'コレクション価値'],
+                    datasets: [{
+                        label: 'ブルーレイ版 評価スコア',
+                        data: [9.5, 10, 9.0, 8.5, 9.5],
+                        backgroundColor: 'rgba(37, 99, 235, 0.2)',
+                        borderColor: 'rgba(37, 99, 235, 1)',
+                        pointBackgroundColor: 'rgba(37, 99, 235, 1)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(37, 99, 235, 1)',
+                        borderWidth: 2
+                    },
+                    {
+                        label: '従来DVD版 (参考比較)',
+                        data: [6.0, 6.5, 5.0, 2.0, 6.0],
+                        backgroundColor: 'rgba(148, 163, 184, 0.2)',
+                        borderColor: 'rgba(148, 163, 184, 1)',
+                        pointBackgroundColor: 'rgba(148, 163, 184, 1)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(148, 163, 184, 1)',
+                        borderWidth: 1,
+                        borderDash: [5, 5]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: {
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            },
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            },
+                            pointLabels: {
+                                font: {
+                                    family: "'Noto Sans JP', sans-serif",
+                                    size: 12
+                                },
+                                color: '#475569'
+                            },
+                            ticks: {
+                                beginAtZero: true,
+                                max: 10,
+                                stepSize: 2,
+                                display: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: {
+                                    family: "'Noto Sans JP', sans-serif"
+                                },
+                                color: '#334155'
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(15, 23, 42, 0.9)',
+                            titleFont: {
+                                family: "'Noto Sans JP', sans-serif",
+                                size: 14
+                            },
+                            bodyFont: {
+                                family: "'Noto Sans JP', sans-serif",
+                                size: 13
+                            },
+                            padding: 12,
+                            cornerRadius: 4,
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': ' + context.raw + ' / 10';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>
