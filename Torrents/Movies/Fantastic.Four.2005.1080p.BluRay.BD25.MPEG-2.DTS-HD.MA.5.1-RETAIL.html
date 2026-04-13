@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fantastic Four (2005) - Early HD Release Analysis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .tab-active {
+            border-bottom: 2px solid #0369a1;
+            color: #0369a1;
+            font-weight: 600;
+        }
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-800 font-sans leading-relaxed">
+
+    <!-- Chosen Palette: Warm Neutrals (Stone) with Subdued Blue Accents (Sky) -->
+    <!-- Application Structure Plan: The application uses a dashboard layout. It begins with a hero section establishing the historical context (2006). It then flows into three main interactive sections: 'Release Overview' (quick stats), 'Technical Anatomy' (interactive tabs and data visualizations breaking down the file structure), and 'Swarm Dynamics & Reception' (visualizing peer-to-peer network health and community feedback). This structure transforms a raw text list into a narrative about the dawn of high-definition digital media sharing. -->
+    <!-- Visualization & Content Choices: 1. Storage/Bitrate Breakdown -> Goal: Inform/Compare -> Viz: Chart.js Doughnut -> Justification: Shows the proportional weight of early MPEG-2 video versus lossless audio. 2. Swarm Health -> Goal: Inform -> Viz: Chart.js Bar Chart -> Justification: Visually contrasts the high number of leechers vs seeds, typical of early massive file downloads. 3. Tech Specs -> Goal: Organize -> Viz: Interactive Tabs (HTML/JS) -> Justification: Prevents text overload, allowing users to drill down into Video, Audio, or raw NFO data selectively. Confirming NO SVG/Mermaid used. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <div class="max-w-6xl mx-auto px-4 py-8 md:py-12">
+        
+        <header class="mb-12 border-b border-stone-200 pb-8">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="text-3xl text-sky-700">&#128191;</span>
+                <h1 class="text-3xl md:text-5xl font-bold text-stone-900 tracking-tight">The Dawn of HD: Fantastic Four (2005)</h1>
+            </div>
+            <p class="text-lg md:text-xl text-stone-600 max-w-3xl">
+                This interactive dashboard analyzes a historical snapshot from November 14, 2006: the day-one retail Blu-ray torrent release of the film <em>Fantastic Four</em>. It explores the technical specifications, massive file dimensions (for the era), and early community engagement surrounding one of the first major high-definition movie leaks on the internet.
+            </p>
+        </header>
+
+        <section class="mb-16">
+            <div class="mb-6">
+                <h2 class="text-2xl font-semibold text-stone-800 mb-2">Release Overview</h2>
+                <p class="text-stone-600">A high-level look at the “HD_Pioneer” upload. This section highlights the sheer scale of early HD files, coming in at over 23 Gigabytes at a time when average broadband speeds were significantly slower than today.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-stone-100 transition hover:shadow-md">
+                    <div class="text-sm text-stone-500 uppercase tracking-wider mb-1">Total Size</div>
+                    <div class="text-3xl font-bold text-sky-700">23.14 <span class="text-lg text-stone-400">GB</span></div>
+                    <div class="text-xs text-stone-400 mt-2">23,720,112 KB</div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-stone-100 transition hover:shadow-md">
+                    <div class="text-sm text-stone-500 uppercase tracking-wider mb-1">Upload Date</div>
+                    <div class="text-xl font-bold text-stone-800">Nov 14, 2006</div>
+                    <div class="text-xs text-stone-400 mt-2">14:32:05 Server Time</div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-stone-100 transition hover:shadow-md">
+                    <div class="text-sm text-stone-500 uppercase tracking-wider mb-1">Source Format</div>
+                    <div class="text-xl font-bold text-stone-800">Blu-ray BD25</div>
+                    <div class="text-xs text-stone-400 mt-2">Single Layer ISO/BDMV</div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-stone-100 transition hover:shadow-md">
+                    <div class="text-sm text-stone-500 uppercase tracking-wider mb-1">Resolution</div>
+                    <div class="text-2xl font-bold text-stone-800">1080p</div>
+                    <div class="text-xs text-stone-400 mt-2">1920x1080 (2.35:1)</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16 grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div>
+                <div class="mb-6">
+                    <h2 class="text-2xl font-semibold text-stone-800 mb-2">Technical Anatomy</h2>
+                    <p class="text-stone-600">Explore the underlying technology of this early high-definition rip. Early Blu-rays often relied on the older MPEG-2 codec before moving to more efficient formats like VC-1 or H.264, requiring immense bitrates.</p>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-sm border border-stone-200 overflow-hidden">
+                    <div class="flex border-b border-stone-200 bg-stone-50">
+                        <button class="flex-1 py-3 px-4 text-center font-medium text-stone-600 hover:text-sky-700 hover:bg-stone-100 transition focus:outline-none tab-btn tab-active" data-target="tab-video">
+                            &#128253; Video
+                        </button>
+                        <button class="flex-1 py-3 px-4 text-center font-medium text-stone-600 hover:text-sky-700 hover:bg-stone-100 transition focus:outline-none tab-btn" data-target="tab-audio">
+                            &#128266; Audio
+                        </button>
+                        <button class="flex-1 py-3 px-4 text-center font-medium text-stone-600 hover:text-sky-700 hover:bg-stone-100 transition focus:outline-none tab-btn" data-target="tab-nfo">
+                            &#128196; Raw NFO
+                        </button>
+                    </div>
+
+                    <div class="p-6">
+                        <div id="tab-video" class="tab-content">
+                            <h3 class="text-lg font-bold text-stone-800 mb-4">Video Specifications</h3>
+                            <ul class="space-y-3">
+                                <li class="flex justify-between items-center border-b border-stone-100 pb-2">
+                                    <span class="text-stone-600">Codec</span>
+                                    <span class="font-semibold text-stone-800 bg-stone-100 px-2 py-1 rounded">MPEG-2</span>
+                                </li>
+                                <li class="flex justify-between items-center border-b border-stone-100 pb-2">
+                                    <span class="text-stone-600">Bitrate</span>
+                                    <span class="font-semibold text-stone-800">18.5 Mbps</span>
+                                </li>
+                                <li class="flex justify-between items-center border-b border-stone-100 pb-2">
+                                    <span class="text-stone-600">Runtime</span>
+                                    <span class="font-semibold text-stone-800">106 minutes (1:45:51)</span>
+                                </li>
+                                <li class="flex justify-between items-center border-b border-stone-100 pb-2">
+                                    <span class="text-stone-600">Director</span>
+                                    <span class="font-semibold text-stone-800">Tim Story</span>
+                                </li>
+                            </ul>
+                            <div class="mt-4 p-3 bg-sky-50 text-sky-800 text-sm rounded border border-sky-100">
+                                <strong>Historical Context:</strong> Fox opted for the older MPEG-2 codec for their initial Blu-ray wave, requiring very high bitrates to maintain 1080p quality, nearly filling the 25GB single-layer disc.
+                            </div>
+                        </div>
+
+                        <div id="tab-audio" class="tab-content hide">
+                            <h3 class="text-lg font-bold text-stone-800 mb-4">Audio & Subtitle Specifications</h3>
+                            <ul class="space-y-3">
+                                <li class="flex justify-between items-center border-b border-stone-100 pb-2">
+                                    <span class="text-stone-600">Primary Track</span>
+                                    <span class="font-semibold text-sky-700">English DTS-HD MA 5.1</span>
+                                </li>
+                                <li class="flex justify-between items-center border-b border-stone-100 pb-2">
+                                    <span class="text-stone-600">Audio Bitrate</span>
+                                    <span class="font-semibold text-stone-800">3.5 Mbps (Lossless)</span>
+                                </li>
+                                <li class="flex justify-between items-center border-b border-stone-100 pb-2">
+                                    <span class="text-stone-600">Secondary Tracks</span>
+                                    <span class="font-semibold text-stone-800 text-right">Spanish DD 5.1</span>
+                                </li>
+                                <li class="flex justify-between items-center border-b border-stone-100 pb-2">
+                                    <span class="text-stone-600">Subtitles</span>
+                                    <span class="font-semibold text-stone-800 text-right">English, Spanish</span>
+                                </li>
+                            </ul>
+                            <div class="mt-4 p-3 bg-amber-50 text-amber-800 text-sm rounded border border-amber-100">
+                                <strong>Playback Warning (2006):</strong> The DTS-HD Master Audio track requires a compatible receiver or player for full lossless playback; otherwise, it will downmix to a standard 1.5Mbps DTS core.
+                            </div>
+                        </div>
+
+                        <div id="tab-nfo" class="tab-content hide">
+                            <div class="bg-stone-900 text-green-400 font-mono text-xs p-4 rounded overflow-x-auto whitespace-pre">
+Fantastic.Four.2005.1080p.BluRay.BD25.MPEG-2.DTS-HD.MA.5.1-RETAIL
+
+RELEASE DATE....: 11/14/2006
+STORE DATE......: 11/14/2006
+GENRE...........: Action / Sci-Fi
+RUNTIME.........: 1:45:51
+VIDEO CODEC.....: MPEG-2
+BITRATE.........: 18.5 Mbps
+RESOLUTION......: 1920x1080
+AUDIO...........: English DTS-HD MA 5.1 @ 3.5 Mbps
+SOURCE..........: Blu-ray Disc (Region A)
+SIZE............: 23,720,112 KB
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col">
+                <div class="mb-6">
+                    <h2 class="text-2xl font-semibold text-stone-800 mb-2">Bitrate Distribution Estimate</h2>
+                    <p class="text-stone-600">A visual representation of how the bandwidth and storage are allocated based on the provided NFO bitrates (18.5 Mbps Video vs 3.5 Mbps Audio).</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-stone-200 flex-grow flex items-center justify-center">
+                    <div class="chart-container">
+                        <canvas id="bitrateChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16">
+            <div class="mb-6">
+                <h2 class="text-2xl font-semibold text-stone-800 mb-2">Swarm Dynamics & Reception</h2>
+                <p class="text-stone-600">Data capturing the Peer-to-Peer network state upon release and the early reactions from the high-def enthusiast community trying to download and play the massive file.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2 bg-white p-6 rounded-lg shadow-sm border border-stone-200">
+                    <h3 class="text-lg font-bold text-stone-800 mb-4 text-center">Torrent Network Health</h3>
+                    <div class="chart-container">
+                        <canvas id="swarmChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="bg-white p-5 rounded-lg shadow-sm border-l-4 border-sky-500">
+                        <div class="font-bold text-stone-800 mb-1">&#128100; HD_Fanatic</div>
+                        <p class="text-stone-600 text-sm italic">“Finally! I’ve been waiting for the Marvel movies to hit Blu-ray. I heard MPEG-2 is a bit dated compared to VC-1, but the DTS-HD track should be killer.”</p>
+                    </div>
+                    <div class="bg-white p-5 rounded-lg shadow-sm border-l-4 border-amber-500">
+                        <div class="font-bold text-stone-800 mb-1">&#128100; BluRayGuy</div>
+                        <p class="text-stone-600 text-sm italic">“Warning to those without a PS3 or standalone player—you’ll need a lot of CPU power to decode this MPEG-2 1080p stream smoothly on your PC.”</p>
+                    </div>
+                    <div class="bg-white p-5 rounded-lg shadow-sm border-l-4 border-green-500">
+                        <div class="font-bold text-stone-800 mb-1">&#128100; SpeedDemon</div>
+                        <p class="text-stone-600 text-sm italic">“Pulling at 500KB/s! Will seed for at least a week.”</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <footer class="border-t border-stone-200 pt-8 text-center text-stone-500 text-sm">
+            <p>Data derived from historical torrent metadata dated November 14, 2006.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    tabBtns.forEach(b => b.classList.remove('tab-active'));
+                    tabContents.forEach(c => c.classList.add('hide'));
+
+                    btn.classList.add('tab-active');
+                    const targetId = btn.getAttribute('data-target');
+                    document.getElementById(targetId).classList.remove('hide');
+                });
+            });
+
+            const bitrateCtx = document.getElementById('bitrateChart').getContext('2d');
+            new Chart(bitrateCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['MPEG-2 Video (18.5 Mbps)', 'DTS-HD Audio (3.5 Mbps)', 'Overhead/Other'],
+                    datasets: [{
+                        data: [80, 15, 5],
+                        backgroundColor: [
+                            '#0284c7',
+                            '#38bdf8',
+                            '#e7e5e4'
+                        ],
+                        borderWidth: 0,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: {
+                                    family: "Helvetica, sans-serif"
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return ' ' + context.label.split(' (')[0] + ': ~' + context.parsed + '%';
+                                }
+                            }
+                        }
+                    },
+                    cutout: '70%'
+                }
+            });
+
+            const swarmCtx = document.getElementById('swarmChart').getContext('2d');
+            new Chart(swarmCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Leechers', 'Seeds', 'Completed'],
+                    datasets: [{
+                        label: 'Network Nodes',
+                        data: [158, 42, 12],
+                        backgroundColor: [
+                            '#ef4444',
+                            '#22c55e',
+                            '#3b82f6'
+                        ],
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: '#f5f5f4'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return ' Count: ' + context.parsed.y;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
