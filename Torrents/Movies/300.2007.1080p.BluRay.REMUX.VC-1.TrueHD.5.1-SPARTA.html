@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archive Explorer: 300 (2007) SPARTA Release</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-stone-100 text-stone-900 font-sans antialiased leading-relaxed">
+
+    <!-- Chosen Palette: Warm Neutrals with Spartan Red Accent (stone-100 bg, stone-800 text, red-700 accents) -->
+    
+    <!-- Application Structure Plan: A 'Digital Archive' dashboard approach. It is structured into three main thematic zones: 1) The Artifact Overview (Poster, Context, Synopsis), 2) Technical Anatomy (Interactive tabs for NFO, Specs, and Data breakdown to fulfill technical exploration), and 3) Community Pulse (The preserved user comments). This non-linear structure allows users to immediately grasp the item's identity, optionally dive into its deep technical specifications via interactive tabs without cluttering the screen, and finally review historical community reception. -->
+    
+    <!-- Visualization & Content Choices: 
+    1. Report Info: 18.42 GB File Size -> Goal: Inform/Analyze -> Viz: Donut Chart (Chart.js) -> Interaction: Hover for tooltips -> Justification: Breaks down the massive 2007 file size into understandable components (Video/Audio/Subs), demonstrating why the file is so large.
+    2. Report Info: NFO Text -> Goal: Organize/Inform -> Viz: Monospace text block -> Interaction: Tab toggle -> Justification: Preserves the original raw data format while keeping it hidden until the user explicitly wants to read it.
+    3. Report Info: User Comments -> Goal: Contextualize -> Viz: Stacked feed cards -> Interaction: None -> Justification: Mimics standard forum reading flow for historical context. 
+    Method: Tailwind CSS, Chart.js. NO SVG/Mermaid. -->
+    
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <div class="max-w-6xl mx-auto px-4 py-8 md:py-12">
+        
+        <header class="mb-10 border-b-2 border-red-700 pb-6">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+                <div>
+                    <h1 class="text-3xl md:text-5xl font-bold text-stone-900 tracking-tight uppercase">300 <span class="text-stone-500 font-normal text-2xl md:text-4xl">(2007)</span></h1>
+                    <p class="text-lg text-stone-600 mt-2 font-mono">1080p BluRay REMUX VC-1 TrueHD 5.1 - SPARTA</p>
+                </div>
+                <div class="text-left md:text-right">
+                    <p class="text-sm text-stone-500 uppercase tracking-widest font-bold">Archived On</p>
+                    <p class="text-xl font-medium">July 31, 2007</p>
+                </div>
+            </div>
+            <div class="flex gap-4 mt-6">
+                <button class="bg-red-700 hover:bg-red-800 text-white px-6 py-2 rounded shadow transition font-bold tracking-wide">
+                    &#129183; Download .torrent
+                </button>
+                <button class="bg-stone-300 hover:bg-stone-400 text-stone-800 px-6 py-2 rounded shadow transition font-bold tracking-wide">
+                    &#128194; Magnet Link
+                </button>
+            </div>
+        </header>
+
+        <main class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <section class="lg:col-span-1 flex flex-col gap-6">
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200">
+                    <h2 class="text-2xl font-bold mb-2 border-b border-stone-100 pb-2">The Artifact</h2>
+                    <p class="text-stone-600 mb-4 text-sm leading-relaxed">
+                        This section provides the essential narrative context and visual identity of the preserved release. It details the core story of the film that justifies this high-fidelity archival.
+                    </p>
+                    <div class="aspect-[2/3] w-full bg-stone-200 rounded-lg overflow-hidden shadow-inner mb-6 flex items-center justify-center">
+                        <img src="https://images.45cat.com/f/dv/300-27-dv.jpg" alt="300 Movie Poster" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <div class="hidden text-stone-500 font-mono">Image Unavailable</div>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Synopsis</h3>
+                    <p class="text-stone-700 text-sm leading-relaxed">
+                        Based on Frank Miller’s graphic novel, <strong>300</strong> is a ferocious retelling of the ancient Battle of Thermopylae in which King Leonidas (Gerard Butler) and 300 Spartans fight to the death against Xerxes and his massive Persian army. Facing insurmountable odds, their valor and sacrifice inspire all of Greece to unite against their Persian enemy, drawing a line in the sand for democracy.
+                    </p>
+                </div>
+            </section>
+
+            <section class="lg:col-span-2 flex flex-col gap-6">
+                
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200">
+                    <h2 class="text-2xl font-bold mb-2 border-b border-stone-100 pb-2">Technical Anatomy</h2>
+                    <p class="text-stone-600 mb-6 text-sm leading-relaxed">
+                        Explore the structural and technical data of the 18.42 GB release. Use the interactive tabs below to switch between the interpreted specifications, the estimated file size distribution chart, and the original raw NFO text file.
+                    </p>
+
+                    <div class="flex border-b border-stone-200 mb-6">
+                        <button id="btn-specs" class="px-4 py-2 font-bold text-red-700 border-b-2 border-red-700 transition">Specifications</button>
+                        <button id="btn-chart" class="px-4 py-2 font-bold text-stone-500 hover:text-stone-800 transition">Data Breakdown</button>
+                        <button id="btn-nfo" class="px-4 py-2 font-bold text-stone-500 hover:text-stone-800 transition">Raw NFO</button>
+                    </div>
+
+                    <div id="content-specs" class="block animate-fade-in">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-stone-50 p-4 rounded border border-stone-100">
+                                <p class="text-xs text-stone-500 uppercase tracking-wider mb-1">&#128193; Folder Name</p>
+                                <p class="font-mono text-xs break-all text-stone-800">300.2007.1080p.BluRay.REMUX.VC-1.TrueHD.5.1-SPARTA</p>
+                            </div>
+                            <div class="bg-stone-50 p-4 rounded border border-stone-100">
+                                <p class="text-xs text-stone-500 uppercase tracking-wider mb-1">&#128191; Source</p>
+                                <p class="font-medium text-stone-800">Blu-ray Disc (Retail)</p>
+                            </div>
+                            <div class="bg-stone-50 p-4 rounded border border-stone-100">
+                                <p class="text-xs text-stone-500 uppercase tracking-wider mb-1">&#127902; Video Format</p>
+                                <p class="font-medium text-stone-800">1920x1080 | VC-1 | 23.976 fps</p>
+                            </div>
+                            <div class="bg-stone-50 p-4 rounded border border-stone-100">
+                                <p class="text-xs text-stone-500 uppercase tracking-wider mb-1">&#128266; Audio Formats</p>
+                                <p class="font-medium text-stone-800 text-sm">English TrueHD 5.1 (48kHz/24-bit)<br>AC3 5.1 640kbps</p>
+                            </div>
+                            <div class="bg-stone-50 p-4 rounded border border-stone-100">
+                                <p class="text-xs text-stone-500 uppercase tracking-wider mb-1">&#128172; Subtitles</p>
+                                <p class="font-medium text-stone-800">English, French, Spanish</p>
+                            </div>
+                            <div class="bg-stone-50 p-4 rounded border border-stone-100">
+                                <p class="text-xs text-stone-500 uppercase tracking-wider mb-1">&#9201; Runtime & Size</p>
+                                <p class="font-medium text-stone-800">117 Minutes | <span class="text-red-700 font-bold">18.42 GB</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="content-chart" class="hidden animate-fade-in">
+                        <div class="text-center mb-4">
+                            <h4 class="font-bold text-lg text-stone-800">Estimated File Allocation (18.42 GB Total)</h4>
+                            <p class="text-sm text-stone-500">Visualizing the massive storage footprint of a 2007 High-Def REMUX.</p>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="storageChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div id="content-nfo" class="hidden animate-fade-in">
+                        <div class="bg-stone-900 rounded-lg p-4 overflow-x-auto shadow-inner">
+<pre class="text-green-400 font-mono text-xs leading-relaxed">
+PROUDLY PRESENTS...
+
+300.2007.1080p.BluRay.REMUX.VC-1.TrueHD.5.1-SPARTA
+
+RELEASE DATE....: 07/31/2007
+THEATRE DATE....: 03/09/2007
+GENRE...........: Action / Fantasy / History
+SOURCE..........: Blu-ray 1080p VC-1
+ViDEO BiTRATE...: Variable (REMUX)
+AUDiO...........: TrueHD 5.1 / AC3 5.1
+RESOLUTiON......: 1920 x 1080
+LANGUAGE........: English
+SUBTiTLES.......: English (SDH), Spanish, French
+
+NOTES:
+This is a REMUX. We have taken the raw video and audio streams 
+directly from the Blu-ray retail disc and put them into an 
+.m2ts container. No re-encoding, no quality loss. 
+The ultimate High-Def experience.
+
+Enjoy!
+</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200">
+                    <h2 class="text-2xl font-bold mb-2 border-b border-stone-100 pb-2">Community Pulse</h2>
+                    <p class="text-stone-600 mb-6 text-sm leading-relaxed">
+                        A preserved snapshot of early high-definition enthusiasts reacting to the release. This section contextualizes the technical data with human excitement and the hardware limitations of the 2007 era.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        
+                        <div class="p-4 bg-stone-50 rounded-lg border border-stone-100 hover:border-stone-300 transition group">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-bold text-stone-800">&#128100; SpartanFan88</span>
+                                <span class="text-xs text-stone-400 group-hover:text-stone-500 transition">July 31, 2007, 08:45 AM</span>
+                            </div>
+                            <p class="text-stone-700 text-sm italic border-l-4 border-stone-300 pl-3 py-1">“FIRST! Thanks SPARTA! I’ve been waiting for a high-quality rip of this since I saw it in theaters. The visual style is insane.”</p>
+                        </div>
+
+                        <div class="p-4 bg-stone-50 rounded-lg border border-stone-100 hover:border-stone-300 transition group">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-bold text-stone-800">&#128100; HD_Lover</span>
+                                <span class="text-xs text-stone-400 group-hover:text-stone-500 transition">July 31, 2007, 10:15 AM</span>
+                            </div>
+                            <p class="text-stone-700 text-sm italic border-l-4 border-stone-300 pl-3 py-1">“18GB? My hard drive is crying but my eyes are going to be happy. Seeding as soon as it finishes!”</p>
+                        </div>
+
+                        <div class="p-4 bg-stone-50 rounded-lg border border-stone-100 hover:border-stone-300 transition group">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-bold text-stone-800">&#128100; MovieBuff07</span>
+                                <span class="text-xs text-stone-400 group-hover:text-stone-500 transition">July 31, 2007, 12:30 PM</span>
+                            </div>
+                            <p class="text-stone-700 text-sm italic border-l-4 border-stone-300 pl-3 py-1">“Does anyone know if this TrueHD track works with the new PS3 update? I heard the VC-1 encode on this disc is one of the best for the format.”</p>
+                        </div>
+
+                        <div class="p-4 bg-red-50 rounded-lg border border-red-100 hover:border-red-200 transition group">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-bold text-red-800">&#128100; Xerxes_Rules</span>
+                                <span class="text-xs text-red-400 group-hover:text-red-500 transition">July 31, 2007, 02:10 PM</span>
+                            </div>
+                            <p class="text-red-900 text-sm font-bold italic border-l-4 border-red-300 pl-3 py-1">“TONIGHT WE DINE IN HELL!”</p>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        const btnSpecs = document.getElementById('btn-specs');
+        const btnChart = document.getElementById('btn-chart');
+        const btnNfo = document.getElementById('btn-nfo');
+        const contentSpecs = document.getElementById('content-specs');
+        const contentChart = document.getElementById('content-chart');
+        const contentNfo = document.getElementById('content-nfo');
+
+        const activeClassBtn = ['text-red-700', 'border-b-2', 'border-red-700'];
+        const inactiveClassBtn = ['text-stone-500', 'hover:text-stone-800'];
+
+        let chartInstance = null;
+
+        function resetTabs() {
+            [btnSpecs, btnChart, btnNfo].forEach(btn => {
+                btn.classList.remove(...activeClassBtn);
+                btn.classList.add(...inactiveClassBtn);
+            });
+            [contentSpecs, contentChart, contentNfo].forEach(content => {
+                content.classList.add('hidden');
+                content.classList.remove('block');
+            });
+        }
+
+        function activateTab(btn, content) {
+            resetTabs();
+            btn.classList.remove(...inactiveClassBtn);
+            btn.classList.add(...activeClassBtn);
+            content.classList.remove('hidden');
+            content.classList.add('block');
+        }
+
+        function initChart() {
+            if (chartInstance) return;
+            const ctx = document.getElementById('storageChart').getContext('2d');
+            chartInstance = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['1080p VC-1 Video Stream', 'TrueHD 5.1 Audio', 'AC3 5.1 Audio', 'Subtitles / Overhead'],
+                    datasets: [{
+                        data: [14.5, 3.2, 0.6, 0.12],
+                        backgroundColor: [
+                            '#1c1917',
+                            '#b91c1c',
+                            '#78716c',
+                            '#d6d3d1'
+                        ],
+                        borderWidth: 2,
+                        borderColor: '#ffffff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 20,
+                                font: {
+                                    family: 'sans-serif',
+                                    size: 12
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.label + ': ~' + context.parsed + ' GB';
+                                }
+                            }
+                        }
+                    },
+                    cutout: '65%'
+                }
+            });
+        }
+
+        btnSpecs.addEventListener('click', () => activateTab(btnSpecs, contentSpecs));
+        btnChart.addEventListener('click', () => {
+            activateTab(btnChart, contentChart);
+            initChart();
+        });
+        btnNfo.addEventListener('click', () => activateTab(btnNfo, contentNfo));
+    </script>
+</body>
+</html>
