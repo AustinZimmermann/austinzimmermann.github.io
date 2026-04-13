@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>300: Rise of an Empire - Interactive Release Report</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Chosen Palette: Warm Neutrals (Stone/Parchment) with Amber/Bronze Accents -->
+    <!-- Application Structure Plan: The application uses a dashboard layout tailored for easy data consumption. It is divided into three core sections: 'Cinematic Overview' (for contextualizing the film), 'Release Package' (for exploring the container, audio, and subtitle options interactively), and 'Technical Analytics' (for visualizing file composition and accessing raw MediaInfo). This structure logically separates narrative information from technical data, making the dense REMUX specifications digestible. -->
+    <!-- Visualization & Content Choices: The source report's bitrate and size data are visualized using a Chart.js Doughnut chart to show the estimated proportional allocation of Video vs Audio/Overhead bandwidth. This gives immediate visual context to the '28.5 Mbps' figure against the total file size. Raw MediaInfo is hidden by default behind a toggle to prevent visual clutter, prioritizing the parsed, user-friendly interactive tabs for Audio and Subtitles. NO SVG/Mermaid used. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            background-color: #f5f5f4;
+            color: #292524;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-amber-200">
+
+    <nav class="bg-stone-900 text-stone-100 shadow-md sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="font-bold text-xl tracking-wider flex items-center gap-2">
+                <span class="text-2xl">🎬</span> REMUX Dashboard
+            </div>
+            <div class="hidden md:flex space-x-6 text-sm font-medium text-stone-300">
+                <a href="#overview" class="hover:text-amber-400 transition-colors">Overview</a>
+                <a href="#release-data" class="hover:text-amber-400 transition-colors">Release Package</a>
+                <a href="#technical" class="hover:text-amber-400 transition-colors">Technical Specs</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="bg-stone-800 text-stone-100 py-12 border-b-4 border-amber-600">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4 text-white tracking-tight">300: Rise of an Empire (2014)</h1>
+            <p class="text-sm md:text-base font-mono bg-stone-900 inline-block px-4 py-2 rounded text-amber-400 break-all border border-stone-700 shadow-inner">
+                300.Rise.of.an.Empire.2014.1080p.BluRay.REMUX.AVC.DTS-HD.MA.7.1-FGT
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-8 space-y-12">
+
+        <section id="overview" class="scroll-mt-24">
+            <div class="mb-6">
+                <h2 class="text-2xl font-bold text-stone-800 border-b-2 border-stone-300 pb-2 flex items-center gap-2">
+                    <span>🎞️</span> Cinematic Overview
+                </h2>
+                <p class="text-stone-600 mt-2 text-sm md:text-base">
+                    This section provides the narrative context and fundamental details of the film itself. It grounds the technical data in the actual content being presented, outlining the cast, genre, and plot.
+                </p>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-sm border border-stone-200 overflow-hidden flex flex-col md:flex-row">
+                <div class="bg-stone-100 p-6 flex justify-center items-center border-b md:border-b-0 md:border-r border-stone-200 md:w-1/3 lg:w-1/4">
+                    <img src="https://images.static-bluray.com/movies/covers/96080_front.jpg" alt="300 Rise of an Empire Poster" class="rounded shadow-lg max-w-[200px] w-full border-2 border-stone-300">
+                </div>
+                <div class="p-6 md:p-8 flex-1 flex flex-col justify-center">
+                    <div class="flex flex-wrap gap-3 mb-6">
+                        <span class="bg-stone-200 text-stone-800 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Action / Drama / Fantasy</span>
+                        <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Rated R</span>
+                        <span class="bg-amber-100 text-amber-800 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">102 Minutes</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-stone-800 mb-2">Synopsis</h3>
+                    <p class="text-stone-600 leading-relaxed text-sm md:text-base mb-6">
+                        Based on Frank Miller’s latest graphic novel Xerxes and told in the breathtaking visual style of the blockbuster <i>300</i>, this new chapter of the epic saga takes the action to a fresh battlefield—on the sea—as Greek general Themistokles (Sullivan Stapleton) attempts to unite all of Greece by leading the charge that will change the course of the war. <i>300: Rise of an Empire</i> pits Themistokles against the massive invading Persian forces led by mortal-turned-god Xerxes (Rodrigo Santoro), and Artemisia (Eva Green), vengeful commander of the Persian navy.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm bg-stone-50 p-4 rounded-lg border border-stone-100">
+                        <div><span class="font-bold text-stone-700">Director:</span> <span class="text-stone-600">Noam Murro</span></div>
+                        <div><span class="font-bold text-stone-700">Stars:</span> <span class="text-stone-600">Sullivan Stapleton, Eva Green, Lena Headey, Rodrigo Santoro</span></div>
+                        <div class="sm:col-span-2"><span class="font-bold text-stone-700">Writers:</span> <span class="text-stone-600">Zack Snyder, Kurt Johnstad, Frank Miller</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="release-data" class="scroll-mt-24">
+            <div class="mb-6">
+                <h2 class="text-2xl font-bold text-stone-800 border-b-2 border-stone-300 pb-2 flex items-center gap-2">
+                    <span>📦</span> Release Package Attributes
+                </h2>
+                <p class="text-stone-600 mt-2 text-sm md:text-base">
+                    Interact with the tabs below to explore the specific language tracks, subtitles, and general container information included in this remux. This interface allows you to quickly verify if your preferred audio or subtitle formats are present.
+                </p>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-sm border border-stone-200 p-2 md:p-6">
+                
+                <div class="flex border-b border-stone-200 mb-6 overflow-x-auto">
+                    <button class="tab-btn px-6 py-3 text-sm font-bold uppercase tracking-wider bg-amber-50 text-amber-700 border-b-2 border-amber-500 whitespace-nowrap" data-target="panel-general">General Info</button>
+                    <button class="tab-btn px-6 py-3 text-sm font-bold uppercase tracking-wider text-stone-500 hover:text-stone-800 whitespace-nowrap" data-target="panel-audio">Audio Tracks (4)</button>
+                    <button class="tab-btn px-6 py-3 text-sm font-bold uppercase tracking-wider text-stone-500 hover:text-stone-800 whitespace-nowrap" data-target="panel-subs">Subtitles (4)</button>
+                </div>
+
+                <div id="panel-general" class="tab-panel p-4 animate-fade-in">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="flex items-center gap-4 bg-stone-50 p-4 rounded-lg border border-stone-100">
+                            <div class="text-3xl">📅</div>
+                            <div>
+                                <div class="text-xs text-stone-500 uppercase tracking-wider font-bold">Release Date</div>
+                                <div class="text-lg font-medium text-stone-800">June 24, 2014</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 bg-stone-50 p-4 rounded-lg border border-stone-100">
+                            <div class="text-3xl">💽</div>
+                            <div>
+                                <div class="text-xs text-stone-500 uppercase tracking-wider font-bold">Source Material</div>
+                                <div class="text-lg font-medium text-stone-800">1080p Blu-ray Remux</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 bg-stone-50 p-4 rounded-lg border border-stone-100">
+                            <div class="text-3xl">📁</div>
+                            <div>
+                                <div class="text-xs text-stone-500 uppercase tracking-wider font-bold">File Container</div>
+                                <div class="text-lg font-medium text-stone-800">Matroska (.MKV)</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 bg-stone-50 p-4 rounded-lg border border-stone-100">
+                            <div class="text-3xl">⚖️</div>
+                            <div>
+                                <div class="text-xs text-stone-500 uppercase tracking-wider font-bold">Total Size</div>
+                                <div class="text-lg font-medium text-stone-800">~30.5 GB</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6 p-4 bg-amber-50 border border-amber-200 rounded-lg text-amber-900 text-sm">
+                        <strong>Note:</strong> This is a REMUX. The video and audio streams are bit-for-bit identical to the original Blu-ray disc. All extras have been stripped to provide the highest possible quality for the feature film.
+                    </div>
+                </div>
+
+                <div id="panel-audio" class="tab-panel p-4 hidden animate-fade-in">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="border border-stone-200 rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow bg-stone-50 border-l-4 border-l-amber-500">
+                            <div class="font-bold text-stone-800 mb-1">English (Primary)</div>
+                            <div class="text-sm text-stone-600 font-mono">DTS-HD Master Audio 7.1</div>
+                        </div>
+                        <div class="border border-stone-200 rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow bg-stone-50">
+                            <div class="font-bold text-stone-800 mb-1">French (Canadian)</div>
+                            <div class="text-sm text-stone-600 font-mono">Dolby Digital 5.1 (AC-3)</div>
+                        </div>
+                        <div class="border border-stone-200 rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow bg-stone-50">
+                            <div class="font-bold text-stone-800 mb-1">Spanish (Latin American)</div>
+                            <div class="text-sm text-stone-600 font-mono">Dolby Digital 5.1 (AC-3)</div>
+                        </div>
+                        <div class="border border-stone-200 rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow bg-stone-50">
+                            <div class="font-bold text-stone-800 mb-1">Portuguese (Brazilian)</div>
+                            <div class="text-sm text-stone-600 font-mono">Dolby Digital 5.1 (AC-3)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="panel-subs" class="tab-panel p-4 hidden animate-fade-in">
+                    <div class="flex flex-wrap gap-3">
+                        <div class="bg-stone-800 text-white px-5 py-3 rounded-lg text-sm font-bold shadow">English SDH</div>
+                        <div class="bg-stone-200 text-stone-800 px-5 py-3 rounded-lg text-sm font-bold border border-stone-300">French</div>
+                        <div class="bg-stone-200 text-stone-800 px-5 py-3 rounded-lg text-sm font-bold border border-stone-300">Spanish</div>
+                        <div class="bg-stone-200 text-stone-800 px-5 py-3 rounded-lg text-sm font-bold border border-stone-300">Portuguese</div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="technical" class="scroll-mt-24 mb-16">
+            <div class="mb-6">
+                <h2 class="text-2xl font-bold text-stone-800 border-b-2 border-stone-300 pb-2 flex items-center gap-2">
+                    <span>⚙️</span> Technical Analytics
+                </h2>
+                <p class="text-stone-600 mt-2 text-sm md:text-base">
+                    Analyze the internal composition of the MKV file. The visualizer illustrates the estimated proportion of the file size dedicated to the high-bitrate video stream versus the multiple audio tracks. You can also view the raw MediaInfo report below.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+                
+                <div class="bg-white rounded-xl shadow-sm border border-stone-200 p-6 flex flex-col items-center">
+                    <h3 class="text-center font-bold text-stone-700 mb-6 w-full border-b border-stone-100 pb-2">Estimated Bitrate Allocation Map</h3>
+                    <div class="chart-container">
+                        <canvas id="bitrateChart"></canvas>
+                    </div>
+                    <p class="text-xs text-center text-stone-500 mt-6 max-w-sm">
+                        Based on the primary video bitrate of 28.5 Mbps against the total file size (~30.5 GB) over a 102-minute runtime.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border border-stone-200 p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="font-bold text-stone-700">Raw MediaInfo Extraction</h3>
+                        <button id="toggle-mediainfo" class="text-xs font-bold uppercase tracking-wider bg-stone-200 hover:bg-stone-300 text-stone-800 px-4 py-2 rounded transition-colors">
+                            Show Text ⬇️
+                        </button>
+                    </div>
+                    
+                    <div id="mediainfo-block" class="hidden overflow-hidden transition-all duration-300">
+                        <pre class="bg-stone-900 text-emerald-400 p-4 rounded-lg text-xs md:text-sm font-mono overflow-x-auto whitespace-pre-wrap leading-relaxed shadow-inner">
+General
+Unique ID                                : 2314569874123654789
+Complete name                            : 300.Rise.of.an.Empire.2014.1080p.BluRay.REMUX.AVC.DTS-HD.MA.7.1-FGT.mkv
+Format                                   : Matroska
+Format version                           : Version 4
+File size                                : 30.5 GiB
+Duration                                 : 1 h 42 min
+
+Video
+ID                                       : 1
+Format                                   : AVC
+Format profile                           : High@L4.1
+MultiView_Count                          : 1
+Codec ID                                 : V_MPEG4/ISO/AVC
+Width                                    : 1 920 pixels
+Height                                   : 1 080 pixels
+Display aspect ratio                     : 16:9
+Frame rate mode                          : Constant
+Frame rate                               : 23.976 FPS
+
+Audio #1 (English)
+Format                                   : DTS XLL (DTS-HD MA)
+Language                                 : English
+
+Audio #2 (French)
+Format                                   : AC-3 (Dolby Digital 5.1)
+
+Audio #3 (Spanish)
+Format                                   : AC-3 (Dolby Digital 5.1)
+
+Audio #4 (Portuguese)
+Format                                   : AC-3 (Dolby Digital 5.1)
+                        </pre>
+                    </div>
+
+                    <div class="mt-6 grid grid-cols-2 gap-4">
+                        <div class="bg-stone-50 p-3 rounded border border-stone-200 text-center">
+                            <div class="text-xs text-stone-500 uppercase font-bold">Video Codec</div>
+                            <div class="text-stone-800 font-bold">AVC (H.264)</div>
+                        </div>
+                        <div class="bg-stone-50 p-3 rounded border border-stone-200 text-center">
+                            <div class="text-xs text-stone-500 uppercase font-bold">Video Bitrate</div>
+                            <div class="text-stone-800 font-bold">28.5 Mbps</div>
+                        </div>
+                        <div class="bg-stone-50 p-3 rounded border border-stone-200 text-center">
+                            <div class="text-xs text-stone-500 uppercase font-bold">Resolution</div>
+                            <div class="text-stone-800 font-bold">1920x1080</div>
+                        </div>
+                        <div class="bg-stone-50 p-3 rounded border border-stone-200 text-center">
+                            <div class="text-xs text-stone-500 uppercase font-bold">Framerate</div>
+                            <div class="text-stone-800 font-bold">23.976 FPS</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-stone-900 text-stone-400 py-8 text-center text-sm border-t-4 border-amber-700">
+        <p>Interactive Report generated from Source Material.</p>
+    </footer>
+
+    <script>
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabPanels = document.querySelectorAll('.tab-panel');
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tabBtns.forEach(b => {
+                    b.classList.remove('bg-amber-50', 'text-amber-700', 'border-b-2', 'border-amber-500');
+                    b.classList.add('text-stone-500');
+                });
+                
+                btn.classList.remove('text-stone-500');
+                btn.classList.add('bg-amber-50', 'text-amber-700', 'border-b-2', 'border-amber-500');
+
+                tabPanels.forEach(panel => panel.classList.add('hidden'));
+
+                const targetId = btn.getAttribute('data-target');
+                document.getElementById(targetId).classList.remove('hidden');
+            });
+        });
+
+        const toggleBtn = document.getElementById('toggle-mediainfo');
+        const mediaInfoBlock = document.getElementById('mediainfo-block');
+
+        toggleBtn.addEventListener('click', () => {
+            const isHidden = mediaInfoBlock.classList.contains('hidden');
+            if (isHidden) {
+                mediaInfoBlock.classList.remove('hidden');
+                toggleBtn.textContent = 'Hide Text ⬆️';
+            } else {
+                mediaInfoBlock.classList.add('hidden');
+                toggleBtn.textContent = 'Show Text ⬇️';
+            }
+        });
+
+        const ctx = document.getElementById('bitrateChart').getContext('2d');
+        const videoBitrate = 28.5;
+        const totalEstimatedBitrate = 39.8; 
+        const audioOverheadBitrate = totalEstimatedBitrate - videoBitrate;
+
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Video Stream (AVC @ 28.5 Mbps)', 'Audio Tracks & Overhead'],
+                datasets: [{
+                    data: [videoBitrate, audioOverheadBitrate],
+                    backgroundColor: [
+                        '#b45309', 
+                        '#e7e5e4'  
+                    ],
+                    borderColor: [
+                        '#ffffff',
+                        '#ffffff'
+                    ],
+                    borderWidth: 2,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '65%',
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            color: '#44403c',
+                            font: {
+                                family: "Helvetica, sans-serif",
+                                size: 12
+                            },
+                            padding: 20
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: '#292524',
+                        titleFont: { size: 13 },
+                        bodyFont: { size: 14 },
+                        padding: 12,
+                        cornerRadius: 8,
+                        displayColors: false,
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed !== null) {
+                                    const percentage = Math.round((context.parsed / totalEstimatedBitrate) * 100);
+                                    label += percentage + '% of Total Size';
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
