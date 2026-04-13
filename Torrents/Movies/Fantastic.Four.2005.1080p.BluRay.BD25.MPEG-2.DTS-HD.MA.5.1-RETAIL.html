@@ -3,326 +3,386 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fantastic Four (2005) - Early HD Release Analysis</title>
+    <title>Fantastic Four (2005) Release Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         .chart-container {
             position: relative;
             width: 100%;
-            max-width: 600px;
+            max-width: 500px;
             margin-left: auto;
             margin-right: auto;
             height: 300px;
-            max-height: 400px;
+            max-height: 350px;
         }
         @media (min-width: 768px) {
             .chart-container {
                 height: 350px;
             }
         }
+        body {
+            font-family: Helvetica, sans-serif;
+        }
         .tab-active {
-            border-bottom: 2px solid #0369a1;
-            color: #0369a1;
+            border-bottom: 2px solid #4f46e5;
+            color: #4f46e5;
             font-weight: 600;
         }
-        .hide {
-            display: none;
+        .fade-in {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
-<body class="bg-stone-50 text-stone-800 font-sans leading-relaxed">
+<body class="bg-stone-50 text-stone-800 min-h-screen">
 
-    <!-- Chosen Palette: Warm Neutrals (Stone) with Subdued Blue Accents (Sky) -->
-    <!-- Application Structure Plan: The application uses a dashboard layout. It begins with a hero section establishing the historical context (2006). It then flows into three main interactive sections: 'Release Overview' (quick stats), 'Technical Anatomy' (interactive tabs and data visualizations breaking down the file structure), and 'Swarm Dynamics & Reception' (visualizing peer-to-peer network health and community feedback). This structure transforms a raw text list into a narrative about the dawn of high-definition digital media sharing. -->
-    <!-- Visualization & Content Choices: 1. Storage/Bitrate Breakdown -> Goal: Inform/Compare -> Viz: Chart.js Doughnut -> Justification: Shows the proportional weight of early MPEG-2 video versus lossless audio. 2. Swarm Health -> Goal: Inform -> Viz: Chart.js Bar Chart -> Justification: Visually contrasts the high number of leechers vs seeds, typical of early massive file downloads. 3. Tech Specs -> Goal: Organize -> Viz: Interactive Tabs (HTML/JS) -> Justification: Prevents text overload, allowing users to drill down into Video, Audio, or raw NFO data selectively. Confirming NO SVG/Mermaid used. -->
+    <!-- Chosen Palette: Warm Neutrals with Indigo Accents (Stone-50 background, Stone-800 text, Indigo-600 highlights) -->
+    <!-- Application Structure Plan: A tabbed dashboard interface. This structure was chosen because torrent/release data falls into three distinct logical categories: The media itself (Overview), the file/tech properties (Technical), and the network health/user reception (Community). Breaking it into tabs prevents cognitive overload, allows for a clean responsive grid per section, and makes exploring the specific metrics (like tracker health) intuitive and focused. -->
+    <!-- Visualization & Content Choices: Tracker Status -> Goal: Compare -> Donut Chart (Chart.js) -> Hover interaction for exact numbers -> Justification: Clearly shows the proportion of seeders to leechers, which is the most critical metric for a torrent's health. File List -> Goal: Organize -> Interactive List -> Click to view size details -> Justification: Organizes technical strings clearly. NO SVG/Mermaid used. -->
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
 
-    <div class="max-w-6xl mx-auto px-4 py-8 md:py-12">
-        
-        <header class="mb-12 border-b border-stone-200 pb-8">
-            <div class="flex items-center gap-3 mb-4">
-                <span class="text-3xl text-sky-700">&#128191;</span>
-                <h1 class="text-3xl md:text-5xl font-bold text-stone-900 tracking-tight">The Dawn of HD: Fantastic Four (2005)</h1>
-            </div>
-            <p class="text-lg md:text-xl text-stone-600 max-w-3xl">
-                This interactive dashboard analyzes a historical snapshot from November 14, 2006: the day-one retail Blu-ray torrent release of the film <em>Fantastic Four</em>. It explores the technical specifications, massive file dimensions (for the era), and early community engagement surrounding one of the first major high-definition movie leaks on the internet.
-            </p>
-        </header>
-
-        <section class="mb-16">
-            <div class="mb-6">
-                <h2 class="text-2xl font-semibold text-stone-800 mb-2">Release Overview</h2>
-                <p class="text-stone-600">A high-level look at the “HD_Pioneer” upload. This section highlights the sheer scale of early HD files, coming in at over 23 Gigabytes at a time when average broadband speeds were significantly slower than today.</p>
+    <header class="bg-white shadow-sm border-b border-stone-200 sticky top-0 z-10">
+        <div class="max-w-6xl mx-auto px-4 py-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <div>
+                    <h1 class="text-2xl font-bold text-stone-900 leading-tight">Fantastic Four (2005) 1080p BluRay RETAiL</h1>
+                    <p class="text-sm text-stone-500 mt-1">Uploaded by <span class="font-semibold text-indigo-600" id="header-uploader"></span> on <span id="header-date"></span></p>
+                </div>
+                <div class="flex items-center gap-4 bg-stone-100 px-4 py-2 rounded-lg border border-stone-200">
+                    <div class="text-center">
+                        <span class="block text-xs text-stone-500 uppercase tracking-wider">Size</span>
+                        <span class="block text-lg font-bold text-stone-800" id="header-size"></span>
+                    </div>
+                </div>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div class="bg-white p-6 rounded-lg shadow-sm border border-stone-100 transition hover:shadow-md">
-                    <div class="text-sm text-stone-500 uppercase tracking-wider mb-1">Total Size</div>
-                    <div class="text-3xl font-bold text-sky-700">23.14 <span class="text-lg text-stone-400">GB</span></div>
-                    <div class="text-xs text-stone-400 mt-2">23,720,112 KB</div>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-sm border border-stone-100 transition hover:shadow-md">
-                    <div class="text-sm text-stone-500 uppercase tracking-wider mb-1">Upload Date</div>
-                    <div class="text-xl font-bold text-stone-800">Nov 14, 2006</div>
-                    <div class="text-xs text-stone-400 mt-2">14:32:05 Server Time</div>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-sm border border-stone-100 transition hover:shadow-md">
-                    <div class="text-sm text-stone-500 uppercase tracking-wider mb-1">Source Format</div>
-                    <div class="text-xl font-bold text-stone-800">Blu-ray BD25</div>
-                    <div class="text-xs text-stone-400 mt-2">Single Layer ISO/BDMV</div>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-sm border border-stone-100 transition hover:shadow-md">
-                    <div class="text-sm text-stone-500 uppercase tracking-wider mb-1">Resolution</div>
-                    <div class="text-2xl font-bold text-stone-800">1080p</div>
-                    <div class="text-xs text-stone-400 mt-2">1920x1080 (2.35:1)</div>
-                </div>
-            </div>
-        </section>
+            <nav class="flex gap-6 mt-6 overflow-x-auto">
+                <button id="tab-btn-overview" class="tab-active pb-2 px-1 text-sm font-medium text-stone-600 hover:text-indigo-600 transition-colors whitespace-nowrap">🍿 Movie Overview</button>
+                <button id="tab-btn-tech" class="pb-2 px-1 text-sm font-medium text-stone-600 hover:text-indigo-600 transition-colors whitespace-nowrap">⚙️ Technical Specs</button>
+                <button id="tab-btn-community" class="pb-2 px-1 text-sm font-medium text-stone-600 hover:text-indigo-600 transition-colors whitespace-nowrap">📊 Network & Community</button>
+            </nav>
+        </div>
+    </header>
 
-        <section class="mb-16 grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <div>
-                <div class="mb-6">
-                    <h2 class="text-2xl font-semibold text-stone-800 mb-2">Technical Anatomy</h2>
-                    <p class="text-stone-600">Explore the underlying technology of this early high-definition rip. Early Blu-rays often relied on the older MPEG-2 codec before moving to more efficient formats like VC-1 or H.264, requiring immense bitrates.</p>
-                </div>
-
-                <div class="bg-white rounded-lg shadow-sm border border-stone-200 overflow-hidden">
-                    <div class="flex border-b border-stone-200 bg-stone-50">
-                        <button class="flex-1 py-3 px-4 text-center font-medium text-stone-600 hover:text-sky-700 hover:bg-stone-100 transition focus:outline-none tab-btn tab-active" data-target="tab-video">
-                            &#128253; Video
-                        </button>
-                        <button class="flex-1 py-3 px-4 text-center font-medium text-stone-600 hover:text-sky-700 hover:bg-stone-100 transition focus:outline-none tab-btn" data-target="tab-audio">
-                            &#128266; Audio
-                        </button>
-                        <button class="flex-1 py-3 px-4 text-center font-medium text-stone-600 hover:text-sky-700 hover:bg-stone-100 transition focus:outline-none tab-btn" data-target="tab-nfo">
-                            &#128196; Raw NFO
-                        </button>
-                    </div>
-
-                    <div class="p-6">
-                        <div id="tab-video" class="tab-content">
-                            <h3 class="text-lg font-bold text-stone-800 mb-4">Video Specifications</h3>
-                            <ul class="space-y-3">
-                                <li class="flex justify-between items-center border-b border-stone-100 pb-2">
-                                    <span class="text-stone-600">Codec</span>
-                                    <span class="font-semibold text-stone-800 bg-stone-100 px-2 py-1 rounded">MPEG-2</span>
-                                </li>
-                                <li class="flex justify-between items-center border-b border-stone-100 pb-2">
-                                    <span class="text-stone-600">Bitrate</span>
-                                    <span class="font-semibold text-stone-800">18.5 Mbps</span>
-                                </li>
-                                <li class="flex justify-between items-center border-b border-stone-100 pb-2">
-                                    <span class="text-stone-600">Runtime</span>
-                                    <span class="font-semibold text-stone-800">106 minutes (1:45:51)</span>
-                                </li>
-                                <li class="flex justify-between items-center border-b border-stone-100 pb-2">
-                                    <span class="text-stone-600">Director</span>
-                                    <span class="font-semibold text-stone-800">Tim Story</span>
-                                </li>
-                            </ul>
-                            <div class="mt-4 p-3 bg-sky-50 text-sky-800 text-sm rounded border border-sky-100">
-                                <strong>Historical Context:</strong> Fox opted for the older MPEG-2 codec for their initial Blu-ray wave, requiring very high bitrates to maintain 1080p quality, nearly filling the 25GB single-layer disc.
-                            </div>
-                        </div>
-
-                        <div id="tab-audio" class="tab-content hide">
-                            <h3 class="text-lg font-bold text-stone-800 mb-4">Audio & Subtitle Specifications</h3>
-                            <ul class="space-y-3">
-                                <li class="flex justify-between items-center border-b border-stone-100 pb-2">
-                                    <span class="text-stone-600">Primary Track</span>
-                                    <span class="font-semibold text-sky-700">English DTS-HD MA 5.1</span>
-                                </li>
-                                <li class="flex justify-between items-center border-b border-stone-100 pb-2">
-                                    <span class="text-stone-600">Audio Bitrate</span>
-                                    <span class="font-semibold text-stone-800">3.5 Mbps (Lossless)</span>
-                                </li>
-                                <li class="flex justify-between items-center border-b border-stone-100 pb-2">
-                                    <span class="text-stone-600">Secondary Tracks</span>
-                                    <span class="font-semibold text-stone-800 text-right">Spanish DD 5.1</span>
-                                </li>
-                                <li class="flex justify-between items-center border-b border-stone-100 pb-2">
-                                    <span class="text-stone-600">Subtitles</span>
-                                    <span class="font-semibold text-stone-800 text-right">English, Spanish</span>
-                                </li>
-                            </ul>
-                            <div class="mt-4 p-3 bg-amber-50 text-amber-800 text-sm rounded border border-amber-100">
-                                <strong>Playback Warning (2006):</strong> The DTS-HD Master Audio track requires a compatible receiver or player for full lossless playback; otherwise, it will downmix to a standard 1.5Mbps DTS core.
-                            </div>
-                        </div>
-
-                        <div id="tab-nfo" class="tab-content hide">
-                            <div class="bg-stone-900 text-green-400 font-mono text-xs p-4 rounded overflow-x-auto whitespace-pre">
-Fantastic.Four.2005.1080p.BluRay.BD25.MPEG-2.DTS-HD.MA.5.1-RETAIL
-
-RELEASE DATE....: 11/14/2006
-STORE DATE......: 11/14/2006
-GENRE...........: Action / Sci-Fi
-RUNTIME.........: 1:45:51
-VIDEO CODEC.....: MPEG-2
-BITRATE.........: 18.5 Mbps
-RESOLUTION......: 1920x1080
-AUDIO...........: English DTS-HD MA 5.1 @ 3.5 Mbps
-SOURCE..........: Blu-ray Disc (Region A)
-SIZE............: 23,720,112 KB
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="flex flex-col">
-                <div class="mb-6">
-                    <h2 class="text-2xl font-semibold text-stone-800 mb-2">Bitrate Distribution Estimate</h2>
-                    <p class="text-stone-600">A visual representation of how the bandwidth and storage are allocated based on the provided NFO bitrates (18.5 Mbps Video vs 3.5 Mbps Audio).</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-sm border border-stone-200 flex-grow flex items-center justify-center">
-                    <div class="chart-container">
-                        <canvas id="bitrateChart"></canvas>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="mb-16">
-            <div class="mb-6">
-                <h2 class="text-2xl font-semibold text-stone-800 mb-2">Swarm Dynamics & Reception</h2>
-                <p class="text-stone-600">Data capturing the Peer-to-Peer network state upon release and the early reactions from the high-def enthusiast community trying to download and play the massive file.</p>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <div class="lg:col-span-2 bg-white p-6 rounded-lg shadow-sm border border-stone-200">
-                    <h3 class="text-lg font-bold text-stone-800 mb-4 text-center">Torrent Network Health</h3>
-                    <div class="chart-container">
-                        <canvas id="swarmChart"></canvas>
-                    </div>
-                </div>
-
-                <div class="space-y-4">
-                    <div class="bg-white p-5 rounded-lg shadow-sm border-l-4 border-sky-500">
-                        <div class="font-bold text-stone-800 mb-1">&#128100; HD_Fanatic</div>
-                        <p class="text-stone-600 text-sm italic">“Finally! I’ve been waiting for the Marvel movies to hit Blu-ray. I heard MPEG-2 is a bit dated compared to VC-1, but the DTS-HD track should be killer.”</p>
-                    </div>
-                    <div class="bg-white p-5 rounded-lg shadow-sm border-l-4 border-amber-500">
-                        <div class="font-bold text-stone-800 mb-1">&#128100; BluRayGuy</div>
-                        <p class="text-stone-600 text-sm italic">“Warning to those without a PS3 or standalone player—you’ll need a lot of CPU power to decode this MPEG-2 1080p stream smoothly on your PC.”</p>
-                    </div>
-                    <div class="bg-white p-5 rounded-lg shadow-sm border-l-4 border-green-500">
-                        <div class="font-bold text-stone-800 mb-1">&#128100; SpeedDemon</div>
-                        <p class="text-stone-600 text-sm italic">“Pulling at 500KB/s! Will seed for at least a week.”</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         
-        <footer class="border-t border-stone-200 pt-8 text-center text-stone-500 text-sm">
-            <p>Data derived from historical torrent metadata dated November 14, 2006.</p>
-        </footer>
+        <section id="section-overview" class="fade-in block">
+            <div class="mb-8 max-w-3xl">
+                <h2 class="text-xl font-bold mb-2">About This Release</h2>
+                <p class="text-stone-600 leading-relaxed">This section provides a high-level summary of the cinematic content contained within this release. It combines the original uploader’s description with core movie metadata, allowing you to quickly understand the film’s premise, cast, and visual presentation context before diving into the technical properties.</p>
+            </div>
 
-    </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="md:col-span-1">
+                    <div class="bg-white rounded-xl shadow-sm border border-stone-200 overflow-hidden">
+                        <img id="movie-poster" src="" alt="Movie Poster" class="w-full h-auto object-cover border-b border-stone-200">
+                        <div class="p-4">
+                            <h3 class="font-bold text-lg mb-1" id="movie-title"></h3>
+                            <p class="text-sm text-stone-500 mb-4">Released: <span id="movie-date"></span></p>
+                            <p class="text-sm text-stone-700"><strong>Director:</strong> <span id="movie-director"></span></p>
+                            <div class="mt-4 pt-4 border-t border-stone-100">
+                                <span class="text-xs font-semibold text-stone-500 uppercase">Category</span>
+                                <p class="text-sm font-medium text-indigo-700 mt-1" id="movie-category"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:col-span-2 flex flex-col gap-6">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200">
+                        <h3 class="text-lg font-bold mb-3 flex items-center gap-2">📝 Uploader’s Description</h3>
+                        <p class="text-stone-700 leading-relaxed" id="movie-desc"></p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200">
+                        <h3 class="text-lg font-bold mb-3 flex items-center gap-2">🎬 Plot Synopsis</h3>
+                        <p class="text-stone-700 leading-relaxed italic" id="movie-plot"></p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200">
+                        <h3 class="text-lg font-bold mb-3 flex items-center gap-2">🎭 Cast</h3>
+                        <div class="flex flex-wrap gap-2" id="movie-cast">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="section-tech" class="fade-in hidden">
+            <div class="mb-8 max-w-3xl">
+                <h2 class="text-xl font-bold mb-2">Technical Properties</h2>
+                <p class="text-stone-600 leading-relaxed">Here you can explore the underlying technical architecture of the release. This section breaks down the video and audio encoding specifications, disc format details, and provides a structural view of the included files. Interact with the file list to see size distributions.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200">
+                    <h3 class="text-lg font-bold mb-6 border-b border-stone-100 pb-2">AV Specifications</h3>
+                    <ul class="space-y-4" id="tech-specs-list">
+                    </ul>
+                </div>
+
+                <div class="flex flex-col gap-6">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200">
+                        <h3 class="text-lg font-bold mb-4 border-b border-stone-100 pb-2">Directory Structure</h3>
+                        <div class="bg-stone-50 p-4 rounded-md border border-stone-200 font-mono text-sm break-all text-stone-700 mb-4">
+                            📁 <span id="tech-folder"></span>
+                        </div>
+                        <h4 class="text-sm font-bold text-stone-500 uppercase tracking-wider mb-3">Included Files</h4>
+                        <div class="space-y-2" id="tech-files-list">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="section-community" class="fade-in hidden">
+            <div class="mb-8 max-w-3xl">
+                <h2 class="text-xl font-bold mb-2">Network Health & Community</h2>
+                <p class="text-stone-600 leading-relaxed">This dashboard area visualizes the peer-to-peer network status at the time of archival and aggregates user feedback. The interactive chart provides a clear breakdown of seeders versus leechers, indicating download viability, while the comments section offers historical context and user reviews of the transfer quality.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200 flex flex-col">
+                    <h3 class="text-lg font-bold mb-6 text-center">Swarm Distribution</h3>
+                    <div class="chart-container flex-grow flex items-center justify-center">
+                        <canvas id="trackerChart"></canvas>
+                    </div>
+                    <div class="grid grid-cols-3 gap-4 mt-6 text-center border-t border-stone-100 pt-6">
+                        <div>
+                            <span class="block text-2xl font-bold text-emerald-600" id="stat-seeders"></span>
+                            <span class="text-xs font-semibold text-stone-500 uppercase">Seeders</span>
+                        </div>
+                        <div>
+                            <span class="block text-2xl font-bold text-rose-600" id="stat-leechers"></span>
+                            <span class="text-xs font-semibold text-stone-500 uppercase">Leechers</span>
+                        </div>
+                        <div>
+                            <span class="block text-2xl font-bold text-blue-600" id="stat-completed"></span>
+                            <span class="text-xs font-semibold text-stone-500 uppercase">Completed</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200 flex flex-col h-full">
+                    <h3 class="text-lg font-bold mb-4 border-b border-stone-100 pb-2">User Comments (<span id="comment-count"></span>)</h3>
+                    <div class="flex-grow overflow-y-auto space-y-4 pr-2" id="comments-container" style="max-height: 400px;">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const tabBtns = document.querySelectorAll('.tab-btn');
-            const tabContents = document.querySelectorAll('.tab-content');
+        const reportData = {
+            metadata: {
+                title: "Fantastic Four",
+                releaseDate: "July 8, 2005",
+                director: "Tim Story",
+                cast: ["Ioan Gruffudd", "Jessica Alba", "Chris Evans", "Michael Chiklis", "Julian McMahon"],
+                plot: "A group of four astronauts gain superpowers after a cosmic radiation exposure and must use them to oppose the plans of their enemy, Dr. Victor Von Doom.",
+                imageUrl: "https://images.static-bluray.com/movies/covers/22_front.jpg"
+            },
+            torrent: {
+                releaseName: "[X-TREME-TiLL-DEATH] Fantastic Four (2005) 1080p BluRay BD25 MPEG-2 DTS-HD MA 5.1-RETAiL",
+                uploaded: "November 14, 2006",
+                category: "Video > Movies / BluRay / 1080p",
+                size: "23.41 GB",
+                uploader: "RETAiL_KiNG",
+                description: "Bringing the “First Family” of Marvel Comics to the big screen! This is the RETAiL ISO dump of the original Blu-ray release. Unlike the early MPEG-2 transfers that were rushed, this BD25 contains the full disc structure and the high-bitrate DTS-HD Master Audio track.",
+                folderName: "Fantastic.Four.2005.1080p.BluRay.BD25.MPEG-2.DTS-HD.MA.5.1-RETAiL",
+                fileName: "LOGICAL_VOLUME_ID.iso"
+            },
+            specs: [
+                { label: "Source", value: "Blu-ray (BD25)", icon: "💿" },
+                { label: "Format", value: "ISO (Full Disc)", icon: "📄" },
+                { label: "Video Codec", value: "MPEG-2", icon: "🎞️" },
+                { label: "Resolution", value: "1920 x 1080p", icon: "📺" },
+                { label: "Aspect Ratio", value: "2.35:1", icon: "📐" },
+                { label: "Audio", value: "English DTS-HD Master Audio 5.1, Spanish 5.1 Dolby Digital", icon: "🔊" },
+                { label: "Subtitles", value: "English, Spanish", icon: "💬" }
+            ],
+            files: [
+                { name: "LOGICAL_VOLUME_ID.iso", size: "23.41 GB", type: "iso" },
+                { name: "RETAiL-NFO.txt", size: "4.2 KB", type: "txt" },
+                { name: "Sample/f4-sample.mkv", size: "150 MB", type: "mkv" }
+            ],
+            tracker: {
+                seeders: 42,
+                leechers: 156,
+                completed: 12
+            },
+            comments: [
+                { user: "HeavySeeder88", date: "Nov 14, 2006 - 18:45", text: "Nice! Finally a BD25 ISO. My Sony BDP-S1 is ready. Thanks for the upload!" },
+                { user: "DivX_Master", date: "Nov 15, 2006 - 02:10", text: "23GB?? See you guys in three weeks when my DSL finishes this." },
+                { user: "BlurayFanatic", date: "Nov 15, 2006 - 05:30", text: "The DTS-HD track is insane on this one. Best way to watch the Torch vs. Doom fight." }
+            ]
+        };
 
-            tabBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    tabBtns.forEach(b => b.classList.remove('tab-active'));
-                    tabContents.forEach(c => c.classList.add('hide'));
+        const state = {
+            activeTab: 'overview',
+            chartInstance: null
+        };
 
-                    btn.classList.add('tab-active');
-                    const targetId = btn.getAttribute('data-target');
-                    document.getElementById(targetId).classList.remove('hide');
-                });
+        function populateData() {
+            document.getElementById('header-uploader').textContent = reportData.torrent.uploader;
+            document.getElementById('header-date').textContent = reportData.torrent.uploaded;
+            document.getElementById('header-size').textContent = reportData.torrent.size;
+            
+            document.getElementById('movie-poster').src = reportData.metadata.imageUrl;
+            document.getElementById('movie-title').textContent = reportData.metadata.title;
+            document.getElementById('movie-date').textContent = reportData.metadata.releaseDate;
+            document.getElementById('movie-director').textContent = reportData.metadata.director;
+            document.getElementById('movie-category').textContent = reportData.torrent.category;
+            document.getElementById('movie-desc').textContent = reportData.torrent.description;
+            document.getElementById('movie-plot').textContent = `"${reportData.metadata.plot}"`;
+
+            const castContainer = document.getElementById('movie-cast');
+            reportData.metadata.cast.forEach(actor => {
+                const span = document.createElement('span');
+                span.className = "px-3 py-1 bg-stone-100 text-stone-700 text-sm rounded-full border border-stone-200 hover:bg-stone-200 transition-colors cursor-default";
+                span.textContent = actor;
+                castContainer.appendChild(span);
             });
 
-            const bitrateCtx = document.getElementById('bitrateChart').getContext('2d');
-            new Chart(bitrateCtx, {
+            const specsList = document.getElementById('tech-specs-list');
+            reportData.specs.forEach(spec => {
+                const li = document.createElement('li');
+                li.className = "flex items-start gap-3 p-3 hover:bg-stone-50 rounded-lg transition-colors";
+                li.innerHTML = `
+                    <span class="text-xl">${spec.icon}</span>
+                    <div>
+                        <span class="block text-xs font-bold text-stone-400 uppercase tracking-wider">${spec.label}</span>
+                        <span class="block text-sm font-medium text-stone-800 mt-0.5">${spec.value}</span>
+                    </div>
+                `;
+                specsList.appendChild(li);
+            });
+
+            document.getElementById('tech-folder').textContent = reportData.torrent.folderName;
+
+            const filesList = document.getElementById('tech-files-list');
+            reportData.files.forEach(file => {
+                const div = document.createElement('div');
+                div.className = "flex justify-between items-center p-3 bg-white border border-stone-200 rounded-lg hover:border-indigo-300 transition-colors cursor-pointer group";
+                const icon = file.type === 'iso' ? '💿' : file.type === 'txt' ? '📄' : '🎞️';
+                div.innerHTML = `
+                    <div class="flex items-center gap-2 truncate pr-4">
+                        <span>${icon}</span>
+                        <span class="text-sm text-stone-700 font-medium truncate group-hover:text-indigo-600 transition-colors">${file.name}</span>
+                    </div>
+                    <span class="text-xs font-bold bg-stone-100 text-stone-600 px-2 py-1 rounded whitespace-nowrap">${file.size}</span>
+                `;
+                div.addEventListener('click', () => {
+                    alert(`File Details:\nName: ${file.name}\nSize: ${file.size}\nType: ${file.type.toUpperCase()}`);
+                });
+                filesList.appendChild(div);
+            });
+
+            document.getElementById('stat-seeders').textContent = reportData.tracker.seeders;
+            document.getElementById('stat-leechers').textContent = reportData.tracker.leechers;
+            document.getElementById('stat-completed').textContent = reportData.tracker.completed;
+
+            document.getElementById('comment-count').textContent = reportData.comments.length;
+            const commentsContainer = document.getElementById('comments-container');
+            reportData.comments.forEach(comment => {
+                const div = document.createElement('div');
+                div.className = "bg-stone-50 p-4 rounded-lg border border-stone-200";
+                div.innerHTML = `
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="font-bold text-indigo-700 text-sm">${comment.user}</span>
+                        <span class="text-xs text-stone-500">${comment.date}</span>
+                    </div>
+                    <p class="text-sm text-stone-700 leading-relaxed">${comment.text}</p>
+                `;
+                commentsContainer.appendChild(div);
+            });
+        }
+
+        function initChart() {
+            if (state.chartInstance) {
+                state.chartInstance.destroy();
+            }
+            const ctx = document.getElementById('trackerChart').getContext('2d');
+            state.chartInstance = new Chart(ctx, {
                 type: 'doughnut',
                 data: {
-                    labels: ['MPEG-2 Video (18.5 Mbps)', 'DTS-HD Audio (3.5 Mbps)', 'Overhead/Other'],
+                    labels: ['Seeders', 'Leechers', 'Completed'],
                     datasets: [{
-                        data: [80, 15, 5],
+                        data: [reportData.tracker.seeders, reportData.tracker.leechers, reportData.tracker.completed],
                         backgroundColor: [
-                            '#0284c7',
-                            '#38bdf8',
-                            '#e7e5e4'
+                            '#10b981', 
+                            '#ef4444', 
+                            '#3b82f6'  
                         ],
-                        borderWidth: 0,
+                        borderWidth: 2,
+                        borderColor: '#ffffff',
                         hoverOffset: 4
                     }]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
+                    cutout: '65%',
                     plugins: {
                         legend: {
                             position: 'bottom',
                             labels: {
+                                padding: 20,
                                 font: {
-                                    family: "Helvetica, sans-serif"
+                                    family: 'system-ui',
+                                    size: 12
                                 }
                             }
                         },
                         tooltip: {
                             callbacks: {
                                 label: function(context) {
-                                    return ' ' + context.label.split(' (')[0] + ': ~' + context.parsed + '%';
-                                }
-                            }
-                        }
-                    },
-                    cutout: '70%'
-                }
-            });
-
-            const swarmCtx = document.getElementById('swarmChart').getContext('2d');
-            new Chart(swarmCtx, {
-                type: 'bar',
-                data: {
-                    labels: ['Leechers', 'Seeds', 'Completed'],
-                    datasets: [{
-                        label: 'Network Nodes',
-                        data: [158, 42, 12],
-                        backgroundColor: [
-                            '#ef4444',
-                            '#22c55e',
-                            '#3b82f6'
-                        ],
-                        borderRadius: 4
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            grid: {
-                                color: '#f5f5f4'
-                            }
-                        },
-                        x: {
-                            grid: {
-                                display: false
-                            }
-                        }
-                    },
-                    plugins: {
-                        legend: {
-                            display: false
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    return ' Count: ' + context.parsed.y;
+                                    let label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed !== null) {
+                                        label += context.parsed + ' peers';
+                                    }
+                                    return label;
                                 }
                             }
                         }
                     }
                 }
             });
+        }
+
+        function switchTab(tabId) {
+            document.getElementById('tab-btn-overview').classList.remove('tab-active');
+            document.getElementById('tab-btn-tech').classList.remove('tab-active');
+            document.getElementById('tab-btn-community').classList.remove('tab-active');
+            
+            document.getElementById('section-overview').classList.add('hidden');
+            document.getElementById('section-tech').classList.add('hidden');
+            document.getElementById('section-community').classList.add('hidden');
+
+            document.getElementById(`tab-btn-${tabId}`).classList.add('tab-active');
+            document.getElementById(`section-${tabId}`).classList.remove('hidden');
+
+            state.activeTab = tabId;
+
+            if (tabId === 'community' && !state.chartInstance) {
+                setTimeout(initChart, 50);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            populateData();
+
+            document.getElementById('tab-btn-overview').addEventListener('click', () => switchTab('overview'));
+            document.getElementById('tab-btn-tech').addEventListener('click', () => switchTab('tech'));
+            document.getElementById('tab-btn-community').addEventListener('click', () => switchTab('community'));
         });
     </script>
 </body>
