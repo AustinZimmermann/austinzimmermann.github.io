@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Release Dashboard: LEGO Hero Factory Savage Planet</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            background-color: #f5f5f4;
+            color: #292524;
+            font-family: Helvetica, sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .tab-active {
+            border-bottom: 2px solid #d97706;
+            color: #d97706;
+            font-weight: 600;
+        }
+        .tab-inactive {
+            border-bottom: 2px solid transparent;
+            color: #78716c;
+        }
+        .tab-inactive:hover {
+            color: #44403c;
+            border-bottom: 2px solid #d6d3d1;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen pb-12">
+
+    <!-- Chosen Palette: Warm Neutrals with Amber Accents (Stone-100 bg, Stone-800 text, Amber-600 accents) -->
+    <!-- Application Structure Plan: The application uses a tabbed dashboard structure to break down the dense torrent release text into digestible, interactive chunks. The "Overview" tab introduces the movie and high-level metadata. The "Technical Data" tab organizes specific formats, languages, and raw NFO data for power users, supported by a logarithmic chart visualizing file distribution. The "Community" tab isolates social engagement and file specifics. This structure prevents cognitive overload and allows users to navigate directly to their area of interest based on the report's distinct data categories. -->
+    <!-- Visualization & Content Choices: 
+         1. File Size Chart -> Goal: Compare -> Method: Chart.js Bar Chart (Logarithmic) -> Interaction: Hover tooltips -> Justification: Shows the massive scale difference between the ISO and metadata files clearly without breaking layout.
+         2. NFO Terminal -> Goal: Inform -> Method: Preformatted text block with toggle -> Interaction: Show/Hide toggle -> Justification: Preserves the authentic 2011 scene release aesthetic while keeping the UI clean.
+         3. Tabbed Navigation -> Goal: Organize -> Method: HTML/JS Tabs -> Interaction: Click to switch views -> Justification: Best for single-page applications with distinct categorical data.
+         Library/Method: Tailwind CSS, Vanilla JS, Chart.js. Confirming NO SVG/Mermaid used. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <header class="bg-white shadow-sm border-b border-stone-200 pt-8 pb-4 px-4 md:px-8 mb-6">
+        <div class="max-w-5xl mx-auto">
+            <div class="flex flex-col md:flex-row md:items-start justify-between gap-4">
+                <div>
+                    <h1 class="text-2xl md:text-3xl font-bold text-stone-900 leading-tight">
+                        LEGO Hero Factory: Savage Planet
+                    </h1>
+                    <p class="text-stone-500 mt-1 text-sm md:text-base">
+                        &#128192; [DVD] 2011 &bull; NTSC DVD5-RETAiL
+                    </p>
+                </div>
+                <div class="flex flex-col items-start md:items-end gap-2">
+                    <div class="bg-amber-100 text-amber-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
+                        4.31 GB
+                    </div>
+                    <p class="text-xs text-stone-500">
+                        Uploaded: Oct 04, 2011 by <span class="font-semibold text-stone-700">RETAiL-PRO</span>
+                    </p>
+                </div>
+            </div>
+            
+            <div class="mt-4 flex flex-wrap gap-2">
+                <span class="text-xs bg-stone-100 text-stone-600 px-2 py-1 rounded border border-stone-200">#LEGO</span>
+                <span class="text-xs bg-stone-100 text-stone-600 px-2 py-1 rounded border border-stone-200">#HeroFactory</span>
+                <span class="text-xs bg-stone-100 text-stone-600 px-2 py-1 rounded border border-stone-200">#SavagePlanet</span>
+                <span class="text-xs bg-stone-100 text-stone-600 px-2 py-1 rounded border border-stone-200">#Animation</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 md:px-8">
+        
+        <nav class="flex space-x-6 border-b border-stone-300 mb-8" aria-label="Tabs">
+            <button onclick="switchTab('overview')" id="tab-overview" class="tab-active pb-3 text-sm font-medium transition-colors duration-200">
+                &#128269; Overview & Story
+            </button>
+            <button onclick="switchTab('technical')" id="tab-technical" class="tab-inactive pb-3 text-sm font-medium transition-colors duration-200">
+                &#9881; Technical Specs
+            </button>
+            <button onclick="switchTab('community')" id="tab-community" class="tab-inactive pb-3 text-sm font-medium transition-colors duration-200">
+                &#128101; Files & Community
+            </button>
+        </nav>
+
+        <section id="section-overview" class="block">
+            <div class="mb-6">
+                <h2 class="text-xl font-bold mb-2 text-stone-800">About This Release</h2>
+                <p class="text-stone-600 leading-relaxed text-sm">
+                    This section provides a high-level summary of the source report’s primary subject. It outlines the narrative premise of the released media and presents the fundamental release metadata in an easily digestible, comparative grid. This allows users to quickly grasp what the content is and its baseline format before diving into technical specifics.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="md:col-span-2 bg-white rounded-lg shadow-sm border border-stone-200 p-6">
+                    <h3 class="text-lg font-semibold text-stone-800 border-b border-stone-100 pb-2 mb-4">Synopsis</h3>
+                    <p class="italic text-stone-500 mb-4 text-sm">“The adventure continues in the wildest environment yet!”</p>
+                    <p class="text-stone-700 leading-relaxed">
+                        When rookie Rocka goes missing on the jungle planet of Quatros, the Hero Factory team must suit up for a rescue mission. But the planet is being stripped of its Quaza core by the villainous Witch Doctor, and the team must stop him before the entire planet collapses!
+                    </p>
+                    
+                    <div class="mt-8 bg-stone-50 p-4 rounded border border-stone-200">
+                        <h4 class="text-sm font-semibold text-stone-800 mb-2">Release Hierarchy Context</h4>
+                        <p class="text-xs text-stone-600 font-mono break-all">
+                            Folder: LEGO.Hero.Factory.Savage.Planet.2011.NTSC.DVD5-RETAiL
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-sm border border-stone-200 p-6">
+                    <h3 class="text-lg font-semibold text-stone-800 border-b border-stone-100 pb-2 mb-4">Quick Details</h3>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex justify-between items-center">
+                            <span class="text-stone-500">Category</span>
+                            <span class="font-medium text-stone-800">Video &gt; Movies / DVD-R</span>
+                        </li>
+                        <li class="flex justify-between items-center">
+                            <span class="text-stone-500">Format</span>
+                            <span class="font-medium text-stone-800">DVD-Video / ISO</span>
+                        </li>
+                        <li class="flex justify-between items-center">
+                            <span class="text-stone-500">Video Standard</span>
+                            <span class="font-medium text-stone-800">NTSC</span>
+                        </li>
+                        <li class="flex justify-between items-center">
+                            <span class="text-stone-500">Aspect Ratio</span>
+                            <span class="font-medium text-stone-800">1.78:1 Widescreen</span>
+                        </li>
+                        <li class="flex justify-between items-center">
+                            <span class="text-stone-500">Menus & Extras</span>
+                            <span class="font-medium text-stone-800">Untouched</span>
+                        </li>
+                        <li class="flex justify-between items-center pt-2 border-t border-stone-100">
+                            <span class="text-stone-500">Capacity</span>
+                            <span class="font-medium text-amber-700 bg-amber-50 px-2 py-0.5 rounded">DVD5 (Single Layer)</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="section-technical" class="hidden">
+            <div class="mb-6">
+                <h2 class="text-xl font-bold mb-2 text-stone-800">Technical Specifications & Architecture</h2>
+                <p class="text-stone-600 leading-relaxed text-sm">
+                    This technical view parses the detailed reporting data into interactive elements. You can explore the language availability matrices and view a data visualization of the file composition. An interactive terminal emulator is provided below to inspect the raw, original NFO (System Information) file as it was presented in the source report.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                <div class="bg-white rounded-lg shadow-sm border border-stone-200 p-6">
+                    <h3 class="text-lg font-semibold text-stone-800 border-b border-stone-100 pb-2 mb-4">Language Matrix</h3>
+                    
+                    <div class="mb-6">
+                        <h4 class="text-sm font-bold text-stone-500 uppercase tracking-wider mb-3">Audio Tracks (AC3)</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            <div class="bg-stone-50 border border-stone-200 rounded p-2 flex items-center text-sm">
+                                <span class="mr-2 text-lg">&#128266;</span> English (DD 5.1)
+                            </div>
+                            <div class="bg-stone-50 border border-stone-200 rounded p-2 flex items-center text-sm">
+                                <span class="mr-2 text-lg">&#128266;</span> French (DD 2.0)
+                            </div>
+                            <div class="bg-stone-50 border border-stone-200 rounded p-2 flex items-center text-sm">
+                                <span class="mr-2 text-lg">&#128266;</span> Spanish (DD 2.0)
+                            </div>
+                            <div class="bg-stone-50 border border-stone-200 rounded p-2 flex items-center text-sm">
+                                <span class="mr-2 text-lg">&#128266;</span> Portuguese (DD 2.0)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="text-sm font-bold text-stone-500 uppercase tracking-wider mb-3">Subtitles</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-stone-800 text-stone-100 text-xs px-3 py-1.5 rounded-full shadow-sm">English SDH</span>
+                            <span class="bg-stone-800 text-stone-100 text-xs px-3 py-1.5 rounded-full shadow-sm">Spanish</span>
+                            <span class="bg-stone-800 text-stone-100 text-xs px-3 py-1.5 rounded-full shadow-sm">Portuguese</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-sm border border-stone-200 p-6 flex flex-col">
+                    <h3 class="text-lg font-semibold text-stone-800 border-b border-stone-100 pb-2 mb-4">File Composition Analysis</h3>
+                    <p class="text-xs text-stone-500 mb-4">Visualizing the extreme size disparity between the main media payload and its metadata using a logarithmic scale.</p>
+                    <div class="chart-container flex-grow flex items-center justify-center">
+                        <canvas id="fileSizeChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-stone-900 rounded-lg shadow-inner overflow-hidden">
+                <div class="bg-stone-800 px-4 py-2 flex justify-between items-center border-b border-stone-700">
+                    <span class="text-stone-300 text-xs font-mono">RETAiL-PRO.nfo</span>
+                    <button onclick="toggleNfo()" class="text-amber-500 hover:text-amber-400 text-xs font-semibold focus:outline-none transition-colors">
+                        [ Toggle Terminal View ]
+                    </button>
+                </div>
+                <div id="nfo-content" class="p-4 overflow-x-auto hidden">
+                    <pre class="text-green-400 font-mono text-xs leading-relaxed">
+*******************************************************************************
+           LEGO.Hero.Factory.Savage.Planet.2011.NTSC.DVD5-RETAiL
+*******************************************************************************
+
+-------------------------------------------------------------------------------
+                              General Information
+-------------------------------------------------------------------------------
+Type.................: Movie / Animation
+Platform.............: DVD-Video
+Burn Tested..........: Yes
+Release Date.........: 10/04/2011
+Video Format.........: NTSC
+Video Bitrate........: Variable
+Screen Format........: 16:9 Widescreen
+Audio Format.........: AC3
+Source...............: Retail DVD5
+
+-------------------------------------------------------------------------------
+                               Post Information
+-------------------------------------------------------------------------------
+Posted by............: RETAiL-PRO
+Posted to............: [REDACTED]
+Posted on............: 10/04/2011
+
+-------------------------------------------------------------------------------
+                                 Release Notes
+-------------------------------------------------------------------------------
+Untouched retail DVD. This is the Savage Planet movie (Episodes 6 & 7).
+Includes all original menus and bonus features.
+Enjoy this latest installment in the Hero Factory saga!
+
+*******************************************************************************
+                    </pre>
+                </div>
+            </div>
+        </section>
+
+        <section id="section-community" class="hidden">
+             <div class="mb-6">
+                <h2 class="text-xl font-bold mb-2 text-stone-800">Payload & Community Insights</h2>
+                <p class="text-stone-600 leading-relaxed text-sm">
+                    This section details the explicit contents of the digital package and visualizes qualitative community feedback from the source report. It organizes the file system list into a clean table and presents user interactions in a timeline format, illustrating the immediate reception of the release.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div class="lg:col-span-1">
+                    <div class="bg-white rounded-lg shadow-sm border border-stone-200 overflow-hidden">
+                        <div class="px-6 py-4 border-b border-stone-100 bg-stone-50">
+                            <h3 class="text-lg font-semibold text-stone-800">Directory Contents</h3>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-sm whitespace-nowrap">
+                                <thead>
+                                    <tr class="text-stone-500 border-b border-stone-100">
+                                        <th class="px-6 py-3 font-medium">Filename</th>
+                                        <th class="px-6 py-3 font-medium text-right">Size</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-stone-700 font-mono text-xs">
+                                    <tr class="hover:bg-stone-50 border-b border-stone-50 transition-colors">
+                                        <td class="px-6 py-3">&#128191; LEGO_HERO_FACTORY_SAVAGEPLANET.iso</td>
+                                        <td class="px-6 py-3 text-right">4,286,214 KB</td>
+                                    </tr>
+                                    <tr class="hover:bg-stone-50 border-b border-stone-50 transition-colors">
+                                        <td class="px-6 py-3">&#128196; RETAiL-PRO.nfo</td>
+                                        <td class="px-6 py-3 text-right">2 KB</td>
+                                    </tr>
+                                    <tr class="hover:bg-stone-50 transition-colors">
+                                        <td class="px-6 py-3">&#128444; lego_savage_... .jpg</td>
+                                        <td class="px-6 py-3 text-right">142 KB</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-2 space-y-4">
+                    <div class="bg-white rounded-lg shadow-sm border border-stone-200 p-6">
+                        <h3 class="text-lg font-semibold text-stone-800 border-b border-stone-100 pb-2 mb-4">Activity Log (Oct 04, 2011)</h3>
+                        
+                        <div class="space-y-4">
+                            
+                            <div class="flex gap-4 p-3 hover:bg-stone-50 rounded-lg transition-colors border border-transparent hover:border-stone-100">
+                                <div class="flex-shrink-0 w-10 h-10 rounded-full bg-stone-200 flex items-center justify-center text-stone-500 font-bold">
+                                    BF
+                                </div>
+                                <div>
+                                    <div class="flex items-baseline gap-2">
+                                        <span class="font-semibold text-stone-800 text-sm">BrickFan99</span>
+                                        <span class="text-xs font-semibold text-stone-500 bg-stone-100 px-1.5 py-0.5 rounded">Member</span>
+                                        <span class="text-xs text-stone-400">09:15</span>
+                                    </div>
+                                    <p class="text-stone-600 text-sm mt-1 italic">
+                                        “Awesome! My kids have been waiting for this one. Thanks for the RETAiL upload!”
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-4 p-3 hover:bg-stone-50 rounded-lg transition-colors border border-transparent hover:border-stone-100">
+                                <div class="flex-shrink-0 w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center text-amber-600 font-bold">
+                                    SW
+                                </div>
+                                <div>
+                                    <div class="flex items-baseline gap-2">
+                                        <span class="font-semibold text-stone-800 text-sm">SceneWatcher</span>
+                                        <span class="text-xs font-semibold text-amber-700 bg-amber-50 border border-amber-200 px-1.5 py-0.5 rounded">VIP</span>
+                                        <span class="text-xs text-stone-400">10:30</span>
+                                    </div>
+                                    <p class="text-stone-600 text-sm mt-1 italic">
+                                        “Tested on ImgBurn, works perfectly. 10/10 quality as expected from a retail source.”
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-4 p-3 hover:bg-stone-50 rounded-lg transition-colors border border-transparent hover:border-stone-100">
+                                <div class="flex-shrink-0 w-10 h-10 rounded-full bg-red-100 flex items-center justify-center text-red-600 font-bold">
+                                    TM
+                                </div>
+                                <div>
+                                    <div class="flex items-baseline gap-2">
+                                        <span class="font-semibold text-stone-800 text-sm">TorrentMod</span>
+                                        <span class="text-xs font-semibold text-red-700 bg-red-50 border border-red-200 px-1.5 py-0.5 rounded">Staff</span>
+                                        <span class="text-xs text-stone-400">11:05</span>
+                                    </div>
+                                    <p class="text-stone-600 text-sm mt-1 italic">
+                                        “Verified. Please remember to seed at least 1:1 ratio!”
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        const appState = {
+            activeTab: 'overview',
+            chartInitialized: false
+        };
+
+        function switchTab(tabId) {
+            const tabs = ['overview', 'technical', 'community'];
+            
+            tabs.forEach(tab => {
+                const buttonElement = document.getElementById('tab-' + tab);
+                const sectionElement = document.getElementById('section-' + tab);
+                
+                if (tab === tabId) {
+                    buttonElement.className = 'tab-active pb-3 text-sm font-medium transition-colors duration-200';
+                    sectionElement.classList.remove('hidden');
+                    sectionElement.classList.add('block');
+                } else {
+                    buttonElement.className = 'tab-inactive pb-3 text-sm font-medium transition-colors duration-200';
+                    sectionElement.classList.remove('block');
+                    sectionElement.classList.add('hidden');
+                }
+            });
+
+            appState.activeTab = tabId;
+
+            if (tabId === 'technical' && !appState.chartInitialized) {
+                initChart();
+                appState.chartInitialized = true;
+            }
+        }
+
+        function toggleNfo() {
+            const nfoBlock = document.getElementById('nfo-content');
+            if (nfoBlock.classList.contains('hidden')) {
+                nfoBlock.classList.remove('hidden');
+            } else {
+                nfoBlock.classList.add('hidden');
+            }
+        }
+
+        function initChart() {
+            const ctx = document.getElementById('fileSizeChart').getContext('2d');
+            
+            Chart.defaults.font.family = 'ui-sans-serif, system-ui, -apple-system, sans-serif';
+            Chart.defaults.color = '#78716c';
+            
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Payload (ISO)', 'Cover Art (JPG)', 'Metadata (NFO)'],
+                    datasets: [{
+                        label: 'File Size (KB)',
+                        data: [4286214, 142, 2],
+                        backgroundColor: [
+                            'rgba(217, 119, 6, 0.8)', 
+                            'rgba(168, 162, 158, 0.8)', 
+                            'rgba(120, 113, 108, 0.8)'   
+                        ],
+                        borderColor: [
+                            'rgb(180, 83, 9)',
+                            'rgb(120, 113, 108)',
+                            'rgb(87, 83, 78)'
+                        ],
+                        borderWidth: 1,
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y', 
+                    scales: {
+                        x: {
+                            type: 'logarithmic',
+                            title: {
+                                display: true,
+                                text: 'Size in KB (Logarithmic Scale)'
+                            },
+                            ticks: {
+                                callback: function(value, index, values) {
+                                    return Number(value.toString()); 
+                                }
+                            }
+                        },
+                        y: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.x !== null) {
+                                        label += new Intl.NumberFormat('en-US').format(context.parsed.x) + ' KB';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
