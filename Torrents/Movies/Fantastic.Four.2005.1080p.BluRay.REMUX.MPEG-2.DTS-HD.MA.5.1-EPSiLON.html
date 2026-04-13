@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Torrent Analysis: Fantastic Four (2005) REMUX</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        body {
+            background-color: #fafaf9;
+            color: #292524;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased min-h-screen">
+    <!-- Chosen Palette: Warm Neutrals (Stone/Amber/Teal) -->
+    <!-- Application Structure Plan: A dashboard structured around tabbed navigation to organize the sparse text data of a torrent detail page into a rich, exploratory experience. The "Overview" provides immediate context, "Technical Analysis" uses interactive charting to explain the heavy file size and bitrate constraints of 2006, and "Community" formats raw comments into an engaging feed. This transforms a static info-dump into a highly readable, analytical tool. -->
+    <!-- Visualization & Content Choices: Report Info: Bitrates & File Size -> Goal: Contextualize massive 2006 file -> Viz Method: Doughnut & Bar Charts (Chart.js) -> Interaction: Hover tooltips for exact metrics -> Justification: Helps modern users understand the 'weight' of early HD media -> Library: Chart.js Canvas (NO SVG/Mermaid). -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <header class="bg-stone-900 text-stone-100 py-8 border-b-4 border-amber-600 shadow-md">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                    <span class="inline-block px-3 py-1 bg-amber-600 text-stone-900 text-xs font-bold rounded-full mb-3 tracking-wider uppercase">Movies/High-Res</span>
+                    <h1 class="text-2xl md:text-4xl font-extrabold tracking-tight mb-2">Fantastic Four (2005)</h1>
+                    <p class="text-stone-400 text-sm md:text-base font-medium">1080p BluRay REMUX MPEG-2 DTS-HD MA 5.1-EPSiLON</p>
+                </div>
+                <div class="text-left md:text-right bg-stone-800 p-4 rounded-lg border border-stone-700">
+                    <p class="text-sm text-stone-400 mb-1">Added: <span class="text-stone-200 font-semibold">November 14, 2006</span></p>
+                    <p class="text-sm text-stone-400 mb-1">Uploader: <span class="text-amber-500 font-bold">EPSiLON-Team</span></p>
+                    <p class="text-sm text-stone-400">Total Size: <span class="text-stone-200 font-bold text-lg">21.4 GB</span></p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="bg-white border-b border-stone-200 sticky top-0 z-10 shadow-sm">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex space-x-1 md:space-x-8 overflow-x-auto">
+            <button class="tab-btn active px-4 py-4 text-sm font-bold text-amber-700 border-b-2 border-amber-600 whitespace-nowrap transition-colors" data-target="overview">Overview & Synopsis</button>
+            <button class="tab-btn px-4 py-4 text-sm font-medium text-stone-500 hover:text-stone-800 border-b-2 border-transparent hover:border-stone-300 whitespace-nowrap transition-colors" data-target="technical">Technical Analysis</button>
+            <button class="tab-btn px-4 py-4 text-sm font-medium text-stone-500 hover:text-stone-800 border-b-2 border-transparent hover:border-stone-300 whitespace-nowrap transition-colors" data-target="community">Community Reception</button>
+        </div>
+    </nav>
+
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <section id="overview" class="tab-content active">
+            <div class="bg-white rounded-xl shadow-sm border border-stone-200 p-6 md:p-8 mb-8">
+                <h2 class="text-2xl font-bold text-stone-800 mb-4 border-b border-stone-100 pb-2">Release Overview</h2>
+                <p class="text-stone-600 mb-6 leading-relaxed">This section provides the foundational context for the torrent release. It introduces the film's core narrative and outlines the basic metadata identifying this specific digital copy, helping users quickly assess if this is the content they are seeking.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="md:col-span-2 space-y-6">
+                        <div>
+                            <h3 class="text-lg font-bold text-stone-800 mb-2 uppercase tracking-wide text-sm flex items-center gap-2">
+                                <span class="text-amber-600 text-xl">&#128214;</span> Synopsis
+                            </h3>
+                            <p class="text-stone-700 leading-relaxed bg-stone-50 p-4 rounded-lg border border-stone-100">
+                                A group of astronauts gain superpowers after a cosmic radiation exposure and must use them to oppose the plans of their enemy, Victor Von Doom. This is the first high-definition home release of the Marvel classic, bringing the blockbuster visuals of the Silver Age to your home theater.
+                            </p>
+                        </div>
+                        <div class="flex gap-4">
+                            <button id="downloadBtn" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-6 rounded-lg transition-transform transform hover:-translate-y-0.5 shadow-md flex items-center gap-2">
+                                <span class="text-xl">&#11015;</span> Download Torrent
+                            </button>
+                            <button class="bg-stone-200 hover:bg-stone-300 text-stone-800 font-bold py-3 px-6 rounded-lg transition-colors flex items-center gap-2">
+                                <span class="text-xl">&#128193;</span> View Files
+                            </button>
+                        </div>
+                        <div id="toastMessage" class="hidden bg-teal-800 text-teal-50 px-4 py-3 rounded-lg border border-teal-600 text-sm font-medium"></div>
+                    </div>
+                    
+                    <div class="bg-stone-50 rounded-lg p-5 border border-stone-200">
+                        <h3 class="font-bold text-stone-800 mb-4 uppercase tracking-wide text-sm border-b border-stone-200 pb-2 flex items-center gap-2">
+                            <span class="text-amber-600 text-lg">&#128203;</span> Release Specs
+                        </h3>
+                        <ul class="space-y-3 text-sm">
+                            <li class="flex justify-between border-b border-stone-200 pb-1">
+                                <span class="text-stone-500 font-medium">Title</span>
+                                <span class="text-stone-800 font-bold text-right">Fantastic Four</span>
+                            </li>
+                            <li class="flex justify-between border-b border-stone-200 pb-1">
+                                <span class="text-stone-500 font-medium">Year</span>
+                                <span class="text-stone-800 font-bold text-right">2005</span>
+                            </li>
+                            <li class="flex justify-between border-b border-stone-200 pb-1">
+                                <span class="text-stone-500 font-medium">Group</span>
+                                <span class="text-stone-800 font-bold text-right">EPSiLON</span>
+                            </li>
+                            <li class="flex justify-between border-b border-stone-200 pb-1">
+                                <span class="text-stone-500 font-medium">Format</span>
+                                <span class="text-stone-800 font-bold text-right cursor-help border-b border-dashed border-stone-400" title="Untouched Video/Audio from Disc">REMUX</span>
+                            </li>
+                            <li class="flex justify-between border-b border-stone-200 pb-1">
+                                <span class="text-stone-500 font-medium">Resolution</span>
+                                <span class="text-stone-800 font-bold text-right">1920x1080</span>
+                            </li>
+                            <li class="flex justify-between border-b border-stone-200 pb-1">
+                                <span class="text-stone-500 font-medium">Ratio</span>
+                                <span class="text-stone-800 font-bold text-right">2.35:1</span>
+                            </li>
+                            <li class="flex justify-between">
+                                <span class="text-stone-500 font-medium">Runtime</span>
+                                <span class="text-stone-800 font-bold text-right">106 Minutes</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="technical" class="tab-content">
+            <div class="bg-white rounded-xl shadow-sm border border-stone-200 p-6 md:p-8 mb-8">
+                <h2 class="text-2xl font-bold text-stone-800 mb-4 border-b border-stone-100 pb-2">Technical Analysis</h2>
+                <p class="text-stone-600 mb-8 leading-relaxed">This section breaks down the technical details found in the NFO file. By visualizing the bitrate allocation and the file size relative to the era's hardware constraints, we gain insight into why this release was considered high-end and resource-intensive in 2006.</p>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    
+                    <div>
+                        <h3 class="text-lg font-bold text-stone-800 mb-4 flex items-center gap-2">
+                            <span class="text-amber-600 text-xl">&#127909;</span> Bitrate Allocation (Mbps)
+                        </h3>
+                        <p class="text-sm text-stone-500 mb-4">A visual representation of data flow. Notice the massive allocation to the MPEG-2 video stream to maintain untouched Blu-ray quality.</p>
+                        <div class="chart-container">
+                            <canvas id="bitrateChart"></canvas>
+                        </div>
+                        <div class="mt-6 bg-stone-50 p-4 rounded-lg border border-stone-200 text-sm font-mono text-stone-700 overflow-x-auto shadow-inner">
+                            <p class="text-xs text-stone-400 mb-2 uppercase tracking-widest font-sans font-bold">Raw NFO Output</p>
+                            VIDEO........: MPEG-2 @ 24.5 Mbps<br>
+                            AUDIO........: English DTS-HD MA 5.1 @ 3.8 Mbps<br>
+                            SUBS.........: English, French, Spanish<br>
+                            SOURCE.......: Blu-ray Disc<br>
+                            NOTES........: This is a REMUX. All menus and extras have been removed to maximize bitrate and compatibility for media players.
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-lg font-bold text-stone-800 mb-4 flex items-center gap-2">
+                            <span class="text-amber-600 text-xl">&#128190;</span> Storage Context (2006)
+                        </h3>
+                        <p class="text-sm text-stone-500 mb-4">In 2006, downloading a 21.4 GB file was a massive commitment. This chart compares the single movie to a standard 100GB hard drive of the era.</p>
+                        <div class="chart-container">
+                            <canvas id="storageChart"></canvas>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <h3 class="text-md font-bold text-stone-800 mb-3 border-b border-stone-200 pb-1">Media Highlights</h3>
+                            <ul class="space-y-4">
+                                <li class="bg-stone-50 p-3 rounded border-l-4 border-teal-600 flex items-start gap-3">
+                                    <span class="text-xl mt-1">&#128266;</span>
+                                    <div>
+                                        <p class="font-bold text-stone-800 text-sm">DTS-HD Master Audio 5.1</p>
+                                        <p class="text-xs text-stone-500 mt-1">Lossless surround sound encoding, capturing studio-master quality audio at 3.8 Mbps.</p>
+                                    </div>
+                                </li>
+                                <li class="bg-stone-50 p-3 rounded border-l-4 border-amber-600 flex items-start gap-3">
+                                    <span class="text-xl mt-1">&#128250;</span>
+                                    <div>
+                                        <p class="font-bold text-stone-800 text-sm">MPEG-2 Video Codec</p>
+                                        <p class="text-xs text-stone-500 mt-1">An older, less efficient codec compared to modern H.264/HEVC, explaining the necessity for a high 24.5 Mbps bitrate to achieve 1080p.</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="community" class="tab-content">
+            <div class="bg-white rounded-xl shadow-sm border border-stone-200 p-6 md:p-8 mb-8">
+                <div class="flex justify-between items-center mb-6 border-b border-stone-100 pb-4">
+                    <div>
+                        <h2 class="text-2xl font-bold text-stone-800">Community Reception</h2>
+                        <p class="text-stone-600 mt-1 text-sm">Reviewing user feedback allows us to gauge download quality and historical context regarding hardware limitations.</p>
+                    </div>
+                    <span class="bg-stone-100 text-stone-600 py-1 px-3 rounded-full text-sm font-bold border border-stone-300">8 Comments</span>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="flex gap-4 p-4 rounded-lg hover:bg-stone-50 transition-colors border border-transparent hover:border-stone-200">
+                        <div class="w-12 h-12 rounded-full bg-amber-200 text-amber-800 flex items-center justify-center font-bold text-lg flex-shrink-0">
+                            X
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex justify-between items-baseline mb-1">
+                                <h4 class="font-bold text-stone-800">xX_HD_Lover_Xx</h4>
+                                <span class="text-xs text-stone-400">Nov 14, 2006, 14:22</span>
+                            </div>
+                            <p class="text-stone-700 text-sm bg-white border border-stone-200 p-3 rounded-r-lg rounded-bl-lg shadow-sm">
+                                Finally a REMUX of this! My Blu-ray player has been waiting. EPSiLON never misses. Seed please!
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4 p-4 rounded-lg hover:bg-stone-50 transition-colors border border-transparent hover:border-stone-200">
+                        <div class="w-12 h-12 rounded-full bg-teal-200 text-teal-800 flex items-center justify-center font-bold text-lg flex-shrink-0">
+                            M
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex justify-between items-baseline mb-1">
+                                <h4 class="font-bold text-stone-800">MovieBuff88</h4>
+                                <span class="text-xs text-stone-400">Nov 14, 2006, 16:45</span>
+                            </div>
+                            <p class="text-stone-700 text-sm bg-white border border-stone-200 p-3 rounded-r-lg rounded-bl-lg shadow-sm">
+                                21GB?! My 100GB hard drive is crying but my eyes will be happy. Thanks for the upload!
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4 p-4 rounded-lg hover:bg-stone-50 transition-colors border border-transparent hover:border-stone-200">
+                        <div class="w-12 h-12 rounded-full bg-indigo-200 text-indigo-800 flex items-center justify-center font-bold text-lg flex-shrink-0">
+                            A
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex justify-between items-baseline mb-1">
+                                <h4 class="font-bold text-stone-800">AlphaBits</h4>
+                                <span class="text-xs text-stone-400">Nov 15, 2006, 02:10</span>
+                            </div>
+                            <p class="text-stone-700 text-sm bg-white border border-stone-200 p-3 rounded-r-lg rounded-bl-lg shadow-sm">
+                                Audio is incredible on my new surround setup. Crystal clear. 10/10 release.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 text-center">
+                    <button class="text-amber-700 font-bold text-sm hover:underline flex items-center justify-center w-full gap-2 py-3 bg-amber-50 rounded-lg border border-amber-200 hover:bg-amber-100 transition-colors">
+                        <span>&#10133;</span> Load remaining 5 comments
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-stone-900 text-stone-400 py-6 text-center text-sm border-t-4 border-amber-600">
+        <div class="max-w-5xl mx-auto px-4 flex justify-between items-center">
+            <p>&copy; 2006 Tracker Interface Mockup</p>
+            <div class="space-x-4">
+                <a href="#" class="hover:text-amber-500 transition-colors font-medium text-stone-300 flex items-center gap-1 inline-flex"><span>&#9888;</span> Report File</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            const tabs = document.querySelectorAll('.tab-btn');
+            const contents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    
+                    tabs.forEach(t => {
+                        t.classList.remove('active', 'text-amber-700', 'border-amber-600');
+                        t.classList.add('text-stone-500', 'border-transparent');
+                    });
+                    
+                    contents.forEach(c => c.classList.remove('active'));
+
+                    
+                    tab.classList.add('active', 'text-amber-700', 'border-amber-600');
+                    tab.classList.remove('text-stone-500', 'border-transparent');
+                    document.getElementById(tab.dataset.target).classList.add('active');
+                });
+            });
+
+            
+            const downloadBtn = document.getElementById('downloadBtn');
+            const toastMessage = document.getElementById('toastMessage');
+            downloadBtn.addEventListener('click', () => {
+                toastMessage.innerHTML = '&#10004; Connecting to tracker... Initiating download of Fantastic.Four.2005.torrent';
+                toastMessage.classList.remove('hidden');
+                setTimeout(() => {
+                    toastMessage.classList.add('hidden');
+                }, 3000);
+            });
+
+            
+            const ctxBitrate = document.getElementById('bitrateChart').getContext('2d');
+            new Chart(ctxBitrate, {
+                type: 'doughnut',
+                data: {
+                    labels: ['MPEG-2 Video (Mbps)', 'DTS-HD Audio (Mbps)', 'Overhead/Subs (Est. Mbps)'],
+                    datasets: [{
+                        data: [24.5, 3.8, 1.2],
+                        backgroundColor: [
+                            '#d97706', 
+                            '#0f766e', 
+                            '#a8a29e'  
+                        ],
+                        borderWidth: 0,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                color: '#44403c',
+                                font: { family: 'sans-serif', size: 12 }
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(28, 25, 23, 0.9)',
+                            titleFont: { size: 13 },
+                            bodyFont: { size: 14, weight: 'bold' },
+                            padding: 12,
+                            cornerRadius: 8,
+                            callbacks: {
+                                label: function(context) {
+                                    return ' ' + context.label.split(' (')[0] + ': ' + context.raw + ' Mbps';
+                                }
+                            }
+                        }
+                    },
+                    cutout: '65%'
+                }
+            });
+
+            
+            const ctxStorage = document.getElementById('storageChart').getContext('2d');
+            new Chart(ctxStorage, {
+                type: 'bar',
+                data: {
+                    labels: ['Fantastic Four File', 'Free Space', 'Total 2006 HDD'],
+                    datasets: [{
+                        label: 'Gigabytes (GB)',
+                        data: [21.4, 78.6, 100],
+                        backgroundColor: [
+                            '#d97706', 
+                            '#d6d3d1', 
+                            '#44403c'  
+                        ],
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: '#f5f5f4', drawBorder: false },
+                            ticks: { color: '#78716c' }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: '#78716c', maxRotation: 0, autoSkip: false }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: 'rgba(28, 25, 23, 0.9)',
+                            padding: 12,
+                            cornerRadius: 8,
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) { label += ': '; }
+                                    if (context.parsed.y !== null) { label += context.parsed.y + ' GB'; }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
