@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Wars III. rész – A Sith-ek bosszúja (DVD Archívum)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Chosen Palette: Warm Neutrals with Sith Red Accents (Background: stone-100, Text: stone-800, Accent: red-800) -->
+    <!-- Application Structure Plan: A modern, dashboard-style interactive layout to explore the DVD release. The structure separates the thematic elements (story, release data) from the physical product contents (discs, features) and the granular technical specifications. The interactive tab system prevents information overload when browsing disc contents, while the visual chart synthesizes the scale of the extra materials compared to the film itself, enhancing user understanding. -->
+    <!-- Visualization & Content Choices: 
+         1. Summary Grid -> Goal: Inform -> Method: Styled CSS Grid stats -> Interaction: Hover states -> Justification: Rapid scanning of key release data. Library: Tailwind CSS.
+         2. Disc Content Explorer -> Goal: Organize -> Method: Vanilla JS Tabs -> Interaction: Click to toggle disc contents -> Justification: Logically separates Disc 1 and Disc 2, mirroring the physical product experience. Library: Vanilla JS.
+         3. Content Distribution -> Goal: Compare -> Method: Chart.js Doughnut Chart -> Interaction: Tooltips -> Justification: Visually demonstrates the massive volume of bonus features relative to the main film. Library: Chart.js (Canvas, NO SVG).
+         4. Technical Specs -> Goal: Inform -> Method: Interactive Table -> Interaction: Row highlight on click/hover -> Justification: Cleanest way to present structured technical data. Library: Tailwind CSS + Vanilla JS. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <style>
+        body {
+            font-family: Helvetica, sans-serif;
+        }
+        
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-stone-100 text-stone-800 antialiased selection:bg-red-200 selection:text-red-900">
+
+    <nav class="sticky top-0 z-50 bg-stone-900 text-stone-100 py-4 shadow-md">
+        <div class="container mx-auto px-4 flex flex-col sm:flex-row justify-between items-center">
+            <div class="font-bold text-xl tracking-wider mb-2 sm:mb-0">
+                <span class="text-red-600">SW</span> ARCHÍVUM
+            </div>
+            <div class="flex space-x-6 text-sm font-semibold">
+                <a href="#attekintes" class="hover:text-red-500 transition-colors">Áttekintés</a>
+                <a href="#tartalom" class="hover:text-red-500 transition-colors">Lemezek Tartalma</a>
+                <a href="#technikai" class="hover:text-red-500 transition-colors">Technikai Adatok</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="bg-white border-b border-stone-200 py-16">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-12 items-center">
+            <div class="md:col-span-2 space-y-6">
+                <div class="inline-block px-3 py-1 bg-red-100 text-red-800 font-bold rounded-full text-sm tracking-wide">
+                    2005-ös Házimozi Megjelenés
+                </div>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-stone-900 leading-tight">
+                    Star Wars III. rész <br>
+                    <span class="text-red-800">A Sith-ek bosszúja</span>
+                </h1>
+                <p class="text-xl text-stone-600 leading-relaxed max-w-2xl">
+                    Három év telt el a klónháborúk kitörése óta. A klónok és a szeparatisták közötti harc az egész galaxisra kiterjedt. Anakin Skywalker válaszút elé kerül: hű marad a Jedi Rendhez, vagy enged a sötét oldal csábításának.
+                </p>
+            </div>
+            <div class="flex justify-center md:justify-end">
+                <img src="https://images.static-bluray.com/movies/dvdcovers/292327_front.jpg" alt="A Sith-ek bosszúja DVD borító" class="rounded-xl shadow-2xl max-w-xs w-full object-cover transform rotate-2 hover:rotate-0 transition-transform duration-500">
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-16 space-y-24">
+
+        <section id="attekintes" class="scroll-mt-24">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-stone-900 flex items-center gap-3">
+                    <span class="text-3xl">📊</span> Kiadási Áttekintés
+                </h2>
+                <p class="text-stone-600 mt-3 max-w-3xl leading-relaxed text-lg">
+                    Ez a szekció a DVD kiadás legfontosabb adatait foglalja össze. A panelek gyors betekintést nyújtanak a megjelenés alapvető paramétereibe, míg a gyűjtői érdekesség kontextusba helyezi a kiadványt a teljes trilógia viszonylatában.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-200 hover:shadow-md transition-shadow">
+                    <div class="text-sm text-stone-400 font-bold uppercase tracking-wider mb-1">Megjelenés</div>
+                    <div class="text-xl font-bold text-stone-800">2005. dec. 1.</div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-200 hover:shadow-md transition-shadow">
+                    <div class="text-sm text-stone-400 font-bold uppercase tracking-wider mb-1">Kiadó</div>
+                    <div class="text-xl font-bold text-stone-800">20th Century Fox</div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-200 hover:shadow-md transition-shadow">
+                    <div class="text-sm text-stone-400 font-bold uppercase tracking-wider mb-1">Forgalmazó</div>
+                    <div class="text-xl font-bold text-stone-800">InterCom</div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border-red-200 border-2 hover:shadow-md transition-shadow">
+                    <div class="text-sm text-red-600 font-bold uppercase tracking-wider mb-1">Formátum</div>
+                    <div class="text-xl font-bold text-red-900">2 Lemezes DVD</div>
+                </div>
+            </div>
+
+            <div class="bg-stone-800 text-stone-100 p-8 rounded-2xl shadow-lg flex flex-col md:flex-row gap-6 items-start">
+                <div class="text-5xl">💡</div>
+                <div>
+                    <h3 class="text-xl font-bold mb-2 text-stone-50">Gyűjtői Érdekesség</h3>
+                    <p class="text-stone-300 leading-relaxed">
+                        A magyarországi kiadás a nemzetközi premierekhez igazodva, az InterCom gondozásában jelent meg. A rajongók számára különleges élményt jelentett, hogy a DVD-menürendszer is követte az előző két rész (Baljós árnyak, A klónok támadása) stílusát, így a teljes trilógia egységes polcképet alkotott a gyűjteményekben.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="tartalom" class="scroll-mt-24">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-stone-900 flex items-center gap-3">
+                    <span class="text-3xl">💽</span> Interaktív Lemez-Felfedező
+                </h2>
+                <p class="text-stone-600 mt-3 max-w-3xl leading-relaxed text-lg">
+                    Fedezze fel a kétlemezes kiadvány gazdag tartalmát! A gombok segítségével válthat a főfilmet tartalmazó első lemez és a hatalmas mennyiségű extrát felvonultató második lemez tartalmi bontása között. A vizuális grafikon megmutatja, milyen arányban oszlanak meg a különböző típusú anyagok a teljes kiadásban.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                <div class="bg-white rounded-2xl shadow-sm border border-stone-200 overflow-hidden">
+                    <div class="flex border-b border-stone-200 bg-stone-50">
+                        <button id="btn-disc1" class="flex-1 py-4 px-6 font-bold text-center border-b-4 border-red-800 text-red-800 transition-colors bg-white">
+                            📀 1. Lemez: A Film
+                        </button>
+                        <button id="btn-disc2" class="flex-1 py-4 px-6 font-bold text-center border-b-4 border-transparent text-stone-500 hover:text-stone-800 transition-colors">
+                            🎁 2. Lemez: Extrák
+                        </button>
+                    </div>
+
+                    <div id="content-disc1" class="p-6 md:p-8 space-y-4">
+                        <div class="flex items-start gap-4 p-4 rounded-lg hover:bg-stone-50 transition-colors border border-transparent hover:border-stone-100">
+                            <div class="text-3xl">🎥</div>
+                            <div>
+                                <h4 class="font-bold text-stone-900 text-lg">A teljes mozifilm</h4>
+                                <p class="text-stone-600">Digitálisan felújított képpel és hanggal.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4 p-4 rounded-lg hover:bg-stone-50 transition-colors border border-transparent hover:border-stone-100">
+                            <div class="text-3xl">🎙️</div>
+                            <div>
+                                <h4 class="font-bold text-stone-900 text-lg">Audiokommentár</h4>
+                                <p class="text-stone-600">George Lucas, Rick McCallum, Rob Coleman, John Knoll és Roger Guyett közreműködésével.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="content-disc2" class="p-6 md:p-8 space-y-3 hidden h-96 overflow-y-auto">
+                        <div class="flex items-start gap-3 p-3 rounded-lg hover:bg-stone-50">
+                            <div class="text-2xl mt-1">⏱️</div>
+                            <div><strong class="text-stone-800">„Within a Minute”:</strong> <span class="text-stone-600">Egy nagyszabású dokumentumfilm a Mustafar-párbaj 1 percének elkészítéséről.</span></div>
+                        </div>
+                        <div class="flex items-start gap-3 p-3 rounded-lg hover:bg-stone-50">
+                            <div class="text-2xl mt-1">✂️</div>
+                            <div><strong class="text-stone-800">Kihagyott jelenetek:</strong> <span class="text-stone-600">Hat fontos jelenet, George Lucas és Rick McCallum bevezetőivel.</span></div>
+                        </div>
+                        <div class="flex items-start gap-3 p-3 rounded-lg hover:bg-stone-50">
+                            <div class="text-2xl mt-1">👤</div>
+                            <div><strong class="text-stone-800">„The Chosen One”:</strong> <span class="text-stone-600">Dokumentumfilm Anakin Skywalker Darth Vaderré válásáról.</span></div>
+                        </div>
+                        <div class="flex items-start gap-3 p-3 rounded-lg hover:bg-stone-50">
+                            <div class="text-2xl mt-1">⚔️</div>
+                            <div><strong class="text-stone-800">„It's All for Real”:</strong> <span class="text-stone-600">Betekintés a film hihetetlen kaszkadőrmutatványaiba és vívókoreográfiájába.</span></div>
+                        </div>
+                        <div class="flex items-start gap-3 p-3 rounded-lg hover:bg-stone-50">
+                            <div class="text-2xl mt-1">🌐</div>
+                            <div><strong class="text-stone-800">Web-dokumentumfilmek:</strong> <span class="text-stone-600">A hivatalos Star Wars weboldalon megjelent rövidfilmek.</span></div>
+                        </div>
+                        <div class="flex items-start gap-3 p-3 rounded-lg hover:bg-stone-50">
+                            <div class="text-2xl mt-1">🎵</div>
+                            <div><strong class="text-stone-800">Videoklip:</strong> <span class="text-stone-600">„A Hero Falls” – John Williams zenéjére.</span></div>
+                        </div>
+                        <div class="flex items-start gap-3 p-3 rounded-lg hover:bg-stone-50">
+                            <div class="text-2xl mt-1">🖼️</div>
+                            <div><strong class="text-stone-800">Galériák:</strong> <span class="text-stone-600">Produkciós fotók és plakáttervek gyűjteménye.</span></div>
+                        </div>
+                        <div class="flex items-start gap-3 p-3 rounded-lg hover:bg-stone-50">
+                            <div class="text-2xl mt-1">📺</div>
+                            <div><strong class="text-stone-800">Promóciók:</strong> <span class="text-stone-600">Előzetesek és tévéreklámok.</span></div>
+                        </div>
+                        <div class="flex items-start gap-3 p-3 rounded-lg hover:bg-stone-50">
+                            <div class="text-2xl mt-1">🎮</div>
+                            <div><strong class="text-stone-800">Demó és extra tartalom:</strong> <span class="text-stone-600">Battlefront II demó és Xbox-exkluzív tartalmak.</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-sm border border-stone-200 p-6 md:p-8 flex flex-col justify-center h-full">
+                    <h3 class="text-xl font-bold text-center text-stone-800 mb-6">A Kiadvány Tartalmi Megoszlása</h3>
+                    <div class="chart-container">
+                        <canvas id="contentDistributionChart"></canvas>
+                    </div>
+                    <p class="text-center text-sm text-stone-400 mt-4 font-semibold">Becsült arányok a teljes műsoridő és tartalom alapján</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="technikai" class="scroll-mt-24">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-stone-900 flex items-center gap-3">
+                    <span class="text-3xl">⚙️</span> Technikai és Gyűjtői Adatok
+                </h2>
+                <p class="text-stone-600 mt-3 max-w-3xl leading-relaxed text-lg">
+                    Tekintse át a lemezek technikai paramétereit az alábbi interaktív táblázatban. Ezek az adatok határozzák meg a kép- és hangminőséget, valamint a hozzáférhetőségi funkciókat a magyarországi kiadás esetén.
+                </p>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-sm border border-stone-200 overflow-hidden">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-stone-800 text-stone-100">
+                            <th class="p-5 font-bold uppercase tracking-wider text-sm w-1/3">Jellemző</th>
+                            <th class="p-5 font-bold uppercase tracking-wider text-sm">Részletek</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tech-specs-body">
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-stone-900 text-stone-400 py-12 text-center">
+        <div class="container mx-auto px-4">
+            <p class="text-sm font-semibold tracking-wide">Épült a <i>Star Wars: A Sith-ek bosszúja</i> 2005-ös InterCom DVD adatlapja alapján.</p>
+        </div>
+    </footer>
+
+    <script>
+        const btnDisc1 = document.getElementById('btn-disc1');
+        const btnDisc2 = document.getElementById('btn-disc2');
+        const contentDisc1 = document.getElementById('content-disc1');
+        const contentDisc2 = document.getElementById('content-disc2');
+
+        function switchTab(activeBtn, inactiveBtn, showContent, hideContent) {
+            activeBtn.classList.add('border-red-800', 'text-red-800', 'bg-white');
+            activeBtn.classList.remove('border-transparent', 'text-stone-500');
+            
+            inactiveBtn.classList.remove('border-red-800', 'text-red-800', 'bg-white');
+            inactiveBtn.classList.add('border-transparent', 'text-stone-500');
+            
+            showContent.classList.remove('hidden');
+            hideContent.classList.add('hidden');
+        }
+
+        btnDisc1.addEventListener('click', () => switchTab(btnDisc1, btnDisc2, contentDisc1, contentDisc2));
+        btnDisc2.addEventListener('click', () => switchTab(btnDisc2, btnDisc1, contentDisc2, contentDisc1));
+
+        const techData = [
+            { id: 'kep', icon: '📺', label: 'Képarány', value: '2.35:1 (16:9 anamorf)' },
+            { id: 'hang', icon: '🔊', label: 'Hangok', value: 'Magyar (DD 5.1 EX), Angol (DD 5.1 EX), Orosz (DD 5.1 EX)' },
+            { id: 'felirat', icon: '💬', label: 'Feliratok', value: 'magyar, angol, orosz, észt, lett, litván, román' },
+            { id: 'ido', icon: '⏳', label: 'Játékidő', value: 'kb. 134 perc' }
+        ];
+
+        const tbody = document.getElementById('tech-specs-body');
+        
+        techData.forEach((item, index) => {
+            const tr = document.createElement('tr');
+            tr.className = `border-b border-stone-100 transition duration-300 ease-in-out hover:bg-red-50 cursor-pointer ${index % 2 === 0 ? 'bg-white' : 'bg-stone-50'}`;
+            
+            tr.innerHTML = `
+                <td class="p-5 font-bold text-stone-700 flex items-center gap-3">
+                    <span class="text-xl">${item.icon}</span> ${item.label}
+                </td>
+                <td class="p-5 text-stone-600 font-medium">${item.value}</td>
+            `;
+            
+            tr.addEventListener('click', () => {
+                const rows = tbody.querySelectorAll('tr');
+                rows.forEach(r => r.classList.remove('bg-red-100'));
+                tr.classList.add('bg-red-100');
+            });
+            
+            tbody.appendChild(tr);
+        });
+
+        const ctx = document.getElementById('contentDistributionChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Főfilm (kb. 134p)', 'Hosszú Dokumentumfilmek', 'Audiokommentár', 'Rövid extrák / Képek / Promók'],
+                datasets: [{
+                    data: [45, 30, 15, 10], 
+                    backgroundColor: [
+                        '#991b1b', 
+                        '#292524', 
+                        '#57534e', 
+                        '#d6d3d1'  
+                    ],
+                    borderColor: '#ffffff',
+                    borderWidth: 3,
+                    hoverOffset: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '70%',
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 20,
+                            font: {
+                                family: "'Inter', sans-serif",
+                                size: 13,
+                                weight: '600'
+                            },
+                            color: '#44403c'
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(28, 25, 23, 0.9)',
+                        titleFont: { family: "'Inter', sans-serif", size: 14 },
+                        bodyFont: { family: "'Inter', sans-serif", size: 14 },
+                        padding: 12,
+                        cornerRadius: 8,
+                        callbacks: {
+                            label: function(context) {
+                                return ` ${context.label}: Becsült arány ${context.parsed}%`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
