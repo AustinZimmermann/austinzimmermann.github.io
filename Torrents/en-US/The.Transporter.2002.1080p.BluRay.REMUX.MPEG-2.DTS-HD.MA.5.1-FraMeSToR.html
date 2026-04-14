@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Transporter (2002) - REMUX Dossier</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 250px;
+            max-height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 300px;
+            }
+        }
+        body {
+            background-color: #fafaf9;
+            color: #1c1917;
+        }
+        .rule-card {
+            transition: all 0.3s ease;
+        }
+        .rule-card.active {
+            background-color: #f59e0b;
+            color: #fff;
+            transform: scale(1.02);
+        }
+        .nav-item.active {
+            background-color: #e7e5e4;
+            border-left: 4px solid #d97706;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="antialiased flex flex-col md:flex-row min-h-screen">
+
+<!-- Chosen Palette: Warm Neutrals (Stone) with Amber/Muted Orange accents -->
+<!-- Application Structure Plan: A dashboard-style layout utilizing a persistent sidebar for navigation on desktop (top nav on mobile). The content is divided into logical, interactive views: "Dossier" (Synopsis & Rules), "Technical Payload" (Video/Audio Specs & Visualizations), and "Manifest" (Cast, Crew, & File Info). This structure allows users to seamlessly switch between narrative context and hard technical data, catering to both cinephiles and data hoarders without overwhelming them with a single long-scrolling page. -->
+<!-- Visualization & Content Choices: Report Info: Audio Tracks -> Goal: Compare -> Viz/Presentation Method: Doughnut Chart -> Interaction: Hover tooltips -> Justification: Visually weights the premium lossless track against the standard lossy tracks, reinforcing the value of the REMUX format. -> Library/Method: Chart.js (Canvas). Report Info: Frank's Rules -> Goal: Inform & Engage -> Viz/Presentation Method: Interactive clickable list -> Interaction: Click to highlight -> Justification: Transforms a static list into an engaging discovery element fitting the movie's theme. -> Library/Method: Vanilla JS & CSS. -->
+<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <nav class="w-full md:w-64 bg-stone-100 border-b md:border-b-0 md:border-r border-stone-200 flex flex-col shadow-sm z-10 sticky top-0 md:h-screen">
+        <div class="p-6 text-center md:text-left border-b border-stone-200">
+            <h1 class="text-2xl font-bold tracking-tighter text-stone-900 uppercase">The Transporter</h1>
+            <p class="text-sm text-stone-500 font-medium mt-1">2002 • REMUX Edition</p>
+        </div>
+        <div class="flex flex-row md:flex-col overflow-x-auto md:overflow-visible py-2 md:py-4">
+            <button onclick="navigate('dossier')" id="nav-dossier" class="nav-item active flex-shrink-0 px-6 py-3 text-left hover:bg-stone-200 transition-colors text-stone-700 flex items-center gap-3">
+                <span class="text-xl">&#128194;</span> Dossier Overview
+            </button>
+            <button onclick="navigate('specs')" id="nav-specs" class="nav-item flex-shrink-0 px-6 py-3 text-left hover:bg-stone-200 transition-colors text-stone-700 flex items-center gap-3">
+                <span class="text-xl">&#9881;</span> Technical Payload
+            </button>
+            <button onclick="navigate('manifest')" id="nav-manifest" class="nav-item flex-shrink-0 px-6 py-3 text-left hover:bg-stone-200 transition-colors text-stone-700 flex items-center gap-3">
+                <span class="text-xl">&#128203;</span> Cast & Manifest
+            </button>
+        </div>
+        <div class="mt-auto hidden md:block p-6">
+            <div class="bg-stone-200 rounded p-4 text-xs text-stone-600">
+                <strong>Release Group:</strong><br>
+                FraMeSToR<br><br>
+                <strong>Estimated Size:</strong><br>
+                ~18.4 GB
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-1 p-6 md:p-12 overflow-y-auto w-full">
+
+        <section id="dossier" class="max-w-4xl mx-auto block">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-stone-800 mb-2">Target Profile & Synopsis</h2>
+                <p class="text-stone-600">This section details the primary narrative context of the payload. Review the background and operational parameters.</p>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-8 items-start">
+                <div class="w-full lg:w-1/3 flex-shrink-0">
+                    <img src="https://images.static-bluray.com/movies/covers/155_front.jpg" alt="The Transporter Poster" class="w-full rounded-lg shadow-lg border border-stone-200" onerror="this.style.display='none'">
+                </div>
+                
+                <div class="w-full lg:w-2/3">
+                    <div class="bg-white p-6 rounded-lg shadow-sm border border-stone-200 mb-8">
+                        <p class="text-stone-700 leading-relaxed text-lg">
+                            Frank Martin (Jason Statham) is a “transporter” who provides a no-questions-asked delivery service for anything, anywhere. When Frank notices his latest “package” is moving, he violates his own rules and finds a beautiful woman named Lai (Shu Qi) tied up inside. This choice pulls him into a deadly conspiracy involving human trafficking and high-octane chases across the French Riviera.
+                        </p>
+                    </div>
+
+                    <h3 class="text-xl font-bold text-stone-800 mb-4 flex items-center gap-2">
+                        <span>&#9888;</span> Operational Rules (Interactive)
+                    </h3>
+                    <p class="text-sm text-stone-500 mb-4">Click a rule to acknowledge its parameter.</p>
+                    <div class="space-y-3">
+                        <button onclick="toggleRule(1)" id="rule1" class="rule-card w-full text-left bg-stone-100 p-4 rounded border border-stone-200 cursor-pointer">
+                            <div class="font-bold text-lg">Rule #1</div>
+                            <div class="text-stone-600 rule-text mt-1">Never change the deal.</div>
+                        </button>
+                        <button onclick="toggleRule(2)" id="rule2" class="rule-card w-full text-left bg-stone-100 p-4 rounded border border-stone-200 cursor-pointer">
+                            <div class="font-bold text-lg">Rule #2</div>
+                            <div class="text-stone-600 rule-text mt-1">No names.</div>
+                        </button>
+                        <button onclick="toggleRule(3)" id="rule3" class="rule-card w-full text-left bg-stone-100 p-4 rounded border border-stone-200 cursor-pointer">
+                            <div class="font-bold text-lg">Rule #3</div>
+                            <div class="text-stone-600 rule-text mt-1">Never look in the package. <span class="text-xs italic ml-2 opacity-80">(Violation detected)</span></div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="specs" class="max-w-5xl mx-auto hidden">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-stone-800 mb-2">Technical Payload Data</h2>
+                <p class="text-stone-600">Deep dive into the REMUX specifications. This ensures uncompromised quality mirroring the original retail Blu-ray disc.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                
+                <div class="bg-white rounded-lg shadow-sm border border-stone-200 overflow-hidden">
+                    <div class="bg-stone-100 p-4 border-b border-stone-200 font-bold text-stone-800 flex items-center gap-2">
+                        <span>&#128250;</span> Video Stream Properties
+                    </div>
+                    <div class="p-6">
+                        <div class="grid grid-cols-2 gap-y-4 gap-x-2 text-sm">
+                            <div class="text-stone-500 uppercase tracking-wider text-xs">Format</div>
+                            <div class="font-medium text-stone-800">MPEG-2 Video</div>
+                            
+                            <div class="text-stone-500 uppercase tracking-wider text-xs">Profile</div>
+                            <div class="font-medium text-stone-800">Main@High</div>
+                            
+                            <div class="text-stone-500 uppercase tracking-wider text-xs">Resolution</div>
+                            <div class="font-medium text-stone-800 bg-stone-100 px-2 py-1 rounded inline-block w-max">1920 x 1080</div>
+                            
+                            <div class="text-stone-500 uppercase tracking-wider text-xs">Aspect Ratio</div>
+                            <div class="font-medium text-stone-800">2.35:1</div>
+                            
+                            <div class="text-stone-500 uppercase tracking-wider text-xs">Frame Rate</div>
+                            <div class="font-medium text-stone-800">23.976 FPS</div>
+                            
+                            <div class="text-stone-500 uppercase tracking-wider text-xs">Color Space</div>
+                            <div class="font-medium text-stone-800">YUV / 4:2:0</div>
+                            
+                            <div class="text-stone-500 uppercase tracking-wider text-xs">Bit Depth</div>
+                            <div class="font-medium text-stone-800">8 bits</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-sm border border-stone-200 overflow-hidden flex flex-col">
+                    <div class="bg-stone-100 p-4 border-b border-stone-200 font-bold text-stone-800 flex items-center gap-2">
+                        <span>&#128266;</span> Audio Configuration Profile
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <p class="text-sm text-stone-500 mb-4 text-center">Visual representation of embedded audio tracks.</p>
+                        <div class="chart-container flex-1">
+                            <canvas id="audioChart"></canvas>
+                        </div>
+                        <div class="mt-6 space-y-2">
+                            <div class="flex justify-between items-center text-sm p-2 bg-stone-50 rounded border-l-4 border-amber-600">
+                                <span class="font-bold">English (Main)</span>
+                                <span>DTS-HD MA 5.1 (24-bit/48kHz)</span>
+                            </div>
+                            <div class="flex justify-between items-center text-sm p-2 bg-stone-50 rounded border-l-4 border-stone-400">
+                                <span class="font-bold">French</span>
+                                <span>Dolby Digital 5.1</span>
+                            </div>
+                            <div class="flex justify-between items-center text-sm p-2 bg-stone-50 rounded border-l-4 border-stone-300">
+                                <span class="font-bold">Spanish</span>
+                                <span>Dolby Digital 5.1</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8 bg-white rounded-lg shadow-sm border border-stone-200 p-6 flex items-center justify-between">
+                <div>
+                    <h4 class="font-bold text-stone-800">Subtitles Included</h4>
+                    <p class="text-stone-600 text-sm">English SDH, Spanish</p>
+                </div>
+                <div class="text-4xl text-stone-300">&#128172;</div>
+            </div>
+        </section>
+
+        <section id="manifest" class="max-w-4xl mx-auto hidden">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-stone-800 mb-2">Personnel & Manifest</h2>
+                <p class="text-stone-600">Identified targets, crew, and core file data required for retrieval.</p>
+            </div>
+
+            <div class="bg-stone-900 rounded-lg p-6 mb-8 text-stone-300 shadow-lg">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-xs uppercase tracking-widest text-stone-500 font-bold">Target File String</span>
+                    <button onclick="copyFilename()" id="copyBtn" class="text-xs bg-stone-700 hover:bg-amber-600 text-white px-3 py-1 rounded transition-colors flex items-center gap-1">
+                        <span>&#128203;</span> Copy String
+                    </button>
+                </div>
+                <code id="filenameText" class="text-sm md:text-base break-all text-amber-500 select-all font-mono">The.Transporter.2002.1080p.BluRay.REMUX.MPEG-2.DTS-HD.MA.5.1-FraMeSToR.mkv</code>
+                
+                <div class="mt-4 pt-4 border-t border-stone-700 text-sm leading-relaxed">
+                    <strong>Release Notes:</strong> This is a REMUX by FraMeSToR. It contains original video and audio streams exactly as they appear on retail Blu-ray disc without any lossy re-encoding. Ensures highest possible quality for home theater setups. Container: MKV.
+                </div>
+            </div>
+
+            <h3 class="text-xl font-bold text-stone-800 mb-4 border-b border-stone-200 pb-2">Personnel Database</h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <h4 class="font-bold text-stone-500 uppercase text-xs tracking-wider mb-3">Direction & Strategy</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-center gap-3 bg-white p-3 rounded shadow-sm border border-stone-100">
+                            <div class="w-10 h-10 rounded-full bg-stone-200 flex items-center justify-center text-stone-500">&#127909;</div>
+                            <div>
+                                <div class="font-bold text-stone-800">Louis Leterrier, Corey Yuen</div>
+                                <div class="text-xs text-stone-500">Directors</div>
+                            </div>
+                        </li>
+                        <li class="flex items-center gap-3 bg-white p-3 rounded shadow-sm border border-stone-100">
+                            <div class="w-10 h-10 rounded-full bg-stone-200 flex items-center justify-center text-stone-500">&#9997;</div>
+                            <div>
+                                <div class="font-bold text-stone-800">Luc Besson, Robert Mark Kamen</div>
+                                <div class="text-xs text-stone-500">Writers</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-stone-500 uppercase text-xs tracking-wider mb-3">Field Operatives (Cast)</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-center gap-3 bg-white p-3 rounded shadow-sm border border-stone-100">
+                            <div class="w-10 h-10 rounded-full bg-stone-800 flex items-center justify-center text-amber-500 font-bold">JS</div>
+                            <div>
+                                <div class="font-bold text-stone-800">Jason Statham</div>
+                                <div class="text-xs text-stone-500">Frank Martin (The Transporter)</div>
+                            </div>
+                        </li>
+                        <li class="flex items-center gap-3 bg-white p-3 rounded shadow-sm border border-stone-100">
+                            <div class="w-10 h-10 rounded-full bg-stone-200 flex items-center justify-center text-stone-600 font-bold">SQ</div>
+                            <div>
+                                <div class="font-bold text-stone-800">Shu Qi</div>
+                                <div class="text-xs text-stone-500">Lai</div>
+                            </div>
+                        </li>
+                        <li class="flex items-center gap-3 bg-white p-3 rounded shadow-sm border border-stone-100">
+                            <div class="w-10 h-10 rounded-full bg-stone-200 flex items-center justify-center text-stone-600 font-bold">FB</div>
+                            <div>
+                                <div class="font-bold text-stone-800">François Berléand</div>
+                                <div class="text-xs text-stone-500">Inspector Tarconi</div>
+                            </div>
+                        </li>
+                        <li class="flex items-center gap-3 bg-white p-3 rounded shadow-sm border border-stone-100">
+                            <div class="w-10 h-10 rounded-full bg-stone-200 flex items-center justify-center text-stone-600 font-bold">MS</div>
+                            <div>
+                                <div class="font-bold text-stone-800">Matt Schulze</div>
+                                <div class="text-xs text-stone-500">Wall Street</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-12 bg-stone-200 p-6 rounded-lg text-center border border-stone-300 border-dashed">
+                <div class="text-stone-400 text-4xl mb-2">&#128247;</div>
+                <h4 class="font-bold text-stone-600">Visual Evidence (Screenshots)</h4>
+                <p class="text-sm text-stone-500 mt-1">Files [Frank_driving_BMW.png], [Garage_fight.png], [French_Coast.png], [Package_closeup.png] are awaiting manual upload to tracker image host.</p>
+            </div>
+
+        </section>
+
+    </main>
+
+    <script>
+        const views = ['dossier', 'specs', 'manifest'];
+        
+        function navigate(targetId) {
+            views.forEach(id => {
+                document.getElementById(id).classList.add('hidden');
+                document.getElementById(id).classList.remove('block');
+                document.getElementById('nav-' + id).classList.remove('active', 'border-l-4', 'border-amber-600', 'bg-stone-200', 'font-semibold');
+                document.getElementById('nav-' + id).classList.add('text-stone-700');
+            });
+            
+            document.getElementById(targetId).classList.remove('hidden');
+            document.getElementById(targetId).classList.add('block');
+            
+            const activeNav = document.getElementById('nav-' + targetId);
+            activeNav.classList.add('active', 'border-l-4', 'border-amber-600', 'bg-stone-200', 'font-semibold');
+            activeNav.classList.remove('text-stone-700');
+            
+            if(targetId === 'specs' && !window.chartRendered) {
+                renderChart();
+                window.chartRendered = true;
+            }
+        }
+
+        function toggleRule(num) {
+            const el = document.getElementById('rule' + num);
+            const textEl = el.querySelector('.rule-text');
+            
+            if(el.classList.contains('active')) {
+                el.classList.remove('active', 'bg-amber-500', 'text-white', 'scale-105');
+                el.classList.add('bg-stone-100', 'text-stone-800');
+                textEl.classList.remove('text-stone-100');
+                textEl.classList.add('text-stone-600');
+            } else {
+                el.classList.add('active', 'bg-amber-500', 'text-white', 'scale-105');
+                el.classList.remove('bg-stone-100', 'text-stone-800');
+                textEl.classList.remove('text-stone-600');
+                textEl.classList.add('text-stone-100');
+            }
+        }
+
+        function copyFilename() {
+            const text = document.getElementById('filenameText').innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = document.getElementById('copyBtn');
+                const originalHtml = btn.innerHTML;
+                btn.innerHTML = '<span>&#10003;</span> Copied';
+                btn.classList.add('bg-green-600');
+                btn.classList.remove('bg-stone-700');
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalHtml;
+                    btn.classList.remove('bg-green-600');
+                    btn.classList.add('bg-stone-700');
+                }, 2000);
+            }).catch(err => {
+                const textArea = document.createElement("textarea");
+                textArea.value = text;
+                document.body.appendChild(textArea);
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    const btn = document.getElementById('copyBtn');
+                    btn.innerHTML = '<span>&#10003;</span> Copied';
+                    setTimeout(() => { btn.innerHTML = '<span>&#128203;</span> Copy String'; }, 2000);
+                } catch (err) {}
+                document.body.removeChild(textArea);
+            });
+        }
+
+        function renderChart() {
+            const ctx = document.getElementById('audioChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['English (DTS-HD MA)', 'French (Dolby Digital)', 'Spanish (Dolby Digital)'],
+                    datasets: [{
+                        data: [70, 15, 15],
+                        backgroundColor: [
+                            '#d97706', 
+                            '#9a3412', 
+                            '#a8a29e'  
+                        ],
+                        borderWidth: 2,
+                        borderColor: '#ffffff',
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '65%',
+                    plugins: {
+                        legend: {
+                            display: false 
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.dataIndex === 0) {
+                                        label += 'Primary Lossless Track';
+                                    } else {
+                                        label += 'Standard Lossy Track';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        window.chartRendered = false;
+        navigate('dossier');
+    </script>
+</body>
+</html>
