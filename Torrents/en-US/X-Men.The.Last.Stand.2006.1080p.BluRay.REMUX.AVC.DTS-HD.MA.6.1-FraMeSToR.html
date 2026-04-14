@@ -3,218 +3,430 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>X-Men: The Last Stand (2006) [1080p] [REMUX] - TorrentDetails</title>
+    <title>X-Men: The Last Stand (2006) - REMUX Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Chosen Palette: Warm Neutral Cinematic (Stone, Slate, Amber) -->
+    <!-- Application Structure Plan: The application uses a tabbed dashboard structure (Overview, Technical Specs, Raw Data). This separates the high-level narrative (movie info, cast) from technical consumption (bitrates, codecs) and deep-dive verification (MediaInfo, release notes). This logical separation prevents cognitive overload, allowing users to navigate directly to the information relevant to their needs (e.g., a casual user checking the synopsis vs. a power user verifying bitrates). -->
+    <!-- Visualization & Content Choices: Report Info: Audio/Subtitles & Bitrate -> Goal: Compare & Inform -> Viz/Presentation Method: Chart.js Bar Chart & Interactive Cards -> Interaction: Tab switching, hover states, click-to-copy -> Justification: Charts quickly convey technical depth (like audio channels), while tabbed navigation prevents scrolling fatigue. Click-to-copy provides direct utility for folder names and raw data. -> Library/Method: Chart.js (Canvas), Vanilla JS, Tailwind CSS. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
-        body {
-            background-color: #0f172a;
-            color: #e2e8f0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
         }
-        .torrent-card {
-            background-color: #1e293b;
-            border: 1px solid #334155;
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 300px;
+            }
         }
-        .accent-text {
-            color: #38bdf8;
+        .tab-btn.active {
+            border-bottom: 4px solid #d97706;
+            color: #d97706;
+            font-weight: 600;
         }
-        .btn-download {
-            background: linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%);
-            transition: transform 0.1s ease;
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
         }
-        .btn-download:active {
-            transform: scale(0.98);
+        .tab-content.active {
+            display: block;
         }
-        .tag {
-            background-color: #334155;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            font-weight: bold;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #1e293b;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            z-index: 50;
+        }
+        .toast.show {
+            opacity: 1;
         }
     </style>
 </head>
-<body class="min-h-screen pb-12">
+<body class="bg-stone-50 text-slate-800 font-sans antialiased min-h-screen">
 
-    <!-- Navigation -->
-    <nav class="bg-slate-900 border-b border-slate-800 p-4 sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto flex justify-between items-center">
-            <div class="flex items-center space-x-2">
-                <i class="fa-solid fa-magnet text-blue-500 text-2xl"></i>
-                <span class="text-xl font-bold tracking-tight">Torrent<span class="text-blue-500">Details</span></span>
+    <div class="max-w-6xl mx-auto p-4 md:p-8">
+        
+        <header class="bg-white rounded-2xl shadow-sm border border-stone-200 p-6 md:p-8 mb-8 flex flex-col md:flex-row gap-8 items-center md:items-start">
+            <div class="flex-shrink-0">
+                <img src="https://image.tmdb.org/t/p/original/rjTCsb3Zn2QelefR48I9ueRnOxa.jpg" alt="X-Men: The Last Stand Poster" class="w-48 md:w-64 rounded-xl shadow-lg border border-stone-200 object-cover">
             </div>
-            <div class="hidden md:flex space-x-6 text-sm font-medium">
-                <a href="#" class="hover:text-blue-400">Browse</a>
-                <a href="#" class="hover:text-blue-400">Top Torrents</a>
-                <a href="#" class="hover:text-blue-400">Upload</a>
-                <a href="#" class="hover:text-blue-400">Community</a>
-            </div>
-            <div class="flex items-center space-x-4">
-                <i class="fa-solid fa-magnifying-glass cursor-pointer"></i>
-                <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-xs font-bold">JD</div>
-            </div>
-        </div>
-    </nav>
-
-    <main class="max-w-6xl mx-auto mt-8 px-4">
-        <!-- Main Title Section -->
-        <div class="mb-6">
-            <h1 class="text-2xl md:text-3xl font-bold mb-2">X-Men.The.Last.Stand.2006.1080p.BluRay.REMUX.AVC.DTS-HD.MA.6.1-FraMeSToR</h1>
-            <div class="flex flex-wrap gap-2 items-center text-sm text-slate-400">
-                <span class="tag">Movie</span>
-                <span class="tag">1080p</span>
-                <span class="tag">REMUX</span>
-                <span class="tag">FraMeSToR</span>
-                <span class="ml-4"><i class="fa-regular fa-clock mr-1"></i> Added: April 14, 2026</span>
-                <span><i class="fa-regular fa-user mr-1"></i> By: <span class="text-blue-400 cursor-pointer">EliteUploader</span></span>
-            </div>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <!-- Left Column: Poster & Quick Info -->
-            <div class="lg:col-span-1 space-y-6">
-                <div class="rounded-xl overflow-hidden shadow-2xl border border-slate-700">
-                    <img src="https://image.tmdb.org/t/p/original/rjTCsb3Zn2QelefR48I9ueRnOxa.jpg" alt="X-Men: The Last Stand Poster" class="w-full h-auto" onerror="this.src='https://via.placeholder.com/500x750?text=X-Men+The+Last+Stand'">
-                </div>
-
-                <div class="torrent-card rounded-xl p-6 space-y-4">
-                    <button class="btn-download w-full py-3 rounded-lg font-bold flex items-center justify-center space-x-2 text-white">
-                        <i class="fa-solid fa-magnet text-xl"></i>
-                        <span>Download Magnet</span>
-                    </button>
-                    <button class="w-full py-3 bg-slate-700 hover:bg-slate-600 rounded-lg font-bold flex items-center justify-center space-x-2 transition-colors">
-                        <i class="fa-solid fa-download"></i>
-                        <span>Download .torrent</span>
-                    </button>
-
-                    <div class="pt-4 border-t border-slate-700 grid grid-cols-2 gap-4 text-center">
-                        <div>
-                            <p class="text-xs text-slate-400 uppercase tracking-wider">Seeders</p>
-                            <p class="text-xl font-bold text-green-500">248</p>
-                        </div>
-                        <div>
-                            <p class="text-xs text-slate-400 uppercase tracking-wider">Leechers</p>
-                            <p class="text-xl font-bold text-slate-300">12</p>
-                        </div>
+            <div class="flex-grow text-center md:text-left">
+                <div class="inline-block bg-amber-100 text-amber-800 px-3 py-1 rounded-full text-sm font-semibold mb-3 tracking-wide">PG-13 • 104 Minutes</div>
+                <h1 class="text-3xl md:text-5xl font-bold text-slate-900 mb-2">X-Men: The Last Stand <span class="text-slate-400 font-light">(2006)</span></h1>
+                <p class="text-lg text-slate-600 mb-4">Directed by Brett Ratner 🎬 Action, Sci-Fi, Adventure</p>
+                
+                <div class="bg-stone-100 rounded-lg p-4 mt-6 text-left border border-stone-200">
+                    <p class="text-xs text-slate-500 uppercase font-semibold mb-1 tracking-wider">Release Folder Name</p>
+                    <div class="flex items-center justify-between gap-4">
+                        <code class="text-sm font-mono text-slate-800 break-all" id="folderName">X-Men.The.Last.Stand.2006.1080p.BluRay.REMUX.AVC.DTS-HD.MA.6.1-FraMeSToR</code>
+                        <button onclick="copyText('folderName', 'Folder name copied!')" class="flex-shrink-0 bg-slate-800 hover:bg-slate-700 text-white px-4 py-2 rounded-md text-sm transition-colors font-medium cursor-pointer">
+                            📋 Copy
+                        </button>
                     </div>
                 </div>
             </div>
+        </header>
 
-            <!-- Right Column: Full Details -->
-            <div class="lg:col-span-2 space-y-8">
-                <!-- Media Info Tabs -->
-                <div class="torrent-card rounded-xl overflow-hidden">
-                    <div class="flex border-b border-slate-700 bg-slate-800/50">
-                        <button class="px-6 py-3 font-bold border-b-2 border-blue-500">General Info</button>
-                        <button class="px-6 py-3 font-bold text-slate-400 hover:text-slate-200">Screenshots</button>
-                        <button class="px-6 py-3 font-bold text-slate-400 hover:text-slate-200">Comments (42)</button>
+        <nav class="flex border-b border-stone-300 mb-8 overflow-x-auto hide-scrollbar">
+            <button onclick="switchTab('overview')" class="tab-btn active px-6 py-4 text-slate-600 hover:text-amber-600 transition-colors whitespace-nowrap text-lg">📽️ Overview & Cast</button>
+            <button onclick="switchTab('technical')" class="tab-btn px-6 py-4 text-slate-600 hover:text-amber-600 transition-colors whitespace-nowrap text-lg">💿 Technical Specs</button>
+            <button onclick="switchTab('rawdata')" class="tab-btn px-6 py-4 text-slate-600 hover:text-amber-600 transition-colors whitespace-nowrap text-lg">📊 Raw Data & Notes</button>
+        </nav>
+
+        <main>
+            <section id="overview" class="tab-content active">
+                <div class="mb-8 bg-white p-6 rounded-2xl shadow-sm border border-stone-200">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-3">About the Film</h2>
+                    <p class="text-slate-700 leading-relaxed text-lg">
+                        Welcome to the release overview section. Here you can explore the narrative context and key metadata of the film before diving into the technical download details. This helps ground the media file in its artistic context.
+                    </p>
+                    <div class="mt-6 p-6 bg-stone-50 rounded-xl border-l-4 border-amber-500">
+                        <p class="text-slate-800 text-lg leading-relaxed italic">
+                            “When a ‘cure’ is found to treat mutations, the lines are drawn amongst the X-Men, led by Professor Charles Xavier, and the Brotherhood, a band of powerful mutants organized under Xavier’s former ally, Magneto. The discovery of the cure triggers a war that threatens to change the course of history.”
+                        </p>
                     </div>
-                    
-                    <div class="p-6 space-y-6">
-                        <!-- Synopsis -->
-                        <div>
-                            <h3 class="text-lg font-bold mb-2 accent-text">Synopsis</h3>
-                            <p class="text-slate-300 leading-relaxed">
-                                When a “cure” is discovered, which can turn any mutant into a normal human being, there is a rebellion amongst mutantkind. The “cure” is used as a weapon against mutants, and the X-Men must decide if they will join the rebellion or try to stop it. As the battle lines are drawn, Jean Grey returns as the Dark Phoenix, presenting a threat greater than any they have ever faced.
-                            </p>
+                    <div class="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="bg-stone-100 p-4 rounded-lg text-center">
+                            <span class="block text-2xl mb-1">📅</span>
+                            <span class="block text-xs uppercase tracking-wide text-slate-500">Release Date</span>
+                            <span class="block font-semibold text-slate-900">May 26, 2006</span>
                         </div>
+                        <div class="bg-stone-100 p-4 rounded-lg text-center">
+                            <span class="block text-2xl mb-1">⏱️</span>
+                            <span class="block text-xs uppercase tracking-wide text-slate-500">Runtime</span>
+                            <span class="block font-semibold text-slate-900">104 min</span>
+                        </div>
+                        <div class="bg-stone-100 p-4 rounded-lg text-center">
+                            <span class="block text-2xl mb-1">🌟</span>
+                            <span class="block text-xs uppercase tracking-wide text-slate-500">Rating</span>
+                            <span class="block font-semibold text-slate-900">PG-13</span>
+                        </div>
+                        <div class="bg-stone-100 p-4 rounded-lg text-center">
+                            <span class="block text-2xl mb-1">🔗</span>
+                            <span class="block text-xs uppercase tracking-wide text-slate-500">IMDb</span>
+                            <a href="https://www.imdb.com/title/tt0376994/" target="_blank" class="block font-semibold text-amber-600 hover:underline">tt0376994</a>
+                        </div>
+                    </div>
+                </div>
 
-                        <!-- Technical Specs Grid -->
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div class="space-y-3">
-                                <h3 class="text-sm font-bold uppercase text-slate-500 border-b border-slate-700 pb-1">Media Information</h3>
-                                <ul class="space-y-2 text-sm">
-                                    <li class="flex justify-between"><span class="text-slate-400">Folder:</span> <span class="text-right ml-4 break-all">X-Men.The.Last.Stand.2006.1080p.BluRay.REMUX.AVC.DTS-HD.MA.6.1-FraMeSToR</span></li>
-                                    <li class="flex justify-between"><span class="text-slate-400">Size:</span> <span>32.4 GB</span></li>
-                                    <li class="flex justify-between"><span class="text-slate-400">Video:</span> <span>MPEG-4 AVC / 1080p / 23.976 fps</span></li>
-                                    <li class="flex justify-between"><span class="text-slate-400">Aspect Ratio:</span> <span>2.40:1</span></li>
-                                </ul>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-200">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-6">👥 Cast & Characters</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4" id="castGrid">
+                    </div>
+                </div>
+            </section>
+
+            <section id="technical" class="tab-content">
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-3">Technical Breakdown</h2>
+                    <p class="text-slate-700 leading-relaxed text-lg mb-6">
+                        Dive into the technical specifications of this REMUX release. This section visualizes the robust audio channel offerings and details the uncompressed video standards provided by FraMeSToR, ensuring audiophiles and videophiles understand the exact quality parameters.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-200">
+                        <h3 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">📺 Video Specifications</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-center justify-between p-3 bg-stone-50 rounded-lg">
+                                <span class="font-medium text-slate-600">Source</span>
+                                <span class="font-bold text-slate-900 bg-amber-100 px-3 py-1 rounded">Blu-ray REMUX</span>
+                            </li>
+                            <li class="flex items-center justify-between p-3 bg-stone-50 rounded-lg">
+                                <span class="font-medium text-slate-600">Codec</span>
+                                <span class="font-bold text-slate-900">AVC (MPEG-4)</span>
+                            </li>
+                            <li class="flex items-center justify-between p-3 bg-stone-50 rounded-lg">
+                                <span class="font-medium text-slate-600">Resolution</span>
+                                <span class="font-bold text-slate-900">1920x1080 (1080p)</span>
+                            </li>
+                            <li class="flex items-center justify-between p-3 bg-stone-50 rounded-lg">
+                                <span class="font-medium text-slate-600">Aspect Ratio</span>
+                                <span class="font-bold text-slate-900">2.40:1</span>
+                            </li>
+                            <li class="flex items-center justify-between p-3 bg-stone-50 rounded-lg">
+                                <span class="font-medium text-slate-600">Video Bitrate</span>
+                                <span class="font-bold text-emerald-600">31.5 Mb/s</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-200">
+                        <h3 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">🔊 Audio Specifications</h3>
+                        <div class="chart-container">
+                            <canvas id="audioChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-200">
+                    <h3 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">💬 Subtitles Included</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-4 py-2 bg-stone-100 border border-stone-200 rounded-full text-slate-700 font-medium">English SDH</span>
+                        <span class="px-4 py-2 bg-stone-100 border border-stone-200 rounded-full text-slate-700 font-medium">French</span>
+                        <span class="px-4 py-2 bg-stone-100 border border-stone-200 rounded-full text-slate-700 font-medium">Spanish</span>
+                        <span class="px-4 py-2 bg-stone-100 border border-stone-200 rounded-full text-slate-700 font-medium">Japanese</span>
+                    </div>
+                </div>
+            </section>
+
+            <section id="rawdata" class="tab-content">
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-3">Raw Data & Release Notes</h2>
+                    <p class="text-slate-700 leading-relaxed text-lg mb-6">
+                        For archivers, seeders, and power users, this section provides the unfiltered MediaInfo logs and specific release notes from the encoder group. Use this data to verify file integrity and playback compatibility.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div class="lg:col-span-1 space-y-6">
+                        <div class="bg-emerald-50 border border-emerald-200 p-6 rounded-2xl shadow-sm">
+                            <h3 class="text-xl font-bold text-emerald-900 mb-4 flex items-center gap-2">🛡️ Release Notes</h3>
+                            <ul class="space-y-3">
+                                <li class="flex items-start gap-2 text-emerald-800">
+                                    <span class="mt-1">✅</span>
+                                    <span>This is a 1:1 REMUX from the original Blu-ray disc.</span>
+                                </li>
+                                <li class="flex items-start gap-2 text-emerald-800">
+                                    <span class="mt-1">✅</span>
+                                    <span>No compression has been applied to the video or audio tracks.</span>
+                                </li>
+                                <li class="flex items-start gap-2 text-emerald-800">
+                                    <span class="mt-1">✅</span>
+                                    <span>Includes original menus (where applicable) or direct movie stream for maximum compatibility.</span>
+                                </li>
+                            </ul>
+                            <div class="mt-6 text-center">
+                                <p class="text-emerald-700 font-bold text-xl tracking-widest uppercase">Seed and Enjoy! 🚀</p>
                             </div>
-                            <div class="space-y-3">
-                                <h3 class="text-sm font-bold uppercase text-slate-500 border-b border-slate-700 pb-1">Audio & Subtitles</h3>
-                                <div class="space-y-3">
-                                    <div>
-                                        <p class="text-xs font-bold text-slate-400 mb-1">Audio Tracks:</p>
-                                        <ul class="text-xs space-y-1 list-disc list-inside text-slate-300">
-                                            <li>English 6.1 DTS-HD Master Audio</li>
-                                            <li>French 5.1 DTS</li>
-                                            <li>Spanish 5.1 Dolby Digital</li>
-                                            <li>Japanese 5.1 DTS</li>
-                                        </ul>
-                                    </div>
-                                    <div>
-                                        <p class="text-xs font-bold text-slate-400 mb-1">Subtitles:</p>
-                                        <div class="flex flex-wrap gap-2">
-                                            <span class="bg-slate-700 px-2 py-0.5 rounded text-[10px]">English SDH</span>
-                                            <span class="bg-slate-700 px-2 py-0.5 rounded text-[10px]">French</span>
-                                            <span class="bg-slate-700 px-2 py-0.5 rounded text-[10px]">Spanish</span>
-                                            <span class="bg-slate-700 px-2 py-0.5 rounded text-[10px]">Japanese</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
 
-                        <!-- NFO Section -->
-                        <div class="mt-8">
-                            <h3 class="text-lg font-bold mb-2 accent-text">NFO / File List</h3>
-                            <div class="bg-black p-4 rounded-lg font-mono text-xs overflow-x-auto text-green-500 opacity-90 border border-slate-800">
-<pre>
-FraMeSToR Proudly Presents:
-X-Men: The Last Stand (2006) 1080p REMUX
-
-Source .........: Blu-ray Disc
-Length .........: 1h 44mn
-Total Bitrate ..: 44.5 Mbps
-Video ..........: AVC High@L4.1 / 32.1 Mbps
-Resolution .....: 1920x1080 / 23.976 fps
-
-Audio 1 ........: English / DTS-HD Master Audio / 6.1 / 48 kHz / 5174 kbps
-Audio 2 ........: French / DTS / 5.1 / 48 kHz / 768 kbps
-Audio 3 ........: Spanish / AC-3 / 5.1 / 48 kHz / 448 kbps
-Audio 4 ........: Japanese / DTS / 5.1 / 48 kHz / 768 kbps
-
-Subtitles ......: English SDH, French, Spanish, Japanese
-</pre>
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-200">
+                            <h3 class="text-lg font-bold text-slate-900 mb-2">File Statistics</h3>
+                            <div class="flex justify-between items-center py-2 border-b border-stone-100">
+                                <span class="text-slate-500">File Size</span>
+                                <span class="font-bold text-slate-800">28.4 GiB</span>
+                            </div>
+                            <div class="flex justify-between items-center py-2 border-b border-stone-100">
+                                <span class="text-slate-500">Container</span>
+                                <span class="font-bold text-slate-800">Matroska (.mkv)</span>
+                            </div>
+                            <div class="flex justify-between items-center py-2">
+                                <span class="text-slate-500">Unique ID</span>
+                                <span class="font-bold text-slate-800 text-sm">202614456</span>
                             </div>
                         </div>
                     </div>
+
+                    <div class="lg:col-span-2 bg-slate-900 rounded-2xl shadow-sm border border-slate-800 overflow-hidden flex flex-col">
+                        <div class="bg-slate-800 px-4 py-3 border-b border-slate-700 flex justify-between items-center">
+                            <span class="text-slate-300 font-mono text-sm">MediaInfo.txt</span>
+                            <button onclick="copyText('mediaInfoBlock', 'MediaInfo copied to clipboard!')" class="text-xs bg-slate-700 hover:bg-slate-600 text-white px-3 py-1 rounded transition-colors cursor-pointer">
+                                Copy All
+                            </button>
+                        </div>
+                        <div class="p-4 overflow-x-auto text-emerald-400 font-mono text-sm leading-relaxed whitespace-pre" id="mediaInfoBlock">General
+Unique ID                                : 202614456
+Complete name                            : X-Men.The.Last.Stand.2006.1080p.BluRay.REMUX.AVC.DTS-HD.MA.6.1-FraMeSToR.mkv
+Format                                   : Matroska
+File size                                : 28.4 GiB
+Duration                                 : 1 h 44 min
+
+Video
+Format                                   : AVC
+Format/Info                              : Advanced Video Codec
+Bit rate                                 : 31.5 Mb/s
+Width                                    : 1 920 pixels
+Height                                   : 1 080 pixels
+Frame rate                               : 23.976 (24000/1001) FPS
+
+Audio #1
+Format                                   : DTS XLL
+Format/Info                              : Digital Theater Systems
+Commercial name                          : DTS-HD Master Audio
+Channel(s)                               : 7 channels / 6 channels
+Channel layout                           : C L R Ls Rs LFE / C L R Ls Rs LFE
+Language                                 : English</div>
+                    </div>
                 </div>
+            </section>
+        </main>
+    </div>
 
-                <!-- Cast/Crew Info -->
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <div class="torrent-card rounded-lg p-3 text-center">
-                        <p class="text-[10px] text-slate-500 uppercase">Director</p>
-                        <p class="text-sm font-bold">Brett Ratner</p>
-                    </div>
-                    <div class="torrent-card rounded-lg p-3 text-center">
-                        <p class="text-[10px] text-slate-500 uppercase">Starring</p>
-                        <p class="text-sm font-bold">Hugh Jackman</p>
-                    </div>
-                    <div class="torrent-card rounded-lg p-3 text-center">
-                        <p class="text-[10px] text-slate-500 uppercase">Starring</p>
-                        <p class="text-sm font-bold">Halle Berry</p>
-                    </div>
-                    <div class="torrent-card rounded-lg p-3 text-center">
-                        <p class="text-[10px] text-slate-500 uppercase">Starring</p>
-                        <p class="text-sm font-bold">Ian McKellen</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
+    <div id="toast" class="toast">Action successful!</div>
 
-    <footer class="mt-20 border-t border-slate-800 py-10 text-center text-slate-500 text-sm">
-        <p>&copy; 2026 TorrentDetails - For educational purposes only.</p>
-        <div class="flex justify-center space-x-4 mt-4">
-            <a href="#" class="hover:text-blue-400">Rules</a>
-            <a href="#" class="hover:text-blue-400">FAQ</a>
-            <a href="#" class="hover:text-blue-400">Contact</a>
-            <a href="#" class="hover:text-blue-400">DMCA</a>
-        </div>
-    </footer>
+    <script>
+        const castData = [
+            { actor: "Hugh Jackman", character: "Logan / Wolverine" },
+            { actor: "Halle Berry", character: "Ororo Munroe / Storm" },
+            { actor: "Ian McKellen", character: "Eric Lehnsherr / Magneto" },
+            { actor: "Patrick Stewart", character: "Charles Xavier / Professor X" },
+            { actor: "Famke Janssen", character: "Jean Grey / Phoenix" },
+            { actor: "Anna Paquin", character: "Marie / Rogue" },
+            { actor: "Kelsey Grammer", character: "Dr. Hank McCoy / Beast" },
+            { actor: "James Marsden", character: "Scott Summers / Cyclops" }
+        ];
 
+        function renderCast() {
+            const container = document.getElementById('castGrid');
+            castData.forEach(item => {
+                const card = document.createElement('div');
+                card.className = "group relative bg-stone-50 border border-stone-200 rounded-xl p-4 cursor-pointer hover:bg-slate-800 hover:border-slate-800 transition-all duration-300";
+                
+                const actorName = document.createElement('h4');
+                actorName.className = "font-bold text-slate-900 group-hover:text-white transition-colors duration-300";
+                actorName.textContent = item.actor;
+                
+                const roleName = document.createElement('p');
+                roleName.className = "text-sm text-slate-500 mt-1 group-hover:text-amber-400 transition-colors duration-300";
+                roleName.textContent = "as " + item.character;
+                
+                card.appendChild(actorName);
+                card.appendChild(roleName);
+                container.appendChild(card);
+            });
+        }
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        function copyText(elementId, successMessage) {
+            const element = document.getElementById(elementId);
+            const textToCopy = element.innerText || element.textContent;
+            
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                showToast(successMessage);
+            }).catch(err => {
+                const textArea = document.createElement("textarea");
+                textArea.value = textToCopy;
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    showToast(successMessage);
+                } catch (err) {
+                    showToast("Failed to copy text.");
+                }
+                document.body.removeChild(textArea);
+            });
+        }
+
+        function initCharts() {
+            const ctx = document.getElementById('audioChart').getContext('2d');
+            
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['English', 'French', 'Spanish', 'Japanese'],
+                    datasets: [{
+                        label: 'Total Audio Channels',
+                        data: [7, 6, 6, 6],
+                        backgroundColor: [
+                            'rgba(217, 119, 6, 0.8)',
+                            'rgba(148, 163, 184, 0.8)',
+                            'rgba(148, 163, 184, 0.8)',
+                            'rgba(148, 163, 184, 0.8)'
+                        ],
+                        borderColor: [
+                            'rgb(217, 119, 6)',
+                            'rgb(100, 116, 139)',
+                            'rgb(100, 116, 139)',
+                            'rgb(100, 116, 139)'
+                        ],
+                        borderWidth: 1,
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 8,
+                            ticks: {
+                                stepSize: 1,
+                                color: '#64748b'
+                            },
+                            grid: {
+                                color: '#f1f5f9'
+                            },
+                            title: {
+                                display: true,
+                                text: 'Number of Channels',
+                                color: '#475569'
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                color: '#475569',
+                                font: {
+                                    weight: 'bold'
+                                }
+                            },
+                            grid: {
+                                display: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let val = context.raw;
+                                    let format = val === 7 ? '6.1 DTS-HD MA' : (val === 6 ? '5.1 Format' : val + ' Channels');
+                                    return ` Format: ${format} (${val} Total Channels)`;
+                                }
+                            },
+                            backgroundColor: 'rgba(15, 23, 42, 0.9)',
+                            padding: 12,
+                            titleFont: { size: 14 },
+                            bodyFont: { size: 13 }
+                        }
+                    }
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCast();
+            initCharts();
+        });
+    </script>
 </body>
 </html>
