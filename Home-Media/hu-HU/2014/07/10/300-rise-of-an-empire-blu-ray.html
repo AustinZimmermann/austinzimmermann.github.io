@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>300: A birodalom hajnala - Interaktív Blu-ray Adatlap</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Chart Container Styling as per requirements */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+
+        /* Application specific styling */
+        body {
+            font-family: Helvetica, sans-serif;
+        }
+        
+        .tab-content {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+        }
+        .tab-content.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .nav-btn {
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .nav-btn::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: -2px;
+            left: 50%;
+            background-color: #7f1d1d; /* red-900 */
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        .nav-btn.active {
+            color: #7f1d1d;
+            font-weight: 700;
+        }
+        .nav-btn.active::after {
+            width: 100%;
+        }
+
+        .extra-item {
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-left: 4px solid transparent;
+        }
+        .extra-item:hover {
+            background-color: #f5f5f4; /* stone-100 */
+            border-left-color: #d6d3d1; /* stone-300 */
+            transform: translateX(4px);
+        }
+        .extra-item.selected {
+            background-color: #fee2e2; /* red-100 */
+            border-left-color: #7f1d1d; /* red-900 */
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-800 antialiased min-h-screen flex flex-col">
+
+    <!-- Chosen Palette: Warm Neutrals with Deep Red Accents (stone-50, stone-800, red-900). This provides a calm, harmonic background while paying homage to the stark, bloody aesthetic of the '300' franchise in a subtle, professional manner. -->
+    
+    <!-- Application Structure Plan: The SPA is structured as an interactive dashboard with a sticky top navigation bar dividing the content into three logical, user-friendly views: "Film & Történet" (Context), "Kiadás & Specifikációk" (Data), and "Extrák" (Exploration). This architecture breaks down the flat markdown report into digestible chunks, prioritizing ease of navigation and allowing the user to explore the cinematic context, technical details, and bonus content independently without excessive scrolling. -->
+    
+    <!-- Visualization & Content Choices: 
+         1. Cover Image & Text -> Goal: Inform -> Viz/Presentation: CSS Grid layout combining the official poster with the plot summary -> Interaction: None (static context) -> Justification: Establishes visual identity immediately. Library: HTML/Tailwind.
+         2. Localization Data (Audio/Subtitles) -> Goal: Compare/Inform -> Viz/Presentation: Doughnut Chart -> Interaction: Hover tooltips to see exact counts -> Justification: Visually demonstrates the extensive localization effort (17 subtitles vs 7 audios) of the release. Library: Chart.js (Canvas).
+         3. Extras List -> Goal: Organize/Explore -> Viz/Presentation: Interactive Master-Detail list -> Interaction: Click list items to reveal descriptions in a dedicated reading pane -> Justification: Keeps the UI clean while allowing deep-dives into the 6 extra features without overwhelming the user with text. Library: Vanilla JS + HTML/Tailwind. 
+    -->
+    
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <!-- Header Section -->
+    <header class="bg-stone-900 text-stone-100 py-8 shadow-lg z-20 relative">
+        <div class="container mx-auto px-4 lg:px-8 max-w-6xl flex flex-col md:flex-row justify-between items-center">
+            <div class="text-center md:text-left">
+                <h1 class="text-3xl md:text-5xl font-black uppercase tracking-widest text-white mb-1">
+                    300 <span class="text-red-700">|</span> <span class="font-light">A birodalom hajnala</span>
+                </h1>
+                <p class="text-stone-400 font-medium tracking-wider text-sm uppercase mt-2">Hivatalos Blu-ray Adatlap & Útmutató</p>
+            </div>
+            <div class="mt-6 md:mt-0 bg-stone-800 p-3 rounded-lg border border-stone-700 flex items-center shadow-inner">
+                <span class="text-2xl mr-3">💿</span>
+                <div>
+                    <p class="text-xs text-stone-400 uppercase tracking-wide">Megjelenés</p>
+                    <p class="text-lg font-bold text-white">2014. július 10.</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="bg-white border-b border-stone-200 sticky top-0 z-10 shadow-sm">
+        <div class="container mx-auto px-4 max-w-6xl flex justify-center md:justify-start gap-4 md:gap-8 overflow-x-auto">
+            <button class="nav-btn active py-4 px-2 text-sm md:text-base font-semibold text-stone-500 uppercase tracking-wide whitespace-nowrap" data-target="tab-film">
+                🎬 Film & Történet
+            </button>
+            <button class="nav-btn py-4 px-2 text-sm md:text-base font-semibold text-stone-500 uppercase tracking-wide whitespace-nowrap" data-target="tab-specs">
+                ⚙️ Kiadás & Specifikációk
+            </button>
+            <button class="nav-btn py-4 px-2 text-sm md:text-base font-semibold text-stone-500 uppercase tracking-wide whitespace-nowrap" data-target="tab-extras">
+                🎁 Extrák & Bónuszok
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow container mx-auto px-4 py-8 max-w-6xl">
+
+        <!-- TAB 1: Film & Történet -->
+        <section id="tab-film" class="tab-content active">
+            <div class="mb-8 bg-white p-6 rounded-xl border border-stone-200 shadow-sm">
+                <h2 class="text-2xl font-bold text-stone-900 mb-2">A Filmről</h2>
+                <p class="text-stone-600 leading-relaxed">Ez a szekció bemutatja a "300: A birodalom hajnala" alapvető háttérinformációit. Itt találja a hivatalos borítóképet, a rövid cselekményleírást, valamint a főbb alkotók és szereplők listáját. Célja, hogy kontextusba helyezze a kiadványt, mielőtt elmerülnénk a technikai részletekben.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+                <!-- Cover Image -->
+                <div class="md:col-span-4 flex justify-center md:justify-start items-start">
+                    <img src="https://images.static-bluray.com/movies/covers/129826_front.jpg" alt="300: A birodalom hajnala Blu-ray Borító" class="rounded-lg shadow-xl w-full max-w-sm object-cover border border-stone-200">
+                </div>
+                
+                <!-- Story and Details -->
+                <div class="md:col-span-8 flex flex-col gap-6">
+                    <div class="bg-white p-6 md:p-8 rounded-xl border border-stone-200 shadow-sm">
+                        <h3 class="text-xl font-bold text-red-900 mb-4 uppercase tracking-wide border-b border-stone-100 pb-2">Rövid Cselekmény</h3>
+                        <p class="text-stone-700 leading-relaxed mb-4 text-lg">
+                            Frank Miller <em>Xerxes</em> című képregénye alapján a látványos eposz új fejezete a tengeren játszódik. Temisztoklész, a görög generális megpróbálja egyesíteni Görögországot egy olyan támadás vezetésével, amely megváltoztatja a háború menetét.
+                        </p>
+                        <p class="text-stone-700 leading-relaxed text-lg">
+                            A történetben Temisztoklész szembeszáll a hatalmas perzsa seregekkel, melyeket a halandóból istenné lett Xerxész és Artemisia, a bosszúszomjas perzsa flottavezér irányít.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="bg-stone-800 text-stone-100 p-6 rounded-xl shadow-sm">
+                            <h3 class="text-lg font-bold text-stone-300 mb-3 border-b border-stone-600 pb-2">Alkotók</h3>
+                            <ul class="space-y-2">
+                                <li><span class="text-stone-400">Rendező:</span> <span class="font-semibold text-white">Noam Murro</span></li>
+                                <li><span class="text-stone-400">Producer:</span> <span class="font-semibold text-white">Zack Snyder, Deborah Snyder</span></li>
+                                <li><span class="text-stone-400">Műfaj:</span> <span class="font-semibold text-white">Akció, Történelmi, Dráma</span></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-xl border border-stone-200 shadow-sm">
+                            <h3 class="text-lg font-bold text-stone-800 mb-3 border-b border-stone-200 pb-2">Főbb Szereplők</h3>
+                            <ul class="space-y-3">
+                                <li class="leading-tight">
+                                    <span class="font-bold text-stone-900">Sullivan Stapleton</span> <br>
+                                    <span class="text-sm text-stone-500">mint Temisztoklész</span>
+                                </li>
+                                <li class="leading-tight">
+                                    <span class="font-bold text-stone-900">Eva Green</span> <br>
+                                    <span class="text-sm text-stone-500">mint Artemisia</span>
+                                </li>
+                                <li class="leading-tight">
+                                    <span class="font-bold text-stone-900">Lena Headey</span> <br>
+                                    <span class="text-sm text-stone-500">mint Gorgo királyné</span>
+                                </li>
+                                <li class="leading-tight text-sm text-stone-600 mt-2 pt-2 border-t border-stone-100">
+                                    Továbbá: Rodrigo Santoro (Xerxész), David Wenham (Diliosz)
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: Kiadás & Specifikációk -->
+        <section id="tab-specs" class="tab-content">
+            <div class="mb-8 bg-white p-6 rounded-xl border border-stone-200 shadow-sm">
+                <h2 class="text-2xl font-bold text-stone-900 mb-2">Technikai Specifikációk és Lokalizáció</h2>
+                <p class="text-stone-600 leading-relaxed">Ebben a nézetben a Warner Home Video (Pro Video) kiadásának technikai minőségét és nyelvi kínálatát elemezzük. Az interaktív diagram segít vizualizálni a lemezen található hang- és felirat opciók széles skáláját, bemutatva a kiadvány nemzetközi és hazai támogatottságát.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Data Visualization -->
+                <div class="bg-white p-6 rounded-xl border border-stone-200 shadow-sm flex flex-col">
+                    <h3 class="text-xl font-bold text-stone-800 mb-2 text-center">Nyelvi Opciók Megoszlása</h3>
+                    <p class="text-sm text-stone-500 text-center mb-6">Hangsávok és feliratok mennyiségi összehasonlítása</p>
+                    <div class="chart-container flex-grow flex items-center justify-center">
+                        <canvas id="localizationChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Textual Specs -->
+                <div class="flex flex-col gap-6">
+                    <div class="bg-stone-800 text-white p-6 rounded-xl shadow-sm">
+                        <h3 class="text-lg font-bold text-stone-300 mb-4 flex items-center"><span class="mr-2">📺</span> Képminőség</h3>
+                        <div class="flex items-center gap-4">
+                            <div class="text-4xl font-black text-stone-500">1080p</div>
+                            <div>
+                                <p class="font-semibold text-lg">High Definition (AVC)</p>
+                                <p class="text-stone-400">16x9 (2.40:1) Képarány</p>
+                                <p class="text-sm text-stone-400 mt-2 bg-stone-700 inline-block px-2 py-1 rounded">2D változat (Létezik 3D+2D is)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl border border-stone-200 shadow-sm">
+                        <h3 class="text-lg font-bold text-stone-800 mb-4 flex items-center"><span class="mr-2">🔊</span> Hangsávok</h3>
+                        <ul class="space-y-3">
+                            <li class="flex justify-between items-center p-3 bg-stone-50 rounded-lg border border-stone-100">
+                                <span class="font-bold text-stone-900 flex items-center"><span class="mr-2">🇭🇺</span> Magyar</span>
+                                <span class="bg-stone-200 text-stone-700 text-xs px-2 py-1 rounded font-mono font-bold">Dolby Digital 5.1</span>
+                            </li>
+                            <li class="flex justify-between items-center p-3 bg-red-50 rounded-lg border border-red-100">
+                                <span class="font-bold text-red-900 flex items-center"><span class="mr-2">🇬🇧</span> Angol</span>
+                                <span class="bg-red-200 text-red-900 text-xs px-2 py-1 rounded font-mono font-bold">DTS-HD Master Audio 7.1</span>
+                            </li>
+                            <li class="p-3">
+                                <span class="text-sm font-semibold text-stone-600 block mb-1">További nyelvek (Dolby Digital 5.1):</span>
+                                <span class="text-sm text-stone-500">Lengyel, Cseh, Orosz, Török, Ukrán</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl border border-stone-200 shadow-sm">
+                        <h3 class="text-lg font-bold text-stone-800 mb-4 flex items-center"><span class="mr-2">📝</span> Feliratok (17 nyelv)</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-stone-100 border border-stone-200 rounded-full text-sm font-semibold text-stone-800">Magyar</span>
+                            <span class="px-3 py-1 bg-stone-100 border border-stone-200 rounded-full text-sm font-semibold text-stone-800">Angol (Hallássérülteknek)</span>
+                            <span class="px-3 py-1 bg-white border border-stone-200 rounded-full text-sm text-stone-600">Arab</span>
+                            <span class="px-3 py-1 bg-white border border-stone-200 rounded-full text-sm text-stone-600">Cseh</span>
+                            <span class="px-3 py-1 bg-white border border-stone-200 rounded-full text-sm text-stone-600">Észt</span>
+                            <span class="px-3 py-1 bg-white border border-stone-200 rounded-full text-sm text-stone-600">Görög</span>
+                            <span class="px-3 py-1 bg-white border border-stone-200 rounded-full text-sm text-stone-600">Héber</span>
+                            <span class="px-3 py-1 bg-white border border-stone-200 rounded-full text-sm text-stone-600">Horvát</span>
+                            <span class="px-3 py-1 bg-white border border-stone-200 rounded-full text-sm text-stone-600">Izlandi</span>
+                            <span class="px-3 py-1 bg-white border border-stone-200 rounded-full text-sm text-stone-600">Lengyel</span>
+                            <span class="px-3 py-1 bg-white border border-stone-200 rounded-full text-sm text-stone-600">Lett</span>
+                            <span class="px-3 py-1 bg-white border border-stone-200 rounded-full text-sm text-stone-600">Litván</span>
+                            <span class="px-3 py-1 bg-white border border-stone-200 rounded-full text-sm text-stone-600">Orosz</span>
+                            <span class="px-3 py-1 bg-white border border-stone-200 rounded-full text-sm text-stone-600">Portugál</span>
+                            <span class="px-3 py-1 bg-white border border-stone-200 rounded-full text-sm text-stone-600">Román</span>
+                            <span class="px-3 py-1 bg-white border border-stone-200 rounded-full text-sm text-stone-600">Szlovén</span>
+                            <span class="px-3 py-1 bg-white border border-stone-200 rounded-full text-sm text-stone-600">Török</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: Extrák -->
+        <section id="tab-extras" class="tab-content">
+            <div class="mb-8 bg-white p-6 rounded-xl border border-stone-200 shadow-sm">
+                <h2 class="text-2xl font-bold text-stone-900 mb-2">Bónusz Tartalmak a Lemezen</h2>
+                <p class="text-stone-600 leading-relaxed">A Blu-ray kiadás egyik legnagyobb vonzereje a bőséges betekintés a film készítésébe. Válasszon a bal oldali listából egy extrát, hogy a jobb oldali panelen elolvashassa annak részletes tartalmát. Ez a struktúra lehetővé teszi a 6 darab különálló kisfilm tartalmának logikus, áttekinthető felfedezését.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 bg-white p-2 rounded-xl border border-stone-200 shadow-sm">
+                
+                <!-- Master List -->
+                <div class="md:col-span-5 flex flex-col border-r border-stone-100" id="extras-list">
+                    <!-- Populated by JS -->
+                </div>
+
+                <!-- Detail Pane -->
+                <div class="md:col-span-7 p-6 md:p-8 flex flex-col justify-center min-h-[300px] bg-stone-50 rounded-r-xl">
+                    <div id="extra-detail-empty" class="text-center text-stone-400">
+                        <span class="text-4xl block mb-2">👈</span>
+                        <p>Válasszon egy extrát a listából a részletek megtekintéséhez.</p>
+                    </div>
+                    
+                    <div id="extra-detail-content" class="hidden">
+                        <span class="inline-block px-2 py-1 bg-red-100 text-red-900 text-xs font-bold uppercase tracking-widest rounded mb-3">Kulisszák mögött</span>
+                        <h3 id="extra-title" class="text-2xl font-black text-stone-900 mb-4 border-b border-stone-200 pb-2"></h3>
+                        <p id="extra-desc" class="text-lg text-stone-700 leading-relaxed"></p>
+                    </div>
+                </div>
+
+            </div>
+            
+            <!-- Extra info -->
+            <div class="mt-8 bg-stone-100 p-6 rounded-xl border border-stone-200 flex flex-col sm:flex-row items-center justify-between">
+                <div>
+                    <h4 class="font-bold text-stone-800">Magyar Szinkron Érdekesség</h4>
+                    <p class="text-sm text-stone-600 mt-1">A Pro Video gondoskodott a minőségi magyar szinkronról a hazai premierkor. Temisztoklész hangját <strong>Miller Zoltán</strong>, míg Artemisiát <strong>Németh Borbála</strong> szólaltatja meg.</p>
+                </div>
+                <div class="mt-4 sm:mt-0 flex gap-2">
+                     <span class="px-3 py-1 bg-stone-800 text-white text-xs rounded uppercase tracking-wide">BD</span>
+                     <span class="px-3 py-1 bg-stone-800 text-white text-xs rounded uppercase tracking-wide">DVD</span>
+                     <span class="px-3 py-1 bg-stone-800 text-white text-xs rounded uppercase tracking-wide">Steelbook</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-stone-900 text-stone-500 py-6 text-center text-sm border-t border-stone-800 mt-auto">
+        <div class="container mx-auto px-4">
+            <p>© 2026 Forrás: 300: A birodalom hajnala - Blu-ray Adatlap. Interaktív adatprezentáció.</p>
+        </div>
+    </footer>
+
+    <!-- Application Logic -->
+    <script>
+        // --- State Management ---
+        const appState = {
+            activeTab: 'tab-film',
+            chartInitialized: false,
+            activeExtraIndex: null
+        };
+
+        // --- Data Storage ---
+        const extrasData = [
+            { id: 1, title: "Három fronton", desc: "Ismerje meg a csaták részletes megtervezését és koreográfiáját. A készítők bemutatják a komplex harci jelenetek kulisszatitkait." },
+            { id: 2, title: "Valódi vezetők és legendák", desc: "Történelmi háttér a karakterek mögött. Fedezze fel, hogyan viszonyulnak a film szereplői a valós történelmi alakokhoz és legendákhoz." },
+            { id: 3, title: "A nők ereje", desc: "Mélyreható bemutatása Artemisia és Gorgo királyné karaktereinek. A dokumentumfilm fókuszba helyezi a film erős női karaktereit és motivációikat." },
+            { id: 4, title: "Vad tengeri ütközetek", desc: "Látványos betekintés a vízi harcok technikai megvalósításába. Hogyan hozták létre a stúdióban a hatalmas perzsa és görög flották összecsapását CGI és vizuális effektek segítségével." },
+            { id: 5, title: "A 300 stílusa", desc: "Vizuális elemzés arról, hogyan örökölte és vitte tovább ez a rész az eredeti '300' film ikonikus, képregényszerű és kontrasztos vizuális világát." },
+            { id: 6, title: "Edzés a birodalomért", desc: "Nézze meg, milyen kimerítő fizikai felkészülésen estek át a színészek, hogy hitelesen alakíthassák a spártai és athéni harcosokat." }
+        ];
+
+        // --- DOM Elements ---
+        const navButtons = document.querySelectorAll('.nav-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+        const extrasListContainer = document.getElementById('extras-list');
+        const extraDetailEmpty = document.getElementById('extra-detail-empty');
+        const extraDetailContent = document.getElementById('extra-detail-content');
+        const extraTitleEl = document.getElementById('extra-title');
+        const extraDescEl = document.getElementById('extra-desc');
+
+        // --- Interaction Handling: Navigation ---
+        navButtons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const targetId = e.currentTarget.getAttribute('data-target');
+                
+                // Update UI Navigation
+                navButtons.forEach(b => b.classList.remove('active'));
+                e.currentTarget.classList.add('active');
+
+                // Update UI Content
+                tabContents.forEach(content => {
+                    content.classList.remove('active');
+                });
+                document.getElementById(targetId).classList.add('active');
+
+                // State update and conditional loading
+                appState.activeTab = targetId;
+                
+                if (targetId === 'tab-specs' && !appState.chartInitialized) {
+                    initChart();
+                    appState.chartInitialized = true;
+                }
+            });
+        });
+
+        // --- Interaction Handling: Extras List ---
+        function renderExtrasList() {
+            extrasListContainer.innerHTML = ''; // Clear
+            
+            extrasData.forEach((extra, index) => {
+                const item = document.createElement('div');
+                item.className = 'extra-item p-4 border-b border-stone-100 last:border-b-0 flex items-center justify-between';
+                item.innerHTML = `
+                    <span class="font-bold text-stone-800">${index + 1}. ${extra.title}</span>
+                    <span class="text-stone-400 text-xl font-light">›</span>
+                `;
+                
+                item.addEventListener('click', () => {
+                    // Update styling
+                    document.querySelectorAll('.extra-item').forEach(el => el.classList.remove('selected'));
+                    item.classList.add('selected');
+                    
+                    // Update State & UI
+                    appState.activeExtraIndex = index;
+                    showExtraDetail(extra);
+                });
+                
+                extrasListContainer.appendChild(item);
+            });
+        }
+
+        function showExtraDetail(extra) {
+            extraDetailEmpty.classList.add('hidden');
+            extraDetailContent.classList.remove('hidden');
+            
+            // Simple animation trick
+            extraDetailContent.style.opacity = '0';
+            setTimeout(() => {
+                extraTitleEl.textContent = extra.title;
+                extraDescEl.textContent = extra.desc;
+                extraDetailContent.style.transition = 'opacity 0.3s ease';
+                extraDetailContent.style.opacity = '1';
+            }, 50);
+        }
+
+        // --- Visualization Implementation (Chart.js) ---
+        function initChart() {
+            const ctx = document.getElementById('localizationChart').getContext('2d');
+            
+            // Data derived from the report: 7 Audio tracks vs 17 Subtitle tracks
+            const data = {
+                labels: ['Hangsávok (Audio)', 'Feliratok (Subtitles)'],
+                datasets: [{
+                    label: 'Elérhető nyelvek száma',
+                    data: [7, 17],
+                    backgroundColor: [
+                        'rgba(127, 29, 29, 0.8)', // red-900
+                        'rgba(41, 37, 36, 0.8)'   // stone-800
+                    ],
+                    borderColor: [
+                        'rgba(127, 29, 29, 1)',
+                        'rgba(41, 37, 36, 1)'
+                    ],
+                    borderWidth: 2,
+                    hoverOffset: 4
+                }]
+            };
+
+            const config = {
+                type: 'doughnut',
+                data: data,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '65%',
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 20,
+                                font: {
+                                    family: "'Segoe UI', sans-serif",
+                                    size: 14,
+                                    weight: 'bold'
+                                },
+                                color: '#292524'
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(28, 25, 23, 0.9)',
+                            titleFont: { size: 14 },
+                            bodyFont: { size: 16, weight: 'bold' },
+                            padding: 12,
+                            callbacks: {
+                                label: function(context) {
+                                    return ` ${context.raw} db nyelv elérhető`;
+                                }
+                            }
+                        }
+                    },
+                    animation: {
+                        animateScale: true,
+                        animateRotate: true
+                    }
+                }
+            };
+
+            new Chart(ctx, config);
+        }
+
+        // --- Initialization ---
+        document.addEventListener('DOMContentLoaded', () => {
+            renderExtrasList();
+        });
+
+    </script>
+</body>
+</html>
