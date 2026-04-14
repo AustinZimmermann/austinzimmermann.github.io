@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>300 (2007) - Magyar Blu-ray Kiadás (2008)</title>
+    
+    <!-- CSS Framework -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Charting Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Chosen Palette: Warm Neutrals (Parchment/Sand) for a historical feel, combined with Spartan Red (dark crimson) and Bronze/Gold accents for contrast and thematic relevance. -->
+    
+    <!-- Application Structure Plan: The SPA uses a Tabbed Dashboard architecture. 
+         Reasoning: The Source Report covers distinct, non-overlapping domains (Plot/Release Info, Tech Specs, Extras, Cast). 
+         A tabbed navigation prevents information overload, allowing users to consume specific metadata comfortably.
+         - 'Áttekintés' (Overview) combines the cover image, plot, and basic release facts into a unified introductory view.
+         - 'Specifikációk' (Specs) visualizes the audio track distribution to make technical lists more engaging.
+         - 'Extrák' (Extras) uses a master-detail interaction so users can browse the 7 bonus features dynamically without vertical scrolling.
+         - 'Szereplők' (Cast) presents the dubbing cast in a clean grid for quick scanning. -->
+         
+    <!-- Visualization & Content Choices: 
+         1. Cover Image -> Goal: Contextualize -> Justification: Directly uses the provided image URL to ground the user in the physical product being discussed.
+         2. Audio Tracks Doughnut Chart (Chart.js) -> Goal: Compare -> Justification: Transforms a static bulleted list of languages into a visual proportion (English vs. Hungarian vs. Others), emphasizing the multi-language nature of the Blu-ray.
+         3. Extras Master-Detail (Vanilla JS) -> Goal: Organize/Explore -> Justification: Keeps the UI clean while allowing deep-dives into each extra's description.
+         4. Cast Grid (Tailwind Flex/Grid) -> Goal: Organize -> Justification: Creates distinct "cards" mapping character to actor and voice actor for easy reading.
+         - All icons are Unicode characters. NO SVG or Mermaid JS is used. -->
+         
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        spartan: {
+                            red: '#7a110a',
+                            dark: '#1a1816',
+                            bronze: '#b08d57',
+                            parchment: '#f5f1e6',
+                            parchmentDark: '#e3dcce'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Georgia', 'Times New Roman', 'serif'],
+                        sans: ['Helvetica', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #f5f1e6;
+            color: #1a1816;
+        }
+        
+        /* Navigation Tabs */
+        .tab-btn {
+            transition: all 0.2s ease-in-out;
+            border-bottom: 3px solid transparent;
+        }
+        .tab-btn.active {
+            border-bottom-color: #7a110a;
+            color: #7a110a;
+            font-weight: 700;
+            background-color: rgba(122, 17, 10, 0.05);
+        }
+        
+        /* Content Panel Transition */
+        .tab-content {
+            display: none;
+            opacity: 0;
+            animation: fadeIn 0.4s ease-in forwards;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Mandatory Chart Container Styles */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 350px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 280px;
+            max-height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 320px;
+            }
+        }
+
+        /* Interactive Extras List */
+        .extra-item {
+            cursor: pointer;
+            transition: background-color 0.2s, border-left-color 0.2s;
+            border-left: 4px solid transparent;
+        }
+        .extra-item:hover {
+            background-color: #e3dcce;
+        }
+        .extra-item.active {
+            background-color: #ffffff;
+            border-left-color: #7a110a;
+            font-weight: bold;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        /* Cover Image Fallback */
+        .image-fallback {
+            display: none;
+            background-color: #2d3748;
+            color: white;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            aspect-ratio: 2/3;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col font-sans">
+
+    <!-- Header Section -->
+    <header class="bg-spartan-dark text-white py-12 shadow-lg relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none" style="background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.1) 10px, rgba(255,255,255,0.1) 20px);"></div>
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 relative z-10 text-center">
+            <div class="text-spartan-bronze text-3xl mb-2">🛡️ ⚔️ 🛡️</div>
+            <h1 class="text-5xl md:text-7xl font-serif font-bold tracking-widest uppercase mb-4 text-spartan-bronze drop-shadow-md">
+                300
+            </h1>
+            <p class="text-xl md:text-2xl font-light tracking-wider text-spartan-parchmentDark">
+                Magyar Blu-ray Kiadás (2008)
+            </p>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-20">
+        <div class="max-w-6xl mx-auto px-4 flex overflow-x-auto no-scrollbar">
+            <button class="tab-btn active flex-1 py-4 px-4 whitespace-nowrap focus:outline-none uppercase tracking-wide text-sm font-medium text-gray-600 hover:text-spartan-red" onclick="switchTab('overview')">
+                🎬 Áttekintés
+            </button>
+            <button class="tab-btn flex-1 py-4 px-4 whitespace-nowrap focus:outline-none uppercase tracking-wide text-sm font-medium text-gray-600 hover:text-spartan-red" onclick="switchTab('specs')">
+                💿 Specifikációk
+            </button>
+            <button class="tab-btn flex-1 py-4 px-4 whitespace-nowrap focus:outline-none uppercase tracking-wide text-sm font-medium text-gray-600 hover:text-spartan-red" onclick="switchTab('extras')">
+                🎁 Extrák
+            </button>
+            <button class="tab-btn flex-1 py-4 px-4 whitespace-nowrap focus:outline-none uppercase tracking-wide text-sm font-medium text-gray-600 hover:text-spartan-red" onclick="switchTab('cast')">
+                🎭 Szereplők
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow w-full max-w-6xl mx-auto p-4 md:p-8">
+
+        <!-- TAB: ÁTTEKINTÉS (Overview) -->
+        <section id="overview" class="tab-content active">
+            <div class="mb-8">
+                <h2 class="text-3xl font-serif text-spartan-red border-b-2 border-spartan-bronze pb-2 mb-4 inline-block">A filmről és a kiadásról</h2>
+                <p class="text-gray-800 leading-relaxed text-lg bg-white p-4 rounded border-l-4 border-spartan-bronze shadow-sm">
+                    <strong>Tájékoztató:</strong> Ebben a szekcióban a film történeti hátterét, valamint a 2008-as magyarországi Blu-ray megjelenés alapadatait és eredeti borítóképét tekintheti át. A cél, hogy azonnali kontextust biztosítson a kiadvány történelmi és technológiai jelentőségéről.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                
+                <!-- Cover Image -->
+                <div class="lg:col-span-4 flex justify-center">
+                    <div class="rounded-lg shadow-xl overflow-hidden border-4 border-white max-w-sm w-full relative">
+                        <img 
+                            src="https://images.static-bluray.com/movies/covers/73921_front.jpg" 
+                            alt="300 Magyar Blu-ray Borító" 
+                            class="w-full h-auto object-cover"
+                            onerror="this.style.display='none'; document.getElementById('img-fallback').style.display='flex';"
+                        >
+                        <!-- Fallback if external image fails to load -->
+                        <div id="img-fallback" class="image-fallback w-full">
+                            <div>
+                                <span class="text-5xl mb-4 block">📀</span>
+                                <p class="text-lg font-bold">Borítókép nem elérhető</p>
+                                <p class="text-sm opacity-70 mt-2">300 (2007)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Plot & Release Facts -->
+                <div class="lg:col-span-8 space-y-6">
+                    <!-- Plot -->
+                    <div class="bg-white p-6 rounded-lg shadow-sm border border-spartan-parchmentDark">
+                        <h3 class="text-2xl font-bold mb-4 flex items-center text-spartan-dark">
+                            <span class="text-spartan-red mr-2">📜</span> Történet & Vizuális Világ
+                        </h3>
+                        <p class="text-gray-700 mb-4 text-lg leading-relaxed">
+                            A film a Kr. e. 480-ban zajlott thermopülai csata eseményeit dolgozza fel. I. Leónidasz spártai király és 300 elit katonája az utolsó leheletéig küzdött Xerxész perzsa nagykirály hatalmas serege ellen.
+                        </p>
+                        <p class="text-gray-700 text-lg leading-relaxed">
+                            A produkció úttörő volt a vizuális effektek és a „chroma key” technológia alkalmazásában, hűen és lenyűgözően visszaadva Frank Miller egyedi, sötét tónusú képregényes látványvilágát.
+                        </p>
+                    </div>
+
+                    <!-- Release Data -->
+                    <div class="bg-spartan-dark text-spartan-parchment p-6 rounded-lg shadow-md">
+                        <h3 class="text-2xl font-bold mb-4 text-spartan-bronze border-b border-gray-600 pb-2">
+                            Kiadási Adatok (Magyarország)
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                            <div class="bg-black bg-opacity-30 p-4 rounded">
+                                <span class="block text-sm text-gray-400 uppercase tracking-wider mb-1">Megjelenés dátuma</span>
+                                <span class="text-xl font-semibold">2008. november 6.</span>
+                            </div>
+                            <div class="bg-black bg-opacity-30 p-4 rounded">
+                                <span class="block text-sm text-gray-400 uppercase tracking-wider mb-1">Kiadó / Forgalmazó</span>
+                                <span class="text-xl font-semibold">Warner (Pro Video)</span>
+                            </div>
+                            <div class="bg-black bg-opacity-30 p-4 rounded">
+                                <span class="block text-sm text-gray-400 uppercase tracking-wider mb-1">Adathordozó</span>
+                                <span class="text-xl font-semibold">Blu-ray (BD-50)</span>
+                            </div>
+                            <div class="bg-black bg-opacity-30 p-4 rounded">
+                                <span class="block text-sm text-gray-400 uppercase tracking-wider mb-1">Gyártási év</span>
+                                <span class="text-xl font-semibold">2007</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- TAB: SPECIFIKÁCIÓK (Specs) -->
+        <section id="specs" class="tab-content">
+            <div class="mb-8">
+                <h2 class="text-3xl font-serif text-spartan-red border-b-2 border-spartan-bronze pb-2 mb-4 inline-block">Technikai Specifikációk</h2>
+                <p class="text-gray-800 leading-relaxed text-lg bg-white p-4 rounded border-l-4 border-spartan-bronze shadow-sm">
+                    <strong>Tájékoztató:</strong> Itt részletesen tanulmányozhatja a Blu-ray lemez vizuális és hangzásbeli paramétereit. A diagram interaktív módon mutatja be a különböző nyelvű hangsávok megoszlását, kiemelve a korszakalkotó Dolby TrueHD angol hangot és a magyar szinkront.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+                
+                <!-- Text Details -->
+                <div class="flex flex-col gap-6">
+                    <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 flex-1">
+                        <h3 class="text-2xl font-bold mb-4 flex items-center text-spartan-dark">
+                            <span class="mr-2">📺</span> Videó
+                        </h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-center justify-between border-b border-gray-100 pb-2">
+                                <span class="text-gray-600">Felbontás:</span>
+                                <span class="font-bold text-lg">1080p High Definition</span>
+                            </li>
+                            <li class="flex items-center justify-between border-b border-gray-100 pb-2">
+                                <span class="text-gray-600">Képarány:</span>
+                                <span class="font-bold text-lg">2.40:1 (16:9)</span>
+                            </li>
+                            <li class="flex items-center justify-between border-b border-gray-100 pb-2">
+                                <span class="text-gray-600">Video kodek:</span>
+                                <span class="font-bold text-lg">VC-1</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 flex-1">
+                        <h3 class="text-2xl font-bold mb-4 flex items-center text-spartan-dark">
+                            <span class="mr-2">📝</span> Feliratok
+                        </h3>
+                        <p class="text-lg text-gray-700 leading-relaxed">
+                            <strong class="text-spartan-red">Magyar</strong>, angol, cseh, lengyel, orosz, török, arab stb.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Interactive Chart Container & Audio Info -->
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 flex flex-col">
+                    <h3 class="text-2xl font-bold mb-2 flex items-center text-spartan-dark">
+                        <span class="mr-2">🔊</span> Audió (Hangsávok)
+                    </h3>
+                    <p class="text-sm text-gray-500 mb-6 italic">A kiadás egyik mérföldköve a fejlett hangsávok alkalmazása volt.</p>
+                    
+                    <!-- THE CHART CONTAINER -->
+                    <div class="chart-container flex-grow mb-6">
+                        <canvas id="audioChart"></canvas>
+                    </div>
+                    
+                    <div class="bg-spartan-parchment p-4 rounded border-l-4 border-spartan-red mt-auto">
+                        <h4 class="font-bold text-spartan-dark mb-2">Hangsávok Listája:</h4>
+                        <ul class="list-disc list-inside text-gray-700 text-sm space-y-1">
+                            <li><strong>Angol:</strong> Dolby TrueHD 5.1 (Prémium)</li>
+                            <li><strong>Angol:</strong> Dolby Digital 5.1</li>
+                            <li><strong class="text-spartan-red">Magyar:</strong> Dolby Digital 5.1 (Szinkron)</li>
+                            <li><strong>Egyéb (DD 5.1):</strong> Cseh, lengyel, orosz, török</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="mt-8 bg-spartan-dark text-spartan-bronze p-4 rounded text-center text-lg italic shadow-inner">
+                „Ez a kiadás a nagyfelbontású házimozi-korszak egyik mérföldköve volt Magyarországon, különösen a Dolby TrueHD hangsáv és a látványos vizuális stílus miatt.”
+            </div>
+        </section>
+
+        <!-- TAB: EXTRÁK (Extras) -->
+        <section id="extras" class="tab-content">
+            <div class="mb-8">
+                <h2 class="text-3xl font-serif text-spartan-red border-b-2 border-spartan-bronze pb-2 mb-4 inline-block">Extrák a lemezen</h2>
+                <p class="text-gray-800 leading-relaxed text-lg bg-white p-4 rounded border-l-4 border-spartan-bronze shadow-sm">
+                    <strong>Tájékoztató:</strong> Ez a rész a kiadás bónusz tartalmait rendszerezi. Az interaktív lista segítségével válogathat a dokumentumfilmek és kommentárok között. Kattintson egy elemre a bal oldalon, hogy elolvassa annak részletes leírását a jobb oldali panelen.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 bg-white p-2 rounded-lg shadow-sm border border-gray-200">
+                
+                <!-- Interactive List (Master) -->
+                <div class="md:col-span-5 lg:col-span-4 border-r border-gray-200 max-h-[500px] overflow-y-auto custom-scrollbar">
+                    <ul id="extrasList" class="divide-y divide-gray-100">
+                        <!-- Populated dynamically by JS -->
+                    </ul>
+                </div>
+
+                <!-- Detail Display Panel (Detail) -->
+                <div class="md:col-span-7 lg:col-span-8 p-6 md:p-10 flex flex-col justify-center items-center text-center relative overflow-hidden bg-spartan-parchment rounded-r-lg">
+                    <!-- Background Icon decoration -->
+                    <div class="absolute -right-10 -bottom-10 text-[10rem] opacity-5 pointer-events-none">🎁</div>
+                    
+                    <div id="extraDetailContent" class="w-full max-w-lg z-10 transition-opacity duration-300">
+                        <div class="text-gray-400 py-12">
+                            <span class="text-6xl mb-4 block">👈</span>
+                            <h3 class="text-2xl font-bold text-gray-500">Válasszon egy extrát!</h3>
+                            <p class="mt-2 text-gray-400">Kattintson a bal oldali listában szereplő tételek egyikére a tartalom megtekintéséhez.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB: SZEREPLŐK (Cast) -->
+        <section id="cast" class="tab-content">
+            <div class="mb-8">
+                <h2 class="text-3xl font-serif text-spartan-red border-b-2 border-spartan-bronze pb-2 mb-4 inline-block">Stáb és Szereplők</h2>
+                <p class="text-gray-800 leading-relaxed text-lg bg-white p-4 rounded border-l-4 border-spartan-bronze shadow-sm">
+                    <strong>Tájékoztató:</strong> Ismerje meg a film főbb karaktereit, az őket megformáló színészeket, és a hazai élményt meghatározó ikonikus magyar szinkronhangokat. A kártyás elrendezés segíti a gyors azonosítást.
+                </p>
+            </div>
+
+            <div class="bg-spartan-dark text-white p-4 rounded-lg shadow-sm inline-flex items-center mb-8 border border-spartan-bronze">
+                <span class="text-2xl mr-3">🎬</span>
+                <span class="text-gray-400 mr-2 uppercase tracking-wide text-sm font-bold">Rendező:</span> 
+                <span class="text-xl font-serif text-spartan-bronze">Zack Snyder</span>
+            </div>
+
+            <!-- Cast Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="castGrid">
+                <!-- Populated dynamically by JS -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 text-gray-500 py-8 text-center mt-auto border-t border-gray-200">
+        <div class="max-w-6xl mx-auto px-4">
+            <p class="mb-2">⚔️ Interaktív Adatlap - 300 (2007) Magyar Blu-ray Kiadás (2008)</p>
+            <p class="text-sm">Készült HTML, Tailwind CSS és Vanilla JS felhasználásával. (Grafika: Chart.js)</p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT APPLICATION LOGIC -->
+    <script>
+        // 1. DATA STORAGE (Extracted from Source Report)
+        const appData = {
+            extras: [
+                { id: 1, title: "Audiókommentár", icon: "🎙️", desc: "Zack Snyder rendező, Kurt Johnstad író és Larry Fong operatőr közreműködésével." },
+                { id: 2, title: "Kimaradt jelenetek", icon: "✂️", desc: "A filmből kivágott részek, a rendező bevezetőjével." },
+                { id: 3, title: "Spártai neveltetés", icon: "💪", desc: "Kisfilm a színészek fizikai felkészítéséről." },
+                { id: 4, title: "A 300: Tény vagy fikció?", icon: "🏛️", desc: "Történelmi elemzés a film és a valóság kapcsolatáról." },
+                { id: 5, title: "Frank Miller látványvilága", icon: "🖌️", desc: "Frank Miller és a 300 látványvilága a képregényíró szemével." },
+                { id: 6, title: "Webizódok", icon: "🌐", desc: "Rövid werkfilmek a produkció különböző fázisairól." },
+                { id: 7, title: "Hogyan készült a 300?", icon: "🎥", desc: "Átfogó dokumentumfilm a forgatásról." }
+            ],
+            cast: [
+                { role: "Leónidasz király", actor: "Gerard Butler", voice: "Selmeczi Roland", icon: "👑" },
+                { role: "Gorgó királyné", actor: "Lena Headey", voice: "Pikali Gerda", icon: "👸" },
+                { role: "Diliosz", actor: "David Wenham", voice: "Kaszás Gergő", icon: "👁️" },
+                { role: "Theron", actor: "Dominic West", voice: "Kőszegi Ákos", icon: "🗣️" },
+                { role: "Xerxész", actor: "Rodrigo Santoro", voice: "Welker Gábor", icon: "☀️" }
+            ],
+            // Data for Chart.js
+            audioStats: {
+                labels: ['Angol sávok', 'Magyar sáv', 'Egyéb sávok'],
+                data: [2, 1, 4] // 2 English (TrueHD, DD), 1 Hungarian, 4 Others (CZ, PL, RU, TR)
+            }
+        };
+
+        // 2. STATE MANAGEMENT
+        const state = {
+            activeTab: 'overview',
+            isChartRendered: false,
+            activeExtraId: null
+        };
+
+        // 3. CORE INTERACTION HANDLING
+        
+        // Tab Navigation Logic
+        function switchTab(tabId) {
+            state.activeTab = tabId;
+            
+            // Update Tab Buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+                // Simple matching based on onclick attribute text
+                if(btn.getAttribute('onclick').includes(tabId)) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Update Content Panels
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById(tabId).classList.add('active');
+
+            // Lazy Load Chart to ensure canvas dimensions are computed correctly by browser
+            if (tabId === 'specs' && !state.isChartRendered) {
+                initAudioChart();
+                state.isChartRendered = true;
+            }
+        }
+
+        // Initialize Extras Master-Detail View
+        function initExtras() {
+            const listContainer = document.getElementById('extrasList');
+            const detailContainer = document.getElementById('extraDetailContent');
+
+            appData.extras.forEach((extra) => {
+                const li = document.createElement('li');
+                li.className = 'extra-item p-4 flex items-center text-gray-700';
+                li.innerHTML = `
+                    <span class="text-2xl w-10 text-center mr-3">${extra.icon}</span>
+                    <span class="font-medium text-lg">${extra.id}. ${extra.title}</span>
+                `;
+                
+                li.addEventListener('click', () => {
+                    // Update active state
+                    document.querySelectorAll('.extra-item').forEach(el => el.classList.remove('active'));
+                    li.classList.add('active');
+
+                    // Fade out, update content, fade in
+                    detailContainer.style.opacity = 0;
+                    
+                    setTimeout(() => {
+                        detailContainer.innerHTML = `
+                            <div class="mb-6 inline-block bg-white p-4 rounded-full shadow-sm border border-gray-100">
+                                <span class="text-6xl block">${extra.icon}</span>
+                            </div>
+                            <h3 class="text-3xl font-serif text-spartan-dark mb-4">${extra.title}</h3>
+                            <div class="w-16 h-1 bg-spartan-red mx-auto mb-6"></div>
+                            <p class="text-xl text-gray-700 leading-relaxed">${extra.desc}</p>
+                        `;
+                        detailContainer.style.opacity = 1;
+                    }, 200);
+                });
+
+                listContainer.appendChild(li);
+            });
+        }
+
+        // Initialize Cast Grid
+        function initCast() {
+            const grid = document.getElementById('castGrid');
+            appData.cast.forEach(person => {
+                const card = document.createElement('div');
+                card.className = 'bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden flex flex-col hover:shadow-md transition-shadow duration-200';
+                card.innerHTML = `
+                    <div class="bg-gray-50 border-b border-gray-200 p-4 font-serif font-bold text-xl flex items-center justify-center text-spartan-dark">
+                        <span class="mr-2">${person.icon}</span> ${person.role}
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col justify-center text-center">
+                        <div class="mb-4">
+                            <span class="block text-xs uppercase tracking-widest text-gray-400 font-bold mb-1">Eredeti Színész</span>
+                            <span class="text-xl text-spartan-dark font-medium">${person.actor}</span>
+                        </div>
+                        <div class="border-t border-gray-100 pt-4">
+                            <span class="block text-xs uppercase tracking-widest text-gray-400 font-bold mb-1">Magyar Hang</span>
+                            <span class="text-xl text-spartan-red font-bold">${person.voice}</span>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Initialize Chart.js
+        function initAudioChart() {
+            const canvas = document.getElementById('audioChart');
+            const ctx = canvas.getContext('2d');
+            
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: appData.audioStats.labels,
+                    datasets: [{
+                        data: appData.audioStats.data,
+                        backgroundColor: [
+                            '#1a1816', // spartan-dark (English)
+                            '#7a110a', // spartan-red (Hungarian)
+                            '#b08d57'  // spartan-bronze (Others)
+                        ],
+                        borderWidth: 3,
+                        borderColor: '#ffffff',
+                        hoverOffset: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false, // MANDATORY for responsive chart containers
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: {
+                                    family: "'Segoe UI', 'Roboto', sans-serif",
+                                    size: 14
+                                },
+                                padding: 20,
+                                color: '#4a5568'
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(26, 24, 22, 0.9)',
+                            titleFont: { size: 15, family: "'Segoe UI', sans-serif" },
+                            bodyFont: { size: 14, family: "'Segoe UI', sans-serif" },
+                            padding: 15,
+                            cornerRadius: 8,
+                            callbacks: {
+                                label: function(context) {
+                                    return ` ${context.label}: ${context.raw} hangsáv`;
+                                }
+                            }
+                        }
+                    },
+                    cutout: '65%',
+                    animation: {
+                        animateScale: true,
+                        animateRotate: true
+                    }
+                }
+            });
+        }
+
+        // 4. ON LOAD EXECUTION
+        document.addEventListener('DOMContentLoaded', () => {
+            initExtras();
+            initCast();
+            // Chart init deferred until the 'specs' tab is clicked
+        });
+    </script>
+</body>
+</html>
