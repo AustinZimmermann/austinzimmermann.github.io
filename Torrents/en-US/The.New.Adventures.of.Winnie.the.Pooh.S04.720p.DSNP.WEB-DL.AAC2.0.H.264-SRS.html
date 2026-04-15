@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Release Explorer: The New Adventures of Winnie the Pooh (Season 4)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        honey: {
+                            50: '#fefce8',
+                            100: '#fef9c3',
+                            200: '#fef08a',
+                            300: '#fde047',
+                            400: '#facc15',
+                            500: '#eab308',
+                            600: '#ca8a04',
+                            700: '#a16207',
+                            800: '#854d0e',
+                            900: '#713f12',
+                        },
+                        wood: {
+                            800: '#452103',
+                            900: '#2c1401'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Helvetica', 'sans-serif'],
+                        serif: ['Georgia', 'Cambria', 'Times New Roman', 'Times', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #fefce8;
+            color: #452103;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            height: 30vh;
+            max-height: 350px;
+            min-height: 250px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+                max-width: 600px;
+            }
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #fef9c3;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #facc15;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #ca8a04;
+        }
+        .fade-in {
+            animation: fadeIn 0.4s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col font-sans">
+
+    <!-- Chosen Palette: Warm Honey & Hundred Acre Wood (honey-50 background, wood-800 text, honey-500 accents) -->
+    <!-- Application Structure Plan: A two-column dashboard layout on desktop (stacking on mobile). The header establishes the context and nostalgic tone. The left column provides technical metadata cards and a data visualization showing episode structures, allowing for quick scanning of release specs. The right column is an interactive Episode Explorer, letting users drill down into specific episode details without cluttering the main view. This translates a flat markdown list into an engaging, explorable interface. -->
+    <!-- Visualization & Content Choices: Episode Segment Breakdown -> Goal: Compare/Analyze -> Viz: Bar Chart (Chart.js/Canvas) -> Interaction: Hover tooltips -> Justification: Visually demonstrates the season's shift from single to double-story episodes. Metadata -> Goal: Inform -> Viz: Grid of interactive cards -> Interaction: Hover effects -> Justification: Makes technical data digestible. Episode List -> Goal: Organize -> Viz: Interactive list & detail pane -> Interaction: Click to load details -> Justification: Preserves space and encourages active exploration. Confirming NO SVG/Mermaid. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <header class="bg-honey-400 text-wood-900 shadow-md border-b-4 border-honey-600 relative overflow-hidden">
+        <div class="absolute top-0 right-0 p-4 opacity-20 text-6xl pointer-events-none">🍯🐻</div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
+            <div class="flex flex-col md:flex-row md:items-center justify-between">
+                <div>
+                    <h1 class="text-3xl md:text-4xl font-serif font-bold tracking-tight mb-2">The New Adventures of Winnie the Pooh</h1>
+                    <h2 class="text-xl font-medium text-wood-800 flex items-center gap-2">
+                        <span class="bg-honey-100 text-honey-800 px-2 py-1 rounded text-sm font-bold shadow-sm">Season 04</span>
+                        <span>Archive Release Dashboard</span>
+                    </h2>
+                </div>
+                <div class="mt-4 md:mt-0 bg-honey-50 rounded-lg p-3 shadow-inner border border-honey-300">
+                    <p class="text-xs font-mono text-honey-800 break-all select-all">The.New.Adventures.of.Winnie.the.Pooh.S04.720p.DSNP.WEB-DL.AAC2.0.H.264-SRS</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+        
+        <section class="mb-10 bg-white rounded-xl shadow-sm border border-honey-200 p-6">
+            <h3 class="text-2xl font-serif font-bold mb-3 text-honey-800 border-b-2 border-honey-100 pb-2">📝 Series Synopsis</h3>
+            <p class="text-lg leading-relaxed text-wood-800">
+                This interactive dashboard provides an overview of the final season of the beloved Emmy Award-winning series. Explore the technical specifications of the release and navigate through the final set of television adventures featuring Pooh, Tigger, Piglet, Eeyore, and the rest of the gang in the Hundred Acre Wood.
+            </p>
+            <div class="mt-4 flex flex-wrap gap-3">
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">📺 Network: ABC / Disney+</span>
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-purple-100 text-purple-800">📅 Aired: 1991</span>
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">⭐ IMDb: 8.2/10</span>
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-rose-100 text-rose-800">🎭 Animation, Adventure, Comedy, Family</span>
+            </div>
+        </section>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            
+            <div class="lg:col-span-5 space-y-8">
+                
+                <section class="bg-white rounded-xl shadow-sm border border-honey-200 p-6">
+                    <div class="mb-4">
+                        <h3 class="text-xl font-serif font-bold text-honey-800">📂 File Metadata</h3>
+                        <p class="text-sm text-gray-500 mt-1">Technical specifications for the archived video files.</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-honey-50 p-4 rounded-lg border border-honey-100 hover:shadow-md transition-shadow cursor-default">
+                            <div class="text-2xl mb-1">🎞️</div>
+                            <div class="text-xs text-honey-600 uppercase font-bold tracking-wider">Format</div>
+                            <div class="font-medium text-wood-900">Matroska (MKV)</div>
+                        </div>
+                        <div class="bg-honey-50 p-4 rounded-lg border border-honey-100 hover:shadow-md transition-shadow cursor-default">
+                            <div class="text-2xl mb-1">📺</div>
+                            <div class="text-xs text-honey-600 uppercase font-bold tracking-wider">Resolution</div>
+                            <div class="font-medium text-wood-900">1280x720 (720p)</div>
+                        </div>
+                        <div class="bg-honey-50 p-4 rounded-lg border border-honey-100 hover:shadow-md transition-shadow cursor-default">
+                            <div class="text-2xl mb-1">🌐</div>
+                            <div class="text-xs text-honey-600 uppercase font-bold tracking-wider">Source</div>
+                            <div class="font-medium text-wood-900">DSNP WEB-DL</div>
+                        </div>
+                        <div class="bg-honey-50 p-4 rounded-lg border border-honey-100 hover:shadow-md transition-shadow cursor-default">
+                            <div class="text-2xl mb-1">📼</div>
+                            <div class="text-xs text-honey-600 uppercase font-bold tracking-wider">Video Codec</div>
+                            <div class="font-medium text-wood-900">H.264 (AVC)</div>
+                        </div>
+                        <div class="bg-honey-50 p-4 rounded-lg border border-honey-100 hover:shadow-md transition-shadow cursor-default col-span-2 flex items-center justify-between">
+                            <div>
+                                <div class="text-xs text-honey-600 uppercase font-bold tracking-wider">Audio</div>
+                                <div class="font-medium text-wood-900">AAC 2.0 (English)</div>
+                            </div>
+                            <div class="text-3xl">🔊</div>
+                        </div>
+                        <div class="bg-honey-50 p-4 rounded-lg border border-honey-100 hover:shadow-md transition-shadow cursor-default col-span-2">
+                            <div class="text-xs text-honey-600 uppercase font-bold tracking-wider mb-1">Subtitles (Muxed)</div>
+                            <div class="flex gap-2">
+                                <span class="bg-white border border-gray-200 px-2 py-1 rounded text-sm shadow-sm">English</span>
+                                <span class="bg-white border border-gray-200 px-2 py-1 rounded text-sm shadow-sm">French</span>
+                                <span class="bg-white border border-gray-200 px-2 py-1 rounded text-sm shadow-sm">Spanish</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4 text-right">
+                        <span class="text-xs text-gray-500">Release Group: <span class="font-bold text-gray-700">SRS</span></span>
+                    </div>
+                </section>
+
+                <section class="bg-white rounded-xl shadow-sm border border-honey-200 p-6">
+                    <div class="mb-4">
+                        <h3 class="text-xl font-serif font-bold text-honey-800">📊 Season Structure Analysis</h3>
+                        <p class="text-sm text-gray-500 mt-1">Visualization of story segments per episode across the final season.</p>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="structureChart"></canvas>
+                    </div>
+                </section>
+
+            </div>
+
+            <div class="lg:col-span-7">
+                <section class="bg-white rounded-xl shadow-sm border border-honey-200 h-full flex flex-col overflow-hidden">
+                    <div class="p-6 border-b border-honey-100 bg-honey-50">
+                        <h3 class="text-xl font-serif font-bold text-honey-800">📖 Episode Explorer</h3>
+                        <p class="text-sm text-gray-600 mt-1">Select an episode from the list below to view its details and segments.</p>
+                    </div>
+                    
+                    <div class="flex flex-col md:flex-row h-full">
+                        <div class="md:w-2/5 border-r border-honey-100 bg-white overflow-y-auto custom-scrollbar" style="max-height: 500px;">
+                            <ul id="episode-list-container" class="divide-y divide-honey-50">
+                            </ul>
+                        </div>
+                        
+                        <div class="md:w-3/5 p-6 bg-honey-50/30 flex flex-col justify-center items-center text-center" id="episode-detail-container">
+                            <div class="text-6xl mb-4 opacity-50">🍯</div>
+                            <h4 class="text-xl font-serif text-wood-800 font-bold mb-2">Select an Episode</h4>
+                            <p class="text-wood-800/70">Click on any episode from the list to explore its titles and segment structure.</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="bg-wood-900 text-honey-100 py-6 text-center mt-auto border-t-4 border-honey-600">
+        <p class="text-sm">Vibrant, restored 720p captures showing Pooh and Piglet walking through the Hundred Acre Wood, and Tigger bouncing near Rabbit’s garden.</p>
+        <p class="text-xs text-honey-400 mt-2 font-bold uppercase tracking-wider">Seed and Enjoy! Remember to give back to the community.</p>
+    </footer>
+
+    <script>
+        const episodeData = [
+            { id: 'S04E01', title: 'Sorry, Wrong Slusher', segments: ['Sorry, Wrong Slusher'], count: 1 },
+            { id: 'S04E02', title: 'Grown, But Not Forgotten', segments: ['Grown, But Not Forgotten'], count: 1 },
+            { id: 'S04E03', title: 'A Pooh Day Afternoon', segments: ['A Pooh Day Afternoon'], count: 1 },
+            { id: 'S04E04', title: 'The Good, the Bad, and the Tigger', segments: ['The Good, the Bad, and the Tigger'], count: 1 },
+            { id: 'S04E05', title: 'Home Is Where the Home Is', segments: ['Home Is Where the Home Is'], count: 1 },
+            { id: 'S04E06', title: 'Shovel, Shovel, Toil and Trouble / The Wise Have It', segments: ['Shovel, Shovel, Toil and Trouble', 'The Wise Have It'], count: 2 },
+            { id: 'S04E07', title: 'Cloud, Cloud, Go Away / To Dream the Impossible Scheme', segments: ['Cloud, Cloud, Go Away', 'To Dream the Impossible Scheme'], count: 2 },
+            { id: 'S04E08', title: 'Piglet’s Poohetry / Owl’s Well That Ends Well', segments: ['Piglet’s Poohetry', 'Owl’s Well That Ends Well'], count: 2 }
+        ];
+
+        function initApp() {
+            renderEpisodeList();
+            renderChart();
+        }
+
+        function renderEpisodeList() {
+            const listContainer = document.getElementById('episode-list-container');
+            
+            episodeData.forEach(ep => {
+                const li = document.createElement('li');
+                li.className = 'p-4 hover:bg-honey-100 cursor-pointer transition-colors border-l-4 border-transparent hover:border-honey-500 group';
+                li.onclick = () => selectEpisode(ep, li);
+                
+                li.innerHTML = `
+                    <div class="flex items-center justify-between">
+                        <span class="font-bold text-honey-800 text-sm font-mono group-hover:text-honey-900">${ep.id}</span>
+                        <span class="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full">${ep.count} Segment${ep.count > 1 ? 's' : ''}</span>
+                    </div>
+                    <div class="text-wood-900 font-medium mt-1 text-sm truncate" title="${ep.title}">${ep.title}</div>
+                `;
+                listContainer.appendChild(li);
+            });
+        }
+
+        function selectEpisode(ep, element) {
+            const listItems = document.querySelectorAll('#episode-list-container li');
+            listItems.forEach(item => {
+                item.classList.remove('bg-honey-100', 'border-honey-500');
+                item.classList.add('border-transparent');
+            });
+            
+            element.classList.remove('border-transparent');
+            element.classList.add('bg-honey-100', 'border-honey-500');
+
+            const detailContainer = document.getElementById('episode-detail-container');
+            
+            let segmentsHtml = '';
+            ep.segments.forEach((seg, index) => {
+                segmentsHtml += `
+                    <div class="bg-white p-4 rounded-lg shadow-sm border border-honey-200 text-left mb-3 w-full fade-in" style="animation-delay: ${index * 0.1}s">
+                        <div class="text-xs text-honey-600 uppercase font-bold mb-1">Segment ${index + 1}</div>
+                        <div class="text-lg font-serif text-wood-900">${seg}</div>
+                    </div>
+                `;
+            });
+
+            detailContainer.innerHTML = `
+                <div class="w-full h-full flex flex-col fade-in">
+                    <div class="flex items-center gap-3 mb-6 border-b border-honey-200 pb-4">
+                        <div class="bg-honey-500 text-white font-bold font-mono px-3 py-1.5 rounded-md shadow-sm text-lg">${ep.id}</div>
+                        <div class="text-left">
+                            <div class="text-sm text-gray-500 uppercase tracking-wide font-bold">File Contents</div>
+                        </div>
+                    </div>
+                    <div class="flex-grow overflow-y-auto custom-scrollbar pr-2 w-full">
+                        ${segmentsHtml}
+                    </div>
+                    <div class="mt-auto pt-4 text-left">
+                        <button class="text-sm text-honey-700 hover:text-honey-900 flex items-center gap-1 font-medium transition-colors" onclick="playMockVideo()">
+                            <span class="text-lg">▶</span> Simulate Playback
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function playMockVideo() {
+            const btn = event.currentTarget;
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<span class="text-lg">⏳</span> Buffering...';
+            setTimeout(() => {
+                btn.innerHTML = '<span class="text-lg">✅</span> Ready (Demo Only)';
+                setTimeout(() => { btn.innerHTML = originalText; }, 2000);
+            }, 800);
+        }
+
+        function renderChart() {
+            const ctx = document.getElementById('structureChart').getContext('2d');
+            
+            const labels = episodeData.map(ep => ep.id);
+            const data = episodeData.map(ep => ep.count);
+            
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Number of Story Segments',
+                        data: data,
+                        backgroundColor: '#facc15',
+                        borderColor: '#ca8a04',
+                        borderWidth: 1,
+                        borderRadius: 4,
+                        hoverBackgroundColor: '#eab308'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: '#452103',
+                            titleFont: { family: 'Georgia', size: 14 },
+                            bodyFont: { family: 'system-ui', size: 13 },
+                            padding: 12,
+                            callbacks: {
+                                title: function(context) {
+                                    return episodeData[context[0].dataIndex].title;
+                                },
+                                label: function(context) {
+                                    const count = context.raw;
+                                    return `${count} Segment${count > 1 ? 's' : ''}`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                stepSize: 1,
+                                color: '#854d0e'
+                            },
+                            grid: {
+                                color: '#fef08a',
+                                drawBorder: false
+                            },
+                            title: {
+                                display: true,
+                                text: 'Segments',
+                                color: '#a16207',
+                                font: { weight: 'bold' }
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                color: '#854d0e',
+                                maxRotation: 45,
+                                minRotation: 45
+                            },
+                            grid: {
+                                display: false
+                            }
+                        }
+                    },
+                    animation: {
+                        duration: 1500,
+                        easing: 'easeOutQuart'
+                    }
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', initApp);
+    </script>
+</body>
+</html>
