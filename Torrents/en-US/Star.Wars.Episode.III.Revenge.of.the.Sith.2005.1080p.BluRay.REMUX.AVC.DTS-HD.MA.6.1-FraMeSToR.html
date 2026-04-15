@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Torrent Release: Star Wars Episode III</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono&display=swap');
+        
+        :root {
+            --tracker-bg: #0b0e14;
+            --tracker-card: #161b22;
+            --tracker-border: #30363d;
+            --accent-blue: #58a6ff;
+            --text-muted: #8b949e;
+        }
+
+        body {
+            background-color: var(--tracker-bg);
+            color: #c9d1d9;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .nfo-block {
+            font-family: 'JetBrains Mono', monospace;
+            background: #000;
+            border: 1px dashed #444;
+            padding: 1.5rem;
+            white-space: pre-wrap;
+            color: #00ff00;
+            font-size: 0.85rem;
+            line-height: 1.2;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: var(--tracker-bg);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: var(--tracker-border);
+            border-radius: 4px;
+        }
+
+        .stat-badge {
+            background: rgba(88, 166, 255, 0.1);
+            border: 1px solid rgba(88, 166, 255, 0.2);
+            color: var(--accent-blue);
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-12 custom-scrollbar">
+
+    <!-- Header Navigation -->
+    <nav class="border-b border-[--tracker-border] bg-[--tracker-card] px-4 py-3 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-8">
+                <h1 class="text-xl font-bold tracking-tighter text-white">
+                    <i class="fa-solid fa-ghost mr-2 text-blue-400"></i>SKY-TRACKER
+                </h1>
+                <div class="hidden md:flex gap-6 text-sm font-medium text-[--text-muted]">
+                    <a href="#" class="hover:text-white transition-colors">Torrents</a>
+                    <a href="#" class="hover:text-white transition-colors">Requests</a>
+                    <a href="#" class="hover:text-white transition-colors">Upload</a>
+                    <a href="#" class="hover:text-white transition-colors">Forums</a>
+                </div>
+            </div>
+            <div class="flex items-center gap-4 text-xs">
+                <span class="text-green-400"><i class="fa-solid fa-arrow-up mr-1"></i> 2.4 TB</span>
+                <span class="text-red-400"><i class="fa-solid fa-arrow-down mr-1"></i> 450 GB</span>
+                <span class="stat-badge px-2 py-1 rounded">Ratio: 5.46</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto mt-8 px-4">
+        
+        <!-- Title Header -->
+        <div class="mb-6">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-2">Star Wars: Episode III – Revenge of the Sith (2005)</h2>
+            <p class="text-[--text-muted] font-mono text-sm break-all bg-black/30 p-2 rounded border border-[--tracker-border]">
+                Star.Wars.Episode.III.Revenge.of.the.Sith.2005.1080p.BluRay.REMUX.AVC.DTS-HD.MA.6.1-FraMeSToR.mkv
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            
+            <!-- Sidebar / Poster -->
+            <div class="lg:col-span-3 space-y-6">
+                <div class="rounded-lg overflow-hidden border border-[--tracker-border] bg-[--tracker-card] shadow-xl">
+                    <div class="aspect-[2/3] bg-neutral-800 flex flex-col items-center justify-center relative group">
+                        <!-- Placeholder for Movie Poster -->
+                        <svg class="w-24 h-24 text-neutral-600" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M18 3v2h-2V3H8v2H6V3H4v18h2v-2h2v2h8v-2h2v2h2V3h-2zM8 17H6v-2h2v2zm0-4H6v-2h2v2zm0-4H6V7h2v2zm10 8h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2V7h2v2z"/>
+                        </svg>
+                        <span class="text-xs text-neutral-500 mt-4 uppercase tracking-widest font-bold">Blu-ray Remux</span>
+                    </div>
+                    <div class="p-4 flex flex-col gap-2">
+                        <button onclick="copyMagnet()" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 rounded transition-colors flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-magnet"></i> Magnet Link
+                        </button>
+                        <button class="w-full bg-[#30363d] hover:bg-[#3d444d] text-white font-bold py-2 rounded transition-colors flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-download"></i> Download .torrent
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Stats Card -->
+                <div class="bg-[--tracker-card] border border-[--tracker-border] rounded-lg p-4 space-y-3 text-sm">
+                    <div class="flex justify-between">
+                        <span class="text-[--text-muted]">Uploaded</span>
+                        <span class="text-white">Sept 16, 2011</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-[--text-muted]">Size</span>
+                        <span class="text-white">34.8 GB</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-[--text-muted]">Seeders</span>
+                        <span class="text-green-400 font-bold">1,402</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-[--text-muted]">Leechers</span>
+                        <span class="text-yellow-500">45</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detailed Information -->
+            <div class="lg:col-span-9 space-y-8">
+                
+                <!-- Info Section -->
+                <section class="bg-[--tracker-card] border border-[--tracker-border] rounded-lg overflow-hidden">
+                    <div class="bg-black/20 px-4 py-2 border-b border-[--tracker-border]">
+                        <h3 class="font-bold text-sm uppercase tracking-wider text-[--accent-blue]">Release Information</h3>
+                    </div>
+                    <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4">
+                        <div>
+                            <p class="text-xs font-bold text-[--text-muted] uppercase mb-1">Director</p>
+                            <p class="text-white">George Lucas</p>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold text-[--text-muted] uppercase mb-1">Genre</p>
+                            <p class="text-white">Action | Adventure | Sci-Fi</p>
+                        </div>
+                        <div class="md:col-span-2">
+                            <p class="text-xs font-bold text-[--text-muted] uppercase mb-1">Starring</p>
+                            <p class="text-white">Hayden Christensen, Ewan McGregor, Natalie Portman, Ian McDiarmid</p>
+                        </div>
+                        <div class="md:col-span-2 mt-4">
+                            <p class="text-xs font-bold text-[--text-muted] uppercase mb-1">Plot Summary</p>
+                            <p class="text-sm leading-relaxed">
+                                Three years into the Clone Wars, the Jedi rescue Palpatine from Count Dooku. As Obi-Wan pursues a new threat, Anakin acts as a double agent between the Jedi Council and Palpatine and is lured into a sinister plan to rule the galaxy.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Technical Section -->
+                <section class="bg-[--tracker-card] border border-[--tracker-border] rounded-lg overflow-hidden">
+                    <div class="bg-black/20 px-4 py-2 border-b border-[--tracker-border] flex justify-between items-center">
+                        <h3 class="font-bold text-sm uppercase tracking-wider text-[--accent-blue]">Technical Specifications</h3>
+                        <span class="text-[10px] bg-neutral-700 px-2 py-0.5 rounded text-white">AVC / 1080p</span>
+                    </div>
+                    <div class="p-6 space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div class="space-y-3">
+                                <h4 class="text-sm font-bold border-b border-[--tracker-border] pb-1 text-white">Audio Tracks</h4>
+                                <ul class="text-xs space-y-2">
+                                    <li class="flex justify-between"><span class="text-[--text-muted]">English 6.1</span> <span class="font-mono text-blue-300">DTS-HD MA</span></li>
+                                    <li class="flex justify-between"><span class="text-[--text-muted]">French 5.1</span> <span class="font-mono">Dolby Digital</span></li>
+                                    <li class="flex justify-between"><span class="text-[--text-muted]">Spanish 5.1</span> <span class="font-mono">Dolby Digital</span></li>
+                                    <li class="flex justify-between"><span class="text-[--text-muted]">Portuguese 5.1</span> <span class="font-mono">Dolby Digital</span></li>
+                                </ul>
+                            </div>
+                            <div class="space-y-3">
+                                <h4 class="text-sm font-bold border-b border-[--tracker-border] pb-1 text-white">Subtitles</h4>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-2 py-1 bg-neutral-800 rounded text-[10px] text-white">ENGLISH SDH</span>
+                                    <span class="px-2 py-1 bg-neutral-800 rounded text-[10px] text-white">FRENCH</span>
+                                    <span class="px-2 py-1 bg-neutral-800 rounded text-[10px] text-white">SPANISH</span>
+                                    <span class="px-2 py-1 bg-neutral-800 rounded text-[10px] text-white">PORTUGUESE</span>
+                                </div>
+                                <div class="pt-4">
+                                    <h4 class="text-sm font-bold border-b border-[--tracker-border] pb-1 text-white mb-2">Chapters</h4>
+                                    <span class="text-xs text-[--text-muted]">Included & Numbered</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- NFO -->
+                <section class="space-y-3">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-lg font-bold text-white"><i class="fa-solid fa-file-code mr-2 text-[--text-muted]"></i>NFO Log</h3>
+                        <button onclick="copyNFO()" class="text-xs text-[--accent-blue] hover:underline">Copy to Clipboard</button>
+                    </div>
+                    <pre class="nfo-block rounded-lg shadow-inner overflow-x-auto" id="nfoContent">
+FRA ME ST OR (Quality over Quantity)
+------------------------------------
+TITLE.......: Star Wars: Episode III – Revenge of the Sith
+YEAR........: 2005
+RELEASE DATE: 2011-09-16
+ENCODER.....: FraMeSToR Group
+SIZE........: 34.8 GB
+VIDEO.......: AVC @ High Bitrate
+AUDIO.......: DTS-HD MA 6.1
+                    </pre>
+                </section>
+
+                <!-- Comments Section -->
+                <section class="space-y-4">
+                    <h3 class="text-lg font-bold text-white"><i class="fa-solid fa-comments mr-2 text-[--text-muted]"></i>User Comments</h3>
+                    
+                    <div class="space-y-4">
+                        <!-- Comment 1 -->
+                        <div class="bg-[--tracker-card] border border-[--tracker-border] rounded-lg p-4">
+                            <div class="flex justify-between items-start mb-2">
+                                <span class="font-bold text-[--accent-blue] text-sm">JediMaster99</span>
+                                <span class="text-[10px] text-[--text-muted]">Sept 16, 2011 08:45 AM</span>
+                            </div>
+                            <p class="text-sm">The wait is finally over! The 6.1 DTS-HD MA track is absolutely incredible on my home theater system. FraMeSToR delivers again.</p>
+                        </div>
+                        
+                        <!-- Comment 2 -->
+                        <div class="bg-[--tracker-card] border border-[--tracker-border] rounded-lg p-4">
+                            <div class="flex justify-between items-start mb-2">
+                                <span class="font-bold text-[--accent-blue] text-sm">BlueRayCollector</span>
+                                <span class="text-[10px] text-[--text-muted]">Sept 16, 2011 10:12 AM</span>
+                            </div>
+                            <p class="text-sm">Finally a proper REMUX of the Saga. The transfer looks stunning. Seed please!</p>
+                        </div>
+
+                        <!-- Comment 3 -->
+                        <div class="bg-[--tracker-card] border border-[--tracker-border] rounded-lg p-4">
+                            <div class="flex justify-between items-start mb-2">
+                                <span class="font-bold text-[--accent-blue] text-sm">SciFiFan_01</span>
+                                <span class="text-[10px] text-[--text-muted]">Sept 16, 2011 11:30 AM</span>
+                            </div>
+                            <p class="text-sm">Does this include the deleted scenes from the disc? Thanks for the upload.</p>
+                        </div>
+                    </div>
+
+                    <!-- Add Comment -->
+                    <div class="bg-black/30 border border-dashed border-[--tracker-border] rounded-lg p-4">
+                        <textarea class="w-full bg-[--tracker-card] border border-[--tracker-border] rounded p-3 text-sm focus:outline-none focus:border-[--accent-blue] mb-3" rows="3" placeholder="Add a comment..."></textarea>
+                        <button class="bg-[#30363d] hover:bg-[#3d444d] text-white px-4 py-2 rounded text-xs font-bold transition-colors">Post Comment</button>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal for feedback -->
+    <div id="toast" class="fixed bottom-8 right-8 bg-[--accent-blue] text-white px-6 py-3 rounded-lg font-bold shadow-2xl opacity-0 pointer-events-none transition-opacity duration-300">
+        Copied to clipboard!
+    </div>
+
+    <script>
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.innerText = message;
+            toast.style.opacity = '1';
+            setTimeout(() => {
+                toast.style.opacity = '0';
+            }, 2000);
+        }
+
+        function copyMagnet() {
+            const magnet = "magnet:?xt=urn:btih:REVENGE_OF_THE_SITH_2005_REMUX_FRAMESTOR";
+            const dummy = document.createElement("textarea");
+            document.body.appendChild(dummy);
+            dummy.value = magnet;
+            dummy.select();
+            document.execCommand("copy");
+            document.body.removeChild(dummy);
+            showToast("Magnet link copied!");
+        }
+
+        function copyNFO() {
+            const nfo = document.getElementById('nfoContent').innerText;
+            const dummy = document.createElement("textarea");
+            document.body.appendChild(dummy);
+            dummy.value = nfo;
+            dummy.select();
+            document.execCommand("copy");
+            document.body.removeChild(dummy);
+            showToast("NFO content copied!");
+        }
+    </script>
+</body>
+</html>
