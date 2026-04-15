@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Release Dashboard: Abby Hatcher S01</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Helvetica, sans-serif;
+            background-color: #fafaf9; 
+            color: #292524;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .custom-scroll::-webkit-scrollbar {
+            width: 8px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: #f5f5f4;
+            border-radius: 4px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #d6d3d1;
+            border-radius: 4px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb:hover {
+            background: #a8a29e;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-rose-200 selection:text-rose-900">
+
+<!-- Chosen Palette: Warm Neutrals with Rose/Amber Accents (stone-50, stone-100, stone-800, rose-500, amber-500) -->
+<!-- Application Structure Plan: The SPA is structured as a technical release dashboard. It transforms the static NFO/Markdown release page into an interactive tracker. It features a Hero section for immediate release identification, a Technical Specifications grid for quick metadata scanning, an Interactive Storage Analysis section (chart) to visualize file footprint across the season, and a searchable Episode Explorer to navigate the 26-episode content. This structure is chosen to make dense metadata easily digestible and interactive. -->
+<!-- Visualization & Content Choices: 1. Release Stats -> Goal: Inform -> Method: Metric Cards -> Interaction: Hover states -> Justification: Quick scanning of NFO data. 2. Episode Storage -> Goal: Compare/Analyze -> Method: Chart.js Bar Chart -> Interaction: Tooltips -> Justification: Visualizes the "~800MB per episode" note across the season. 3. Episode List -> Goal: Organize -> Method: Searchable List -> Interaction: Text filtering -> Justification: Allows quick retrieval of specific episodes from the 26-item list. NO SVG/Mermaid used. -->
+<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-16">
+
+    <header class="bg-white rounded-2xl shadow-sm border border-stone-200 p-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+        <div>
+            <div class="flex flex-wrap gap-2 mb-4">
+                <span class="px-3 py-1 bg-rose-100 text-rose-700 text-xs font-bold rounded-full tracking-wide">WEB-DL</span>
+                <span class="px-3 py-1 bg-stone-100 text-stone-700 text-xs font-bold rounded-full tracking-wide">1080p</span>
+                <span class="px-3 py-1 bg-blue-100 text-blue-700 text-xs font-bold rounded-full tracking-wide">PHANTOM</span>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-bold text-stone-900 mb-2">Abby Hatcher S01</h1>
+            <p class="text-stone-500 text-sm md:text-base font-mono bg-stone-100 p-2 rounded inline-block">Abby.Hatcher.S01.1080p.AMZN.WEB-DL.AAC2.0.H.264-PHANTOM</p>
+        </div>
+        <div class="text-left md:text-right">
+            <p class="text-sm text-stone-500 uppercase tracking-widest font-semibold mb-1">Release Date</p>
+            <p class="text-xl font-bold text-stone-800">February 18, 2020</p>
+        </div>
+    </header>
+
+    <section id="overview" class="scroll-mt-8">
+        <div class="mb-6">
+            <h2 class="text-2xl font-bold text-stone-800 flex items-center gap-2">
+                <span class="text-3xl">📺</span> Series & Release Overview
+            </h2>
+            <p class="text-stone-600 mt-2 max-w-3xl leading-relaxed">
+                This section provides context on the source material and the technical foundation of the release. It combines the narrative background of the animated series with the hard technical data extracted from the PHANTOM group’s release NFO. Review the cards below to understand the audio/video specifications and source origins.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="col-span-1 lg:col-span-2 bg-white rounded-2xl p-8 shadow-sm border border-stone-200">
+                <h3 class="text-lg font-bold text-stone-900 mb-4 border-b border-stone-100 pb-2">Synopsis</h3>
+                <p class="text-stone-700 leading-relaxed mb-4">
+                    <strong>Abby Hatcher</strong> (also known as <em>Abby Hatcher, Fuzzly Catcher</em>) is an animated preschool series created by Rob Hoegee and produced by Guru Studio in conjunction with Spin Master Entertainment. The series follows a bright and energetic seven-year-old girl named Abby Hatcher and her Fuzzly friends, who are amazing creatures that live in her family’s hotel.
+                </p>
+                <p class="text-stone-700 leading-relaxed">
+                    Abby and her best friend Bozzly go on adventures to help the Fuzzlies with their problems and fix any mishaps they cause, often using Abby’s high-tech gadgets like her Fuzzly Spotter and super-powered sneakers.
+                </p>
+                <div class="mt-6 flex flex-wrap gap-2">
+                    <span class="text-xs text-stone-500 font-mono">#AbbyHatcher</span>
+                    <span class="text-xs text-stone-500 font-mono">#NickJr</span>
+                    <span class="text-xs text-stone-500 font-mono">#Cartoons</span>
+                </div>
+            </div>
+
+            <div class="col-span-1 grid grid-cols-2 gap-4">
+                <div class="bg-stone-100 rounded-xl p-4 flex flex-col justify-center items-center text-center hover:bg-stone-200 transition-colors cursor-default">
+                    <span class="text-2xl mb-2">🎞️</span>
+                    <span class="text-xs text-stone-500 uppercase tracking-wider font-semibold">Video Codec</span>
+                    <span class="font-bold text-stone-800">H.264</span>
+                </div>
+                <div class="bg-stone-100 rounded-xl p-4 flex flex-col justify-center items-center text-center hover:bg-stone-200 transition-colors cursor-default">
+                    <span class="text-2xl mb-2">🖼️</span>
+                    <span class="text-xs text-stone-500 uppercase tracking-wider font-semibold">Resolution</span>
+                    <span class="font-bold text-stone-800">1920x1080</span>
+                </div>
+                <div class="bg-stone-100 rounded-xl p-4 flex flex-col justify-center items-center text-center hover:bg-stone-200 transition-colors cursor-default">
+                    <span class="text-2xl mb-2">🔊</span>
+                    <span class="text-xs text-stone-500 uppercase tracking-wider font-semibold">Audio</span>
+                    <span class="font-bold text-stone-800">AAC 2.0</span>
+                </div>
+                <div class="bg-stone-100 rounded-xl p-4 flex flex-col justify-center items-center text-center hover:bg-stone-200 transition-colors cursor-default">
+                    <span class="text-2xl mb-2">📦</span>
+                    <span class="text-xs text-stone-500 uppercase tracking-wider font-semibold">Source</span>
+                    <span class="font-bold text-stone-800">AMZN (Prime)</span>
+                </div>
+                <div class="col-span-2 bg-rose-50 border border-rose-100 rounded-xl p-4 flex flex-col justify-center items-center text-center">
+                    <span class="text-xs text-rose-600 uppercase tracking-wider font-semibold mb-1">Total Episodes</span>
+                    <span class="text-3xl font-black text-rose-700">26</span>
+                    <span class="text-xs text-rose-500 mt-1">Full Season 1 Complete</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="analysis" class="scroll-mt-8">
+        <div class="mb-6">
+            <h2 class="text-2xl font-bold text-stone-800 flex items-center gap-2">
+                <span class="text-3xl">📊</span> Storage Profile Analysis
+            </h2>
+            <p class="text-stone-600 mt-2 max-w-3xl leading-relaxed">
+                The release documentation indicates a footprint of “~800MB per episode” at a 22-minute runtime. This section visualizes the projected storage requirements across the 26-episode season to aid users in bandwidth and storage allocation planning. Hover over the bars to see specific simulated file sizes based on the NFO average.
+            </p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-4 md:p-8 shadow-sm border border-stone-200">
+            <div class="flex justify-between items-center mb-6">
+                <div>
+                    <h3 class="text-lg font-bold text-stone-900">Estimated File Sizes (Ep 1 - 26)</h3>
+                    <p class="text-sm text-stone-500">Based on baseline 5000 kbps bitrate average</p>
+                </div>
+                <div class="text-right hidden sm:block">
+                    <p class="text-sm font-bold text-stone-800">Total Est. Size</p>
+                    <p class="text-rose-600 font-mono font-bold">~20.8 GB</p>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="storageChart"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <section id="episodes" class="scroll-mt-8 mb-16">
+        <div class="mb-6">
+            <h2 class="text-2xl font-bold text-stone-800 flex items-center gap-2">
+                <span class="text-3xl">📝</span> Episode Explorer
+            </h2>
+            <p class="text-stone-600 mt-2 max-w-3xl leading-relaxed">
+                Browse and filter the complete 26-episode index included in this WEB-DL release. Use the search input to quickly locate specific episodes or double-features. This interactive directory replaces the static list found in the original markdown document.
+            </p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-sm border border-stone-200 overflow-hidden flex flex-col">
+            <div class="p-6 border-b border-stone-100 bg-stone-50">
+                <div class="relative max-w-md">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-stone-400">
+                        🔍
+                    </span>
+                    <input type="text" id="searchInput" class="w-full pl-10 pr-4 py-3 rounded-lg border border-stone-300 focus:ring-2 focus:ring-rose-500 focus:border-rose-500 outline-none transition-all text-stone-700 bg-white" placeholder="Search episode titles...">
+                </div>
+            </div>
+
+            <div class="p-0">
+                <div class="max-h-[600px] overflow-y-auto custom-scroll p-6">
+                    <div id="episodeList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<script>
+    const NFO_BASE_SIZE = 800; 
+    const NFO_RUNTIME = "22mn";
+    
+    const episodes = [
+        "When Abby Met Bozzly / Hair Flair Everywhere",
+        "Mo and Bo in the Snow / Otis Out of Order",
+        "There’s Only One Bozzly / Cousin Flugtilda",
+        "Princess Flug’s Flower Float / The Fuzzlies’ Talent Show",
+        "Too Tired to Tuba / Princess Flug Day",
+        "Hair Flair Fuzzly / The Fuzzlies in the Attic",
+        "Afraid of Cats / Chef Curly",
+        "Curly and the Sock Doll / In the Park",
+        "Teeny Terry’s Gift / Peeper Time Blues",
+        "Abby’s Squeaky Peeper Panic / Things That Go Ding in the Night",
+        "Hearts and Hugs Day / Teeny Terry’s Treehouse",
+        "Secret Basement Disco / Frazzled Fuzzly",
+        "Fuzzly Slumber Party / Fix It Flug",
+        "Princess Flug’s Flowery Adventure / Fuzzliest Dinner",
+        "Princess Flug’s Pet Slug / Fuzzly Photo Day",
+        "Fairy Tale Fuzzly / Super Secret Passageway",
+        "Teeny Pelican Terry / Tappin’ Mo and Bo",
+        "Grumbles’ First Haircut / Fuzzly Ball",
+        "The Fuzzlies Camping Trip",
+        "Snug Loving Chipmunks / Abby’s Snug",
+        "Trick or Treat Otis / Bedtime for Peepers",
+        "Otis On the Go / Abby’s Afraid",
+        "Shape of Grumbles / Wai Po’s Wild Day",
+        "Abby Loses Elvin / The Berry Thief",
+        "Fuzzlies’ New Year Dragon / Full Moon Fuzzly",
+        "Grumbles Gets Gone / Here an Abby, There an Abby"
+    ];
+
+    const generateSimulatedData = () => {
+        return episodes.map(() => {
+            const variance = Math.floor(Math.random() * 40) - 20; 
+            return NFO_BASE_SIZE + variance;
+        });
+    };
+
+    const simulatedSizes = generateSimulatedData();
+
+    const initChart = () => {
+        const ctx = document.getElementById('storageChart').getContext('2d');
+        const labels = episodes.map((_, i) => `Ep ${i + 1}`);
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Est. File Size (MB)',
+                    data: simulatedSizes,
+                    backgroundColor: 'rgba(244, 63, 94, 0.7)',
+                    hoverBackgroundColor: 'rgba(225, 29, 72, 1)',
+                    borderWidth: 0,
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(28, 25, 23, 0.9)',
+                        titleFont: { size: 14, family: 'Inter' },
+                        bodyFont: { size: 13, family: 'Inter' },
+                        padding: 12,
+                        callbacks: {
+                            title: (items) => {
+                                const idx = items[0].dataIndex;
+                                let title = episodes[idx];
+                                if(title.length > 35) {
+                                    title = title.substring(0, 35) + '...';
+                                }
+                                return `Episode ${idx + 1}: ${title}`;
+                            },
+                            label: (item) => `${item.formattedValue} MB`
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        min: 700,
+                        max: 900,
+                        title: {
+                            display: true,
+                            text: 'Size in Megabytes (MB)',
+                            color: '#78716c',
+                            font: { family: 'Inter', size: 12 }
+                        },
+                        grid: {
+                            color: '#f5f5f4'
+                        },
+                        ticks: {
+                            color: '#a8a29e'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            color: '#a8a29e',
+                            maxRotation: 45,
+                            minRotation: 45
+                        }
+                    }
+                }
+            }
+        });
+    };
+
+    const renderEpisodes = (filterText = '') => {
+        const listContainer = document.getElementById('episodeList');
+        listContainer.innerHTML = '';
+
+        const lowerFilter = filterText.toLowerCase();
+        let matchCount = 0;
+
+        episodes.forEach((ep, index) => {
+            if (ep.toLowerCase().includes(lowerFilter)) {
+                matchCount++;
+                const epNum = String(index + 1).padStart(2, '0');
+                const size = simulatedSizes[index];
+
+                const card = document.createElement('div');
+                card.className = 'bg-white border border-stone-200 rounded-xl p-4 hover:border-rose-300 hover:shadow-md transition-all group flex flex-col justify-between';
+                
+                card.innerHTML = `
+                    <div>
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="bg-stone-100 text-stone-600 text-xs font-bold px-2 py-1 rounded">EP ${epNum}</span>
+                            <span class="text-xs font-mono text-stone-400 group-hover:text-rose-500 transition-colors">${size} MB</span>
+                        </div>
+                        <h4 class="font-semibold text-stone-800 text-sm leading-tight mb-3">${ep}</h4>
+                    </div>
+                    <div class="flex items-center gap-2 text-xs text-stone-500 mt-2 pt-2 border-t border-stone-50">
+                        <span>⏱️ ${NFO_RUNTIME}</span>
+                        <span>•</span>
+                        <span>CC</span>
+                    </div>
+                `;
+                listContainer.appendChild(card);
+            }
+        });
+
+        if (matchCount === 0) {
+            listContainer.innerHTML = `
+                <div class="col-span-full py-12 text-center">
+                    <span class="text-4xl mb-4 block">🧐</span>
+                    <p class="text-stone-500 font-medium">No episodes found matching "${filterText}"</p>
+                </div>
+            `;
+        }
+    };
+
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+        renderEpisodes(e.target.value);
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+        initChart();
+        renderEpisodes();
+    });
+</script>
+</body>
+</html>
