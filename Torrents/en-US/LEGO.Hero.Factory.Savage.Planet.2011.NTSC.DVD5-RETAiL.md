@@ -5,6 +5,8 @@
 
 ## LEGO Hero Factory: Savage Planet (2011) NTSC DVD5-RETAiL
 
+<img src="https://images.45cat.com/f/dv/lego-hero-factory-savage-planet-warner-home-video-4-dv.jpg" height="350"> <img src="https://images.45cat.com/f/dv/lego-hero-factory-savage-planet-5-dv.jpg" height="350">
+
 * **Type:** Video > Movies
 * **Files:** 2
 * **Size:** 4.37 GiB (4692254720 Bytes)
