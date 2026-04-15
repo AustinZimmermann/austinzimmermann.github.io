@@ -1,9 +1,9 @@
 # Star Wars: Episode III – Revenge of the Sith (2005) 1080p BluRay REMUX
 
-**Uploaded:** 2011-09-16 14:22:10 GMT
-**By:** FraMeSToR
-**Seeders:** 142
-**Leechers:** 28
+**Uploaded:** 2011-09-16 14:22:10 GMT  
+**By:** FraMeSToR  
+**Seeders:** 142  
+**Leechers:** 28  
 **Size:** 34.21 GiB (36732514120 Bytes)
 
 ---
