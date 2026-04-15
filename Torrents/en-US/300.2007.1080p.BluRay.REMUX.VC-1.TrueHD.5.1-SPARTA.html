@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artifact Analysis: 300 REMUX (2007)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 40vh;
+            max-height: 400px;
+            min-height: 300px;
+        }
+        body {
+            background-color: #fafaf9;
+            color: #292524;
+            font-family: Helvetica, sans-serif;
+        }
+        .tab-btn.active {
+            border-bottom: 2px solid #b45309;
+            color: #b45309;
+            font-weight: 600;
+        }
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-amber-200 selection:text-amber-900">
+
+    <!-- Chosen Palette: Warm Neutrals (Stone, Amber, Sand) -->
+    <!-- Application Structure Plan: A tabbed dashboard layout dividing the torrent listing into 'Artifact Overview', 'Technical Analysis', and 'Community Archive'. This structure is chosen to transform a raw text listing into a museum-like digital exhibit, making it easy to digest the metadata, analyze the technical significance (via charts), and read the historical community context without overwhelming the user on a single long page. -->
+    <!-- Visualization & Content Choices: Report Info: Audio bitrates -> Goal: Compare -> Viz: Horizontal Bar Chart -> Interaction: Tooltip hover -> Justification: Shows the massive data difference between standard Dolby Digital and the high-end LPCM/TrueHD tracks included in the REMUX, highlighting the value of the 18GB file size -> Library: Chart.js (Canvas). Report Info: NFO/Comments -> Goal: Organize -> Viz: Styled text containers with toggle -> Interaction: Show/Hide NFO -> Justification: Keeps UI clean while preserving raw historical data. Confirming NO SVG/Mermaid used. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <header class="bg-stone-100 border-b border-stone-300 shadow-sm sticky top-0 z-10">
+        <div class="max-w-6xl mx-auto px-4 py-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <div>
+                    <h1 class="text-3xl font-bold text-stone-800 tracking-tight">Digital Artifact Explorer</h1>
+                    <p class="text-stone-500 text-sm mt-1 font-mono">ID: 300.2007.1080p.BluRay.REMUX.VC-1.TrueHD.5.1-SPARTA</p>
+                </div>
+                <div class="flex gap-2 bg-stone-200 p-1 rounded-lg">
+                    <button class="tab-btn active px-4 py-2 rounded-md text-sm transition-colors hover:bg-stone-300" onclick="switchTab('overview')">Overview</button>
+                    <button class="tab-btn px-4 py-2 rounded-md text-sm transition-colors hover:bg-stone-300" onclick="switchTab('technical')">Technical Analysis</button>
+                    <button class="tab-btn px-4 py-2 rounded-md text-sm transition-colors hover:bg-stone-300" onclick="switchTab('archive')">Community Archive</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-8">
+
+        <section id="overview" class="tab-content active">
+            <div class="mb-8 max-w-4xl">
+                <h2 class="text-2xl font-bold text-stone-800 mb-2">Artifact Overview</h2>
+                <p class="text-stone-600 leading-relaxed">
+                    This section provides a high-level summary of the digital artifact retrieved from July 31, 2007. It contextualizes the release by detailing the movie’s core information, the personnel involved, and the basic file metadata. Understanding these fundamentals is crucial for grasping the significance of this specific early high-definition release within the peer-to-peer ecosystem of the late 2000s.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="col-span-1">
+                    <div class="bg-stone-100 p-2 rounded-xl shadow-md border border-stone-200">
+                        <img src="https://images.static-bluray.com/movies/covers/451_front.jpg" alt="300 Blu-ray Cover" class="w-full h-auto rounded-lg object-cover shadow-inner">
+                    </div>
+                </div>
+                <div class="col-span-1 md:col-span-2 flex flex-col gap-6">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200">
+                        <h3 class="text-xl font-bold text-amber-800 mb-4 border-b border-stone-100 pb-2">Cinematic Properties</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <p class="text-xs text-stone-400 uppercase tracking-wider font-semibold">Director</p>
+                                <p class="text-stone-800 font-medium">Zack Snyder</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-stone-400 uppercase tracking-wider font-semibold">Runtime</p>
+                                <p class="text-stone-800 font-medium">117 minutes</p>
+                            </div>
+                            <div class="sm:col-span-2">
+                                <p class="text-xs text-stone-400 uppercase tracking-wider font-semibold">Cast</p>
+                                <p class="text-stone-800">Gerard Butler, Lena Headey, David Wenham, Dominic West, Rodrigo Santoro</p>
+                            </div>
+                            <div class="sm:col-span-2 mt-2">
+                                <p class="text-xs text-stone-400 uppercase tracking-wider font-semibold">Plot Synopsis</p>
+                                <p class="text-stone-700 italic">“King Leonidas of Sparta and a force of 300 men fight the Persians at Thermopylae in 480 B.C.”</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-stone-800 text-stone-50 p-6 rounded-xl shadow-sm flex flex-col justify-center items-center text-center">
+                            <span class="text-4xl mb-2">&#128190;</span>
+                            <p class="text-stone-400 text-sm uppercase tracking-wider">File Size</p>
+                            <p class="text-3xl font-bold text-amber-400">18.42 GB</p>
+                        </div>
+                        <div class="bg-stone-800 text-stone-50 p-6 rounded-xl shadow-sm flex flex-col justify-center items-center text-center">
+                            <span class="text-4xl mb-2">&#128197;</span>
+                            <p class="text-stone-400 text-sm uppercase tracking-wider">Upload Date</p>
+                            <p class="text-xl font-bold text-stone-100 mt-1">July 31, 2007</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="technical" class="tab-content">
+            <div class="mb-8 max-w-4xl">
+                <h2 class="text-2xl font-bold text-stone-800 mb-2">Technical Specifications & Analysis</h2>
+                <p class="text-stone-600 leading-relaxed">
+                    This section delves into the exact technical parameters of the REMUX release. A “REMUX” represents a 1:1 copy of the original Blu-ray’s video and audio streams without secondary compression. Explore the data below to understand the premium nature of this artifact, specifically focusing on the substantial bandwidth allocated to uncompressed and lossless audio formats compared to standard alternatives.
+                </p>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200 mb-8">
+                <div class="flex items-center gap-3 mb-6 border-b border-stone-100 pb-4">
+                    <span class="text-2xl">&#128250;</span>
+                    <h3 class="text-xl font-bold text-stone-800">Video & Container Properties</h3>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="bg-stone-50 p-4 rounded-lg border border-stone-100">
+                        <p class="text-xs text-stone-400 uppercase tracking-wider mb-1">Quality Tier</p>
+                        <p class="font-bold text-amber-700">REMUX (Lossless)</p>
+                    </div>
+                    <div class="bg-stone-50 p-4 rounded-lg border border-stone-100">
+                        <p class="text-xs text-stone-400 uppercase tracking-wider mb-1">Video Codec</p>
+                        <p class="font-bold text-stone-800">VC-1</p>
+                    </div>
+                    <div class="bg-stone-50 p-4 rounded-lg border border-stone-100">
+                        <p class="text-xs text-stone-400 uppercase tracking-wider mb-1">Resolution</p>
+                        <p class="font-bold text-stone-800">1080p (1920x1080)</p>
+                    </div>
+                    <div class="bg-stone-50 p-4 rounded-lg border border-stone-100">
+                        <p class="text-xs text-stone-400 uppercase tracking-wider mb-1">Aspect Ratio</p>
+                        <p class="font-bold text-stone-800">2.40:1</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="text-2xl">&#128266;</span>
+                    <div>
+                        <h3 class="text-xl font-bold text-stone-800">Audio Bitrate Comparison</h3>
+                        <p class="text-sm text-stone-500">Visualizing the data bandwidth required for the included audio tracks.</p>
+                    </div>
+                </div>
+                
+                <div class="chart-container">
+                    <canvas id="audioChart"></canvas>
+                </div>
+                
+                <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="border border-stone-200 rounded-lg p-4">
+                        <h4 class="font-bold text-stone-700 mb-2 border-b border-stone-100 pb-1">Premium Audio Streams</h4>
+                        <ul class="space-y-2 text-sm text-stone-600">
+                            <li class="flex justify-between items-center bg-stone-50 p-2 rounded">
+                                <span>English LPCM 5.1 (Uncompressed)</span>
+                                <span class="font-mono text-xs font-bold text-amber-700">4600 kbps</span>
+                            </li>
+                            <li class="flex justify-between items-center bg-stone-50 p-2 rounded">
+                                <span>English Dolby TrueHD 5.1 (Lossless)</span>
+                                <span class="font-mono text-xs font-bold text-amber-700">Variable</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="border border-stone-200 rounded-lg p-4">
+                        <h4 class="font-bold text-stone-700 mb-2 border-b border-stone-100 pb-1">Standard Audio Streams</h4>
+                        <ul class="space-y-2 text-sm text-stone-600">
+                            <li class="flex justify-between items-center bg-stone-50 p-2 rounded">
+                                <span>English Dolby Digital 5.1</span>
+                                <span class="font-mono text-xs font-bold text-stone-500">640 kbps</span>
+                            </li>
+                            <li class="flex justify-between items-center bg-stone-50 p-2 rounded">
+                                <span>French (Canada) Dolby Digital 5.1</span>
+                                <span class="font-mono text-xs font-bold text-stone-500">640 kbps</span>
+                            </li>
+                            <li class="flex justify-between items-center bg-stone-50 p-2 rounded">
+                                <span>Spanish (LatAm) Dolby Digital 5.1</span>
+                                <span class="font-mono text-xs font-bold text-stone-500">640 kbps</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="archive" class="tab-content">
+            <div class="mb-8 max-w-4xl">
+                <h2 class="text-2xl font-bold text-stone-800 mb-2">Community Archive & NFO</h2>
+                <p class="text-stone-600 leading-relaxed">
+                    This section preserves the original textual metadata (NFO file) and early user reception of the release. The NFO serves as the digital signature and instructional manual from the release group ‘SPARTA’. The accompanying user comments provide anthropological insight into early high-definition consumer priorities, noting specific excitement over codecs and audio fidelity.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-stone-900 rounded-xl shadow-lg overflow-hidden flex flex-col">
+                    <div class="bg-stone-800 px-4 py-3 flex justify-between items-center border-b border-stone-700">
+                        <div class="flex items-center gap-2">
+                            <span class="text-stone-400">&#128196;</span>
+                            <h3 class="text-stone-200 font-mono text-sm font-bold">SPARTA_Release.nfo</h3>
+                        </div>
+                        <button onclick="toggleNFO()" id="nfoBtn" class="text-xs bg-stone-700 hover:bg-stone-600 text-stone-200 px-3 py-1 rounded transition-colors">Expand</button>
+                    </div>
+                    <div id="nfoContent" class="p-4 overflow-hidden relative" style="max-height: 200px; transition: max-height 0.4s ease-out;">
+                        <pre class="font-mono text-xs text-amber-500 whitespace-pre-wrap leading-relaxed">
+300.2007.1080p.BluRay.REMUX.VC-1.TrueHD.5.1-SPARTA
+
+RELEASE DATE....: 07/31/2007
+STORE DATE......: 07/31/2007
+GENRE...........: Action / Fantasy / War
+RUNTIME.........: 117 min
+
+Video:
+VC-1 @ 1080p
+
+Audio:
+- English TrueHD 5.1 (48kHz/16-bit)
+- English LPCM 5.1 (48kHz/16-bit/4.6mbps)
+- English DD 5.1 (640kbps)
+- French DD 5.1 (640kbps)
+- Spanish DD 5.1 (640kbps)
+
+Notes:
+Straight from the Blu-ray. No quality loss. 
+The 300 have arrived. Prepared for glory!</pre>
+                        <div id="nfoGradient" class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-stone-900 to-transparent"></div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-bold text-stone-800 mb-4 flex items-center gap-2">
+                        <span>&#128172;</span> User Ledger (3 entries)
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="bg-white p-4 rounded-lg shadow-sm border border-stone-200 hover:border-amber-300 transition-colors">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-bold text-amber-800">Spartan_117</span>
+                                <span class="text-xs text-stone-400 font-mono">July 31, 2007 - 10:15 AM</span>
+                            </div>
+                            <p class="text-stone-700 text-sm">Finally! Been waiting for the TrueHD track on this one. SPARTA releases are always top notch. Seeding now!</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm border border-stone-200 hover:border-amber-300 transition-colors">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-bold text-amber-800">HD_Lover</span>
+                                <span class="text-xs text-stone-400 font-mono">July 31, 2007 - 11:45 AM</span>
+                            </div>
+                            <p class="text-stone-700 text-sm">VC-1 looks incredible. Much better than the initial MPEG-2 releases we were seeing earlier this year. Thanks!</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm border border-stone-200 hover:border-amber-300 transition-colors">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-bold text-amber-800">Leecher99</span>
+                                <span class="text-xs text-stone-400 font-mono">July 31, 2007 - 01:20 PM</span>
+                            </div>
+                            <p class="text-stone-700 text-sm">Speed is a bit slow, please seed! I want to see those abs in 1080p!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active', 'bg-stone-300'));
+            
+            document.getElementById(tabId).classList.add('active');
+            
+            const btn = document.querySelector(`button[onclick="switchTab('${tabId}')"]`);
+            btn.classList.add('active');
+            btn.classList.remove('hover:bg-stone-300');
+        }
+
+        let nfoExpanded = false;
+        function toggleNFO() {
+            const content = document.getElementById('nfoContent');
+            const btn = document.getElementById('nfoBtn');
+            const gradient = document.getElementById('nfoGradient');
+            
+            if (!nfoExpanded) {
+                content.style.maxHeight = "1000px";
+                btn.innerText = "Collapse";
+                gradient.style.display = "none";
+            } else {
+                content.style.maxHeight = "200px";
+                btn.innerText = "Expand";
+                gradient.style.display = "block";
+            }
+            nfoExpanded = !nfoExpanded;
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('audioChart').getContext('2d');
+            
+            Chart.defaults.color = '#78716c';
+            Chart.defaults.font.family = "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: [
+                        'LPCM 5.1 (Uncompressed)', 
+                        'TrueHD 5.1 (Lossless Avg)', 
+                        'Dolby Digital 5.1 (Eng)', 
+                        'Dolby Digital 5.1 (Fre)', 
+                        'Dolby Digital 5.1 (Spa)'
+                    ],
+                    datasets: [{
+                        label: 'Estimated Bitrate (kbps)',
+                        data: [4600, 3000, 640, 640, 640],
+                        backgroundColor: [
+                            'rgba(180, 83, 9, 0.8)',
+                            'rgba(180, 83, 9, 0.6)',
+                            'rgba(168, 162, 158, 0.6)',
+                            'rgba(168, 162, 158, 0.6)',
+                            'rgba(168, 162, 158, 0.6)'
+                        ],
+                        borderColor: [
+                            'rgb(180, 83, 9)',
+                            'rgb(180, 83, 9)',
+                            'rgb(168, 162, 158)',
+                            'rgb(168, 162, 158)',
+                            'rgb(168, 162, 158)'
+                        ],
+                        borderWidth: 1,
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(41, 37, 36, 0.9)',
+                            titleFont: { size: 13 },
+                            bodyFont: { size: 14, weight: 'bold' },
+                            padding: 12,
+                            callbacks: {
+                                label: function(context) {
+                                    return context.raw + ' kbps';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(231, 229, 228, 0.5)'
+                            },
+                            title: {
+                                display: true,
+                                text: 'Kilobits Per Second (kbps)',
+                                color: '#57534e',
+                                font: { weight: 'bold' }
+                            }
+                        },
+                        y: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                font: { size: 12 },
+                                callback: function(value) {
+                                    const label = this.getLabelForValue(value);
+                                    if (label.length > 16) {
+                                        return label.match(/.{1,16}(\s|$)/g);
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
