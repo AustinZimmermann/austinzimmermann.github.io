@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fantastic Four (2005) REMUX Release Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .nfo-text {
+            font-family: 'Courier New', Courier, monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .tab-btn {
+            transition: all 0.2s ease-in-out;
+        }
+        .tab-btn.active {
+            border-bottom: 3px solid #b45309;
+            color: #78350f;
+            font-weight: 700;
+        }
+        .fade-in {
+            animation: fadeIn 0.4s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        warm: {
+                            50: '#fafaf9',
+                            100: '#f5f5f4',
+                            200: '#e7e5e4',
+                            300: '#d6d3d1',
+                            400: '#a8a29e',
+                            500: '#78716c',
+                            600: '#57534e',
+                            700: '#44403c',
+                            800: '#292524',
+                            900: '#1c1917',
+                        },
+                        brand: {
+                            light: '#fde68a',
+                            DEFAULT: '#b45309',
+                            dark: '#78350f',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-warm-50 text-warm-900 font-sans antialiased selection:bg-brand selection:text-white">
+
+<!-- Chosen Palette: Warm Neutrals (Stone/Cream) with Deep Amber/Bronze Accents to reflect the film's "Thing/Human Torch" aesthetic while maintaining a calm, analytical tracker vibe. -->
+<!-- Application Structure Plan: A centralized, tab-based web dashboard. This structure replaces the linear, scrolling text format of the original tracker page. It categorizes information into logical buckets: Overview (context), Technical (data analysis), Artifacts (raw source material), and Community (social proof). This allows users to instantly navigate to their area of interest, whether they are analyzing file specs or reading the plot, without losing the broader context of the release. -->
+<!-- Visualization & Content Choices: Data Info -> Technical File Specs -> Goal: Inform & Compare -> Viz/Presentation Method: Chart.js Donut Chart (Storage breakdown) & Bar Chart (Audio Quality) -> Interaction: Hover tooltips for precise values -> Justification: The 21.4GB size is a key discussion point in the text; visualizing *why* it's so large (lossless audio + MPEG-2 video) helps users understand the REMUX format -> Library/Method: Chart.js (NO SVG/Mermaid used). -->
+<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 min-h-screen flex flex-col">
+    
+    <header class="bg-white rounded-xl shadow-sm border border-warm-200 p-6 sm:p-8 mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+        <div class="flex items-center gap-6">
+            <div class="hidden sm:block flex-shrink-0">
+                <img src="https://images.static-bluray.com/movies/covers/22_front.jpg" alt="Fantastic Four Cover" class="w-24 rounded shadow-md object-cover border border-warm-200" onerror="this.style.display='none'">
+            </div>
+            <div>
+                <div class="flex items-center gap-2 mb-2 flex-wrap">
+                    <span class="bg-brand-dark text-white text-xs font-bold px-2 py-1 rounded uppercase tracking-wider">REMUX</span>
+                    <span class="bg-warm-800 text-white text-xs font-bold px-2 py-1 rounded uppercase tracking-wider">Blu-ray</span>
+                    <span class="text-warm-500 text-sm font-medium">&#128197; Nov 14, 2006</span>
+                </div>
+                <h1 class="text-2xl sm:text-3xl font-extrabold text-warm-900 tracking-tight leading-tight">Fantastic Four <span class="text-warm-500 font-normal">(2005)</span></h1>
+                <p class="text-sm text-warm-500 font-mono mt-1 break-all">Fantastic.Four.2005.1080p.BluRay.REMUX.MPEG-2.DTS-HD.MA.5.1-EPSiLON.mkv</p>
+            </div>
+        </div>
+        <div class="flex flex-col items-end gap-2 w-full sm:w-auto">
+            <div class="text-right">
+                <p class="text-xs uppercase text-warm-400 font-bold tracking-wider">File Size</p>
+                <p class="text-3xl font-black text-brand">21.4 <span class="text-lg text-warm-600 font-bold">GB</span></p>
+            </div>
+            <div class="flex gap-2 w-full sm:w-auto">
+                <button class="flex-1 sm:flex-none bg-brand hover:bg-brand-dark text-white font-bold py-2 px-4 rounded transition shadow-sm text-sm text-center">
+                    &#11015; DL Torrent
+                </button>
+                <button class="flex-1 sm:flex-none bg-warm-200 hover:bg-warm-300 text-warm-800 font-bold py-2 px-4 rounded transition shadow-sm text-sm text-center">
+                    &#128279; Magnet
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <nav class="flex border-b border-warm-300 mb-8 overflow-x-auto whitespace-nowrap scrollbar-hide">
+        <button id="nav-overview" class="tab-btn active px-6 py-3 text-lg font-medium text-warm-600 hover:text-brand-dark focus:outline-none" onclick="app.switchTab('overview')">
+            &#127916; Cinematic Overview
+        </button>
+        <button id="nav-tech" class="tab-btn px-6 py-3 text-lg font-medium text-warm-600 hover:text-brand-dark focus:outline-none" onclick="app.switchTab('tech')">
+            &#128202; Technical Analysis
+        </button>
+        <button id="nav-artifacts" class="tab-btn px-6 py-3 text-lg font-medium text-warm-600 hover:text-brand-dark focus:outline-none" onclick="app.switchTab('artifacts')">
+            &#128196; Release Artifacts
+        </button>
+        <button id="nav-community" class="tab-btn px-6 py-3 text-lg font-medium text-warm-600 hover:text-brand-dark focus:outline-none" onclick="app.switchTab('community')">
+            &#128172; Community Insights
+        </button>
+    </nav>
+
+    <main class="flex-grow">
+        
+        <section id="sec-overview" class="fade-in block">
+            <div class="mb-6 bg-white p-5 rounded-lg border-l-4 border-brand shadow-sm">
+                <h2 class="text-lg font-bold text-warm-900 mb-1">About This Section</h2>
+                <p class="text-warm-700 leading-relaxed">
+                    This overview distills the core narrative and cinematic details of the source report. It provides context on the film’s genre, cast, and reception, helping you understand the content embedded within the massive 21.4 GB REMUX file before examining its technical architecture.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div class="lg:col-span-2 space-y-6">
+                    <div class="bg-white rounded-xl shadow-sm border border-warm-200 p-6">
+                        <h3 class="text-xl font-bold text-warm-900 mb-3 border-b border-warm-100 pb-2">Plot Synopsis</h3>
+                        <p class="text-warm-700 text-lg leading-relaxed">
+                            A group of four individuals gain superpowers after exposure to cosmic radiation and must use them to oppose the plans of their former benefactor, Victor von Doom.
+                        </p>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-sm border border-warm-200 p-6">
+                        <h3 class="text-xl font-bold text-warm-900 mb-4 border-b border-warm-100 pb-2">Cast & Crew</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="text-sm font-bold uppercase text-warm-400 tracking-wider mb-2">Director</h4>
+                                <p class="text-lg font-medium text-warm-800">Tim Story</p>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold uppercase text-warm-400 tracking-wider mb-2">Starring</h4>
+                                <ul class="space-y-1">
+                                    <li class="inline-block bg-warm-100 text-warm-800 px-3 py-1 rounded-full text-sm mr-2 mb-2 border border-warm-200">Ioan Gruffudd</li>
+                                    <li class="inline-block bg-warm-100 text-warm-800 px-3 py-1 rounded-full text-sm mr-2 mb-2 border border-warm-200">Jessica Alba</li>
+                                    <li class="inline-block bg-warm-100 text-warm-800 px-3 py-1 rounded-full text-sm mr-2 mb-2 border border-warm-200">Chris Evans</li>
+                                    <li class="inline-block bg-warm-100 text-warm-800 px-3 py-1 rounded-full text-sm mr-2 mb-2 border border-warm-200">Michael Chiklis</li>
+                                    <li class="inline-block bg-warm-100 text-warm-800 px-3 py-1 rounded-full text-sm mr-2 mb-2 border border-warm-200">Julian McMahon</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="bg-brand-dark text-white rounded-xl shadow-sm p-6 text-center">
+                        <h3 class="text-sm font-bold uppercase tracking-wider mb-2 text-brand-light">IMDb Rating</h3>
+                        <div class="text-5xl font-black mb-2">5.7<span class="text-2xl text-brand text-opacity-80">/10</span></div>
+                        <p class="text-sm text-brand-light opacity-80">Critical Consensus</p>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-sm border border-warm-200 p-6">
+                        <h3 class="text-sm font-bold uppercase text-warm-400 tracking-wider mb-3">Genres</h3>
+                        <div class="flex flex-col gap-2">
+                            <div class="flex items-center gap-3">
+                                <span class="text-xl">&#128165;</span>
+                                <span class="text-lg font-medium text-warm-800">Action</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="text-xl">&#127758;</span>
+                                <span class="text-lg font-medium text-warm-800">Adventure</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="text-xl">&#128640;</span>
+                                <span class="text-lg font-medium text-warm-800">Sci-Fi</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="sec-tech" class="fade-in hidden">
+            <div class="mb-6 bg-white p-5 rounded-lg border-l-4 border-brand shadow-sm">
+                <h2 class="text-lg font-bold text-warm-900 mb-1">About This Section</h2>
+                <p class="text-warm-700 leading-relaxed">
+                    This dashboard dissects the technical specifications of the “bit-for-bit identical” REMUX release. By visualizing the estimated storage distribution and audio bandwidth, you can explore why this specific rip requires 21.4 GB and understand the components of high-fidelity MPEG-2/DTS-HD encoding.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                <div class="bg-white rounded-xl shadow-sm border border-warm-200 p-6">
+                    <h3 class="text-lg font-bold text-warm-900 mb-4 text-center">Estimated Storage Allocation (21.4 GB)</h3>
+                    <div class="chart-container">
+                        <canvas id="storageChart"></canvas>
+                    </div>
+                    <p class="text-xs text-center text-warm-400 mt-4">*Data inferred based on standard 1080p MPEG-2 and DTS-HD MA track sizes.</p>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border border-warm-200 p-6">
+                    <h3 class="text-lg font-bold text-warm-900 mb-4 text-center">Audio Bandwidth Comparison</h3>
+                    <div class="chart-container">
+                        <canvas id="audioChart"></canvas>
+                    </div>
+                    <p class="text-xs text-center text-warm-400 mt-4">*Illustrating the immense data requirement of the Lossless English track versus standard AC3.</p>
+                </div>
+            </div>
+
+            <div class="bg-warm-900 text-white rounded-xl shadow-sm p-6 overflow-hidden relative">
+                <div class="absolute top-0 right-0 p-4 opacity-10 text-6xl font-black pointer-events-none">&#9881;</div>
+                <h3 class="text-xl font-bold mb-6 border-b border-warm-700 pb-2">Raw Technical Matrix</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
+                    <div>
+                        <h4 class="text-brand-light text-sm uppercase tracking-widest font-bold mb-3">Video Stream</h4>
+                        <ul class="space-y-3 font-mono text-sm">
+                            <li class="flex justify-between border-b border-warm-800 pb-1">
+                                <span class="text-warm-400">Resolution</span>
+                                <span>1080p</span>
+                            </li>
+                            <li class="flex justify-between border-b border-warm-800 pb-1">
+                                <span class="text-warm-400">Codec</span>
+                                <span>MPEG-2</span>
+                            </li>
+                            <li class="flex justify-between border-b border-warm-800 pb-1">
+                                <span class="text-warm-400">Aspect Ratio</span>
+                                <span>2.35:1</span>
+                            </li>
+                            <li class="flex justify-between border-b border-warm-800 pb-1">
+                                <span class="text-warm-400">Source</span>
+                                <span>Retail Blu-ray Disc</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-brand-light text-sm uppercase tracking-widest font-bold mb-3">Audio & Subs</h4>
+                        <ul class="space-y-3 font-mono text-sm">
+                            <li class="flex justify-between border-b border-warm-800 pb-1">
+                                <span class="text-warm-400">Audio 1 (English)</span>
+                                <span>5.1 DTS-HD Master Audio</span>
+                            </li>
+                            <li class="flex justify-between border-b border-warm-800 pb-1">
+                                <span class="text-warm-400">Audio 2 (Spanish)</span>
+                                <span>5.1 Dolby Digital</span>
+                            </li>
+                            <li class="flex justify-between border-b border-warm-800 pb-1">
+                                <span class="text-warm-400">Quality Note</span>
+                                <span class="text-green-400">Lossless / Untouched</span>
+                            </li>
+                            <li class="flex justify-between border-b border-warm-800 pb-1">
+                                <span class="text-warm-400">Subtitles</span>
+                                <span>English, Spanish</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="sec-artifacts" class="fade-in hidden">
+            <div class="mb-6 bg-white p-5 rounded-lg border-l-4 border-brand shadow-sm">
+                <h2 class="text-lg font-bold text-warm-900 mb-1">About This Section</h2>
+                <p class="text-warm-700 leading-relaxed">
+                    This section preserves the digital artifacts associated with the EPSiLON release. It includes the original NFO (information) file text--a staple of the early scene release groups--and placeholders for the original high-bitrate MPEG-2 screenshots used to prove visual fidelity on the tracker.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="bg-black text-green-500 p-6 rounded-xl shadow-lg border-2 border-warm-700 overflow-x-auto">
+                    <div class="flex justify-between items-center mb-4 border-b border-green-800 pb-2">
+                        <h3 class="text-sm font-bold uppercase tracking-widest text-green-400">EPSiLON.NFO</h3>
+                        <span class="text-xs bg-green-900 text-green-300 px-2 py-1 rounded">ASCII TEXT</span>
+                    </div>
+                    <pre class="nfo-text text-sm leading-snug">
+  _   _   _   _   _   _   _  
+ / \ / \ / \ / \ / \ / \ / \ 
+( E | P | S | i | L | O | N )
+ \_/ \_/ \_/ \_/ \_/ \_/ \_/ 
+
+PRESENTS: Fantastic Four (2005)
+
+Release Date...: 14/11/2006
+Video..........: MPEG-2 @ High Bitrate
+Audio 1........: English DTS-HD MA 5.1
+Audio 2........: Spanish AC3 5.1
+Subs...........: English, Spanish
+
+Greetings to all our friends in the scene!
+Enjoy the first wave of Blu-ray high-def content.
+                    </pre>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border border-warm-200 p-6">
+                    <h3 class="text-lg font-bold text-warm-900 mb-4 border-b border-warm-100 pb-2">Screenshot Proofs</h3>
+                    <div class="space-y-4">
+                        <div class="w-full bg-warm-100 border-2 border-dashed border-warm-300 rounded flex items-center justify-center h-24 transition hover:bg-warm-200 cursor-help" title="MPEG-2 Grain detail validation">
+                            <span class="font-mono text-sm text-warm-500 break-all px-4 text-center">Screenshot_1_Johnny_Storm_Flame_On.png</span>
+                        </div>
+                        <div class="w-full bg-warm-100 border-2 border-dashed border-warm-300 rounded flex items-center justify-center h-24 transition hover:bg-warm-200 cursor-help" title="Resolution validation">
+                            <span class="font-mono text-sm text-warm-500 break-all px-4 text-center">Screenshot_2_The_Thing_Brooklyn_Bridge.png</span>
+                        </div>
+                        <div class="w-full bg-warm-100 border-2 border-dashed border-warm-300 rounded flex items-center justify-center h-24 transition hover:bg-warm-200 cursor-help" title="Visual effects validation">
+                            <span class="font-mono text-sm text-warm-500 break-all px-4 text-center">Screenshot_3_Sue_Storm_Invisibility.png</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="sec-community" class="fade-in hidden">
+            <div class="mb-6 bg-white p-5 rounded-lg border-l-4 border-brand shadow-sm">
+                <h2 class="text-lg font-bold text-warm-900 mb-1">About This Section</h2>
+                <p class="text-warm-700 leading-relaxed">
+                    Review historical user comments from November 2006. This commentary contextualizes the technological landscape of the time, highlighting the shock of a 21GB file size on 250GB hard drives and the excitement surrounding new hardware like the newly launched PlayStation 3.
+                </p>
+            </div>
+
+            <div class="space-y-6 max-w-3xl mx-auto">
+                
+                <div class="bg-white rounded-xl shadow-sm border border-warm-200 p-6 flex gap-4">
+                    <div class="flex-shrink-0">
+                        <div class="w-10 h-10 rounded-full bg-brand text-white flex items-center justify-center font-bold text-lg shadow">H</div>
+                    </div>
+                    <div class="w-full">
+                        <div class="flex justify-between items-baseline mb-2">
+                            <h4 class="font-bold text-warm-900">HD_Enthusiast_88</h4>
+                            <span class="text-xs text-warm-400 font-mono">Nov 14, 2006</span>
+                        </div>
+                        <p class="text-warm-700">Incredible! Finally getting some REMUXes on the site. The DTS-HD MA track sounds massive on my new setup. Thanks EPSiLON!</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border border-warm-200 p-6 flex gap-4">
+                    <div class="flex-shrink-0">
+                        <div class="w-10 h-10 rounded-full bg-warm-700 text-white flex items-center justify-center font-bold text-lg shadow">M</div>
+                    </div>
+                    <div class="w-full">
+                        <div class="flex justify-between items-baseline mb-2">
+                            <h4 class="font-bold text-warm-900">MovieBuff99</h4>
+                            <span class="text-xs text-warm-400 font-mono">Nov 15, 2006</span>
+                        </div>
+                        <p class="text-warm-700">21GB?! I’m going to need a bigger hard drive. My 250GB WD is almost full. Speeds are great though, seeding now.</p>
+                        <div class="mt-3 flex items-center gap-2 text-xs font-bold text-brand bg-brand-light bg-opacity-20 inline-block px-2 py-1 rounded">
+                            &#128190; Storage Context: 250GB HDD typical in 2006
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border border-warm-200 p-6 flex gap-4">
+                    <div class="flex-shrink-0">
+                        <div class="w-10 h-10 rounded-full bg-warm-700 text-white flex items-center justify-center font-bold text-lg shadow">R</div>
+                    </div>
+                    <div class="w-full">
+                        <div class="flex justify-between items-baseline mb-2">
+                            <h4 class="font-bold text-warm-900">RetroGamer</h4>
+                            <span class="text-xs text-warm-400 font-mono">Nov 15, 2006</span>
+                        </div>
+                        <p class="text-warm-700 mb-3">Does this play on the PS3? I just picked one up yesterday at launch.</p>
+                        <div class="bg-warm-100 border-l-2 border-brand p-3 rounded-r text-sm text-warm-800 flex gap-2">
+                            <span class="font-bold text-brand text-xl leading-none">&#8627;</span>
+                            <div>
+                                <em>Reply: Yes, as long as you use a compatible media server or burn to a BD-R.</em>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="mt-12 py-6 border-t border-warm-200 text-center text-sm text-warm-500 flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div>&copy; 2006 X-TREME-RELEASES Tracker Data Archive</div>
+        <div class="flex gap-4 font-medium text-brand">
+            <a href="#" class="hover:underline">Report Release</a>
+            <a href="#" class="hover:underline">Uploader Profile: EPSiLON</a>
+        </div>
+    </footer>
+
+</div>
+
+<script>
+    const app = {
+        tabs: ['overview', 'tech', 'artifacts', 'community'],
+        chartsInitialized: false,
+        
+        switchTab(targetTab) {
+            this.tabs.forEach(tab => {
+                const btn = document.getElementById(`nav-${tab}`);
+                const sec = document.getElementById(`sec-${tab}`);
+                
+                if (tab === targetTab) {
+                    btn.classList.add('active');
+                    sec.classList.remove('hidden');
+                } else {
+                    btn.classList.remove('active');
+                    sec.classList.add('hidden');
+                }
+            });
+
+            if (targetTab === 'tech' && !this.chartsInitialized) {
+                this.initCharts();
+                this.chartsInitialized = true;
+            }
+        },
+
+        initCharts() {
+            // Chart.js defaults for theme matching
+            Chart.defaults.color = '#78716c';
+            Chart.defaults.font.family = "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, sans-serif";
+
+            // Chart 1: Storage Breakdown (Donut)
+            const storageCtx = document.getElementById('storageChart').getContext('2d');
+            new Chart(storageCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['MPEG-2 Video', 'DTS-HD Audio', 'AC3 Audio', 'Overhead/Subs'],
+                    datasets: [{
+                        data: [17.8, 3.1, 0.4, 0.1], // Estimated breakdown for 21.4GB
+                        backgroundColor: [
+                            '#b45309', // Brand (Video - largest)
+                            '#292524', // Warm 800 (HD Audio)
+                            '#a8a29e', // Warm 400 (AC3)
+                            '#e7e5e4'  // Warm 200 (Overhead)
+                        ],
+                        borderWidth: 0,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '60%',
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: { padding: 20, usePointStyle: true }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return ` ${context.label}: ~${context.raw} GB`;
+                                }
+                            },
+                            backgroundColor: '#1c1917',
+                            padding: 12,
+                            cornerRadius: 8
+                        }
+                    }
+                }
+            });
+
+            // Chart 2: Audio Bitrate Comparison (Bar)
+            const audioCtx = document.getElementById('audioChart').getContext('2d');
+            new Chart(audioCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['DTS-HD MA (Lossless)', 'Dolby Digital (AC3)'],
+                    datasets: [{
+                        label: 'Estimated Bitrate (kbps)',
+                        data: [4000, 640], // Typical estimated bitrates
+                        backgroundColor: ['#292524', '#a8a29e'],
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: '#1c1917',
+                            padding: 12,
+                            cornerRadius: 8,
+                            callbacks: {
+                                label: function(context) {
+                                    return ` ${context.raw} kbps`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: '#e7e5e4', drawBorder: false },
+                            title: { display: true, text: 'Kilobits per second (kbps)' }
+                        },
+                        x: {
+                            grid: { display: false, drawBorder: false }
+                        }
+                    }
+                }
+            });
+        }
+    };
+</script>
+</body>
+</html>
