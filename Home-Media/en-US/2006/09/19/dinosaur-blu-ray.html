@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buena Vista Home Entertainment - Dinosaur (Blu-ray)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Classic Windows XP / IE6 Aesthetics */
+        @font-face {
+            font-family: 'Tahoma';
+            src: local('Tahoma'), local('Helvetica');
+        }
+
+        body {
+            font-family: 'Tahoma', 'Verdana', sans-serif;
+            background-color: #5A7EDC; /* Classic XP Blue */
+            margin: 0;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .ie-window {
+            background-color: #ECE9D8;
+            border: 3px solid #0054E3;
+            border-radius: 8px 8px 0 0;
+            box-shadow: 10px 10px 30px rgba(0,0,0,0.5);
+            max-width: 1000px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .ie-title-bar {
+            background: linear-gradient(to bottom, #0058E6 0%, #0039A6 100%);
+            color: white;
+            padding: 5px 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        .ie-menu-bar {
+            background-color: #ECE9D8;
+            border-bottom: 1px solid #ACA899;
+            padding: 2px 5px;
+            font-size: 11px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .ie-toolbar {
+            background-color: #ECE9D8;
+            border-bottom: 1px solid #ACA899;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .ie-address-bar {
+            background-color: #ECE9D8;
+            border-bottom: 1px solid #ACA899;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 12px;
+        }
+
+        .address-input {
+            flex-grow: 1;
+            background: white;
+            border: 1px solid #7F9DB9;
+            padding: 2px 5px;
+        }
+
+        /* Web Page Content */
+        .page-content {
+            background-color: white;
+            height: 600px;
+            overflow-y: scroll;
+            color: #333;
+        }
+
+        .bvhe-header {
+            background-color: #000;
+            padding: 15px;
+            text-align: center;
+            border-bottom: 3px solid #003399;
+        }
+
+        .nav-link {
+            color: #003399;
+            text-decoration: underline;
+            font-size: 11px;
+            cursor: pointer;
+        }
+
+        .nav-link:hover {
+            color: #FF0000;
+        }
+
+        .product-container {
+            display: flex;
+            padding: 20px;
+            gap: 30px;
+        }
+
+        .blu-ray-badge {
+            background: linear-gradient(135deg, #0099FF, #003366);
+            color: white;
+            padding: 2px 8px;
+            font-weight: bold;
+            font-size: 10px;
+            display: inline-block;
+            margin-bottom: 10px;
+            border-radius: 2px;
+        }
+
+        .price-tag {
+            color: #B12704;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .sidebar {
+            width: 200px;
+            background-color: #F4F4F4;
+            padding: 10px;
+            border-right: 1px solid #DDD;
+        }
+
+        .btn-buy {
+            background: linear-gradient(to bottom, #f7dfa5, #f0c14b);
+            border: 1px solid #a88734;
+            padding: 5px 15px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        /* IE Scrollbar */
+        .page-content::-webkit-scrollbar {
+            width: 16px;
+        }
+        .page-content::-webkit-scrollbar-track {
+            background: #ECE9D8;
+        }
+        .page-content::-webkit-scrollbar-thumb {
+            background: #D4D0C8;
+            border: 2px solid #ECE9D8;
+            box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #808080;
+        }
+
+        .loading-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            transition: opacity 0.5s;
+        }
+
+        .status-bar {
+            background-color: #ECE9D8;
+            border-top: 1px solid #ACA899;
+            padding: 2px 5px;
+            font-size: 11px;
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ie-window">
+        <!-- IE Title Bar -->
+        <div class="ie-title-bar">
+            <div class="flex items-center gap-2">
+                <svg width="16" height="16" viewBox="0 0 16 16">
+                    <circle cx="8" cy="8" r="7" fill="#0054E3" />
+                    <text x="4" y="12" fill="white" style="font-size: 10px; font-weight: bold;">e</text>
+                </svg>
+                Buena Vista Home Entertainment - Dinosaur (Blu-ray) - Microsoft Internet Explorer
+            </div>
+            <div class="flex gap-1">
+                <div class="w-5 h-5 bg-blue-400 border border-white flex items-center justify-center">_</div>
+                <div class="w-5 h-5 bg-blue-400 border border-white flex items-center justify-center">□</div>
+                <div class="w-5 h-5 bg-red-500 border border-white flex items-center justify-center">X</div>
+            </div>
+        </div>
+
+        <!-- IE Menus -->
+        <div class="ie-menu-bar">
+            <span>File</span>
+            <span>Edit</span>
+            <span>View</span>
+            <span>Favorites</span>
+            <span>Tools</span>
+            <span>Help</span>
+        </div>
+
+        <!-- IE Toolbar -->
+        <div class="ie-toolbar">
+            <button class="px-2 py-1 border border-transparent hover:border-gray-400 flex flex-col items-center">
+                <span class="text-xl">←</span>
+                <span style="font-size: 9px;">Back</span>
+            </button>
+            <button class="px-2 py-1 border border-transparent hover:border-gray-400 flex flex-col items-center">
+                <span class="text-xl">→</span>
+                <span style="font-size: 9px;">Forward</span>
+            </button>
+            <button class="px-2 py-1 border border-transparent hover:border-gray-400 flex flex-col items-center">
+                <span class="text-xl">⟳</span>
+                <span style="font-size: 9px;">Stop</span>
+            </button>
+            <button class="px-2 py-1 border border-transparent hover:border-gray-400 flex flex-col items-center">
+                <span class="text-xl">🏠</span>
+                <span style="font-size: 9px;">Home</span>
+            </button>
+            <div class="h-8 w-px bg-gray-400 mx-2"></div>
+            <button class="px-2 py-1 border border-transparent hover:border-gray-400 flex flex-col items-center">
+                <span class="text-xl">🔍</span>
+                <span style="font-size: 9px;">Search</span>
+            </button>
+        </div>
+
+        <!-- Address Bar -->
+        <div class="ie-address-bar">
+            <span class="text-gray-500">Address</span>
+            <input type="text" class="address-input" value="http://www.bvhe.com/products/dinosaur_br.html" readonly>
+            <button class="px-2 bg-gray-200 border border-gray-400 text-xs py-1">Go</button>
+        </div>
+
+        <!-- Browser Content -->
+        <div class="page-content relative" id="mainFrame">
+            <!-- Loading simulation -->
+            <div id="loader" class="loading-overlay">
+                <div class="text-center">
+                    <div class="mb-4 text-blue-800 font-bold">Connecting to Buena Vista Servers...</div>
+                    <div class="w-48 h-4 bg-gray-200 border border-gray-400 overflow-hidden">
+                        <div id="progressBar" class="h-full bg-blue-600 transition-all duration-300" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- The 2006 BVHE Site -->
+            <header class="bvhe-header">
+                <div class="text-white font-serif text-3xl italic tracking-widest">BUENA VISTA</div>
+                <div class="text-gray-400 text-xs tracking-widest mt-1">HOME ENTERTAINMENT</div>
+            </header>
+
+            <nav class="bg-gray-100 p-2 flex justify-center gap-4 border-b text-[10px] uppercase font-bold text-blue-900">
+                <span>New Releases</span>
+                <span>Coming Soon</span>
+                <span>Movies</span>
+                <span>Blu-ray Disc™</span>
+                <span>Support</span>
+            </nav>
+
+            <div class="flex">
+                <!-- Sidebar -->
+                <aside class="sidebar text-xs">
+                    <div class="font-bold border-b border-gray-300 pb-1 mb-2">SEARCH</div>
+                    <input type="text" class="w-full border p-1 mb-4" placeholder="Keywords...">
+                    
+                    <div class="font-bold border-b border-gray-300 pb-1 mb-2">CATEGORIES</div>
+                    <ul class="space-y-1">
+                        <li><a class="nav-link">Action & Adventure</a></li>
+                        <li><a class="nav-link">Animation</a></li>
+                        <li><a class="nav-link">Family</a></li>
+                        <li><a class="nav-link">Sci-Fi</a></li>
+                    </ul>
+
+                    <div class="mt-8">
+                        <div class="border p-2 text-center bg-white shadow-sm">
+                            <div class="text-[9px] mb-1">AVAILABLE NOW</div>
+                            <img src="https://m.media-amazon.com/images/I/510R1DMBQ6L._AC_SY445_.jpg" alt="Dinosaur Cover" class="mx-auto w-24 mb-2">
+                            <button class="btn-buy w-full text-[10px]">PRE-ORDER</button>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Main Product View -->
+                <main class="flex-grow p-6">
+                    <div class="product-container">
+                        <!-- Box Art Placeholder -->
+                        <div class="w-64 flex-shrink-0">
+                            <div class="relative bg-gray-200 aspect-[3/4] border-4 border-blue-900 shadow-xl flex flex-col">
+                                <div class="bg-blue-900 text-white text-[10px] py-1 px-2 font-bold tracking-tighter">
+                                    BLU-RAY DISC™ • HIGH DEFINITION
+                                </div>
+                                <div class="flex-grow flex items-center justify-center p-4 bg-gradient-to-b from-blue-100 to-white overflow-hidden relative">
+                                    <!-- Simple SVG Dinosaur Representation -->
+                                    <svg viewBox="0 0 200 300" class="w-full h-full opacity-80">
+                                        <rect width="200" height="300" fill="#2d4a5e" />
+                                        <path d="M40 250 Q100 50 160 250" stroke="#8899aa" stroke-width="20" fill="none" />
+                                        <circle cx="100" cy="80" r="40" fill="#aabbee" />
+                                        <text x="100" y="160" text-anchor="middle" fill="white" style="font-size: 24px; font-weight: bold; font-family: serif;">DINOSAUR</text>
+                                        <text x="100" y="180" text-anchor="middle" fill="#88ccff" style="font-size: 10px; font-weight: bold;">DISNEY</text>
+                                    </svg>
+                                    <div class="absolute bottom-4 left-0 right-0 text-center">
+                                        <span class="text-[8px] bg-black bg-opacity-50 text-white px-2 py-1">EXPERIENCE IT IN 1080p</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex-grow">
+                            <div class="blu-ray-badge">BLU-RAY DISC™</div>
+                            <h1 class="text-2xl font-serif font-bold text-blue-900 mb-1">Dinosaur (2000)</h1>
+                            <p class="text-xs text-gray-500 mb-4">Released: September 19, 2006 | Rated PG</p>
+                            
+                            <div class="border-y border-gray-200 py-3 mb-4">
+                                <div class="price-tag mb-1">$34.99</div>
+                                <div class="text-[10px] text-green-700 font-bold">In Stock. Ships September 19.</div>
+                            </div>
+
+                            <p class="text-sm leading-relaxed mb-6">
+                                Journey 65 million years back in time to the age of the dinosaurs! 
+                                Disney’s <i>Dinosaur</i> comes to life like never before in this 
+                                stunning High Definition Blu-ray release. Witness the incredible 
+                                detail of Aladar and his companions as they struggle to survive 
+                                against the elements and predators.
+                            </p>
+
+                            <div class="bg-gray-50 p-4 border rounded">
+                                <h3 class="text-xs font-bold text-blue-900 mb-2 uppercase">Blu-ray Exclusive Bonus Features:</h3>
+                                <ul class="text-[11px] space-y-1 list-disc ml-4 text-gray-700">
+                                    <li><b>Film-to-Film Digital Transfer:</b> Experience the absolute highest quality 1080p picture.</li>
+                                    <li><b>Uncompressed Audio:</b> 5.1 Uncompressed (48kHz/24-bit) soundtrack.</li>
+                                    <li><b>Blu-Scape:</b> A stunning High-Def nature short.</li>
+                                    <li><b>Movie Showcase:</b> Instant access to the most visually impressive scenes.</li>
+                                    <li><b>Commentary:</b> Audio commentary by directors Eric Leighton and Ralph Zondag.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <section class="mt-12 px-2">
+                        <div class="bg-blue-900 text-white p-1 text-xs font-bold">TECHNICAL SPECIFICATIONS</div>
+                        <table class="w-full text-xs mt-2 border-collapse">
+                            <tr class="border-b"><td class="py-1 font-bold w-32">Format:</td><td>Blu-ray (BD-25)</td></tr>
+                            <tr class="border-b"><td class="py-1 font-bold">Aspect Ratio:</td><td>1.85:1 (1080p)</td></tr>
+                            <tr class="border-b"><td class="py-1 font-bold">Audio:</td><td>English 5.1 Uncompressed, French & Spanish 5.1 Dolby Digital</td></tr>
+                            <tr class="border-b"><td class="py-1 font-bold">Subtitles:</td><td>English, French, Spanish</td></tr>
+                            <tr class="border-b"><td class="py-1 font-bold">Run Time:</td><td>82 Minutes</td></tr>
+                        </table>
+                    </section>
+                </main>
+            </div>
+
+            <footer class="mt-12 bg-gray-200 p-8 border-t text-[10px] text-gray-600">
+                <div class="flex justify-center gap-4 mb-4">
+                    <span class="underline cursor-pointer">About BVHE</span>
+                    <span class="underline cursor-pointer">Privacy Policy</span>
+                    <span class="underline cursor-pointer">Contact Us</span>
+                    <span class="underline cursor-pointer">Terms of Service</span>
+                </div>
+                <div class="text-center">
+                    &copy; 2006 Buena Vista Home Entertainment, Inc. All Rights Reserved. <br>
+                    Disney characters and assets &copy; Disney.
+                </div>
+            </footer>
+        </div>
+
+        <!-- IE Status Bar -->
+        <div class="status-bar">
+            <div class="flex items-center gap-2">
+                <svg width="12" height="12" class="opacity-70"><rect width="12" height="12" fill="#000" /></svg>
+                Done
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="w-px h-4 bg-gray-400"></div>
+                <div class="flex items-center gap-1">
+                    <svg width="12" height="12" fill="#000"><rect width="12" height="12" /></svg>
+                    Internet
+                </div>
+                <div class="w-px h-4 bg-gray-400"></div>
+                <div class="pr-2 italic">100%</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Loading animation simulation
+        window.onload = function() {
+            const progress = document.getElementById('progressBar');
+            const loader = document.getElementById('loader');
+            let width = 0;
+
+            const interval = setInterval(() => {
+                if (width >= 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        loader.style.opacity = '0';
+                        setTimeout(() => {
+                            loader.style.display = 'none';
+                        }, 500);
+                    }, 300);
+                } else {
+                    // Random-ish jumps like a real 2006 dial-up/DSL connection
+                    const step = Math.random() * 15;
+                    width = Math.min(100, width + step);
+                    progress.style.width = width + '%';
+                }
+            }, 200);
+        };
+
+        // Address bar interaction simulation
+        document.querySelector('.btn-buy').addEventListener('click', () => {
+            const confirmPurchase = window.confirm("Add Dinosaur [Blu-ray] to your shopping cart?");
+            if (confirmPurchase) {
+                const modal = document.createElement('div');
+                modal.className = "fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-[200]";
+                modal.innerHTML = `
+                    <div class="bg-[#ECE9D8] border-2 border-[#0054E3] p-6 shadow-2xl w-80">
+                        <div class="font-bold text-sm mb-4">Cart Updated</div>
+                        <p class="text-xs mb-6">Dinosaur (Blu-ray) has been added to your Buena Vista shopping cart. Would you like to checkout now?</p>
+                        <div class="flex justify-end gap-2">
+                            <button onclick="this.parentElement.parentElement.parentElement.remove()" class="px-4 py-1 border border-gray-400 bg-gray-200 text-xs">Continue</button>
+                            <button onclick="this.parentElement.parentElement.parentElement.remove()" class="px-4 py-1 border border-gray-400 bg-gray-200 text-xs font-bold">Checkout</button>
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(modal);
+            }
+        });
+    </script>
+</body>
+</html>
