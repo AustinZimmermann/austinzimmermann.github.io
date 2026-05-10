@@ -1,204 +1,329 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LEGO Hero Factory: Savage Planet (2011) NTSC DVD5-RETAiL</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body {
-            background-color: #f0f2f5;
-            font-family: Helvetica, sans-serif;
-        }
-        .torrent-container {
-            max-width: 980px;
-            margin: 20px auto;
-            background: white;
-            border: 1px solid #ccc;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .header-bar {
-            background: linear-gradient(to bottom, #4a76a8, #2e5a88);
-            color: white;
-            padding: 10px 15px;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-        .info-row {
-            border-bottom: 1px solid #eee;
-            padding: 12px 15px;
-            display: flex;
-        }
-        .info-label {
-            width: 150px;
-            font-weight: bold;
-            color: #555;
-            flex-shrink: 0;
-        }
-        .info-value {
-            color: #333;
-        }
-        .nfo-box {
-            background-color: #000;
-            color: #0f0;
-            font-family: 'Courier New', Courier, monospace;
-            padding: 15px;
-            overflow-x: auto;
-            white-space: pre;
-            font-size: 12px;
-            line-height: 1.2;
-            margin: 10px 0;
-            border-radius: 4px;
-        }
-        .btn-download {
-            background-color: #5cb85c;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 4px;
-            font-weight: bold;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: background 0.2s;
-        }
-        .btn-download:hover {
-            background-color: #449d44;
-        }
-        .tag {
-            background: #e9ecef;
-            padding: 2px 8px;
-            border-radius: 3px;
-            font-size: 11px;
-            color: #666;
-            margin-right: 5px;
-            border: 1px solid #ddd;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive Release Database: LEGO Hero Factory Savage Planet</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+.chart-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 350px;
+    max-height: 400px;
+}
+@media (max-width: 768px) {
+    .chart-container {
+        height: 250px;
+    }
+}
+.tab-content {
+    display: none;
+    animation: fadeIn 0.3s ease-in-out;
+}
+.tab-content.active {
+    display: block;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.nav-btn {
+    transition: all 0.2s ease;
+}
+.nav-btn.active {
+    border-bottom: 2px solid #b45309;
+    color: #b45309;
+    font-weight: 600;
+}
+</style>
 </head>
-<body>
+<body class="bg-stone-50 text-stone-800 font-sans leading-relaxed tracking-wide min-h-screen flex flex-col">
 
-<div class="torrent-container">
-    <!-- Header -->
-    <div class="header-bar">
-        LEGO.Hero.Factory.Savage.Planet.2011.NTSC.DVD5-RETAiL
-    </div>
+<!-- Chosen Palette: Warm Neutrals & Earthy Amber (Stone-50 background, Stone-800 text, Amber-600 accents) -->
+<!-- Application Structure Plan: A tabbed digital asset dashboard. This structure was chosen because the source report is highly structured metadata. A dashboard layout allows users to quickly isolate specific data types (Story/Overview vs. Technical vs. Archival) without scrolling through a dense list. It transforms static text into an interactive database interface. -->
+<!-- Visualization & Content Choices: 
+     1. Source: Audio/Subtitles -> Goal: Compare availability -> Viz: Grouped Bar Chart (Chart.js) -> Interaction: Hover tooltips -> Justification: Quickly shows language coverage gaps -> Library: Chart.js
+     2. Source: Audio Formats -> Goal: Inform proportions -> Viz: Doughnut Chart (Chart.js) -> Interaction: Hover to see exact format -> Justification: Visually separates 5.1 from 2.0 tracks -> Library: Chart.js
+     3. Source: Synopsis -> Goal: Inform -> Viz: Styled Text Block -> Interaction: None -> Justification: Best for reading narrative -> Library: HTML/CSS
+     Confirming NO SVG graphics and NO Mermaid JS used. 
+-->
+<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
 
-    <!-- Main Content Area -->
-    <div class="p-4 flex flex-col md:flex-row gap-6">
-        <!-- Poster/Image -->
-        <div class="w-full md:w-1/3 flex-shrink-0">
-            <div class="border p-1 bg-white shadow-sm">
-                <svg viewBox="0 0 300 420" class="w-full h-auto bg-gray-200">
-                    <rect width="300" height="420" fill="#222" />
-                    <text x="50%" y="30%" text-anchor="middle" fill="#facc15" font-weight="bold" font-size="24">LEGO</text>
-                    <text x="50%" y="45%" text-anchor="middle" fill="white" font-weight="bold" font-size="18">HERO FACTORY</text>
-                    <text x="50%" y="55%" text-anchor="middle" fill="#4ade80" font-style="italic" font-size="20">SAVAGE PLANET</text>
-                    <text x="50%" y="85%" text-anchor="middle" fill="#666" font-size="12">DVD VIDEO RETAIL</text>
-                </svg>
+<nav class="bg-white shadow-sm sticky top-0 z-10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+            <div class="flex items-center">
+                <span class="text-2xl mr-2">💿</span>
+                <span class="font-bold text-xl tracking-tight text-stone-900">Release<span class="text-amber-700">Archiver</span></span>
             </div>
-            
-            <div class="mt-4 space-y-2">
-                <a href="#" class="btn-download w-full justify-center">
-                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-                    DOWNLOAD TORRENT
-                </a>
-                <div class="text-center text-xs text-gray-500">
-                    Magnet link | [Report]
-                </div>
-            </div>
-        </div>
-
-        <!-- Details -->
-        <div class="flex-grow">
-            <div class="info-row">
-                <div class="info-label">Added On:</div>
-                <div class="info-value">October 4, 2011</div>
-            </div>
-            <div class="info-row">
-                <div class="info-label">Category:</div>
-                <div class="info-value">Video - Movies DVDR</div>
-            </div>
-            <div class="info-row">
-                <div class="info-label">Size:</div>
-                <div class="info-value">4.36 GB (DVD5)</div>
-            </div>
-            <div class="info-row">
-                <div class="info-label">Uploader:</div>
-                <div class="info-value text-blue-600 font-bold">SceneRelease</div>
-            </div>
-            <div class="info-row">
-                <div class="info-label">Folder Name:</div>
-                <div class="info-value font-mono text-sm">LEGO.Hero.Factory.Savage.Planet.2011.NTSC.DVD5-RETAiL</div>
-            </div>
-            <div class="info-row">
-                <div class="info-label">Filename:</div>
-                <div class="info-value font-mono text-sm">LEGO_HERO_FACTORY_SAVAGEPLANET.iso</div>
-            </div>
-            <div class="info-row">
-                <div class="info-label">Audio:</div>
-                <div class="info-value">
-                    <span class="tag">English 5.1 AC3</span>
-                    <span class="tag">French 2.0</span>
-                    <span class="tag">Spanish 2.0</span>
-                    <span class="tag">Portuguese 2.0</span>
-                </div>
-            </div>
-            <div class="info-row">
-                <div class="info-label">Subtitles:</div>
-                <div class="info-value">
-                    English SDH, Spanish, Portuguese
-                </div>
-            </div>
-            <div class="info-row border-b-0">
-                <div class="info-label">Stats:</div>
-                <div class="info-value">
-                    <span class="text-green-600 font-bold">412 Seeders</span>, 
-                    <span class="text-red-600 font-bold">12 Leechers</span>
-                </div>
+            <div class="flex space-x-8">
+                <button class="nav-btn active px-3 py-4 text-sm font-medium text-stone-500 hover:text-stone-900" data-target="overview">📝 Overview</button>
+                <button class="nav-btn px-3 py-4 text-sm font-medium text-stone-500 hover:text-stone-900" data-target="tech">📊 Tech & Media</button>
+                <button class="nav-btn px-3 py-4 text-sm font-medium text-stone-500 hover:text-stone-900" data-target="file">📁 File Metadata</button>
             </div>
         </div>
     </div>
+</nav>
 
-    <!-- Description / NFO Section -->
-    <div class="p-4 border-t bg-gray-50">
-        <h3 class="font-bold text-gray-700 mb-2 underline">Technical Info (.nfo)</h3>
-        <div class="nfo-box">
-[-------------------------------------------------------------------------]
-  LEGO.Hero.Factory.Savage.Planet.2011.NTSC.DVD5-RETAiL
-[-------------------------------------------------------------------------]
+<main class="flex-grow p-6">
+    <div class="max-w-6xl mx-auto">
+        
+        <header class="mb-10 text-center">
+            <h1 class="text-4xl font-extrabold text-stone-900 mb-2">LEGO Hero Factory: Savage Planet</h1>
+            <p class="text-sm font-mono bg-stone-200 inline-block px-3 py-1 rounded text-stone-600 select-all">LEGO.Hero.Factory.Savage.Planet.2011.NTSC.DVD5-RETAiL</p>
+        </header>
 
- RELEASE DATE ....: Oct 04, 2011
- THEATRE DATE ....: 2011
- RUNTiME .........: 44 min
- GENRE ...........: Animation / Action
- ViDEO ...........: NTSC Untouched
- ASPECT ..........: 1.78:1 Anamorphic Widescreen
- AUDiO ...........: English 5.1 Dolby Digital
-                    French 2.0 Dolby Digital
-                    Spanish 2.0 Dolby Digital
-                    Portuguese 2.0 Dolby Digital
- SUBTiTLES .......: English SDH, Spanish, Portuguese
- MENU ............: Untouched
- EXTRAS ..........: Included
- SIZE ............: 4.36 GB
+        <section id="overview" class="tab-content active">
+            <div class="bg-white p-8 rounded-xl shadow-sm border border-stone-100">
+                <h2 class="text-2xl font-bold mb-4 text-stone-800 border-b border-stone-200 pb-2">Release Synopsis</h2>
+                <p class="text-stone-600 mb-6 italic">This section provides the narrative context and general overview of the archived media. It allows users to understand the story content contained within the release before delving into the technical specifications.</p>
+                
+                <div class="prose max-w-none text-lg text-stone-700 leading-relaxed mb-8">
+                    <p>The Rookies (Rocka, Furno, Nex, and Stormer) travel to the jungle planet <strong class="text-amber-700">Quatros</strong> to find the missing rookie Rocka. They soon discover that the planet’s core is being harvested by the sinister <strong class="text-stone-900">Witch Doctor</strong>, causing the world to become unstable. The heroes must upgrade their armor and use new <strong class="text-amber-600 border-b border-amber-300">“Animal Power”</strong> to stop the Witch Doctor before the planet is destroyed.</p>
+                </div>
 
- PLOT:
- Rookie Rocka has gone missing on the Savage Planet Quatros. 
- The Alpha Team must travel there to find him and stop the 
- Witch Doctor from destroying the planet’s core.
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-stone-50 p-6 rounded-lg border border-stone-200 text-center hover:shadow-md transition-shadow">
+                        <div class="text-3xl mb-2">📅</div>
+                        <div class="text-xs text-stone-500 uppercase tracking-wider font-bold mb-1">Release Date</div>
+                        <div class="text-xl font-semibold text-stone-800">October 4, 2011</div>
+                    </div>
+                    <div class="bg-stone-50 p-6 rounded-lg border border-stone-200 text-center hover:shadow-md transition-shadow">
+                        <div class="text-3xl mb-2">🎞️</div>
+                        <div class="text-xs text-stone-500 uppercase tracking-wider font-bold mb-1">Format</div>
+                        <div class="text-xl font-semibold text-stone-800">DVD5</div>
+                        <div class="text-sm text-stone-500 mt-1">(Single Layer)</div>
+                    </div>
+                    <div class="bg-stone-50 p-6 rounded-lg border border-stone-200 text-center hover:shadow-md transition-shadow">
+                        <div class="text-3xl mb-2">📺</div>
+                        <div class="text-xs text-stone-500 uppercase tracking-wider font-bold mb-1">Standard</div>
+                        <div class="text-xl font-semibold text-stone-800">NTSC</div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-[-------------------------------------------------------------------------]
-  Greets to all Scene Groups! Enjoy.
-[-------------------------------------------------------------------------]
-        </div>
+        <section id="tech" class="tab-content">
+            <div class="mb-8">
+                <h2 class="text-2xl font-bold mb-2 text-stone-800">Technical & Media Capabilities</h2>
+                <p class="text-stone-600">This section breaks down the audiovisual specifications of the release. The interactive charts below map out the availability of audio and subtitle languages, providing a visual comparison of accessibility options across the disc.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-100">
+                    <h3 class="text-lg font-bold mb-4 text-center">Language Matrix: Audio vs Subtitles</h3>
+                    <div class="chart-container">
+                        <canvas id="languageBarChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-100 flex flex-col justify-center">
+                    <h3 class="text-lg font-bold mb-4 text-center">Audio Formatting Distribution</h3>
+                    <div class="chart-container">
+                        <canvas id="audioFormatChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-100">
+                <h3 class="text-lg font-bold mb-4 text-stone-800 border-b border-stone-200 pb-2">Detailed Specifications</h3>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-stone-200">
+                        <tbody class="bg-white divide-y divide-stone-200">
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-stone-900 bg-stone-50 w-1/3">Aspect Ratio</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-stone-700">1.78:1 (16:9 Anamorphic Widescreen)</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-stone-900 bg-stone-50">Source</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-stone-700">Retail DVD</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 text-sm font-medium text-stone-900 bg-stone-50 align-top">Audio Tracks</td>
+                                <td class="px-6 py-4 text-sm text-stone-700">
+                                    <ul class="list-disc pl-5 space-y-1">
+                                        <li><strong>English:</strong> 5.1 Dolby Surround</li>
+                                        <li><strong>French:</strong> 2.0 Dolby Surround</li>
+                                        <li><strong>Spanish:</strong> 2.0 Dolby Surround</li>
+                                        <li><strong>Portuguese:</strong> 2.0 Dolby Surround</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 text-sm font-medium text-stone-900 bg-stone-50 align-top">Subtitles</td>
+                                <td class="px-6 py-4 text-sm text-stone-700">
+                                    <ul class="list-disc pl-5 space-y-1">
+                                        <li>English SDH (Deaf and Hard of Hearing)</li>
+                                        <li>Spanish</li>
+                                        <li>Portuguese</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="file" class="tab-content">
+            <div class="bg-white p-8 rounded-xl shadow-sm border border-stone-100 text-center max-w-3xl mx-auto">
+                <div class="text-5xl mb-6">🗄️</div>
+                <h2 class="text-2xl font-bold mb-4 text-stone-800 border-b border-stone-200 pb-2">Archival Data Structure</h2>
+                <p class="text-stone-600 mb-8">Details regarding the structural integrity and interactive components retained within this specific rip. This confirms the preservation level of the retail asset.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-left">
+                    <div class="bg-stone-100 rounded p-4 border-l-4 border-amber-600">
+                        <div class="text-xs uppercase text-stone-500 font-bold mb-1">Structure Type</div>
+                        <div class="text-lg font-semibold text-stone-800">ISO / Folder</div>
+                    </div>
+                    <div class="bg-stone-100 rounded p-4 border-l-4 border-amber-600">
+                        <div class="text-xs uppercase text-stone-500 font-bold mb-1">Original Menus</div>
+                        <div class="text-lg font-semibold text-stone-800 flex items-center">
+                            Retained <span class="ml-2 text-green-600 font-bold">✓</span>
+                        </div>
+                    </div>
+                    <div class="bg-stone-100 rounded p-4 border-l-4 border-amber-600">
+                        <div class="text-xs uppercase text-stone-500 font-bold mb-1">Special Features</div>
+                        <div class="text-lg font-semibold text-stone-800 flex items-center">
+                            Included <span class="ml-2 text-green-600 font-bold">✓</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-12 pt-6 border-t border-stone-200 text-xs text-stone-400 italic">
+                    *Release archived for historical and community documentation.*
+                </div>
+            </div>
+        </section>
+
     </div>
+</main>
 
-    <!-- Footer -->
-    <div class="p-4 text-center text-xs text-gray-400 border-t">
-        &copy; 2011 TorrentSite - All rights reserved.
-    </div>
-</div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    
+    const navButtons = document.querySelectorAll('.nav-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
 
+    navButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            navButtons.forEach(b => b.classList.remove('active'));
+            tabContents.forEach(c => c.classList.remove('active'));
+
+            btn.classList.add('active');
+            const targetId = btn.getAttribute('data-target');
+            document.getElementById(targetId).classList.add('active');
+        });
+    });
+
+    const reportData = {
+        languages: ['English', 'French', 'Spanish', 'Portuguese'],
+        audioAvailability: [1, 1, 1, 1], 
+        subtitleAvailability: [1, 0, 1, 1], 
+        formats: {
+            labels: ['5.1 Dolby Surround', '2.0 Dolby Surround'],
+            data: [1, 3] 
+        }
+    };
+
+    Chart.defaults.font.family = 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif';
+    Chart.defaults.color = '#57534e'; 
+
+    const ctxBar = document.getElementById('languageBarChart').getContext('2d');
+    new Chart(ctxBar, {
+        type: 'bar',
+        data: {
+            labels: reportData.languages,
+            datasets: [
+                {
+                    label: 'Audio Track Available',
+                    data: reportData.audioAvailability,
+                    backgroundColor: '#d97706', 
+                    borderRadius: 4
+                },
+                {
+                    label: 'Subtitle Track Available',
+                    data: reportData.subtitleAvailability,
+                    backgroundColor: '#fcd34d', 
+                    borderRadius: 4
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 1,
+                        callback: function(value) {
+                            if (value === 0) return 'No';
+                            if (value === 1) return 'Yes';
+                            return '';
+                        }
+                    },
+                    grid: { color: '#f5f5f4' }
+                },
+                x: {
+                    grid: { display: false }
+                }
+            },
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return context.dataset.label + ': ' + (context.raw === 1 ? 'Yes' : 'No');
+                        }
+                    }
+                },
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        }
+    });
+
+    const ctxPie = document.getElementById('audioFormatChart').getContext('2d');
+    new Chart(ctxPie, {
+        type: 'doughnut',
+        data: {
+            labels: reportData.formats.labels,
+            datasets: [{
+                data: reportData.formats.data,
+                backgroundColor: [
+                    '#b45309', 
+                    '#e6b38a'  
+                ],
+                borderWidth: 0,
+                hoverOffset: 4
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            cutout: '65%',
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return ' ' + context.label + ' (' + context.raw + ' Track' + (context.raw > 1 ? 's' : '') + ')';
+                        }
+                    }
+                }
+            }
+        }
+    });
+});
+</script>
 </body>
 </html>
