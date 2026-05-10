@@ -1,355 +1,341 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TorrentDetails - I.Robot.2004.WS.NTSC.DVD9-RETAiL</title>
+    <title>Release Info: I, Robot (2004)</title>
+    
+    <!-- Chosen Palette: Warm Neutral Archive (Warm Off-White, Sand Beige, Deep Slate, Amber Accent) -->
+    <!-- Application Structure Plan: A dashboard-style layout designed for an archival database. The top section immediately presents the raw release string and key format specs in a quick-read grid. The lower section uses an interactive tabbed interface to separate quantitative media data (audio/subtitles, visualized with charts) from qualitative technical notes, reducing cognitive load and allowing users to explore specific aspects of the release interactively. -->
+    <!-- Visualization & Content Choices: 
+         1. Specs Grid -> Goal: Inform -> Viz: CSS Grid Cards -> Interaction: Hover elevation -> Justification: Quick scanning of primary technical specs.
+         2. Audio Breakdown -> Goal: Compare -> Viz: Chart.js Donut Chart -> Interaction: Hover tooltips -> Justification: Visually represents the distribution of audio capabilities (Surround vs Stereo) on the disc -> Library: Chart.js.
+         3. Subtitles -> Goal: Inform -> Viz: HTML CSS Badges -> Justification: Clear, distinct representation of available languages.
+         4. Tech Notes -> Goal: Inform -> Viz: Styled text block -> Justification: Readable presentation of cataloger notes. 
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        archiveBg: '#fbfaf8',
+                        archiveCard: '#f0ece1',
+                        archiveText: '#2d3748',
+                        archiveMuted: '#718096',
+                        archiveAccent: '#d97706', // amber-600
+                    },
+                    fontFamily: {
+                        mono: ['Consolas', 'Monaco', 'Courier New', 'monospace'],
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        :root {
-            --bg-color: #e9e9e9;
-            --border-color: #666;
-            --header-bg: #2d4f85;
-            --header-text: #ffffff;
-            --table-header: #d1d7dc;
-            --table-row-alt: #f1f1f1;
-            --link-color: #003399;
-        }
-
         body {
-            background-color: var(--bg-color);
-            font-family: Helvetica, sans-serif;
-            font-size: 11px;
-            margin: 0;
-            padding: 20px;
-            color: #333;
+            background-color: #fbfaf8;
+            color: #2d3748;
         }
-
-        #container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            border: 1px solid var(--border-color);
-            box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
-        }
-
-        header {
-            background-color: var(--header-bg);
-            padding: 10px;
-            color: var(--header-text);
-            border-bottom: 2px solid #000;
-        }
-
-        h1 {
-            margin: 0;
-            font-size: 18px;
-            text-shadow: 1px 1px #000;
-        }
-
-        nav {
-            background: #4a6ea9;
-            padding: 5px 10px;
-            border-bottom: 1px solid #000;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-right: 15px;
-            font-weight: bold;
-        }
-
-        nav a:hover {
-            text-decoration: underline;
-        }
-
-        .main-content {
-            padding: 15px;
-        }
-
-        .torrent-title {
-            background: #eee;
-            border: 1px solid #ccc;
-            padding: 8px;
-            font-size: 14px;
-            font-weight: bold;
-            margin-bottom: 15px;
-            color: #2d4f85;
-        }
-
-        .layout-table {
+        
+        /* Required Chart Container Styling */
+        .chart-container {
+            position: relative;
             width: 100%;
-            border-collapse: collapse;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+        
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
         }
 
-        .info-cell {
-            vertical-align: top;
-            padding-right: 20px;
+        .tab-btn {
+            transition: all 0.2s ease-in-out;
+        }
+        .tab-btn.active {
+            border-bottom: 2px solid #d97706;
+            color: #d97706;
+            font-weight: 600;
+        }
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        .tab-content.active {
+            display: block;
         }
 
-        .sidebar-cell {
-            width: 200px;
-            vertical-align: top;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .poster {
-            width: 100%;
-            border: 1px solid #999;
-            padding: 2px;
-            background: #fff;
-            margin-bottom: 10px;
-        }
-
-        .download-box {
-            background: #fff9c4;
-            border: 2px dashed #fbc02d;
-            padding: 15px;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .btn-download {
-            background: linear-gradient(to bottom, #4caf50, #388e3c);
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 14px;
-            border: 1px solid #2e7d32;
-            border-radius: 4px;
-            display: inline-block;
-            cursor: pointer;
-        }
-
-        .btn-download:hover {
-            background: #43a047;
-        }
-
-        h3 {
-            border-bottom: 1px solid var(--table-header);
-            padding-bottom: 5px;
-            margin-top: 20px;
-            color: #2d4f85;
-            font-size: 13px;
-        }
-
-        .data-table {
-            width: 100%;
-            border: 1px solid #ccc;
-            border-collapse: collapse;
-            margin-bottom: 15px;
-        }
-
-        .data-table th {
-            background: var(--table-header);
-            text-align: left;
-            padding: 5px;
-            border: 1px solid #ccc;
-        }
-
-        .data-table td {
-            padding: 5px;
-            border: 1px solid #ccc;
-        }
-
-        .nfo-viewer {
-            background: #000;
-            color: #0f0;
-            font-family: "Courier New", Courier, monospace;
-            padding: 15px;
-            font-size: 12px;
-            white-space: pre-wrap;
-            border: 1px solid #333;
-            overflow-x: auto;
-        }
-
-        .comment {
-            border: 1px solid #ddd;
-            background: #fafafa;
-            margin-bottom: 10px;
-            padding: 10px;
-        }
-
-        .comment-header {
-            font-weight: bold;
-            font-size: 10px;
-            color: #666;
-            margin-bottom: 5px;
-            border-bottom: 1px dotted #ccc;
-        }
-
-        .stats-box {
-            background: #f9f9f9;
-            border: 1px solid #ccc;
-            padding: 10px;
-            font-size: 10px;
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: #999;
-            font-size: 10px;
-        }
-
-        .tag {
-            display: inline-block;
-            background: #ddd;
-            padding: 2px 5px;
-            border-radius: 3px;
-            margin-right: 5px;
-            font-size: 9px;
-            text-transform: uppercase;
+        .spec-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
     </style>
 </head>
-<body>
+<body class="font-sans antialiased min-h-screen flex flex-col p-4 md:p-8">
 
-<div id="container">
-    <header>
-        <h1>RetroTorrents v1.2</h1>
-    </header>
-    <nav>
-        <a href="#">Home</a>
-        <a href="#">Browse</a>
-        <a href="#">Upload</a>
-        <a href="#">Forums</a>
-        <a href="#">Help</a>
-    </nav>
+    <main class="max-w-5xl mx-auto w-full flex-grow flex flex-col space-y-8">
+        
+        <!-- Header Section -->
+        <header class="border-b border-gray-300 pb-6">
+            <div class="flex items-center space-x-3 mb-2">
+                <span class="text-3xl text-archiveAccent">&#x1F4BF;</span>
+                <h1 class="text-3xl md:text-4xl font-bold tracking-tight text-archiveText">I, Robot <span class="text-archiveMuted font-normal">(2004)</span></h1>
+            </div>
+            <p class="mt-4 text-sm md:text-base text-archiveMuted uppercase tracking-widest font-semibold mb-1">Raw Release String</p>
+            <div class="bg-archiveCard p-3 rounded-md font-mono text-sm md:text-base text-archiveText overflow-x-auto whitespace-nowrap shadow-inner border border-gray-200">
+                I.Robot.2004.WS.NTSC.DVD9-RETAiL
+            </div>
+            <div class="mt-4 flex flex-wrap gap-2 text-sm text-archiveMuted">
+                <span class="bg-gray-200 px-2 py-1 rounded">Cataloged: Dec 14, 2004</span>
+                <span class="bg-gray-200 px-2 py-1 rounded">Source: Torrent Site</span>
+            </div>
+        </header>
 
-    <div class="main-content">
-        <div class="torrent-title">
-            I.Robot.2004.WS.NTSC.DVD9-RETAiL
-        </div>
+        <!-- Intro Context -->
+        <section>
+            <p class="text-lg leading-relaxed text-archiveText">
+                Welcome to the release archive dashboard. This interactive view breaks down the technical metadata for the retail DVD release of the 2004 sci-fi film <em>I, Robot</em>. Explore the general specifications below, and use the interactive tabs to dive into the media payload and archivist notes.
+            </p>
+        </section>
 
-        <table class="layout-table">
-            <tr>
-                <td class="info-cell">
-                    <div class="download-box">
-                        <div style="margin-bottom: 10px; font-weight: bold;">Download this torrent</div>
-                        <a href="#" class="btn-download" onclick="alert('Download starting...')">DOWNLOAD .TORRENT</a>
-                        <div style="font-size: 9px; margin-top: 5px;">[7.94 GB] [Added: Dec 14, 2004]</div>
+        <!-- General Info Grid -->
+        <section>
+            <h2 class="text-xl font-bold mb-4 flex items-center"><span class="text-archiveAccent mr-2">&#x25A0;</span> General Specifications</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="spec-card bg-white border border-gray-200 p-4 rounded-lg transition-all duration-200">
+                    <p class="text-xs text-archiveMuted uppercase font-bold tracking-wider mb-1">Format</p>
+                    <p class="text-lg font-semibold text-archiveText">DVD9</p>
+                    <p class="text-xs text-gray-500 mt-1">Dual Layer</p>
+                </div>
+                <div class="spec-card bg-white border border-gray-200 p-4 rounded-lg transition-all duration-200">
+                    <p class="text-xs text-archiveMuted uppercase font-bold tracking-wider mb-1">Region Standard</p>
+                    <p class="text-lg font-semibold text-archiveText">NTSC</p>
+                    <p class="text-xs text-gray-500 mt-1">North America / Japan</p>
+                </div>
+                <div class="spec-card bg-white border border-gray-200 p-4 rounded-lg transition-all duration-200">
+                    <p class="text-xs text-archiveMuted uppercase font-bold tracking-wider mb-1">Aspect Ratio</p>
+                    <p class="text-lg font-semibold text-archiveText">WS</p>
+                    <p class="text-xs text-gray-500 mt-1">Widescreen</p>
+                </div>
+                <div class="spec-card bg-white border border-gray-200 p-4 rounded-lg transition-all duration-200">
+                    <p class="text-xs text-archiveMuted uppercase font-bold tracking-wider mb-1">Source Media</p>
+                    <p class="text-lg font-semibold text-archiveText">Retail DVD</p>
+                    <p class="text-xs text-gray-500 mt-1">Untouched Copy</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Tabs Section -->
+        <section class="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden flex-grow">
+            <!-- Tab Headers -->
+            <div class="flex border-b border-gray-200 bg-gray-50">
+                <button class="tab-btn active px-6 py-4 text-sm font-medium text-archiveMuted hover:text-archiveText focus:outline-none" data-target="media-tab">
+                    Media Capabilities (Audio & Subs)
+                </button>
+                <button class="tab-btn px-6 py-4 text-sm font-medium text-archiveMuted hover:text-archiveText focus:outline-none" data-target="notes-tab">
+                    Technical Notes
+                </button>
+            </div>
+
+            <!-- Tab Content: Media -->
+            <div id="media-tab" class="tab-content active p-6 md:p-8">
+                <p class="mb-6 text-archiveMuted">This section details the specific audio formats and subtitle languages included in this DVD9 release. The chart visualizes the distribution of audio channel fidelity.</p>
+                
+                <div class="flex flex-col md:flex-row gap-8">
+                    <!-- Left: Tables -->
+                    <div class="w-full md:w-1/2 space-y-8">
+                        <div>
+                            <h3 class="text-lg font-bold mb-3 border-b border-gray-200 pb-2">Audio Tracks</h3>
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full text-left text-sm">
+                                    <thead>
+                                        <tr class="bg-archiveCard text-archiveMuted">
+                                            <th class="py-2 px-3 rounded-tl">Language</th>
+                                            <th class="py-2 px-3">Format</th>
+                                            <th class="py-2 px-3 rounded-tr">Details</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-gray-100">
+                                        <tr class="hover:bg-gray-50 transition-colors">
+                                            <td class="py-3 px-3 font-semibold">English</td>
+                                            <td class="py-3 px-3"><span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">5.1</span> Dolby Surround</td>
+                                            <td class="py-3 px-3 text-archiveMuted">Principal Audio</td>
+                                        </tr>
+                                        <tr class="hover:bg-gray-50 transition-colors">
+                                            <td class="py-3 px-3 font-semibold">English</td>
+                                            <td class="py-3 px-3"><span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded">5.1</span> DTS</td>
+                                            <td class="py-3 px-3 text-archiveMuted">High-Definition</td>
+                                        </tr>
+                                        <tr class="hover:bg-gray-50 transition-colors">
+                                            <td class="py-3 px-3 font-semibold">French</td>
+                                            <td class="py-3 px-3"><span class="bg-gray-200 text-gray-700 text-xs px-2 py-1 rounded">2.0</span> Dolby Surround</td>
+                                            <td class="py-3 px-3 text-archiveMuted">Dubbed</td>
+                                        </tr>
+                                        <tr class="hover:bg-gray-50 transition-colors">
+                                            <td class="py-3 px-3 font-semibold">Spanish</td>
+                                            <td class="py-3 px-3"><span class="bg-gray-200 text-gray-700 text-xs px-2 py-1 rounded">2.0</span> Dolby Surround</td>
+                                            <td class="py-3 px-3 text-archiveMuted">Dubbed</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg font-bold mb-3 border-b border-gray-200 pb-2">Subtitles</h3>
+                            <div class="flex gap-3">
+                                <span class="border border-archiveAccent text-archiveAccent px-4 py-1.5 rounded-full text-sm font-medium hover:bg-archiveAccent hover:text-white transition-colors cursor-default">English</span>
+                                <span class="border border-archiveAccent text-archiveAccent px-4 py-1.5 rounded-full text-sm font-medium hover:bg-archiveAccent hover:text-white transition-colors cursor-default">Spanish</span>
+                            </div>
+                        </div>
                     </div>
 
-                    <h3>Description</h3>
-                    <p style="line-height: 1.5;">
-                        <strong>I, Robot (2004)</strong><br>
-                        In the year 2035, technology and robots are a trusted part of everyday life. In this blockbuster action thriller, Detective Del Spooner (Will Smith) investigates the murder of Dr. Alfred Lanning, who works at U.S. Robotics, in which a robot, Sonny, appears to be implicated, even though that would mean the robot had violated the Three Laws of Robotics, which is apparently impossible. It seems he must confront a frightening conspiracy that could jeopardize the human race.
+                    <!-- Right: Chart -->
+                    <div class="w-full md:w-1/2 flex flex-col items-center justify-center bg-archiveCard rounded-lg p-4 border border-gray-200">
+                        <h3 class="text-sm font-bold text-center mb-2 uppercase tracking-wide text-archiveMuted">Audio Track Distribution</h3>
+                        <div class="chart-container">
+                            <canvas id="audioChart"></canvas>
+                        </div>
+                        <p class="text-xs text-center text-archiveMuted mt-4 max-w-xs">
+                            Breakdown of available audio tracks by channel count and encoding format. Note the inclusion of a high-bitrate DTS stream.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content: Notes -->
+            <div id="notes-tab" class="tab-content p-6 md:p-8">
+                <p class="mb-6 text-archiveMuted">Archivist commentary and specific technical details regarding this exact digital preservation copy.</p>
+                
+                <div class="bg-archiveCard p-6 rounded-lg border-l-4 border-archiveAccent">
+                    <h3 class="text-xl font-bold mb-4 text-archiveText flex items-center">
+                        <span class="mr-2 text-2xl">&#x1F4DD;</span> Cataloger Remarks
+                    </h3>
+                    <p class="text-archiveText leading-relaxed mb-4">
+                        This release is a full <strong>DVD9</strong> retail copy. This is a critical distinction for preservationists and enthusiasts, meaning it contains:
                     </p>
-
-                    <h3>Technical Specifications</h3>
-                    <table class="data-table">
-                        <tr><th width="30%">Folder Name</th><td>I.Robot.2004.WS.NTSC.DVD9-RETAiL</td></tr>
-                        <tr><th>Filename</th><td>I_ROBOT_16X9.iso</td></tr>
-                        <tr><th>Format</th><td>DVD-Video (ISO Image)</td></tr>
-                        <tr><th>Source</th><td>Retail DVD9 (Full untouched)</td></tr>
-                        <tr><th>Aspect Ratio</th><td>16x9 Widescreen (2.35:1)</td></tr>
-                        <tr><th>Video System</th><td>NTSC</td></tr>
-                        <tr><th>Region</th><td>1</td></tr>
-                    </table>
-
-                    <h3>Audio Tracks</h3>
-                    <ul style="margin: 0; padding-left: 20px;">
-                        <li>English 5.1 Dolby Surround</li>
-                        <li>English 5.1 DTS (Digital Theater Systems)</li>
-                        <li>French 2.0 Dolby Surround</li>
-                        <li>Spanish 2.0 Dolby Surround</li>
+                    <ul class="list-none space-y-2 mb-4 ml-2">
+                        <li class="flex items-center"><span class="text-green-600 mr-2">&#x2713;</span> All original interactive menus</li>
+                        <li class="flex items-center"><span class="text-green-600 mr-2">&#x2713;</span> Complete bonus features and extras</li>
+                        <li class="flex items-center"><span class="text-green-600 mr-2">&#x2713;</span> High-bitrate audio tracks (specifically the uncompressed DTS stream)</li>
                     </ul>
+                    <p class="text-archiveText leading-relaxed">
+                        Unlike standard DVD5 rips, this dual-layer copy avoids the heavy video and audio compression required to fit the film onto a smaller disc, maintaining the original retail quality.
+                    </p>
+                </div>
+            </div>
+        </section>
 
-                    <h3>Subtitles</h3>
-                    <ul style="margin: 0; padding-left: 20px;">
-                        <li>English</li>
-                        <li>Spanish</li>
-                    </ul>
+    </main>
 
-                    <h3>Files in this Torrent</h3>
-                    <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th>Filename</th>
-                                <th width="100">Size</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>I_ROBOT_16X9.iso</td><td>7.94 GB</td></tr>
-                            <tr><td>Sample.m2v</td><td>50.0 MB</td></tr>
-                            <tr><td>i_robot_retail.nfo</td><td>4.2 KB</td></tr>
-                            <tr><td>i_robot_dvd_cover.jpg</td><td>1.1 MB</td></tr>
-                        </tbody>
-                    </table>
-
-                    <h3>NFO Information</h3>
-                    <div class="nfo-viewer">
-I.Robot.2004.WS.NTSC.DVD9-RETAiL
-
-Release Date...: 12/14/2004
-DVD Date.......: 12/14/2004
-Theatre Date...: 07/16/2004
-
-Video..........: Untouched
-Audio..........: English 5.1 / DTS / French / Spanish
-Subtitles......: English / Spanish
-Menu...........: Untouched
-Extras.........: Untouched
-                    </div>
-
-                    <h3>User Comments</h3>
-                    <div class="comment">
-                        <div class="comment-header">User123 on Dec 14, 2004, 14:22</div>
-                        “Awesome movie! Will Smith is great. Seeding now.”
-                    </div>
-                    <div class="comment">
-                        <div class="comment-header">MovieBuff88 on Dec 14, 2004, 16:45</div>
-                        “Thanks for the DTS track. This looks like a perfect retail copy.”
-                    </div>
-                    <div class="comment">
-                        <div class="comment-header">DVD_Ripper on Dec 14, 2004, 18:10</div>
-                        “Nice to see the full DVD9 instead of a compressed DVD5. Quality is top notch.”
-                    </div>
-                </td>
-                <td class="sidebar-cell">
-                    <img src="https://images.45cat.com/f/dv/i-robot-17-dv.jpg" alt="I, Robot Cover" class="poster" onerror="this.src='https://via.placeholder.com/200x280?text=I+Robot+DVD'">
-                    
-                    <div class="stats-box">
-                        <strong>Torrent Stats</strong><br>
-                        <hr>
-                        Category: Movies / DVD-R<br>
-                        Uploader: SceneRelease<br>
-                        Seeders: <span style="color: green; font-weight: bold;">4,291</span><br>
-                        Leechers: <span style="color: red; font-weight: bold;">1,022</span><br>
-                        Completed: 15,402 times<br>
-                        Health: <span style="color: green;">★★★★★</span>
-                    </div>
-
-                    <div style="margin-top: 15px; font-size: 10px; color: #666;">
-                        <strong>Tags:</strong><br>
-                        <span class="tag">Sci-Fi</span><br>
-                        <span class="tag">Will Smith</span><br>
-                        <span class="tag">Action</span><br>
-                        <span class="tag">DVD9</span>
-                    </div>
-                </td>
-            </tr>
-        </table>
-    </div>
-
-    <footer>
-        &copy; 2004 RetroTorrents. All Rights Reserved. <br>
-        Please seed after downloading!
+    <footer class="max-w-5xl mx-auto w-full mt-8 py-6 border-t border-gray-300 text-center text-sm text-archiveMuted">
+        Database Entry: I, Robot | Format Analysis Web Application
     </footer>
-</div>
 
-<script>
-    // Just a small interaction to simulate a 2004 site
-    document.querySelectorAll('.btn-download').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            const confirmed = confirm("Are you sure you want to download I_ROBOT_16X9.torrent?");
-            if (confirmed) {
-                alert("The torrent file has been added to your download queue.");
-            }
+    <script>
+        // --- Tab Navigation Logic ---
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active classes
+                tabBtns.forEach(b => b.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+
+                // Add active class to clicked button
+                btn.classList.add('active');
+
+                // Show corresponding content
+                const targetId = btn.getAttribute('data-target');
+                document.getElementById(targetId).classList.add('active');
+            });
         });
-    });
-</script>
 
+        // --- Chart.js Implementation ---
+        document.addEventListener("DOMContentLoaded", function() {
+            const ctx = document.getElementById('audioChart').getContext('2d');
+            
+            // Data derived from the Source Report
+            const data = {
+                labels: [
+                    '5.1 Dolby (English)', 
+                    '5.1 DTS (English)', 
+                    '2.0 Dolby (French)', 
+                    '2.0 Dolby (Spanish)'
+                ],
+                datasets: [{
+                    label: 'Audio Tracks',
+                    data: [1, 1, 1, 1], // Each represents 1 distinct track in the release
+                    backgroundColor: [
+                        'rgba(59, 130, 246, 0.7)', // Blue-500
+                        'rgba(147, 51, 234, 0.7)', // Purple-600
+                        'rgba(156, 163, 175, 0.7)', // Gray-400
+                        'rgba(107, 114, 128, 0.7)'  // Gray-500
+                    ],
+                    borderColor: [
+                        'rgba(255, 255, 255, 1)',
+                        'rgba(255, 255, 255, 1)',
+                        'rgba(255, 255, 255, 1)',
+                        'rgba(255, 255, 255, 1)'
+                    ],
+                    borderWidth: 2,
+                    hoverOffset: 4
+                }]
+            };
+
+            const config = {
+                type: 'doughnut',
+                data: data,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '65%',
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 20,
+                                font: {
+                                    family: "'Inter', sans-serif",
+                                    size: 11
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) {
+                                        label += ': Present';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+
+            new Chart(ctx, config);
+        });
+    </script>
 </body>
 </html>
