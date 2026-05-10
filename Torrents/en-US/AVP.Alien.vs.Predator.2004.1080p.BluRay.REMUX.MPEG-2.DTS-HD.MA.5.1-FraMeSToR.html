@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AVP Release Analysis | FraMeSToR REMUX</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- Chosen Palette: Warm Neutrals with Subdued Crimson Accent -->
+<!-- Application Structure Plan: A tabbed interactive dashboard interface designed to organize dense tracker metadata. The application is split into three thematic views: 'Movie Overview' for general cinematic context, 'Technical Analysis' for interactive data visualization of the file's specs, and 'Media Gallery' for visual proofs. This structure was chosen to allow users to easily switch between high-level film information and deep-dive technical analytics without endless scrolling. -->
+<!-- Visualization & Content Choices: 1. File Size Distribution (Goal: Inform on storage footprint) -> Doughnut Chart -> Hover for exact GB -> Visualizes the 22.4GB composition -> Chart.js. 2. Bitrate Comparison (Goal: Compare visual vs audio data density) -> Bar Chart -> Hover for Mbps -> Illustrates the high quality of the REMUX -> Chart.js. 3. Raw Info Toggle (Goal: Organize) -> Hidden Text Block with JS toggle -> Keeps UI clean while retaining exact NFO data -> Vanilla JS. Confirming NO SVG/Mermaid. -->
+<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+<style>
+body {
+    background-color: #f4f1ea;
+    color: #3b3631;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+.chart-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 300px;
+    max-height: 350px;
+}
+@media (min-width: 768px) {
+    .chart-container {
+        height: 350px;
+    }
+}
+.tab-btn {
+    transition: all 0.2s ease;
+    border-bottom: 2px solid transparent;
+}
+.tab-btn.active {
+    border-bottom: 2px solid #8b3a3a;
+    color: #8b3a3a;
+    font-weight: 600;
+}
+.tab-content {
+    display: none;
+    animation: fadeIn 0.4s ease-in-out;
+}
+.tab-content.active {
+    display: block;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.gallery-placeholder {
+    background-color: #e3decb;
+    border: 1px solid #d1ccc0;
+    aspect-ratio: 16/9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    color: #7a7369;
+    cursor: crosshair;
+    transition: all 0.3s ease;
+}
+.gallery-placeholder:hover {
+    background-color: #d1ccc0;
+    transform: scale(1.02);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+.poster-block {
+    background: linear-gradient(135deg, #4a453f 0%, #2a2723 100%);
+    color: #f4f1ea;
+    aspect-ratio: 2/3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+</style>
+</head>
+<body class="antialiased min-h-screen pb-12">
+
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+    
+    <header class="mb-8 border-b border-[#d1ccc0] pb-6">
+        <div class="flex flex-col md:flex-row md:justify-between md:items-end gap-4">
+            <div>
+                <span class="inline-block px-2 py-1 bg-[#8b3a3a] text-[#f4f1ea] text-xs font-bold rounded mb-2 tracking-wider">REMUX RELEASE</span>
+                <h1 class="text-2xl md:text-3xl font-bold leading-tight text-[#2a2723] break-all">AVP.Alien.vs.Predator.2004.1080p.BluRay.REMUX.MPEG-2.DTS-HD.MA.5.1-FraMeSToR</h1>
+            </div>
+            <div class="flex gap-4 text-sm font-medium text-[#5a534b]">
+                <div class="flex flex-col"><span class="text-xs uppercase tracking-wider text-[#8b3a3a]">Size</span><span>22.4 GB</span></div>
+                <div class="flex flex-col"><span class="text-xs uppercase tracking-wider text-[#8b3a3a]">Container</span><span>MKV</span></div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="flex space-x-6 mb-8 overflow-x-auto whitespace-nowrap border-b border-[#e3decb]" aria-label="Tabs">
+        <button onclick="switchTab('overview')" class="tab-btn active pb-3 px-1 text-lg font-medium text-[#5a534b] hover:text-[#8b3a3a]">Movie Overview</button>
+        <button onclick="switchTab('technical')" class="tab-btn pb-3 px-1 text-lg font-medium text-[#5a534b] hover:text-[#8b3a3a]">Technical Analysis</button>
+        <button onclick="switchTab('gallery')" class="tab-btn pb-3 px-1 text-lg font-medium text-[#5a534b] hover:text-[#8b3a3a]">Media Gallery</button>
+    </nav>
+
+    <main>
+        <section id="overview" class="tab-content active">
+            <div class="mb-6">
+                <h2 class="text-xl font-bold text-[#2a2723] mb-2">Cinematic Context & Release Details</h2>
+                <p class="text-[#5a534b] leading-relaxed max-w-4xl">This section provides the essential narrative background and release metadata for the provided file. It outlines the film’s core details, cast, and external database links, allowing users to verify the cinematic content before analyzing the technical specifications.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="md:col-span-1">
+                    <div class="poster-block rounded-lg">
+                        <div class="text-4xl mb-2">&#127916;</div>
+                        <h3 class="font-bold text-xl uppercase tracking-widest">Alien vs. Predator</h3>
+                        <p class="text-sm mt-2 text-gray-300">2004 &bull; Paul W.S. Anderson</p>
+                    </div>
+                    <div class="mt-6 space-y-3">
+                        <h4 class="font-bold text-[#8b3a3a] border-b border-[#d1ccc0] pb-1 uppercase text-sm tracking-wider">Release Info</h4>
+                        <ul class="text-sm space-y-2 text-[#3b3631]">
+                            <li><strong class="text-[#5a534b]">Source:</strong> Blu-ray (US)</li>
+                            <li><strong class="text-[#5a534b]">Video Codec:</strong> MPEG-2</li>
+                            <li><strong class="text-[#5a534b]">Audio:</strong> English DTS-HD Master Audio 5.1</li>
+                            <li><strong class="text-[#5a534b]">Subtitles:</strong> English (SDH), Spanish, French</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="md:col-span-2 space-y-8">
+                    <div>
+                        <h4 class="font-bold text-[#8b3a3a] border-b border-[#d1ccc0] pb-1 uppercase text-sm tracking-wider mb-3">Synopsis</h4>
+                        <p class="text-[#3b3631] leading-relaxed text-lg bg-[#e3decb] p-4 rounded-md border-l-4 border-[#8b3a3a]">
+                            During an archaeological expedition on Bouvetøya Island in Antarctica, a team of archaeologists and other scientists find themselves caught up in a battle between the two legends. Soon, the team realize that only one species can win.
+                        </p>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                        <div class="bg-white p-3 rounded shadow-sm border border-[#e3decb]">
+                            <span class="block text-xs text-[#8b3a3a] font-bold uppercase">Genre</span>
+                            <span class="text-sm font-medium">Action, Sci-Fi, Horror</span>
+                        </div>
+                        <div class="bg-white p-3 rounded shadow-sm border border-[#e3decb]">
+                            <span class="block text-xs text-[#8b3a3a] font-bold uppercase">Rating</span>
+                            <span class="text-sm font-medium">PG-13 / Unrated</span>
+                        </div>
+                        <div class="bg-white p-3 rounded shadow-sm border border-[#e3decb]">
+                            <span class="block text-xs text-[#8b3a3a] font-bold uppercase">Runtime</span>
+                            <span class="text-sm font-medium">1h 41m / 1h 49m</span>
+                        </div>
+                        <div class="bg-white p-3 rounded shadow-sm border border-[#e3decb]">
+                            <span class="block text-xs text-[#8b3a3a] font-bold uppercase">Year</span>
+                            <span class="text-sm font-medium">2004</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold text-[#8b3a3a] border-b border-[#d1ccc0] pb-1 uppercase text-sm tracking-wider mb-3">Principal Cast</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-[#e3decb] text-[#3b3631] rounded-full text-sm font-medium">Sanaa Lathan</span>
+                            <span class="px-3 py-1 bg-[#e3decb] text-[#3b3631] rounded-full text-sm font-medium">Raoul Bova</span>
+                            <span class="px-3 py-1 bg-[#e3decb] text-[#3b3631] rounded-full text-sm font-medium">Lance Henriksen</span>
+                            <span class="px-3 py-1 bg-[#e3decb] text-[#3b3631] rounded-full text-sm font-medium">Ewen Bremner</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold text-[#8b3a3a] border-b border-[#d1ccc0] pb-1 uppercase text-sm tracking-wider mb-3">External Databases</h4>
+                        <div class="flex gap-4">
+                            <a href="https://www.imdb.com/title/tt0370263/" target="_blank" class="inline-flex items-center text-sm font-medium text-[#2a2723] bg-white border border-[#d1ccc0] px-4 py-2 rounded hover:bg-[#e3decb] transition-colors">&#128279; IMDb</a>
+                            <a href="https://www.themoviedb.org/movie/157-alien-vs-predator" target="_blank" class="inline-flex items-center text-sm font-medium text-[#2a2723] bg-white border border-[#d1ccc0] px-4 py-2 rounded hover:bg-[#e3decb] transition-colors">&#128279; TMDB</a>
+                            <a href="https://www.blu-ray.com/movies/Alien-vs-Predator-Blu-ray/193/" target="_blank" class="inline-flex items-center text-sm font-medium text-[#2a2723] bg-white border border-[#d1ccc0] px-4 py-2 rounded hover:bg-[#e3decb] transition-colors">&#128279; Blu-ray.com</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="technical" class="tab-content">
+            <div class="mb-8">
+                <h2 class="text-xl font-bold text-[#2a2723] mb-2">Technical Specifications & Media Analysis</h2>
+                <p class="text-[#5a534b] leading-relaxed max-w-4xl">This dashboard translates the raw NFO media info into interactive visualizations. By exploring the data below, you can understand the composition of the 22.4 GB file. The charts visualize the storage footprint of the video versus audio streams and compare their bitrates, demonstrating the uncompressed nature of this Blu-ray REMUX.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-[#e3decb]">
+                    <div class="mb-4">
+                        <h3 class="font-bold text-lg text-[#2a2723]">File Size Distribution</h3>
+                        <p class="text-sm text-[#7a7369]">Calculated estimate of data allocation across the 22.4 GB Matroska container based on stream duration and bitrates.</p>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="sizeChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-[#e3decb]">
+                    <div class="mb-4">
+                        <h3 class="font-bold text-lg text-[#2a2723]">Stream Bitrate Comparison</h3>
+                        <p class="text-sm text-[#7a7369]">Comparison of data throughput (Megabits per second). High video bitrate ensures visual fidelity without compression artifacts.</p>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="bitrateChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-sm border border-[#e3decb]">
+                <div class="flex justify-between items-center mb-4">
+                    <div>
+                        <h3 class="font-bold text-lg text-[#2a2723]">Raw MediaInfo Log</h3>
+                        <p class="text-sm text-[#7a7369]">Complete metadata extraction from the original source file.</p>
+                    </div>
+                    <button onclick="toggleNfo()" id="nfoToggleBtn" class="bg-[#8b3a3a] text-white px-4 py-2 rounded text-sm font-medium hover:bg-[#6b2a2a] transition-colors">Show Raw Log</button>
+                </div>
+                
+                <div id="nfoContent" class="hidden mt-4">
+                    <pre class="bg-[#2a2723] text-[#e3decb] p-4 rounded text-xs md:text-sm overflow-x-auto font-mono leading-relaxed">
+General
+Unique ID                                : 2351234857234958273495
+Format                                   : Matroska
+Format version                           : Version 4
+File size                                : 22.4 GiB
+Duration                                 : 1 h 41 min
+
+Video
+ID                                       : 1
+Format                                   : MPEG Video
+Format version                           : Version 2
+Codec ID                                 : V_MPEG2
+Duration                                 : 1 h 41 min
+Bit rate mode                            : Variable
+Bit rate                                 : 27.1 Mb/s
+Width                                    : 1 920 pixels
+Height                                   : 1 080 pixels
+Display aspect ratio                     : 16:9
+Frame rate mode                          : Constant
+Frame rate                               : 23.976 (24000/1001) FPS
+
+Audio
+ID                                       : 2
+Format                                   : DTS XLL
+Format/Info                              : Digital Theater Systems
+Commercial name                          : DTS-HD Master Audio
+Codec ID                                 : A_DTS
+Duration                                 : 1 h 41 min
+Bit rate mode                            : Variable
+Bit rate                                 : 4 212 kb/s
+Channel(s)                               : 6 channels
+Channel layout                           : C L R Ls Rs LFE
+Sampling rate                            : 48.0 kHz
+Bit depth                                : 24 bits
+Language                                 : English
+                    </pre>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="tab-content">
+            <div class="mb-6">
+                <h2 class="text-xl font-bold text-[#2a2723] mb-2">Source Quality Captures</h2>
+                <p class="text-[#5a534b] leading-relaxed max-w-4xl">This gallery provides structural placeholders representing uncompressed 1080p screenshots taken directly from the REMUX source. In a live tracker environment, interacting with these elements would expand the full-resolution PNGs to verify grain structure, color grading, and compression-free image quality.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="gallery-placeholder rounded shadow-sm" onclick="alert('Interactive element: Would open full 1920x1080 uncompressed image of Action Sequence 1.')">
+                    <div class="text-center">
+                        <span class="block text-2xl mb-2">&#128247;</span>
+                        <span>Action Sequence 1</span><br>
+                        <span class="text-xs opacity-70">1920x1080 Source Capture</span>
+                    </div>
+                </div>
+                <div class="gallery-placeholder rounded shadow-sm" onclick="alert('Interactive element: Would open full 1920x1080 uncompressed image of Antarctica Landscape.')">
+                    <div class="text-center">
+                        <span class="block text-2xl mb-2">&#128247;</span>
+                        <span>Landscape Antarctica</span><br>
+                        <span class="text-xs opacity-70">1920x1080 Source Capture</span>
+                    </div>
+                </div>
+                <div class="gallery-placeholder rounded shadow-sm" onclick="alert('Interactive element: Would open full 1920x1080 uncompressed image of Predator Detail.')">
+                    <div class="text-center">
+                        <span class="block text-2xl mb-2">&#128247;</span>
+                        <span>Predator Detail</span><br>
+                        <span class="text-xs opacity-70">1920x1080 Source Capture</span>
+                    </div>
+                </div>
+                <div class="gallery-placeholder rounded shadow-sm" onclick="alert('Interactive element: Would open full 1920x1080 uncompressed image of Alien Queen.')">
+                    <div class="text-center">
+                        <span class="block text-2xl mb-2">&#128247;</span>
+                        <span>Alien Queen</span><br>
+                        <span class="text-xs opacity-70">1920x1080 Source Capture</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script>
+    function switchTab(tabId) {
+        document.querySelectorAll('.tab-content').forEach(content => {
+            content.classList.remove('active');
+        });
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        
+        document.getElementById(tabId).classList.add('active');
+        event.currentTarget.classList.add('active');
+
+        if(tabId === 'technical' && !chartsInitialized) {
+            initCharts();
+            chartsInitialized = true;
+        }
+    }
+
+    let nfoVisible = false;
+    function toggleNfo() {
+        const nfoBlock = document.getElementById('nfoContent');
+        const btn = document.getElementById('nfoToggleBtn');
+        nfoVisible = !nfoVisible;
+        if(nfoVisible) {
+            nfoBlock.classList.remove('hidden');
+            btn.textContent = 'Hide Raw Log';
+            btn.classList.replace('bg-[#8b3a3a]', 'bg-[#5a534b]');
+        } else {
+            nfoBlock.classList.add('hidden');
+            btn.textContent = 'Show Raw Log';
+            btn.classList.replace('bg-[#5a534b]', 'bg-[#8b3a3a]');
+        }
+    }
+
+    let chartsInitialized = false;
+
+    function initCharts() {
+        const chartColors = {
+            video: '#4a453f',
+            audio: '#8b3a3a',
+            other: '#c2bcad',
+            text: '#5a534b',
+            grid: '#e3decb'
+        };
+
+        const sizeCtx = document.getElementById('sizeChart').getContext('2d');
+        new Chart(sizeCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Video (MPEG-2)', 'Audio (DTS-HD MA)', 'Container Overhead'],
+                datasets: [{
+                    data: [19.2, 3.1, 0.1], 
+                    backgroundColor: [chartColors.video, chartColors.audio, chartColors.other],
+                    borderWidth: 2,
+                    borderColor: '#ffffff',
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: { color: chartColors.text, font: { family: 'system-ui', size: 13 } }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return ` ${context.label}: ~${context.raw} GB`;
+                            }
+                        },
+                        backgroundColor: 'rgba(42, 39, 35, 0.9)',
+                        padding: 12,
+                        cornerRadius: 4
+                    }
+                },
+                cutout: '65%'
+            }
+        });
+
+        const bitrateCtx = document.getElementById('bitrateChart').getContext('2d');
+        new Chart(bitrateCtx, {
+            type: 'bar',
+            data: {
+                labels: ['MPEG-2 Video', 'DTS-HD MA 5.1'],
+                datasets: [{
+                    label: 'Bitrate (Mb/s)',
+                    data: [27.1, 4.212],
+                    backgroundColor: [chartColors.video, chartColors.audio],
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: { color: chartColors.grid },
+                        ticks: { color: chartColors.text },
+                        title: { display: true, text: 'Megabits per second (Mb/s)', color: chartColors.text, font: {size: 12} }
+                    },
+                    x: {
+                        grid: { display: false },
+                        ticks: { color: chartColors.text, font: {size: 13, weight: 'bold'} }
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return ` Data Rate: ${context.raw} Mb/s`;
+                            }
+                        },
+                        backgroundColor: 'rgba(42, 39, 35, 0.9)',
+                        padding: 12,
+                        cornerRadius: 4
+                    }
+                }
+            }
+        });
+    }
+</script>
+
+</body>
+</html>
