@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LEGO Hero Factory: Savage Planet (2011) [DVD5 ISO] - QuazaTracker</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@500;700;900&family=Fira+Code:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Orbitron', 'sans-serif'],
+            mono: ['Fira Code', 'monospace'],
+          },
+          colors: {
+            brand: {
+              black: '#07090e',
+              dark: '#0c0f17',
+              panel: '#131924',
+              accent: '#ff8a00', // Hero Factory Orange
+              accentGlow: 'rgba(255, 138, 0, 0.15)',
+              cyan: '#00e1ff',
+              green: '#10b981',
+              red: '#f43f5e',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Sci-fi & Grid Aesthetics */
+    body {
+      background-color: #07090e;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(255, 138, 0, 0.12) 0%, transparent 50%),
+        linear-gradient(rgba(18, 24, 38, 0.3) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(18, 24, 38, 0.3) 1px, transparent 1px);
+      background-size: 100% 100%, 30px 30px, 30px 30px;
+    }
+    
+    .glow-orange {
+      text-shadow: 0 0 10px rgba(255, 138, 0, 0.6);
+    }
+    
+    .glow-cyan {
+      text-shadow: 0 0 10px rgba(0, 225, 255, 0.6);
+    }
+
+    .border-glowing {
+      border: 1px solid rgba(255, 138, 0, 0.25);
+      box-shadow: 0 0 15px rgba(255, 138, 0, 0.05);
+    }
+
+    .border-glowing:hover {
+      border: 1px solid rgba(255, 138, 0, 0.5);
+      box-shadow: 0 0 20px rgba(255, 138, 0, 0.12);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0c0f17;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #222d3d;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #ff8a00;
+    }
+
+    /* Scanning laser effect */
+    .scanner-line {
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #ff8a00, transparent);
+      animation: scan 4s linear infinite;
+    }
+
+    @keyframes scan {
+      0% { top: 0%; }
+      50% { top: 100%; }
+      100% { top: 0%; }
+    }
+  </style>
+</head>
+<body class="text-gray-200 antialiased font-sans min-h-screen">
+
+  <!-- TOP BAR & STATUS -->
+  <header class="border-b border-gray-800/80 bg-brand-dark/95 backdrop-blur sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <!-- Logo -->
+      <div class="flex items-center space-x-3">
+        <div class="relative flex items-center justify-center w-10 h-10 rounded-lg bg-gradient-to-tr from-brand-accent to-yellow-500 shadow-lg shadow-brand-accent/20">
+          <i class="fa-solid fa-放射性 text-black text-xl animate-spin-slow"></i>
+          <span class="absolute inset-0 rounded-lg border border-white/20 animate-pulse"></span>
+        </div>
+        <div>
+          <span class="font-display font-extrabold text-lg tracking-wider text-white">QUAZA<span class="text-brand-accent">TRACKER</span></span>
+          <div class="text-[9px] text-gray-400 font-mono tracking-widest uppercase">Decentralized Hero Network</div>
+        </div>
+      </div>
+
+      <!-- Live Tracker Stats -->
+      <div class="hidden md:flex items-center space-x-6 text-xs font-mono">
+        <div class="flex items-center space-x-2">
+          <span class="w-2 h-2 rounded-full bg-brand-green animate-ping"></span>
+          <span class="text-gray-400">Tracker State:</span>
+          <span class="text-brand-green font-semibold">ONLINE</span>
+        </div>
+        <div class="h-4 w-[1px] bg-gray-800"></div>
+        <div>
+          <span class="text-gray-400">Swarm Total:</span>
+          <span class="text-white font-semibold">4,192</span>
+        </div>
+        <div class="h-4 w-[1px] bg-gray-800"></div>
+        <div>
+          <span class="text-gray-400">Index Size:</span>
+          <span class="text-brand-cyan font-semibold">41.2 TB</span>
+        </div>
+      </div>
+
+      <!-- Quick Search bar -->
+      <div class="relative w-48 sm:w-64">
+        <input type="text" placeholder="Search archive..." class="w-full bg-brand-black/80 border border-gray-800 rounded-full py-1.5 pl-8 pr-4 text-xs focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition-all text-gray-300 placeholder-gray-500">
+        <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-[10px] text-gray-500"></i>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    
+    <!-- breadcrumbs -->
+    <nav class="flex items-center space-x-2 text-xs font-mono text-gray-500 mb-6 overflow-x-auto whitespace-nowrap pb-1">
+      <a href="#" class="hover:text-brand-accent transition">Tracker</a>
+      <i class="fa-solid fa-chevron-right text-[8px]"></i>
+      <a href="#" class="hover:text-brand-accent transition">Archive</a>
+      <i class="fa-solid fa-chevron-right text-[8px]"></i>
+      <a href="#" class="hover:text-brand-accent transition">Movies & TV</a>
+      <i class="fa-solid fa-chevron-right text-[8px]"></i>
+      <a href="#" class="hover:text-brand-accent transition">DVD-R ISO</a>
+      <i class="fa-solid fa-chevron-right text-[8px]"></i>
+      <span class="text-gray-300">LEGO Hero Factory: Savage Planet</span>
+    </nav>
+
+    <!-- TORRENT TITLE AREA -->
+    <div class="bg-brand-panel/60 border border-gray-800 rounded-2xl p-6 mb-8 backdrop-blur shadow-xl relative overflow-hidden">
+      <!-- Subtle top gradient -->
+      <div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-brand-accent via-yellow-500 to-transparent"></div>
+      
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+        <div>
+          <div class="flex flex-wrap items-center gap-2 mb-3">
+            <span class="bg-brand-accent/20 text-brand-accent border border-brand-accent/30 px-2.5 py-0.5 rounded text-[10px] font-bold tracking-wider uppercase font-mono">
+              <i class="fa-solid fa-shield-halved mr-1"></i>Verified VIP Release
+            </span>
+            <span class="bg-brand-cyan/20 text-brand-cyan border border-brand-cyan/30 px-2.5 py-0.5 rounded text-[10px] font-bold tracking-wider uppercase font-mono">
+              DVD5 ISO
+            </span>
+            <span class="bg-purple-500/20 text-purple-400 border border-purple-500/30 px-2.5 py-0.5 rounded text-[10px] font-bold tracking-wider uppercase font-mono">
+              Multi-Language Subs
+            </span>
+            <span class="bg-gray-800 text-gray-400 border border-gray-700 px-2.5 py-0.5 rounded text-[10px] font-mono">
+              2011 Edition
+            </span>
+          </div>
+          
+          <h1 class="text-2xl sm:text-3xl font-display font-extrabold text-white tracking-tight uppercase">
+            LEGO.Hero.Factory.Savage.Planet.2011.DVD5.MULTi.ISO-HFGroup
+          </h1>
+          <p class="text-xs text-gray-400 font-mono mt-2 flex flex-wrap items-center gap-x-4 gap-y-1">
+            <span><span>HASH:</span> <span class="text-brand-cyan select-all" id="torrentHash">f3a1d9c8b7a6f5e4d3c2b1a09f8e7d6c5b4a3f2e</span></span>
+            <button onclick="copyHash()" class="text-gray-500 hover:text-brand-accent transition text-xs flex items-center space-x-1">
+              <i class="fa-regular fa-copy"></i> <span>[Copy Hash]</span>
+            </button>
+          </p>
+        </div>
+
+        <!-- Real-time Health Monitor / Gauge -->
+        <div class="flex items-center space-x-6 bg-brand-black/60 border border-gray-800/80 rounded-xl p-4 min-w-[280px]">
+          <div class="relative w-12 h-12 flex items-center justify-center">
+            <!-- Radial track -->
+            <svg class="w-full h-full transform -rotate-90">
+              <circle cx="24" cy="24" r="20" stroke="#1f2937" stroke-width="4" fill="transparent" />
+              <circle cx="24" cy="24" r="20" stroke="#10b981" stroke-width="4" fill="transparent" stroke-dasharray="125.6" stroke-dashoffset="12.5" class="transition-all duration-1000" />
+            </svg>
+            <span class="absolute text-[11px] font-mono font-bold text-brand-green">90%</span>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="text-xs font-mono text-gray-400 uppercase">Swarm Health</div>
+            <div class="text-lg font-display font-bold text-brand-green glow-green">Excellent</div>
+            <div class="flex space-x-3 text-[10px] font-mono text-gray-500 mt-1">
+              <span><i class="fa-solid fa-arrow-up text-brand-green"></i> <span class="text-gray-300 font-bold" id="seederVal">142</span> Seeds</span>
+              <span><i class="fa-solid fa-arrow-down text-brand-cyan"></i> <span class="text-gray-300 font-bold" id="leecherVal">18</span> Leech</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN TWO-COLUMN GRID -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      
+      <!-- LEFT COLUMN: MEDIA POSTER, DESCRIPTION, DOWN INTERFACES, FILE EXPLORER -->
+      <div class="lg:col-span-2 space-y-8">
+        
+        <!-- Torrent Media & Action Panel -->
+        <div class="bg-brand-panel/40 border border-gray-800 rounded-2xl p-6 backdrop-blur">
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+            
+            <!-- Poster Display -->
+            <div class="md:col-span-4 flex flex-col items-center">
+              <div class="relative group w-full max-w-[220px] rounded-xl overflow-hidden border-2 border-brand-accent/20 aspect-[3/4] bg-brand-black shadow-lg shadow-brand-accent/5">
+                <!-- Glowing scanner on hover -->
+                <div class="absolute inset-0 bg-gradient-to-b from-transparent via-brand-accent/20 to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
+                <div class="absolute inset-x-0 scanner-line z-10 hidden group-hover:block"></div>
+                
+                <!-- SVG styled retro Sci-fi cover design represent Savage Planet -->
+                <div class="w-full h-full flex flex-col justify-between p-4 relative bg-gradient-to-b from-emerald-950 via-brand-dark to-brand-black">
+                  <div class="absolute inset-0 opacity-10 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=400&q=80')"></div>
+                  
+                  <div class="relative z-10 text-center">
+                    <div class="text-[9px] tracking-widest text-brand-accent font-display font-black">LEGO® ACTION HERO</div>
+                    <div class="h-[1px] w-12 bg-brand-accent/40 mx-auto my-1"></div>
+                    <div class="text-[15px] font-display font-extrabold text-white leading-tight mt-1 glow-orange">HERO FACTORY</div>
+                  </div>
+                  
+                  <!-- Savage Planet Graphic Motif -->
+                  <div class="my-auto relative z-10 flex flex-col items-center justify-center">
+                    <div class="w-16 h-16 rounded-full bg-orange-600/20 border border-orange-500/40 flex items-center justify-center relative animate-pulse">
+                      <div class="w-12 h-12 rounded-full bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center">
+                        <i class="fa-solid fa-skull-crossbones text-brand-accent text-lg"></i>
+                      </div>
+                      <!-- Orbiting core -->
+                      <div class="absolute w-3 h-3 rounded-full bg-brand-cyan animate-ping"></div>
+                    </div>
+                    <div class="text-[10px] font-mono text-brand-cyan uppercase tracking-wider mt-2">QUATROS CORE</div>
+                  </div>
+                  
+                  <div class="relative z-10 text-center">
+                    <div class="text-xs font-display font-black text-emerald-400 uppercase tracking-widest">SAVAGE PLANET</div>
+                    <div class="text-[9px] text-gray-400 font-mono mt-0.5">FULL MOVIE DVD-R</div>
+                  </div>
+                </div>
+              </div>
+              <p class="text-[11px] text-gray-500 text-center font-mono mt-3">Resolution: 720p DVD Standard</p>
+            </div>
+
+            <!-- Download Commands & Metadata -->
+            <div class="md:col-span-8 flex flex-col justify-between space-y-6">
+              <div>
+                <h3 class="text-lg font-display font-bold text-white mb-2">LEGO Hero Factory: Savage Planet (2011)</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">
+                  When a former rookie Hero, Aldous Witch, attempts to harvest the pure Quaza Core of the jungle planet Quatros, the entire world faces immediate destruction. It’s up to the upgraded Alpha Team equipped with animalistic powers to defeat the power-mad Witch Doctor and restore the planet’s lifespaces.
+                </p>
+              </div>
+
+              <!-- Tech Stats List -->
+              <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 bg-brand-black/40 border border-gray-800/80 rounded-xl p-4 text-xs font-mono">
+                <div>
+                  <span class="block text-gray-500">File Size:</span>
+                  <span class="text-white font-semibold" id="calcSizeText">4.37 GB (DVD5)</span>
+                </div>
+                <div>
+                  <span class="block text-gray-500">Source:</span>
+                  <span class="text-white font-semibold">Retail DVD5 NTSC</span>
+                </div>
+                <div>
+                  <span class="block text-gray-500">Video Specs:</span>
+                  <span class="text-white font-semibold">MPEG-2, 16:9</span>
+                </div>
+                <div>
+                  <span class="block text-gray-500">Main Audio:</span>
+                  <span class="text-white font-semibold">AC3 5.1 English</span>
+                </div>
+                <div>
+                  <span class="block text-gray-500">Subtitles:</span>
+                  <span class="text-white font-semibold">English SDH, Spanish, Portuguese</span>
+                </div>
+                <div>
+                  <span class="block text-gray-500">Year Released:</span>
+                  <span class="text-white font-semibold">2011</span>
+                </div>
+              </div>
+
+              <!-- Action Trigger Buttons -->
+              <div class="flex flex-col sm:flex-row gap-3">
+                <button onclick="startDownloadSimulation()" class="flex-1 bg-gradient-to-r from-brand-accent to-yellow-500 hover:from-brand-accent hover:to-orange-600 text-black font-display font-extrabold py-3.5 px-6 rounded-xl transition duration-200 flex items-center justify-center space-x-2 shadow-lg shadow-brand-accent/20 relative group overflow-hidden">
+                  <div class="absolute inset-0 w-1/2 h-full bg-white/20 transform -skew-x-12 -translate-x-full group-hover:animate-shine"></div>
+                  <i class="fa-solid fa-magnet text-lg"></i>
+                  <span>GET TORRENT (MAGNET)</span>
+                </button>
+                <button onclick="toggleStreamModal(true)" class="bg-brand-black hover:bg-brand-dark text-white border border-gray-800 hover:border-brand-accent/50 py-3.5 px-5 rounded-xl transition font-mono text-xs flex items-center justify-center space-x-2">
+                  <i class="fa-solid fa-circle-play text-brand-accent text-sm"></i>
+                  <span>DIRECT PLAYBACK</span>
+                </button>
+              </div>
+
+              <div class="flex items-center justify-between text-[11px] font-mono text-gray-500 bg-brand-black/20 px-3 py-2 rounded-lg">
+                <span>Direct DL Mirror: <a href="#" onclick="alertNotice('Direct download link currently restricted to premium VIP accounts.')" class="text-brand-cyan hover:underline">Server Alpha-2 (HTTP)</a></span>
+                <span>Category: <span class="text-gray-300">ISO Archive</span></span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- NOTIFICATION / FEEDBACK TOAST CONTAINER (Built-In) -->
+        <div id="toastContainer" class="fixed bottom-6 right-6 z-50 flex flex-col space-y-2 pointer-events-none"></div>
+
+        <!-- FILE EXPLORER TAB (Allows custom content picking) -->
+        <div class="bg-brand-panel/40 border border-gray-800 rounded-2xl p-6 backdrop-blur">
+          <div class="flex items-center justify-between border-b border-gray-800 pb-4 mb-4">
+            <div class="flex items-center space-x-2.5">
+              <i class="fa-solid fa-folder-open text-brand-accent"></i>
+              <h3 class="text-base font-display font-bold text-white uppercase">ISO Content Explorer</h3>
+            </div>
+            <span class="text-xs font-mono text-gray-400" id="selectedFileCounter">Selected: 3 of 3 files</span>
+          </div>
+          
+          <p class="text-xs text-gray-500 font-mono mb-4">
+            Mount this ISO using Daemon Tools, Virtual CloneDrive, or burn directly to a 4.7GB DVD-R disc. Select which tracks to download:
+          </p>
+
+          <!-- Tree Directory -->
+          <div class="bg-brand-black/60 border border-gray-800/80 rounded-xl p-4 font-mono text-xs space-y-3">
+            
+            <!-- Root Folder -->
+            <div class="flex items-center justify-between border-b border-gray-800/40 pb-2">
+              <span class="flex items-center space-x-2 font-semibold text-white">
+                <i class="fa-solid fa-disc-ray text-brand-cyan"></i>
+                <span>LEGO_HERO_FACTORY_SAVAGEPLANET.iso</span>
+              </span>
+              <span class="text-gray-500">4.37 GB (Total)</span>
+            </div>
+
+            <div class="pl-4 space-y-2.5">
+              <!-- Subfolder: VIDEO_TS -->
+              <div>
+                <div class="flex items-center justify-between text-gray-300 hover:text-white cursor-pointer py-1" onclick="toggleFolder('videoTsDir')">
+                  <span class="flex items-center space-x-2">
+                    <i id="folderIcon_videoTs" class="fa-solid fa-folder-minus text-yellow-500 transition-transform"></i>
+                    <span class="font-bold">VIDEO_TS</span>
+                  </span>
+                  <span class="text-gray-400 text-[10px]">4.35 GB</span>
+                </div>
+
+                <!-- VIDEO_TS Children -->
+                <div id="videoTsDir" class="pl-6 mt-1.5 space-y-2 border-l border-gray-800/80 transition-all duration-300">
+                  <label class="flex items-center justify-between text-gray-400 hover:text-gray-200 cursor-pointer">
+                    <span class="flex items-center space-x-2">
+                      <input type="checkbox" checked onchange="updateFileSelection()" class="rounded border-gray-700 bg-brand-panel text-brand-accent focus:ring-brand-accent focus:ring-0 file-chk" data-size="4483481600">
+                      <i class="fa-regular fa-file-video text-brand-cyan"></i>
+                      <span>VTS_01_1.VOB <span class="text-[9px] text-gray-500">(Main Movie Stream)</span></span>
+                    </span>
+                    <span>4.17 GB</span>
+                  </label>
+                  <label class="flex items-center justify-between text-gray-400 hover:text-gray-200 cursor-pointer">
+                    <span class="flex items-center space-x-2">
+                      <input type="checkbox" checked onchange="updateFileSelection()" class="rounded border-gray-700 bg-brand-panel text-brand-accent focus:ring-brand-accent focus:ring-0 file-chk" data-size="188743680">
+                      <i class="fa-regular fa-file-video text-brand-cyan"></i>
+                      <span>VTS_01_0.IFO <span class="text-[9px] text-gray-500">(DVD Menu Structure)</span></span>
+                    </span>
+                    <span>180.2 MB</span>
+                  </label>
+                  <label class="flex items-center justify-between text-gray-400 hover:text-gray-200 cursor-pointer">
+                    <span class="flex items-center space-x-2">
+                      <input type="checkbox" checked onchange="updateFileSelection()" class="rounded border-gray-700 bg-brand-panel text-brand-accent focus:ring-brand-accent focus:ring-0 file-chk" data-size="5242880">
+                      <i class="fa-regular fa-file-code text-gray-500"></i>
+                      <span>VIDEO_TS.BUP <span class="text-[9px] text-gray-500">(Navigation Backup)</span></span>
+                    </span>
+                    <span>5.0 MB</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Bonus Material -->
+              <label class="flex items-center justify-between text-gray-300 hover:text-white cursor-pointer py-1">
+                <span class="flex items-center space-x-2">
+                  <input type="checkbox" checked onchange="updateFileSelection()" class="rounded border-gray-700 bg-brand-panel text-brand-accent focus:ring-brand-accent focus:ring-0 file-chk" data-size="12582912">
+                  <i class="fa-regular fa-file-pdf text-brand-accent"></i>
+                  <span>HF_SavagePlanet_HiRes_Cover_Print.pdf</span>
+                </span>
+                <span>12.0 MB</span>
+              </label>
+
+              <!-- Readme / Info -->
+              <label class="flex items-center justify-between text-gray-300 hover:text-white cursor-pointer py-1">
+                <span class="flex items-center space-x-2">
+                  <input type="checkbox" checked onchange="updateFileSelection()" class="rounded border-gray-700 bg-brand-panel text-brand-accent focus:ring-brand-accent focus:ring-0 file-chk" data-size="16384">
+                  <i class="fa-regular fa-file-lines text-gray-400"></i>
+                  <span>Release_Notes_HFGroup.txt</span>
+                </span>
+                <span>16 KB</span>
+              </label>
+
+            </div>
+
+          </div>
+        </div>
+
+        <!-- RETRO NFO VIEWER SECTION -->
+        <div class="bg-brand-panel/40 border border-gray-800 rounded-2xl p-6 backdrop-blur">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-gray-800 pb-4 mb-4 gap-4">
+            <div class="flex items-center space-x-2.5">
+              <i class="fa-solid fa-file-terminal text-brand-accent animate-pulse"></i>
+              <h3 class="text-base font-display font-bold text-white uppercase">Release .NFO File (Group Info)</h3>
+            </div>
+            
+            <div class="flex items-center space-x-2">
+              <span class="text-[10px] font-mono text-gray-500">Font Theme:</span>
+              <button onclick="changeNfoTheme('orange')" class="w-4 h-4 rounded-full bg-brand-accent border border-white/20" title="Quaza Orange"></button>
+              <button onclick="changeNfoTheme('cyan')" class="w-4 h-4 rounded-full bg-brand-cyan border border-white/20" title="Cryo Cyan"></button>
+              <button onclick="changeNfoTheme('classic')" class="w-4 h-4 rounded-full bg-brand-green border border-white/20" title="Classic Matrix Green"></button>
+            </div>
+          </div>
+
+          <div class="relative bg-brand-black border border-gray-800/80 rounded-xl p-4 overflow-x-auto">
+            <pre id="nfoBox" class="text-xs font-mono leading-relaxed text-brand-accent overflow-x-auto whitespace-pre">
+ _  _  ____  ____   __     ____   __    ___  ____  __  ____  _  _ 
+( \/ )(  __)(  _ \ /  \   (  __) / _\  / __)(_  _)/  \(  _ \/ )( \
+ / \/ \ ) _)  )   /(  O )   ) _) /    \( (__   )( (  O ))   /\ \/ /
+(_/\/\_)(____)(__\_) \__/   (__) \_/\_/ \___) (__) \__/(__\_) \__/
+══════════════════════════════════════════════════════════════════
+               PROUDLY PRESENTS THE LEGENDARY ARCHIVE
+══════════════════════════════════════════════════════════════════
+  RELEASE NAME ....: LEGO.Hero.Factory.Savage.Planet.2011.DVD5-HF
+  RELEASE DATE ....: 2011-10-04
+  STORE DATE ......: 2011-10-04
+  GENRE ...........: Animation / Action / Sci-Fi
+  FORMAT ..........: ISO (DVD-5 DVD-R)
+  VIDEO BITRATE ...: 5200 kbps (NTSC MPEG-2)
+  RESOLUTION ......: 720 x 480 (Anamorphic widescreen)
+  FPS .............: 29.970
+  AUDIO ...........: English AC3 5.1ch @ 448kbps
+                     French AC3 2.0ch @ 192kbps
+                     Spanish AC3 2.0ch @ 192kbps
+                     Portuguese AC3 2.0ch @ 192kbps
+  SUBTITLES .......: English, Spanish, Portuguese
+  DISC SIZE .......: 1 DVD5 (4.37 Gigabytes)
+  RAR COUNT .......: 90x50MB
+══════════════════════════════════════════════════════════════════
+[ RELEASE DETAILS ]
+  Aldous Witch has left the Hero Factory to claim the Quaza Core of
+  planet Quatros! Follow Rocka, Stormer, Nex, Stringer, and Furno
+  as they deploy 3.0 upgrades. Featuring custom DVD menus, bonus
+  concept galleries, and printable cover templates.
+
+[ ISO MOUNTING GUIDE ]
+  1. Mount the .ISO file using WinCDEmu or Windows Explorer.
+  2. Play with VLC Media Player by selecting "Open Disc" -> "DVD".
+  3. Or burn with ImgBurn at 4x speed on high quality DVD-R media.
+══════════════════════════════════════════════════════════════════
+      SUPPORT THE DEVS! IF YOU ENJOY THIS CONTENT, BUY THE LEGOS!
+            EST. 2011 - PRESERVING CORES FOR THE FUTURE
+══════════════════════════════════════════════════════════════════</pre>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT COLUMN: PEERS LIST, CORES/AI INTEGRATION, COMMENTS -->
+      <div class="space-y-8">
+        
+        <!-- Torrent Live Swarm Activity -->
+        <div class="bg-brand-panel/40 border border-gray-800 rounded-2xl p-6 backdrop-blur">
+          <div class="flex items-center justify-between border-b border-gray-800 pb-4 mb-4">
+            <div class="flex items-center space-x-2.5">
+              <i class="fa-solid fa-users text-brand-cyan"></i>
+              <h3 class="text-base font-display font-bold text-white uppercase">Active Swarm Peers</h3>
+            </div>
+            <span class="animate-pulse flex h-2 w-2 rounded-full bg-brand-green"></span>
+          </div>
+
+          <div class="space-y-3 max-h-[280px] overflow-y-auto pr-2">
+            <!-- Simulated Swarm List -->
+            <div class="flex items-center justify-between text-xs font-mono bg-brand-black/40 border border-gray-800/40 p-2.5 rounded-lg">
+              <div class="min-w-0">
+                <span class="text-brand-green font-semibold">184.22.91.*</span>
+                <span class="text-gray-500 text-[10px] block">Client: qBittorrent 4.6.2</span>
+              </div>
+              <div class="text-right">
+                <span class="text-brand-accent block">↑ 1.4 MB/s</span>
+                <span class="text-gray-400 text-[10px]">Ratio: 12.4</span>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between text-xs font-mono bg-brand-black/40 border border-gray-800/40 p-2.5 rounded-lg">
+              <div class="min-w-0">
+                <span class="text-brand-cyan font-semibold">73.195.42.*</span>
+                <span class="text-gray-500 text-[10px] block">Client: uTorrent 2.2.1 (Classic)</span>
+              </div>
+              <div class="text-right">
+                <span class="text-brand-cyan block">↓ 3.8 MB/s</span>
+                <span class="text-gray-400 text-[10px]">Ratio: 1.05</span>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between text-xs font-mono bg-brand-black/40 border border-gray-800/40 p-2.5 rounded-lg">
+              <div class="min-w-0">
+                <span class="text-brand-cyan font-semibold">91.80.122.*</span>
+                <span class="text-gray-500 text-[10px] block">Client: Transmission 4.0.4</span>
+              </div>
+              <div class="text-right">
+                <span class="text-gray-400 block">✓ Seeding</span>
+                <span class="text-gray-400 text-[10px]">Ratio: 44.8</span>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between text-xs font-mono bg-brand-black/40 border border-gray-800/40 p-2.5 rounded-lg">
+              <div class="min-w-0">
+                <span class="text-brand-cyan font-semibold">204.88.5.*</span>
+                <span class="text-gray-500 text-[10px] block">Client: Deluge 2.1.1</span>
+              </div>
+              <div class="text-right">
+                <span class="text-brand-cyan block">↓ 950 KB/s</span>
+                <span class="text-gray-400 text-[10px]">Ratio: 0.92</span>
+              </div>
+            </div>
+          </div>
+          <p class="text-[10px] font-mono text-gray-500 text-center mt-3">Connecting to tracker.quazatracker.net:8080/announce</p>
+        </div>
+
+        <!-- AI TECH SUPPORT / TRIVIA CORE (GEMINI INTEGRATION) -->
+        <div class="bg-brand-panel/40 border border-gray-800 rounded-2xl p-6 backdrop-blur">
+          <div class="flex items-center space-x-2.5 border-b border-gray-800 pb-4 mb-4">
+            <i class="fa-solid fa-robot text-brand-accent"></i>
+            <div>
+              <h3 class="text-sm font-display font-bold text-white uppercase">Quaza-AI Technical Support Core</h3>
+              <p class="text-[10px] text-gray-400 font-mono">Ask about DVD-R burning, ISO Mounting, or Hero Factory Lore</p>
+            </div>
+          </div>
+
+          <!-- Conversation UI -->
+          <div class="space-y-4">
+            <div id="aiChatBox" class="bg-brand-black/80 border border-gray-800 rounded-xl p-3 h-[240px] overflow-y-auto font-mono text-xs space-y-3">
+              <div class="bg-brand-panel/30 border-l-2 border-brand-accent p-2 text-gray-300">
+                <span class="text-brand-accent font-bold">[Quaza AI]:</span> Welcome archivist. I am synchronized with the Hero Factory databases. Ask me how to play or burn this ISO, configure Virtual Drives, or enquire about Savage Planet heroes!
+              </div>
+            </div>
+
+            <div class="flex space-x-2">
+              <input id="aiInput" type="text" placeholder="Type technical or lore question..." class="flex-1 bg-brand-black border border-gray-800 rounded-xl px-3 py-2 text-xs font-mono focus:outline-none focus:border-brand-accent text-gray-300" onkeydown="handleAiInput(event)">
+              <button onclick="sendAiMessage()" class="bg-brand-accent hover:bg-orange-600 text-black font-semibold rounded-xl px-4 py-2 text-xs transition flex items-center justify-center">
+                <i class="fa-solid fa-paper-plane"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- COMMUNITY CHAT & COMMENTS -->
+        <div class="bg-brand-panel/40 border border-gray-800 rounded-2xl p-6 backdrop-blur">
+          <div class="flex items-center justify-between border-b border-gray-800 pb-4 mb-4">
+            <div class="flex items-center space-x-2.5">
+              <i class="fa-regular fa-comments text-brand-accent"></i>
+              <h3 class="text-base font-display font-bold text-white uppercase">Community Comments</h3>
+            </div>
+            <span class="text-xs font-mono text-gray-400" id="commentCount">4 Comments</span>
+          </div>
+
+          <!-- Add new comment -->
+          <div class="mb-6">
+            <textarea id="commentInput" placeholder="Add to the archive thread..." rows="3" class="w-full bg-brand-black border border-gray-800 rounded-xl p-3 text-xs font-mono text-gray-300 focus:outline-none focus:border-brand-accent transition"></textarea>
+            <div class="flex justify-between items-center mt-2">
+              <input id="commentUser" type="text" placeholder="Username" class="bg-brand-black border border-gray-800 rounded-lg px-2.5 py-1 text-[11px] font-mono text-gray-300 focus:outline-none focus:border-brand-accent" value="CorePreserver_01">
+              <button onclick="addNewComment()" class="bg-brand-accent hover:bg-orange-600 text-black font-semibold text-xs px-4 py-1.5 rounded-lg transition font-mono">
+                Post Comment
+              </button>
+            </div>
+          </div>
+
+          <!-- Simulated Discussion Thread -->
+          <div id="commentsList" class="space-y-4 max-h-[350px] overflow-y-auto pr-2">
+            
+            <div class="border-b border-gray-800/40 pb-3">
+              <div class="flex items-center justify-between text-xs font-mono mb-1">
+                <span class="text-yellow-500 font-bold"><i class="fa-solid fa-medal mr-1"></i>BionicleFan_1999 <span class="bg-yellow-500/10 text-yellow-500 px-1.5 py-0.2 rounded text-[9px] uppercase">VIP</span></span>
+                <span class="text-gray-500 text-[10px]">2 hours ago</span>
+              </div>
+              <p class="text-xs text-gray-300 font-mono leading-relaxed">
+                Cleanest DVD5 ISO rip I’ve seen yet! DVD menus are fully functional, language tracks work great. Watched the whole Savage Planet dual-episode movie with my siblings earlier today. Nostalgia blast. Seed forever!
+              </p>
+            </div>
+
+            <div class="border-b border-gray-800/40 pb-3">
+              <div class="flex items-center justify-between text-xs font-mono mb-1">
+                <span class="text-brand-cyan font-bold">WitchDoctor_Was_Right</span>
+                <span class="text-gray-500 text-[10px]">1 day ago</span>
+              </div>
+              <p class="text-xs text-gray-300 font-mono leading-relaxed">
+                Has anyone gotten this to mount on Windows 11 directly? Windows Explorer kept saying the file is corrupted. Help!
+              </p>
+              <div class="bg-brand-black/60 border border-gray-800 p-2 rounded-lg mt-2 font-mono text-[11px] text-brand-green">
+                <strong><i class="fa-solid fa-reply mr-1"></i>QuazaMaster_99:</strong> Try using WinCDEmu or open it using VLC directly. Windows 11 ISO mounting can be sensitive to specific multi-language DVD sector sizing, but VLC reads it like a charm!
+              </div>
+            </div>
+
+            <div class="border-b border-gray-800/40 pb-3">
+              <div class="flex items-center justify-between text-xs font-mono mb-1">
+                <span class="text-gray-400 font-bold">BulkLover99</span>
+                <span class="text-gray-500 text-[10px]">3 days ago</span>
+              </div>
+              <p class="text-xs text-gray-300 font-mono leading-relaxed">
+                Savage Planet was peak Hero Factory. The introduction of 3.0 animal powers, Witch Doctor using those corrupt skull spikes. The build sets from this wave were immaculate. Downloading this to extract the print-ready cover for my custom DVD rack!
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- INTERACTIVE UTORRENT DOWNLOADER SIMULATOR (MODAL / FLOATING WINDOW) -->
+  <div id="downloadModal" class="fixed inset-0 bg-brand-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-brand-panel border-2 border-brand-accent rounded-2xl w-full max-w-2xl overflow-hidden shadow-2xl relative">
+      
+      <!-- Modal Header -->
+      <div class="bg-brand-dark px-4 py-3 border-b border-gray-800 flex items-center justify-between">
+        <div class="flex items-center space-x-2 font-mono text-xs">
+          <i class="fa-solid fa-download text-brand-accent"></i>
+          <span class="text-white font-bold">Quaza-P2P Swarm Agent v1.2</span>
+        </div>
+        <button onclick="toggleDownloadModal(false)" class="text-gray-400 hover:text-white transition">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <!-- Main client interface -->
+      <div class="p-6 space-y-6">
+        
+        <!-- Active Torrent Item Details -->
+        <div class="space-y-2">
+          <div class="flex items-center justify-between text-xs font-mono">
+            <span class="text-white font-semibold truncate max-w-[400px]">LEGO_HERO_FACTORY_SAVAGEPLANET.iso</span>
+            <span class="text-brand-accent font-bold" id="dlPercent">0%</span>
+          </div>
+          
+          <!-- Master Progress Bar -->
+          <div class="w-full bg-brand-black rounded-full h-4 overflow-hidden border border-gray-800 p-[2px]">
+            <div id="dlProgress" class="bg-gradient-to-r from-brand-accent to-yellow-500 h-full rounded-full transition-all duration-300" style="width: 0%"></div>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[10px] font-mono text-gray-400 pt-2 border-t border-gray-800/40">
+            <div>Speed: <span class="text-brand-cyan" id="dlSpeed">4.2 MB/s</span></div>
+            <div>ETA: <span class="text-white" id="dlEta">Calculating...</span></div>
+            <div>Completed: <span class="text-white" id="dlDone">0 MB / 4.37 GB</span></div>
+            <div>Peers Connection: <span class="text-brand-green" id="dlPeersCount">48 of 142 seeds</span></div>
+          </div>
+        </div>
+
+        <!-- Glowing Torrent Pieces Grid Visualization -->
+        <div>
+          <div class="flex items-center justify-between text-xs font-mono mb-2">
+            <span class="text-gray-400">Swarm Piece Allocator (Verification Array)</span>
+            <span class="text-[10px] text-gray-500">128 Total Blocks</span>
+          </div>
+          <!-- 128 dynamic piece blocks -->
+          <div id="pieceGrid" class="grid grid-cols-16 gap-1 bg-brand-black/80 border border-gray-800 rounded-lg p-3 max-h-[140px] overflow-hidden">
+            <!-- Programmatically injected blocks with class 'w-full h-2.5 rounded-sm bg-gray-900 border border-gray-800' -->
+          </div>
+        </div>
+
+        <!-- Controls: Speed slider & pause/resume -->
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-gray-800">
+          <div class="flex items-center space-x-3 w-full sm:w-auto">
+            <span class="text-[11px] font-mono text-gray-400 whitespace-nowrap">Throttle Speed:</span>
+            <input id="speedSlider" type="range" min="100" max="15000" step="100" value="4500" oninput="updateThrottledSpeed(this.value)" class="w-full sm:w-40 accent-brand-accent bg-brand-black h-1 rounded-lg">
+            <span class="text-[11px] font-mono text-brand-cyan whitespace-nowrap" id="speedSliderLabel">4.5 MB/s</span>
+          </div>
+
+          <div class="flex space-x-2 w-full sm:w-auto">
+            <button id="dlPauseBtn" onclick="togglePauseSimulation()" class="flex-1 sm:flex-none bg-brand-black hover:bg-brand-dark border border-gray-800 hover:border-brand-accent/50 text-white font-mono text-xs px-4 py-2 rounded-lg transition flex items-center justify-center space-x-1">
+              <i class="fa-solid fa-pause"></i> <span id="pauseBtnText">Pause</span>
+            </button>
+            <button id="dlFinishBtn" onclick="resetDlSimulation()" class="flex-1 sm:flex-none bg-brand-accent hover:bg-orange-600 text-black font-semibold text-xs px-4 py-2 rounded-lg transition">
+              Restart Session
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DIRECT PLAYBACK / TRAILER PLAYER MODAL -->
+  <div id="streamModal" class="fixed inset-0 bg-brand-black/90 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-brand-panel border border-gray-800 rounded-2xl w-full max-w-3xl overflow-hidden shadow-2xl relative">
+      
+      <!-- Modal Header -->
+      <div class="bg-brand-dark px-4 py-3 border-b border-gray-800 flex items-center justify-between">
+        <div class="flex items-center space-x-2 font-mono text-xs text-brand-cyan">
+          <i class="fa-solid fa-circle-play animate-pulse"></i>
+          <span class="text-white font-bold">Direct Stream Node: LEGO Hero Factory: Savage Planet</span>
+        </div>
+        <button onclick="toggleStreamModal(false)" class="text-gray-400 hover:text-white transition">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <!-- Player Screen -->
+      <div class="relative bg-black aspect-video flex items-center justify-center overflow-hidden">
+        
+        <!-- Mock Video Background System -->
+        <div id="videoContainer" class="absolute inset-0 flex flex-col justify-between p-6 bg-gradient-to-tr from-emerald-950 via-brand-dark to-brand-black">
+          
+          <!-- Cinematic Glowing Ring -->
+          <div class="absolute inset-0 flex items-center justify-center opacity-30">
+            <div class="w-64 h-64 rounded-full border-4 border-dashed border-emerald-500 animate-spin-slow"></div>
+          </div>
+          
+          <!-- Top Overlay HUD -->
+          <div class="relative z-10 flex justify-between items-start font-mono text-xs">
+            <span class="text-gray-500 bg-brand-black/80 px-2 py-1 rounded">DECRYPTING BUFFER...</span>
+            <span class="text-brand-accent bg-brand-black/80 px-2 py-1 rounded flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-accent animate-ping"></span>
+              LIVE STREAMS CORE (HD SOURCE)
+            </span>
+          </div>
+
+          <!-- Central Play Overlay -->
+          <div class="relative z-10 text-center flex flex-col items-center">
+            <button id="trailerPlayBtn" onclick="simulateTrailerPlay()" class="w-16 h-16 rounded-full bg-brand-accent hover:bg-orange-600 text-black flex items-center justify-center shadow-lg shadow-brand-accent/30 transition hover:scale-110 mb-4">
+              <i id="playIconState" class="fa-solid fa-play text-xl ml-1"></i>
+            </button>
+            <h4 class="text-lg font-display font-black text-white glow-orange" id="videoStatusText">CLICK PLAY TO START DIRECT WEB STREAM</h4>
+            <p class="text-xs text-gray-400 font-mono mt-1 max-w-sm mx-auto" id="videoSubtext">Simulating peer-to-peer cloud playback with local player engine</p>
+          </div>
+
+          <!-- Video Progress bar -->
+          <div class="relative z-10 space-y-2">
+            <div class="w-full bg-gray-800 h-1.5 rounded-full overflow-hidden cursor-pointer" onclick="scrubVideo(event)">
+              <div id="videoProgress" class="bg-brand-accent h-full w-0"></div>
+            </div>
+            <div class="flex justify-between text-[11px] font-mono text-gray-400">
+              <span id="videoTime">0:00 / 1:30</span>
+              <span>Audio: English DTS-HD 5.1</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-gray-800 bg-brand-dark/50 py-12 mt-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex items-center space-x-3">
+        <span class="font-display font-extrabold text-sm tracking-wider text-gray-400">QUAZA<span class="text-brand-accent">TRACKER</span></span>
+        <span class="text-gray-600 text-xs font-mono">© 2011-2026 Archive Core</span>
+      </div>
+      
+      <p class="text-xs font-mono text-gray-500 text-center md:text-right max-w-md">
+        This is a simulated archival tracker index page representing the LEGO Hero Factory: Savage Planet (2011) ISO. Built for retro gaming, movie archiving, and custom burning enthusiasts. No copyrighted materials are hosted here.
+      </p>
+    </div>
+  </footer>
+
+  <!-- SCRIPTING CORE -->
+  <script>
+    // System Variables
+    const apiKey = ""; // Will be injected or provided at runtime
+    let activeSizeInBytes = 4691431424; // Default starting checked files size sum
+    
+    // AI Support Archivist Prompt State
+    let conversationHistory = [];
+
+    // Torrent Downloader Simulation States
+    let downloadInterval = null;
+    let dlIsRunning = false;
+    let dlIsPaused = false;
+    let dlPercent = 0;
+    let dlSpeedBytes = 4718592; // 4.5 MB/s
+    let dlDoneBytes = 0;
+    const dlTotalBytes = 4691431424; // 4.37 GB
+
+    // Video Player Simulation State
+    let videoPlaying = false;
+    let videoProgressTimer = null;
+    let videoCurrentSeconds = 0;
+    const videoTotalSeconds = 90; // 1 min 30 sec mock trailer
+
+    // On Load Setup
+    window.onload = function() {
+      // 1. Build visual Pieces Grid
+      renderPiecesGrid();
+      
+      // 2. Select initial file calculations
+      updateFileSelection();
+    }
+
+    // Copy Info Hash Helper
+    function copyHash() {
+      const hashText = document.getElementById('torrentHash').innerText;
+      
+      // Use fallback copying mechanism document.execCommand('copy') as requested by guidelines
+      const dummyInput = document.createElement("input");
+      document.body.appendChild(dummyInput);
+      dummyInput.value = hashText;
+      dummyInput.select();
+      document.execCommand("copy");
+      document.body.removeChild(dummyInput);
+
+      showToast("Magnet info-hash copied to clipboard!", "success");
+    }
+
+    // Toggle File Explorer Folders
+    function toggleFolder(folderId) {
+      const folderDiv = document.getElementById(folderId);
+      const icon = document.getElementById('folderIcon_videoTs');
+      
+      if (folderDiv.classList.contains('hidden')) {
+        folderDiv.classList.remove('hidden');
+        icon.className = "fa-solid fa-folder-minus text-yellow-500 transition-transform";
+      } else {
+        folderDiv.classList.add('hidden');
+        icon.className = "fa-solid fa-folder text-yellow-500 transition-transform";
+      }
+    }
+
+    // Calculate Checked Files Size
+    function updateFileSelection() {
+      const checkboxes = document.querySelectorAll('.file-chk');
+      let totalBytes = 0;
+      let count = 0;
+
+      checkboxes.forEach(chk => {
+        if (chk.checked) {
+          totalBytes += parseInt(chk.getAttribute('data-size'));
+          count++;
+        }
+      });
+
+      activeSizeInBytes = totalBytes;
+      const sizeGB = (totalBytes / (1024 * 1024 * 1024)).toFixed(2);
+      
+      document.getElementById('calcSizeText').innerText = `${sizeGB} GB`;
+      document.getElementById('selectedFileCounter').innerText = `Selected: ${count} of ${checkboxes.length} files`;
+    }
+
+    // Torrent NFO Color Theme Switcher
+    function changeNfoTheme(theme) {
+      const nfo = document.getElementById('nfoBox');
+      nfo.className = "text-xs font-mono leading-relaxed overflow-x-auto whitespace-pre";
+      
+      if (theme === 'orange') {
+        nfo.classList.add('text-brand-accent');
+      } else if (theme === 'cyan') {
+        nfo.classList.add('text-brand-cyan');
+      } else {
+        nfo.classList.add('text-brand-green');
+      }
+    }
+
+    // Notification Helper (No alert() used)
+    function alertNotice(msg) {
+      showToast(msg, "info");
+    }
+
+    function showToast(message, type = "info") {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      
+      const colors = {
+        success: 'border-brand-green bg-brand-dark/95 text-brand-green',
+        info: 'border-brand-cyan bg-brand-dark/95 text-brand-cyan',
+        error: 'border-brand-red bg-brand-dark/95 text-brand-red'
+      };
+
+      toast.className = `flex items-center space-x-2 border-l-4 p-4 rounded-xl shadow-2xl backdrop-blur transition-all duration-300 transform translate-x-12 opacity-0 font-mono text-xs ${colors[type] || colors.info}`;
+      toast.innerHTML = `
+        <i class="fa-solid fa-circle-info"></i>
+        <span>${message}</span>
+      `;
+
+      container.appendChild(toast);
+
+      // Slide in
+      setTimeout(() => {
+        toast.classList.remove('translate-x-12', 'opacity-0');
+      }, 50);
+
+      // Slide out and remove
+      setTimeout(() => {
+        toast.classList.add('translate-x-12', 'opacity-0');
+        setTimeout(() => {
+          toast.remove();
+        }, 300);
+      }, 3500);
+    }
+
+    // Custom Comment Section Updates
+    function addNewComment() {
+      const name = document.getElementById('commentUser').value.trim() || 'Anonymous';
+      const text = document.getElementById('commentInput').value.trim();
+      const list = document.getElementById('commentsList');
+
+      if (!text) {
+        showToast("Please enter a comment before posting.", "error");
+        return;
+      }
+
+      const commentNode = document.createElement('div');
+      commentNode.className = "border-b border-gray-800/40 pb-3";
+      commentNode.innerHTML = `
+        <div class="flex items-center justify-between text-xs font-mono mb-1">
+          <span class="text-brand-accent font-bold">${escapeHtml(name)} <span class="bg-brand-accent/10 text-brand-accent px-1.5 py-0.2 rounded text-[9px] uppercase">Just Now</span></span>
+          <span class="text-gray-500 text-[10px]">Seconds ago</span>
+        </div>
+        <p class="text-xs text-gray-300 font-mono leading-relaxed">
+          ${escapeHtml(text)}
+        </p>
+      `;
+
+      list.prepend(commentNode);
+      document.getElementById('commentInput').value = '';
+      
+      // Update comment count
+      const countEl = document.getElementById('commentCount');
+      const currentCount = parseInt(countEl.innerText) || 4;
+      countEl.innerText = `${currentCount + 1} Comments`;
+      
+      showToast("Comment successfully posted!", "success");
+    }
+
+    function escapeHtml(text) {
+      return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    // Toggle Downloader Simulator Modals
+    function toggleDownloadModal(show) {
+      const modal = document.getElementById('downloadModal');
+      if (show) {
+        modal.classList.remove('hidden');
+      } else {
+        modal.classList.add('hidden');
+      }
+    }
+
+    // Build Pieces Grid Helper
+    function renderPiecesGrid() {
+      const grid = document.getElementById('pieceGrid');
+      grid.innerHTML = '';
+      for (let i = 0; i < 128; i++) {
+        const blk = document.createElement('div');
+        blk.id = `piece-blk-${i}`;
+        blk.className = "w-full h-2.5 rounded-sm bg-brand-dark border border-gray-950 transition-colors duration-500";
+        grid.appendChild(blk);
+      }
+    }
+
+    // Start simulated download experience
+    function startDownloadSimulation() {
+      toggleDownloadModal(true);
+      if (dlIsRunning) {
+        showToast("P2P Swarm download is already active!", "info");
+        return;
+      }
+
+      showToast("Starting magnet handshake with Quatros Tracker swarm...", "info");
+      dlIsRunning = true;
+      dlIsPaused = false;
+      document.getElementById('dlPauseBtn').innerHTML = `<i class="fa-solid fa-pause"></i> <span>Pause</span>`;
+
+      renderPiecesGrid(); // reset pieces grid
+      
+      downloadInterval = setInterval(() => {
+        if (dlIsPaused) return;
+
+        // Calculate progress increments based on set simulation speed
+        const byteIncrement = dlSpeedBytes / 2; // runs every 500ms
+        dlDoneBytes += byteIncrement;
+
+        if (dlDoneBytes >= activeSizeInBytes) {
+          dlDoneBytes = activeSizeInBytes;
+          dlPercent = 100;
+          clearInterval(downloadInterval);
+          dlIsRunning = false;
+          showToast("LEGO Hero Factory ISO file complete! Integrity check verified.", "success");
+          
+          // Complete all piece visual colors
+          for (let i = 0; i < 128; i++) {
+            const block = document.getElementById(`piece-blk-${i}`);
+            if (block) {
+              block.className = "w-full h-2.5 rounded-sm bg-brand-green border border-emerald-900 shadow-sm shadow-brand-green/20";
+            }
+          }
+        } else {
+          dlPercent = ((dlDoneBytes / activeSizeInBytes) * 100).toFixed(1);
+          
+          // Randomly turn block pieces green/cyan based on progress percentage
+          const piecesToColor = Math.floor((dlPercent / 100) * 128);
+          for (let i = 0; i < piecesToColor; i++) {
+            const block = document.getElementById(`piece-blk-${i}`);
+            if (block && !block.classList.contains('bg-brand-green')) {
+              // Create dynamic flashing transition as it fills
+              block.className = "w-full h-2.5 rounded-sm bg-brand-cyan border border-cyan-900";
+              setTimeout(() => {
+                if (dlIsRunning) {
+                  block.className = "w-full h-2.5 rounded-sm bg-brand-green border border-emerald-900 shadow-sm shadow-brand-green/10";
+                }
+              }, 400);
+            }
+          }
+        }
+
+        // Update indicators
+        document.getElementById('dlPercent').innerText = `${dlPercent}%`;
+        document.getElementById('dlProgress').style.width = `${dlPercent}%`;
+        
+        const doneGB = (dlDoneBytes / (1024 * 1024 * 1024)).toFixed(2);
+        const totalGB = (activeSizeInBytes / (1024 * 1024 * 1024)).toFixed(2);
+        document.getElementById('dlDone').innerText = `${doneGB} GB / ${totalGB} GB`;
+
+        // ETA calculation
+        const remainingBytes = activeSizeInBytes - dlDoneBytes;
+        if (dlSpeedBytes > 0) {
+          const secondsLeft = Math.ceil(remainingBytes / dlSpeedBytes);
+          if (secondsLeft > 60) {
+            const mins = Math.floor(secondsLeft / 60);
+            const secs = secondsLeft % 60;
+            document.getElementById('dlEta').innerText = `${mins}m ${secs}s`;
+          } else {
+            document.getElementById('dlEta').innerText = `${secondsLeft}s`;
+          }
+        } else {
+          document.getElementById('dlEta').innerText = "Infinite";
+        }
+
+      }, 500);
+    }
+
+    function togglePauseSimulation() {
+      if (!dlIsRunning) return;
+      dlIsPaused = !dlIsPaused;
+      
+      const btnText = document.getElementById('pauseBtnText');
+      const pauseBtn = document.getElementById('dlPauseBtn');
+      const speedLabel = document.getElementById('dlSpeed');
+
+      if (dlIsPaused) {
+        btnText.innerText = "Resume";
+        pauseBtn.innerHTML = `<i class="fa-solid fa-play"></i> <span>Resume</span>`;
+        speedLabel.innerText = "0 KB/s (Paused)";
+        showToast("Swarm download paused.", "info");
+      } else {
+        btnText.innerText = "Pause";
+        pauseBtn.innerHTML = `<i class="fa-solid fa-pause"></i> <span>Pause</span>`;
+        const speedMB = (dlSpeedBytes / (1024 * 1024)).toFixed(1);
+        speedLabel.innerText = `${speedMB} MB/s`;
+        showToast("Swarm download resumed.", "success");
+      }
+    }
+
+    function updateThrottledSpeed(value) {
+      // scale slider value to bytes/sec
+      dlSpeedBytes = parseInt(value) * 1024; // input in KB -> convert to bytes
+      const speedMB = (dlSpeedBytes / (1024 * 1024)).toFixed(1);
+      document.getElementById('speedSliderLabel').innerText = `${speedMB} MB/s`;
+      if (!dlIsPaused) {
+        document.getElementById('dlSpeed').innerText = `${speedMB} MB/s`;
+      }
+    }
+
+    function resetDlSimulation() {
+      if (downloadInterval) {
+        clearInterval(downloadInterval);
+      }
+      dlIsRunning = false;
+      dlIsPaused = false;
+      dlPercent = 0;
+      dlDoneBytes = 0;
+      
+      document.getElementById('dlPercent').innerText = "0%";
+      document.getElementById('dlProgress').style.width = "0%";
+      document.getElementById('dlDone').innerText = `0 MB / ${(activeSizeInBytes / (1024*1024*1024)).toFixed(2)} GB`;
+      document.getElementById('dlEta').innerText = "Calculating...";
+      
+      renderPiecesGrid();
+      startDownloadSimulation();
+    }
+
+
+    // DIRECT STREAMS PLAYBACK SYSTEM
+    function toggleStreamModal(show) {
+      const modal = document.getElementById('streamModal');
+      if (show) {
+        modal.classList.remove('hidden');
+      } else {
+        modal.classList.add('hidden');
+        resetTrailer();
+      }
+    }
+
+    function simulateTrailerPlay() {
+      const btnIcon = document.getElementById('playIconState');
+      const textTitle = document.getElementById('videoStatusText');
+      const textSub = document.getElementById('videoSubtext');
+
+      if (videoPlaying) {
+        // Pause playback
+        videoPlaying = false;
+        clearInterval(videoProgressTimer);
+        btnIcon.className = "fa-solid fa-play text-xl ml-1";
+        textTitle.innerText = "STREAM PAUSED";
+        textSub.innerText = "Buffer locked. Ready to resume sync.";
+      } else {
+        // Start playback
+        videoPlaying = true;
+        btnIcon.className = "fa-solid fa-pause text-xl";
+        textTitle.innerText = "DECRYPTING & PLAYING LIVE STREAM...";
+        textSub.innerText = "Movie Trailer Direct-Feed [Bitrate: 8.4 Mbps NTSC]";
+
+        videoProgressTimer = setInterval(() => {
+          videoCurrentSeconds += 0.5;
+          if (videoCurrentSeconds >= videoTotalSeconds) {
+            videoCurrentSeconds = videoTotalSeconds;
+            clearInterval(videoProgressTimer);
+            videoPlaying = false;
+            btnIcon.className = "fa-solid fa-rotate-right text-xl";
+            textTitle.innerText = "STREAM ENDED. CLICK TO REPLAY.";
+            textSub.innerText = "Direct ISO Playback loop completed.";
+          }
+
+          const pct = (videoCurrentSeconds / videoTotalSeconds) * 100;
+          document.getElementById('videoProgress').style.width = `${pct}%`;
+          
+          // format times
+          document.getElementById('videoTime').innerText = `${formatSeconds(videoCurrentSeconds)} / ${formatSeconds(videoTotalSeconds)}`;
+        }, 500);
+      }
+    }
+
+    function scrubVideo(event) {
+      const bar = event.currentTarget;
+      const rect = bar.getBoundingClientRect();
+      const clickX = event.clientX - rect.left;
+      const totalWidth = rect.width;
+      const ratio = clickX / totalWidth;
+      
+      videoCurrentSeconds = ratio * videoTotalSeconds;
+      const pct = ratio * 100;
+      document.getElementById('videoProgress').style.width = `${pct}%`;
+      document.getElementById('videoTime').innerText = `${formatSeconds(videoCurrentSeconds)} / ${formatSeconds(videoTotalSeconds)}`;
+      
+      if (!videoPlaying) {
+        simulateTrailerPlay();
+      }
+    }
+
+    function formatSeconds(seconds) {
+      const mins = Math.floor(seconds / 60);
+      const secs = Math.floor(seconds % 60);
+      return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+    }
+
+    function resetTrailer() {
+      clearInterval(videoProgressTimer);
+      videoPlaying = false;
+      videoCurrentSeconds = 0;
+      document.getElementById('playIconState').className = "fa-solid fa-play text-xl ml-1";
+      document.getElementById('videoProgress').style.width = "0%";
+      document.getElementById('videoTime').innerText = "0:00 / 1:30";
+      document.getElementById('videoStatusText').innerText = "CLICK PLAY TO START DIRECT WEB STREAM";
+      document.getElementById('videoSubtext').innerText = "Simulating peer-to-peer cloud playback with local player engine";
+    }
+
+
+    // INTEGRATED GEMINI CHAT ARCHIVIST SYSTEM
+    function appendAiMessage(sender, text, isAi = false) {
+      const box = document.getElementById('aiChatBox');
+      const msgDiv = document.createElement('div');
+      
+      if (isAi) {
+        msgDiv.className = "bg-brand-panel/30 border-l-2 border-brand-accent p-2 text-gray-300";
+        msgDiv.innerHTML = `<span class="text-brand-accent font-bold">[Quaza AI]:</span> ${text}`;
+      } else {
+        msgDiv.className = "bg-brand-dark/50 border-l-2 border-gray-600 p-2 text-gray-400";
+        msgDiv.innerHTML = `<span class="text-brand-cyan font-bold">[You]:</span> ${text}`;
+      }
+
+      box.appendChild(msgDiv);
+      box.scrollTop = box.scrollHeight; // Auto scroll down
+    }
+
+    function handleAiInput(event) {
+      if (event.key === 'Enter') {
+        sendAiMessage();
+      }
+    }
+
+    async function sendAiMessage() {
+      const input = document.getElementById('aiInput');
+      const prompt = input.value.trim();
+      if (!prompt) return;
+
+      appendAiMessage("You", prompt, false);
+      input.value = '';
+
+      // Set up typing/loading message
+      const typingId = "ai-typing-" + Date.now();
+      const box = document.getElementById('aiChatBox');
+      const typingDiv = document.createElement('div');
+      typingDiv.id = typingId;
+      typingDiv.className = "bg-brand-panel/30 border-l-2 border-gray-700 p-2 text-gray-500 animate-pulse";
+      typingDiv.innerHTML = `<span class="text-brand-accent font-bold">[Quaza AI]:</span> Analyzing database archives for information...`;
+      box.appendChild(typingDiv);
+      box.scrollTop = box.scrollHeight;
+
+      // Build out contextual system instructions
+      const systemPrompt = `You are "Quaza AI", an advanced cybernetic archivist integrated into "QuazaTracker," a peer-to-peer torrent portal preserving Hero Factory DVD5 ISO content from 2011. Your personality is technically minded, slightly formal, highly helpful, and nostalgic about Hero Factory waves (especially the Savage Planet animal 3.0 wave containing Witch Doctor, Aldous Witch, Rocka 3.0, Nex, Stormer, Stringer, Furno, and Fangz).
+Your duty is to answer technical questions about mounting ISO files, using VLC to play video structure folders, burning high quality DVD-R discs using classic burners (ImgBurn, Daemon Tools, 4x speed limits), and discussing Hero Factory lore from 2011. Keep responses under 4 sentences to fit inside a terminal interface easily, and maintain a sleek tech tone.`;
+
+      // API Call with Exponential Backoff
+      try {
+        const responseText = await callGeminiWithRetry(prompt, systemPrompt);
+        // Remove loading state
+        document.getElementById(typingId).remove();
+        appendAiMessage("Quaza AI", responseText, true);
+      } catch (error) {
+        document.getElementById(typingId).remove();
+        appendAiMessage("Quaza AI", "ERR: Failed to sync with the Quaza network databases. Please check your system transmission link and try again.", true);
+        console.error("Gemini call error: ", error);
+      }
+    }
+
+    // Call Gemini API with Retry Framework
+    async function callGeminiWithRetry(userPrompt, systemInstruction, retries = 5, delay = 1000) {
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+      const payload = {
+        contents: [{ parts: [{ text: userPrompt }] }],
+        systemInstruction: { parts: [{ text: systemInstruction }] }
+      };
+
+      for (let i = 0; i < retries; i++) {
+        try {
+          const response = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          
+          if (response.ok) {
+            const data = await response.json();
+            const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
+            return text || "No information returned from database index.";
+          }
+        } catch (e) {
+          // Silent catch for retry cycle
+        }
+        // Exponential backoff
+        await new Promise(resolve => setTimeout(resolve, delay));
+        delay *= 2;
+      }
+      throw new Error("AI request failed after maximum retry attempts.");
+    }
+
+  </script>
+</body>
+</html>
