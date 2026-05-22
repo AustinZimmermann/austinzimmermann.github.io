@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Star Wars: The Clone Wars (2008) 1080p BluRay REMUX AVC TrueHD 5.1 - CtrlHD</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@500;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .font-sci {
+      font-family: 'Orbitron', sans-serif;
+    }
+    .font-mono-custom {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    /* Custom Scrollbars */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0f172a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #475569;
+    }
+    /* Pulse glow animation */
+    @keyframes subtle-glow {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 0.4; }
+    }
+    .animate-glow {
+      animation: subtle-glow 3s infinite ease-in-out;
+    }
+  </style>
+</head>
+<body class="bg-[#0b0f19] text-slate-100 min-h-screen selection:bg-amber-500 selection:text-black transition-colors duration-300">
+
+  <!-- THEME CONTAINER (Handled via JS state class bindings) -->
+  <div id="app-container" class="theme-amber">
+
+    <!-- Top Glow Grid -->
+    <div class="absolute top-0 left-0 right-0 h-[500px] bg-gradient-to-b from-amber-500/10 via-transparent to-transparent pointer-events-none transition-all duration-500" id="theme-glow"></div>
+
+    <!-- Main Outer Wrapper -->
+    <div class="max-w-7xl mx-auto px-4 py-6 relative z-10">
+      
+      <!-- Top Meta Navigation / Tracker Header -->
+      <header class="flex flex-col md:flex-row justify-between items-center border-b border-slate-800 pb-4 mb-6 gap-4">
+        <div class="flex items-center gap-3">
+          <!-- Logo Shield SVG -->
+          <svg class="w-10 h-10 text-theme-primary transition-colors duration-300" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50 5L90 25V65L50 95L10 65V25L50 5Z" stroke="currentColor" stroke-width="4" fill="currentColor" fill-opacity="0.05"/>
+            <path d="M30 40H70M30 50H70M40 60H60" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="50" cy="50" r="3" fill="currentColor"/>
+          </svg>
+          <div>
+            <h1 class="font-sci text-xl tracking-widest text-slate-100 flex items-center gap-2">
+              KELDABE<span class="text-theme-primary transition-colors duration-300">TRACKER</span>
+            </h1>
+            <p class="text-xs text-slate-400 font-mono-custom tracking-wider">SECURE DATABASE // ENCRYPTED NODE</p>
+          </div>
+        </div>
+
+        <!-- Interactive Theme Switcher -->
+        <div class="flex items-center gap-3 bg-slate-900/80 p-2 rounded-xl border border-slate-800">
+          <span class="text-xs font-sci text-slate-400 px-2 uppercase tracking-wider">Theme Matrix:</span>
+          <button onclick="setTheme('amber')" id="btn-theme-amber" class="w-6 h-6 rounded-full bg-amber-500 border-2 border-slate-100 focus:outline-none transition-transform hover:scale-110" title="Classic Holocron"></button>
+          <button onclick="setTheme('red')" id="btn-theme-red" class="w-6 h-6 rounded-full bg-red-600 border-2 border-transparent focus:outline-none transition-transform hover:scale-110" title="Sith Empire"></button>
+          <button onclick="setTheme('green')" id="btn-theme-green" class="w-6 h-6 rounded-full bg-emerald-500 border-2 border-transparent focus:outline-none transition-transform hover:scale-110" title="Rebel Alliance"></button>
+        </div>
+      </header>
+
+      <!-- TORRENT CORE INFORMATION BANNER -->
+      <section class="bg-slate-900/40 border border-slate-800/80 rounded-3xl p-6 mb-8 backdrop-blur-md shadow-2xl relative overflow-hidden">
+        <!-- Technical Grid Background -->
+        <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-10 pointer-events-none"></div>
+        
+        <div class="flex flex-col lg:flex-row gap-8 items-start relative z-10">
+          
+          <!-- Movie Poster Cover Art Container -->
+          <div class="w-full lg:w-72 shrink-0 group relative mx-auto lg:mx-0">
+            <div class="absolute -inset-1 rounded-2xl bg-gradient-to-t from-theme-primary to-transparent opacity-20 blur-lg transition-all duration-500 group-hover:opacity-40"></div>
+            <div class="relative bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 aspect-[2/3] flex flex-col justify-between p-4 shadow-xl">
+              
+              <!-- Custom Interactive Stylized Vector SVG Poster Art -->
+              <div class="absolute inset-0 bg-cover bg-center opacity-30" style="background-image: radial-gradient(circle at 50% 30%, rgba(245, 158, 11, 0.2) 0%, transparent 70%);"></div>
+              
+              <!-- Aesthetic Poster SVG illustration -->
+              <div class="absolute inset-0 flex flex-col items-center justify-center p-6">
+                <!-- Stars Background SVG -->
+                <svg class="absolute inset-0 w-full h-full text-slate-700/40" viewBox="0 0 100 100" fill="currentColor">
+                  <circle cx="10" cy="15" r="0.5"/>
+                  <circle cx="85" cy="12" r="0.7"/>
+                  <circle cx="45" cy="45" r="0.5"/>
+                  <circle cx="75" cy="70" r="0.6"/>
+                  <circle cx="20" cy="80" r="0.8"/>
+                </svg>
+                <!-- Death Star/Planetary Silhouette -->
+                <svg class="w-32 h-32 text-slate-800/80 mb-2 transform group-hover:rotate-12 transition-transform duration-1000" viewBox="0 0 100 100" fill="currentColor">
+                  <circle cx="50" cy="50" r="45" />
+                  <circle cx="50" cy="50" r="45" stroke="currentColor" stroke-width="2" fill="none" class="text-theme-primary/30" />
+                  <ellipse cx="50" cy="30" rx="15" ry="5" class="text-slate-900"/>
+                </svg>
+                <!-- Saber Crossed -->
+                <div class="flex gap-4 relative h-12 w-full justify-center items-center">
+                  <div class="h-16 w-1 rounded-full bg-blue-500 shadow-[0_0_12px_rgba(59,130,246,0.8)] rotate-45 transform origin-bottom translate-x-1"></div>
+                  <div class="h-16 w-1 rounded-full bg-red-500 shadow-[0_0_12px_rgba(239,68,68,0.8)] -rotate-45 transform origin-bottom -translate-x-1"></div>
+                </div>
+              </div>
+
+              <!-- Top Info Overlay -->
+              <div class="relative z-10 flex justify-between items-start">
+                <span class="bg-black/80 backdrop-blur-md text-[10px] text-theme-primary border border-theme-primary/30 font-mono-custom px-2 py-0.5 rounded-full tracking-widest transition-colors duration-300">REMUX</span>
+                <span class="bg-black/80 backdrop-blur-md text-[10px] text-slate-300 border border-slate-700 px-2 py-0.5 rounded-full font-mono-custom">1080p</span>
+              </div>
+
+              <!-- Bottom Movie Title Block -->
+              <div class="relative z-10 text-center bg-slate-950/90 backdrop-blur-sm border border-slate-850 p-3 rounded-xl">
+                <p class="text-[10px] uppercase font-sci text-theme-primary tracking-widest transition-colors duration-300">STAR WARS</p>
+                <h2 class="font-sci text-sm font-bold text-slate-100 leading-tight tracking-wider">THE CLONE WARS</h2>
+                <span class="text-[10px] text-slate-400 font-mono-custom">Original Release: 2008</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Main Technical Header details -->
+          <div class="flex-grow w-full">
+            <div class="flex flex-wrap items-center gap-2 mb-3">
+              <span class="bg-theme-primary/10 text-theme-primary text-xs font-sci tracking-wider px-3 py-1 rounded-md border border-theme-primary/20 transition-colors duration-300">BLU-RAY REMUX</span>
+              <span class="bg-slate-800 text-slate-300 text-xs font-mono-custom px-2.5 py-1 rounded-md">VC-1/AVC</span>
+              <span class="bg-slate-800 text-slate-300 text-xs font-mono-custom px-2.5 py-1 rounded-md">TrueHD 5.1</span>
+              <span class="bg-slate-800 text-slate-300 text-xs font-mono-custom px-2.5 py-1 rounded-md">MKV</span>
+              <span class="ml-auto text-xs text-slate-400 font-mono-custom flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Verified Release
+              </span>
+            </div>
+
+            <h2 id="torrent-full-title" class="text-xl md:text-2xl font-bold font-sci tracking-wide text-white leading-snug break-all mb-4">
+              Star.Wars.The.Clone.Wars.2008.1080p.BluRay.REMUX.AVC.TrueHD.5.1-CtrlHD
+            </h2>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6 bg-slate-950/60 p-4 rounded-2xl border border-slate-800/50">
+              <div class="flex flex-col">
+                <span class="text-xs text-slate-400 font-mono-custom">Release Date</span>
+                <span class="font-sci text-sm text-slate-200 mt-0.5">2008-11-11</span>
+              </div>
+              <div class="flex flex-col">
+                <span class="text-xs text-slate-400 font-mono-custom">File Footprint</span>
+                <span class="font-sci text-sm text-slate-200 mt-0.5 text-theme-primary transition-colors duration-300">21.84 GB</span>
+              </div>
+              <div class="flex flex-col">
+                <span class="text-xs text-slate-400 font-mono-custom">Seeders / Leechers</span>
+                <span class="font-sci text-sm text-slate-200 mt-0.5 flex items-center gap-1">
+                  <span class="text-emerald-500">138</span>
+                  <span class="text-slate-500">/</span>
+                  <span class="text-rose-500">4</span>
+                </span>
+              </div>
+              <div class="flex flex-col">
+                <span class="text-xs text-slate-400 font-mono-custom">Times Completed</span>
+                <span class="font-sci text-sm text-slate-200 mt-0.5">2,402</span>
+              </div>
+            </div>
+
+            <!-- Torrent Interactive Actions Block -->
+            <div class="flex flex-wrap gap-3 items-center">
+              
+              <!-- Download Torrent Button -->
+              <button onclick="simulateDownload()" class="bg-theme-primary text-black hover:bg-theme-primary/90 font-sci text-xs font-bold px-6 py-3.5 rounded-xl transition-all duration-300 flex items-center gap-2 transform active:scale-95 shadow-[0_4px_20px_-2px_var(--tw-shadow-color)] shadow-theme-primary/30">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/>
+                </svg>
+                DOWNLOAD TORRENT
+              </button>
+
+              <!-- Magnet Link Button -->
+              <button onclick="copyMagnet()" class="bg-slate-800 hover:bg-slate-750 text-slate-200 font-sci text-xs font-bold px-5 py-3.5 rounded-xl transition-all duration-300 flex items-center gap-2 border border-slate-700/80 transform active:scale-95">
+                <svg class="w-4 h-4 text-rose-500" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2a5 5 0 00-5 5v8a5 5 0 0010 0V7a5 5 0 00-5-5zm4 13a4 4 0 01-8 0V7a4 4 0 018 0v8zm-4-11a2 2 0 00-2 2v8a2 2 0 004 0V6a2 2 0 00-2-2z"/>
+                </svg>
+                GET MAGNET
+              </button>
+
+              <!-- Copy Info Hash Button -->
+              <button onclick="copyHash()" class="bg-slate-900 hover:bg-slate-850 text-slate-400 hover:text-slate-200 text-xs font-mono-custom px-4 py-3.5 rounded-xl transition-all duration-300 flex items-center gap-2 border border-slate-800/80">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                </svg>
+                <span>HASH: <span class="text-slate-300">8f3d61b47b2c9df7...</span></span>
+              </button>
+
+            </div>
+
+            <!-- Interactive Notification Toast Area -->
+            <div id="toast-banner" class="hidden mt-4 p-3 bg-slate-950 border border-slate-800 rounded-xl flex items-center gap-2 text-xs transition-all duration-300">
+              <span class="w-2 h-2 rounded-full bg-theme-primary animate-ping"></span>
+              <span id="toast-msg" class="text-slate-300 font-mono-custom">Action completed successfully.</span>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- NAVIGATION TABS -->
+      <nav class="flex flex-wrap gap-2 border-b border-slate-800 pb-px mb-6 overflow-x-auto">
+        <button onclick="switchTab('overview')" id="tab-overview" class="tab-btn px-5 py-3 font-sci text-xs font-bold tracking-widest border-b-2 border-theme-primary text-theme-primary transition-all duration-300 uppercase">
+          Overview
+        </button>
+        <button onclick="switchTab('mediainfo')" id="tab-mediainfo" class="tab-btn px-5 py-3 font-sci text-xs font-bold tracking-widest border-b-2 border-transparent text-slate-400 hover:text-slate-200 transition-all duration-300 uppercase">
+          MediaInfo
+        </button>
+        <button onclick="switchTab('files')" id="tab-files" class="tab-btn px-5 py-3 font-sci text-xs font-bold tracking-widest border-b-2 border-transparent text-slate-400 hover:text-slate-200 transition-all duration-300 uppercase">
+          File Tree (4)
+        </button>
+        <button onclick="switchTab('nfo')" id="tab-nfo" class="tab-btn px-5 py-3 font-sci text-xs font-bold tracking-widest border-b-2 border-transparent text-slate-400 hover:text-slate-200 transition-all duration-300 uppercase">
+          NFO Console
+        </button>
+        <button onclick="switchTab('screenshots')" id="tab-screenshots" class="tab-btn px-5 py-3 font-sci text-xs font-bold tracking-widest border-b-2 border-transparent text-slate-400 hover:text-slate-200 transition-all duration-300 uppercase">
+          Screenshots
+        </button>
+        <button onclick="switchTab('peers')" id="tab-peers" class="tab-btn px-5 py-3 font-sci text-xs font-bold tracking-widest border-b-2 border-transparent text-slate-400 hover:text-slate-200 transition-all duration-300 uppercase">
+          Swarm Activity
+        </button>
+      </nav>
+
+      <!-- TAB CONTENTS -->
+      <main class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+        
+        <!-- Tab Content Left Column (Main Specs, Tree Explorer, Terminals etc) -->
+        <section class="lg:col-span-2 space-y-6">
+
+          <!-- 1. TAB: OVERVIEW -->
+          <div id="content-overview" class="tab-pane block space-y-6">
+            
+            <!-- Movie Synopses / Info Card -->
+            <div class="bg-slate-900/30 border border-slate-800 rounded-2xl p-6">
+              <h3 class="font-sci text-sm font-bold tracking-wider text-slate-200 mb-3 uppercase border-l-2 border-theme-primary pl-2.5 transition-colors duration-300">
+                Logline & Background
+              </h3>
+              <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                As the Grand Army of the Republic fights to defend the galaxy against Separatist forces, the sinister Count Dooku hatches an insidious plot involving Jabba the Hutt's kidnapped infant son, Rotta. Anakin Skywalker and his newly assigned Padawan learner, Ahsoka Tano, are sent on a critical mission to locate and rescue the young Huttling, unaware of the trap laid for them by Asajj Ventress.
+              </p>
+              
+              <!-- Sub Info Block -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono-custom text-slate-400 border-t border-slate-800/80 pt-4">
+                <div>
+                  <span class="text-slate-500 uppercase block">Director</span>
+                  <span class="text-slate-200 font-sans font-semibold text-sm">Dave Filoni</span>
+                </div>
+                <div>
+                  <span class="text-slate-500 uppercase block">Executive Producer</span>
+                  <span class="text-slate-200 font-sans font-semibold text-sm">George Lucas</span>
+                </div>
+                <div>
+                  <span class="text-slate-500 uppercase block">Studio</span>
+                  <span class="text-slate-200 font-sans font-semibold text-sm">Lucasfilm Animation / Warner Bros. Pictures</span>
+                </div>
+                <div>
+                  <span class="text-slate-500 uppercase block">Subtitles Available</span>
+                  <span class="text-slate-200 font-sans text-sm">English [SDH], French, Spanish, Cantonese, Mandarin</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Cast Grid -->
+            <div class="bg-slate-900/30 border border-slate-800 rounded-2xl p-6">
+              <h3 class="font-sci text-sm font-bold tracking-wider text-slate-200 mb-4 uppercase border-l-2 border-theme-primary pl-2.5 transition-colors duration-300">
+                Principal Voice Talents
+              </h3>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 text-center">
+                  <p class="text-xs text-slate-400 font-mono-custom">Anakin Skywalker</p>
+                  <p class="font-sci text-xs font-semibold text-slate-200 mt-1">Matt Lanter</p>
+                </div>
+                <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 text-center">
+                  <p class="text-xs text-slate-400 font-mono-custom">Ahsoka Tano</p>
+                  <p class="font-sci text-xs font-semibold text-slate-200 mt-1">Ashley Eckstein</p>
+                </div>
+                <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 text-center">
+                  <p class="text-xs text-slate-400 font-mono-custom">Obi-Wan Kenobi</p>
+                  <p class="font-sci text-xs font-semibold text-slate-200 mt-1">James Arnold Taylor</p>
+                </div>
+                <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 text-center">
+                  <p class="text-xs text-slate-400 font-mono-custom">Asajj Ventress</p>
+                  <p class="font-sci text-xs font-semibold text-slate-200 mt-1">Nika Futterman</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Remux Technical Highlights Checklist -->
+            <div class="bg-slate-900/30 border border-slate-800 rounded-2xl p-6">
+              <h3 class="font-sci text-sm font-bold tracking-wider text-slate-200 mb-3 uppercase border-l-2 border-theme-primary pl-2.5 transition-colors duration-300">
+                Remux Technical Highlights
+              </h3>
+              <ul class="space-y-3 text-sm text-slate-300">
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                  <span><strong>Untouched Video stream</strong>: 1080p VC-1 / AVC High@L4.1 video encoded exactly as presented on the original 2008 retail Blu-ray disc with maximum fidelity, eliminating compression artifacts from transcodes.</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                  <span><strong>Lossless Surround Audio</strong>: Includes the pristine English Dolby TrueHD 5.1 track, containing both full studio fidelity dynamic range and discrete LFE elements.</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                  <span><strong>Comprehensive Chapter Marker Array</strong>: Complete original Blu-ray theatrical chapter points fully integrated within the MKV stream structure for seamless seeking.</span>
+                </li>
+              </ul>
+            </div>
+
+          </div>
+
+          <!-- 2. TAB: MEDIAINFO (Searchable Console) -->
+          <div id="content-mediainfo" class="tab-pane hidden space-y-4">
+            <div class="bg-slate-900/30 border border-slate-800 rounded-2xl p-6">
+              
+              <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+                <div>
+                  <h3 class="font-sci text-sm font-bold tracking-wider text-slate-200 uppercase">
+                    Raw MediaInfo Diagnostic
+                  </h3>
+                  <p class="text-xs text-slate-400 font-mono-custom mt-0.5">Query properties from the MKV container parse headers</p>
+                </div>
+                
+                <!-- Search bar within MediaInfo Console -->
+                <div class="relative max-w-xs w-full">
+                  <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-500">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                  </span>
+                  <input oninput="searchMediaInfo(this.value)" type="text" placeholder="Filter parameters..." class="w-full pl-9 pr-4 py-1.5 bg-slate-950 border border-slate-800 rounded-lg text-xs font-mono-custom text-slate-200 placeholder-slate-500 focus:outline-none focus:border-theme-primary transition-colors">
+                </div>
+              </div>
+
+              <!-- Monospace Console container for MediaInfo -->
+              <div class="bg-slate-950 rounded-xl border border-slate-800 p-4 font-mono-custom text-[11px] md:text-xs leading-relaxed max-h-[500px] overflow-y-auto" id="mediainfo-display-box">
+                <!-- Lines are generated via JS for dynamic matching/highlights -->
+              </div>
+
+              <div class="mt-3 flex justify-between items-center text-[10px] text-slate-500 font-mono-custom">
+                <span>PARSE COMPLETED IN 0.12ms</span>
+                <span>ENCAPSULATION: MKVToolNix v2.3.0</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. TAB: FILE TREE EXPLORER (With dynamic folders toggle) -->
+          <div id="content-files" class="tab-pane hidden space-y-4">
+            <div class="bg-slate-900/30 border border-slate-800 rounded-2xl p-6">
+              <h3 class="font-sci text-sm font-bold tracking-wider text-slate-200 mb-3 uppercase">
+                Release File Allocation Table
+              </h3>
+              <p class="text-xs text-slate-400 mb-4 font-mono-custom">Total Footprint: 21.84 GB (23,450,112,400 bytes) / 4 Files</p>
+              
+              <!-- File Explorer Elements -->
+              <div class="space-y-2 font-mono-custom text-xs">
+                
+                <!-- Main directory node (always open) -->
+                <div class="border border-slate-800/80 rounded-xl bg-slate-950 overflow-hidden">
+                  <div class="flex items-center justify-between p-3 bg-slate-900/40 border-b border-slate-800/80">
+                    <span class="flex items-center gap-2 text-slate-200">
+                      <svg class="w-4 h-4 text-theme-primary transition-colors duration-300" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"/>
+                      </svg>
+                      Star.Wars.The.Clone.Wars.2008.1080p.BluRay.REMUX.AVC.TrueHD.5.1-CtrlHD
+                    </span>
+                    <span class="text-xs text-slate-400">21.84 GB</span>
+                  </div>
+
+                  <!-- File list inside -->
+                  <div class="p-3 divide-y divide-slate-900/60 space-y-2">
+                    
+                    <!-- File 1: The main mkv -->
+                    <div class="flex justify-between items-center py-1.5 pl-4 hover:bg-slate-900/20 rounded-md transition-all">
+                      <span class="flex items-center gap-2 text-slate-300">
+                        <svg class="w-3.5 h-3.5 text-blue-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"/>
+                        </svg>
+                        Star.Wars.The.Clone.Wars.2008.1080p.BluRay.REMUX.AVC.TrueHD.5.1-CrtlHD.mkv
+                      </span>
+                      <span class="text-theme-primary font-bold transition-colors duration-300">21.61 GB</span>
+                    </div>
+
+                    <!-- File 2: Sample -->
+                    <div class="flex justify-between items-center py-1.5 pl-4 hover:bg-slate-900/20 rounded-md transition-all">
+                      <span class="flex items-center gap-2 text-slate-300">
+                        <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"/>
+                        </svg>
+                        Sample/star.wars.clone.wars.remux.sample.mkv
+                      </span>
+                      <span class="text-slate-400">221.40 MB</span>
+                    </div>
+
+                    <!-- File 3: NFO -->
+                    <div class="flex justify-between items-center py-1.5 pl-4 hover:bg-slate-900/20 rounded-md transition-all">
+                      <span class="flex items-center gap-2 text-slate-300">
+                        <svg class="w-3.5 h-3.5 text-yellow-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                        star.wars.the.clone.wars.2008.remux.nfo
+                      </span>
+                      <span class="text-slate-400">14.22 KB</span>
+                    </div>
+
+                    <!-- File 4: Source Info -->
+                    <div class="flex justify-between items-center py-1.5 pl-4 hover:bg-slate-900/20 rounded-md transition-all">
+                      <span class="flex items-center gap-2 text-slate-300">
+                        <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                        bd.structure.txt
+                      </span>
+                      <span class="text-slate-400">4.18 KB</span>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. TAB: NFO MONOSPACE VIEWER -->
+          <div id="content-nfo" class="tab-pane hidden space-y-4">
+            <div class="bg-slate-900/30 border border-slate-800 rounded-2xl p-6">
+              <div class="flex items-center justify-between mb-4">
+                <div>
+                  <h3 class="font-sci text-sm font-bold tracking-wider text-slate-200 uppercase">
+                    CtrlHD Encrypted Release NFO
+                  </h3>
+                  <p class="text-xs text-slate-400 font-mono-custom mt-0.5">Legacy tracking document encoded in standard ASCII block characters</p>
+                </div>
+                <button onclick="copyNFOText()" class="text-xs bg-slate-950 hover:bg-slate-900 border border-slate-800 px-3 py-1.5 rounded-lg text-slate-300 font-mono-custom flex items-center gap-1.5 transition-colors">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/>
+                  </svg>
+                  Copy NFO
+                </button>
+              </div>
+
+              <!-- Retrospect monospace console with ASCII layout -->
+              <div class="bg-slate-950 border border-slate-800 rounded-xl p-5 overflow-x-auto text-[10px] leading-tight font-mono-custom text-slate-300 select-all" id="nfo-text-block">
+<!-- The ASCII art is loaded here dynamically via JS to keep it neat -->
+              </div>
+            </div>
+          </div>
+
+          <!-- 5. TAB: SCREENSHOTS WITH LIGHTBOX SYSTEM -->
+          <div id="content-screenshots" class="tab-pane hidden space-y-4">
+            <div class="bg-slate-900/30 border border-slate-800 rounded-2xl p-6">
+              <h3 class="font-sci text-sm font-bold tracking-wider text-slate-200 mb-2 uppercase">
+                High-Fidelity Frame Captures
+              </h3>
+              <p class="text-xs text-slate-400 mb-6 font-mono-custom">Lossless raw frame captures extracted directly from the MKV container using FFmpeg.</p>
+
+              <!-- Screenshot Display Grid -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                
+                <!-- Scene 1 -->
+                <div class="group relative cursor-pointer overflow-hidden rounded-xl border border-slate-800 bg-slate-950" onclick="openLightbox(0)">
+                  <div class="aspect-video relative overflow-hidden flex items-center justify-center bg-slate-900">
+                    <!-- Vector representation of Christophsis battle frame -->
+                    <svg class="absolute inset-0 w-full h-full opacity-60" viewBox="0 0 400 225" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect width="400" height="225" fill="#090d16"/>
+                      <circle cx="200" cy="180" r="140" fill="#0369a1" fill-opacity="0.1"/>
+                      <!-- Buildings -->
+                      <rect x="40" y="80" width="30" height="145" fill="#1e293b"/>
+                      <rect x="80" y="50" width="40" height="175" fill="#334155"/>
+                      <rect x="280" y="70" width="50" height="155" fill="#1e293b"/>
+                      <rect x="340" y="100" width="30" height="125" fill="#0f172a"/>
+                      <!-- Laser lines -->
+                      <line x1="80" y1="120" x2="300" y2="160" stroke="#ef4444" stroke-width="2"/>
+                      <line x1="280" y1="110" x2="100" y2="155" stroke="#3b82f6" stroke-width="1.5"/>
+                    </svg>
+                    <!-- Hover Zoom indicator -->
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-2">
+                      <svg class="w-8 h-8 text-theme-primary transition-colors duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10.5 7.5v6m3-3h-6"/>
+                      </svg>
+                      <span class="font-sci text-[10px] tracking-widest text-slate-200">INSPECT FULL FRAME</span>
+                    </div>
+                  </div>
+                  <div class="p-3 bg-slate-950 border-t border-slate-900 flex justify-between items-center text-xs">
+                    <span class="text-slate-300 font-semibold font-sci">1. Battle of Christophsis</span>
+                    <span class="text-slate-500 font-mono-custom">1920x1080 [AVC]</span>
+                  </div>
+                </div>
+
+                <!-- Scene 2 -->
+                <div class="group relative cursor-pointer overflow-hidden rounded-xl border border-slate-800 bg-slate-950" onclick="openLightbox(1)">
+                  <div class="aspect-video relative overflow-hidden flex items-center justify-center bg-slate-900">
+                    <!-- Vector representation of Anakin & Ahsoka meeting -->
+                    <svg class="absolute inset-0 w-full h-full opacity-60" viewBox="0 0 400 225" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect width="400" height="225" fill="#0a0a0f"/>
+                      <ellipse cx="200" cy="112" rx="180" ry="80" fill="#a21caf" fill-opacity="0.05"/>
+                      <!-- Lightsaber Hilts / Glow vectors representing character stances -->
+                      <line x1="140" y1="180" x2="160" y2="60" stroke="#3b82f6" stroke-width="3" stroke-linecap="round" class="shadow-lg"/>
+                      <line x1="260" y1="180" x2="240" y2="90" stroke="#10b981" stroke-width="2.5" stroke-linecap="round"/>
+                      <!-- Silhouettes -->
+                      <circle cx="130" cy="190" r="15" fill="#1e293b"/>
+                      <circle cx="270" cy="190" r="12" fill="#1e293b"/>
+                    </svg>
+                    <!-- Hover Zoom indicator -->
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-2">
+                      <svg class="w-8 h-8 text-theme-primary transition-colors duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10.5 7.5v6m3-3h-6"/>
+                      </svg>
+                      <span class="font-sci text-[10px] tracking-widest text-slate-200">INSPECT FULL FRAME</span>
+                    </div>
+                  </div>
+                  <div class="p-3 bg-slate-950 border-t border-slate-900 flex justify-between items-center text-xs">
+                    <span class="text-slate-300 font-semibold font-sci">2. Master Skywalker & Snips</span>
+                    <span class="text-slate-500 font-mono-custom">1920x1080 [AVC]</span>
+                  </div>
+                </div>
+
+                <!-- Scene 3 -->
+                <div class="group relative cursor-pointer overflow-hidden rounded-xl border border-slate-800 bg-slate-950" onclick="openLightbox(2)">
+                  <div class="aspect-video relative overflow-hidden flex items-center justify-center bg-slate-900">
+                    <!-- Vector representation of Jabba's Palace Teth Temple -->
+                    <svg class="absolute inset-0 w-full h-full opacity-60" viewBox="0 0 400 225" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect width="400" height="225" fill="#0f0c08"/>
+                      <circle cx="200" cy="80" r="50" fill="#eab308" fill-opacity="0.1"/>
+                      <!-- Jungle Mountain Temple -->
+                      <path d="M50 225 L150 100 L200 130 L300 60 L380 225 Z" fill="#1c1917"/>
+                      <!-- Torrential storm lines -->
+                      <line x1="20" y1="10" x2="5" y2="40" stroke="#78716c" stroke-width="0.5"/>
+                      <line x1="120" y1="50" x2="105" y2="80" stroke="#78716c" stroke-width="0.5"/>
+                      <line x1="240" y1="20" x2="225" y2="50" stroke="#78716c" stroke-width="0.5"/>
+                    </svg>
+                    <!-- Hover Zoom indicator -->
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-2">
+                      <svg class="w-8 h-8 text-theme-primary transition-colors duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10.5 7.5v6m3-3h-6"/>
+                      </svg>
+                      <span class="font-sci text-[10px] tracking-widest text-slate-200">INSPECT FULL FRAME</span>
+                    </div>
+                  </div>
+                  <div class="p-3 bg-slate-950 border-t border-slate-900 flex justify-between items-center text-xs">
+                    <span class="text-slate-300 font-semibold font-sci">3. Ascent on Monastery Peak</span>
+                    <span class="text-slate-500 font-mono-custom">1920x1080 [AVC]</span>
+                  </div>
+                </div>
+
+                <!-- Scene 4 -->
+                <div class="group relative cursor-pointer overflow-hidden rounded-xl border border-slate-800 bg-slate-950" onclick="openLightbox(3)">
+                  <div class="aspect-video relative overflow-hidden flex items-center justify-center bg-slate-900">
+                    <!-- Vector representation of Ventress duel -->
+                    <svg class="absolute inset-0 w-full h-full opacity-60" viewBox="0 0 400 225" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect width="400" height="225" fill="#08080c"/>
+                      <circle cx="200" cy="112" r="90" fill="#ef4444" fill-opacity="0.08"/>
+                      <!-- Dual Red Sabers -->
+                      <line x1="160" y1="180" x2="190" y2="40" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round"/>
+                      <line x1="240" y1="180" x2="210" y2="40" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round"/>
+                      <!-- Blue Defense -->
+                      <line x1="200" y1="120" x2="110" y2="80" stroke="#3b82f6" stroke-width="3" stroke-linecap="round"/>
+                    </svg>
+                    <!-- Hover Zoom indicator -->
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-2">
+                      <svg class="w-8 h-8 text-theme-primary transition-colors duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10.5 7.5v6m3-3h-6"/>
+                      </svg>
+                      <span class="font-sci text-[10px] tracking-widest text-slate-200">INSPECT FULL FRAME</span>
+                    </div>
+                  </div>
+                  <div class="p-3 bg-slate-950 border-t border-slate-900 flex justify-between items-center text-xs">
+                    <span class="text-slate-300 font-semibold font-sci">4. Confronting Asajj Ventress</span>
+                    <span class="text-slate-500 font-mono-custom">1920x1080 [AVC]</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- 6. TAB: SWARM ACTIVITY (Real-time Simulation) -->
+          <div id="content-peers" class="tab-pane hidden space-y-4">
+            <div class="bg-slate-900/30 border border-slate-800 rounded-2xl p-6">
+              <div class="flex justify-between items-center mb-4">
+                <div>
+                  <h3 class="font-sci text-sm font-bold tracking-wider text-slate-200 uppercase">
+                    Active Swarm Manifest
+                  </h3>
+                  <p class="text-xs text-slate-400 font-mono-custom mt-0.5">Live reporting of connected peers in the torrent network</p>
+                </div>
+                <button onclick="randomizeSpeeds()" class="text-[10px] font-sci text-theme-primary bg-slate-950 hover:bg-slate-900 border border-slate-800 px-2.5 py-1.5 rounded-lg flex items-center gap-1.5 transition-colors">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span>
+                  RE-POLL TRACKER
+                </button>
+              </div>
+
+              <!-- Peers list grid -->
+              <div class="overflow-x-auto">
+                <table class="w-full text-left font-mono-custom text-xs">
+                  <thead>
+                    <tr class="border-b border-slate-800/80 text-slate-500 text-[10px] tracking-wider uppercase">
+                      <th class="pb-2.5">IP Address</th>
+                      <th class="pb-2.5">Client ID</th>
+                      <th class="pb-2.5">Port</th>
+                      <th class="pb-2.5 text-center">Progress</th>
+                      <th class="pb-2.5 text-right">Down Speed</th>
+                      <th class="pb-2.5 text-right">Up Speed</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-slate-900/40" id="peer-list-rows">
+                    <!-- Loaded dynamically via JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- Right Sidebar (Torrent parameters, Quality rating, dynamic feedback) -->
+        <section class="space-y-6">
+          
+          <!-- Release Rating / Verified Quality index -->
+          <div class="bg-slate-900/30 border border-slate-800 rounded-2xl p-6">
+            <h3 class="font-sci text-sm font-bold tracking-wider text-slate-200 mb-3.5 uppercase">
+              REMIX QUALITY METRIC
+            </h3>
+            <div class="flex items-center gap-4 mb-4">
+              <div class="w-16 h-16 rounded-2xl bg-slate-950 border border-slate-800 flex flex-col justify-center items-center">
+                <span class="font-sci text-xl font-black text-theme-primary transition-colors duration-300">9.8</span>
+                <span class="text-[8px] text-slate-500 font-mono-custom">OUT OF 10</span>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-slate-200">Extremely Clean Remux</p>
+                <div class="flex items-center gap-1 text-amber-500 mt-1">
+                  <!-- Five Gold Stars SVG -->
+                  <svg class="w-4 h-4 text-theme-primary transition-colors duration-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  <svg class="w-4 h-4 text-theme-primary transition-colors duration-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  <svg class="w-4 h-4 text-theme-primary transition-colors duration-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  <svg class="w-4 h-4 text-theme-primary transition-colors duration-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  <svg class="w-4 h-4 text-theme-primary/40 transition-colors duration-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Detailed Quality Matrix Grid -->
+            <div class="space-y-3 font-mono-custom text-xs">
+              <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 flex justify-between">
+                <span class="text-slate-400">Video Compression</span>
+                <span class="text-emerald-400 font-bold">Excellent [Lossless Source]</span>
+              </div>
+              <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 flex justify-between">
+                <span class="text-slate-400">Audio Channels</span>
+                <span class="text-slate-200">6 (TrueHD 5.1 Surround)</span>
+              </div>
+              <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 flex justify-between">
+                <span class="text-slate-400">Sub Synchronicity</span>
+                <span class="text-slate-200">Perfect [BD-Muxed]</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dynamic User Commentary / Discussion Portal -->
+          <div class="bg-slate-900/30 border border-slate-800 rounded-2xl p-6">
+            <h3 class="font-sci text-sm font-bold tracking-wider text-slate-200 mb-4 uppercase">
+              Peer Commentary Board (<span id="comment-count">3</span>)
+            </h3>
+
+            <!-- Comments Display List -->
+            <div class="space-y-4 max-h-[300px] overflow-y-auto mb-4 pr-1" id="comments-container">
+              <!-- Dynamically populated via JS -->
+            </div>
+
+            <!-- Interactive Comment Input form -->
+            <div class="border-t border-slate-800/80 pt-4 space-y-3">
+              <p class="text-xs text-slate-400 font-sci uppercase tracking-wide">Leave a Secure Note:</p>
+              
+              <!-- Avatar chooser mini matrix -->
+              <div class="flex items-center gap-2 mb-2">
+                <span class="text-[10px] text-slate-500 font-mono-custom">Select Call-sign Avatar:</span>
+                <div class="flex gap-1.5" id="avatar-chooser">
+                  <button onclick="setChosenAvatar('Jedi')" class="avatar-opt text-xs w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 border border-blue-500/50 flex items-center justify-center font-bold" title="Jedi Node">J</button>
+                  <button onclick="setChosenAvatar('Sith')" class="avatar-opt text-xs w-6 h-6 rounded-full bg-red-500/20 text-red-400 border border-transparent flex items-center justify-center font-bold" title="Sith Node">S</button>
+                  <button onclick="setChosenAvatar('Clone')" class="avatar-opt text-xs w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 border border-transparent flex items-center justify-center font-bold" title="Clone Captain">C</button>
+                  <button onclick="setChosenAvatar('Droid')" class="avatar-opt text-xs w-6 h-6 rounded-full bg-slate-500/20 text-slate-400 border border-transparent flex items-center justify-center font-bold" title="B1 Node">D</button>
+                </div>
+              </div>
+
+              <textarea id="comment-textarea" placeholder="Input encrypted packet payload (text)..." class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-xs font-mono-custom text-slate-200 placeholder-slate-600 focus:outline-none focus:border-theme-primary transition-colors min-h-[70px] resize-none"></textarea>
+              
+              <div class="flex justify-between items-center">
+                <span class="text-[10px] text-slate-500 font-mono-custom" id="comment-chars">Max: 300 Characters</span>
+                <button onclick="submitComment()" class="bg-theme-primary text-black hover:bg-theme-primary/95 text-xs font-sci font-bold px-4 py-2 rounded-lg transition-all duration-300 active:scale-95">
+                  POST COMMENT
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+        </section>
+
+      </main>
+
+      <!-- Secure Footer -->
+      <footer class="mt-12 pt-6 border-t border-slate-800 text-center text-xs text-slate-500 font-mono-custom space-y-2">
+        <p>KELDABE DETAILED TORRENT INDEX SYSTEM. NODE STATUS: ONLINE.</p>
+        <p class="text-[10px] text-slate-600">This interface simulates an encoded torrent layout representing historical Blu-ray specs from November 2008.</p>
+      </footer>
+
+    </div>
+
+    <!-- 7. LIGHTBOX MODAL FOR FULL SCREEN SCREENSHOT INSPECTION -->
+    <div id="lightbox-modal" class="fixed inset-0 bg-black/95 z-50 flex flex-col justify-center items-center hidden p-4">
+      <button onclick="closeLightbox()" class="absolute top-6 right-6 text-slate-400 hover:text-slate-100 transition-colors">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+
+      <!-- Main Display container in modal -->
+      <div class="max-w-4xl w-full h-auto max-h-[75vh] rounded-2xl overflow-hidden border border-slate-800 bg-slate-950 flex items-center justify-center">
+        <!-- SVG Vector Canvas inside modal to guarantee clean assets render -->
+        <div id="lightbox-canvas-placeholder" class="w-full h-full aspect-video"></div>
+      </div>
+
+      <div class="text-center mt-4 space-y-1">
+        <h4 id="lightbox-title" class="font-sci text-base font-bold text-slate-200">Sample Scene Title</h4>
+        <p id="lightbox-meta" class="font-mono-custom text-xs text-slate-500">1080p REMUX Lossless Capture Frame</p>
+      </div>
+
+      <!-- Navigation Arrows inside lightbox -->
+      <div class="flex gap-4 mt-6">
+        <button onclick="navigateLightbox(-1)" class="bg-slate-900/80 hover:bg-slate-800 border border-slate-800 text-slate-200 px-4 py-2 rounded-xl text-xs font-sci transition-colors">
+          PREVIOUS
+        </button>
+        <button onclick="navigateLightbox(1)" class="bg-slate-900/80 hover:bg-slate-800 border border-slate-800 text-slate-200 px-4 py-2 rounded-xl text-xs font-sci transition-colors">
+          NEXT
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // GLOBAL STATE CONTROLLER
+    let state = {
+      currentTheme: 'amber', // 'amber' | 'red' | 'green'
+      activeTab: 'overview',
+      chosenAvatar: 'Jedi',
+      lightboxIndex: 0,
+      comments: [
+        {
+          id: 1,
+          avatar: 'Clone',
+          author: 'CT-7567_Rex',
+          text: 'Absolute gold standard release. The VC-1 encode matches the retail transfer cleanly without any blocking. Sound design is massive during Christophsis!',
+          date: '2008-11-12'
+        },
+        {
+          id: 2,
+          avatar: 'Jedi',
+          author: 'Ahsoka_Snips',
+          text: 'Pristine audio multiplex! Dolby TrueHD 5.1 is perfectly synced with the video tracks. Much respect to CtrlHD encoders.',
+          date: '2008-11-14'
+        },
+        {
+          id: 3,
+          avatar: 'Droid',
+          author: 'RogerRoger_33',
+          text: 'File downloaded in 25 minutes! High seeding ratios across this pool. Extremely high fidelity playback confirmed on hardware media players.',
+          date: '2008-11-15'
+        }
+      ],
+      mediaInfoRaw: [
+        "General",
+        "Unique ID : 2028345719827349182374981273491 (0x23BC184E72)",
+        "Format : Matroska",
+        "Format version : Version 2",
+        "File size : 21.84 GiB",
+        "Duration : 1 h 38 min",
+        "Overall bit rate : 31.8 Mb/s",
+        "Movie name : Star Wars: The Clone Wars (2008)",
+        "Encoded date : UTC 2008-11-11 04:12:18",
+        "Writing application : mkvmerge v2.3.0 ('Splat') built on Aug 18 2008",
+        "Writing library : libebml v0.7.7 + libmatroska v0.8.1",
+        "",
+        "Video",
+        "ID : 1",
+        "Format : AVC",
+        "Format/Info : Advanced Video Codec",
+        "Format profile : High@L4.1",
+        "Format settings : CABAC / 4 Ref Frames",
+        "Codec ID : V_MPEG4/ISO/AVC",
+        "Duration : 1 h 38 min",
+        "Bit rate mode : Variable",
+        "Bit rate : 25.5 Mb/s",
+        "Width : 1920 pixels",
+        "Height : 1080 pixels",
+        "Display aspect ratio : 16:9",
+        "Frame rate mode : Constant",
+        "Frame rate : 23.976 (24000/1001) FPS",
+        "Color space : YUV",
+        "Chroma subsampling : 4:2:0",
+        "Bit depth : 8 bits",
+        "Scan type : Progressive",
+        "Title : Star Wars: The Clone Wars 1080p BD Remux",
+        "Language : English",
+        "",
+        "Audio",
+        "ID : 2",
+        "Format : TrueHD",
+        "Codec ID : A_TRUEHD",
+        "Duration : 1 h 38 min",
+        "Bit rate mode : Variable",
+        "Bit rate : 4 512 kb/s",
+        "Channel(s) : 6 channels",
+        "Channel layout : L R C Lfe Ls Rs",
+        "Sampling rate : 48.0 kHz",
+        "Bit depth : 24 bits",
+        "Compression mode : Lossless",
+        "Title : TrueHD 5.1 English Original Master",
+        "Language : English",
+        "",
+        "Subtitles",
+        "English (UTF-8 SRT), French (PGS), Spanish (PGS), Cantonese (PGS)"
+      ],
+      nfoText: `
+  _|_|_|    _|_|_|_|_|  _|_|_|    _|        _|    _|  _|_|_|    
+  _|    _|      _|      _|    _|  _|        _|    _|  _|    _|  
+  _|_|_|        _|      _|_|_|    _|        _|_|_|_|  _|    _|  
+  _|    _|      _|      _|    _|  _|        _|    _|  _|    _|  
+  _|    _|      _|      _|    _|  _|_|_|_|  _|    _|  _|_|_|    
+                                                                
+ ══════════════════════════════════════════════════════════════════
+  CtrlHD PRESENTS: Star Wars: The Clone Wars 1080p REMUX
+ ══════════════════════════════════════════════════════════════════
+  
+  RELEASE DATE.....: 2008-11-11
+  THEATRICAL DATE..: 2008-08-15
+  RUNTiME..........: 1h 38m
+  SiZE.............: 21.84 GB
+  CONTAiNER........: MKV (Matroska)
+  ViDEO CODEC......: AVC High@L4.1 1080p
+  ViDEO BiTRATE....: 25.5 Mbps
+  AUDiO............: English TrueHD 5.1 @ 4512 kbps
+  RESOLUTiON.......: 1920 x 1080
+  FRAMERATE........: 23.976 fps
+  SUBTiTLES........: English, French, Spanish, Cantonese
+  SOURCE...........: retail 1080p Blu-ray Disc (USA Region A)
+  ENCODER..........: CtrlHD Crew
+  
+ ══════════════════════════════════════════════════════════════════
+  RELEASE SUMMARY / ENCODER NOTES:
+ ══════════════════════════════════════════════════════════════════
+  This is an untouched REMUX of the retail Blu-ray disc. All audio
+  and video packets have been directly extracted from the original
+  M2TS stream and remuxed into a clean Matroska wrapper. Perfect
+  for media centers and archive enthusiasts who demand zero-loss
+  transcode quality.
+  
+  Greets to: DON, Esir, EuReKA, CHD, CoRE, and WiKi teams.
+ ══════════════════════════════════════════════════════════════════
+`,
+      screenshotSvgs: [
+        // Scene 1: Battle of Christophsis
+        `<svg class="w-full h-full" viewBox="0 0 400 225" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="225" fill="#090d16"/>
+          <circle cx="200" cy="180" r="140" fill="#0369a1" fill-opacity="0.1"/>
+          <rect x="40" y="80" width="30" height="145" fill="#1e293b"/>
+          <rect x="80" y="50" width="40" height="175" fill="#334155"/>
+          <rect x="280" y="70" width="50" height="155" fill="#1e293b"/>
+          <rect x="340" y="100" width="30" height="125" fill="#0f172a"/>
+          <line x1="80" y1="120" x2="300" y2="160" stroke="#ef4444" stroke-width="4"/>
+          <line x1="280" y1="110" x2="100" y2="155" stroke="#3b82f6" stroke-width="3"/>
+        </svg>`,
+        // Scene 2: Anakin & Ahsoka
+        `<svg class="w-full h-full" viewBox="0 0 400 225" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="225" fill="#0a0a0f"/>
+          <ellipse cx="200" cy="112" rx="180" ry="80" fill="#a21caf" fill-opacity="0.05"/>
+          <line x1="140" y1="180" x2="160" y2="60" stroke="#3b82f6" stroke-width="5" stroke-linecap="round"/>
+          <line x1="260" y1="180" x2="240" y2="90" stroke="#10b981" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="130" cy="190" r="20" fill="#1e293b"/>
+          <circle cx="270" cy="190" r="16" fill="#1e293b"/>
+        </svg>`,
+        // Scene 3: Monastery Peak
+        `<svg class="w-full h-full" viewBox="0 0 400 225" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="225" fill="#0f0c08"/>
+          <circle cx="200" cy="80" r="50" fill="#eab308" fill-opacity="0.1"/>
+          <path d="M50 225 L150 100 L200 130 L300 60 L380 225 Z" fill="#1c1917"/>
+          <line x1="20" y1="10" x2="5" y2="40" stroke="#78716c" stroke-width="1"/>
+          <line x1="120" y1="50" x2="105" y2="80" stroke="#78716c" stroke-width="1"/>
+          <line x1="240" y1="20" x2="225" y2="50" stroke="#78716c" stroke-width="1"/>
+        </svg>`,
+        // Scene 4: Ventress Duel
+        `<svg class="w-full h-full" viewBox="0 0 400 225" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="225" fill="#08080c"/>
+          <circle cx="200" cy="112" r="90" fill="#ef4444" fill-opacity="0.08"/>
+          <line x1="160" y1="180" x2="190" y2="40" stroke="#ef4444" stroke-width="4.5" stroke-linecap="round"/>
+          <line x1="240" y1="180" x2="210" y2="40" stroke="#ef4444" stroke-width="4.5" stroke-linecap="round"/>
+          <line x1="200" y1="120" x2="110" y2="80" stroke="#3b82f6" stroke-width="5" stroke-linecap="round"/>
+        </svg>`
+      ],
+      screenshotTitles: [
+        "Battle of Christophsis",
+        "Master Skywalker & Snips",
+        "Ascent on Monastery Peak",
+        "Confront confronted by Asajj Ventress"
+      ]
+    };
+
+    // ON DOM LOAD INITIALIZATION
+    window.onload = function() {
+      // Set Theme class
+      setTheme('amber');
+      // Render media info block with base configuration
+      renderMediaInfo('');
+      // Load NFO Terminal Art
+      document.getElementById('nfo-text-block').textContent = state.nfoText;
+      // Populate peer registry
+      randomizeSpeeds();
+      // Populate custom commentary
+      renderComments();
+    };
+
+    // THEME SELECTION MATRIX
+    function setTheme(color) {
+      state.currentTheme = color;
+      const container = document.getElementById('app-container');
+      const glow = document.getElementById('theme-glow');
+      
+      // Reset color tokens
+      container.className = '';
+      
+      if (color === 'amber') {
+        container.classList.add('theme-amber');
+        glow.className = "absolute top-0 left-0 right-0 h-[500px] bg-gradient-to-b from-amber-500/10 via-transparent to-transparent pointer-events-none transition-all duration-500";
+        // Tailwind configuration variables injected onto stylesheet classes
+        document.documentElement.style.setProperty('--tw-shadow-color', 'rgba(245, 158, 11, 0.4)');
+        updateThemeClassRules("amber-500", "amber-400");
+      } else if (color === 'red') {
+        container.classList.add('theme-red');
+        glow.className = "absolute top-0 left-0 right-0 h-[500px] bg-gradient-to-b from-red-600/10 via-transparent to-transparent pointer-events-none transition-all duration-500";
+        document.documentElement.style.setProperty('--tw-shadow-color', 'rgba(239, 68, 68, 0.4)');
+        updateThemeClassRules("red-500", "red-600");
+      } else if (color === 'green') {
+        container.classList.add('theme-green');
+        glow.className = "absolute top-0 left-0 right-0 h-[500px] bg-gradient-to-b from-emerald-500/10 via-transparent to-transparent pointer-events-none transition-all duration-500";
+        document.documentElement.style.setProperty('--tw-shadow-color', 'rgba(16, 185, 129, 0.4)');
+        updateThemeClassRules("emerald-500", "emerald-400");
+      }
+
+      // Update switcher selected markers
+      ['amber', 'red', 'green'].forEach(c => {
+        const btn = document.getElementById(`btn-theme-${c}`);
+        if (c === color) {
+          btn.classList.add('border-slate-100');
+          btn.classList.remove('border-transparent');
+        } else {
+          btn.classList.remove('border-slate-100');
+          btn.classList.add('border-transparent');
+        }
+      });
+    }
+
+    // Dynamic Tailwind theme rules injector
+    function updateThemeClassRules(primaryColorHex, borderGlowColor) {
+      // We alter element selections that depend on theme dynamically by assigning dynamic CSS style injection
+      const stylesId = 'dynamic-theme-style';
+      let styleTag = document.getElementById(stylesId);
+      if (!styleTag) {
+        styleTag = document.createElement('style');
+        styleTag.id = stylesId;
+        document.head.appendChild(styleTag);
+      }
+      
+      let cssText = '';
+      if (state.currentTheme === 'amber') {
+        cssText = `
+          .text-theme-primary { color: #f59e0b; }
+          .bg-theme-primary { background-color: #f59e0b; }
+          .border-theme-primary { border-color: #f59e0b; }
+          .border-theme-primary\\/30 { border-color: rgba(245, 158, 11, 0.3); }
+          .border-theme-primary\\/20 { border-color: rgba(245, 158, 11, 0.2); }
+          .bg-theme-primary\\/10 { background-color: rgba(245, 158, 11, 0.1); }
+          .shadow-theme-primary\\/30 { box-shadow: 0 4px 20px -2px rgba(245, 158, 11, 0.3); }
+        `;
+      } else if (state.currentTheme === 'red') {
+        cssText = `
+          .text-theme-primary { color: #dc2626; }
+          .bg-theme-primary { background-color: #dc2626; }
+          .border-theme-primary { border-color: #dc2626; }
+          .border-theme-primary\\/30 { border-color: rgba(220, 38, 38, 0.3); }
+          .border-theme-primary\\/20 { border-color: rgba(220, 38, 38, 0.2); }
+          .bg-theme-primary\\/10 { background-color: rgba(220, 38, 38, 0.1); }
+          .shadow-theme-primary\\/30 { box-shadow: 0 4px 20px -2px rgba(220, 38, 38, 0.3); }
+        `;
+      } else if (state.currentTheme === 'green') {
+        cssText = `
+          .text-theme-primary { color: #10b981; }
+          .bg-theme-primary { background-color: #10b981; }
+          .border-theme-primary { border-color: #10b981; }
+          .border-theme-primary\\/30 { border-color: rgba(16, 185, 129, 0.3); }
+          .border-theme-primary\\/20 { border-color: rgba(16, 185, 129, 0.2); }
+          .bg-theme-primary\\/10 { background-color: rgba(16, 185, 129, 0.1); }
+          .shadow-theme-primary\\/30 { box-shadow: 0 4px 20px -2px rgba(16, 185, 129, 0.3); }
+        `;
+      }
+      styleTag.innerHTML = cssText;
+    }
+
+    // INTERACTIVE TOAST MANAGER
+    function showToast(message) {
+      const toast = document.getElementById('toast-banner');
+      const msg = document.getElementById('toast-msg');
+      msg.textContent = message;
+      toast.classList.remove('hidden');
+      toast.classList.add('flex');
+      
+      // Auto dim after 4.5 seconds
+      setTimeout(() => {
+        toast.classList.add('hidden');
+        toast.classList.remove('flex');
+      }, 4500);
+    }
+
+    // ACTIONS EMULATION
+    function simulateDownload() {
+      showToast("Download Initialized: Star.Wars.The.Clone.Wars.2008.1080p.BluRay.REMUX-CtrlHD.torrent loaded into swarm controller.");
+    }
+
+    function copyMagnet() {
+      const magnetLink = "magnet:?xt=urn:btih:8f3d61b47b2c9df7a76fe1a1d1d8c1be1a61c472&dn=Star.Wars.The.Clone.Wars.2008.1080p.BluRay.REMUX.AVC.TrueHD.5.1-CtrlHD&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969%2Fannounce";
+      
+      // Secure fallback clipboard mechanism to prevent dynamic iframe issues
+      const inputEl = document.createElement('textarea');
+      inputEl.value = magnetLink;
+      document.body.appendChild(inputEl);
+      inputEl.select();
+      document.execCommand('copy');
+      document.body.removeChild(inputEl);
+
+      showToast("Magnet Link copied to secure local clipboard matrix.");
+    }
+
+    function copyHash() {
+      const hashText = "8f3d61b47b2c9df7a76fe1a1d1d8c1be1a61c472";
+      
+      const inputEl = document.createElement('textarea');
+      inputEl.value = hashText;
+      document.body.appendChild(inputEl);
+      inputEl.select();
+      document.execCommand('copy');
+      document.body.removeChild(inputEl);
+
+      showToast("Complete Info Hash [8f3d61b47b2c9df7a76fe1a1d1d8c1be1a61c472] cloned.");
+    }
+
+    function copyNFOText() {
+      const text = state.nfoText;
+      const inputEl = document.createElement('textarea');
+      inputEl.value = text;
+      document.body.appendChild(inputEl);
+      inputEl.select();
+      document.execCommand('copy');
+      document.body.removeChild(inputEl);
+
+      showToast("Complete ASCII NFO template contents successfully cloned.");
+    }
+
+    // TAB SWITCHER CONTROLLER
+    function switchTab(tabId) {
+      state.activeTab = tabId;
+      
+      // Update Navigation button styles
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        if (btn.id === `tab-${tabId}`) {
+          btn.classList.add('border-theme-primary', 'text-theme-primary');
+          btn.classList.remove('border-transparent', 'text-slate-400');
+        } else {
+          btn.classList.remove('border-theme-primary', 'text-theme-primary');
+          btn.classList.add('border-transparent', 'text-slate-400');
+        }
+      });
+
+      // Show/Hide relevant panes
+      document.querySelectorAll('.tab-pane').forEach(pane => {
+        if (pane.id === `content-${tabId}`) {
+          pane.classList.remove('hidden');
+          pane.classList.add('block');
+        } else {
+          pane.classList.add('hidden');
+          pane.classList.remove('block');
+        }
+      });
+    }
+
+    // MEDIAINFO SEARCH FILTER ENGINE
+    function searchMediaInfo(query) {
+      renderMediaInfo(query.trim());
+    }
+
+    function renderMediaInfo(filter) {
+      const displayBox = document.getElementById('mediainfo-display-box');
+      displayBox.innerHTML = '';
+      
+      const regex = filter ? new RegExp(`(${filter.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')})`, 'gi') : null;
+
+      state.mediaInfoRaw.forEach(line => {
+        const lineEl = document.createElement('div');
+        lineEl.className = 'py-0.5 hover:bg-slate-900/40 rounded px-1 transition-colors';
+        
+        // Handle indenting values
+        if (line.includes(' : ')) {
+          const parts = line.split(' : ');
+          let key = parts[0];
+          let value = parts[1];
+          
+          if (regex) {
+            key = key.replace(regex, '<span class="bg-amber-500/30 text-white font-bold">$1</span>');
+            value = value.replace(regex, '<span class="bg-amber-500/30 text-white font-bold">$1</span>');
+          }
+
+          lineEl.innerHTML = `<span class="text-slate-500 inline-block min-w-[120px] md:min-w-[180px]">${key}</span><span class="text-slate-400">: </span><span class="text-slate-300 font-semibold">${value}</span>`;
+        } else if (line === '') {
+          lineEl.className = 'h-3';
+        } else {
+          // Headers
+          let headerText = line;
+          if (regex) {
+            headerText = headerText.replace(regex, '<span class="bg-amber-500/30 text-white font-bold">$1</span>');
+          }
+          lineEl.innerHTML = `<span class="text-theme-primary font-bold font-sci tracking-wider block mt-2 mb-1 border-b border-slate-900 pb-0.5 transition-colors duration-300">${headerText}</span>`;
+        }
+
+        displayBox.appendChild(lineEl);
+      });
+    }
+
+    // LIGHTBOX CONTROLLER
+    function openLightbox(index) {
+      state.lightboxIndex = index;
+      const modal = document.getElementById('lightbox-modal');
+      const container = document.getElementById('lightbox-canvas-placeholder');
+      const title = document.getElementById('lightbox-title');
+      
+      container.innerHTML = state.screenshotSvgs[index];
+      title.textContent = `${index + 1}. ${state.screenshotTitles[index]}`;
+      
+      modal.classList.remove('hidden');
+    }
+
+    function closeLightbox() {
+      const modal = document.getElementById('lightbox-modal');
+      modal.classList.add('hidden');
+    }
+
+    function navigateLightbox(direction) {
+      let nextIndex = state.lightboxIndex + direction;
+      if (nextIndex >= state.screenshotSvgs.length) nextIndex = 0;
+      if (nextIndex < 0) nextIndex = state.screenshotSvgs.length - 1;
+      openLightbox(nextIndex);
+    }
+
+    // PEER CONSOLE DYNAMICS
+    function randomizeSpeeds() {
+      const rowContainer = document.getElementById('peer-list-rows');
+      rowContainer.innerHTML = '';
+
+      const peers = [
+        { ip: '82.144.112.91', client: 'mTorrent/1.8.1', port: '54212', progress: 100, up: 0, down: 450 },
+        { ip: '141.22.45.180', client: 'Transmission/1.42', port: '6881', progress: 100, up: 0, down: 1200 },
+        { ip: '198.51.100.2', client: 'Deluge/1.1.5', port: '58112', progress: 100, up: 0, down: 890 },
+        { ip: '64.233.160.10', client: 'rTorrent/0.8.2', port: '41120', progress: 100, up: 0, down: 2450 },
+        { ip: '192.0.2.85', client: 'mTorrent/1.8.0', port: '49901', progress: 85.2, up: 1820, down: 0 },
+        { ip: '203.0.113.12', client: 'Vuze/4.0.0.4', port: '62201', progress: 41.8, up: 3100, down: 0 },
+        { ip: '88.198.23.41', client: 'rTorrent/0.8.2', port: '31288', progress: 100, up: 0, down: 150 }
+      ];
+
+      peers.forEach(peer => {
+        // Mocking slight variations to simulation
+        const randomUpOffset = Math.floor(Math.random() * 200) - 100;
+        const randomDownOffset = Math.floor(Math.random() * 200) - 100;
+        
+        let liveUp = peer.up > 0 ? Math.max(100, peer.up + randomUpOffset) : 0;
+        let liveDown = peer.down > 0 ? Math.max(50, peer.down + randomDownOffset) : 0;
+
+        const row = document.createElement('tr');
+        row.className = 'border-b border-slate-950 hover:bg-slate-900/20 py-2.5 transition-colors';
+
+        row.innerHTML = `
+          <td class="py-3 text-slate-300 font-semibold">${peer.ip}</td>
+          <td class="py-3 text-slate-400">${peer.client}</td>
+          <td class="py-3 text-slate-500">${peer.port}</td>
+          <td class="py-3">
+            <div class="flex items-center gap-2 max-w-[150px] mx-auto">
+              <span class="text-slate-400 text-[10px] min-w-[32px] text-right">${peer.progress}%</span>
+              <div class="w-full bg-slate-900 rounded-full h-1.5 overflow-hidden border border-slate-800">
+                <div class="bg-theme-primary h-full rounded-full transition-colors duration-300" style="width: ${peer.progress}%"></div>
+              </div>
+            </div>
+          </td>
+          <td class="py-3 text-right text-emerald-400 font-bold">${liveDown > 0 ? formatSpeed(liveDown) : '--'}</td>
+          <td class="py-3 text-right text-sky-400 font-bold">${liveUp > 0 ? formatSpeed(liveUp) : '--'}</td>
+        `;
+        rowContainer.appendChild(row);
+      });
+    }
+
+    function formatSpeed(kbps) {
+      if (kbps >= 1024) {
+        return `${(kbps / 1024).toFixed(2)} MB/s`;
+      }
+      return `${kbps} KB/s`;
+    }
+
+    // COMMENTS CONTROLLER
+    function setChosenAvatar(type) {
+      state.chosenAvatar = type;
+      document.querySelectorAll('.avatar-opt').forEach(btn => {
+        if (btn.title.includes(type)) {
+          btn.classList.add('border-theme-primary');
+          btn.classList.remove('border-transparent');
+        } else {
+          btn.classList.remove('border-theme-primary');
+          btn.classList.add('border-transparent');
+        }
+      });
+    }
+
+    function renderComments() {
+      const container = document.getElementById('comments-container');
+      container.innerHTML = '';
+      
+      state.comments.forEach(c => {
+        const commentCard = document.createElement('div');
+        commentCard.className = 'bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-2';
+        
+        let avatarStyle = "bg-slate-800 text-slate-300 border-slate-700";
+        if (c.avatar === 'Jedi') avatarStyle = "bg-blue-500/20 text-blue-400 border-blue-500/30";
+        if (c.avatar === 'Sith') avatarStyle = "bg-red-500/20 text-red-400 border-red-500/30";
+        if (c.avatar === 'Clone') avatarStyle = "bg-amber-500/20 text-amber-400 border-amber-500/30";
+        
+        commentCard.innerHTML = `
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full border flex items-center justify-center font-bold text-[10px] ${avatarStyle}">${c.avatar[0]}</span>
+              <span class="text-slate-200 font-sci text-xs font-bold">${c.author}</span>
+            </div>
+            <span class="text-[10px] font-mono-custom text-slate-500">${c.date}</span>
+          </div>
+          <p class="text-xs text-slate-300 font-mono-custom leading-relaxed">${c.text}</p>
+        `;
+        container.appendChild(commentCard);
+      });
+
+      document.getElementById('comment-count').textContent = state.comments.length;
+    }
+
+    function submitComment() {
+      const textarea = document.getElementById('comment-textarea');
+      const text = textarea.value.trim();
+      
+      if (!text) {
+        showToast("Error: Encryption payload cannot be empty.");
+        return;
+      }
+
+      // Generate random mock handles for user postings
+      const authors = {
+        Jedi: "Padawan_Muxer",
+        Sith: "Darth_Packets",
+        Clone: "Commander_Codex",
+        Droid: "Subunit_B2"
+      };
+
+      const newComment = {
+        id: state.comments.length + 1,
+        avatar: state.chosenAvatar,
+        author: authors[state.chosenAvatar] || "User_Node",
+        text: text.slice(0, 300), // Limit payload length
+        date: new Date().toISOString().split('T')[0]
+      };
+
+      state.comments.push(newComment);
+      textarea.value = '';
+      
+      renderComments();
+      showToast(`Comment package queued and posted via node ${newComment.author}.`);
+    }
+  </script>
+</body>
+</html>
