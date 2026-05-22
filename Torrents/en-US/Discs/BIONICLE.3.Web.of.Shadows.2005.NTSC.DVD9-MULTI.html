@@ -1,0 +1,1715 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BIONICLE 3: Web of Shadows (2005) [NTSC] [DVD9] [ISO] - BioTorrents Preservation</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Tailwind Config for Theme Accent colors matching the Visorak/Hordika color scheme -->
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            visorakGreen: '#39ff14',
+            hordikaRed: '#ff2a2a',
+            deepDark: '#0a0c10',
+            panelGray: '#161b22',
+            borderGray: '#30363d',
+            textGray: '#8b949e'
+          },
+          boxShadow: {
+            'neon-green': '0 0 15px rgba(57, 255, 20, 0.4)',
+            'neon-red': '0 0 15px rgba(255, 42, 42, 0.4)'
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0a0c10;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #30363d;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #39ff14;
+    }
+    /* CRT Scanlines Screen Effect for Retro Terminals */
+    .crt-screen {
+      position: relative;
+      overflow: hidden;
+    }
+    .crt-screen::before {
+      content: " ";
+      display: block;
+      position: absolute;
+      top: 0; left: 0; bottom: 0; right: 0;
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+      z-index: 10;
+      background-size: 100% 4px, 6px 100%;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body class="bg-deepDark text-gray-200 font-sans min-h-screen selection:bg-visorakGreen selection:text-black">
+
+  <!-- TOP MARQUEE / NOTIFICATION -->
+  <div class="bg-gradient-to-r from-red-950 via-black to-green-950 border-b border-borderGray px-4 py-2 text-xs text-center font-mono flex items-center justify-center gap-2">
+    <span class="inline-flex h-2 w-2 animate-ping rounded-full bg-visorakGreen opacity-75"></span>
+    <span class="text-gray-300">PRESERVATION ALERT: Direct DVD9 sector dump verified by Great Temple Archivists. High Seeds online!</span>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="bg-[#0d1117] border-b border-borderGray sticky top-0 z-40 shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <!-- Logo -->
+      <div class="flex items-center gap-3">
+        <div class="relative w-10 h-10 bg-black rounded-lg border border-visorakGreen flex items-center justify-center overflow-hidden">
+          <!-- Stylized bio-mechanical eye -->
+          <div class="w-4 h-4 rounded-full bg-visorakGreen animate-pulse shadow-neon-green"></div>
+        </div>
+        <div>
+          <h1 class="font-mono text-xl font-bold tracking-wider text-white flex items-center gap-1.5">
+            BIOTORRENTS <span class="text-visorakGreen text-xs border border-visorakGreen px-1 rounded font-normal">v2.5</span>
+          </h1>
+          <p class="text-[10px] text-textGray font-mono">Preserving Metru Nui's digital relics since 2005</p>
+        </div>
+      </div>
+
+      <!-- Quick Stats Widget -->
+      <div class="hidden md:flex items-center gap-6 text-xs font-mono text-textGray">
+        <div class="text-right">
+          <div class="text-white font-semibold">41,208 TB</div>
+          <div>Total Preserved</div>
+        </div>
+        <div class="text-right">
+          <div class="text-visorakGreen font-semibold">9,512</div>
+          <div>Active Toa Seeds</div>
+        </div>
+        <div class="text-right">
+          <div class="text-hordikaRed font-semibold">84</div>
+          <div>Dark Hunters Online</div>
+        </div>
+      </div>
+
+      <!-- User Actions -->
+      <div class="flex items-center gap-3">
+        <div class="hidden sm:flex items-center gap-1.5 bg-panelGray border border-borderGray px-3 py-1.5 rounded text-xs font-mono">
+          <span class="w-2 h-2 rounded-full bg-visorakGreen"></span>
+          <span class="text-white font-medium">Toa_Vakama99</span>
+          <span class="text-textGray">Ratio: 3.84</span>
+        </div>
+        <button onclick="toggleAlert('Welcome back! Your upload bandwidth is currently contributing to the Metru Nui archive network.')" class="bg-visorakGreen hover:bg-green-400 text-black font-semibold text-xs px-3.5 py-2 rounded transition-all duration-200 flex items-center gap-1.5 font-mono shadow-neon-green">
+          <i data-lucide="upload-cloud" class="w-4 h-4"></i> Upload Relic
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <!-- BREADCRUMB -->
+    <nav class="flex items-center gap-2 text-xs font-mono text-textGray mb-6">
+      <a href="#" class="hover:text-visorakGreen transition">Archives</a>
+      <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+      <a href="#" class="hover:text-visorakGreen transition">DVD ISOs</a>
+      <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+      <span class="text-white font-semibold">Bionicle 3: Web of Shadows (2005)</span>
+    </nav>
+
+    <!-- TORRENT CONTAINER GRID -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+      <!-- LEFT SIDE / MAIN INFO (2 COLS) -->
+      <div class="lg:col-span-2 space-y-6">
+
+        <!-- TITLE PANEL -->
+        <div class="bg-panelGray border border-borderGray rounded-xl p-6 relative overflow-hidden">
+          <div class="absolute -right-8 -top-8 w-32 h-32 bg-visorakGreen opacity-5 rounded-full blur-2xl"></div>
+          <div class="absolute -left-8 -bottom-8 w-32 h-32 bg-hordikaRed opacity-5 rounded-full blur-2xl"></div>
+
+          <div class="flex flex-wrap gap-2 mb-3">
+            <span class="bg-black text-visorakGreen border border-visorakGreen text-[10px] font-mono px-2 py-0.5 rounded font-bold uppercase tracking-wide">Vetted &amp; Verified</span>
+            <span class="bg-black text-gray-300 border border-borderGray text-[10px] font-mono px-2 py-0.5 rounded font-bold uppercase tracking-wide">DVD9 ISO</span>
+            <span class="bg-black text-hordikaRed border border-hordikaRed text-[10px] font-mono px-2 py-0.5 rounded font-bold uppercase tracking-wide">Multi-Language</span>
+            <span class="bg-black text-blue-400 border border-blue-400 text-[10px] font-mono px-2 py-0.5 rounded font-bold uppercase tracking-wide">Preserved Relic</span>
+          </div>
+
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white leading-snug tracking-tight">
+            BIONICLE 3: Web of Shadows (2005) [NTSC] [DVD9] [ISO] [ENG-FR-SPA]
+          </h2>
+
+          <div class="mt-4 flex flex-wrap items-center gap-y-2 gap-x-6 text-sm text-textGray font-mono border-t border-borderGray/50 pt-4">
+            <span class="flex items-center gap-1.5 text-white">
+              <i data-lucide="user" class="w-4 h-4 text-visorakGreen"></i> Uploader: <strong class="hover:underline cursor-pointer text-visorakGreen">ToaLhikan_99</strong>
+            </span>
+            <span>Uploaded: Oct 12, 2005</span>
+            <span class="flex items-center gap-1.5">
+              <i data-lucide="shield-check" class="w-4 h-4 text-green-400"></i> SHA1 Checked
+            </span>
+          </div>
+        </div>
+
+        <!-- PRIMARY CALLS TO ACTION & ACTION CONTROLS -->
+        <div class="bg-[#121820] border-2 border-visorakGreen/30 rounded-xl p-6 shadow-neon-green/10 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div class="space-y-1 text-center md:text-left">
+            <h3 class="font-bold text-white text-lg flex items-center gap-2 justify-center md:justify-start">
+              <i data-lucide="sparkles" class="w-5 h-5 text-visorakGreen animate-spin-slow"></i> Secure Download Portal
+            </h3>
+            <p class="text-xs text-textGray">Connect directly to peers over a cryptographically secured torrent network.</p>
+          </div>
+          <div class="flex flex-wrap gap-3 w-full md:w-auto justify-center">
+            <!-- Download Torrent Button -->
+            <button onclick="startDownloadSimulation(false)" class="flex-1 md:flex-none bg-visorakGreen hover:bg-green-400 text-black font-bold px-6 py-3 rounded-lg flex items-center justify-center gap-2 transition duration-150 text-sm shadow-md shadow-visorakGreen/20">
+              <i data-lucide="download" class="w-5 h-5"></i> Download ISO Torrent
+            </button>
+            <!-- Magnet Link Button -->
+            <button onclick="startDownloadSimulation(true)" class="flex-1 md:flex-none bg-black hover:bg-gray-900 border border-borderGray text-white font-medium px-5 py-3 rounded-lg flex items-center justify-center gap-2 transition duration-150 text-sm hover:border-visorakGreen">
+              <i data-lucide="magnet" class="w-5 h-5 text-red-500 animate-pulse"></i> Magnet Link
+            </button>
+            <!-- Copy Hash -->
+            <button onclick="copyTorrentHash()" class="p-3 bg-panelGray hover:bg-gray-800 text-textGray hover:text-white border border-borderGray rounded-lg transition" title="Copy Torrent Hash">
+              <i data-lucide="copy" class="w-5 h-5"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- DETAIL TABS CONTAINER -->
+        <div class="bg-panelGray border border-borderGray rounded-xl overflow-hidden">
+          <!-- Tab Headers -->
+          <div class="flex border-b border-borderGray bg-black/40 overflow-x-auto">
+            <button id="tab-btn-desc" onclick="switchTab('desc')" class="px-5 py-4 text-sm font-bold font-mono border-b-2 border-visorakGreen text-white flex items-center gap-2 whitespace-nowrap">
+              <i data-lucide="info" class="w-4 h-4 text-visorakGreen"></i> Torrent Information
+            </button>
+            <button id="tab-btn-files" onclick="switchTab('files')" class="px-5 py-4 text-sm font-semibold font-mono border-b-2 border-transparent text-textGray hover:text-white flex items-center gap-2 whitespace-nowrap">
+              <i data-lucide="folder-tree" class="w-4 h-4"></i> File Directory (<span class="text-visorakGreen">14</span>)
+            </button>
+            <button id="tab-btn-arena" onclick="switchTab('arena')" class="px-5 py-4 text-sm font-semibold font-mono border-b-2 border-transparent text-textGray hover:text-white flex items-center gap-2 whitespace-nowrap">
+              <span class="w-2 h-2 rounded-full bg-hordikaRed animate-ping"></span>
+              <i data-lucide="crosshair" class="w-4 h-4"></i> Rhotuka Spinner Arena (Game)
+            </button>
+            <button id="tab-btn-chat" onclick="switchTab('chat')" class="px-5 py-4 text-sm font-semibold font-mono border-b-2 border-transparent text-textGray hover:text-white flex items-center gap-2 whitespace-nowrap">
+              <i data-lucide="terminal" class="w-4 h-4"></i> Archivist Console (AI Chat)
+            </button>
+          </div>
+
+          <!-- TAB CONTENT: DESCRIPTION -->
+          <div id="tab-content-desc" class="p-6 space-y-6">
+            <!-- DVD Movie Summary -->
+            <div class="space-y-3">
+              <div class="flex items-center gap-2 border-b border-borderGray/50 pb-2">
+                <i data-lucide="film" class="w-5 h-5 text-visorakGreen"></i>
+                <h4 class="text-white font-bold text-lg">Movie Synopsis</h4>
+              </div>
+              <p class="text-sm leading-relaxed text-gray-300">
+                The legendary BIONICLE heroes are snared in webs of deceit, intrigue, and betrayal in <strong class="text-white">BIONICLE 3: Web of Shadows</strong>. Six great Toa Metru return to their ancestral home city of Metru Nui only to find it enshrouded in toxic shadows, overrun by the spider-like Visorak horde.
+              </p>
+              <p class="text-sm leading-relaxed text-gray-300">
+                Mutated by the Visorak’s toxic Hordika venom, the Toa are devolved into beast-like beast forms known as <strong class="text-white">Toa Hordika</strong>. Along with the helpful beast-taming <strong class="text-white">Rahaga</strong>, they must conquer their primal impulses, seek the legendary ancient oracle <strong class="text-white">Keetongu</strong>, and battle Sidorak and the scheming Queen Roodaka to rescue the sleeping Matoran before they are lost to darkness.
+              </p>
+            </div>
+
+            <!-- Technical specifications grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <!-- Disc Info -->
+              <div class="bg-black/40 border border-borderGray/50 rounded-lg p-4 font-mono text-xs space-y-2">
+                <h5 class="text-white font-bold text-sm mb-2 flex items-center gap-1.5 border-b border-borderGray/30 pb-1">
+                  <i data-lucide="disc" class="w-4 h-4 text-blue-400"></i> Disc Properties
+                </h5>
+                <div class="flex justify-between">
+                  <span class="text-textGray">Format:</span>
+                  <span class="text-white font-semibold">DVD-9 (Dual Layer)</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-textGray">Standard:</span>
+                  <span class="text-white">NTSC (Region 1 / Free)</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-textGray">Aspect Ratio:</span>
+                  <span class="text-white">Widescreen 1.78:1 (Anamorphic)</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-textGray">Encoding:</span>
+                  <span class="text-white">MPEG-2 Video</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-textGray">Resolution:</span>
+                  <span class="text-white">720 x 480 @ 29.97 FPS</span>
+                </div>
+              </div>
+
+              <!-- Audio & Subtitles -->
+              <div class="bg-black/40 border border-borderGray/50 rounded-lg p-4 font-mono text-xs space-y-2">
+                <h5 class="text-white font-bold text-sm mb-2 flex items-center gap-1.5 border-b border-borderGray/30 pb-1">
+                  <i data-lucide="volume-2" class="w-4 h-4 text-hordikaRed"></i> Languages &amp; Audio
+                </h5>
+                <div class="flex justify-between">
+                  <span class="text-textGray">Audio Track 1:</span>
+                  <span class="text-white">English Dolby Digital 5.1 (Surround)</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-textGray">Audio Track 2:</span>
+                  <span class="text-white">English Stereo 2.0</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-textGray">Audio Track 3:</span>
+                  <span class="text-white">French Stereo 2.0</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-textGray">Audio Track 4:</span>
+                  <span class="text-white">Spanish Stereo 2.0</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-textGray">Subtitles:</span>
+                  <span class="text-white text-right">English, French, Spanish</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- DVD Special Features Breakdown -->
+            <div class="space-y-3">
+              <div class="flex items-center gap-2 border-b border-borderGray/50 pb-2">
+                <i data-lucide="award" class="w-5 h-5 text-visorakGreen"></i>
+                <h4 class="text-white font-bold text-lg">Full Special Features Included (100% Unripped)</h4>
+              </div>
+              <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+                <li class="flex items-start gap-2 bg-[#121820]/40 p-2.5 rounded border border-borderGray/30">
+                  <span class="text-visorakGreen font-bold font-mono">✦</span>
+                  <div>
+                    <strong class="text-white block">Metru Nui BIONICLE® Explorer</strong>
+                    <span class="text-xs text-textGray">Delve into the detailed lore and gear specifications of Toa Hordika.</span>
+                  </div>
+                </li>
+                <li class="flex items-start gap-2 bg-[#121820]/40 p-2.5 rounded border border-borderGray/30">
+                  <span class="text-visorakGreen font-bold font-mono">✦</span>
+                  <div>
+                    <strong class="text-white block">Animated Adaptations of &quot;Shadow Play&quot;</strong>
+                    <span class="text-xs text-textGray">Fully-voiced exclusive animatic version of the 2005 comic book story.</span>
+                  </div>
+                </li>
+                <li class="flex items-start gap-2 bg-[#121820]/40 p-2.5 rounded border border-borderGray/30">
+                  <span class="text-visorakGreen font-bold font-mono">✦</span>
+                  <div>
+                    <strong class="text-white block">LEGO Toy Promos</strong>
+                    <span class="text-xs text-textGray">Original high-definition advertisements for the Visorak and Toa Hordika playsets.</span>
+                  </div>
+                </li>
+                <li class="flex items-start gap-2 bg-[#121820]/40 p-2.5 rounded border border-borderGray/30">
+                  <span class="text-visorakGreen font-bold font-mono">✦</span>
+                  <div>
+                    <strong class="text-white block">Official BIONICLE® Music &amp; Credits</strong>
+                    <span class="text-xs text-textGray">Includes the hit track “Caught in a Dream” by All Insane Kids.</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Authentic .NFO File viewer simulated -->
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-mono text-textGray">AUTHENTIC RELIC RELEASENOTE (.NFO)</span>
+                <button onclick="copyNfo()" class="text-xs text-visorakGreen hover:underline flex items-center gap-1 font-mono">
+                  <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copy NFO
+                </button>
+              </div>
+              <div class="bg-black text-green-500 p-4 rounded-lg font-mono text-[11px] overflow-x-auto border border-borderGray whitespace-pre leading-normal crt-screen">
+  ____  _       _                                _       
+ | __ )(_) ___ | |_ ___  _ __ _ __ ___ _ __  ___| |_ ___ 
+ |  _ \| |/ _ \| __/ _ \| '__| '__/ _ \ '_ \/ __| __/ __|
+ | |_) | | (_) | || (_) | |  | | |  __/ | | \__ \ |_\__ \
+ |____/|_|\___/ \__\___/|_|  |_|  \___|_| |_|___/\__|___/
+ --------------------------------------------------------
+ [BIONICLE.3.WEB.OF.SHADOWS.2005.NTSC.DVD9-MULTI.iso]
+ --------------------------------------------------------
+ DATE.........: 12 October 2005      SIZE.........: 7.42 GB
+ SOURCE.......: Retail Region 1 DVD  GENRE........: Action/CGI
+ AUDIO........: Eng DD5.1 / Eng Stereo / Spa / Fre
+ SUBTITLES....: English, Spanish, French
+ PROTECTION...: CSS / Ripguard (Defeated, ISO decrypted)
+ FORMAT.......: Direct Sector-to-Sector Decrypted ISO
+ 
+ [RELEASE NOTES]
+ Long live the Toa! Here is the pristine dual-layer DVD9
+ backup of the third installment in the BIONICLE® trilogy.
+ This includes the complete master menu, easter eggs,
+ behind-the-scenes features, toy teasers, and multi-language
+ Dolby surround audio files. Burn with ImgBurn or Nero.
+ 
+ Greetings to: ToaLhikan, VakamaHordika, and BMP crew!
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB CONTENT: FILE DIRECTORY -->
+          <div id="tab-content-files" class="p-6 hidden font-mono text-xs space-y-4">
+            <div class="flex items-center justify-between border-b border-borderGray pb-2">
+              <span class="text-white font-bold">Directory Structure</span>
+              <span class="text-textGray">Double-click or click toggle folder contents</span>
+            </div>
+
+            <!-- INTERACTIVE FILE LIST TREE -->
+            <div class="space-y-2 bg-black/40 p-4 rounded-lg border border-borderGray/50 select-none">
+              <!-- Root level item -->
+              <div>
+                <div class="flex items-center gap-2 text-white font-semibold cursor-pointer py-1 hover:text-visorakGreen" onclick="toggleDir('dir-root')">
+                  <i data-lucide="chevron-down" id="dir-root-arrow" class="w-4 h-4 text-textGray transition-transform"></i>
+                  <i data-lucide="folder-open" class="w-4 h-4 text-yellow-500"></i>
+                  <span>BIONICLE.3.Web.of.Shadows.2005.NTSC.DVD9-MULTI</span>
+                </div>
+
+                <!-- Children of Root -->
+                <div id="dir-root-content" class="pl-6 space-y-2 border-l border-borderGray/50 ml-2 mt-1">
+                  <!-- File 1: ISO -->
+                  <div class="flex items-center justify-between hover:bg-white/5 p-1 rounded">
+                    <div class="flex items-center gap-2 text-gray-300">
+                      <i data-lucide="disc" class="w-4 h-4 text-blue-400"></i>
+                      <span>BIONICLE_3_WEB_OF_SHADOWS.iso</span>
+                    </div>
+                    <span class="text-visorakGreen font-medium">7.42 GB</span>
+                  </div>
+
+                  <!-- File 2: SFV -->
+                  <div class="flex items-center justify-between hover:bg-white/5 p-1 rounded">
+                    <div class="flex items-center gap-2 text-gray-400">
+                      <i data-lucide="file-check" class="w-4 h-4 text-green-400"></i>
+                      <span>BIONICLE.3.Web.of.Shadows.2005.NTSC.DVD9-MULTI.sfv</span>
+                    </div>
+                    <span class="text-textGray">1.2 KB</span>
+                  </div>
+
+                  <!-- File 3: NFO -->
+                  <div class="flex items-center justify-between hover:bg-white/5 p-1 rounded">
+                    <div class="flex items-center gap-2 text-gray-400">
+                      <i data-lucide="file-text" class="w-4 h-4 text-orange-400"></i>
+                      <span>Readme_NFO.txt</span>
+                    </div>
+                    <span class="text-textGray">4.5 KB</span>
+                  </div>
+
+                  <!-- Subfolder 1: Covers -->
+                  <div>
+                    <div class="flex items-center gap-2 text-white cursor-pointer py-1 hover:text-visorakGreen" onclick="toggleDir('dir-covers')">
+                      <i data-lucide="chevron-down" id="dir-covers-arrow" class="w-4 h-4 text-textGray transition-transform"></i>
+                      <i data-lucide="folder" class="w-4 h-4 text-yellow-500"></i>
+                      <span>Cover_Artwork</span>
+                    </div>
+                    <div id="dir-covers-content" class="pl-6 space-y-2 border-l border-borderGray/50 ml-2 mt-1">
+                      <div class="flex items-center justify-between hover:bg-white/5 p-1 rounded">
+                        <div class="flex items-center gap-2 text-gray-300">
+                          <i data-lucide="image" class="w-4 h-4 text-indigo-400"></i>
+                          <span>Front_Cover.jpg</span>
+                        </div>
+                        <span class="text-textGray">1.4 MB</span>
+                      </div>
+                      <div class="flex items-center justify-between hover:bg-white/5 p-1 rounded">
+                        <div class="flex items-center gap-2 text-gray-300">
+                          <i data-lucide="image" class="w-4 h-4 text-indigo-400"></i>
+                          <span>Back_Cover.jpg</span>
+                        </div>
+                        <span class="text-textGray">2.1 MB</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Subfolder 2: VIDEO_TS -->
+                  <div>
+                    <div class="flex items-center gap-2 text-white cursor-pointer py-1 hover:text-visorakGreen" onclick="toggleDir('dir-videots')">
+                      <i data-lucide="chevron-down" id="dir-videots-arrow" class="w-4 h-4 text-textGray transition-transform"></i>
+                      <i data-lucide="folder" class="w-4 h-4 text-yellow-500"></i>
+                      <span>VIDEO_TS</span>
+                    </div>
+                    <div id="dir-videots-content" class="pl-6 space-y-1.5 border-l border-borderGray/50 ml-2 mt-1">
+                      <div class="flex justify-between items-center hover:bg-white/5 p-1 rounded">
+                        <span class="text-gray-300">VIDEO_TS.BUP</span>
+                        <span class="text-textGray">12 KB</span>
+                      </div>
+                      <div class="flex justify-between items-center hover:bg-white/5 p-1 rounded">
+                        <span class="text-gray-300">VIDEO_TS.IFO</span>
+                        <span class="text-textGray">12 KB</span>
+                      </div>
+                      <div class="flex justify-between items-center hover:bg-white/5 p-1 rounded">
+                        <span class="text-gray-300">VIDEO_TS.VOB</span>
+                        <span class="text-textGray">2.4 MB</span>
+                      </div>
+                      <div class="flex justify-between items-center hover:bg-white/5 p-1 rounded">
+                        <span class="text-white">VTS_01_0.IFO</span>
+                        <span class="text-textGray">78 KB</span>
+                      </div>
+                      <div class="flex justify-between items-center hover:bg-white/5 p-1 rounded">
+                        <span class="text-white">VTS_01_0.VOB <span class="text-[9px] text-visorakGreen border border-visorakGreen px-1 rounded ml-1">MENUS</span></span>
+                        <span class="text-textGray">124 MB</span>
+                      </div>
+                      <div class="flex justify-between items-center hover:bg-white/5 p-1 rounded">
+                        <span class="text-gray-200 font-semibold">VTS_01_1.VOB <span class="text-[9px] text-blue-400 border border-blue-400 px-1 rounded ml-1">MAIN MOVIE</span></span>
+                        <span class="text-visorakGreen">1.02 GB</span>
+                      </div>
+                      <div class="flex justify-between items-center hover:bg-white/5 p-1 rounded">
+                        <span class="text-gray-200 font-semibold">VTS_01_2.VOB</span>
+                        <span class="text-visorakGreen">1.02 GB</span>
+                      </div>
+                      <div class="flex justify-between items-center hover:bg-white/5 p-1 rounded">
+                        <span class="text-gray-200 font-semibold">VTS_01_3.VOB</span>
+                        <span class="text-visorakGreen">1.02 GB</span>
+                      </div>
+                      <div class="flex justify-between items-center hover:bg-white/5 p-1 rounded">
+                        <span class="text-gray-200 font-semibold">VTS_01_4.VOB</span>
+                        <span class="text-visorakGreen">1.02 GB</span>
+                      </div>
+                      <div class="flex justify-between items-center hover:bg-white/5 p-1 rounded">
+                        <span class="text-gray-200 font-semibold">VTS_01_5.VOB</span>
+                        <span class="text-textGray">340 MB</span>
+                      </div>
+                      <div class="flex justify-between items-center hover:bg-white/5 p-1 rounded">
+                        <span class="text-white">VTS_02_1.VOB <span class="text-[9px] text-orange-400 border border-orange-400 px-1 rounded ml-1">EXTRAS</span></span>
+                        <span class="text-textGray">850 MB</span>
+                      </div>
+                      <div class="flex justify-between items-center hover:bg-white/5 p-1 rounded">
+                        <span class="text-white">VTS_02_2.VOB <span class="text-[9px] text-orange-400 border border-orange-400 px-1 rounded ml-1">PROMOS</span></span>
+                        <span class="text-textGray">620 MB</span>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB CONTENT: RHOTUKA SPINNER ARENA MINI-GAME -->
+          <div id="tab-content-arena" class="p-6 hidden space-y-4">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-borderGray pb-4">
+              <div>
+                <h4 class="text-white font-bold text-lg flex items-center gap-1.5">
+                  <i data-lucide="shield-alert" class="text-hordikaRed w-5 h-5 animate-bounce"></i> Rhotuka Spinner Arena
+                </h4>
+                <p class="text-xs text-textGray">Select your Toa, aim with mouse or finger tap, and fire Rhotuka Spinners to defeat the Visorak onslaught!</p>
+              </div>
+              <div class="flex gap-2 bg-black/50 p-1.5 rounded-lg border border-borderGray">
+                <span class="text-xs text-textGray font-mono px-2 py-1">Score: <strong id="game-score" class="text-visorakGreen">0</strong></span>
+                <span class="text-xs text-textGray font-mono px-2 py-1">Best: <strong id="game-highscore" class="text-white">0</strong></span>
+              </div>
+            </div>
+
+            <!-- Game Arena and Toa Selector -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <!-- Grid 1: Toa select -->
+              <div class="bg-black/40 rounded-lg p-3 border border-borderGray/50 font-mono text-xs space-y-3">
+                <div class="text-white font-bold text-center border-b border-borderGray/30 pb-2">CHOOSE YOUR TOA HORDIKA</div>
+                
+                <button onclick="selectToa('vakama')" id="btn-toa-vakama" class="w-full flex items-center gap-3 p-2 rounded border border-hordikaRed bg-hordikaRed/20 text-white transition text-left">
+                  <span class="w-3 h-3 rounded-full bg-hordikaRed shadow-neon-red"></span>
+                  <div>
+                    <span class="font-bold block">Vakama</span>
+                    <span class="text-[10px] text-gray-300">Fire Spinner (Pierces)</span>
+                  </div>
+                </button>
+
+                <button onclick="selectToa('nokama')" id="btn-toa-nokama" class="w-full flex items-center gap-3 p-2 rounded border border-transparent hover:bg-white/5 text-gray-300 transition text-left">
+                  <span class="w-3 h-3 rounded-full bg-blue-500"></span>
+                  <div>
+                    <span class="font-bold block">Nokama</span>
+                    <span class="text-[10px] text-gray-400">Water Spinner (Freezes)</span>
+                  </div>
+                </button>
+
+                <button onclick="selectToa('matau')" id="btn-toa-matau" class="w-full flex items-center gap-3 p-2 rounded border border-transparent hover:bg-white/5 text-gray-300 transition text-left">
+                  <span class="w-3 h-3 rounded-full bg-green-500"></span>
+                  <div>
+                    <span class="font-bold block">Matau</span>
+                    <span class="text-[10px] text-gray-400">Air Spinner (Twin Bolts)</span>
+                  </div>
+                </button>
+
+                <button onclick="selectToa('nuju')" id="btn-toa-nuju" class="w-full flex items-center gap-3 p-2 rounded border border-transparent hover:bg-white/5 text-gray-300 transition text-left">
+                  <span class="w-3 h-3 rounded-full bg-cyan-300"></span>
+                  <div>
+                    <span class="font-bold block">Nuju</span>
+                    <span class="text-[10px] text-gray-400">Ice Spinner (Huge Radius)</span>
+                  </div>
+                </button>
+                
+                <div class="pt-2">
+                  <button onclick="resetGame()" class="w-full bg-visorakGreen text-black font-bold py-2 rounded text-center block transition hover:bg-green-400 uppercase text-[10px] tracking-wider">
+                    Restart Simulation
+                  </button>
+                </div>
+              </div>
+
+              <!-- Grid 2, 3, 4: Canvas Area -->
+              <div class="md:col-span-3 relative bg-black rounded-lg border border-borderGray overflow-hidden h-[360px]">
+                <canvas id="arena-canvas" class="absolute inset-0 w-full h-full cursor-crosshair"></canvas>
+                <!-- Game start overlay -->
+                <div id="game-overlay" class="absolute inset-0 bg-black/80 flex flex-col items-center justify-center text-center p-6 z-10 transition">
+                  <i data-lucide="play" class="w-12 h-12 text-visorakGreen animate-pulse mb-3"></i>
+                  <h5 class="text-white font-bold text-lg">Hordika Defense Simulator</h5>
+                  <p class="text-xs text-textGray max-w-sm mt-1 mb-4">Launch Rhotuka spinners to blast away the descending Visorak swarm! Don’t let them reach the Coliseum bottom wall!</p>
+                  <button onclick="startGame()" class="bg-visorakGreen hover:bg-green-400 text-black font-extrabold px-6 py-2.5 rounded text-sm tracking-wider uppercase">
+                    Initialize Systems
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB CONTENT: THE CHRONICLER'S CONSOLE (AI CHAT) -->
+          <div id="tab-content-chat" class="p-6 hidden space-y-4">
+            <div class="border-b border-borderGray pb-3">
+              <h4 class="text-white font-bold text-lg flex items-center gap-1.5 font-mono">
+                <i data-lucide="cpu" class="text-visorakGreen w-5 h-5"></i> Great Temple Chronicler AI v1.0
+              </h4>
+              <p class="text-xs text-textGray">Ask the metrology archives anything about BIONICLE 3 characters, production facts, DVD specifications, or files.</p>
+            </div>
+
+            <div class="bg-black/70 rounded-xl border border-borderGray p-4 crt-screen">
+              <!-- Chat logs container -->
+              <div id="chat-logs" class="h-64 overflow-y-auto font-mono text-xs space-y-4 mb-4 pr-2">
+                <div class="text-visorakGreen">
+                  <span class="text-white opacity-40">[SYSTEM INSTALLED]</span> Great Temple Terminal loaded. Connected to Archive Core. Ask me your questions.
+                </div>
+                <div class="text-gray-300">
+                  <span class="text-visorakGreen font-bold">Chronicler_AI:</span> Greetings, Archivist. I have scanned all documents relative to the 2005 Miramax/Creative Capers production of Bionicle 3: Web of Shadows. How may I assist your preservation task today? Try asking about "Vakama Hordika", "Special Features", "DVD9 vs DVD5", or "Keetongu"!
+                </div>
+              </div>
+
+              <!-- Chat Input panel -->
+              <div class="flex gap-2">
+                <input id="chat-user-input" type="text" placeholder="Type your inquiry to the Archive Database..." onkeydown="handleChatKeyPress(event)" class="flex-grow bg-panelGray border border-borderGray focus:border-visorakGreen focus:outline-none rounded-lg px-4 py-2 text-xs font-mono text-white placeholder-gray-500">
+                <button onclick="sendArchivistQuery()" class="bg-visorakGreen hover:bg-green-400 text-black px-4 py-2 rounded-lg font-bold text-xs font-mono">
+                  Send Query
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AUTHENTIC SCREENSHOTS / MEDIA GALLERY -->
+        <div class="bg-panelGray border border-borderGray rounded-xl p-6 space-y-4">
+          <div class="flex items-center justify-between border-b border-borderGray pb-2">
+            <h4 class="text-white font-bold text-lg flex items-center gap-1.5">
+              <i data-lucide="image" class="w-5 h-5 text-visorakGreen"></i> Media Gallery &amp; Box Art
+            </h4>
+            <span class="text-xs text-textGray font-mono">3 Images Attached</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <!-- Image Frame 1 -->
+            <div class="group relative bg-black/60 rounded-lg overflow-hidden border border-borderGray aspect-video flex flex-col items-center justify-center p-2 hover:border-visorakGreen transition">
+              <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent z-10"></div>
+              <svg viewBox="0 0 100 56" class="w-full h-auto opacity-70 group-hover:scale-105 transition duration-300">
+                <!-- DVD Art silhouette -->
+                <rect width="100" height="56" fill="#111" />
+                <circle cx="50" cy="28" r="22" stroke="#39ff14" stroke-width="0.5" fill="none" />
+                <circle cx="50" cy="28" r="6" stroke="#39ff14" stroke-width="0.5" fill="none" />
+                <path d="M50 6 L50 22 M50 34 L50 50 M28 28 L44 28 M56 28 L72 28" stroke="#ff2a2a" stroke-width="0.5" />
+                <!-- Web effect -->
+                <path d="M50 28 L20 10 M50 28 L80 10 M50 28 L20 46 M50 28 L80 46" stroke="#39ff14" stroke-width="0.2" stroke-dasharray="1,1" />
+              </svg>
+              <div class="absolute bottom-2 left-2 z-20 text-[10px] font-mono text-white">
+                <span class="block font-bold">DVD Disc Label Art</span>
+                <span class="text-[9px] text-textGray">Hi-Res Vector Backup</span>
+              </div>
+            </div>
+
+            <!-- Image Frame 2 -->
+            <div class="group relative bg-black/60 rounded-lg overflow-hidden border border-borderGray aspect-video flex flex-col items-center justify-center p-2 hover:border-visorakGreen transition">
+              <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent z-10"></div>
+              <svg viewBox="0 0 100 56" class="w-full h-auto opacity-70 group-hover:scale-105 transition duration-300">
+                <!-- Metru Nui city silhouette in web -->
+                <rect width="100" height="56" fill="#0c1017" />
+                <path d="M10 50 L10 35 L20 25 L30 35 L30 50 Z M40 50 L40 15 L50 5 L60 15 L60 50 Z M70 50 L70 30 L80 20 L90 30 L90 50 Z" fill="#222" stroke="#444" stroke-width="0.5" />
+                <!-- Giant glowing green web over city -->
+                <path d="M50 5 L0 56 M50 5 L100 56" stroke="#39ff14" stroke-width="0.8" />
+                <path d="M25 30.5 C40 25, 60 25, 75 30.5" stroke="#39ff14" stroke-width="0.5" fill="none" />
+                <path d="M15 45 C40 38, 60 38, 85 45" stroke="#39ff14" stroke-width="0.5" fill="none" />
+              </svg>
+              <div class="absolute bottom-2 left-2 z-20 text-[10px] font-mono text-white">
+                <span class="block font-bold">Coliseum Under Siege</span>
+                <span class="text-[9px] text-textGray">Movie Snapshot - Chapter 3</span>
+              </div>
+            </div>
+
+            <!-- Image Frame 3 -->
+            <div class="group relative bg-black/60 rounded-lg overflow-hidden border border-borderGray aspect-video flex flex-col items-center justify-center p-2 hover:border-visorakGreen transition">
+              <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent z-10"></div>
+              <svg viewBox="0 0 100 56" class="w-full h-auto opacity-70 group-hover:scale-105 transition duration-300">
+                <!-- Visorak green spider eyes -->
+                <rect width="100" height="56" fill="#05070a" />
+                <!-- Neon spider legs -->
+                <path d="M15 15 C 25 30, 45 40, 50 28" stroke="#39ff14" stroke-width="1" fill="none" />
+                <path d="M85 15 C 75 30, 55 40, 50 28" stroke="#39ff14" stroke-width="1" fill="none" />
+                <!-- 4 glowing red eyes -->
+                <circle cx="43" cy="24" r="2.5" fill="#ff2a2a" class="animate-pulse" />
+                <circle cx="57" cy="24" r="2.5" fill="#ff2a2a" class="animate-pulse" />
+                <circle cx="48" cy="30" r="1.5" fill="#ff2a2a" />
+                <circle cx="52" cy="30" r="1.5" fill="#ff2a2a" />
+              </svg>
+              <div class="absolute bottom-2 left-2 z-20 text-[10px] font-mono text-white">
+                <span class="block font-bold">Visorak Keelerak Threat</span>
+                <span class="text-[9px] text-textGray">Concept Render Promo</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- REVIEWS & USER DISCUSSIONS BOARD -->
+        <div class="bg-panelGray border border-borderGray rounded-xl p-6 space-y-6">
+          <div class="flex items-center justify-between border-b border-borderGray pb-3">
+            <h4 class="text-white font-bold text-lg flex items-center gap-1.5">
+              <i data-lucide="message-square" class="w-5 h-5 text-visorakGreen"></i> Archive Discussion &amp; Reviews (<span id="comment-count-badge">5</span>)
+            </h4>
+            <span class="text-xs text-textGray font-mono">Sorted by Active Date</span>
+          </div>
+
+          <!-- Add new comment panel -->
+          <div class="bg-black/30 p-4 rounded-lg border border-borderGray/40 space-y-3">
+            <span class="text-xs font-mono text-white flex items-center gap-1">
+              <i data-lucide="pencil" class="w-3.5 h-3.5 text-visorakGreen"></i> Write Archive Review
+            </span>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <input id="review-user" type="text" placeholder="Alias (e.g., Rahaga_Norik)" class="bg-panelGray border border-borderGray focus:border-visorakGreen focus:outline-none rounded px-3 py-1.5 text-xs font-mono text-white">
+              <select id="review-rank" class="bg-panelGray border border-borderGray focus:border-visorakGreen focus:outline-none rounded px-3 py-1.5 text-xs font-mono text-white">
+                <option value="Toa Metru">Rank: Toa Metru</option>
+                <option value="Turaga">Rank: Turaga</option>
+                <option value="Rahaga">Rank: Rahaga</option>
+                <option value="Matoran">Rank: Matoran</option>
+                <option value="Dark Hunter">Rank: Dark Hunter</option>
+              </select>
+            </div>
+            <textarea id="review-text" rows="2" placeholder="Share your memories, DVD burning advice, or technical specs about the ISO file..." class="w-full bg-panelGray border border-borderGray focus:border-visorakGreen focus:outline-none rounded p-3 text-xs font-mono text-white placeholder-gray-600"></textarea>
+            <div class="flex justify-end">
+              <button onclick="postUserReview()" class="bg-visorakGreen hover:bg-green-400 text-black font-extrabold px-4 py-2 rounded text-xs tracking-wide uppercase font-mono">
+                Commit to Archival Record
+              </button>
+            </div>
+          </div>
+
+          <!-- Comments Feed list -->
+          <div id="comments-container" class="space-y-4">
+            <!-- Feed Item 1 -->
+            <div class="p-4 rounded-lg bg-black/40 border border-borderGray/50 space-y-2">
+              <div class="flex items-center justify-between text-xs font-mono">
+                <div class="flex items-center gap-2">
+                  <span class="text-visorakGreen font-bold hover:underline cursor-pointer">ShadowStealer_98</span>
+                  <span class="text-[9px] bg-hordikaRed/20 text-hordikaRed border border-hordikaRed/40 px-1 rounded">Turaga</span>
+                </div>
+                <span class="text-textGray">Oct 14, 2005</span>
+              </div>
+              <p class="text-xs text-gray-300 leading-relaxed font-mono">
+                Finally! A perfect DVD9 untouched release. I ran a verification script with the original disc sector block and it matches bit-for-bit. Burned this on a dual-layer Verbatim DVD+R at 4x speed and it loads flawlessly on standard DVD player. The menu transition animations are so slick, especially the transition from the Coliseum into the special features section. Nathan Furst’s background score is phenomenal!
+              </p>
+            </div>
+
+            <!-- Feed Item 2 -->
+            <div class="p-4 rounded-lg bg-black/40 border border-borderGray/50 space-y-2">
+              <div class="flex items-center justify-between text-xs font-mono">
+                <div class="flex items-center gap-2">
+                  <span class="text-visorakGreen font-bold hover:underline cursor-pointer">KanohiCollector</span>
+                  <span class="text-[9px] bg-blue-500/20 text-blue-400 border border-blue-500/40 px-1 rounded">Toa Metru</span>
+                </div>
+                <span class="text-textGray">Oct 13, 2005</span>
+              </div>
+              <p class="text-xs text-gray-300 leading-relaxed font-mono">
+                Can someone seed? I am stuck at 94.2% on the second VTS file. This movie was my childhood peak! Vakama Hordika’s internal conflict and turning dark was pretty heavy for a LEGO movie back then. Also, the adaptation of the “Shadow Play” comic is fully voiced by the actual movie cast! Pure gold. I’ll leave my box seeding at 10MB/s as soon as my download completes.
+              </p>
+            </div>
+
+            <!-- Feed Item 3 -->
+            <div class="p-4 rounded-lg bg-black/40 border border-borderGray/50 space-y-2">
+              <div class="flex items-center justify-between text-xs font-mono">
+                <div class="flex items-center gap-2">
+                  <span class="text-visorakGreen font-bold hover:underline cursor-pointer">VisorakHorde7</span>
+                  <span class="text-[9px] bg-yellow-500/20 text-yellow-500 border border-yellow-500/40 px-1 rounded">Dark Hunter</span>
+                </div>
+                <span class="text-textGray">Oct 12, 2005</span>
+              </div>
+              <p class="text-xs text-gray-300 leading-relaxed font-mono">
+                Roodaka was easily the most manipulative villain in the entire trilogy. Betraying Sidorak to the hands of Keetongu just to achieve her own objective is masterclass writing. Absolute legendary movie, the CGI holds up extremely well for 2005 television film standard. High quality NTSC stream, video bitrate stays steady around 6.5 Mbps.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT SIDE / METRICS & SEEDER SIDEBAR (1 COL) -->
+      <div class="space-y-6">
+
+        <!-- HEALTH & TRACKER STATISTICS -->
+        <div class="bg-panelGray border border-borderGray rounded-xl p-6 space-y-4">
+          <h4 class="text-white font-bold text-base flex items-center gap-1.5 border-b border-borderGray pb-2">
+            <i data-lucide="activity" class="text-visorakGreen w-5 h-5"></i> Tracker Health &amp; Peers
+          </h4>
+
+          <div class="grid grid-cols-2 gap-4 font-mono text-xs">
+            <!-- Seeds -->
+            <div class="bg-black/40 p-3 rounded border border-borderGray/40 text-center">
+              <span class="text-visorakGreen text-xl font-bold block" id="stat-seeders">42</span>
+              <span class="text-textGray">Seeders (Toa)</span>
+            </div>
+            <!-- Leechers -->
+            <div class="bg-black/40 p-3 rounded border border-borderGray/40 text-center">
+              <span class="text-hordikaRed text-xl font-bold block" id="stat-leechers">5</span>
+              <span class="text-textGray">Leechers (Hordika)</span>
+            </div>
+          </div>
+
+          <div class="space-y-3 font-mono text-xs pt-2">
+            <div class="flex justify-between">
+              <span class="text-textGray">Complete Downloads:</span>
+              <span class="text-white font-bold">1,208</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-textGray">Tracker Status:</span>
+              <span class="text-visorakGreen font-bold flex items-center gap-1">
+                <span class="w-2 h-2 rounded-full bg-visorakGreen"></span> ONLINE
+              </span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-textGray">Avg. Swarm Speed:</span>
+              <span class="text-white">4.8 MB/s</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-textGray">Torrent Hash (SHA1):</span>
+              <span class="text-visorakGreen select-all cursor-pointer text-[10px]" title="Click to select">b3c0e12e3f4a5b6c7d8e9f0...</span>
+            </div>
+          </div>
+          
+          <!-- Health Progress Bar -->
+          <div class="space-y-1.5 pt-2">
+            <div class="flex justify-between text-[11px] font-mono">
+              <span class="text-textGray">Swarm Availability:</span>
+              <span class="text-visorakGreen font-bold">47.0 Full Copies</span>
+            </div>
+            <div class="w-full bg-black rounded-full h-2 overflow-hidden border border-borderGray">
+              <div class="bg-visorakGreen h-full w-full"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AUTHENTIC METADATA SPECIFICATIONS -->
+        <div class="bg-panelGray border border-borderGray rounded-xl p-6 space-y-4 font-mono text-xs">
+          <h4 class="text-white font-bold text-base flex items-center gap-1.5 border-b border-borderGray pb-2">
+            <i data-lucide="info" class="text-visorakGreen w-5 h-5"></i> Archival Metadata
+          </h4>
+
+          <div class="space-y-2.5">
+            <div class="flex justify-between">
+              <span class="text-textGray">Release Date:</span>
+              <span class="text-white">October 11, 2005</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-textGray">Running Time:</span>
+              <span class="text-white">76 Minutes</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-textGray">Distributor:</span>
+              <span class="text-white">Miramax Home Ent.</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-textGray">Studio:</span>
+              <span class="text-white">Creative Capers</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-textGray">Music Composed by:</span>
+              <span class="text-white">Nathan Furst</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-textGray">IMDB Rating:</span>
+              <span class="text-white">6.3 / 10</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-textGray">Target Audience:</span>
+              <span class="text-white">Teenagers / LEGO Fans</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- LORE TRIVIA SLIDESHOW -->
+        <div class="bg-panelGray border border-borderGray rounded-xl p-6 space-y-3 relative overflow-hidden">
+          <div class="flex items-center justify-between border-b border-borderGray pb-2">
+            <h5 class="text-white font-bold text-sm flex items-center gap-1">
+              <i data-lucide="help-circle" class="w-4 h-4 text-visorakGreen"></i> Metru Nui Lore Chronicles
+            </h5>
+          </div>
+          <div id="trivia-box" class="text-xs text-gray-300 leading-relaxed min-h-[70px] transition-all duration-300 font-mono">
+            "Sidorak's species originates from the island of Stelt. He holds the status of King of the Visorak horde, but he relies heavily on Roodaka's tactical intelligence."
+          </div>
+          <div class="flex justify-between items-center pt-2">
+            <span class="text-[9px] text-textGray font-mono">Updated every 8 seconds</span>
+            <button onclick="nextTrivia()" class="text-xs text-visorakGreen hover:underline font-mono flex items-center gap-0.5">
+              Next Fact <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- PROMOTIONAL BONUS: CAUGHT IN A DREAM AUDIO TRACK PLAYER -->
+        <div class="bg-gradient-to-br from-panelGray to-[#0f141c] border border-borderGray rounded-xl p-6 space-y-4">
+          <div class="flex items-center gap-1.5 border-b border-borderGray pb-2">
+            <i data-lucide="music-4" class="text-hordikaRed w-5 h-5 animate-pulse"></i>
+            <h4 class="text-white font-bold text-sm">Theme Track: &quot;Caught in a Dream&quot;</h4>
+          </div>
+          <p class="text-xs text-textGray font-mono">Original end credits song by <strong class="text-white">All Insane Kids</strong> released in 2005. Feel the nostalgia!</p>
+          
+          <!-- Simulated Audio Player UI -->
+          <div class="bg-black/60 p-3 rounded-lg border border-borderGray/50 font-mono text-xs space-y-2">
+            <div class="flex justify-between items-center">
+              <span class="text-visorakGreen text-[11px] font-bold">All Insane Kids - Caught in a Dream.mp3</span>
+              <span class="text-[9px] text-textGray">192 kbps</span>
+            </div>
+            
+            <!-- Progress Slider simulation -->
+            <div class="space-y-1">
+              <div class="w-full bg-gray-800 h-1 rounded-full relative overflow-hidden">
+                <div id="audio-progress" class="bg-hordikaRed h-full w-[35%]"></div>
+              </div>
+              <div class="flex justify-between text-[10px] text-textGray">
+                <span id="audio-time">1:18</span>
+                <span>3:42</span>
+              </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="flex items-center justify-center gap-4 pt-1">
+              <button onclick="rewindAudioSim()" class="text-gray-400 hover:text-white transition"><i data-lucide="skip-back" class="w-4 h-4"></i></button>
+              <button onclick="toggleAudioSim()" id="audio-play-btn" class="bg-hordikaRed text-white p-2 rounded-full hover:scale-105 transition shadow-neon-red/30"><i data-lucide="play" class="w-4 h-4"></i></button>
+              <button onclick="forwardAudioSim()" class="text-gray-400 hover:text-white transition"><i data-lucide="skip-forward" class="w-4 h-4"></i></button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- BOTTOM FOOTER -->
+  <footer class="bg-black border-t border-borderGray mt-12 py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="text-center md:text-left">
+        <h5 class="text-white font-mono font-bold text-sm">BIOTORRENTS PRESERVATION PROJECT</h5>
+        <p class="text-xs text-textGray font-mono mt-1">Dedicated to indexing, verifying, and seeding legendary media of the Kanohi and Great Spirit universe since October 2005.</p>
+      </div>
+      <div class="flex gap-4 text-xs font-mono text-textGray">
+        <a href="#" class="hover:text-visorakGreen">Tracker List</a>
+        <a href="#" class="hover:text-visorakGreen">Legal / DMCA Policy</a>
+        <a href="#" class="hover:text-visorakGreen">Metru Nui Rules</a>
+        <a href="#" class="hover:text-visorakGreen">Contact Turaga</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CUSTOM GLOBAL ALERT BOX (REPLACES ALERT SYSTEM) -->
+  <div id="custom-alert" class="fixed bottom-4 right-4 bg-[#161b22] border-2 border-visorakGreen/80 rounded-xl p-4 shadow-xl z-50 max-w-sm hidden transition-all duration-300">
+    <div class="flex items-start gap-3">
+      <div class="p-1.5 bg-visorakGreen/20 text-visorakGreen rounded">
+        <i data-lucide="bell" class="w-5 h-5 animate-bounce"></i>
+      </div>
+      <div class="space-y-1">
+        <h6 class="text-white font-bold text-sm">BioTorrents Transmission</h6>
+        <p id="custom-alert-msg" class="text-xs text-gray-300 font-mono leading-relaxed">Alert text goes here...</p>
+        <button onclick="dismissCustomAlert()" class="text-[10px] font-bold text-visorakGreen hover:underline uppercase pt-1 block">Acknowledge</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TORRENT DOWNLOAD SIMULATOR MODAL OVERLAY -->
+  <div id="download-modal" class="fixed inset-0 bg-black/85 z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-[#0f141c] border-2 border-visorakGreen rounded-xl max-w-2xl w-full p-6 space-y-4 crt-screen shadow-neon-green/30 relative">
+      <div class="absolute right-4 top-4">
+        <button onclick="closeDownloadModal()" class="text-textGray hover:text-white transition">
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+      </div>
+
+      <!-- Modal Header -->
+      <div class="flex items-center gap-3 border-b border-borderGray pb-3">
+        <div class="relative w-12 h-12 bg-black rounded border border-visorakGreen flex items-center justify-center">
+          <i data-lucide="download-cloud" class="w-6 h-6 text-visorakGreen animate-pulse"></i>
+        </div>
+        <div>
+          <h4 class="text-white font-bold text-lg font-mono">Metru Nui Decoupled Downloader</h4>
+          <p class="text-[11px] text-textGray font-mono">BIONICLE_3_WEB_OF_SHADOWS.iso</p>
+        </div>
+      </div>
+
+      <!-- Active Connection & Map simulation -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 font-mono text-[11px]">
+        <!-- Connection states panel -->
+        <div class="md:col-span-2 bg-black p-3 rounded border border-borderGray/50 space-y-2">
+          <div class="flex justify-between">
+            <span class="text-textGray">Status:</span>
+            <span id="dl-status" class="text-yellow-400 font-bold animate-pulse">Allocating Disk Space...</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-textGray">Download Progress:</span>
+            <span id="dl-progress-percent" class="text-white font-bold">0.0%</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-textGray">Speed:</span>
+            <span id="dl-speed" class="text-visorakGreen font-bold">0 KB/s</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-textGray">Peers:</span>
+            <span id="dl-peers" class="text-white">0 Connected (42 Swarm)</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-textGray">Time Remaining:</span>
+            <span id="dl-eta" class="text-white">Calculating...</span>
+          </div>
+        </div>
+
+        <!-- Disc sectors mapping block -->
+        <div class="bg-black p-3 rounded border border-borderGray/50 flex flex-col justify-between">
+          <span class="text-textGray block mb-1">Sector BitMap:</span>
+          <div id="sector-bitmap" class="grid grid-cols-8 gap-1 flex-grow">
+            <!-- 32 blocks representation -->
+            <div class="w-full aspect-square bg-gray-800 rounded-sm"></div>
+            <div class="w-full aspect-square bg-gray-800 rounded-sm"></div>
+            <div class="w-full aspect-square bg-gray-800 rounded-sm"></div>
+            <div class="w-full aspect-square bg-gray-800 rounded-sm"></div>
+            <div class="w-full aspect-square bg-gray-800 rounded-sm"></div>
+            <div class="w-full aspect-square bg-gray-800 rounded-sm"></div>
+            <div class="w-full aspect-square bg-gray-800 rounded-sm"></div>
+            <div class="w-full aspect-square bg-gray-800 rounded-sm"></div>
+            <div class="w-full aspect-square bg-gray-800 rounded-sm"></div>
+            <div class="w-full aspect-square bg-gray-800 rounded-sm"></div>
+            <div class="w-full aspect-square bg-gray-800 rounded-sm"></div>
+            <div class="w-full aspect-square bg-gray-800 rounded-sm"></div>
+            <div class="w-full aspect-square bg-gray-800 rounded-sm"></div>
+            <div class="w-full aspect-square bg-gray-800 rounded-sm"></div>
+            <div class="w-full aspect-square bg-gray-800 rounded-sm"></div>
+            <div class="w-full aspect-square bg-gray-800 rounded-sm"></div>
+            <div class="w-full aspect-square bg-gray-800 rounded-sm"></div>
+            <div class="w-full aspect-square bg-gray-800 rounded-sm"></div>
+            <div class="w-full aspect-square bg-gray-800 rounded-sm"></div>
+            <div class="w-full aspect-square bg-gray-800 rounded-sm"></div>
+            <div class="w-full aspect-square bg-gray-800 rounded-sm"></div>
+            <div class="w-full aspect-square bg-gray-800 rounded-sm"></div>
+            <div class="w-full aspect-square bg-gray-800 rounded-sm"></div>
+            <div class="w-full aspect-square bg-gray-800 rounded-sm"></div>
+            <div class="w-full aspect-square bg-gray-800 rounded-sm"></div>
+            <div class="w-full aspect-square bg-gray-800 rounded-sm"></div>
+            <div class="w-full aspect-square bg-gray-800 rounded-sm"></div>
+            <div class="w-full aspect-square bg-gray-800 rounded-sm"></div>
+            <div class="w-full aspect-square bg-gray-800 rounded-sm"></div>
+            <div class="w-full aspect-square bg-gray-800 rounded-sm"></div>
+            <div class="w-full aspect-square bg-gray-800 rounded-sm"></div>
+            <div class="w-full aspect-square bg-gray-800 rounded-sm"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Master Progress Bar -->
+      <div class="space-y-1">
+        <div class="w-full bg-black rounded-full h-3 overflow-hidden border border-borderGray">
+          <div id="dl-progress-bar" class="bg-visorakGreen h-full w-0 transition-all duration-200"></div>
+        </div>
+        <div class="flex justify-between text-[10px] text-textGray font-mono">
+          <span id="dl-downloaded-bytes">0 GB</span>
+          <span>Target Size: 7.42 GB</span>
+        </div>
+      </div>
+
+      <!-- Action Panel -->
+      <div class="flex justify-end gap-3 pt-2">
+        <button id="dl-pause-btn" onclick="togglePauseSimulation()" class="bg-panelGray hover:bg-gray-800 border border-borderGray text-white font-mono text-xs px-4 py-2 rounded-lg transition">
+          Pause Download
+        </button>
+        <button onclick="closeDownloadModal()" class="bg-visorakGreen text-black font-mono text-xs font-bold px-4 py-2 rounded-lg transition hover:bg-green-400">
+          Dismiss Window
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Initialize Lucide Icons on document ready
+    document.addEventListener("DOMContentLoaded", () => {
+      lucide.createIcons();
+      initCanvasGame();
+    });
+
+    // Trivia database
+    const triviaList = [
+      "Sidorak’s species originates from the island of Stelt. He holds the status of King of the Visorak horde, but he relies heavily on Roodaka’s tactical intelligence.",
+      "Vakama Hordika is the only Toa who completely gives in to his primal beast instincts, temporarily joining Sidorak and Roodaka as the leader of the Visorak.",
+      "The track ‘Caught in a Dream’ by All Insane Kids was released as part of the official 2005 promotional campaign, also featuring in the movie’s ending credits.",
+      "Keetongu, the legendary giant Rahi oracle of healing, resides in the upper ruins of the Coliseum and is the only entity capable of neutralizing the Hordika Venom.",
+      "The Visorak horde consists of six distinct subspecies: Boggarak, Keelerak, Oohnorak, Roporak, Suukorak, and Vohtarak. Each possess unique elemental spinner attacks.",
+      "Nathan Furst composed the soundtrack, incorporating custom synthesized robotic sound effects overlaying grand classical strings to convey the biomechanical atmosphere.",
+      "This DVD9 rip includes the animatic adapted ‘Shadow Play’ comic book which tells the story of the Rahaga trying to protect the Mask of Light before the movie begins."
+    ];
+    let currentTriviaIndex = 0;
+    setInterval(() => {
+      nextTrivia();
+    }, 8000);
+
+    function nextTrivia() {
+      currentTriviaIndex = (currentTriviaIndex + 1) % triviaList.length;
+      const triviaBox = document.getElementById('trivia-box');
+      triviaBox.style.opacity = '0';
+      setTimeout(() => {
+        triviaBox.textContent = `"${triviaList[currentTriviaIndex]}"`;
+        triviaBox.style.opacity = '1';
+      }, 300);
+    }
+
+    // Audio Simulator variables
+    let audioSimPlaying = false;
+    let audioProgressVal = 35;
+    let audioTimer = null;
+
+    function toggleAudioSim() {
+      const btn = document.getElementById('audio-play-btn');
+      if (audioSimPlaying) {
+        audioSimPlaying = false;
+        btn.innerHTML = `<i data-lucide="play" class="w-4 h-4"></i>`;
+        clearInterval(audioTimer);
+      } else {
+        audioSimPlaying = true;
+        btn.innerHTML = `<i data-lucide="pause" class="w-4 h-4"></i>`;
+        audioTimer = setInterval(() => {
+          audioProgressVal += 0.5;
+          if (audioProgressVal >= 100) audioProgressVal = 0;
+          document.getElementById('audio-progress').style.width = `${audioProgressVal}%`;
+          // Compute a fake remaining time
+          let totalSeconds = 222; // 3:42
+          let currentSeconds = Math.floor((audioProgressVal / 100) * totalSeconds);
+          let mins = Math.floor(currentSeconds / 60);
+          let secs = currentSeconds % 60;
+          document.getElementById('audio-time').textContent = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+        }, 1000);
+      }
+      lucide.createIcons();
+    }
+    function rewindAudioSim() {
+      audioProgressVal = Math.max(0, audioProgressVal - 10);
+      document.getElementById('audio-progress').style.width = `${audioProgressVal}%`;
+    }
+    function forwardAudioSim() {
+      audioProgressVal = Math.min(100, audioProgressVal + 10);
+      document.getElementById('audio-progress').style.width = `${audioProgressVal}%`;
+    }
+
+    // Custom alerts instead of browser native alerts
+    function toggleAlert(msg) {
+      const alertBox = document.getElementById('custom-alert');
+      const alertMsg = document.getElementById('custom-alert-msg');
+      alertMsg.textContent = msg;
+      alertBox.classList.remove('hidden');
+      alertBox.classList.add('animate-bounce');
+      setTimeout(() => {
+        alertBox.classList.remove('animate-bounce');
+      }, 1000);
+    }
+    function dismissCustomAlert() {
+      document.getElementById('custom-alert').classList.add('hidden');
+    }
+
+    // Copy commands using fallback
+    function copyTorrentHash() {
+      const hash = "b3c0e12e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c";
+      const tempInput = document.createElement("input");
+      tempInput.value = hash;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand("copy");
+      document.body.removeChild(tempInput);
+      toggleAlert("Torrent Info Hash copied to your clipboard successfully!");
+    }
+
+    function copyNfo() {
+      const nfoContent = `BIONICLE.3.WEB.OF.SHADOWS.2005.NTSC.DVD9-MULTI.ISO`;
+      const tempInput = document.createElement("input");
+      tempInput.value = nfoContent;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand("copy");
+      document.body.removeChild(tempInput);
+      toggleAlert("NFO text layout headers exported to clipboard!");
+    }
+
+    // Tab switcher
+    function switchTab(tabId) {
+      const tabs = ['desc', 'files', 'arena', 'chat'];
+      tabs.forEach(t => {
+        document.getElementById(`tab-btn-${t}`).classList.remove('border-visorakGreen', 'text-white');
+        document.getElementById(`tab-btn-${t}`).classList.add('border-transparent', 'text-textGray');
+        document.getElementById(`tab-content-${t}`).classList.add('hidden');
+      });
+
+      document.getElementById(`tab-btn-${tabId}`).classList.add('border-visorakGreen', 'text-white');
+      document.getElementById(`tab-btn-${tabId}`).classList.remove('border-transparent', 'text-textGray');
+      document.getElementById(`tab-content-${tabId}`).classList.remove('hidden');
+    }
+
+    // Directory tree toggler
+    function toggleDir(dirId) {
+      const arrow = document.getElementById(`${dirId}-arrow`);
+      const content = document.getElementById(`${dirId}-content`);
+      if (content.classList.contains('hidden')) {
+        content.classList.remove('hidden');
+        arrow.style.transform = 'rotate(0deg)';
+      } else {
+        content.classList.add('hidden');
+        arrow.style.transform = 'rotate(-90deg)';
+      }
+    }
+
+    // User review/comment system
+    function postUserReview() {
+      const user = document.getElementById('review-user').value.trim() || 'Anonymous_Hordika';
+      const rank = document.getElementById('review-rank').value;
+      const text = document.getElementById('review-text').value.trim();
+
+      if (!text) {
+        toggleAlert('Please write some content for the archive record prior to submission.');
+        return;
+      }
+
+      // Generate element
+      const container = document.getElementById('comments-container');
+      const item = document.createElement('div');
+      item.className = 'p-4 rounded-lg bg-black/40 border-l-2 border-visorakGreen border-y border-r border-borderGray/50 space-y-2 animate-pulse';
+      
+      const badgeColor = rank === 'Turaga' ? 'bg-hordikaRed/20 text-hordikaRed border-hordikaRed/40' :
+                         rank === 'Rahaga' ? 'bg-green-500/20 text-green-400 border-green-500/40' :
+                         rank === 'Matoran' ? 'bg-gray-500/20 text-gray-400 border-gray-500/40' :
+                         rank === 'Dark Hunter' ? 'bg-yellow-500/20 text-yellow-500 border-yellow-500/40' : 
+                         'bg-blue-500/20 text-blue-400 border-blue-500/40';
+
+      item.innerHTML = `
+        <div class="flex items-center justify-between text-xs font-mono">
+          <div class="flex items-center gap-2">
+            <span class="text-visorakGreen font-bold hover:underline cursor-pointer">${user}</span>
+            <span class="text-[9px] ${badgeColor} border px-1 rounded">${rank}</span>
+          </div>
+          <span class="text-textGray">Just Now</span>
+        </div>
+        <p class="text-xs text-gray-300 leading-relaxed font-mono">
+          ${text.replace(/</g, "&lt;").replace(/>/g, "&gt;")}
+        </p>
+      `;
+
+      container.insertBefore(item, container.firstChild);
+      
+      // Update badge
+      const badge = document.getElementById('comment-count-badge');
+      badge.textContent = parseInt(badge.textContent) + 1;
+
+      // Clear fields
+      document.getElementById('review-text').value = '';
+      document.getElementById('review-user').value = '';
+
+      setTimeout(() => {
+        item.classList.remove('animate-pulse');
+      }, 1500);
+
+      toggleAlert('Archive comment submitted to Metru Nui Indexer successfully!');
+    }
+
+    // Torrent Download Simulator State machine
+    let dlInterval = null;
+    let dlProgress = 0;
+    let dlPaused = false;
+    let dlIsMagnet = false;
+
+    function startDownloadSimulation(isMagnet) {
+      dlIsMagnet = isMagnet;
+      dlProgress = 0;
+      dlPaused = false;
+      document.getElementById('download-modal').classList.remove('hidden');
+      document.getElementById('dl-pause-btn').textContent = "Pause Download";
+      document.getElementById('dl-status').textContent = "Connecting to trackers...";
+      document.getElementById('dl-progress-percent').textContent = "0.0%";
+      document.getElementById('dl-speed').textContent = "0 KB/s";
+      document.getElementById('dl-peers').textContent = "Resolving hostnames...";
+      document.getElementById('dl-eta').textContent = "Calculating...";
+      document.getElementById('dl-progress-bar').style.width = "0%";
+      document.getElementById('dl-downloaded-bytes').textContent = "0.00 GB";
+
+      // Clear past bitmap
+      const blocks = document.querySelectorAll('#sector-bitmap div');
+      blocks.forEach(b => {
+        b.className = "w-full aspect-square bg-gray-800 rounded-sm transition-colors duration-200";
+      });
+
+      if (dlInterval) clearInterval(dlInterval);
+
+      let step = 0;
+      dlInterval = setInterval(() => {
+        if (dlPaused) return;
+
+        step++;
+        if (step === 1) {
+          document.getElementById('dl-status').textContent = "Exchanging handshakes with Toa peers...";
+          document.getElementById('dl-peers').textContent = "12 Connected (42 Swarm)";
+          document.getElementById('dl-speed').textContent = "850 KB/s";
+          document.getElementById('dl-eta').textContent = "2h 35m";
+        } else if (step === 2) {
+          document.getElementById('dl-status').textContent = "Downloading DVD9 Iso File...";
+          document.getElementById('dl-peers').textContent = "38 Connected (42 Swarm)";
+          document.getElementById('dl-speed').textContent = "12.4 MB/s";
+          document.getElementById('dl-eta').textContent = "10m 08s";
+        } else {
+          // Increase download
+          dlProgress += Math.random() * 4 + 2;
+          if (dlProgress >= 100) {
+            dlProgress = 100;
+            clearInterval(dlInterval);
+            document.getElementById('dl-status').textContent = "Download Complete! Verifying MD5 Hash...";
+            document.getElementById('dl-speed').textContent = "0 KB/s";
+            document.getElementById('dl-eta').textContent = "None";
+            document.getElementById('dl-peers').textContent = "Seeding back to community...";
+            setTimeout(() => {
+              toggleAlert("BIONICLE 3 DVD9 ISO Download Completed! Direct sector verify match 100%. Happy burning!");
+            }, 800);
+          }
+
+          document.getElementById('dl-progress-percent').textContent = `${dlProgress.toFixed(1)}%`;
+          document.getElementById('dl-progress-bar').style.width = `${dlProgress}%`;
+          
+          let bytes = (7.42 * (dlProgress / 100)).toFixed(2);
+          document.getElementById('dl-downloaded-bytes').textContent = `${bytes} GB`;
+
+          // Fill in sector bits
+          const blockIndexToFill = Math.floor((dlProgress / 100) * blocks.length);
+          for (let i = 0; i < blocks.length; i++) {
+            if (i < blockIndexToFill) {
+              blocks[i].className = "w-full aspect-square bg-visorakGreen rounded-sm transition-colors duration-200 shadow-neon-green/30";
+            } else if (i === blockIndexToFill) {
+              blocks[i].className = "w-full aspect-square bg-yellow-500 rounded-sm animate-pulse";
+            }
+          }
+
+          // Randomize speed fluctuation
+          if (dlProgress < 100) {
+            let speed = (Math.random() * 5 + 10).toFixed(1);
+            document.getElementById('dl-speed').textContent = `${speed} MB/s`;
+            let remainingSecs = Math.floor(((100 - dlProgress) / 100) * 600);
+            let mins = Math.floor(remainingSecs / 60);
+            let secs = remainingSecs % 60;
+            document.getElementById('dl-eta').textContent = `${mins}m ${secs < 10 ? '0' : ''}${secs}s`;
+          }
+        }
+      }, 1000);
+    }
+
+    function togglePauseSimulation() {
+      const btn = document.getElementById('dl-pause-btn');
+      if (dlPaused) {
+        dlPaused = false;
+        btn.textContent = "Pause Download";
+        document.getElementById('dl-status').textContent = "Resuming peer connection...";
+      } else {
+        dlPaused = true;
+        btn.textContent = "Resume Download";
+        document.getElementById('dl-status').textContent = "PAUSED (Suspended)";
+        document.getElementById('dl-speed').textContent = "0 KB/s";
+      }
+    }
+
+    function closeDownloadModal() {
+      if (dlInterval) clearInterval(dlInterval);
+      document.getElementById('download-modal').classList.add('hidden');
+    }
+
+    // Interactive Chronicler Console (AI Chat Bot) Match System
+    function handleChatKeyPress(event) {
+      if (event.key === 'Enter') {
+        sendArchivistQuery();
+      }
+    }
+
+    function sendArchivistQuery() {
+      const input = document.getElementById('chat-user-input');
+      const text = input.value.trim();
+      if (!text) return;
+
+      // Append user msg
+      const logs = document.getElementById('chat-logs');
+      const userDiv = document.createElement('div');
+      userDiv.className = 'text-gray-400';
+      userDiv.innerHTML = `<span class="text-white font-bold">&gt; You:</span> ${text.replace(/</g, "&lt;").replace(/>/g, "&gt;")}`;
+      logs.appendChild(userDiv);
+      logs.scrollTop = logs.scrollHeight;
+
+      input.value = '';
+
+      // Processing answer
+      setTimeout(() => {
+        const replyDiv = document.createElement('div');
+        replyDiv.className = 'text-gray-300';
+        let ans = getLoreAnswer(text.toLowerCase());
+        replyDiv.innerHTML = `<span class="text-visorakGreen font-bold">Chronicler_AI:</span> ${ans}`;
+        logs.appendChild(replyDiv);
+        logs.scrollTop = logs.scrollHeight;
+      }, 700);
+    }
+
+    function getLoreAnswer(q) {
+      if (q.includes('hordika') || q.includes('vakama')) {
+        return "Toa Vakama was deeply transformed by the venomous liquid injected by Visorak. He battled his inner beast, succumbing momentarily to Queen Roodaka's manipulation to rule over the Horde, before Matau reminded him of his sacred destiny and duty of Unity.";
+      }
+      if (q.includes('keetongu')) {
+        return "Keetongu is a legendary giant Rahi known for his mastery of the life forces. He dwells high above Metru Nui Coliseum's ruin. He fought Sidorak, pushing him into Sidorak's demise, and cleansed the Toa of the venom, transforming them back into Toa Metru.";
+      }
+      if (q.includes('dvd9') || q.includes('iso') || q.includes('size')) {
+        return "This is a dual-layer DVD9 backup (7.42 GB) matching the retail sector structures exactly. DVD9 uses two recording layers on a single disc surface, maintaining high-bitrate video and rich extras. Standard DVD5 rips of this movie suffer from heavy compression artifacts and strip out the interactive explorer animations.";
+      }
+      if (q.includes('feature') || q.includes('extras') || q.includes('bonus')) {
+        return "The special features on this ISO contain: 1. BIONICLE Explorer (interactive database of the 2005 sets and characters), 2. Animatics for Comic 25 'Shadow Play' with full vocal acting, 3. Original high-definition commercial spots for LEGO Hordika toys, and 4. Nathan Furst's score previews!";
+      }
+      if (q.includes('region') || q.includes('ntsc')) {
+        return "This ISO is encoded in Region 1 NTSC widescreen format. However, because CSS encryption was stripped during decryption, it functions as a Region-Free ISO and compiles beautifully on almost all systems.";
+      }
+      if (q.includes('sidorak') || q.includes('roodaka')) {
+        return "Sidorak is King of the Visorak Horde, and Roodaka is the Viceroy. While Sidorak sought glory and status, Roodaka secretly wanted to betray him to use the elemental spinners of the Toa to crack open Makuta's crystal prison. She let Sidorak perish under Keetongu's fists.";
+      }
+      return "That query is not explicitly classified in the Great Temple library blocks. However, I can confirm BIONICLE 3: Web of Shadows released in late 2005 was direct-to-video, utilizing state-of-the-art computer animation from Creative Capers. Ask me more about 'DVD9 details', 'Hordika Venom', or 'Keetongu'!";
+    }
+
+    // Action Canvas Game: Rhotuka Spinner Defense Arena
+    let canvas, ctx;
+    let gameActive = false;
+    let score = 0;
+    let highscore = 0;
+    let selectedToa = 'vakama';
+    let entities = [];
+    let spinners = [];
+    let lastSpawn = 0;
+    let spawnRate = 2000; // ms
+    let mousePos = { x: 150, y: 300 };
+
+    function initCanvasGame() {
+      canvas = document.getElementById('arena-canvas');
+      ctx = canvas.getContext('2d');
+
+      // Fluid resize canvas bounds
+      resizeCanvas();
+      window.addEventListener('resize', resizeCanvas);
+
+      // Event listeners for shooting and aiming
+      canvas.addEventListener('mousemove', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        mousePos.x = e.clientX - rect.left;
+        mousePos.y = e.clientY - rect.top;
+      });
+
+      canvas.addEventListener('mousedown', (e) => {
+        if (!gameActive) return;
+        fireSpinner();
+      });
+
+      // Mobile Touch Support
+      canvas.addEventListener('touchstart', (e) => {
+        if (!gameActive) return;
+        const rect = canvas.getBoundingClientRect();
+        const touch = e.touches[0];
+        mousePos.x = touch.clientX - rect.left;
+        mousePos.y = touch.clientY - rect.top;
+        fireSpinner();
+      });
+    }
+
+    function resizeCanvas() {
+      if (!canvas) return;
+      const rect = canvas.parentNode.getBoundingClientRect();
+      canvas.width = rect.width;
+      canvas.height = rect.height;
+    }
+
+    function selectToa(toa) {
+      selectedToa = toa;
+      // update buttons UI visual focus
+      const list = ['vakama', 'nokama', 'matau', 'nuju'];
+      list.forEach(t => {
+        const el = document.getElementById(`btn-toa-${t}`);
+        el.className = "w-full flex items-center gap-3 p-2 rounded border border-transparent hover:bg-white/5 text-gray-300 transition text-left";
+      });
+
+      const activeEl = document.getElementById(`btn-toa-${toa}`);
+      if (toa === 'vakama') activeEl.className = "w-full flex items-center gap-3 p-2 rounded border border-hordikaRed bg-hordikaRed/20 text-white transition text-left";
+      if (toa === 'nokama') activeEl.className = "w-full flex items-center gap-3 p-2 rounded border border-blue-500 bg-blue-500/20 text-white transition text-left";
+      if (toa === 'matau') activeEl.className = "w-full flex items-center gap-3 p-2 rounded border border-green-500 bg-green-500/20 text-white transition text-left";
+      if (toa === 'nuju') activeEl.className = "w-full flex items-center gap-3 p-2 rounded border border-cyan-300 bg-cyan-300/20 text-white transition text-left";
+    }
+
+    function startGame() {
+      document.getElementById('game-overlay').classList.add('hidden');
+      gameActive = true;
+      score = 0;
+      entities = [];
+      spinners = [];
+      lastSpawn = Date.now();
+      document.getElementById('game-score').textContent = score;
+      requestAnimationFrame(gameLoop);
+    }
+
+    function resetGame() {
+      gameActive = false;
+      document.getElementById('game-overlay').classList.remove('hidden');
+    }
+
+    function fireSpinner() {
+      // Create new physics spinner item based on selected Toa Hordika stats
+      let color = '#ff2a2a';
+      let speed = 6;
+      let power = 1;
+      let radius = 8;
+
+      if (selectedToa === 'nokama') { color = '#3b82f6'; speed = 5; power = 1.2; }
+      if (selectedToa === 'matau') { color = '#22c55e'; speed = 8; radius = 6; }
+      if (selectedToa === 'nuju') { color = '#67e8f9'; speed = 4; radius = 12; }
+
+      // Compute vector from bottom center to mousePos
+      const launchX = canvas.width / 2;
+      const launchY = canvas.height - 20;
+      const dx = mousePos.x - launchX;
+      const dy = mousePos.y - launchY;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+
+      if (dist === 0) return;
+
+      const vx = (dx / dist) * speed;
+      const vy = (dy / dist) * speed;
+
+      spinners.push({
+        x: launchX,
+        y: launchY,
+        vx: vx,
+        vy: vy,
+        radius: radius,
+        color: color,
+        toa: selectedToa,
+        bounces: 0
+      });
+    }
+
+    // Visoraks descending
+    function spawnVisorak() {
+      const typeRand = Math.random();
+      let color = '#39ff14'; // Keelerak Green
+      let hp = 1;
+      let speed = 0.5 + Math.random() * 0.4;
+      let size = 12;
+
+      if (typeRand > 0.7) {
+        color = '#ff2a2a'; // Vohtarak Red
+        hp = 2;
+        speed = 0.4;
+        size = 16;
+      } else if (typeRand > 0.5) {
+        color = '#eab308'; // Oohnorak Yellow
+        hp = 1;
+        speed = 0.8;
+        size = 10;
+      }
+
+      entities.push({
+        x: Math.random() * (canvas.width - 40) + 20,
+        y: -20,
+        vy: speed,
+        color: color,
+        size: size,
+        hp: hp,
+        maxHp: hp
+      });
+    }
+
+    function gameLoop() {
+      if (!gameActive) return;
+
+      // Clear Canvas
+      ctx.fillStyle = '#0a0c10';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Draw background design elements
+      ctx.strokeStyle = '#161b22';
+      ctx.lineWidth = 1;
+      for (let i = 0; i < canvas.width; i += 40) {
+        ctx.beginPath();
+        ctx.moveTo(i, 0);
+        ctx.lineTo(i, canvas.height);
+        ctx.stroke();
+      }
+      for (let j = 0; j < canvas.height; j += 40) {
+        ctx.beginPath();
+        ctx.moveTo(0, j);
+        ctx.lineTo(canvas.width, j);
+        ctx.stroke();
+      }
+
+      // Spawn Visoraks over interval
+      const now = Date.now();
+      if (now - lastSpawn > spawnRate) {
+        spawnVisorak();
+        lastSpawn = now;
+        // make game progressively faster
+        spawnRate = Math.max(800, 2000 - score * 40);
+      }
+
+      // Draw Coliseum boundary line (defense checkpoint)
+      ctx.strokeStyle = '#ff2a2a';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(0, canvas.height - 30);
+      ctx.lineTo(canvas.width, canvas.height - 30);
+      ctx.stroke();
+
+      // Update & Draw Spinners
+      for (let i = spinners.length - 1; i >= 0; i--) {
+        const s = spinners[i];
+        s.x += s.vx;
+        s.y += s.vy;
+
+        // Bounce on walls
+        if (s.x - s.radius < 0 || s.x + s.radius > canvas.width) {
+          s.vx *= -1;
+          s.bounces++;
+        }
+
+        // Draw Rhotuka design (concentric glowing spinning circles)
+        ctx.strokeStyle = s.color;
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
+        ctx.stroke();
+        
+        ctx.strokeStyle = '#fff';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.radius / 2, 0, Math.PI * 2);
+        ctx.stroke();
+
+        // Remove out-of-bounds spinners
+        if (s.y < -50 || s.y > canvas.height + 50 || s.bounces > 4) {
+          spinners.splice(i, 1);
+        }
+      }
+
+      // Update & Draw Visorak enemies
+      for (let i = entities.length - 1; i >= 0; i--) {
+        const e = entities[i];
+        e.y += e.vy;
+
+        // Draw spider shape
+        ctx.fillStyle = e.color;
+        // Legs outline
+        ctx.strokeStyle = e.color;
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(e.x - e.size, e.y - e.size / 2);
+        ctx.lineTo(e.x + e.size, e.y + e.size / 2);
+        ctx.moveTo(e.x - e.size, e.y + e.size / 2);
+        ctx.lineTo(e.x + e.size, e.y - e.size / 2);
+        ctx.moveTo(e.x - e.size * 1.3, e.y);
+        ctx.lineTo(e.x + e.size * 1.3, e.y);
+        ctx.stroke();
+
+        // Main body
+        ctx.beginPath();
+        ctx.arc(e.x, e.y, e.size / 1.5, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Draw health indicators
+        if (e.maxHp > 1) {
+          ctx.fillStyle = '#ff2a2a';
+          ctx.fillRect(e.x - 8, e.y - e.size - 4, 16, 3);
+          ctx.fillStyle = '#39ff14';
+          ctx.fillRect(e.x - 8, e.y - e.size - 4, 16 * (e.hp / e.maxHp), 3);
+        }
+
+        // Check loss condition (Visorak breaches Coliseum wall)
+        if (e.y >= canvas.height - 35) {
+          gameActive = false;
+          toggleAlert(`Swarm breached our defense wall at Metru Nui! Final Score: ${score}`);
+          document.getElementById('game-overlay').classList.remove('hidden');
+          if (score > highscore) {
+            highscore = score;
+            document.getElementById('game-highscore').textContent = highscore;
+          }
+          return;
+        }
+
+        // Check collisions against spinners
+        for (let j = spinners.length - 1; j >= 0; j--) {
+          const s = spinners[j];
+          const dx = e.x - s.x;
+          const dy = e.y - s.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < e.size + s.radius) {
+            // Impact!
+            if (s.toa === 'nuju') {
+              // Huge ice splash damage
+              e.hp -= 2;
+            } else if (s.toa === 'nokama') {
+              // Freezing water slowing down speed
+              e.vy *= 0.3;
+              e.hp -= 1;
+            } else {
+              e.hp -= 1;
+            }
+
+            // Fire pierce effect
+            if (s.toa !== 'vakama') {
+              spinners.splice(j, 1);
+            }
+
+            if (e.hp <= 0) {
+              entities.splice(i, 1);
+              score += 10;
+              document.getElementById('game-score').textContent = score;
+              break;
+            }
+          }
+        }
+      }
+
+      // Draw Toa Launcher at the bottom center
+      const launchX = canvas.width / 2;
+      const launchY = canvas.height - 20;
+
+      // Draw Launcher Base
+      ctx.fillStyle = '#161b22';
+      ctx.strokeStyle = '#30363d';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.arc(launchX, launchY, 20, Math.PI, 0);
+      ctx.fill();
+      ctx.stroke();
+
+      // Aim Line indicator
+      const dx = mousePos.x - launchX;
+      const dy = mousePos.y - launchY;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist > 0) {
+        const aimX = launchX + (dx / dist) * 45;
+        const aimY = launchY + (dy / dist) * 45;
+
+        ctx.strokeStyle = '#39ff14';
+        ctx.lineWidth = 1;
+        ctx.setLineDash([4, 4]);
+        ctx.beginPath();
+        ctx.moveTo(launchX, launchY);
+        ctx.lineTo(aimX, aimY);
+        ctx.stroke();
+        ctx.setLineDash([]);
+      }
+
+      requestAnimationFrame(gameLoop);
+    }
+  </script>
+</body>
+</html>
