@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="ja" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NekoShare :: ガーフィールド ザ・ムービー (2004) [1080p BluRay REMUX AVC DTS-HD MA 5.1]</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind Custom Configuration -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            200: '#fed7aa',
+                            300: '#fdba74',
+                            400: '#fb923c',
+                            500: '#f97316', /* Garfield Orange */
+                            600: '#ea580c',
+                            700: '#c2410c',
+                            800: '#9a3412',
+                            900: '#7c2d12',
+                        },
+                        darkbg: {
+                            base: '#0b0f19',
+                            card: '#161d30',
+                            border: '#232d45',
+                            accent: '#1e2942'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700;900&display=swap');
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            background-color: #0b0f19;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0b0f19;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #232d45;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #fb923c;
+        }
+    </style>
+</head>
+<body class="text-slate-100 antialiased min-h-screen flex flex-col transition-colors duration-300">
+
+    <!-- Toast Notification Overlay -->
+    <div id="toast-container" class="fixed top-5 right-5 z-50 flex flex-col gap-3 pointer-events-none"></div>
+
+    <!-- Header Navigation -->
+    <header class="border-b border-darkbg-border bg-darkbg-base/80 backdrop-blur-md sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <div class="flex items-center gap-3 cursor-pointer">
+                <span class="p-2 bg-brand-500 rounded-xl text-black font-extrabold flex items-center justify-center shadow-lg shadow-brand-500/20 transform hover:scale-105 transition">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m12.728 12.728l.707.707M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </span>
+                <span class="text-xl font-black tracking-wider bg-gradient-to-r from-brand-400 to-brand-600 bg-clip-text text-transparent">NekoShare</span>
+                <span class="hidden md:inline-block px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded">Private</span>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="hidden lg:flex items-center flex-1 max-w-md mx-8 relative">
+                <input type="text" id="global-search" placeholder="急流、アーティスト、IMDb IDを検索..." 
+                       class="w-full bg-darkbg-card border border-darkbg-border rounded-full px-5 py-2 pl-12 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500 transition-all">
+                <svg class="w-5 h-5 absolute left-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+            </div>
+
+            <!-- User Status & Quick Stats -->
+            <div class="flex items-center gap-4 text-xs">
+                <!-- Share Ratio Panel -->
+                <div class="hidden sm:flex flex-col items-end border-r border-darkbg-border pr-4 gap-0.5">
+                    <div class="flex items-center gap-1.5">
+                        <span class="text-slate-400">比率:</span>
+                        <span class="font-bold text-emerald-400">3.84</span>
+                    </div>
+                    <div class="flex gap-2 text-[10px] text-slate-500">
+                        <span>↑ 4.21 TB</span>
+                        <span>↓ 1.10 TB</span>
+                    </div>
+                </div>
+
+                <!-- User Points -->
+                <div class="hidden md:flex flex-col items-end border-r border-darkbg-border pr-4 gap-0.5">
+                    <span class="text-slate-400">ボーナスポイント:</span>
+                    <span class="font-bold text-amber-400">15,240 BP</span>
+                </div>
+
+                <!-- User Profile -->
+                <div class="flex items-center gap-3 pl-1">
+                    <div class="text-right hidden sm:block">
+                        <div class="font-semibold text-slate-200">NekoLover</div>
+                        <div class="text-[10px] text-brand-400 font-bold uppercase tracking-wider">Power User</div>
+                    </div>
+                    <!-- Mock Avatar representing a cat -->
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-brand-500 to-amber-500 flex items-center justify-center font-bold text-slate-900 border-2 border-brand-500 shadow-md shadow-brand-500/15 cursor-pointer hover:scale-105 transition">
+                        🐱
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Layout -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+        <!-- Navigation Breadcrumbs -->
+        <nav class="flex text-xs text-slate-400 mb-6 items-center gap-2 overflow-x-auto whitespace-nowrap py-1">
+            <span class="hover:text-brand-400 cursor-pointer">ホーム</span>
+            <span>/</span>
+            <span class="hover:text-brand-400 cursor-pointer">洋画・アニメ</span>
+            <span>/</span>
+            <span class="hover:text-brand-400 cursor-pointer">コメディ・キッズ</span>
+            <span>/</span>
+            <span class="text-slate-200 font-medium">ガーフィールド ザ・ムービー (2004) [REMUX]</span>
+        </nav>
+
+        <!-- Main Banner Block (Flex layout) -->
+        <div class="bg-gradient-to-br from-darkbg-card to-[#121826] rounded-3xl border border-darkbg-border overflow-hidden p-6 mb-8 shadow-2xl relative">
+            <!-- Freeleech/Double Upload Ribbons -->
+            <div class="absolute top-0 right-0 flex gap-2 p-4">
+                <span class="px-3 py-1 bg-emerald-500 text-black text-xs font-black tracking-widest uppercase rounded-lg shadow-lg animate-pulse">
+                    FREELEECH (残り 12時間)
+                </span>
+                <span class="px-3 py-1 bg-cyan-500 text-black text-xs font-black tracking-widest uppercase rounded-lg shadow-lg">
+                    2x UPLOAD
+                </span>
+            </div>
+
+            <!-- Content Area -->
+            <div class="flex flex-col lg:flex-row gap-8 items-start relative z-10">
+                <!-- Movie Virtual Poster (Vector representation of Garfield) -->
+                <div class="w-full sm:w-64 flex-shrink-0 mx-auto lg:mx-0">
+                    <div class="aspect-[2/3] w-full rounded-2xl bg-[#2a1708] border border-brand-500/30 flex flex-col justify-between p-4 shadow-xl relative overflow-hidden group">
+                        <!-- Decorative Cat Ears Vector Background -->
+                        <div class="absolute -top-10 -left-10 w-40 h-40 bg-brand-500/10 rounded-full blur-2xl"></div>
+                        <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-amber-500/10 rounded-full blur-2xl"></div>
+                        
+                        <!-- Mini Tag -->
+                        <div class="z-10 flex justify-between items-start">
+                            <span class="px-2.5 py-1 bg-brand-500 text-black text-[10px] font-black tracking-wider rounded-md uppercase">1080p REMUX</span>
+                            <span class="text-xs text-slate-300 font-bold bg-black/60 px-2 py-1 rounded">2004</span>
+                        </div>
+
+                        <!-- Stylized SVG Garfield Art instead of broken image -->
+                        <div class="w-full flex flex-col items-center justify-center my-auto py-6 relative z-10">
+                            <!-- Orange Cat silhouette/art using pure SVG -->
+                            <svg class="w-24 h-24 text-brand-500 drop-shadow-[0_0_15px_rgba(249,115,22,0.4)] transition transform group-hover:scale-110 duration-500" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15.5c0 .83-.67 1.5-1.5 1.5s-1.5-.67-1.5-1.5.67-1.5 1.5-1.5 1.5.67 1.5 1.5zm-1.5-4c-.55 0-1-.45-1-1V8c0-.55.45-1 1-1s1.45 1 1 1v4c0 .55-.45 1-1 1z"/>
+                                <!-- Fictional Cat ears overlay inside svg -->
+                                <path d="M4 5.5l3.5 3L6 10zm16 0l-3.5 3L18 10z" fill="#f97316"/>
+                            </svg>
+                            <span class="mt-4 font-black text-brand-300 text-lg tracking-wider text-center drop-shadow">GARFIELD</span>
+                            <span class="text-[10px] text-slate-400 uppercase tracking-widest mt-1">THE MOVIE</span>
+                        </div>
+
+                        <!-- Technical Badge list bottom -->
+                        <div class="z-10 bg-black/50 backdrop-blur-sm rounded-xl p-2.5 border border-slate-800 text-center">
+                            <div class="text-[10px] text-slate-400">フォーマット: <strong class="text-white">MKV (x264)</strong></div>
+                            <div class="text-[10px] text-slate-400 mt-0.5">ファイルサイズ: <strong class="text-brand-400">21.4 GB</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Details Panel -->
+                <div class="flex-grow flex flex-col justify-between w-full">
+                    <div>
+                        <!-- Title block -->
+                        <div class="flex flex-wrap items-center gap-3 mb-3">
+                            <span class="px-2.5 py-0.5 bg-brand-500/10 text-brand-400 text-xs font-bold rounded-md border border-brand-500/20">Remux</span>
+                            <span class="px-2.5 py-0.5 bg-slate-800 text-slate-300 text-xs font-bold rounded-md border border-slate-700">1080p</span>
+                            <span class="px-2.5 py-0.5 bg-slate-800 text-slate-300 text-xs font-bold rounded-md border border-slate-700">AVC</span>
+                            <span class="px-2.5 py-0.5 bg-blue-500/10 text-blue-400 text-xs font-bold rounded-md border border-blue-500/20">DTS-HD MA 5.1</span>
+                            <span class="px-2.5 py-0.5 bg-amber-500/10 text-amber-400 text-xs font-bold rounded-md border border-amber-500/20">日本語吹替収録</span>
+                        </div>
+
+                        <h1 class="text-2xl sm:text-3xl font-black tracking-tight text-white mb-2 leading-tight">
+                            ガーフィールド ザ・ムービー (2004) <span class="text-brand-500">[Blu-ray Remux / AVC / DTS-HD MA 5.1 / MKV]</span>
+                        </h1>
+                        <p class="text-sm text-slate-400 font-semibold mb-4">
+                            原題: Garfield: The Movie (2004) / 監督: ピーター・ヒューイット / 主演: ビル・マーレイ (吹替: 藤井隆)
+                        </p>
+
+                        <!-- Movie Quick Info grid -->
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 py-4 px-5 bg-darkbg-accent rounded-2xl border border-darkbg-border mb-6">
+                            <div>
+                                <div class="text-[11px] text-slate-400 uppercase tracking-wider mb-0.5">アップロード日時</div>
+                                <div class="text-sm font-bold text-slate-200">2026-05-15 14:22</div>
+                            </div>
+                            <div>
+                                <div class="text-[11px] text-slate-400 uppercase tracking-wider mb-0.5">ダウンロードサイズ</div>
+                                <div class="text-sm font-bold text-slate-200">21.43 GiB</div>
+                            </div>
+                            <div>
+                                <div class="text-[11px] text-slate-400 uppercase tracking-wider mb-0.5">アップローダー</div>
+                                <div class="text-sm font-bold text-brand-400 flex items-center gap-1 cursor-pointer hover:underline">
+                                    <span>NekoAdmin</span>
+                                    <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="text-[11px] text-slate-400 uppercase tracking-wider mb-0.5">ダウンロード回数</div>
+                                <div class="text-sm font-bold text-slate-200">189 回</div>
+                            </div>
+                        </div>
+
+                        <!-- Real-time Peer Status Cards -->
+                        <div class="grid grid-cols-3 gap-3 mb-6">
+                            <!-- Seeders -->
+                            <div class="bg-[#0f241a] rounded-xl p-3 border border-emerald-500/20 text-center transform hover:scale-[1.02] transition">
+                                <div class="text-[10px] text-emerald-400 font-bold uppercase tracking-widest mb-0.5">シード (配信中)</div>
+                                <div class="text-2xl font-black text-emerald-300" id="seeder-count">42</div>
+                                <div class="text-[10px] text-emerald-400/70 mt-0.5">接続可能率: 100%</div>
+                            </div>
+                            <!-- Leechers -->
+                            <div class="bg-[#2c1514] rounded-xl p-3 border border-rose-500/20 text-center transform hover:scale-[1.02] transition">
+                                <div class="text-[10px] text-rose-400 font-bold uppercase tracking-widest mb-0.5">ピア (ダウンロード中)</div>
+                                <div class="text-2xl font-black text-rose-300" id="leecher-count">3</div>
+                                <div class="text-[10px] text-rose-400/70 mt-0.5">総需要：低</div>
+                            </div>
+                            <!-- Complete Ratio -->
+                            <div class="bg-darkbg-accent rounded-xl p-3 border border-darkbg-border text-center transform hover:scale-[1.02] transition">
+                                <div class="text-[10px] text-brand-400 font-bold uppercase tracking-widest mb-0.5">健康状態 (ヘルシー度)</div>
+                                <div class="text-2xl font-black text-brand-300">14.00</div>
+                                <div class="text-[10px] text-slate-400 mt-0.5">安定稼働中</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Downloads Grid -->
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <button onclick="triggerDownload('torrent')" 
+                                class="flex-1 px-6 py-3.5 bg-gradient-to-r from-brand-500 to-orange-600 hover:from-brand-600 hover:to-orange-700 text-slate-900 hover:text-white font-extrabold rounded-xl shadow-lg shadow-brand-500/20 flex items-center justify-center gap-2 transform hover:-translate-y-0.5 transition duration-200">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                            </svg>
+                            <span>.torrentをダウンロード</span>
+                        </button>
+
+                        <button onclick="triggerDownload('magnet')"
+                                class="px-6 py-3.5 bg-darkbg-accent hover:bg-darkbg-border text-slate-200 hover:text-brand-400 font-bold rounded-xl border border-darkbg-border flex items-center justify-center gap-2 transform hover:-translate-y-0.5 transition duration-200">
+                            <svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                            <span>マグネットリンク</span>
+                        </button>
+
+                        <button onclick="toggleBookmark()" id="btn-bookmark"
+                                class="px-5 py-3.5 bg-darkbg-accent hover:bg-darkbg-border text-slate-400 hover:text-yellow-400 font-bold rounded-xl border border-darkbg-border flex items-center justify-center gap-2 transition duration-200">
+                            <svg class="w-5 h-5" id="bookmark-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"></path>
+                            </svg>
+                            <span id="bookmark-text">お気に入り登録</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Middle Content Split (Left: Movie / Specs Tabs, Right: Torrent tools and statistics) -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <!-- Left Side Details Area (Col span 2) -->
+            <div class="lg:col-span-2 flex flex-col gap-6">
+                
+                <!-- Segment Tab Control -->
+                <div class="bg-darkbg-card p-1 rounded-xl border border-darkbg-border flex overflow-x-auto whitespace-nowrap">
+                    <button onclick="switchTab('tab-description')" id="btn-tab-description" 
+                            class="flex-1 py-2.5 px-4 text-sm font-bold rounded-lg text-brand-400 bg-darkbg-accent border border-brand-500/10 transition">
+                        作品概要・解説
+                    </button>
+                    <button onclick="switchTab('tab-mediainfo')" id="btn-tab-mediainfo" 
+                            class="flex-1 py-2.5 px-4 text-sm font-semibold rounded-lg text-slate-400 hover:text-slate-200 transition">
+                        MediaInfo (技術仕様)
+                    </button>
+                    <button onclick="switchTab('tab-files')" id="btn-tab-files" 
+                            class="flex-1 py-2.5 px-4 text-sm font-semibold rounded-lg text-slate-400 hover:text-slate-200 transition">
+                        ファイルリスト (3)
+                    </button>
+                    <button onclick="switchTab('tab-peers')" id="btn-tab-peers" 
+                            class="flex-1 py-2.5 px-4 text-sm font-semibold rounded-lg text-slate-400 hover:text-slate-200 transition">
+                        接続ピア一覧
+                    </button>
+                </div>
+
+                <!-- Tab content container -->
+                <div class="bg-darkbg-card rounded-2xl border border-darkbg-border p-6 min-h-[300px]">
+                    
+                    <!-- TAB 1: DESCRIPTION -->
+                    <div id="tab-description" class="space-y-6">
+                        <div>
+                            <h3 class="text-lg font-bold text-white border-l-4 border-brand-500 pl-3 mb-4">あらすじ</h3>
+                            <p class="text-sm text-slate-300 leading-relaxed">
+                                世界中で愛されているコミックの猫「ガーフィールド」が全編フル3D CGとなって実写映画の中に登場！ 飼い主のジョンから溢れんばかりの愛情を独り占めしていた超お気楽もののガーフィールド。ところが、ある日、新入りの甘えん坊犬オーディがやってきて、ガーフィールドの平和で甘やかされた生活は一変。嫉妬に狂ったガーフィールドは意地悪をしてオーディを家から追い出すことに成功するが、オーディが心ない人間のペット・コンテスト主催者に捕まってしまったことを知り、罪悪感から救出の大冒険に出発する！
+                            </p>
+                        </div>
+
+                        <!-- Cast and Crew section -->
+                        <div>
+                            <h3 class="text-lg font-bold text-white border-l-4 border-brand-500 pl-3 mb-4">キャスト＆スタッフ</h3>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div class="bg-darkbg-accent p-3.5 rounded-xl border border-darkbg-border flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-lg bg-brand-500/10 flex items-center justify-center font-bold text-xl text-brand-400">🎙️</div>
+                                    <div>
+                                        <div class="text-[10px] text-slate-400">ガーフィールド (声)</div>
+                                        <div class="text-sm font-bold text-slate-200">ビル・マーレイ</div>
+                                        <div class="text-[11px] text-brand-400 font-medium">日本語吹替: 藤井隆</div>
+                                    </div>
+                                </div>
+                                <div class="bg-darkbg-accent p-3.5 rounded-xl border border-darkbg-border flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-lg bg-brand-500/10 flex items-center justify-center font-bold text-xl text-brand-400">👤</div>
+                                    <div>
+                                        <div class="text-[10px] text-slate-400">ジョン・アーバックル (飼い主)</div>
+                                        <div class="text-sm font-bold text-slate-200">ブレッキン・メイヤー</div>
+                                        <div class="text-[11px] text-slate-400">日本語吹替: 内田夕夜</div>
+                                    </div>
+                                </div>
+                                <div class="bg-darkbg-accent p-3.5 rounded-xl border border-darkbg-border flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-lg bg-brand-500/10 flex items-center justify-center font-bold text-xl text-brand-400">👩</div>
+                                    <div>
+                                        <div class="text-[10px] text-slate-400">リズ・ウィルソン (獣医)</div>
+                                        <div class="text-sm font-bold text-slate-200">ジェニファー・ラヴ・ヒューイット</div>
+                                        <div class="text-[11px] text-slate-400">日本語吹替: 花村さやか</div>
+                                    </div>
+                                </div>
+                                <div class="bg-darkbg-accent p-3.5 rounded-xl border border-darkbg-border flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-lg bg-brand-500/10 flex items-center justify-center font-bold text-xl text-brand-400">🎬</div>
+                                    <div>
+                                        <div class="text-[10px] text-slate-400">映画監督</div>
+                                        <div class="text-sm font-bold text-slate-200">ピーター・ヒューイット</div>
+                                        <div class="text-[11px] text-slate-400">代表作: 「ハロルド・スミスに何が起こったか？」</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tracker Ratings Widget -->
+                        <div>
+                            <h3 class="text-lg font-bold text-white border-l-4 border-brand-500 pl-3 mb-4">コミュニティ評価</h3>
+                            <div class="bg-darkbg-accent rounded-xl border border-darkbg-border p-5 flex flex-col sm:flex-row gap-6 items-center justify-between">
+                                <div class="text-center sm:text-left">
+                                    <div class="text-xs text-slate-400 uppercase tracking-widest mb-1">NekoShare 平均スコア</div>
+                                    <div class="flex items-center gap-2 justify-center sm:justify-start">
+                                        <span class="text-4xl font-black text-brand-400" id="community-rating-val">4.2</span>
+                                        <span class="text-xl text-slate-500">/ 5.0</span>
+                                    </div>
+                                    <div class="flex gap-1 text-amber-400 mt-1 justify-center sm:justify-start">
+                                        ★★★★☆ <span class="text-xs text-slate-400 ml-1">(計 86 票)</span>
+                                    </div>
+                                </div>
+
+                                <!-- Live Interactive Voting System -->
+                                <div class="border-t sm:border-t-0 sm:border-l border-darkbg-border pt-4 sm:pt-0 sm:pl-6 w-full sm:w-auto">
+                                    <div class="text-xs text-slate-400 text-center sm:text-left mb-2.5 font-bold">あなたの評価を入力してBPをゲット！</div>
+                                    <div class="flex gap-1.5 justify-center">
+                                        <button onclick="submitUserRating(1)" class="w-10 h-10 rounded-lg bg-darkbg-border hover:bg-brand-500 hover:text-black font-black transition">1</button>
+                                        <button onclick="submitUserRating(2)" class="w-10 h-10 rounded-lg bg-darkbg-border hover:bg-brand-500 hover:text-black font-black transition">2</button>
+                                        <button onclick="submitUserRating(3)" class="w-10 h-10 rounded-lg bg-darkbg-border hover:bg-brand-500 hover:text-black font-black transition">3</button>
+                                        <button onclick="submitUserRating(4)" class="w-10 h-10 rounded-lg bg-brand-500 text-black font-black transition">4</button>
+                                        <button onclick="submitUserRating(5)" class="w-10 h-10 rounded-lg bg-darkbg-border hover:bg-brand-500 hover:text-black font-black transition">5</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 2: MEDIAINFO -->
+                    <div id="tab-mediainfo" class="hidden space-y-4">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-sm font-bold text-slate-200">分析済み Matroska コンテナ詳細</span>
+                            <button onclick="copyMediaInfo()" class="px-3 py-1 bg-darkbg-accent hover:bg-darkbg-border text-xs font-semibold text-brand-400 border border-darkbg-border rounded-lg transition">
+                                テキストとしてコピー
+                            </button>
+                        </div>
+                        <pre id="mediainfo-text" class="bg-black/80 rounded-xl p-4 text-[11px] text-emerald-400 font-mono overflow-x-auto leading-relaxed border border-slate-800 max-h-96">
+General
+Unique ID                      : 198230982304982304982304982039482094
+Complete name                  : Garfield.The.Movie.2004.1080p.BluRay.REMUX.AVC.DTS-HD.MA.5.1-NekoShare.mkv
+Format                         : Matroska
+Format version                 : Version 4
+File size                      : 21.4 GiB
+Duration                       : 1 h 21 min
+Overall bit rate               : 37.6 Mb/s
+Encoded date                   : UTC 2026-05-15 14:22:11
+Writing application            : mkvmerge v82.0.0 ('Unleash') 64-bit
+Writing library                : libebml v1.4.5 + libmatroska v1.7.1
+
+Video
+ID                             : 1
+Format                         : AVC
+Format/Info                    : Advanced Video Codec
+Format profile                 : High@L4.1
+Format settings                : CABAC / 4 Ref Frames
+Codec ID                       : V_MPEG4/ISO/AVC
+Duration                       : 1 h 21 min
+Bit rate mode                  : Variable
+Bit rate                       : 30.0 Mb/s
+Width                          : 1920 pixels
+Height                         : 1080 pixels
+Display aspect ratio           : 16:9
+Original display aspect ratio  : 1.85:1
+Frame rate mode                : Constant
+Frame rate                     : 23.976 (24000/1001) FPS
+Color space                    : YUV
+Chroma subsampling             : 4:2:0
+Bit depth                      : 8 bits
+Scan type                      : Progressive
+
+Audio #1 (English)
+ID                             : 2
+Format                         : DTS LBR
+Format/Info                    : Digital Theater Systems High Resolution
+Codec ID                       : A_DTS
+Duration                       : 1 h 21 min
+Bit rate mode                  : Constant
+Bit rate                       : 4122 kb/s
+Channel(s)                     : 6 channels
+Channel layout                 : C L R Ls Rs LFE
+Sampling rate                  : 48.0 kHz
+Language                       : English
+Default                        : Yes
+
+Audio #2 (Japanese)
+ID                             : 3
+Format                         : AC-3
+Format/Info                    : Audio Coding 3
+Codec ID                       : A_AC3
+Duration                       : 1 h 21 min
+Bit rate mode                  : Constant
+Bit rate                       : 448 kb/s
+Channel(s)                     : 6 channels
+Channel layout                 : C L R Ls Rs LFE
+Sampling rate                  : 48.0 kHz
+Language                       : Japanese
+Title                          : 日本語吹替 (藤井隆 版)
+Default                        : No
+
+Subtitle #1 (Japanese)
+ID                             : 4
+Format                         : UTF-8
+Codec ID                       : S_TEXT/UTF8
+Language                       : Japanese
+Default                        : Yes
+
+Subtitle #2 (English)
+ID                             : 5
+Format                         : UTF-8
+Codec ID                       : S_TEXT/UTF8
+Language                       : English
+Default                        : No</pre>
+                    </div>
+
+                    <!-- TAB 3: FILES LIST -->
+                    <div id="tab-files" class="hidden space-y-4">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-sm font-bold text-slate-200">ルートフォルダ: <span class="text-brand-400 font-mono">Garfield.The.Movie.2004.1080p.BluRay.REMUX.AVC.DTS-HD.MA.5.1-NekoShare/</span></span>
+                            <span class="text-xs text-slate-400">合計 3 個のファイル</span>
+                        </div>
+                        <div class="border border-darkbg-border rounded-xl overflow-hidden divide-y divide-darkbg-border font-mono text-xs">
+                            <div class="flex items-center justify-between p-3.5 bg-darkbg-accent">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-base">🎬</span>
+                                    <span class="text-slate-200 hover:text-brand-400 cursor-pointer">Garfield.The.Movie.2004.1080p.BluRay.REMUX.AVC.DTS-HD.MA.5.1-NekoShare.mkv</span>
+                                </div>
+                                <span class="text-slate-400">21.42 GiB</span>
+                            </div>
+                            <div class="flex items-center justify-between p-3.5 bg-darkbg-base/50">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-base">📝</span>
+                                    <span class="text-slate-200 hover:text-brand-400 cursor-pointer">NekoShare_Release.nfo</span>
+                                </div>
+                                <span class="text-slate-400">4.18 KiB</span>
+                            </div>
+                            <div class="flex items-center justify-between p-3.5 bg-darkbg-base/50">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-base">🖼️</span>
+                                    <span class="text-slate-200 hover:text-brand-400 cursor-pointer">Poster_Japan_Original.jpg</span>
+                                </div>
+                                <span class="text-slate-400">1.82 MiB</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 4: PEERS LIST -->
+                    <div id="tab-peers" class="hidden space-y-4">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-sm font-bold text-slate-200">アクティブなピア統計 (シミュレーション中)</span>
+                            <span class="text-xs text-emerald-400 flex items-center gap-1.5 font-bold">
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
+                                リアルタイム接続同期中
+                            </span>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-xs text-slate-300">
+                                <thead class="bg-darkbg-accent text-slate-400 uppercase tracking-wider border-b border-darkbg-border text-[10px]">
+                                    <tr>
+                                        <th class="p-3">ユーザー / クライアント</th>
+                                        <th class="p-3">IP / 国</th>
+                                        <th class="p-3 text-right">進行率</th>
+                                        <th class="p-3 text-right">ダウンロード速度</th>
+                                        <th class="p-3 text-right">アップロード速度</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-darkbg-border" id="peers-table-body">
+                                    <!-- Dynamic rows from Javascript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Custom SVG Simulated Video Screens Slider -->
+                <div class="bg-darkbg-card rounded-2xl border border-darkbg-border p-6">
+                    <h3 class="text-lg font-bold text-white mb-4 flex items-center justify-between">
+                        <span>ビデオプレビュー (スクリーンショット)</span>
+                        <span class="text-xs font-semibold text-slate-400">解像度: 1080p AVC</span>
+                    </h3>
+                    
+                    <!-- SVG Slider container -->
+                    <div class="relative bg-black rounded-xl border border-darkbg-border overflow-hidden aspect-video group">
+                        <!-- Frame 1: Garfield Eating Lasagna -->
+                        <div id="video-frame-1" class="absolute inset-0 w-full h-full flex flex-col justify-between p-4 transition-opacity duration-500">
+                            <!-- SVG Art -->
+                            <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#1e0f06] to-[#0c0603]">
+                                <svg class="w-2/3 h-2/3 text-brand-500/20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                                </svg>
+                                <!-- Fake Graphics depicting Garfield -->
+                                <div class="absolute text-center">
+                                    <div class="text-brand-500 text-6xl font-black mb-2 animate-bounce">🐱 🍝</div>
+                                    <p class="text-brand-300 text-sm font-bold tracking-wider uppercase">[ シーン 01: ラザニアを貪り食うガーフィールド ]</p>
+                                </div>
+                            </div>
+                            <!-- Metadata overlay -->
+                            <div class="absolute bottom-3 left-3 bg-black/70 backdrop-blur-sm px-2 py-1 rounded text-[10px] text-slate-300 font-mono">
+                                FRAME: 00:14:32 (41,200/116,400)
+                            </div>
+                        </div>
+
+                        <!-- Frame 2: Garfield vs Odie Dog -->
+                        <div id="video-frame-2" class="absolute inset-0 w-full h-full flex flex-col justify-between p-4 transition-opacity duration-500 opacity-0">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#0c1e13] to-[#060c09]">
+                                <div class="absolute text-center">
+                                    <div class="text-emerald-500 text-6xl font-black mb-2">🐱 🆚 🐶</div>
+                                    <p class="text-emerald-300 text-sm font-bold tracking-wider uppercase">[ シーン 02: 犬のオーディとの出会い ]</p>
+                                </div>
+                            </div>
+                            <div class="absolute bottom-3 left-3 bg-black/70 backdrop-blur-sm px-2 py-1 rounded text-[10px] text-slate-300 font-mono">
+                                FRAME: 00:32:05 (92,100/116,400)
+                            </div>
+                        </div>
+
+                        <!-- Frame 3: Rescuing Odie at Train Station -->
+                        <div id="video-frame-3" class="absolute inset-0 w-full h-full flex flex-col justify-between p-4 transition-opacity duration-500 opacity-0">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#12192c] to-[#080b14]">
+                                <div class="absolute text-center">
+                                    <div class="text-cyan-500 text-6xl font-black mb-2">🐾 🚉 🎬</div>
+                                    <p class="text-cyan-300 text-sm font-bold tracking-wider uppercase">[ シーン 03: 駅での大脱出と救出劇 ]</p>
+                                </div>
+                            </div>
+                            <div class="absolute bottom-3 left-3 bg-black/70 backdrop-blur-sm px-2 py-1 rounded text-[10px] text-slate-300 font-mono">
+                                FRAME: 01:08:19 (196,500/116,400)
+                            </div>
+                        </div>
+
+                        <!-- Navigation Arrows overlay -->
+                        <button onclick="changeFrame(-1)" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-brand-500 hover:text-black w-10 h-10 rounded-full flex items-center justify-center text-white transition font-bold z-10 select-none">‹</button>
+                        <button onclick="changeFrame(1)" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-brand-500 hover:text-black w-10 h-10 rounded-full flex items-center justify-center text-white transition font-bold z-10 select-none">›</button>
+                    </div>
+
+                    <!-- Slide Indicators -->
+                    <div class="flex justify-center gap-2 mt-4">
+                        <span id="indicator-1" class="w-8 h-2 rounded-full bg-brand-500 transition-all cursor-pointer" onclick="goToFrame(1)"></span>
+                        <span id="indicator-2" class="w-3 h-2 rounded-full bg-slate-700 transition-all cursor-pointer" onclick="goToFrame(2)"></span>
+                        <span id="indicator-3" class="w-3 h-2 rounded-full bg-slate-700 transition-all cursor-pointer" onclick="goToFrame(3)"></span>
+                    </div>
+                </div>
+
+                <!-- Interactive Comment Thread and New Comment Area -->
+                <div class="bg-darkbg-card rounded-2xl border border-darkbg-border p-6">
+                    <h3 class="text-lg font-bold text-white mb-6 flex items-center justify-between">
+                        <span>急流スレッドへの書き込み (コメント一覧)</span>
+                        <span class="text-xs px-2.5 py-1 bg-darkbg-accent text-slate-400 rounded-full border border-darkbg-border" id="comment-count-label">4 件のコメント</span>
+                    </h3>
+
+                    <!-- Comments List Container -->
+                    <div class="space-y-4 mb-6" id="comments-container">
+                        <!-- Comment 1 -->
+                        <div class="p-4 bg-darkbg-accent rounded-xl border border-darkbg-border space-y-2">
+                            <div class="flex justify-between items-start">
+                                <div class="flex items-center gap-2.5">
+                                    <div class="w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center text-xs font-bold text-black">🐱</div>
+                                    <div>
+                                        <span class="text-xs font-bold text-slate-200">Nyanya_99</span>
+                                        <span class="px-1.5 py-0.5 bg-emerald-500/10 text-emerald-400 text-[9px] rounded font-bold uppercase ml-1.5">VIP Seeder</span>
+                                    </div>
+                                </div>
+                                <span class="text-[10px] text-slate-500 font-mono">2026-05-15 15:40</span>
+                            </div>
+                            <p class="text-xs text-slate-300 pl-10">
+                                藤井隆さんのガーフィールド吹替、最高ですよね！懐かしさの極みです。画質もRemuxなのでノイズがなくパーフェクト。共有感謝します！
+                            </p>
+                        </div>
+
+                        <!-- Comment 2 -->
+                        <div class="p-4 bg-darkbg-accent rounded-xl border border-darkbg-border space-y-2">
+                            <div class="flex justify-between items-start">
+                                <div class="flex items-center gap-2.5">
+                                    <div class="w-8 h-8 rounded-full bg-brand-500 flex items-center justify-center text-xs font-bold text-black">💿</div>
+                                    <div>
+                                        <span class="text-xs font-bold text-slate-200">RemuxKing_JP</span>
+                                        <span class="px-1.5 py-0.5 bg-brand-500/10 text-brand-400 text-[9px] rounded font-bold uppercase ml-1.5">Remux Collector</span>
+                                    </div>
+                                </div>
+                                <span class="text-[10px] text-slate-500 font-mono">2026-05-15 18:11</span>
+                            </div>
+                            <p class="text-xs text-slate-300 pl-10">
+                                英語のDTS-HD MA 5.1の音響と日本語吹替の音量バランスも良く、MKVチャプターまで完璧に維持されています。現在1Gbps回線でフルシード中です！
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Write New Comment Widget -->
+                    <div class="border-t border-darkbg-border pt-4">
+                        <div class="flex gap-3 items-start">
+                            <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-brand-500 to-amber-500 flex items-center justify-center font-bold text-slate-900 text-sm flex-shrink-0">
+                                🐱
+                            </div>
+                            <div class="flex-grow space-y-3">
+                                <textarea id="new-comment-input" rows="3" placeholder="日本語でコメントを記入... (コメント投稿で20 BP獲得！)"
+                                          class="w-full bg-darkbg-accent border border-darkbg-border rounded-xl p-3 text-xs text-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500/40 focus:border-brand-500 placeholder-slate-500 resize-none transition-all"></textarea>
+                                
+                                <div class="flex justify-between items-center">
+                                    <span class="text-[10px] text-slate-500">※ トラッカーコミュニティ規約に準拠した発言をお願いします</span>
+                                    <button onclick="postComment()" 
+                                            class="px-4 py-2 bg-brand-500 text-black font-extrabold text-xs rounded-lg hover:bg-brand-400 transition transform hover:scale-[1.02]">
+                                        コメントを投稿
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Right Side Sidebar Area (Col span 1) -->
+            <div class="flex flex-col gap-6">
+
+                <!-- Interactive Speed Simulator / Estimator Widget -->
+                <div class="bg-darkbg-card rounded-2xl border border-darkbg-border p-6 shadow-xl relative overflow-hidden">
+                    <div class="absolute -top-12 -right-12 w-32 h-32 bg-brand-500/5 rounded-full blur-xl"></div>
+                    
+                    <h3 class="text-base font-bold text-white mb-3 flex items-center gap-2">
+                        <span>⌛</span>
+                        <span>DL時間シミュレーター</span>
+                    </h3>
+                    <p class="text-xs text-slate-400 mb-4">あなたの実効回線速度を入力すると、この21.4 GB Remuxファイルの予測ダウンロード時間が算出されます。</p>
+
+                    <div class="space-y-4">
+                        <!-- Speed Input Range slider -->
+                        <div class="bg-darkbg-accent p-3.5 rounded-xl border border-darkbg-border">
+                            <div class="flex justify-between text-xs text-slate-300 font-bold mb-1.5">
+                                <span>ダウンロード回線実効速度</span>
+                                <span class="text-brand-400" id="current-speed-display">100 Mbps</span>
+                            </div>
+                            <input type="range" id="speed-slider" min="10" max="1000" step="10" value="100" oninput="calculateDownloadTime()"
+                                   class="w-full h-1.5 bg-darkbg-base rounded-lg appearance-none cursor-pointer accent-brand-500">
+                            <div class="flex justify-between text-[9px] text-slate-500 mt-1">
+                                <span>10 Mbps (VDSL)</span>
+                                <span>1 Gbps (NURO/光ファイバー)</span>
+                            </div>
+                        </div>
+
+                        <!-- Computed Time Panel -->
+                        <div class="bg-black/40 border border-darkbg-border rounded-xl p-4 text-center">
+                            <div class="text-[10px] text-slate-400 uppercase tracking-widest mb-1">推定ダウンロード完了時間</div>
+                            <div class="text-3xl font-black text-brand-400" id="eta-output">28分 35秒</div>
+                            <div class="text-[9px] text-slate-500 mt-1.5" id="bytes-per-sec-output">約 12.5 MB / 秒で取得します</div>
+                        </div>
+
+                        <!-- Mini download progress bar mockup -->
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-[10px] text-slate-400">
+                                <span>予測シミュレーション進行度</span>
+                                <span class="text-slate-200 font-mono" id="simulated-progress-text">0%</span>
+                            </div>
+                            <div class="w-full h-2 bg-darkbg-accent rounded-full overflow-hidden border border-darkbg-border relative">
+                                <div class="h-full bg-gradient-to-r from-brand-500 to-amber-500 rounded-full w-0 transition-all duration-300" id="simulated-progress-bar"></div>
+                            </div>
+                            <div class="flex justify-between items-center pt-1">
+                                <button onclick="toggleSpeedDemoProgress()" id="btn-demo-dl" class="px-2.5 py-1 bg-brand-500/10 text-brand-400 hover:bg-brand-500 hover:text-black border border-brand-500/20 rounded text-[9px] font-bold transition">
+                                    テストDLシミュレーション開始
+                                </button>
+                                <span class="text-[9px] text-slate-500">※ダミーDLです。容量は消費しません</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Swarm Peer Activities -->
+                <div class="bg-darkbg-card rounded-2xl border border-darkbg-border p-6 shadow-xl">
+                    <h3 class="text-base font-bold text-white mb-4 flex items-center justify-between">
+                        <span>👥 スウォーム（群衆）活動履歴</span>
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    </h3>
+
+                    <!-- Mini Live Logging -->
+                    <div class="space-y-3 max-h-56 overflow-y-auto pr-1" id="swarm-logs">
+                        <!-- Simulated Logs dynamically prepended via javascript -->
+                        <div class="text-[11px] text-slate-400 font-mono py-1 border-b border-darkbg-border/40">
+                            <span class="text-slate-500">14:52:10</span> - <strong class="text-emerald-400">Seed_Japan_Master</strong> がピアに接続しました。
+                        </div>
+                        <div class="text-[11px] text-slate-400 font-mono py-1 border-b border-darkbg-border/40">
+                            <span class="text-slate-500">14:55:23</span> - <strong class="text-brand-300">NekoLover</strong> が100%完了。現在シード中です。
+                        </div>
+                        <div class="text-[11px] text-slate-400 font-mono py-1 border-b border-darkbg-border/40">
+                            <span class="text-slate-500">15:02:11</span> - <strong class="text-cyan-400">mkv_collector</strong> が全体の50%を取得しました。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tracker Torrent Details Specifications Table -->
+                <div class="bg-darkbg-card rounded-2xl border border-darkbg-border p-6 shadow-xl space-y-4">
+                    <h3 class="text-base font-bold text-white">メタデータ概要</h3>
+                    
+                    <div class="space-y-2.5 text-xs">
+                        <div class="flex justify-between py-1.5 border-b border-darkbg-border">
+                            <span class="text-slate-400">インフォハッシュ (Info Hash)</span>
+                            <span class="font-mono text-slate-200 cursor-pointer hover:text-brand-400 flex items-center gap-1" onclick="copyInfoHash()" id="infohash-text">
+                                a8f827d963...
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+                            </span>
+                        </div>
+                        <div class="flex justify-between py-1.5 border-b border-darkbg-border">
+                            <span class="text-slate-400">シリアル/カタログNo.</span>
+                            <span class="text-slate-200">FXXJ-25007 / 日本国内盤</span>
+                        </div>
+                        <div class="flex justify-between py-1.5 border-b border-darkbg-border">
+                            <span class="text-slate-400">作成ツール</span>
+                            <span class="text-slate-200 font-mono">mkvmerge v82.0</span>
+                        </div>
+                        <div class="flex justify-between py-1.5 border-b border-darkbg-border">
+                            <span class="text-slate-400">最大ビデオ転送レート</span>
+                            <span class="text-slate-200 font-mono">30.0 Mbps</span>
+                        </div>
+                        <div class="flex justify-between py-1.5 border-b border-darkbg-border">
+                            <span class="text-slate-400">暗号化 / 難読化</span>
+                            <span class="text-slate-400">なし (非暗号化)</span>
+                        </div>
+                        <div class="flex justify-between py-1.5">
+                            <span class="text-slate-400">対応言語音声</span>
+                            <span class="text-brand-300 font-bold">英語 / 日本語</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Seedbox Command Helper widget -->
+                <div class="bg-darkbg-card rounded-2xl border border-darkbg-border p-6 shadow-xl bg-gradient-to-br from-darkbg-card to-[#121c33]">
+                    <h3 class="text-sm font-bold text-white mb-2 flex items-center gap-1.5">
+                        <span class="text-indigo-400">⚡</span>
+                        <span>リモートシードボックスへ転送</span>
+                    </h3>
+                    <p class="text-[11px] text-slate-400 mb-3">登録済みのAPIキー連携済シードボックスへこの急流をワンタップでプッシュし、最大10Gbpsで即座に共有を開始します。</p>
+                    <button onclick="pushToSeedbox()" class="w-full py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded-lg shadow transition transform hover:scale-[1.01]">
+                        シードボックスにロードする
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Footer Area -->
+    <footer class="border-t border-darkbg-border bg-darkbg-base py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+            <div>
+                <p class="font-bold text-slate-400">&copy; 2026 NekoShare Tracker. All Rights Reserved.</p>
+                <p class="mt-1">シェアカルチャーとプライバシー、そして超高速共有インフラのために構築された非公開コミュニティ。</p>
+            </div>
+            <div class="flex gap-4">
+                <span class="hover:text-brand-400 cursor-pointer">利用規約</span>
+                <span>&bull;</span>
+                <span class="hover:text-brand-400 cursor-pointer">ルール・マナー</span>
+                <span>&bull;</span>
+                <span class="hover:text-brand-400 cursor-pointer">IRC配信サーバー</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Interactions Logic -->
+    <script>
+        // Custom elegant notification system inside the Canvas iframe
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            
+            // Set styles based on type
+            let bgClass = 'bg-darkbg-card border-emerald-500/30 text-slate-100';
+            let icon = '✔️';
+            if (type === 'info') {
+                bgClass = 'bg-darkbg-card border-brand-500/30 text-slate-100';
+                icon = 'ℹ️';
+            } else if (type === 'error') {
+                bgClass = 'bg-darkbg-card border-rose-500/30 text-slate-100';
+                icon = '❌';
+            } else if (type === 'bookmark') {
+                bgClass = 'bg-darkbg-card border-yellow-500/30 text-slate-100';
+                icon = '⭐';
+            }
+
+            toast.className = `p-4 rounded-xl border ${bgClass} shadow-2xl flex items-center gap-3 text-xs font-bold min-w-[280px] pointer-events-auto transform translate-x-12 opacity-0 transition-all duration-300`;
+            toast.innerHTML = `
+                <span class="text-base">${icon}</span>
+                <div class="flex-grow">${message}</div>
+            `;
+            
+            container.appendChild(toast);
+            
+            // Animate In
+            setTimeout(() => {
+                toast.classList.remove('translate-x-12', 'opacity-0');
+            }, 10);
+
+            // Animate Out & Remove
+            setTimeout(() => {
+                toast.classList.add('translate-x-12', 'opacity-0');
+                setTimeout(() => {
+                    toast.remove();
+                }, 300);
+            }, 4000);
+        }
+
+        // Global Bookmark State
+        let isBookmarked = false;
+        function toggleBookmark() {
+            isBookmarked = !isBookmarked;
+            const text = document.getElementById('bookmark-text');
+            const svg = document.getElementById('bookmark-svg');
+            const btn = document.getElementById('btn-bookmark');
+
+            if (isBookmarked) {
+                text.innerText = 'お気に入り解除';
+                text.classList.add('text-yellow-400');
+                svg.setAttribute('fill', 'currentColor');
+                svg.classList.add('text-yellow-400');
+                showToast('「ガーフィールド ザ・ムービー (2004)」をお気に入りに追加しました。', 'bookmark');
+            } else {
+                text.innerText = 'お気に入り登録';
+                text.classList.remove('text-yellow-400');
+                svg.setAttribute('fill', 'none');
+                svg.classList.remove('text-yellow-400');
+                showToast('お気に入りを解除しました。', 'info');
+            }
+        }
+
+        // Action Trigger downloads
+        function triggerDownload(type) {
+            if (type === 'torrent') {
+                showToast('急流定義ファイル「Garfield.The.Movie.2004.1080p.BluRay.REMUX.torrent」のダウンロードを開始します。比率維持を忘れずに！', 'success');
+                addSwarmLog('You (NekoLover)', '急流メタデータのダウンロードを開始しました。');
+            } else if (type === 'magnet') {
+                // Clipboard copy using the document.execCommand fallback for iframe compatibility
+                const dummy = document.createElement('input');
+                document.body.appendChild(dummy);
+                dummy.value = "magnet:?xt=urn:btih:a8f827d963f96116c4c3b28d7a123bc60faef8b0&dn=Garfield.The.Movie.2004.1080p.BluRay.REMUX.AVC.DTS-HD.MA.5.1";
+                dummy.select();
+                document.execCommand('copy');
+                document.body.removeChild(dummy);
+
+                showToast('マグネットURIをクリップボードにコピーしました！', 'success');
+                addSwarmLog('You (NekoLover)', 'マグネットリンクを生成・取得しました。');
+            }
+        }
+
+        // Copy InfoHash
+        function copyInfoHash() {
+            const dummy = document.createElement('input');
+            document.body.appendChild(dummy);
+            dummy.value = "a8f827d963f96116c4c3b28d7a123bc60faef8b0";
+            dummy.select();
+            document.execCommand('copy');
+            document.body.removeChild(dummy);
+            showToast('インフォハッシュをクリップボードにコピーしました！', 'info');
+        }
+
+        // Switch Tabs Logic
+        function switchTab(tabId) {
+            const tabs = ['tab-description', 'tab-mediainfo', 'tab-files', 'tab-peers'];
+            tabs.forEach(t => {
+                document.getElementById(t).classList.add('hidden');
+                document.getElementById('btn-' + t).className = "flex-1 py-2.5 px-4 text-sm font-semibold rounded-lg text-slate-400 hover:text-slate-200 transition";
+            });
+
+            document.getElementById(tabId).classList.remove('hidden');
+            document.getElementById('btn-' + tabId).className = "flex-1 py-2.5 px-4 text-sm font-bold rounded-lg text-brand-400 bg-darkbg-accent border border-brand-500/10 transition";
+        }
+
+        // Copy MediaInfo text
+        function copyMediaInfo() {
+            const mediaInfo = document.getElementById('mediainfo-text').innerText;
+            const dummy = document.createElement('textarea');
+            document.body.appendChild(dummy);
+            dummy.value = mediaInfo;
+            dummy.select();
+            document.execCommand('copy');
+            document.body.removeChild(dummy);
+            showToast('MediaInfoの詳細テキストをクリップボードにコピーしました。', 'info');
+        }
+
+        // Rating Star click handler
+        function submitUserRating(val) {
+            const scoreLabel = document.getElementById('community-rating-val');
+            // Mock formula updating average score slightly based on vote
+            const currentAvg = 4.2;
+            const newAvg = ((currentAvg * 86 + val) / 87).toFixed(2);
+            scoreLabel.innerText = newAvg;
+            showToast(`あなたの投票 (${val}つ星) を受け付けました。20 BP があなたのアカウントに付与されます。`, 'success');
+        }
+
+        // Simulated Image Frame Slider logic
+        let currentFrameIndex = 1;
+        const totalFrames = 3;
+
+        function changeFrame(direction) {
+            currentFrameIndex += direction;
+            if (currentFrameIndex > totalFrames) currentFrameIndex = 1;
+            if (currentFrameIndex < 1) currentFrameIndex = totalFrames;
+            updateFrameUI();
+        }
+
+        function goToFrame(index) {
+            currentFrameIndex = index;
+            updateFrameUI();
+        }
+
+        function updateFrameUI() {
+            for (let i = 1; i <= totalFrames; i++) {
+                const frame = document.getElementById(`video-frame-${i}`);
+                const indicator = document.getElementById(`indicator-${i}`);
+                if (i === currentFrameIndex) {
+                    frame.classList.remove('opacity-0');
+                    indicator.className = "w-8 h-2 rounded-full bg-brand-500 transition-all cursor-pointer";
+                } else {
+                    frame.classList.add('opacity-0');
+                    indicator.className = "w-3 h-2 rounded-full bg-slate-700 transition-all cursor-pointer";
+                }
+            }
+        }
+
+        // Simulated Dynamic Comment posting
+        function postComment() {
+            const textInput = document.getElementById('new-comment-input');
+            const container = document.getElementById('comments-container');
+            const countLabel = document.getElementById('comment-count-label');
+
+            if (!textInput.value.trim()) {
+                showToast('コメントを入力してください。', 'error');
+                return;
+            }
+
+            const rawText = textInput.value;
+            const dateStr = new Date().toISOString().replace('T', ' ').substring(0, 19);
+
+            const commentElement = document.createElement('div');
+            commentElement.className = "p-4 bg-darkbg-accent rounded-xl border border-brand-500/20 space-y-2 transform scale-95 opacity-0 transition-all duration-300";
+            commentElement.innerHTML = `
+                <div class="flex justify-between items-start">
+                    <div class="flex items-center gap-2.5">
+                        <div class="w-8 h-8 rounded-full bg-brand-500 flex items-center justify-center text-xs font-bold text-black">🐱</div>
+                        <div>
+                            <span class="text-xs font-bold text-brand-400">NekoLover (あなた)</span>
+                            <span class="px-1.5 py-0.5 bg-brand-500/10 text-brand-400 text-[9px] rounded font-bold uppercase ml-1.5">POWER USER</span>
+                        </div>
+                    </div>
+                    <span class="text-[10px] text-slate-500 font-mono">${dateStr}</span>
+                </div>
+                <p class="text-xs text-slate-300 pl-10">${escapeHTML(rawText)}</p>
+            `;
+
+            // Append to comments
+            container.appendChild(commentElement);
+            setTimeout(() => {
+                commentElement.classList.remove('scale-95', 'opacity-0');
+            }, 10);
+
+            // Update statistics
+            textInput.value = '';
+            countLabel.innerText = '5 件のコメント';
+            showToast('コメントをスレッドに投稿しました。+20 BP 獲得！', 'success');
+        }
+
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g, 
+                tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+            );
+        }
+
+        // Simulated Download Speed Estimator Range Calculator
+        function calculateDownloadTime() {
+            const speedSlider = document.getElementById('speed-slider');
+            const currentSpeedDisplay = document.getElementById('current-speed-display');
+            const etaOutput = document.getElementById('eta-output');
+            const bytesPerSecOutput = document.getElementById('bytes-per-sec-output');
+
+            const speedMbps = parseInt(speedSlider.value);
+            currentSpeedDisplay.innerText = speedMbps === 1000 ? "1 Gbps (NURO等)" : `${speedMbps} Mbps`;
+
+            // 21.43 GiB to Megabits
+            const fileSizeBits = 21.43 * 1024 * 1024 * 1024 * 8; // In Kilobits
+            const speedKbps = speedMbps * 1000;
+            const totalSeconds = fileSizeBits / (speedKbps * 1024);
+
+            const hours = Math.floor(totalSeconds / 3600);
+            const minutes = Math.floor((totalSeconds % 3600) / 60);
+            const seconds = Math.round(totalSeconds % 60);
+
+            let timeString = '';
+            if (hours > 0) timeString += `${hours}時間 `;
+            if (minutes > 0) timeString += `${minutes}分 `;
+            timeString += `${seconds}秒`;
+
+            etaOutput.innerText = timeString;
+
+            // Bytes per second calculation
+            const megaBytesPerSec = (speedMbps / 8).toFixed(1);
+            bytesPerSecOutput.innerText = `約 ${megaBytesPerSec} MB / 秒で取得します`;
+        }
+
+        // Remote Seedbox loading trigger
+        function pushToSeedbox() {
+            showToast('シードボックス API にリクエストを送信しました。バックグラウンドで接続確認中...', 'info');
+            setTimeout(() => {
+                showToast('API通信完了: シードボックス上で急流のリモートダウンロードが開始されました！', 'success');
+                addSwarmLog('Your Seedbox (10G)', 'リモート急流ローダー経由で接続を開始。ハッシュを確認中。');
+            }, 1500);
+        }
+
+        // Live Swarm Logging dynamic insertions
+        function addSwarmLog(user, text) {
+            const swarmLogs = document.getElementById('swarm-logs');
+            const now = new Date();
+            const timeStr = now.toTimeString().split(' ')[0];
+            
+            const logItem = document.createElement('div');
+            logItem.className = "text-[11px] text-slate-300 font-mono py-1 border-b border-darkbg-border/40 animate-pulse";
+            logItem.innerHTML = `<span class="text-slate-500">${timeStr}</span> - <strong class="text-brand-400">${user}</strong> ${text}`;
+            
+            swarmLogs.insertBefore(logItem, swarmLogs.firstChild);
+        }
+
+        // Simulated real-time Peers inside Peer tab
+        const peerNames = ['AnimeSeeder', 'TokyoGamer', 'BitCat_JP', 'Fuji_Remuxer', 'OsakaP2P', 'KyotoLink', 'NekoSubber'];
+        const peerClients = ['qBittorrent/4.6.3', 'transmission/4.0.2', 'uTorrent/3.5.5', 'rTorrent/0.9.8'];
+        const peerFlags = ['🇯🇵 JP', '🇺🇸 US', '🇨🇦 CA', '🇩🇪 DE', '🇸🇬 SG'];
+
+        function initPeersList() {
+            const tbody = document.getElementById('peers-table-body');
+            tbody.innerHTML = ''; // clear
+
+            for (let i = 0; i < 6; i++) {
+                const tr = document.createElement('tr');
+                tr.id = `peer-row-${i}`;
+                tr.className = "hover:bg-darkbg-accent transition";
+
+                const progress = i === 0 ? 100 : Math.floor(Math.random() * 85) + 10;
+                const dlSpeed = i === 0 ? '0 KB/s' : `${(Math.random() * 25 + 2).toFixed(1)} MB/s`;
+                const ulSpeed = i === 0 ? `${(Math.random() * 45 + 5).toFixed(1)} MB/s` : `${(Math.random() * 2 + 0.1).toFixed(1)} MB/s`;
+
+                tr.innerHTML = `
+                    <td class="p-3">
+                        <div class="font-bold text-slate-200">${peerNames[i % peerNames.length]}</div>
+                        <div class="text-[9px] text-slate-500">${peerClients[i % peerClients.length]}</div>
+                    </td>
+                    <td class="p-3 font-mono">${peerFlags[i % peerFlags.length]}</td>
+                    <td class="p-3 text-right">
+                        <div class="flex items-center justify-end gap-2">
+                            <span class="font-mono font-bold">${progress}%</span>
+                            <div class="w-12 h-1.5 bg-darkbg-base rounded-full overflow-hidden border border-darkbg-border">
+                                <div class="h-full bg-brand-500" style="width: ${progress}%"></div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="p-3 text-right font-mono text-emerald-400">${dlSpeed}</td>
+                    <td class="p-3 text-right font-mono text-cyan-400">${ulSpeed}</td>
+                `;
+                tbody.appendChild(tr);
+            }
+        }
+
+        // Live peer state updating simulating actual tracker traffic
+        function updateLiveSwarmTraffic() {
+            setInterval(() => {
+                // Update seeding & leeching dynamic counts slightly
+                const seederCount = document.getElementById('seeder-count');
+                const leecherCount = document.getElementById('leecher-count');
+                
+                const deltaSeed = Math.random() > 0.5 ? 1 : -1;
+                const currentSeed = Math.max(38, Math.min(45, parseInt(seederCount.innerText) + deltaSeed));
+                seederCount.innerText = currentSeed;
+
+                // Occasional Swarm event logs simulation
+                if (Math.random() > 0.7) {
+                    const names = ['Kobe_P2P', 'RemuxWannabe', 'AnimeSub_Neko', 'ShibuyaSwarmer'];
+                    const chosen = names[Math.floor(Math.random() * names.length)];
+                    const activities = [
+                        'が新しいブロックチャンクをダウンロードしました。',
+                        'の接続プロトコルが更新されました。',
+                        'がシード参加者にアップロード帯域を貸与中。',
+                        'がファイルの整合性をチェック完了しました。'
+                    ];
+                    const chosenActivity = activities[Math.floor(Math.random() * activities.length)];
+                    addSwarmLog(chosen, chosenActivity);
+                }
+
+                // Peer table updates
+                const tbody = document.getElementById('peers-table-body');
+                if (tbody && tbody.children.length > 0) {
+                    const targetIndex = Math.floor(Math.random() * tbody.children.length);
+                    const row = tbody.children[targetIndex];
+                    if (row && targetIndex !== 0) { // Do not change the 100% seeder progress
+                        const progressSpan = row.querySelector('.font-mono.font-bold');
+                        const progressBar = row.querySelector('.bg-brand-500');
+                        if (progressSpan && progressBar) {
+                            let curr = parseInt(progressSpan.innerText);
+                            if (curr < 100) {
+                                curr = Math.min(100, curr + 1);
+                                progressSpan.innerText = `${curr}%`;
+                                progressBar.style.width = `${curr}%`;
+                                if (curr === 100) {
+                                    addSwarmLog(row.querySelector('.text-slate-200').innerText, 'が全ファイルのダウンロードを完了し、シード活動に移行しました！');
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }, 4000);
+        }
+
+        // Test Simulated Progress Bar inside Speed estimator
+        let dlSimInterval = null;
+        let dlSimProgress = 0;
+
+        function toggleSpeedDemoProgress() {
+            const btn = document.getElementById('btn-demo-dl');
+            const bar = document.getElementById('simulated-progress-bar');
+            const text = document.getElementById('simulated-progress-text');
+
+            if (dlSimInterval) {
+                // Clear existing
+                clearInterval(dlSimInterval);
+                dlSimInterval = null;
+                btn.innerText = 'テストDLシミュレーション開始';
+                btn.className = "px-2.5 py-1 bg-brand-500/10 text-brand-400 hover:bg-brand-500 hover:text-black border border-brand-500/20 rounded text-[9px] font-bold transition";
+                showToast('ダウンロードシミュレーションを中断しました。', 'info');
+                return;
+            }
+
+            dlSimProgress = 0;
+            btn.innerText = 'シミュレーション停止 (リセット)';
+            btn.className = "px-2.5 py-1 bg-rose-500/20 text-rose-400 hover:bg-rose-500 hover:text-black border border-rose-500/30 rounded text-[9px] font-bold transition";
+            showToast('テストダウンロードシミュレーションを開始しました。帯域負荷テストを実行中。', 'info');
+
+            const speedMbps = parseInt(document.getElementById('speed-slider').value);
+
+            dlSimInterval = setInterval(() => {
+                // Progress increments scaled by slider speed
+                const increment = (speedMbps / 100) * (Math.random() * 2 + 1);
+                dlSimProgress = Math.min(100, dlSimProgress + increment);
+                
+                bar.style.width = `${dlSimProgress.toFixed(1)}%`;
+                text.innerText = `${dlSimProgress.toFixed(1)}%`;
+
+                if (dlSimProgress >= 100) {
+                    clearInterval(dlSimInterval);
+                    dlSimInterval = null;
+                    btn.innerText = 'テストDLシミュレーション開始';
+                    btn.className = "px-2.5 py-1 bg-brand-500/10 text-brand-400 hover:bg-brand-500 hover:text-black border border-brand-500/20 rounded text-[9px] font-bold transition";
+                    showToast('テストダウンロードが完了しました！(仮想書き込み成功)', 'success');
+                    addSwarmLog('You (NekoLover)', 'がすべてのテストチェックサム整合性をパスしました。');
+                }
+            }, 300);
+        }
+
+        // Page Initialization
+        window.onload = function() {
+            calculateDownloadTime();
+            initPeersList();
+            updateLiveSwarmTraffic();
+            
+            // Welcome notice
+            setTimeout(() => {
+                showToast('NekoShareへようこそ。この急流には現在フリーリーチが適用されています！', 'info');
+            }, 800);
+        }
+    </script>
+</body>
+</html>
