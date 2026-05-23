@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="fr" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shrek (2001) Multi-VF 1080p BluRay x264 - MaraisTracker</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        shrek: {
+                            50: '#f4f8eb',
+                            100: '#e6efd3',
+                            200: '#cfdfaa',
+                            300: '#afca76',
+                            400: '#8fad4c',
+                            500: '#719230', // Shrek Green
+                            600: '#587323',
+                            700: '#43581c',
+                            800: '#364719',
+                            900: '#18210a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Retro styled font for NFO simulation */
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap');
+        .font-nfo {
+            font-family: 'Fira Code', monospace;
+        }
+    </style>
+</head>
+<body class="bg-zinc-950 text-zinc-100 min-h-screen flex flex-col selection:bg-shrek-500 selection:text-white">
+
+    <!-- TOP HEADER / BANNER -->
+    <header class="border-b border-zinc-800 bg-zinc-900/80 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+            
+            <!-- Logo Custom SVG (Shrek themed tracker) -->
+            <a href="#" class="flex items-center gap-2 group shrink-0">
+                <div class="bg-shrek-600 text-zinc-950 p-2 rounded-xl transition-all duration-300 group-hover:bg-shrek-500 group-hover:scale-105">
+                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14.5h-2v-2h2v2zm0-4h-2V7h2v5.5z"/>
+                        <!-- Stylized Ogre ears onto the icon shape -->
+                        <path d="M4 8C2 8 1.5 6 1.5 6S3 5 4 6.5C4 6.5 4 8 4 8z" fill="#719230"/>
+                        <path d="M20 8C22 8 22.5 6 22.5 6S21 5 20 6.5C20 6.5 20 8 20 8z" fill="#719230"/>
+                    </svg>
+                </div>
+                <div class="hidden sm:block">
+                    <span class="font-extrabold text-xl tracking-tight bg-gradient-to-r from-shrek-400 to-emerald-400 bg-clip-text text-transparent">Marais</span>
+                    <span class="text-zinc-400 text-sm font-medium">Tracker</span>
+                </div>
+            </a>
+
+            <!-- Search bar -->
+            <div class="flex-1 max-w-lg relative">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <i data-lucide="search" class="h-4 w-4 text-zinc-400"></i>
+                </div>
+                <input type="text" id="global-search" placeholder="Rechercher un torrent (ex: Shrek, Pixar, 1080p...)" 
+                       class="block w-full pl-10 pr-3 py-2 border border-zinc-800 rounded-xl bg-zinc-950 placeholder-zinc-500 text-zinc-100 focus:outline-none focus:ring-2 focus:ring-shrek-500 focus:border-transparent text-sm transition-all">
+                <div id="search-alert" class="hidden absolute top-12 left-0 right-0 bg-zinc-900 border border-zinc-800 p-3 rounded-lg shadow-2xl text-xs text-shrek-400 z-50">
+                    <span class="font-bold">MaraisTracker:</span> Recherche simulée lancée...
+                </div>
+            </div>
+
+            <!-- User Stat Badges / Navigation -->
+            <div class="flex items-center gap-4">
+                <div class="hidden md:flex items-center gap-3 text-xs bg-zinc-950 p-1.5 rounded-lg border border-zinc-800">
+                    <div class="px-2 py-1 bg-zinc-900 rounded text-zinc-400">
+                        Ratio: <span class="text-emerald-400 font-bold">2.41</span>
+                    </div>
+                    <div class="px-2 py-1 text-zinc-400">
+                        Up: <span class="text-shrek-400 font-bold">12.4 TB</span>
+                    </div>
+                    <div class="px-2 py-1 text-zinc-400">
+                        Down: <span class="text-red-400 font-bold">5.1 TB</span>
+                    </div>
+                </div>
+
+                <div class="relative group">
+                    <button class="flex items-center gap-2 p-1 rounded-full bg-zinc-800 hover:bg-zinc-700 transition">
+                        <img src="https://api.dicebear.com/7.x/bottts/svg?seed=ShrekFan" alt="Avatar" class="w-8 h-8 rounded-full bg-zinc-900">
+                        <span class="text-sm font-medium pr-2 hidden sm:inline text-zinc-300">MonCompte</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- TORRENT TITLE HERO BANNER -->
+    <section class="relative bg-zinc-950 border-b border-zinc-900 py-8 overflow-hidden">
+        <!-- Abstract green swamp light flares -->
+        <div class="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-shrek-900/10 blur-[120px] rounded-full pointer-events-none"></div>
+        <div class="absolute top-1/3 right-1/4 -translate-y-1/2 w-80 h-80 bg-emerald-900/10 blur-[100px] rounded-full pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <!-- Breadcrumbs -->
+            <nav class="flex text-xs text-zinc-500 gap-2 mb-4">
+                <a href="#" class="hover:text-shrek-400 transition">Accueil</a>
+                <span>/</span>
+                <a href="#" class="hover:text-shrek-400 transition">Films</a>
+                <span>/</span>
+                <a href="#" class="hover:text-shrek-400 transition">Animation</a>
+                <span>/</span>
+                <span class="text-zinc-300">Shrek (2001)</span>
+            </nav>
+
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                <div>
+                    <div class="flex flex-wrap gap-2 mb-2">
+                        <span class="px-2.5 py-0.5 bg-shrek-950 text-shrek-400 text-xs font-bold border border-shrek-800/50 rounded-full uppercase tracking-wider">Animation</span>
+                        <span class="px-2.5 py-0.5 bg-zinc-900 text-zinc-400 text-xs font-medium border border-zinc-800 rounded-full uppercase tracking-wider">Blu-Ray 1080p</span>
+                        <span class="px-2.5 py-0.5 bg-blue-950 text-blue-400 text-xs font-medium border border-blue-900/50 rounded-full uppercase tracking-wider">MULTI-VF (Alain Chabat)</span>
+                    </div>
+                    <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight leading-tight">
+                        Shrek.2001.MULTI.1080p.BluRay.x264-MELiODAS
+                    </h1>
+                    <p class="text-sm text-zinc-400 mt-1">
+                        Ajouté le <span class="text-zinc-300 font-medium">18 Avril 2026</span> par <span class="text-shrek-400 hover:underline cursor-pointer font-semibold">OgreHéroïque</span> (Uploader d'Élite)
+                    </p>
+                </div>
+
+                <!-- Main Actions (Desktop side-mount / Mobile bottom) -->
+                <div class="flex items-center gap-3">
+                    <button onclick="triggerReport()" class="p-3 bg-zinc-900 hover:bg-zinc-800 text-zinc-400 hover:text-red-400 rounded-xl transition border border-zinc-800 flex items-center justify-center" title="Signaler ce torrent">
+                        <i data-lucide="flag" class="w-5 h-5"></i>
+                    </button>
+                    <button onclick="bookmarkTorrent()" class="p-3 bg-zinc-900 hover:bg-zinc-800 text-zinc-400 hover:text-shrek-400 rounded-xl transition border border-zinc-800 flex items-center justify-center" title="Ajouter aux favoris">
+                        <i data-lucide="bookmark" id="bookmark-icon" class="w-5 h-5"></i>
+                    </button>
+                    <button onclick="openDownloadModal('magnet')" class="flex items-center justify-center gap-2 px-5 py-3 bg-gradient-to-r from-emerald-600 to-shrek-600 hover:from-emerald-500 hover:to-shrek-500 text-zinc-950 font-bold rounded-xl transition shadow-lg shadow-shrek-900/20">
+                        <i data-lucide="magnet" class="w-5 h-5"></i>
+                        <span>Lien Magnet</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT GRID -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <!-- LEFT COLUMN: TORRENT DATA, NFO, COMMENTS (2/3 width) -->
+            <div class="lg:col-span-2 space-y-8">
+                
+                <!-- MOVIE INFO SUMMARY CARD -->
+                <div class="bg-zinc-900/50 border border-zinc-800/80 rounded-2xl p-6 relative overflow-hidden">
+                    <div class="flex flex-col md:flex-row gap-6">
+                        <!-- Movie Poster placeholder with absolute custom SVG fallback -->
+                        <div class="w-full md:w-48 h-72 bg-gradient-to-b from-shrek-900/50 to-zinc-950 rounded-xl overflow-hidden border border-zinc-800 flex flex-col justify-between p-4 relative shrink-0">
+                            <!-- Overlay Shrek silhouette artwork in poster fallback -->
+                            <div class="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
+                                <svg class="w-32 h-32 text-shrek-400" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2a10 10 0 1010 10A10 10 0 0012 2zm1 14.5h-2v-2h2v2zm0-4h-2V7h2v5.5z"/>
+                                </svg>
+                            </div>
+                            <div class="flex justify-between items-start z-10">
+                                <span class="bg-shrek-500 text-zinc-950 font-extrabold text-[10px] px-1.5 py-0.5 rounded">OGRE-VISION</span>
+                                <span class="bg-zinc-900 text-zinc-300 font-bold text-xs px-1.5 py-0.5 rounded">2001</span>
+                            </div>
+                            <!-- A highly stylized text simulation instead of raw external url breakdown -->
+                            <div class="z-10 text-center">
+                                <p class="text-lg font-black text-shrek-400 leading-tight tracking-wider uppercase">SHREK</p>
+                                <p class="text-[10px] text-zinc-400 mt-1">L'OGRE VERT DU MARAIS</p>
+                            </div>
+                            <div class="border-t border-zinc-800/50 pt-2 z-10 flex justify-between items-center text-[10px] text-zinc-500">
+                                <span>Alain Chabat</span>
+                                <span>DreamWorks</span>
+                            </div>
+                        </div>
+
+                        <!-- Technical Specs -->
+                        <div class="flex-1 space-y-4">
+                            <h2 class="text-xl font-bold text-white flex items-center gap-2">
+                                <i data-lucide="film" class="text-shrek-400 w-5 h-5"></i>
+                                Informations sur le film
+                            </h2>
+                            <p class="text-sm text-zinc-400 leading-relaxed">
+                                Un ogre verdâtre, cynique et malicieux nommé Shrek voit son précieux marais envahi par d’agaçants personnages de contes de fées, exilés par le tyrannique Lord Farquaad. Pour sauver son domaine, Shrek passe un accord et part délivrer la belle princesse Fiona.
+                            </p>
+
+                            <div class="grid grid-cols-2 gap-y-3 gap-x-4 pt-2 text-xs border-t border-zinc-800/50">
+                                <div>
+                                    <span class="text-zinc-500 block">Réalisateurs</span>
+                                    <span class="text-zinc-300 font-semibold">Andrew Adamson, Vicky Jenson</span>
+                                </div>
+                                <div>
+                                    <span class="text-zinc-500 block">Doubleurs originaux / français</span>
+                                    <span class="text-zinc-300 font-semibold">Mike Myers / Alain Chabat, Eddie Murphy / Med Hondo</span>
+                                </div>
+                                <div>
+                                    <span class="text-zinc-500 block">Audio</span>
+                                    <span class="text-zinc-300 font-semibold flex items-center gap-1.5">
+                                        <span class="px-1 bg-green-950 text-green-400 rounded text-[9px] font-bold">FR-VFF</span> AC3 5.1 | <span class="px-1 bg-blue-950 text-blue-400 rounded text-[9px] font-bold">EN-VO</span> AC3 5.1
+                                    </span>
+                                </div>
+                                <div>
+                                    <span class="text-zinc-500 block">Sous-titres</span>
+                                    <span class="text-zinc-300 font-semibold">Français, Anglais (Complets & Forcés)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TRAILER INTEGRATED -->
+                <div class="bg-zinc-900/30 border border-zinc-800/60 rounded-2xl p-6">
+                    <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                        <i data-lucide="clapperboard" class="text-shrek-400 w-5 h-5"></i>
+                        Bande-Annonce Officielle (Française)
+                    </h3>
+                    <div class="relative w-full aspect-video rounded-xl overflow-hidden border border-zinc-800 bg-zinc-950 shadow-inner group">
+                        <!-- Simulated trailer cover or direct iframe embed -->
+                        <iframe class="w-full h-full" 
+                                src="https://www.youtube.com/embed/Sshb9p_vJd0" 
+                                title="Shrek - Trailer" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+
+                <!-- NFO VIEWER AND DOWNLOAD SPECS -->
+                <div class="bg-zinc-900/30 border border-zinc-800/60 rounded-2xl p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                            <i data-lucide="file-text" class="text-shrek-400 w-5 h-5"></i>
+                            Fichier NFO technique (.nfo)
+                        </h3>
+                        <button onclick="copyNFO()" class="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold bg-zinc-800 hover:bg-zinc-700 text-zinc-300 rounded-lg transition border border-zinc-700">
+                            <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                            <span id="copy-btn-text">Copier</span>
+                        </button>
+                    </div>
+
+                    <div class="relative">
+                        <!-- Collapsible raw style code viewer -->
+                        <div id="nfo-container" class="max-h-[300px] overflow-y-auto bg-zinc-950 border border-zinc-850 rounded-xl p-4 font-nfo text-[11px] leading-relaxed text-emerald-400/90 whitespace-pre scrollbar-thin scrollbar-thumb-zinc-800">
++--------------------------------------------------------------------+
+  __  __                       _     _                     _        
+ |  \/  |                     (_)   | |                   | |       
+ | \  / | __ _ _ __ __ _ _ ___ _ ___|_|__ _ _ __   ___  __| |___    
+ | |\/| |/ _` | '__/ _` | '___| / __| / _` | '_ \ / _ \/ _` / __|   
+ | |  | | (_| | | | (_| | |   | \__ \ | (_| | | | |  __/ (_| \__ \   
+ |_|  |_|\__,_|_|  \__,_|_|   |_|___/_|\__,_|_| |_|\___|\__,_|___/   
++--------------------------------------------------------------------+
+
+RELEASE NAME......: Shrek.2001.MULTI.1080p.BluRay.x264-MELiODAS
+RELEASE DATE......: 18/04/2026
+DURÉE.............: 1h 30mn
+TAILLE............: 7.95 GiB
+SOURCE............: BluRay Disc 1080p AVC (Merci à l’original)
+
+VIDEO CODEC.......: x264 (High @L4.1)
+RESOLUTION........: 1920x1080
+FRAME RATE........: 23.976 fps
+BITRATE...........: 11.2 Mbps
+
+AUDIO.............: Français (VFF) AC3 @ 640 Kbps (6 Canaux) - VOIX ALAIN CHABAT
+                    Anglais (VO) DTS @ 1509 Kbps (6 Canaux)
+SUBTITLES.........: Français (.srt complets), Français (forcés), English (.srt)
+
+ENCODER...........: MELiODAS 
+NOTES.............: Encode propre sans dégradation de grain. Audio VFF 
+                    parfaitement synchronisé d'après l'édition Collector.
+                        </div>
+                        <div class="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-zinc-950 to-transparent pointer-events-none rounded-b-xl"></div>
+                    </div>
+                    <div class="text-center mt-3">
+                        <button onclick="toggleNFOMaxHeight()" id="toggle-nfo-btn" class="text-xs text-shrek-400 hover:text-shrek-300 font-semibold focus:outline-none">
+                            Voir plus d'informations NFO
+                        </button>
+                    </div>
+                </div>
+
+                <!-- USER REVIEWS & COMMENTS SECTION -->
+                <div class="bg-zinc-900/30 border border-zinc-800/60 rounded-2xl p-6">
+                    <h3 class="text-lg font-bold text-white mb-6 flex items-center gap-2">
+                        <i data-lucide="messages-square" class="text-shrek-400 w-5 h-5"></i>
+                        Commentaires de la communauté (<span id="comment-count">4</span>)
+                    </h3>
+
+                    <!-- Quick Add Comment form -->
+                    <div class="flex gap-4 items-start mb-8 border-b border-zinc-800/60 pb-6">
+                        <img src="https://api.dicebear.com/7.x/bottts/svg?seed=ShrekFan" alt="Your Avatar" class="w-10 h-10 rounded-xl bg-zinc-800 shrink-0">
+                        <div class="flex-1 space-y-3">
+                            <textarea id="comment-textarea" rows="3" placeholder="Laissez un avis sur l'encodage ou la qualité (pensez au ratio !)..." 
+                                      class="block w-full rounded-xl border border-zinc-800 bg-zinc-950 placeholder-zinc-500 text-zinc-100 p-3 text-sm focus:outline-none focus:ring-2 focus:ring-shrek-500 transition-all"></textarea>
+                            <div class="flex justify-between items-center">
+                                <span class="text-xs text-zinc-500">Charte de respect obligatoire sur le tracker.</span>
+                                <button onclick="postComment()" class="px-4 py-2 bg-zinc-800 hover:bg-shrek-600 hover:text-zinc-950 text-zinc-200 font-bold text-xs rounded-lg transition-all flex items-center gap-1.5">
+                                    <i data-lucide="send" class="w-3.5 h-3.5"></i>
+                                    Envoyer
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Custom dynamic comments stack -->
+                    <div id="comments-stack" class="space-y-6">
+                        <!-- Comment 1 -->
+                        <div class="flex gap-4 items-start bg-zinc-900/20 p-4 rounded-xl border border-zinc-850">
+                            <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=Fiona" alt="Avatar" class="w-10 h-10 rounded-xl bg-zinc-800 shrink-0">
+                            <div class="flex-1 space-y-1">
+                                <div class="flex flex-wrap items-center justify-between gap-2">
+                                    <div class="flex items-center gap-2">
+                                        <span class="font-bold text-sm text-zinc-200">PrincesseFifi</span>
+                                        <span class="px-1.5 py-0.5 bg-shrek-950 text-shrek-400 border border-shrek-800/50 rounded text-[9px] font-bold uppercase tracking-wide">Uploader</span>
+                                    </div>
+                                    <span class="text-xs text-zinc-500">Il y a 2 heures</span>
+                                </div>
+                                <p class="text-sm text-zinc-300 leading-relaxed">
+                                    Merci infiniment pour cet encodage d'une netteté impériale ! Le grain original de DreamWorks est respecté, pas de macro-blocking sur les scènes sombres dans la forêt. Et avec la vraie VF d'Alain Chabat, c'est que du bonheur !
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Comment 2 -->
+                        <div class="flex gap-4 items-start">
+                            <img src="https://api.dicebear.com/7.x/pixel-art/svg?seed=Donkey" alt="Avatar" class="w-10 h-10 rounded-xl bg-zinc-800 shrink-0">
+                            <div class="flex-1 space-y-1">
+                                <div class="flex flex-wrap items-center justify-between gap-2">
+                                    <div class="flex items-center gap-2">
+                                        <span class="font-bold text-sm text-zinc-200">L_Ane_Bavard</span>
+                                        <span class="px-1.5 py-0.5 bg-amber-950 text-amber-400 border border-amber-900/50 rounded text-[9px] font-bold uppercase tracking-wide">VIP</span>
+                                    </div>
+                                    <span class="text-xs text-zinc-500">Il y a 5 heures</span>
+                                </div>
+                                <p class="text-sm text-zinc-300 leading-relaxed">
+                                    "On est bientôt arrivés ?" Superbe boulot, le débit vidéo est parfait pour du x264, pas de saturation audio sur le fameux "All Star" de Smash Mouth en intro. Je reste en seed illimité pour ma part !
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Comment 3 -->
+                        <div class="flex gap-4 items-start">
+                            <img src="https://api.dicebear.com/7.x/bottts-neutral/svg?seed=Lord" alt="Avatar" class="w-10 h-10 rounded-xl bg-zinc-800 shrink-0">
+                            <div class="flex-1 space-y-1">
+                                <div class="flex flex-wrap items-center justify-between gap-2">
+                                    <div class="flex items-center gap-2">
+                                        <span class="font-bold text-sm text-zinc-200">Farquaad_LeGrand</span>
+                                        <span class="px-1.5 py-0.5 bg-zinc-800 text-zinc-400 rounded text-[9px] font-bold uppercase tracking-wide">Membre</span>
+                                    </div>
+                                    <span class="text-xs text-zinc-500">Il y a 1 jour</span>
+                                </div>
+                                <p class="text-sm text-zinc-400 leading-relaxed mb-1">
+                                    Certains d'entre vous risquent de mourir... mais c'est un sacrifice que je suis prêt à faire pour récupérer un tel chef-d'œuvre. Torrent impeccable, vitesse de téléchargement maximale à 80 Mo/s sur ma fibre.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- RIGHT COLUMN: PEER STATS, DOWN CARD, SIMILAR TORRENTS (1/3 width) -->
+            <div class="space-y-8">
+                
+                <!-- THE QUICK DOWNLOAD CARD -->
+                <div class="bg-gradient-to-b from-zinc-900 to-zinc-950 border border-zinc-800 rounded-2xl p-6 relative overflow-hidden shadow-2xl">
+                    <!-- Light green ambient border glow -->
+                    <div class="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-shrek-500 to-transparent"></div>
+
+                    <div class="space-y-6">
+                        
+                        <!-- Core File Stats Grid -->
+                        <div class="grid grid-cols-2 gap-4 bg-zinc-950/60 p-4 rounded-xl border border-zinc-850">
+                            <div>
+                                <span class="text-[10px] text-zinc-500 block uppercase font-bold tracking-wider">Taille totale</span>
+                                <span class="text-base font-extrabold text-white">7.95 GB</span>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-zinc-500 block uppercase font-bold tracking-wider">Type de fichier</span>
+                                <span class="text-base font-extrabold text-shrek-400">MKV (x264)</span>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-zinc-500 block uppercase font-bold tracking-wider">Nombre de fichiers</span>
+                                <span class="text-sm font-semibold text-zinc-300">1 (Film principal)</span>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-zinc-500 block uppercase font-bold tracking-wider">Info Hash</span>
+                                <span class="text-[10px] text-zinc-400 font-mono select-all">9F8E7...881E</span>
+                            </div>
+                        </div>
+
+                        <!-- LIVE PEER METRICS (Live simulation) -->
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between text-xs">
+                                <span class="text-zinc-400 flex items-center gap-1.5 font-medium">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block animate-pulse"></span>
+                                    Seeders (Sources)
+                                </span>
+                                <span class="text-emerald-400 font-bold" id="seeder-count">342</span>
+                            </div>
+                            <div class="flex items-center justify-between text-xs">
+                                <span class="text-zinc-400 flex items-center gap-1.5 font-medium">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-red-400 inline-block"></span>
+                                    Leechers (Clients)
+                                </span>
+                                <span class="text-red-400 font-bold" id="leecher-count">18</span>
+                            </div>
+
+                            <!-- Health progression bar -->
+                            <div class="w-full bg-zinc-950 rounded-full h-2 overflow-hidden border border-zinc-850">
+                                <div class="bg-gradient-to-r from-emerald-500 to-shrek-500 h-full rounded-full" style="width: 95%"></div>
+                            </div>
+                            <div class="flex justify-between text-[10px] text-zinc-500 font-semibold">
+                                <span>Santé globale : 95%</span>
+                                <span class="text-emerald-400">Excellent Tracker</span>
+                            </div>
+                        </div>
+
+                        <!-- CTA BUTTONS -->
+                        <div class="space-y-3 pt-2">
+                            <button onclick="openDownloadModal('torrent')" class="w-full py-4 px-4 bg-shrek-500 hover:bg-shrek-400 text-zinc-950 font-black rounded-xl transition duration-300 flex items-center justify-center gap-2.5 shadow-lg shadow-shrek-950/50">
+                                <i data-lucide="download" class="w-5 h-5"></i>
+                                <span>Télécharger le .torrent</span>
+                            </button>
+
+                            <button onclick="openDownloadModal('magnet')" class="w-full py-3.5 px-4 bg-zinc-900 hover:bg-zinc-850 text-zinc-200 hover:text-white font-bold rounded-xl transition duration-300 border border-zinc-800 flex items-center justify-center gap-2">
+                                <i data-lucide="magnet" class="w-4 h-4 text-shrek-500"></i>
+                                <span>Copier l'adresse magnet</span>
+                            </button>
+                        </div>
+
+                        <!-- Tracker safety notice -->
+                        <div class="p-3 bg-zinc-950 rounded-lg border border-zinc-900 text-[11px] text-zinc-500 space-y-1.5">
+                            <p class="flex items-center gap-1.5 text-zinc-400 font-semibold">
+                                <i data-lucide="shield-check" class="w-3.5 h-3.5 text-shrek-400"></i>
+                                Fichier certifié sans virus
+                            </p>
+                            <p>Ce torrent est haché et vérifié par l'équipe de modération du Marais.</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- SIMILAR TORRENTS / RELATED (Shrek sequels) -->
+                <div class="bg-zinc-900/30 border border-zinc-800/60 rounded-2xl p-6">
+                    <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                        <i data-lucide="library" class="text-shrek-400 w-5 h-5"></i>
+                        Contes du marais similaires
+                    </h3>
+                    <div class="space-y-4">
+                        <!-- Rel 1 -->
+                        <a href="#" class="block p-3 bg-zinc-900/40 hover:bg-zinc-850 rounded-xl border border-zinc-850/50 transition group">
+                            <div class="flex items-center justify-between gap-2 mb-1.5">
+                                <span class="font-bold text-xs text-zinc-200 group-hover:text-shrek-400 transition truncate">Shrek 2 (2004) MULTI 1080p BluRay x264</span>
+                                <span class="text-[10px] bg-zinc-950 px-1.5 py-0.5 rounded text-zinc-400 shrink-0">8.12 GB</span>
+                            </div>
+                            <div class="flex items-center justify-between text-[10px] text-zinc-500">
+                                <span>Il y a 3 mois</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-emerald-400">S: 142</span>
+                                    <span class="text-red-400">L: 9</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- Rel 2 -->
+                        <a href="#" class="block p-3 bg-zinc-900/40 hover:bg-zinc-850 rounded-xl border border-zinc-850/50 transition group">
+                            <div class="flex items-center justify-between gap-2 mb-1.5">
+                                <span class="font-bold text-xs text-zinc-200 group-hover:text-shrek-400 transition truncate">Shrek le troisième (2007) MULTI 1080p x264</span>
+                                <span class="text-[10px] bg-zinc-950 px-1.5 py-0.5 rounded text-zinc-400 shrink-0">7.34 GB</span>
+                            </div>
+                            <div class="flex items-center justify-between text-[10px] text-zinc-500">
+                                <span>Il y a 6 mois</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-emerald-400">S: 89</span>
+                                    <span class="text-red-400">L: 3</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- Rel 3 -->
+                        <a href="#" class="block p-3 bg-zinc-900/40 hover:bg-zinc-850 rounded-xl border border-zinc-850/50 transition group">
+                            <div class="flex items-center justify-between gap-2 mb-1.5">
+                                <span class="font-bold text-xs text-zinc-200 group-hover:text-shrek-400 transition truncate">Le Chat Potté 2 (2022) MULTI 1080p BluRay</span>
+                                <span class="text-[10px] bg-zinc-950 px-1.5 py-0.5 rounded text-zinc-400 shrink-0">11.45 GB</span>
+                            </div>
+                            <div class="flex items-center justify-between text-[10px] text-zinc-500">
+                                <span>Il y a 1 an</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-emerald-400">S: 412</span>
+                                    <span class="text-red-400">L: 21</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-zinc-950 border-t border-zinc-900 mt-16 py-8 text-center text-xs text-zinc-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+            <div class="flex justify-center gap-6">
+                <a href="#" class="hover:text-shrek-400 transition">Règles du Tracker</a>
+                <a href="#" class="hover:text-shrek-400 transition">F.A.Q</a>
+                <a href="#" class="hover:text-shrek-400 transition">Nous Contacter</a>
+                <a href="#" class="hover:text-shrek-400 transition">Donations</a>
+            </div>
+            <p>
+                © 2026 MaraisTracker. Tous droits réservés à l’Ogre. « Il vaut mieux être dans son marais que de traquer ailleurs. »
+            </p>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE DOWNLOADING MODAL -->
+    <div id="download-modal" class="hidden fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-4">
+        <!-- Backdrop blur overlay -->
+        <div class="fixed inset-0 bg-zinc-950/80 backdrop-blur-sm transition-opacity" onclick="closeDownloadModal()"></div>
+
+        <!-- Card Body -->
+        <div class="relative bg-zinc-900 border border-zinc-800 rounded-2xl p-6 max-w-md w-full shadow-2xl z-10 space-y-6 text-center transform transition-all">
+            
+            <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-shrek-950 border border-shrek-800/50 text-shrek-400">
+                <i data-lucide="download-cloud" id="modal-icon" class="h-8 w-8 animate-bounce"></i>
+            </div>
+
+            <div class="space-y-2">
+                <h3 class="text-xl font-extrabold text-white" id="modal-title">Préparation du Torrent</h3>
+                <p class="text-sm text-zinc-400" id="modal-subtitle">Connexion sécurisée avec le tracker en cours...</p>
+            </div>
+
+            <!-- Loader bar simulation -->
+            <div class="w-full bg-zinc-950 rounded-full h-3 overflow-hidden border border-zinc-800 p-0.5">
+                <div id="modal-progress-bar" class="bg-gradient-to-r from-emerald-500 to-shrek-500 h-full rounded-full transition-all duration-300" style="width: 0%"></div>
+            </div>
+
+            <!-- Meta details in modal -->
+            <div class="bg-zinc-950/60 border border-zinc-850 p-4 rounded-xl text-left text-xs space-y-1.5 font-mono text-zinc-400">
+                <div class="flex justify-between"><span class="text-zinc-500">Nom :</span> <span class="truncate max-w-[240px] text-zinc-300 font-bold">Shrek.2001.MULTI.1080p...</span></div>
+                <div class="flex justify-between"><span class="text-zinc-500">Passkey :</span> <span class="text-shrek-400">9c9f7a77e23b727b172a</span></div>
+                <div class="flex justify-between"><span class="text-zinc-500">Annonceur :</span> <span class="text-zinc-300">https://tracker.marais.io/announce</span></div>
+            </div>
+
+            <!-- Action buttons inside modal -->
+            <div class="flex gap-3 justify-end pt-2">
+                <button onclick="closeDownloadModal()" class="flex-1 py-2.5 px-4 bg-zinc-800 hover:bg-zinc-750 text-zinc-300 font-bold rounded-xl transition text-sm">
+                    Fermer
+                </button>
+                <button onclick="simulateMagnetOpen()" id="modal-confirm-btn" class="hidden flex-1 py-2.5 px-4 bg-shrek-500 hover:bg-shrek-400 text-zinc-950 font-black rounded-xl transition text-sm">
+                    Ouvrir l'application
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATIONS SYSTEM -->
+    <div id="toast-notification" class="fixed bottom-6 right-6 z-50 bg-zinc-900 border border-zinc-800 p-4 rounded-xl shadow-2xl flex items-center gap-3 transform translate-y-20 opacity-0 transition-all duration-500 pointer-events-none max-w-sm">
+        <div class="p-2 bg-shrek-950 rounded-lg text-shrek-400 border border-shrek-800/30" id="toast-icon-bg">
+            <i data-lucide="check" class="w-5 h-5" id="toast-icon"></i>
+        </div>
+        <div>
+            <h4 class="font-bold text-sm text-white" id="toast-title">Notification</h4>
+            <p class="text-xs text-zinc-400" id="toast-message">Action effectuée avec succès.</p>
+        </div>
+    </div>
+
+    <!-- INLINE JAVASCRIPT LOGIC -->
+    <script>
+        // Init Lucide Icons
+        lucide.createIcons();
+
+        // 1. Live Peer simulation to make the site look hyper-realistic
+        setInterval(() => {
+            const seederEl = document.getElementById('seeder-count');
+            const leecherEl = document.getElementById('leecher-count');
+            
+            let seeders = parseInt(seederEl.textContent);
+            let leechers = parseInt(leecherEl.textContent);
+
+            // Random micro movements
+            seeders += Math.floor(Math.random() * 5) - 2;
+            leechers += Math.floor(Math.random() * 3) - 1;
+
+            if (seeders < 300) seeders = 300;
+            if (leechers < 5) leechers = 5;
+
+            seederEl.textContent = seeders;
+            leecherEl.textContent = leechers;
+        }, 8000);
+
+        // 2. Search Box Simulation
+        const searchInput = document.getElementById('global-search');
+        const searchAlert = document.getElementById('search-alert');
+        let searchTimeout;
+
+        searchInput.addEventListener('input', (e) => {
+            clearTimeout(searchTimeout);
+            if (e.target.value.length > 2) {
+                searchAlert.classList.remove('hidden');
+                searchAlert.innerHTML = `🔍 Recherche de <span class="font-bold text-white">"${e.target.value}"</span> sur le tracker du Marais... (Aucun autre résultat trouvé dans cette démo)`;
+                
+                searchTimeout = setTimeout(() => {
+                    searchAlert.classList.add('hidden');
+                }, 4000);
+            } else {
+                searchAlert.classList.add('hidden');
+            }
+        });
+
+        // 3. Bookmark Toggle
+        let isBookmarked = false;
+        function bookmarkTorrent() {
+            isBookmarked = !isBookmarked;
+            const icon = document.getElementById('bookmark-icon');
+            if (isBookmarked) {
+                icon.classList.add('fill-shrek-500', 'text-shrek-500');
+                showToast("Favori ajouté", "Ce torrent a été épinglé à vos favoris de l’Ogre.", "bookmark");
+            } else {
+                icon.classList.remove('fill-shrek-500', 'text-shrek-500');
+                showToast("Favori retiré", "Ce torrent a été retiré de votre liste.", "info");
+            }
+        }
+
+        // 4. Report simulation
+        function triggerReport() {
+            showToast("Signalement enregistré", "Un modérateur va examiner la conformité de cet encodage.", "flag");
+        }
+
+        // 5. Toast System helper
+        function showToast(title, msg, iconType = "check") {
+            const toast = document.getElementById('toast-notification');
+            const toastTitle = document.getElementById('toast-title');
+            const toastMessage = document.getElementById('toast-message');
+            const toastIcon = document.getElementById('toast-icon');
+
+            toastTitle.textContent = title;
+            toastMessage.textContent = msg;
+
+            // Change icon shape depending on type
+            if (iconType === "flag") {
+                toastIcon.setAttribute('data-lucide', 'flag');
+                toastIcon.classList.add('text-red-400');
+            } else if (iconType === "bookmark") {
+                toastIcon.setAttribute('data-lucide', 'bookmark');
+                toastIcon.classList.add('text-shrek-400');
+            } else if (iconType === "info") {
+                toastIcon.setAttribute('data-lucide', 'info');
+                toastIcon.classList.add('text-zinc-400');
+            } else {
+                toastIcon.setAttribute('data-lucide', 'check');
+                toastIcon.classList.add('text-emerald-400');
+            }
+            
+            lucide.createIcons();
+
+            // Animate toast entry
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 4500);
+        }
+
+        // 6. NFO Expand/Collapse Toggle
+        let nfoExpanded = false;
+        function toggleNFOMaxHeight() {
+            const container = document.getElementById('nfo-container');
+            const btn = document.getElementById('toggle-nfo-btn');
+            nfoExpanded = !nfoExpanded;
+
+            if (nfoExpanded) {
+                container.classList.remove('max-h-[300px]');
+                btn.textContent = "Réduire la vue NFO";
+            } else {
+                container.classList.add('max-h-[300px]');
+                btn.textContent = "Voir plus d'informations NFO";
+            }
+        }
+
+        // 7. Copy NFO to Clipboard using robust iframe fallback method
+        function copyNFO() {
+            const nfoText = document.getElementById('nfo-container').innerText;
+            const btnText = document.getElementById('copy-btn-text');
+            
+            // Create a temp textarea for document.execCommand
+            const tempTextarea = document.createElement("textarea");
+            tempTextarea.value = nfoText;
+            document.body.appendChild(tempTextarea);
+            tempTextarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextarea);
+
+            // Change button state
+            btnText.textContent = "Copié !";
+            showToast("NFO Copié", "Le texte NFO a été copié dans votre presse-papiers.", "check");
+
+            setTimeout(() => {
+                btnText.textContent = "Copier";
+            }, 3000);
+        }
+
+        // 8. Download / Magnet Modals System
+        let progressInterval;
+        function openDownloadModal(type) {
+            const modal = document.getElementById('download-modal');
+            const mTitle = document.getElementById('modal-title');
+            const mSubtitle = document.getElementById('modal-subtitle');
+            const mProgress = document.getElementById('modal-progress-bar');
+            const mIcon = document.getElementById('modal-icon');
+            const mConfirmBtn = document.getElementById('modal-confirm-btn');
+
+            modal.classList.remove('hidden');
+            mProgress.style.width = "0%";
+            mConfirmBtn.classList.add('hidden');
+
+            if (type === "torrent") {
+                mTitle.textContent = "Génération du fichier .torrent";
+                mSubtitle.textContent = "Vérification de vos clés d'annonces personnalisées...";
+                mIcon.setAttribute('data-lucide', 'download-cloud');
+                mIcon.classList.add('animate-bounce');
+            } else {
+                mTitle.textContent = "Création du lien Magnet";
+                mSubtitle.textContent = "Interrogation de la table DHT du tracker...";
+                mIcon.setAttribute('data-lucide', 'magnet');
+                mIcon.classList.add('animate-pulse');
+            }
+            lucide.createIcons();
+
+            // Simulate progress load
+            let currentProgress = 0;
+            clearInterval(progressInterval);
+            progressInterval = setInterval(() => {
+                currentProgress += Math.floor(Math.random() * 25) + 5;
+                if (currentProgress >= 100) {
+                    currentProgress = 100;
+                    clearInterval(progressInterval);
+                    
+                    // Final state triggers
+                    mIcon.classList.remove('animate-bounce', 'animate-pulse');
+                    if (type === 'torrent') {
+                        mSubtitle.innerHTML = `<span class="text-emerald-400 font-bold">✓ Prêt au téléchargement !</span> Fichier torrent généré avec succès.`;
+                        triggerTorrentDownload();
+                    } else {
+                        mSubtitle.innerHTML = `<span class="text-emerald-400 font-bold">✓ Lien magnet généré !</span> Prêt à être associé à votre client torrent.`;
+                        mConfirmBtn.classList.remove('hidden');
+                    }
+                }
+                mProgress.style.width = `${currentProgress}%`;
+            }, 150);
+        }
+
+        function closeDownloadModal() {
+            clearInterval(progressInterval);
+            document.getElementById('download-modal').classList.add('hidden');
+        }
+
+        // Simulate downloading a file to client machine
+        function triggerTorrentDownload() {
+            showToast("Téléchargement lancé", "Le fichier .torrent est en cours de téléchargement local.", "check");
+            setTimeout(() => {
+                closeDownloadModal();
+            }, 2000);
+        }
+
+        function simulateMagnetOpen() {
+            showToast("Lancement Client", "Appel de l'URI magnet protocole avec succès.", "check");
+            closeDownloadModal();
+        }
+
+        // 9. Interactive Comments section (In-Memory addition)
+        function postComment() {
+            const textarea = document.getElementById('comment-textarea');
+            const text = textarea.value.trim();
+
+            if (!text) {
+                showToast("Commentaire vide", "Veuillez écrire un avis valide.", "info");
+                return;
+            }
+
+            const stack = document.getElementById('comments-stack');
+            const commentCount = document.getElementById('comment-count');
+            
+            // Generate random user name and seed
+            const customSeed = "User" + Math.floor(Math.random() * 1000);
+
+            // New comment structure
+            const newComment = document.createElement('div');
+            newComment.className = "flex gap-4 items-start bg-zinc-900/40 p-4 rounded-xl border border-shrek-900/30 transition-all duration-500 transform translate-y-4 opacity-0";
+            newComment.innerHTML = `
+                <img src="https://api.dicebear.com/7.x/identicon/svg?seed=${customSeed}" alt="Avatar" class="w-10 h-10 rounded-xl bg-zinc-800 shrink-0">
+                <div class="flex-1 space-y-1">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <div class="flex items-center gap-2">
+                            <span class="font-bold text-sm text-shrek-400">Vous (ShrekFan)</span>
+                            <span class="px-1.5 py-0.5 bg-zinc-800 text-zinc-300 rounded text-[9px] font-bold uppercase tracking-wide">Membre</span>
+                        </div>
+                        <span class="text-xs text-zinc-500">À l'instant</span>
+                    </div>
+                    <p class="text-sm text-zinc-200 leading-relaxed">
+                        ${escapeHTML(text)}
+                    </p>
+                </div>
+            `;
+
+            // Prepend new comment to top
+            stack.insertBefore(newComment, stack.firstChild);
+            
+            // Animate entrance
+            setTimeout(() => {
+                newComment.classList.remove('translate-y-4', 'opacity-0');
+            }, 50);
+
+            // Update counter
+            const currentCount = parseInt(commentCount.textContent);
+            commentCount.textContent = currentCount + 1;
+
+            // Clear text area & notify
+            textarea.value = "";
+            showToast("Avis publié", "Merci pour votre contribution au tracker !", "check");
+        }
+
+        // Helper string protection
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g, 
+                tag => ({
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    "'": '&#39;',
+                    '"': '&quot;'
+                }[tag] || tag)
+            );
+        }
+    </script>
+</body>
+</html>
