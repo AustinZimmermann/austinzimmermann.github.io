@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retro Torrent Archiver - Star Wars Ep VI: Return of the Jedi (2006-09-13)</title>
+    <!-- Tailwind CSS CDN for modern responsive grid systems and utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons for premium visual depth -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=M+PLUS+Rounded+1c:wght@400;700&family=Share+Tech+Mono&display=swap');
+
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --accent-glow: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --retro-green: #22c55e;
+            --retro-amber: #f59e0b;
+            --border-color: #334155;
+        }
+
+        /* 2006 style MS Gothic fallback with modern anti-aliasing */
+        body {
+            font-family: "M PLUS Rounded 1c", "MS PGothic", "Osaka", -apple-system, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Scanline Overlay Effect for NFO Terminal */
+        .terminal-glow {
+            font-family: 'Share Tech Mono', 'Courier Prime', monospace;
+            background: radial-gradient(circle at 50% 50%, #15202b 0%, #0a0f1d 100%);
+            border: 2px solid #334155;
+            position: relative;
+            overflow: hidden;
+        }
+        .terminal-glow::before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 10;
+            background-size: 100% 4px, 3px 100%;
+            pointer-events: none;
+        }
+
+        /* Piece map simulation blocks */
+        .piece-grid div {
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        /* Retro Badge Styling (88x31 Standard of the 2000s) */
+        .retro-badge {
+            width: 88px;
+            height: 31px;
+            font-size: 9px;
+            font-weight: bold;
+            letter-spacing: -0.5px;
+            text-shadow: 1px 1px 0px rgba(0,0,0,0.8);
+            border: 1px solid #475569;
+            box-shadow: inset 1px 1px 0px rgba(255,255,255,0.2);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            user-select: none;
+        }
+
+        /* Scrollbar aesthetics for NFO/BBS */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased">
+
+    <!-- Top Retro WayBack/Archivist Header -->
+    <header class="bg-slate-900 border-b border-slate-800 text-slate-300 py-2.5 px-4 sticky top-0 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <div class="bg-sky-500 text-slate-900 font-black px-2 py-0.5 rounded text-xs tracking-wider">RETRO-ARCHIVE</div>
+                <span class="text-sm font-semibold tracking-wide text-sky-400">P2P-SORA 日本語トラッカー</span>
+            </div>
+            <div class="flex items-center gap-4 text-xs">
+                <span class="hidden md:inline text-slate-400">現在アーカイブ時点：<strong class="text-sky-300">2006年09月13日 (水)</strong></span>
+                <div class="flex gap-2">
+                    <button id="themeToggle" class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-1 rounded border border-slate-700 flex items-center gap-1.5 transition">
+                        <i data-lucide="sun" class="w-3.5 h-3.5"></i>
+                        <span>テーマ切替</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto p-4 md:p-6 lg:p-8 flex-grow w-full grid grid-cols-1 lg:grid-cols-12 gap-6">
+        
+        <!-- Left Column: Torrent Spec details (8 columns) -->
+        <div class="lg:col-span-8 flex flex-col gap-6">
+            
+            <!-- Breadcrumb / Announcement banner -->
+            <div class="bg-slate-800/80 border border-slate-700/60 p-3 rounded-lg text-xs md:text-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-2">
+                <div class="flex items-center gap-2 text-slate-300">
+                    <i data-lucide="folder" class="w-4 h-4 text-sky-400"></i>
+                    <span>インデックス</span>
+                    <span>/</span>
+                    <span class="text-sky-400 font-medium">洋画SF・特撮</span>
+                    <span>/</span>
+                    <span class="text-slate-400">スター・ウォーズ</span>
+                </div>
+                <div class="text-amber-500 font-semibold flex items-center gap-1.5 animate-pulse">
+                    <i data-lucide="alert-triangle" class="w-3.5 h-3.5"></i>
+                    <span>警告: Winny等による個人情報流出にご注意ください (2006年版啓発)</span>
+                </div>
+            </div>
+
+            <!-- Major Torrent Release Title Card -->
+            <div class="bg-slate-800 border border-slate-700 p-5 rounded-xl shadow-lg relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-1.5 h-full bg-gradient-to-b from-sky-500 to-indigo-600"></div>
+                <div class="flex flex-wrap items-center gap-2 mb-3">
+                    <span class="bg-indigo-900/80 text-indigo-300 text-[11px] font-bold px-2 py-0.5 rounded border border-indigo-700">DVD-9 / ISO</span>
+                    <span class="bg-emerald-950/80 text-emerald-400 text-[11px] font-bold px-2 py-0.5 rounded border border-emerald-800">劇場初公開版同梱</span>
+                    <span class="bg-slate-700 text-slate-300 text-[11px] font-bold px-2 py-0.5 rounded">Region-2 NTSC</span>
+                    <span class="ml-auto text-xs text-slate-400 font-mono">ID: ROTJ-1983-DVD9-JP</span>
+                </div>
+                <h1 class="text-xl md:text-2xl font-bold text-slate-100 tracking-tight leading-snug">
+                    スター・ウォーズ エピソード6／ジェダイの帰還 リミテッド・エディション (2枚組 - 特別篇＆1983年劇場初公開版) [DVD9/ISO/日本語字幕・吹替]
+                </h1>
+                <p class="text-xs text-slate-400 mt-2 font-mono">
+                    Star Wars: Episode VI – Return of the Jedi (1983 / 2006-09-13 Limited Edition Double Disc Region 2)
+                </p>
+
+                <!-- High-priority Tracker Stats Grid -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-5 pt-5 border-t border-slate-700/60">
+                    <div class="bg-slate-900/60 p-3 rounded-lg border border-slate-700/40 text-center">
+                        <div class="text-xs text-slate-400 mb-0.5 flex justify-center items-center gap-1">
+                            <i data-lucide="arrow-up" class="w-3 h-3 text-emerald-500"></i>
+                            <span>シード (Seeds)</span>
+                        </div>
+                        <div id="seedCount" class="text-xl font-bold text-emerald-400 font-mono">68</div>
+                        <div class="text-[10px] text-slate-500">ピアへ接続可能</div>
+                    </div>
+                    <div class="bg-slate-900/60 p-3 rounded-lg border border-slate-700/40 text-center">
+                        <div class="text-xs text-slate-400 mb-0.5 flex justify-center items-center gap-1">
+                            <i data-lucide="arrow-down" class="w-3 h-3 text-sky-400"></i>
+                            <span>ピア (Peers)</span>
+                        </div>
+                        <div id="peerCount" class="text-xl font-bold text-sky-400 font-mono">194</div>
+                        <div class="text-[10px] text-slate-500">現在ダウンロード中</div>
+                    </div>
+                    <div class="bg-slate-900/60 p-3 rounded-lg border border-slate-700/40 text-center">
+                        <div class="text-xs text-slate-400 mb-0.5 flex justify-center items-center gap-1">
+                            <i data-lucide="check" class="w-3 h-3 text-purple-400"></i>
+                            <span>完了回数</span>
+                        </div>
+                        <div class="text-xl font-bold text-purple-400 font-mono">312</div>
+                        <div class="text-[10px] text-slate-500">DL成功済</div>
+                    </div>
+                    <div class="bg-slate-900/60 p-3 rounded-lg border border-slate-700/40 text-center">
+                        <div class="text-xs text-slate-400 mb-0.5 flex justify-center items-center gap-1">
+                            <i data-lucide="database" class="w-3 h-3 text-amber-500"></i>
+                            <span>合計容量</span>
+                        </div>
+                        <div class="text-xl font-bold text-amber-400 font-mono">15.63 GB</div>
+                        <div class="text-[10px] text-slate-500">片面2層×2枚組</div>
+                    </div>
+                </div>
+
+                <!-- Instant Download Buttons Zone -->
+                <div class="mt-5 flex flex-col sm:flex-row gap-3">
+                    <button id="torrentDownloadBtn" class="flex-1 bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-400 hover:to-sky-500 text-slate-950 font-bold py-3.5 px-6 rounded-lg shadow-lg flex items-center justify-center gap-2.5 transition transform active:scale-[0.98]">
+                        <i data-lucide="download" class="w-5 h-5"></i>
+                        <span>トレントファイルをダウンロード (.torrent)</span>
+                    </button>
+                    <button id="magnetBtn" class="bg-slate-700 hover:bg-slate-600 text-slate-100 py-3.5 px-5 rounded-lg border border-slate-600 flex items-center justify-center gap-2 transition" onclick="copyMagnet()">
+                        <i data-lucide="magnet" class="w-4 h-4 text-rose-400"></i>
+                        <span>マグネットリンクをコピー</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Specific Release Details Grid Tab System -->
+            <div class="bg-slate-800 border border-slate-700 rounded-xl overflow-hidden shadow-md">
+                <div class="flex border-b border-slate-700 bg-slate-900/40">
+                    <button id="tabDetailsBtn" class="px-5 py-3 text-sm font-bold border-b-2 border-sky-500 text-sky-400 bg-slate-800/60" onclick="switchTab('details')">
+                        詳細メディア情報
+                    </button>
+                    <button id="tabFileListBtn" class="px-5 py-3 text-sm font-bold text-slate-400 hover:text-slate-200 border-b-2 border-transparent" onclick="switchTab('filelist')">
+                        内包ファイル一覧 (15)
+                    </button>
+                </div>
+
+                <!-- TAB Content: Media Details -->
+                <div id="tabDetails" class="p-5 text-sm space-y-4">
+                    <h3 class="text-base font-semibold text-sky-300 flex items-center gap-1.5 border-b border-slate-700/60 pb-1.5">
+                        <i data-lucide="disc" class="w-4 h-4"></i>
+                        <span>日本国内パッケージ版概要 (FXBA-33921仕様に準拠)</span>
+                    </h3>
+                    <p class="text-slate-300 leading-relaxed">
+                        本日2006年9月13日から、2007年1月5日までの<strong>期間限定で緊急出荷</strong>された待望のリミテッド・エディションDVD。
+                        ファンの間で最も高画質・完全版と望まれていた<strong>「1983年劇場初公開版（字幕：岡枝慎二氏）」をDISC-2（片面2層）にそのまま丸ごと収録</strong>。DISC-1は2004年に極限までクリーニングされた「特別篇」を収録。
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3">
+                        <table class="w-full text-xs border border-slate-700/80 rounded-lg overflow-hidden">
+                            <tbody>
+                                <tr class="bg-slate-900/50">
+                                    <td class="p-2.5 font-bold text-slate-400 border-r border-b border-slate-700/80 w-1/3">商品名</td>
+                                    <td class="p-2.5 border-b border-slate-700/80 text-slate-200">ジェダイの帰還 リミテッド・エディション</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-2.5 font-bold text-slate-400 border-r border-b border-slate-700/80">JANコード</td>
+                                    <td class="p-2.5 border-b border-slate-700/80 text-slate-200 font-mono">4988142400024</td>
+                                </tr>
+                                <tr class="bg-slate-900/50">
+                                    <td class="p-2.5 font-bold text-slate-400 border-r border-b border-slate-700/80">発売日</td>
+                                    <td class="p-2.5 border-b border-slate-700/80 text-slate-200">2006年09月13日 (本日発売)</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-2.5 font-bold text-slate-400 border-r border-slate-700/80">フォーマット</td>
+                                    <td class="p-2.5 text-slate-200">片面2層式 (DVD-9) × 2枚組 ISOイメージ</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <table class="w-full text-xs border border-slate-700/80 rounded-lg overflow-hidden">
+                            <tbody>
+                                <tr class="bg-slate-900/50">
+                                    <td class="p-2.5 font-bold text-slate-400 border-r border-b border-slate-700/80 w-1/3">映像仕様</td>
+                                    <td class="p-2.5 border-b border-slate-700/80 text-slate-200">
+                                        DISC1: 16:9 スクイーズ (特別篇)<br>
+                                        DISC2: 4:3 レターボックス (劇場公開版/LD素材)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="p-2.5 font-bold text-slate-400 border-r border-b border-slate-700/80">音声仕様</td>
+                                    <td class="p-2.5 border-b border-slate-700/80 text-slate-200">
+                                        DISC1: 英語 5.1ch EX / 日本語 5.1ch EX<br>
+                                        DISC2: 英語 ドルビーサラウンド 2.0ch
+                                    </td>
+                                </tr>
+                                <tr class="bg-slate-900/50">
+                                    <td class="p-2.5 font-bold text-slate-400 border-r border-b border-slate-700/80">字幕仕様</td>
+                                    <td class="p-2.5 border-b border-slate-700/80 text-slate-200">日本語字幕 / 英語字幕 (切り替え可能)</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-2.5 font-bold text-slate-400 border-r border-slate-700/80">アスペクト比</td>
+                                    <td class="p-2.5 text-slate-200">2.35:1 (シネマスコープ)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- TAB Content: File List -->
+                <div id="tabFileList" class="p-5 text-sm hidden font-mono">
+                    <div class="bg-slate-950 p-4 rounded-lg border border-slate-700 overflow-x-auto text-xs text-slate-300 space-y-1">
+                        <div class="text-sky-400 flex items-center gap-1.5"><i data-lucide="folder-open" class="w-3.5 h-3.5"></i> STAR_WARS_EPISODE_VI_LIMITED_EDITION/</div>
+                        
+                        <!-- Readme -->
+                        <div class="pl-4 flex justify-between hover:bg-slate-900 py-0.5">
+                            <span class="text-slate-400">📄 Readme_Japan.txt</span>
+                            <span class="text-slate-500">3,420 bytes</span>
+                        </div>
+                        
+                        <!-- DISC 1 -->
+                        <div class="pl-4 text-emerald-400 flex items-center gap-1.5 pt-2"><i data-lucide="folder" class="w-3.5 h-3.5"></i> DISC1_SPECIAL_EDITION/</div>
+                        <div class="pl-8 flex justify-between hover:bg-slate-900 py-0.5">
+                            <span class="text-slate-300">💿 SW_EP6_SPECIAL.iso</span>
+                            <span class="text-slate-400">7.95 GB</span>
+                        </div>
+                        
+                        <!-- DISC 2 -->
+                        <div class="pl-4 text-purple-400 flex items-center gap-1.5 pt-2"><i data-lucide="folder" class="w-3.5 h-3.5"></i> DISC2_THEATRICAL_CUT/</div>
+                        <div class="pl-8 flex justify-between hover:bg-slate-900 py-0.5">
+                            <span class="text-slate-300">💿 SW_EP6_ORIGINAL_1983.iso</span>
+                            <span class="text-slate-400">7.68 GB</span>
+                        </div>
+
+                        <!-- Sample structure of inside ISO inside comment style -->
+                        <div class="pl-8 text-slate-500 italic pt-1">
+                            # ISOs include full VIDEO_TS structure with VOB/IFO/BUP files untouched
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Retro Scene .NFO File Terminal Screen -->
+            <div class="terminal-glow rounded-xl p-5 shadow-inner">
+                <div class="flex items-center justify-between border-b border-slate-800 pb-2.5 mb-4">
+                    <div class="flex items-center gap-2">
+                        <span class="w-3 h-3 rounded-full bg-rose-500"></span>
+                        <span class="w-3 h-3 rounded-full bg-amber-500"></span>
+                        <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+                        <span class="text-xs text-slate-400 font-mono ml-2">RELEASE.NFO</span>
+                    </div>
+                    <span class="text-[10px] text-sky-500 font-mono tracking-widest">NFO VIEWER V2.0</span>
+                </div>
+                <pre class="text-[10px] md:text-[11px] leading-relaxed text-slate-300 overflow-x-auto whitespace-pre font-mono">
+<span class="text-sky-400">   **********************************************************************
+   * __ _____  _   ___  __      _   _ ___ ___ ___   _  ___  ___ ___    *
+   * (_   |  /_\ |)  |  (_  |_| |_) |_  |   |   |   | \  |   |    |     *
+   * __)  | /   \| \ |   __)| | | \ |_  |  _|_  |   |_/ _|_  |__  |     *
+   * *
+   * EPISODE VI : RETURN OF THE JEDI - 2-DISC LIMITED EDITION DVD9    *
+   **********************************************************************</span>
+
+   [RELEASE INFORMATION]
+   - THEATRICAL YEAR  : 1983
+   - DVD RELEASE DATE : 2006-09-13 (Japan Region 2)
+   - ORIGINAL LABEL   : 20世紀フォックス ホーム エンターテイメント ジャパン
+   - CATALOG NO.      : FXBA-33921 (LIMITED EDITION)
+   - CONTENT TYPE     : RETAIL DVD9 (UNTouched ISO)
+
+   [SPECIFICATIONS]
+   - DISC 1: SPECIAL EDITION / 特別篇
+     * SIZE           : 7.95 GB
+     * ASPECT RATIO   : 16:9 Anamorphic Widescreen
+     * AUDIO          : English Dolby Digital 5.1 EX
+                        Japanese Dolby Digital 5.1 EX
+     * SUBTITLES      : English / Japanese
+
+   - DISC 2: THEATRICAL CUT / 劇場初公開版 (LaserDisc Master)
+     * SIZE           : 7.68 GB
+     * ASPECT RATIO   : 4:3 Letterbox (Non-Anamorphic)
+     * AUDIO          : English Dolby Digital 2.0 Surround
+                        Japanese Dolby Digital 2.0 Surround
+     * SUBTITLES      : Japanese (岡枝慎二 劇場上映版字幕)
+     * NOTES          : Contains the ORIGINAL unmodified classic version. 
+                        No CGI Jabba's Palace music, no Hayden Christensen ghost. 
+                        Pure Sebastian Shaw and Yub Nub!
+
+   [SEEDING GUIDELINES]
+   - THIS IS A LIMITED TIME SHIPMENT IN JAPAN! (Available only until Jan 5, 2007)
+   - HIGH DEMAND EXPECTED! PLEASE SEED TO AT LEAST RATIO 1.5.
+   - ISP Speed throttling may occur. Connect to local trackers for max speed.
+                </pre>
+            </div>
+
+            <!-- BBS Forum & Comment section styled like classic 2channel (2ch) -->
+            <div class="bg-slate-800 border border-slate-700 rounded-xl p-5 shadow-lg">
+                <h3 class="text-base font-bold text-slate-100 flex items-center gap-2 mb-4">
+                    <i data-lucide="message-square" class="w-5 h-5 text-sky-400"></i>
+                    <span>トラッカー掲示板・コメント（匿名2ch風）</span>
+                </h3>
+
+                <!-- Input area -->
+                <form id="commentForm" class="bg-slate-900/60 p-4 rounded-lg border border-slate-700 mb-6 space-y-3">
+                    <div class="flex flex-wrap gap-3">
+                        <div class="flex-grow min-w-[200px]">
+                            <label class="block text-[11px] text-slate-400 mb-1 font-mono">名前 (任意)</label>
+                            <input type="text" id="comName" placeholder="名無しさん＠お腹いっぱい。" class="w-full bg-slate-800 border border-slate-700 rounded px-3 py-1.5 text-xs text-slate-200 focus:outline-none focus:border-sky-500">
+                        </div>
+                        <div class="w-28">
+                            <label class="block text-[11px] text-slate-400 mb-1 font-mono">E-mail</label>
+                            <input type="text" id="comMail" placeholder="sage" class="w-full bg-slate-800 border border-slate-700 rounded px-3 py-1.5 text-xs text-slate-200 focus:outline-none focus:border-sky-500 font-mono">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-[11px] text-slate-400 mb-1 font-mono">コメント本文</label>
+                        <textarea id="comBody" rows="2" required placeholder="劇場公開版キター！シード協力します。" class="w-full bg-slate-800 border border-slate-700 rounded px-3 py-1.5 text-xs text-slate-200 focus:outline-none focus:border-sky-500"></textarea>
+                    </div>
+                    <div class="flex justify-end">
+                        <button type="submit" class="bg-sky-600 hover:bg-sky-500 text-slate-950 font-bold px-4 py-1.5 rounded text-xs transition">
+                            コメントを書き込む
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Comments list -->
+                <div id="commentsContainer" class="space-y-4 max-h-[400px] overflow-y-auto pr-2">
+                    
+                    <!-- Preloaded Classic 2006 Comments -->
+                    <div class="border-b border-slate-700 pb-3 text-xs">
+                        <div class="flex items-center gap-2 text-[11px] text-slate-400 mb-1 font-mono">
+                            <span class="font-bold text-sky-400">1 :</span>
+                            <span class="text-emerald-400 font-bold">管理人 ★</span>
+                            <span>[2006/09/13(水) 14:15:22]</span>
+                            <span class="text-slate-500">ID:TrackerAdmin_ROTJ</span>
+                        </div>
+                        <p class="text-slate-200 leading-relaxed pl-4">
+                            国内正規品のDVD9 ISO吸い出し完了。特別篇と劇場公開版の両ディスク同梱です。
+                            特にDISC2はレーザーディスクマスター仕様ですが、初の公式DVD化。貴重な岡枝翻訳字幕のまま見られます。
+                            光回線の皆さん、初期シード協力お願いします！
+                        </p>
+                    </div>
+
+                    <div class="border-b border-slate-700 pb-3 text-xs">
+                        <div class="flex items-center gap-2 text-[11px] text-slate-400 mb-1 font-mono">
+                            <span class="font-bold text-sky-400">2 :</span>
+                            <span class="text-slate-300 font-bold">名無しさん＠お腹いっぱい。</span>
+                            <span class="text-slate-500">sage</span>
+                            <span>[2006/09/13(水) 14:32:01]</span>
+                            <span class="text-slate-500">ID:oF7tU8i90</span>
+                        </div>
+                        <p class="text-slate-200 leading-relaxed pl-4">
+                            キターーーー！(゜∀゜)ーーー！！<br>
+                            本当に劇場公開版入ってるんだな！ヘイデン・クリステンセンの幽霊じゃない、オリジナルのおじいちゃん（セバスチャン・ショウ）が見られるのはこれだけだ！サンクス！
+                        </p>
+                    </div>
+
+                    <div class="border-b border-slate-700 pb-3 text-xs">
+                        <div class="flex items-center gap-2 text-[11px] text-slate-400 mb-1 font-mono">
+                            <span class="font-bold text-sky-400">3 :</span>
+                            <span class="text-slate-300 font-bold">名無しさん＠お腹いっぱい。</span>
+                            <span class="text-slate-500">sage</span>
+                            <span>[2006/09/13(水) 15:02:14]</span>
+                            <span class="text-slate-500">ID:wX2yZ3a4b</span>
+                        </div>
+                        <p class="text-slate-200 leading-relaxed pl-4">
+                            ADSL 12M環境だけど落とし始めました。速度が200KB/s前後で推移中。<br>
+                            ディスク2がレターボックス（4:3画面の中に16:9シネスコ）なので、PCでの再生はアスペクト比ズーム調整したほうがよさそうね。
+                        </p>
+                    </div>
+
+                    <div class="border-b border-slate-700 pb-3 text-xs">
+                        <div class="flex items-center gap-2 text-[11px] text-slate-400 mb-1 font-mono">
+                            <span class="font-bold text-sky-400">4 :</span>
+                            <span class="text-slate-300 font-bold">名無しさん＠お腹いっぱい。</span>
+                            <span class="text-slate-500">sage</span>
+                            <span>[2006/09/13(水) 15:15:55]</span>
+                            <span class="text-slate-500">ID:q8R9s0t1u</span>
+                        </div>
+                        <p class="text-slate-200 leading-relaxed pl-4">
+                            ユブ・ナブ（イウォーク族のダンスソング）最高！特別篇の祝祭曲より絶対こっちがいい。<br>
+                            今晩いっぱいかけてシード維持しとくね。
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Right Column: Interactive Sidebar (4 columns) -->
+        <div class="lg:col-span-4 flex flex-col gap-6">
+            
+            <!-- BitTorrent Client Simulator Widget (Extremely Nostalgic & Interactive) -->
+            <div class="bg-slate-800 border border-slate-700 rounded-xl shadow-lg overflow-hidden flex flex-col">
+                <div class="bg-slate-900 border-b border-slate-700 p-3.5 flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <!-- µTorrent green letter circle logo -->
+                        <span class="w-5 h-5 rounded-full bg-emerald-500 flex items-center justify-center text-slate-950 font-black text-xs font-mono">µ</span>
+                        <span class="font-bold text-xs tracking-wide text-slate-300">µTorrent v1.6.0.472 (Simulated)</span>
+                    </div>
+                    <div class="flex gap-1">
+                        <span class="w-2.5 h-2.5 rounded-full bg-slate-700"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-slate-700"></span>
+                    </div>
+                </div>
+
+                <!-- Simulation Control Panel -->
+                <div class="p-4 bg-slate-900/40 border-b border-slate-700/60 flex flex-col gap-3">
+                    <div class="flex justify-between items-center text-xs">
+                        <span class="text-slate-400">ステータス:</span>
+                        <span id="simStatusText" class="font-bold text-slate-300">待機中 (Stopped)</span>
+                    </div>
+                    <div class="flex gap-2">
+                        <button id="simStartBtn" class="flex-1 bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold py-1.5 px-3 rounded text-xs flex items-center justify-center gap-1.5 transition">
+                            <i data-lucide="play" class="w-3.5 h-3.5"></i>
+                            <span>開始</span>
+                        </button>
+                        <button id="simPauseBtn" class="bg-slate-700 hover:bg-slate-600 text-slate-300 font-bold py-1.5 px-3 rounded text-xs flex items-center justify-center gap-1.5 transition" disabled>
+                            <i data-lucide="pause" class="w-3.5 h-3.5"></i>
+                            <span>一時停止</span>
+                        </button>
+                        <button id="simSpeedUpBtn" class="bg-slate-700 hover:bg-slate-600 text-amber-400 font-bold py-1.5 px-2 rounded text-[11px] flex items-center justify-center gap-0.5 transition" title="10倍高速シミュレート">
+                            <i data-lucide="zap" class="w-3 h-3"></i>
+                            <span>ターボ</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Live Download Indicators -->
+                <div class="p-4 space-y-3 text-xs">
+                    <div>
+                        <div class="flex justify-between text-[11px] text-slate-400 mb-1 font-mono">
+                            <span>ダウンロード状況: <strong id="simPercentText">0.0%</strong></span>
+                            <span id="simSizeText">0.00 MB / 15.63 GB</span>
+                        </div>
+                        <!-- Progress Bar Container -->
+                        <div class="w-full bg-slate-950 h-5 rounded border border-slate-700 overflow-hidden relative">
+                            <div id="simProgressBar" class="h-full bg-emerald-500/80 w-0 transition-all duration-300 flex items-center justify-end pr-1 text-[10px] font-mono text-slate-950 font-bold"></div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3 text-[11px] font-mono bg-slate-900/60 p-2.5 rounded border border-slate-700/60">
+                        <div>
+                            <span class="text-slate-500">DL速度:</span>
+                            <div id="simDlSpeed" class="text-slate-200 font-bold">0 KB/s</div>
+                        </div>
+                        <div>
+                            <span class="text-slate-500">UP速度:</span>
+                            <div id="simUlSpeed" class="text-slate-200 font-bold">0 KB/s</div>
+                        </div>
+                        <div>
+                            <span class="text-slate-500">予測時間 (ETA):</span>
+                            <div id="simEta" class="text-slate-200 font-bold">--:--:--</div>
+                        </div>
+                        <div>
+                            <span class="text-slate-500">ピア接続:</span>
+                            <div id="simPeers" class="text-slate-200 font-bold">0 / 0</div>
+                        </div>
+                    </div>
+
+                    <!-- Piece Map Visualizer -->
+                    <div>
+                        <div class="flex justify-between items-center text-[11px] text-slate-400 mb-1 font-mono">
+                            <span>ピースマップ (ブロック状態)</span>
+                            <span class="text-[10px] text-slate-500">青:完了 緑:DL中 灰:未着手</span>
+                        </div>
+                        <div id="pieceMap" class="piece-grid grid grid-cols-12 gap-1 p-2 bg-slate-950 rounded border border-slate-800">
+                            <!-- JS will populate 48 pieces -->
+                        </div>
+                    </div>
+
+                    <!-- Simple Interactive Speed Graph -->
+                    <div>
+                        <div class="text-[11px] text-slate-400 mb-1 font-mono">リアルタイム速度変化</div>
+                        <div class="bg-slate-950 h-16 rounded border border-slate-800 relative flex items-end p-1 overflow-hidden">
+                            <!-- SVG lines or simulated bar columns -->
+                            <div id="speedBars" class="w-full h-full flex items-end justify-between gap-[2px]">
+                                <!-- Dynamically generated bars representing speed over time -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Authentic Regional Notice Card -->
+            <div class="bg-slate-800 border border-slate-700 rounded-xl p-5 shadow-md">
+                <h4 class="text-sm font-bold text-slate-200 border-b border-slate-700 pb-2 mb-3 flex items-center gap-2">
+                    <i data-lucide="info" class="w-4 h-4 text-sky-400"></i>
+                    <span>コレクターズ知識</span>
+                </h4>
+                <ul class="text-xs text-slate-300 space-y-2 list-disc pl-4">
+                    <li><strong>なぜ2006年のこの日が重要？</strong> 2006年9月13日、ルーカスはオリジナルの劇場未修正版をボーナスディスクとして同梱。ファンからの悲願を叶えた歴史的なDVDリリースの日です。</li>
+                    <li><strong>映像素材の秘密:</strong> ディスク2は1993年リリースの高画質レーザーディスク（LD）のマスターD1素材をベースにしてデジタルエンコードされています。</li>
+                    <li><strong>岡枝慎二の劇場字幕:</strong> 劇場公開当時の日本語訳字幕（岡枝氏による映画らしい味わいの訳）が選べる仕様になっています。</li>
+                </ul>
+            </div>
+
+            <!-- Classic Japan P2P Community Badges Footer (Omnipresent in 2006) -->
+            <div class="bg-slate-800/50 border border-slate-700/60 rounded-xl p-4 shadow-sm text-center">
+                <span class="text-[11px] text-slate-500 font-mono block mb-3">Community Retro Badges (88x31)</span>
+                <div class="flex flex-wrap justify-center gap-2">
+                    
+                    <!-- Get Firefox Badge -->
+                    <div class="retro-badge bg-gradient-to-r from-orange-600 to-orange-500 text-slate-100 border-orange-700">
+                        Get Firefox
+                    </div>
+                    
+                    <!-- Bittorrent Badge -->
+                    <div class="retro-badge bg-indigo-950 text-indigo-400 border-indigo-800">
+                        BitTorrent
+                    </div>
+                    
+                    <!-- IE6 Safe badge -->
+                    <div class="retro-badge bg-blue-900 text-blue-100 border-blue-700">
+                        IE6 Ready
+                    </div>
+
+                    <!-- Valid HTML -->
+                    <div class="retro-badge bg-slate-900 text-sky-400 border-sky-900">
+                        W3C XHTML
+                    </div>
+
+                    <!-- ACCS copyright warning badge style -->
+                    <div class="retro-badge bg-rose-950 text-rose-300 border-rose-800">
+                        NO! P2P LEAK
+                    </div>
+
+                    <!-- Japanese 2channel-like badge -->
+                    <div class="retro-badge bg-stone-900 text-amber-500 border-stone-700">
+                        （ ・∀・）
+                    </div>
+                </div>
+                <div class="text-[10px] text-slate-500 font-mono mt-3">
+                    アクセス累計カウンタ: 00481943 PV
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Global Footer -->
+    <footer class="bg-slate-950 border-t border-slate-900 py-6 text-center text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4">
+            <p class="mb-2">当サイトは2006年当時のインターネット文化を研究するための教育用アーカイブシミュレータです。</p>
+            <p class="font-mono">P2P Sora Torrent Indexer v1.8b © 2006. Powered by BitTorrent Network.</p>
+        </div>
+    </footer>
+
+    <!-- Audio element synthesis placeholder (No actual external sources used) -->
+    <script>
+        // Lucide icon initiation
+        lucide.createIcons();
+
+        // System Theme Handler
+        const themeToggle = document.getElementById('themeToggle');
+        let currentTheme = 'dark';
+        themeToggle.addEventListener('click', () => {
+            if (currentTheme === 'dark') {
+                document.documentElement.style.setProperty('--bg-primary', '#f8fafc');
+                document.documentElement.style.setProperty('--bg-secondary', '#ffffff');
+                document.documentElement.style.setProperty('--text-main', '#0f172a');
+                document.documentElement.style.setProperty('--text-muted', '#64748b');
+                document.documentElement.style.setProperty('--border-color', '#cbd5e1');
+                currentTheme = 'light';
+                // Adjust tailwind classes dynamically for body
+                document.body.classList.remove('bg-slate-950');
+                document.body.classList.add('bg-slate-50', 'text-slate-900');
+            } else {
+                document.documentElement.style.setProperty('--bg-primary', '#0f172a');
+                document.documentElement.style.setProperty('--bg-secondary', '#1e293b');
+                document.documentElement.style.setProperty('--text-main', '#f1f5f9');
+                document.documentElement.style.setProperty('--text-muted', '#94a3b8');
+                document.documentElement.style.setProperty('--border-color', '#334155');
+                currentTheme = 'dark';
+                document.body.classList.remove('bg-slate-50', 'text-slate-900');
+            }
+        });
+
+        // Tab Switching Logic
+        function switchTab(tabId) {
+            const detailsTab = document.getElementById('tabDetails');
+            const fileListTab = document.getElementById('tabFileList');
+            const detailsBtn = document.getElementById('tabDetailsBtn');
+            const fileListBtn = document.getElementById('tabFileListBtn');
+
+            if (tabId === 'details') {
+                detailsTab.classList.remove('hidden');
+                fileListTab.classList.add('hidden');
+                detailsBtn.classList.add('border-sky-500', 'text-sky-400');
+                detailsBtn.classList.remove('border-transparent', 'text-slate-400');
+                fileListBtn.classList.add('border-transparent', 'text-slate-400');
+                fileListBtn.classList.remove('border-sky-500', 'text-sky-400');
+            } else {
+                detailsTab.classList.add('hidden');
+                fileListTab.classList.remove('hidden');
+                fileListBtn.classList.add('border-sky-500', 'text-sky-400');
+                fileListBtn.classList.remove('border-transparent', 'text-slate-400');
+                detailsBtn.classList.add('border-transparent', 'text-slate-400');
+                detailsBtn.classList.remove('border-sky-500', 'text-sky-400');
+            }
+        }
+
+        // Magnet Link Copy Function (No browser alerts!)
+        function copyMagnet() {
+            const magnetURI = "magnet:?xt=urn:btih:a9f8b7c6d5e4f3a2b1c0d9e8f7a6b5c4d3e2f1a0&dn=Star_Wars_ROTJ_1983_2006_DVD9_JP&tr=http%3A%2F%2Fopen.tracker.thepiratebay.org%2Fannounce";
+            const tempInput = document.createElement("input");
+            tempInput.value = magnetURI;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            
+            // Modern, responsive visual popup notification
+            const feedback = document.createElement("div");
+            feedback.className = "fixed bottom-5 right-5 bg-sky-500 text-slate-950 text-xs px-4 py-3 rounded-lg shadow-xl font-bold border border-sky-400 transition-opacity duration-300 z-50 flex items-center gap-2";
+            feedback.innerHTML = `<i data-lucide="check-circle" class="w-4 h-4"></i> <span>マグネットリンクをクリップボードにコピーしました！</span>`;
+            document.body.appendChild(feedback);
+            lucide.createIcons();
+            
+            setTimeout(() => {
+                feedback.classList.add('opacity-0');
+                setTimeout(() => feedback.remove(), 300);
+            }, 3000);
+        }
+
+        // ==========================================
+        // uTorrent Download Client Simulator Engine
+        // ==========================================
+        const simStartBtn = document.getElementById('simStartBtn');
+        const simPauseBtn = document.getElementById('simPauseBtn');
+        const simSpeedUpBtn = document.getElementById('simSpeedUpBtn');
+        const simStatusText = document.getElementById('simStatusText');
+        const simPercentText = document.getElementById('simPercentText');
+        const simSizeText = document.getElementById('simSizeText');
+        const simProgressBar = document.getElementById('simProgressBar');
+        const simDlSpeed = document.getElementById('simDlSpeed');
+        const simUlSpeed = document.getElementById('simUlSpeed');
+        const simEta = document.getElementById('simEta');
+        const simPeers = document.getElementById('simPeers');
+        const pieceMap = document.getElementById('pieceMap');
+        const speedBarsContainer = document.getElementById('speedBars');
+
+        const totalSizeGB = 15.63;
+        let downloadedBytes = 0;
+        let isDownloading = false;
+        let turboMode = false;
+        let downloadProgress = 0.0;
+        let intervalId = null;
+        let graphSpeedIntervalId = null;
+
+        // Populate pieces (48 pieces inside the grid representation)
+        const totalPieces = 48;
+        const pieces = [];
+        for (let i = 0; i < totalPieces; i++) {
+            const piece = document.createElement('div');
+            piece.className = 'aspect-square bg-slate-800 rounded-sm border border-slate-900';
+            pieceMap.appendChild(piece);
+            pieces.push({
+                el: piece,
+                status: 'pending' // pending, downloading, complete
+            });
+        }
+
+        // Initialize Speed graph bars
+        const maxGraphBars = 20;
+        const speedHistory = Array(maxGraphBars).fill(0);
+        function initSpeedGraph() {
+            speedBarsContainer.innerHTML = '';
+            for (let i = 0; i < maxGraphBars; i++) {
+                const bar = document.createElement('div');
+                bar.className = 'flex-1 bg-emerald-500/30 rounded-t';
+                bar.style.height = '0%';
+                speedBarsContainer.appendChild(bar);
+            }
+        }
+        initSpeedGraph();
+
+        function updateSpeedGraph(newSpeedKb) {
+            // Speed scaling based on 2006 ADSL max limits (approx 5MB/s max for FTTH)
+            const maxRefSpeed = 3000; // 3 MB/s
+            const percentage = Math.min((newSpeedKb / maxRefSpeed) * 100, 100);
+            
+            // Shift history array
+            speedHistory.shift();
+            speedHistory.push(percentage);
+
+            // Re-render
+            const bars = speedBarsContainer.children;
+            for (let i = 0; i < maxGraphBars; i++) {
+                bars[i].style.height = `${speedHistory[i]}%`;
+                // Add color brightness based on download activity
+                if (speedHistory[i] > 0) {
+                    bars[i].style.backgroundColor = 'rgba(34, 197, 94, 0.6)';
+                } else {
+                    bars[i].style.backgroundColor = 'rgba(34, 197, 94, 0.15)';
+                }
+            }
+        }
+
+        // Interactive Audio Synthesizer (Retro Windows XP style completion bell)
+        function playCompletionChime() {
+            const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            if (!audioCtx) return;
+
+            const now = audioCtx.currentTime;
+            
+            // Double tone chime (high-quality clean synth)
+            const osc1 = audioCtx.createOscillator();
+            const osc2 = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+
+            osc1.type = 'triangle';
+            osc1.frequency.setValueAtTime(587.33, now); // D5
+            osc1.frequency.setValueAtTime(880.00, now + 0.12); // A5
+
+            osc2.type = 'sine';
+            osc2.frequency.setValueAtTime(1174.66, now + 0.12); // D6
+
+            gainNode.gain.setValueAtTime(0, now);
+            gainNode.gain.linearRampToValueAtTime(0.12, now + 0.05);
+            gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.7);
+
+            osc1.connect(gainNode);
+            osc2.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+
+            osc1.start(now);
+            osc2.start(now + 0.12);
+
+            osc1.stop(now + 0.8);
+            osc2.stop(now + 0.8);
+        }
+
+        // Start/Resume Simulator Logic
+        function startSimulation() {
+            if (isDownloading) return;
+            isDownloading = true;
+
+            simStartBtn.disabled = true;
+            simPauseBtn.disabled = false;
+            simStartBtn.classList.add('opacity-50');
+            simPauseBtn.classList.remove('opacity-50');
+            simStatusText.innerText = "ダウンロード中...";
+            simStatusText.className = "font-bold text-emerald-400 animate-pulse";
+
+            // Incremental download engine
+            intervalId = setInterval(() => {
+                // Determine simulated speeds for 2006 (ADSL & FTTH mix)
+                let baseDlSpeedKb = turboMode ? 18500 : (Math.random() * 400 + 400); // 400-800 KB/s normal, ~18MB/s turbo
+                let uploadSpeedKb = Math.random() * 50 + 20; // 20-70 KB/s upload
+
+                // Simulate fluctuation
+                if (downloadProgress >= 100) {
+                    completeSimulation();
+                    return;
+                }
+
+                // Increment progress
+                const bytesPerTick = (baseDlSpeedKb * 1024) * 0.5; // Tick is twice a second (500ms)
+                downloadedBytes += bytesPerTick;
+                const totalBytes = totalSizeGB * 1024 * 1024 * 1024;
+                downloadProgress = (downloadedBytes / totalBytes) * 100;
+
+                if (downloadProgress >= 100) {
+                    downloadProgress = 100;
+                    downloadedBytes = totalBytes;
+                }
+
+                // UI updates
+                simPercentText.innerText = `${downloadProgress.toFixed(1)}%`;
+                simSizeText.innerText = `${(downloadedBytes / (1024 * 1024 * 1024)).toFixed(2)} GB / ${totalSizeGB} GB`;
+                simProgressBar.style.width = `${downloadProgress}%`;
+                
+                simDlSpeed.innerText = `${(baseDlSpeedKb).toFixed(1)} KB/s`;
+                simUlSpeed.innerText = `${(uploadSpeedKb).toFixed(1)} KB/s`;
+
+                // Calculate realistic ETA
+                const remainingBytes = totalBytes - downloadedBytes;
+                const remainingSeconds = remainingBytes / (baseDlSpeedKb * 1024);
+                if (remainingSeconds > 0) {
+                    const hours = Math.floor(remainingSeconds / 3600);
+                    const minutes = Math.floor((remainingSeconds % 3600) / 60);
+                    const seconds = Math.floor(remainingSeconds % 60);
+                    simEta.innerText = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                } else {
+                    simEta.innerText = "00:00:00";
+                }
+
+                simPeers.innerText = `${Math.floor(Math.random() * 15 + 30)} / 194`;
+
+                // Pieces filling algorithm
+                updatePieceMap();
+                updateSpeedGraph(baseDlSpeedKb);
+
+            }, 500);
+        }
+
+        function pauseSimulation() {
+            if (!isDownloading) return;
+            isDownloading = false;
+
+            simStartBtn.disabled = false;
+            simPauseBtn.disabled = true;
+            simStartBtn.classList.remove('opacity-50');
+            simPauseBtn.classList.add('opacity-50');
+            simStatusText.innerText = "一時停止";
+            simStatusText.className = "font-bold text-amber-500";
+            
+            simDlSpeed.innerText = "0 KB/s";
+            simUlSpeed.innerText = "0 KB/s";
+            simEta.innerText = "--:--:--";
+
+            clearInterval(intervalId);
+            updateSpeedGraph(0);
+        }
+
+        function completeSimulation() {
+            isDownloading = false;
+            clearInterval(intervalId);
+            
+            simStartBtn.disabled = true;
+            simPauseBtn.disabled = true;
+            simStatusText.innerText = "シード中 (Completed)";
+            simStatusText.className = "font-bold text-emerald-500";
+            simPercentText.innerText = "100.0%";
+            simProgressBar.style.width = "100%";
+            simDlSpeed.innerText = "0 KB/s";
+            simUlSpeed.innerText = "35.5 KB/s"; // Normal steady upload seeding
+            simEta.innerText = "完了しました";
+            
+            // Set all pieces completely completed color
+            pieces.forEach(p => {
+                p.status = 'complete';
+                p.el.className = 'aspect-square bg-sky-500 rounded-sm border border-slate-900 shadow-inner shadow-sky-400';
+            });
+
+            updateSpeedGraph(0);
+            playCompletionChime();
+
+            // Notify user of completion elegantly
+            const completeNotify = document.createElement("div");
+            completeNotify.className = "fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-slate-900 border border-emerald-500 p-6 rounded-xl shadow-2xl z-50 text-center max-w-sm w-full";
+            completeNotify.innerHTML = `
+                <div class="text-emerald-400 mb-3 flex justify-center"><i data-lucide="check-circle" class="w-12 h-12"></i></div>
+                <h3 class="text-lg font-bold text-slate-100 mb-2">ダウンロード完了！</h3>
+                <p class="text-xs text-slate-400 mb-4">スター・ウォーズ エピソード6 リミテッド・エディションのISOイメージがダウンロード完了しました。<br>(仮想ISOフォルダが展開可能です)</p>
+                <button onclick="this.parentElement.remove()" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-5 py-2 rounded text-xs transition">確認</button>
+            `;
+            document.body.appendChild(completeNotify);
+            lucide.createIcons();
+        }
+
+        function updatePieceMap() {
+            // Determine active indices based on current progress
+            const piecesToComplete = Math.floor((downloadProgress / 100) * totalPieces);
+            
+            pieces.forEach((piece, index) => {
+                if (index < piecesToComplete) {
+                    piece.status = 'complete';
+                    piece.el.className = 'aspect-square bg-sky-500 rounded-sm border border-slate-900 shadow-inner shadow-sky-400';
+                } else if (index === piecesToComplete) {
+                    piece.status = 'downloading';
+                    piece.el.className = 'aspect-square bg-emerald-500 rounded-sm border border-slate-900 animate-pulse';
+                } else {
+                    piece.status = 'pending';
+                    piece.el.className = 'aspect-square bg-slate-800 rounded-sm border border-slate-900';
+                }
+            });
+        }
+
+        // Turbo Speed Toggle
+        simSpeedUpBtn.addEventListener('click', () => {
+            turboMode = !turboMode;
+            if (turboMode) {
+                simSpeedUpBtn.className = "bg-amber-600 text-slate-950 font-bold py-1.5 px-2 rounded text-[11px] flex items-center justify-center gap-0.5 transition";
+            } else {
+                simSpeedUpBtn.className = "bg-slate-700 hover:bg-slate-600 text-amber-400 font-bold py-1.5 px-2 rounded text-[11px] flex items-center justify-center gap-0.5 transition";
+            }
+        });
+
+        // Click on client start/pause control buttons
+        simStartBtn.addEventListener('click', startSimulation);
+        simPauseBtn.addEventListener('click', pauseSimulation);
+        
+        // Link main big download button to launch the simulator automatically
+        document.getElementById('torrentDownloadBtn').addEventListener('click', () => {
+            // Smoothly scroll down to client simulator on mobile screens if needed
+            document.getElementById('simStartBtn').scrollIntoView({ behavior: 'smooth' });
+            // Pulse simulator to highlight it
+            const widget = document.getElementById('simStartBtn').closest('.rounded-xl');
+            widget.classList.add('ring-2', 'ring-sky-500');
+            setTimeout(() => widget.classList.remove('ring-2', 'ring-sky-500'), 1500);
+            // Trigger start
+            startSimulation();
+        });
+
+
+        // ==========================================
+        // Live Comment Forum Thread Handler (2ch style)
+        // ==========================================
+        const commentForm = document.getElementById('commentForm');
+        const commentsContainer = document.getElementById('commentsContainer');
+        let commentCount = 4; // Preloaded comments count
+
+        commentForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const nameInput = document.getElementById('comName');
+            const mailInput = document.getElementById('comMail');
+            const bodyInput = document.getElementById('comBody');
+
+            const name = nameInput.value.trim() || "名無しさん＠お腹いっぱい。";
+            const mail = mailInput.value.trim();
+            const body = bodyInput.value.trim();
+
+            if (!body) return;
+
+            // Date format Japanese (2ch BBS layout style)
+            const dateObj = new Date();
+            const year = dateObj.getFullYear();
+            const month = (dateObj.getMonth() + 1).toString().padStart(2, '0');
+            const date = dateObj.getDate().toString().padStart(2, '0');
+            
+            const days = ['日', '月', '火', '水', '木', '金', '土'];
+            const dayOfWeek = days[dateObj.getDay()];
+
+            const hour = dateObj.getHours().toString().padStart(2, '0');
+            const min = dateObj.getMinutes().toString().padStart(2, '0');
+            const sec = dateObj.getSeconds().toString().padStart(2, '0');
+
+            const customId = "ID:" + Math.random().toString(36).substring(2, 11);
+
+            commentCount++;
+
+            // Create comment node
+            const post = document.createElement('div');
+            post.className = 'border-b border-slate-700 pb-3 text-xs opacity-0 transition-opacity duration-300';
+            post.innerHTML = `
+                <div class="flex items-center gap-2 text-[11px] text-slate-400 mb-1 font-mono">
+                    <span class="font-bold text-sky-400">${commentCount} :</span>
+                    <span class="text-slate-300 font-bold">${escapeHtml(name)}</span>
+                    ${mail ? `<span class="text-slate-500 font-bold">[${escapeHtml(mail)}]</span>` : ''}
+                    <span>[${year}/${month}/${date}(${dayOfWeek}) ${hour}:${min}:${sec}]</span>
+                    <span class="text-slate-500">${customId}</span>
+                </div>
+                <p class="text-slate-200 leading-relaxed pl-4">${escapeHtml(body).replace(/\n/g, '<br>')}</p>
+            `;
+
+            // Insert to bottom
+            commentsContainer.appendChild(post);
+            
+            // Trigger animation fade in
+            setTimeout(() => {
+                post.classList.remove('opacity-0');
+            }, 50);
+
+            // Clear inputs
+            bodyInput.value = '';
+            
+            // Scroll to bottom of forum thread smoothly
+            commentsContainer.scrollTop = commentsContainer.scrollHeight;
+        });
+
+        // Escape HTML helper
+        function escapeHtml(str) {
+            return str
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        // Live seed count micro fluctuations
+        setInterval(() => {
+            const currentSeeds = parseInt(document.getElementById('seedCount').innerText);
+            const currentPeers = parseInt(document.getElementById('peerCount').innerText);
+            
+            // Random small fluctuation (+- 1 or 2)
+            const seedDiff = Math.floor(Math.random() * 3) - 1;
+            const peerDiff = Math.floor(Math.random() * 5) - 2;
+
+            document.getElementById('seedCount').innerText = Math.max(5, currentSeeds + seedDiff);
+            document.getElementById('peerCount').innerText = Math.max(10, currentPeers + peerDiff);
+        }, 8000);
+
+    </script>
+</body>
+</html>
