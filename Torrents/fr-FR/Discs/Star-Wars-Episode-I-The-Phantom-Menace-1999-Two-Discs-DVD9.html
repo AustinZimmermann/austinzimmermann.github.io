@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GigaTorrents.fr - Star Wars: Episode I (DVD9 MULTI)</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        tracker: {
+                            bg: '#0a0c10',
+                            panel: '#121620',
+                            border: '#1f293d',
+                            green: '#39ff14',
+                            amber: '#ffb000',
+                            blue: '#00d2ff',
+                            text: '#cbd5e1'
+                        }
+                    },
+                    fontFamily: {
+                        mono: ['Courier New', 'Courier', 'monospace'],
+                        retro: ['Consolas', 'Monaco', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Effet balayage CRT rétro */
+        .crt::after {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+            aspect-ratio: auto;
+            background-size: 100% 4px, 6px 100%;
+            z-index: 99999;
+            pointer-events: none;
+        }
+        .glow-green {
+            text-shadow: 0 0 10px rgba(57, 255, 20, 0.6);
+        }
+        .glow-amber {
+            text-shadow: 0 0 10px rgba(255, 176, 0, 0.6);
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0c10;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1f293d;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #39ff14;
+        }
+    </style>
+</head>
+<body class="bg-tracker-bg text-tracker-text min-h-screen font-sans selection:bg-tracker-green selection:text-black">
+
+    <!-- Header Principal -->
+    <header class="border-b border-tracker-border bg-tracker-panel/80 sticky top-0 z-40 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-4">
+            <!-- Logo Nostalgique -->
+            <div class="flex items-center gap-3">
+                <div class="bg-tracker-green/10 text-tracker-green border border-tracker-green p-2 rounded font-retro text-lg font-bold tracking-widest glow-green animate-pulse">
+                    ⚡ GIGA-FR
+                </div>
+                <div>
+                    <h1 class="text-white font-bold font-retro tracking-tight flex items-center gap-2">
+                        <span>Tracker P2P Francophone</span>
+                        <span class="bg-red-600/20 text-red-500 border border-red-500/30 text-xs px-1.5 py-0.5 rounded font-mono uppercase">Pre-Release</span>
+                    </h1>
+                    <p class="text-xs text-slate-500 font-mono">Date du réseau : <span class="text-tracker-amber glow-amber">17 Octobre 2001</span></p>
+                </div>
+            </div>
+
+            <!-- Stats Tracker -->
+            <div class="flex items-center gap-6 text-xs font-mono bg-black/40 border border-tracker-border px-4 py-2 rounded">
+                <div class="hidden sm:block">
+                    <span class="text-slate-500">Membres :</span> <span class="text-white">42,109</span>
+                </div>
+                <div>
+                    <span class="text-slate-500">En ligne :</span> <span class="text-tracker-green">1,337</span>
+                </div>
+                <div>
+                    <span class="text-slate-500">Vitesse Globale :</span> <span class="text-tracker-blue">14.8 Mo/s</span>
+                </div>
+                <!-- Toggle CRT -->
+                <button onclick="toggleCRT()" class="bg-tracker-border hover:bg-tracker-green hover:text-black transition-all px-2.5 py-1 rounded text-[10px] font-bold text-slate-300 uppercase tracking-wider flex items-center gap-1">
+                    📺 CRT : <span id="crtStatus">OFF</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Fil d'Ariane & Alerte Époque -->
+    <div class="max-w-7xl mx-auto px-4 mt-4">
+        <div class="bg-tracker-amber/10 border border-tracker-amber/30 text-tracker-amber rounded-lg p-3 text-xs md:text-sm font-mono flex flex-col md:flex-row items-start md:items-center justify-between gap-2">
+            <div class="flex items-center gap-2">
+                <span class="animate-ping h-2 w-2 rounded-full bg-tracker-amber"></span>
+                <span><strong>[INFO DU JOUR] :</strong> Sortie officielle aujourd'hui en France du DVD de <em>La Menace Fantôme</em> ! Le premier DVD9 complet partagé sur notre réseau !</span>
+            </div>
+            <span class="text-[10px] opacity-80 uppercase bg-tracker-amber/20 px-2 py-0.5 rounded">Partagez votre bande passante !</span>
+        </div>
+    </div>
+
+    <!-- Contenu Principal -->
+    <main class="max-w-7xl mx-auto px-4 py-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
+        
+        <!-- Colonne Gauche (9/12 sur grand écran, fiche de présentation) -->
+        <div class="lg:col-span-8 flex flex-col gap-6">
+            
+            <!-- En-tête de la Release -->
+            <div class="bg-tracker-panel border border-tracker-border p-4 md:p-6 rounded-lg">
+                <span class="bg-tracker-green/10 text-tracker-green border border-tracker-green/30 text-xs px-2.5 py-1 rounded-full font-mono uppercase font-semibold">DVD-R / DVD9</span>
+                
+                <h2 class="text-xl md:text-2xl font-bold text-white mt-3 font-retro tracking-wide leading-tight">
+                    Star Wars: Episode I - The Phantom Menace (1999) - [DVD9 - Multi-Audio EN/FR - 2 Discs]
+                </h2>
+                
+                <!-- Métadonnées rapides -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-6 text-xs font-mono border-t border-b border-tracker-border/50 py-4 text-slate-400">
+                    <div>
+                        <p class="text-slate-500 uppercase">Taille du torrent</p>
+                        <p class="text-white text-sm font-semibold mt-0.5">7.95 Go (8 540 112 896 octets)</p>
+                    </div>
+                    <div>
+                        <p class="text-slate-500 uppercase">Langues</p>
+                        <p class="text-tracker-blue text-sm font-semibold mt-0.5">Français, Anglais</p>
+                    </div>
+                    <div>
+                        <p class="text-slate-500 uppercase">Sous-titres</p>
+                        <p class="text-white text-sm font-semibold mt-0.5">Français, Anglais, Néerlandais</p>
+                    </div>
+                    <div>
+                        <p class="text-slate-500 uppercase">Format Vidéo</p>
+                        <p class="text-tracker-amber text-sm font-semibold mt-0.5">Untouched MPEG-2 PAL</p>
+                    </div>
+                </div>
+
+                <!-- Description & Synopsis -->
+                <div class="mt-6 space-y-4">
+                    <h3 class="text-sm font-bold uppercase text-tracker-green tracking-wider font-mono">Synopsis & Détails</h3>
+                    <div class="flex flex-col md:flex-row gap-6 items-start">
+                        <!-- Poster généré ou Mock stylisé -->
+                        <div class="w-full md:w-48 shrink-0 bg-black rounded-lg border border-tracker-border aspect-[2/3] relative overflow-hidden flex flex-col justify-between p-4 shadow-2xl">
+                            <!-- SVG Retro Star Wars Style Starry Sky -->
+                            <div class="absolute inset-0 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px] opacity-30"></div>
+                            <div class="relative z-10 text-center">
+                                <span class="text-[10px] text-tracker-amber tracking-widest uppercase font-mono block">STAR WARS</span>
+                                <span class="text-xs text-white font-serif block font-bold italic mt-1">EPISODE I</span>
+                            </div>
+                            <!-- Mock de sabre laser en CSS -->
+                            <div class="relative z-10 my-4 flex justify-around items-end h-28">
+                                <div class="w-1.5 h-20 bg-emerald-400 rounded-full shadow-[0_0_15px_rgba(52,211,153,1)] relative">
+                                    <div class="absolute bottom-0 left-0 w-full h-4 bg-slate-600 rounded"></div>
+                                </div>
+                                <div class="w-1.5 h-20 bg-red-500 rounded-full shadow-[0_0_15px_rgba(239,68,68,1)] relative">
+                                    <div class="absolute bottom-0 left-0 w-full h-4 bg-slate-600 rounded"></div>
+                                </div>
+                            </div>
+                            <div class="relative z-10 text-center text-[10px] text-slate-500 font-mono">
+                                PREZ PAR : FORCE-DVD
+                            </div>
+                        </div>
+
+                        <!-- Texte de la présentation -->
+                        <div class="space-y-3 text-slate-300 text-sm leading-relaxed">
+                            <p>
+                                Enfin le graal ! Pour fêter la sortie nationale du DVD français aujourd’hui même, l’équipe <span class="text-tracker-amber font-mono font-bold">FORCE-DVD</span> vous offre l’intégralité du DVD9 (Double Couche) original sans aucune compression ou ré-encodage ! Conservez les menus animés interactifs d’origine, le choix complet des langues en véritable Dolby Digital AC3 5.1 et tous les bonus légendaires.
+                            </p>
+                            <p>
+                                <strong>Disque 1 :</strong> Le film complet restauré avec une définition exceptionnelle pour l'époque. 
+                            </p>
+                            <p>
+                                <strong>Disque 2 :</strong> Des heures de suppléments dont le célèbre documentaire exclusif de 1h06 « Within a Minute » (Au cœur d’une minute), 7 scènes inédites finalisées spécifiquement pour ce DVD, et des reportages inédits sur les coulisses de la création.
+                            </p>
+                            <div class="bg-black/30 border border-tracker-border p-3 rounded text-xs font-mono text-slate-400">
+                                🛠️ <strong class="text-slate-200">Note de rip :</strong> Copie 1:1 brute à l'aide de SmartRipper 2.41, contournement CSS (Content Scramble System) validé. Aucune perte, fichier ISO prêt à graver sur un disque DVD-R DL (Double Layer) ou à monter sur Daemon Tools !
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NFO Terminal / Viewer -->
+            <div class="bg-black border border-tracker-border rounded-lg overflow-hidden font-mono shadow-xl">
+                <div class="bg-tracker-panel border-b border-tracker-border px-4 py-2.5 flex items-center justify-between text-xs text-slate-400">
+                    <span class="flex items-center gap-2">
+                        <span class="inline-block w-2 h-2 rounded-full bg-tracker-green animate-pulse"></span>
+                        <span>Fichier d'information : FORCE-DVD9-SW1.NFO</span>
+                    </span>
+                    <button onclick="copyNfo()" class="hover:text-tracker-green transition-colors text-[10px] uppercase border border-tracker-border px-2 py-0.5 rounded bg-tracker-bg">
+                        Copier le NFO
+                    </button>
+                </div>
+                <!-- ASCII Art Area (Responsive Scroll) -->
+                <div class="p-4 overflow-x-auto text-[10px] leading-3 text-tracker-green bg-black select-all whitespace-pre font-mono" id="nfoContent">
+ .______       _______  __        ______       ___       _______         _______ .______      
+ |   _  \     |   ____||  |      /  __  \     /   \     |       \       |   ____||   _  \     
+ |  |_)  |    |  |__   |  |     |  |  |  |   /  ^  \    |  .--.  |      |  |__   |  |_)  |    
+ |      /     |   __|  |  |     |  |  |  |  /  /_\  \   |  |  |  |      |   __|  |      /     
+ |  |\  \----.|  |____ |  `----.|  `--'  | /  _____  \  |  '--'  |  __  |  |____ |  |\  \----.
+ | _| `._____||_______||_______| \______/ /__/     \__\ |_______/  (__) |_______|| _| `._____|
+                                                                                              
+==============================================================================================
+   TEAM FORCE-DVD PRESENTE : STAR WARS - LA MENACE FANTOME (VFF/VO) - DVD9 DOUBLE COUCHE
+==============================================================================================
+
+  Date de Release ..: 17.10.2001               Format ...........: ISO DVD9 PAL
+  Source ...........: DVD9 Retail FR           Protection .......: CSS Decrypted
+  Taille ...........: 7.95 GB                  Nombre de fichiers: 2x 4.0GB ISO / RAR
+  Langues ..........: Francais AC3 5.1, Anglais AC3 5.1
+  Sous-Titres ......: Francais, Anglais, Neerlandais
+  Menu .............: Oui (100% Intact)        Bonus ............: Oui (100% Intact)
+
+----------------------------------------------------------------------------------------------
+  NOTES TECHNIQUES & CONFIGURATION :
+----------------------------------------------------------------------------------------------
+  Pour profiter au mieux de ce rip, nous vous conseillons d'utiliser :
+  - Un lecteur de DVD-ROM de PC (minimum 4x ou superieur).
+  - Logiciel PowerDVD 4.0 XP ou WinDVD 3.0 pour decodage hardware AC3/DTS.
+  - Carte son Sound Blaster Audigy Player ou Live! 5.1 connectee en SPDIF a votre ampli.
+  - Processeur Pentium III 800 MHz requis pour lecture fluide sans saccades.
+  - Carte graphique GeForce 2 MX ou ATI Radeon 7500 fortement conseillee.
+
+----------------------------------------------------------------------------------------------
+  REMERCIEMENTS :
+----------------------------------------------------------------------------------------------
+  Greets to: DEVIL-DVD, WARG, SHiN-RG, PARADOX, CALiOD, FrenchForce, GigaShare crew.
+  Keep seeding, the galaxy needs bandwidth! Support the developers, buy the retail product!
+                </div>
+            </div>
+
+            <!-- Calculateur de Connexion interactif -->
+            <div class="bg-tracker-panel border border-tracker-border p-6 rounded-lg">
+                <div class="flex items-center justify-between border-b border-tracker-border/50 pb-3">
+                    <h3 class="text-sm font-bold uppercase text-tracker-green tracking-wider font-mono flex items-center gap-2">
+                        ⏳ Estimateur de Téléchargement (Époque 2001)
+                    </h3>
+                    <span class="text-xs bg-slate-800 text-slate-300 px-2 py-0.5 rounded font-mono">Simulateur</span>
+                </div>
+                
+                <p class="text-xs text-slate-400 mt-2 font-mono">
+                    Combien de temps mettra ce DVD9 de 7,95 Go à arriver sur votre machine ? Choisissez votre technologie d'accès à Internet :
+                </p>
+
+                <!-- Grille d'options de connexion -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 mt-4">
+                    <button onclick="calculateSpeed(56, 'Modem 56 Kbps', 'analogique')" class="speed-btn p-3 rounded-lg border border-tracker-border bg-black/40 hover:border-tracker-amber text-left font-mono transition-all">
+                        <p class="text-xs text-slate-500">RTC Classique</p>
+                        <p class="text-white font-bold text-sm">56 Kbps</p>
+                        <p class="text-[10px] text-tracker-amber mt-1">Wanadoo / AOL</p>
+                    </button>
+                    <button onclick="calculateSpeed(128, 'Numéris 128 Kbps', 'isdn')" class="speed-btn p-3 rounded-lg border border-tracker-border bg-black/40 hover:border-tracker-blue text-left font-mono transition-all">
+                        <p class="text-xs text-slate-500">ISDN / Numéris</p>
+                        <p class="text-white font-bold text-sm">128 Kbps</p>
+                        <p class="text-[10px] text-tracker-blue mt-1">France Telecom</p>
+                    </button>
+                    <button onclick="calculateSpeed(512, 'ADSL 512 Kbps', 'adsl')" class="speed-btn p-3 rounded-lg border border-tracker-green/50 bg-tracker-green/5 text-left font-mono transition-all ring-1 ring-tracker-green/30" id="defaultSpeedBtn">
+                        <p class="text-xs text-slate-500">ADSL Haut Débit</p>
+                        <p class="text-tracker-green font-bold text-sm">512 Kbps</p>
+                        <p class="text-[10px] text-tracker-green/80 mt-1">Extrême / Club Internet</p>
+                    </button>
+                    <button onclick="calculateSpeed(1024, 'Câble Lyonnaise', 'cable')" class="speed-btn p-3 rounded-lg border border-tracker-border bg-black/40 hover:border-tracker-blue text-left font-mono transition-all">
+                        <p class="text-xs text-slate-500">Câble Noos</p>
+                        <p class="text-white font-bold text-sm">1024 Kbps</p>
+                        <p class="text-[10px] text-tracker-blue mt-1">1 Mbps Très Haut Débit</p>
+                    </button>
+                </div>
+
+                <!-- Résultat du calcul -->
+                <div class="mt-6 bg-black/50 border border-tracker-border p-4 rounded-lg flex flex-col md:flex-row justify-between items-center gap-4">
+                    <div class="font-mono text-center md:text-left">
+                        <p class="text-xs text-slate-500">Vitesse estimée pour <span id="selectedConnName" class="text-white">ADSL 512 Kbps</span> :</p>
+                        <p class="text-lg text-white font-bold mt-1">
+                            Taux moyen de transfert : <span id="transferRate" class="text-tracker-green">64 Ko/s</span>
+                        </p>
+                    </div>
+                    <div class="bg-tracker-panel border border-tracker-border px-5 py-3 rounded text-center min-w-[200px]">
+                        <p class="text-[10px] uppercase text-slate-500 font-mono">Durée estimée sans coupure</p>
+                        <p class="text-xl font-bold font-retro text-tracker-amber glow-amber mt-1" id="estimatedTime">
+                            36 heures, 15 minutes
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Arborescence Interactive des Fichiers -->
+            <div class="bg-tracker-panel border border-tracker-border p-6 rounded-lg">
+                <h3 class="text-sm font-bold uppercase text-tracker-green tracking-wider font-mono border-b border-tracker-border/50 pb-3 flex items-center gap-2">
+                    📁 Structure des Fichiers de la Release (.ISO / DVD Folder)
+                </h3>
+                <p class="text-xs text-slate-400 mt-2 font-mono">Faites un double-clic ou cliquez sur les dossiers pour inspecter le contenu du double DVD9.</p>
+
+                <div class="mt-4 font-mono text-xs text-slate-300 space-y-2 bg-black/30 p-3 rounded border border-tracker-border">
+                    <!-- Root -->
+                    <div class="flex items-center gap-2 text-tracker-amber font-bold">
+                        <span>📂</span> <span>Star_Wars_I_The_Phantom_Menace_DVD9/</span>
+                    </div>
+
+                    <!-- Disc 1 -->
+                    <div class="pl-4">
+                        <div class="flex items-center gap-2 cursor-pointer hover:text-white" onclick="toggleFolder('disc1_files')">
+                            <span>📂</span> <span class="font-semibold text-slate-200">DISC1_MOVIE/</span> <span class="text-[10px] text-slate-500">(4.15 GB)</span>
+                        </div>
+                        <div id="disc1_files" class="pl-6 border-l border-tracker-border/60 ml-2 mt-1 space-y-1.5">
+                            <div class="flex justify-between hover:bg-white/5 py-0.5 px-1 rounded">
+                                <span class="text-slate-400">📄 DISC1_IMAGE.ISO</span>
+                                <span class="text-slate-500">4 456 211 456 octets</span>
+                            </div>
+                            <div class="flex justify-between hover:bg-white/5 py-0.5 px-1 rounded">
+                                <span class="text-slate-400">📄 FORCE-DVD9-SW1.NFO</span>
+                                <span class="text-slate-500">14 256 octets</span>
+                            </div>
+                            <div class="flex justify-between hover:bg-white/5 py-0.5 px-1 rounded">
+                                <span class="text-slate-400">📄 force-sw1-dvd1.sfv</span>
+                                <span class="text-slate-500">1 024 octets</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Disc 2 -->
+                    <div class="pl-4 mt-2">
+                        <div class="flex items-center gap-2 cursor-pointer hover:text-white" onclick="toggleFolder('disc2_files')">
+                            <span>📂</span> <span class="font-semibold text-slate-200">DISC2_BONUS/</span> <span class="text-[10px] text-slate-500">(3.80 GB)</span>
+                        </div>
+                        <div id="disc2_files" class="pl-6 border-l border-tracker-border/60 ml-2 mt-1 space-y-1.5">
+                            <div class="flex justify-between hover:bg-white/5 py-0.5 px-1 rounded">
+                                <span class="text-slate-400">📄 DISC2_BONUS_IMAGE.ISO</span>
+                                <span class="text-slate-500">4 083 901 440 octets</span>
+                            </div>
+                            <div class="flex justify-between hover:bg-white/5 py-0.5 px-1 rounded">
+                                <span class="text-slate-400">📄 force-sw1-dvd2.sfv</span>
+                                <span class="text-slate-500">1 012 octets</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Zone de Commentaires (Nostalgie Forum 2001) -->
+            <div class="bg-tracker-panel border border-tracker-border p-6 rounded-lg">
+                <h3 class="text-sm font-bold uppercase text-tracker-green tracking-wider font-mono border-b border-tracker-border/50 pb-4">
+                    💬 Commentaires de la communauté (8)
+                </h3>
+
+                <!-- Liste de commentaires -->
+                <div class="mt-4 space-y-4" id="commentsList">
+                    <!-- Comm 1 -->
+                    <div class="border-b border-tracker-border/50 pb-4 flex flex-col sm:flex-row gap-3">
+                        <div class="sm:w-28 shrink-0">
+                            <p class="font-mono text-xs font-bold text-tracker-green">mister_dvd9</p>
+                            <p class="text-[10px] text-slate-500">Inscrit: Sep 2001</p>
+                        </div>
+                        <div class="space-y-1">
+                            <p class="text-xs text-slate-500 font-mono">Posté le 17 Octobre 2001 à 09:34</p>
+                            <p class="text-sm text-slate-200 leading-relaxed">
+                                Incroyable !! Merci FORCE ! Par contre 8 Go... J'ai l'ADSL 512k de chez Wanadoo, d'après le calculateur j'en ai pour au moins 36 heures non-stop. Mon père va me tuer s'il voit la facture de téléphone et d'électricité à laisser le PC tourner la nuit !
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Comm 2 -->
+                    <div class="border-b border-tracker-border/50 pb-4 flex flex-col sm:flex-row gap-3">
+                        <div class="sm:w-28 shrink-0">
+                            <p class="font-mono text-xs font-bold text-tracker-blue">padawan_78</p>
+                            <p class="text-[10px] text-slate-500">Inscrit: Jan 2001</p>
+                        </div>
+                        <div class="space-y-1">
+                            <p class="text-xs text-slate-500 font-mono">Posté le 17 Octobre 2001 à 10:15</p>
+                            <p class="text-sm text-slate-200 leading-relaxed">
+                                Est-ce qu'on peut splitter l'ISO pour le graver sur deux CD de 80 min en DivX avec le codec SBC ? J'ai acheté un graveur de CD-RW Traxdata mais les médias DVD-R vierges coûtent une blinde (environ 90 Francs le disque chez le chinois de Montgallet !).
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Comm 3 -->
+                    <div class="border-b border-tracker-border/50 pb-4 flex flex-col sm:flex-row gap-3">
+                        <div class="sm:w-28 shrink-0">
+                            <p class="font-mono text-xs font-bold text-tracker-amber">trinity_neo</p>
+                            <p class="text-[10px] text-slate-500">Inscrit: Jun 2001</p>
+                        </div>
+                        <div class="space-y-1">
+                            <p class="text-xs text-slate-500 font-mono">Posté le 17 Octobre 2001 à 11:22</p>
+                            <p class="text-sm text-slate-200 leading-relaxed">
+                                Qualité d'image à tomber par terre, les menus sont sublimes. Le son 5.1 sur mon kit d'enceintes de PC Creative Labs, c'est du pur bonheur dans la chambre ! Ça vaut carrément le coup de saturer la connexion de l'immeuble. Allez je laisse mon client ouvert pour uploader au max.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ajouter un commentaire -->
+                <form onsubmit="postComment(event)" class="mt-6 bg-black/40 border border-tracker-border p-4 rounded-lg space-y-4">
+                    <h4 class="text-xs font-mono font-bold text-white uppercase">Ajouter un message sur le forum :</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-[10px] text-slate-500 font-mono uppercase mb-1">Pseudo d'époque (ex: Hacker_99)</label>
+                            <input type="text" id="usernameInput" required class="w-full bg-tracker-panel border border-tracker-border rounded px-3 py-2 text-xs font-mono text-white focus:outline-none focus:border-tracker-green" placeholder="Pseudo_StarWars">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] text-slate-500 font-mono uppercase mb-1">Type de connexion internet</label>
+                            <select id="connTypeInput" class="w-full bg-tracker-panel border border-tracker-border rounded px-3 py-2 text-xs font-mono text-white focus:outline-none focus:border-tracker-green">
+                                <option value="Modem 56k">Modem 56k</option>
+                                <option value="ISDN 128k">ISDN 128k</option>
+                                <option value="ADSL 512k" selected>ADSL 512k</option>
+                                <option value="Câble 1 Mbps">Câble 1 Mbps</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-[10px] text-slate-500 font-mono uppercase mb-1">Votre message</label>
+                        <textarea id="commentInput" required rows="3" class="w-full bg-tracker-panel border border-tracker-border rounded px-3 py-2 text-xs font-mono text-white focus:outline-none focus:border-tracker-green" placeholder="Génial ! Merci pour le partage..."></textarea>
+                    </div>
+                    <div class="flex justify-end">
+                        <button type="submit" class="bg-tracker-green text-black hover:bg-tracker-green/90 transition-all font-retro font-bold text-xs uppercase px-4 py-2 rounded">
+                            Poster le commentaire
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+        <!-- Colonne Droite (4/12 sur grand écran, statistiques de téléchargement & liens) -->
+        <div class="lg:col-span-4 flex flex-col gap-6">
+            
+            <!-- Widget de Téléchargement Direct -->
+            <div class="bg-tracker-panel border border-tracker-border p-6 rounded-lg shadow-lg relative overflow-hidden">
+                <!-- Décoration Star Wars Retro style blueprint -->
+                <div class="absolute -right-16 -top-16 w-36 h-36 border border-tracker-green/10 rounded-full flex items-center justify-center pointer-events-none">
+                    <div class="w-24 h-24 border border-tracker-green/10 rounded-full"></div>
+                </div>
+
+                <h3 class="text-xs font-bold uppercase text-slate-500 tracking-wider font-mono">Disponibilité du Réseau</h3>
+                
+                <!-- Compteurs Seeders / Leechers -->
+                <div class="grid grid-cols-2 gap-4 mt-4">
+                    <div class="bg-black/40 border border-tracker-border p-3 rounded text-center">
+                        <p class="text-[10px] text-slate-500 font-mono uppercase">Sources (Seeders)</p>
+                        <p class="text-3xl font-retro font-bold text-tracker-green glow-green mt-1">42</p>
+                    </div>
+                    <div class="bg-black/40 border border-tracker-border p-3 rounded text-center">
+                        <p class="text-[10px] text-slate-500 font-mono uppercase">Clients (Leechers)</p>
+                        <p class="text-3xl font-retro font-bold text-tracker-amber glow-amber mt-1">319</p>
+                    </div>
+                </div>
+
+                <!-- Jauge de Santé du Torrent -->
+                <div class="mt-4 space-y-1.5">
+                    <div class="flex justify-between text-xs font-mono text-slate-400">
+                        <span>Santé du torrent</span>
+                        <span class="text-tracker-green font-bold">100% (Excellent)</span>
+                    </div>
+                    <div class="w-full bg-black h-2.5 rounded-full overflow-hidden border border-tracker-border">
+                        <div class="bg-tracker-green h-full w-full shadow-[0_0_8px_#39ff14]"></div>
+                    </div>
+                </div>
+
+                <!-- Info technique du réseau -->
+                <div class="mt-4 p-3 bg-black/30 border border-tracker-border rounded text-xs font-mono text-slate-400 space-y-1">
+                    <p>⚡ <strong class="text-slate-300">Hash :</strong> <span class="text-[10px] select-all break-all text-slate-400">da39a3ee5e6b4b0d3255bfef95601890afd80709</span></p>
+                    <p>🔌 <strong class="text-slate-300">Statut du Tracker :</strong> <span class="text-tracker-green">En ligne & connecté</span></p>
+                </div>
+
+                <!-- Gros Bouton de Téléchargement -->
+                <button onclick="startDownloadSimulation()" class="w-full mt-6 bg-tracker-green text-black hover:bg-tracker-green/90 font-retro font-bold text-base py-4 px-4 rounded-lg shadow-[0_4px_20px_rgba(57,255,20,0.25)] hover:shadow-[0_4px_25px_rgba(57,255,20,0.4)] transition-all flex flex-col items-center justify-center gap-1">
+                    <span class="flex items-center gap-2">
+                        📥 TÉLÉCHARGER LE TORRENT
+                    </span>
+                    <span class="text-[10px] opacity-80 uppercase tracking-widest font-mono">STAR_WARS_1_DVD9.torrent (156 Ko)</span>
+                </button>
+
+                <!-- Case à cocher pour le son de connexion vintage -->
+                <div class="mt-3 flex items-center justify-center gap-2">
+                    <input type="checkbox" id="modemSoundCheck" checked class="rounded bg-tracker-bg border-tracker-border text-tracker-green focus:ring-0 focus:ring-offset-0">
+                    <label for="modemSoundCheck" class="text-[11px] font-mono text-slate-400 cursor-pointer hover:text-white">
+                        🔊 Activer le son de modem 56k au clic
+                    </label>
+                </div>
+            </div>
+
+            <!-- Lecteur Audio / Ambiance Spatiale Synthétique -->
+            <div class="bg-tracker-panel border border-tracker-border p-4 rounded-lg font-mono">
+                <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-2">🔊 Ambiance du Secteur</h4>
+                <p class="text-[11px] text-slate-400 mb-3">Besoin d'une musique de fond 8-bit Star Wars pendant votre chargement ? Activez-la ici :</p>
+                
+                <div class="flex gap-2">
+                    <button onclick="toggleSynthesizer()" id="synthBtn" class="flex-1 bg-tracker-border hover:bg-tracker-green hover:text-black transition-all text-xs font-bold py-2 rounded text-slate-300">
+                        ▶️ Jouer le thème (Synthèse Web Audio)
+                    </button>
+                    <button onclick="stopSynthesizer()" class="bg-red-950 text-red-400 hover:bg-red-900 border border-red-800/50 px-3 py-2 rounded text-xs font-bold">
+                        Stop
+                    </button>
+                </div>
+            </div>
+
+            <!-- Fiche technique de la Team de Rip -->
+            <div class="bg-tracker-panel border border-tracker-border p-6 rounded-lg font-mono space-y-4">
+                <div class="border-b border-tracker-border pb-3">
+                    <h3 class="text-xs font-bold uppercase text-tracker-amber tracking-wider">💾 Infos Release d'Époque</h3>
+                </div>
+
+                <div class="space-y-3 text-xs text-slate-400">
+                    <div>
+                        <p class="text-slate-500 uppercase">Codecs Vidéo recommandés</p>
+                        <p class="text-white font-semibold mt-0.5">XviD v0.9 (ou DivX 4.12 Bundle)</p>
+                    </div>
+                    <div>
+                        <p class="text-slate-500 uppercase">Lecteur Multimédia conseillé</p>
+                        <p class="text-tracker-blue font-semibold mt-0.5">BSPlayer v0.8 ou Zoom Player 2.10</p>
+                    </div>
+                    <div>
+                        <p class="text-slate-500 uppercase">Configuration Audio conseillée</p>
+                        <p class="text-white font-semibold mt-0.5">Filtre AC3Filter 0.70b (S/PDIF Passthrough)</p>
+                    </div>
+                    <div>
+                        <p class="text-slate-500 uppercase">Compatibilité OS</p>
+                        <p class="text-slate-300 font-semibold mt-0.5">Windows 98 SE / Windows ME / Windows 2000 Pro (recommandé)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Widget d'aide légale de l'époque -->
+            <div class="bg-black/30 border border-tracker-border p-4 rounded-lg text-[11px] font-mono text-slate-500 leading-relaxed">
+                ⚖️ <strong>Rappel :</strong> Vous devez posséder l'œuvre originale sous forme de cassette VHS ou l'avoir importée légalement en magasin pour conserver cette sauvegarde numérique sur votre disque dur. Tout abus de copie peut nuire à l'industrie du cinéma.
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Pied de page -->
+    <footer class="border-t border-tracker-border bg-tracker-panel/30 py-8 mt-12 text-center text-xs font-mono text-slate-600">
+        <p>© 2001 GigaTorrents-FR Network - Tout droit réservé. Hébergé en Suisse.</p>
+        <p class="mt-1 text-[10px] opacity-75">Propulsé par PHP-Nuke v5.2 & MySQL 3.23. Serveur propulsé par Red Hat Linux 7.1</p>
+    </footer>
+
+    <!-- MODAL DE DIALOGUE : Simulation de téléchargement -->
+    <div id="downloadModal" class="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50 hidden backdrop-blur-sm">
+        <div class="bg-tracker-panel border-2 border-tracker-green p-6 rounded-lg max-w-md w-full font-mono relative shadow-[0_0_30px_rgba(57,255,20,0.2)]">
+            
+            <div class="flex justify-between items-start border-b border-tracker-border pb-3">
+                <h3 class="text-tracker-green font-retro font-bold text-base flex items-center gap-2">
+                    ⚡ CONNEXION MODEM RETRO-56K
+                </h3>
+                <button onclick="closeDownloadModal()" class="text-slate-500 hover:text-white">&times;</button>
+            </div>
+
+            <!-- Animation de chargement / Status -->
+            <div class="mt-4 space-y-4">
+                <div class="bg-black p-3 rounded border border-tracker-border text-xs space-y-2">
+                    <p class="text-slate-500" id="modemLog1">&gt; Initialisation du port COM3...</p>
+                    <p class="text-slate-500" id="modemLog2">&gt; Commande ATDT 08 60 90 90 90...</p>
+                    <p class="text-slate-300" id="modemLog3"></p>
+                    <p class="text-tracker-amber" id="modemLog4"></p>
+                </div>
+
+                <!-- Barre de progression de download du torrent -->
+                <div class="space-y-1.5" id="downloadProgressContainer">
+                    <div class="flex justify-between text-[11px]">
+                        <span class="text-slate-400">Téléchargement du fichier de métadonnées :</span>
+                        <span id="downloadPercent" class="text-tracker-green font-bold">0%</span>
+                    </div>
+                    <div class="w-full bg-black h-4 rounded overflow-hidden border border-tracker-border p-0.5">
+                        <div id="downloadProgressBar" class="bg-tracker-green h-full w-0 transition-all duration-300 shadow-[0_0_10px_#39ff14]"></div>
+                    </div>
+                    <p class="text-[10px] text-right text-slate-500" id="downloadRateText">Vitesse : 5.4 Ko/s (Estimé : 29s)</p>
+                </div>
+
+                <div class="bg-tracker-green/10 border border-tracker-green/30 p-3 rounded text-[11px] text-tracker-green hidden" id="downloadSuccessMsg">
+                    🎉 <strong>Succès !</strong> Le fichier <code>Star_Wars_1_DVD9.torrent</code> a bien été téléchargé dans votre dossier de réception. Ouvrez-le avec votre client BitTorrent ou Shareaza pour lancer le rapatriement des deux disques.
+                </div>
+
+                <div class="flex justify-end gap-3 pt-3 border-t border-tracker-border/50">
+                    <button onclick="closeDownloadModal()" class="bg-tracker-border hover:bg-slate-700 text-white font-bold text-xs uppercase px-4 py-2 rounded transition-colors">
+                        Fermer la fenêtre
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- SCRIPTS JS INTERACTIFS -->
+    <script>
+        // État Global de l'application
+        let synthInterval = null;
+        let audioCtx = null;
+        let isSynthPlaying = false;
+        let isCRTOn = false;
+
+        // Fonction bascule effet CRT d'époque
+        function toggleCRT() {
+            isCRTOn = !isCRTOn;
+            const body = document.body;
+            const crtStatus = document.getElementById('crtStatus');
+            if (isCRTOn) {
+                body.classList.add('crt');
+                crtStatus.innerText = "ON";
+                crtStatus.classList.add('text-tracker-green');
+            } else {
+                body.classList.remove('crt');
+                crtStatus.innerText = "OFF";
+                crtStatus.classList.remove('text-tracker-green');
+            }
+        }
+
+        // Toggles d'arborescence de fichiers
+        function toggleFolder(folderId) {
+            const folder = document.getElementById(folderId);
+            if (folder.classList.contains('hidden')) {
+                folder.classList.remove('hidden');
+            } else {
+                folder.classList.add('hidden');
+            }
+        }
+
+        // Calculateur de vitesse de l'époque
+        const movieSizeBytes = 8540112896; // 7.95 GB
+        function calculateSpeed(speedKbps, name, soundType) {
+            // Nettoyage des styles des boutons
+            document.querySelectorAll('.speed-btn').forEach(btn => {
+                btn.className = "speed-btn p-3 rounded-lg border border-tracker-border bg-black/40 hover:border-tracker-blue text-left font-mono transition-all";
+            });
+
+            // Trouver le bouton cliqué pour lui donner le style actif
+            event.currentTarget.className = "speed-btn p-3 rounded-lg border border-tracker-green/50 bg-tracker-green/5 text-left font-mono transition-all ring-1 ring-tracker-green/30";
+
+            // Calcul du taux en Kilo-Octets (KB/s ou Ko/s)
+            // 1 octet = 8 bits, donc division par 8
+            const speedKBps = speedKbps / 8;
+            
+            // Temps en secondes
+            const totalSeconds = (movieSizeBytes / 1024) / speedKBps;
+            
+            // Conversion en jours, heures, minutes
+            const days = Math.floor(totalSeconds / (3600 * 24));
+            const hours = Math.floor((totalSeconds % (3600 * 24)) / 3600);
+            const minutes = Math.round((totalSeconds % 3600) / 60);
+
+            let timeString = "";
+            if (days > 0) {
+                timeString += `${days} j, `;
+            }
+            timeString += `${hours} h et ${minutes} min`;
+
+            // Mise à jour de l'affichage
+            document.getElementById('selectedConnName').innerText = name;
+            document.getElementById('transferRate').innerText = `${speedKBps.toFixed(1)} Ko/s`;
+            document.getElementById('estimatedTime').innerText = timeString;
+        }
+
+        // Copie de NFO vers presse-papier
+        function copyNfo() {
+            const nfoText = document.getElementById('nfoContent').innerText;
+            // Technique compatible avec les iFrames de la plateforme de test
+            const tempTextArea = document.createElement("textarea");
+            tempTextArea.value = nfoText;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempTextArea);
+            
+            // Effet visuel temporaire
+            const btn = event.target;
+            const originalText = btn.innerText;
+            btn.innerText = "Copié !";
+            btn.classList.add('text-tracker-green');
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.classList.remove('text-tracker-green');
+            }, 2000);
+        }
+
+        // Simulation de commentaires dynamique
+        function postComment(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('usernameInput').value.trim();
+            const connType = document.getElementById('connTypeInput').value;
+            const commentText = document.getElementById('commentInput').value.trim();
+            
+            if (!username || !commentText) return;
+
+            // Formater la date en 17 Octobre 2001
+            const now = new Date();
+            const timeStr = `Posté le 17 Octobre 2001 à ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+
+            const newCommentHtml = `
+                <div class="border-b border-tracker-border/50 pb-4 flex flex-col sm:flex-row gap-3 animate-fade-in">
+                    <div class="sm:w-28 shrink-0">
+                        <p class="font-mono text-xs font-bold text-tracker-green">${escapeHTML(username)}</p>
+                        <p class="text-[10px] text-slate-500">${connType}</p>
+                    </div>
+                    <div class="space-y-1">
+                        <p class="text-xs text-slate-500 font-mono">${timeStr}</p>
+                        <p class="text-sm text-slate-200 leading-relaxed">
+                            ${escapeHTML(commentText)}
+                        </p>
+                    </div>
+                </div>
+            `;
+
+            const commentsList = document.getElementById('commentsList');
+            commentsList.insertAdjacentHTML('beforeend', newCommentHtml);
+
+            // Reset du formulaire
+            document.getElementById('usernameInput').value = '';
+            document.getElementById('commentInput').value = '';
+        }
+
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g, 
+                tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+            );
+        }
+
+        // --- SYNTHÉTISEUR AUDIO MODEM 56K (WEB AUDIO API) ---
+        // Génère le son mythique de négociation analogique du modem
+        function playModemDialupSound() {
+            try {
+                const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+                if (!AudioContextClass) return;
+                
+                audioCtx = new AudioContextClass();
+                
+                // 1. Tonalité d'appel (Dial Tone) - 350Hz et 440Hz combinés
+                let osc1 = audioCtx.createOscillator();
+                let osc2 = audioCtx.createOscillator();
+                let gainNode = audioCtx.createGain();
+                
+                osc1.frequency.value = 350;
+                osc2.frequency.value = 440;
+                gainNode.gain.setValueAtTime(0.08, audioCtx.currentTime);
+                
+                osc1.connect(gainNode);
+                osc2.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+                
+                osc1.start();
+                osc2.start();
+                
+                // Arrêt de la tonalité après 1.2s
+                setTimeout(() => {
+                    osc1.stop();
+                    osc2.stop();
+                    
+                    // 2. DTMF Numérotation (bip bips rapides)
+                    playDTMF([697, 1209], 0.1, 0.1); // "1"
+                    playDTMF([770, 1336], 0.3, 0.1); // "5"
+                    playDTMF([852, 1209], 0.5, 0.1); // "7"
+                    playDTMF([941, 1336], 0.7, 0.1); // "0"
+                    
+                    // 3. Sonneries d'appel (Ringback) - 440Hz + 480Hz pulsés
+                    setTimeout(() => {
+                        playRingback(0.1, 1.0);
+                    }, 1000);
+
+                    // 4. Poignée de main analogique (Screech & Static Noise)
+                    setTimeout(() => {
+                        playModemScreech(2.2, 3.5);
+                    }, 2200);
+
+                }, 1200);
+
+            } catch (e) {
+                console.log("Web Audio API non supportée ou bloquée par l'utilisateur.");
+            }
+        }
+
+        function playDTMF(freqs, startTime, duration) {
+            let t = audioCtx.currentTime + startTime;
+            let oscA = audioCtx.createOscillator();
+            let oscB = audioCtx.createOscillator();
+            let gain = audioCtx.createGain();
+            
+            oscA.frequency.value = freqs[0];
+            oscB.frequency.value = freqs[1];
+            gain.gain.setValueAtTime(0.05, t);
+            gain.gain.setValueAtTime(0, t + duration);
+            
+            oscA.connect(gain);
+            oscB.connect(gain);
+            gain.connect(audioCtx.destination);
+            
+            oscA.start(t);
+            oscB.start(t);
+            oscA.stop(t + duration);
+            oscB.stop(t + duration);
+        }
+
+        function playRingback(startTime, duration) {
+            let t = audioCtx.currentTime + startTime;
+            let oscA = audioCtx.createOscillator();
+            let oscB = audioCtx.createOscillator();
+            let gain = audioCtx.createGain();
+            
+            oscA.frequency.value = 440;
+            oscB.frequency.value = 480;
+            gain.gain.setValueAtTime(0.04, t);
+            gain.gain.setValueAtTime(0, t + duration);
+            
+            oscA.connect(gain);
+            oscB.connect(gain);
+            gain.connect(audioCtx.destination);
+            
+            oscA.start(t);
+            oscB.start(t);
+            oscA.stop(t + duration);
+            oscB.stop(t + duration);
+        }
+
+        function playModemScreech(startTime, duration) {
+            let t = audioCtx.currentTime + startTime;
+            
+            // Génération d'un bruit de friture blanche
+            let bufferSize = audioCtx.sampleRate * duration;
+            let buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+            let data = buffer.getChannelData(0);
+            for (let i = 0; i < bufferSize; i++) {
+                data[i] = Math.random() * 2 - 1;
+            }
+            
+            let noiseNode = audioCtx.createBufferSource();
+            noiseNode.buffer = buffer;
+            
+            // Filtre passe-bande pour donner un son de tuyau téléphonique
+            let filter = audioCtx.createBiquadFilter();
+            filter.type = 'bandpass';
+            filter.frequency.setValueAtTime(1200, t);
+            
+            // Modulation de fréquence stridente (Screech)
+            let oscMod = audioCtx.createOscillator();
+            let oscModGain = audioCtx.createGain();
+            oscMod.frequency.value = 2200; // Fréquence porteuse
+            
+            // Ajustement du gain du bruit blanc
+            let noiseGain = audioCtx.createGain();
+            noiseGain.gain.setValueAtTime(0.04, t);
+            noiseGain.gain.linearRampToValueAtTime(0.01, t + duration);
+            
+            // Branchements
+            noiseNode.connect(filter);
+            filter.connect(noiseGain);
+            noiseGain.connect(audioCtx.destination);
+            
+            oscMod.connect(oscModGain);
+            oscModGain.gain.setValueAtTime(0.03, t);
+            oscModGain.gain.linearRampToValueAtTime(0.005, t + duration);
+            oscModGain.connect(audioCtx.destination);
+            
+            // Lancement
+            noiseNode.start(t);
+            oscMod.start(t);
+            
+            noiseNode.stop(t + duration);
+            oscMod.stop(t + duration);
+        }
+
+        // --- SIMULATEUR DE TÉLÉCHARGEMENT ---
+        function startDownloadSimulation() {
+            // Afficher le modal
+            const modal = document.getElementById('downloadModal');
+            modal.classList.remove('hidden');
+
+            const log1 = document.getElementById('modemLog1');
+            const log2 = document.getElementById('modemLog2');
+            const log3 = document.getElementById('modemLog3');
+            const log4 = document.getElementById('modemLog4');
+            const pBar = document.getElementById('downloadProgressBar');
+            const pPercent = document.getElementById('downloadPercent');
+            const pText = document.getElementById('downloadRateText');
+            const successMsg = document.getElementById('downloadSuccessMsg');
+            const pContainer = document.getElementById('downloadProgressContainer');
+
+            // Reset
+            log1.innerText = "> Initialisation du port COM3...";
+            log2.innerText = "> Commande ATDT 08 60 90 90 90...";
+            log3.innerText = "";
+            log4.innerText = "";
+            pBar.style.width = "0%";
+            pPercent.innerText = "0%";
+            successMsg.classList.add('hidden');
+            pContainer.classList.remove('hidden');
+
+            // Jouer le son de connexion si activé
+            if (document.getElementById('modemSoundCheck').checked) {
+                playModemDialupSound();
+            }
+
+            // Timeline de logs de modem réaliste
+            setTimeout(() => {
+                log3.innerText = "> Sonnerie distante... Connexion établie !";
+            }, 2500);
+
+            setTimeout(() => {
+                log4.innerText = "> Protocole V.90 actif. Négociation à 52000 bps. [OK]";
+            }, 5500);
+
+            // Début du téléchargement du .torrent
+            setTimeout(() => {
+                let progress = 0;
+                const interval = setInterval(() => {
+                    progress += 4;
+                    if (progress > 100) progress = 100;
+                    pBar.style.width = `${progress}%`;
+                    pPercent.innerText = `${progress}%`;
+
+                    if (progress >= 100) {
+                        clearInterval(interval);
+                        pContainer.classList.add('hidden');
+                        successMsg.classList.remove('hidden');
+                    }
+                }, 150);
+            }, 6000);
+        }
+
+        function closeDownloadModal() {
+            document.getElementById('downloadModal').classList.add('hidden');
+            // Couper le son si en cours
+            if (audioCtx) {
+                audioCtx.close();
+                audioCtx = null;
+            }
+        }
+
+        // --- SYNTHÉTISEUR INTÉGRÉ THÈME STAR WARS ---
+        // Génère le thème emblématique en ondes rétro 8-bit
+        function toggleSynthesizer() {
+            if (isSynthPlaying) {
+                stopSynthesizer();
+                return;
+            }
+
+            try {
+                const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+                audioCtx = new AudioContextClass();
+                isSynthPlaying = true;
+                document.getElementById('synthBtn').innerText = "⏸️ Pause";
+                document.getElementById('synthBtn').classList.add('bg-tracker-green', 'text-black');
+
+                // Notes de musique (Fréquences en Hz)
+                const notes = [
+                    { f: 293.66, d: 0.5 }, // D4
+                    { f: 293.66, d: 0.5 }, // D4
+                    { f: 293.66, d: 0.5 }, // D4
+                    { f: 392.00, d: 1.5 }, // G4
+                    { f: 587.33, d: 1.5 }, // D5
+                    { f: 523.25, d: 0.25 }, // C5
+                    { f: 493.88, d: 0.25 }, // B4
+                    { f: 440.00, d: 0.25 }, // A4
+                    { f: 783.99, d: 1.5 }, // G5
+                    { f: 587.33, d: 0.75 }, // D5
+                    { f: 523.25, d: 0.25 }, // C5
+                    { f: 493.88, d: 0.25 }, // B4
+                    { f: 440.00, d: 0.25 }, // A4
+                    { f: 783.99, d: 1.5 }, // G5
+                    { f: 587.33, d: 0.75 }  // D5
+                ];
+
+                let currentTime = audioCtx.currentTime;
+                
+                notes.forEach((note) => {
+                    let osc = audioCtx.createOscillator();
+                    let gain = audioCtx.createGain();
+                    
+                    osc.type = 'triangle'; // Forme d'onde nostalgique type NES / Amiga
+                    osc.frequency.setValueAtTime(note.f, currentTime);
+                    
+                    gain.gain.setValueAtTime(0.06, currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.001, currentTime + note.d - 0.05);
+                    
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    
+                    osc.start(currentTime);
+                    osc.stop(currentTime + note.d);
+                    
+                    currentTime += note.d;
+                });
+
+                // Relancer le cycle du synthé quand fini
+                const totalDuration = notes.reduce((sum, n) => sum + n.d, 0) * 1000;
+                synthInterval = setTimeout(() => {
+                    isSynthPlaying = false;
+                    toggleSynthesizer();
+                }, totalDuration);
+
+            } catch (e) {
+                console.log("Synthétiseur bloqué par les paramètres du navigateur.");
+            }
+        }
+
+        function stopSynthesizer() {
+            isSynthPlaying = false;
+            document.getElementById('synthBtn').innerText = "▶️ Jouer le thème (Synthèse Web Audio)";
+            document.getElementById('synthBtn').className = "flex-1 bg-tracker-border hover:bg-tracker-green hover:text-black transition-all text-xs font-bold py-2 rounded text-slate-300";
+            clearTimeout(synthInterval);
+            if (audioCtx) {
+                audioCtx.close();
+                audioCtx = null;
+            }
+        }
+
+        // Initialisation par défaut
+        window.onload = function() {
+            // Lancer le calcul par défaut sur ADSL 512k
+            document.getElementById('defaultSpeedBtn').click();
+        }
+    </script>
+</body>
+</html>
