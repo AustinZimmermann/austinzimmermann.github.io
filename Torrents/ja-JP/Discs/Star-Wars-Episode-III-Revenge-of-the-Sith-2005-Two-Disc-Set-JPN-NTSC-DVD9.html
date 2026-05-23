@@ -3,586 +3,856 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RetroTracker - スター・ウォーズ エピソード3／シスの復讐 (DVD9, 2005, Two-Disc Set, ISO, Japanese)</title>
+    <title>J-Archive P2P | Star Wars: Episode III - Revenge of the Sith (2005-11-23 DVD ISO)</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for classic tracker icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* 2000年代中盤のPCサイト風のスクロールバーとフォント再現 */
+        @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
+        
         body {
-            font-family: 'MS PGothic', 'Hiragino Kaku Gothic ProN', sans-serif;
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #0b0f19;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(220, 38, 38, 0.1) 0px, transparent 50%),
+                radial-gradient(at 50% 0%, rgba(17, 24, 39, 0.5) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(16, 185, 129, 0.05) 0px, transparent 50%);
         }
-        .retro-border {
-            border: 1px solid #4a5568;
+        
+        .tech-font {
+            font-family: 'Share Tech Mono', monospace;
         }
-        .ascii-art {
-            font-family: 'Courier New', Courier, monospace;
-            line-height: 1.1;
+
+        /* Custom scrollbar for retro terminal feel */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #374151;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ef4444;
         }
     </style>
 </head>
-<body class="bg-[#121824] text-gray-200 min-h-screen flex flex-col">
+<body class="text-gray-200 min-h-screen flex flex-col antialiased">
 
-    <!-- ヘッダー / ナビゲーション -->
-    <header class="bg-[#1a2333] border-b border-[#2d3d5a] p-4 shadow-md">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-            <!-- ロゴ -->
-            <div class="flex items-center gap-3">
-                <div class="bg-emerald-500 text-slate-900 p-2 rounded font-black tracking-widest text-xl shadow-[0_0_10px_rgba(16,185,129,0.5)]">
-                    ⚡ RETRO-T
+    <!-- TOP HEADER BAR -->
+    <header class="border-b border-red-900/40 bg-slate-950/80 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-4">
+            <div class="flex items-center space-x-3">
+                <div class="bg-gradient-to-br from-red-600 to-amber-600 p-2 rounded text-black font-black tracking-tighter">
+                    <span class="tech-font text-lg">J-P2P</span>
                 </div>
                 <div>
-                    <h1 class="text-sm font-semibold text-emerald-400">Nostalgic Torrent Database</h1>
-                    <p class="text-xs text-gray-400">Since 2004 - Peer-to-Peer Preservation Project</p>
+                    <h1 class="text-md font-bold text-white tracking-wider flex items-center gap-2">
+                        <span>帝国アーカイヴ・トラッカー</span>
+                        <span class="text-xs bg-red-900/80 text-red-300 px-1.5 py-0.5 rounded border border-red-700/50 tech-font">V2.4</span>
+                    </h1>
+                    <p class="text-xs text-gray-400">日本最大級SF特殊文化財 P2P 保存プロジェクト</p>
                 </div>
             </div>
-
-            <!-- 検索バー -->
-            <div class="flex w-full md:w-auto max-w-md bg-slate-800 rounded border border-slate-700 overflow-hidden">
-                <input type="text" placeholder="アーカイブ内を検索..." class="bg-transparent text-sm px-4 py-2 w-full focus:outline-none text-white" value="Star Wars Episode III Revenge of the Sith">
-                <button class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold px-4 py-2 text-sm transition-colors">
-                    検索
-                </button>
+            
+            <div class="flex items-center gap-4 text-xs">
+                <div class="hidden sm:flex items-center space-x-4 bg-slate-900/80 px-3 py-1.5 rounded border border-gray-800">
+                    <span class="flex items-center gap-1.5 text-emerald-400">
+                        <span class="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                        <span class="tech-font">ONLINE SEEDERS: 4,891</span>
+                    </span>
+                    <span class="text-gray-500">|</span>
+                    <span class="flex items-center gap-1.5 text-amber-400">
+                        <span class="h-2 w-2 rounded-full bg-amber-500 animate-pulse"></span>
+                        <span class="tech-font">PEERS: 12,305</span>
+                    </span>
+                </div>
+                
+                <div class="text-right">
+                    <p class="text-[10px] text-gray-500">タイムスタンプ</p>
+                    <p class="tech-font text-gray-300 text-xs">2026-05-23 00:25:00 UTC</p>
+                </div>
             </div>
         </div>
     </header>
 
-    <!-- メインコンテンツ -->
-    <main class="flex-grow max-w-6xl w-full mx-auto p-4 grid grid-cols-1 lg:grid-cols-4 gap-6">
+    <!-- MAIN GRID CONTAINER -->
+    <main class="flex-grow max-w-7xl mx-auto w-full p-4 grid grid-cols-1 lg:grid-cols-12 gap-6">
         
-        <!-- 左側：詳細情報とダウンロード（メイン3カラム） -->
-        <div class="lg:col-span-3 space-y-6">
+        <!-- LEFT COLUMN: TORRENT EXPLORER & INFO (8/12 cols) -->
+        <section class="lg:col-span-8 space-y-6">
             
-            <!-- トレントタイトルカード -->
-            <div class="bg-[#1a2333] border border-[#2d3d5a] rounded-lg p-5 shadow-lg">
-                <span class="bg-emerald-900/50 text-emerald-400 border border-emerald-500/30 text-xs px-2 py-1 rounded-full font-mono uppercase tracking-wider">
-                    Movies / DVD-R (ISO)
-                </span>
-                <h2 class="text-xl md:text-2xl font-bold mt-3 text-white leading-snug">
-                    スター・ウォーズ エピソード3／シスの復讐 (DVD9, 2005, Two-Disc Set, ISO, Japanese)
-                </h2>
+            <!-- TORRENT MAIN CARD -->
+            <div class="bg-slate-900/60 border border-slate-800 rounded-xl overflow-hidden shadow-2xl backdrop-blur-sm">
                 
-                <!-- 基本ステータスバー -->
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4 pt-4 border-t border-slate-700 text-sm">
-                    <div>
-                        <span class="text-gray-400 block text-xs">登録日</span>
-                        <span class="font-mono text-gray-200">2005-11-23 18:42</span>
+                <!-- Title Block -->
+                <div class="p-5 border-b border-slate-800 bg-gradient-to-r from-slate-950 to-slate-900">
+                    <div class="flex flex-wrap items-center gap-2 mb-2">
+                        <span class="bg-red-500/10 text-red-400 border border-red-500/20 text-[10px] font-bold px-2 py-0.5 rounded tracking-wide uppercase">DVD-ISO</span>
+                        <span class="bg-slate-800 text-slate-300 text-[10px] font-bold px-2 py-0.5 rounded tech-font">2-DISC SET</span>
+                        <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] font-bold px-2 py-0.5 rounded tech-font">NTSC-J</span>
+                        <span class="ml-auto text-xs text-gray-400 flex items-center gap-1">
+                            <i class="fa-regular fa-calendar"></i> 登録日: 2005年11月23日 (水)
+                        </span>
                     </div>
-                    <div>
-                        <span class="text-gray-400 block text-xs">合計サイズ</span>
-                        <span class="font-mono text-gray-200">7.95 GB</span>
-                    </div>
-                    <div>
-                        <span class="text-gray-400 block text-xs">アップローダー</span>
-                        <span class="text-emerald-400 hover:underline cursor-pointer">Anakin_Skywalker99</span>
-                    </div>
-                    <div>
-                        <span class="text-gray-400 block text-xs">情報ハッシュ</span>
-                        <span class="font-mono text-xs text-amber-500 select-all block truncate">A9D2F83E11CBA402B6D36E178C902047EE9A231F</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- アクション・ダウンロードセクション -->
-            <div class="bg-[#161f2e] border border-emerald-900/40 rounded-lg p-5 flex flex-col md:flex-row items-center justify-between gap-4 shadow-inner">
-                <div class="space-y-1">
-                    <h3 class="text-md font-bold text-emerald-400 flex items-center gap-2">
-                        <span>📥</span> ダウンロードオプション
-                    </h3>
-                    <p class="text-xs text-gray-400">
-                        ※これは2005年当時の雰囲気を再現したモックアップUIです。実際のファイルのダウンロードは行えません。
+                    <h2 class="text-xl md:text-2xl font-bold text-white tracking-tight leading-snug">
+                        スター・ウォーズ エピソード3／シスの復讐 (DVD, 2005, Two-Disc Set, ISO)
+                    </h2>
+                    <p class="text-xs text-slate-400 mt-1 font-mono break-all selection:bg-red-500 selection:text-white">
+                        <span class="text-red-400">HASH:</span> 20051123e3e09968da9a8dfb5a9fc27289ee0303
                     </p>
                 </div>
-                <div class="flex flex-wrap gap-3 w-full md:w-auto justify-end">
-                    <button onclick="showDummyModal('Magnet Link')" class="flex-1 md:flex-none bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold px-5 py-3 rounded flex items-center justify-center gap-2 transition-transform transform hover:scale-[1.02]">
-                        <span>🧲</span> マグネット
-                    </button>
-                    <button onclick="showDummyModal('.torrent File')" class="flex-1 md:flex-none bg-slate-800 hover:bg-slate-700 text-white border border-slate-600 font-bold px-5 py-3 rounded flex items-center justify-center gap-2 transition-transform transform hover:scale-[1.02]">
-                        <span>📄</span> .torrentを保存
-                    </button>
-                </div>
-            </div>
 
-            <!-- タブ切り替えセクション（概要、ファイル一覧、NFO） -->
-            <div class="bg-[#1a2333] border border-[#2d3d5a] rounded-lg overflow-hidden shadow-lg">
-                <div class="bg-slate-800/50 flex border-b border-[#2d3d5a]">
-                    <button onclick="switchTab('info')" id="tab-btn-info" class="tab-btn px-5 py-3 text-sm font-bold border-r border-[#2d3d5a] bg-[#1a2333] text-emerald-400 focus:outline-none">
-                        📑 アーカイブ概要
-                    </button>
-                    <button onclick="switchTab('files')" id="tab-btn-files" class="tab-btn px-5 py-3 text-sm font-bold border-r border-[#2d3d5a] text-gray-400 hover:text-gray-200 hover:bg-slate-800/30 focus:outline-none">
-                        📁 収録ファイル (4)
-                    </button>
-                    <button onclick="switchTab('nfo')" id="tab-btn-nfo" class="tab-btn px-5 py-3 text-sm font-bold border-r border-[#2d3d5a] text-gray-400 hover:text-gray-200 hover:bg-slate-800/30 focus:outline-none">
-                        📜 .NFO情報
-                    </button>
-                </div>
-
-                <!-- タブ1: アーカイブ概要 -->
-                <div id="tab-content-info" class="tab-content p-6 space-y-6">
-                    <div>
-                        <h4 class="text-md font-bold text-white border-b border-slate-700 pb-2 mb-3">🎞️ 作品解説</h4>
-                        <p class="text-sm text-gray-300 leading-relaxed">
-                            『スター・ウォーズ エピソード3／シスの復讐』（Star Wars: Episode III – Revenge of the Sith）は、2005年公開のSF超大作。ジョージ・ルーカスが監督・脚本を務め、アナキン・スカイウォーカーのダース・ベイダーへの転落を描いたプリクエル（前日譚）三部作の完結編です。
-                        </p>
+                <!-- Specs Grid -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 border-b border-slate-800 text-center bg-slate-950/40">
+                    <div class="p-3 border-r border-slate-800">
+                        <p class="text-[10px] text-gray-500 uppercase tracking-wider">ファイルサイズ</p>
+                        <p class="tech-font text-base font-bold text-white mt-0.5">14.12 GB</p>
+                        <p class="text-[9px] text-slate-400">(DVD-9 ×2)</p>
                     </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <h4 class="text-md font-bold text-white border-b border-slate-700 pb-2 mb-3">📀 DVD仕様 (2-Disc Set)</h4>
-                            <table class="w-full text-sm text-gray-300">
-                                <tbody>
-                                    <tr class="border-b border-slate-800/50">
-                                        <td class="py-2 text-gray-400 w-1/3">ディスク構成</td>
-                                        <td class="py-2">Disc 1: 本編 / Disc 2: 特典映像</td>
-                                    </tr>
-                                    <tr class="border-b border-slate-800/50">
-                                        <td class="py-2 text-gray-400">規格</td>
-                                        <td class="py-2">DVD-9 (片面2層) × 2</td>
-                                    </tr>
-                                    <tr class="border-b border-slate-800/50">
-                                        <td class="py-2 text-gray-400">リージョン</td>
-                                        <td class="py-2">Region 2 (NTSC, 日本市場向け)</td>
-                                    </tr>
-                                    <tr class="border-b border-slate-800/50">
-                                        <td class="py-2 text-gray-400">音声フォーマット</td>
-                                        <td class="py-2">日本語吹替 (5.1ch), 英語 (5.1ch Dolby EX / DTS)</td>
-                                    </tr>
-                                    <tr class="border-b border-slate-800/50">
-                                        <td class="py-2 text-gray-400">字幕</td>
-                                        <td class="py-2">日本語、英語、解説用字幕</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div>
-                            <h4 class="text-md font-bold text-white border-b border-slate-700 pb-2 mb-3">✨ 特典ディスク内容</h4>
-                            <ul class="list-disc list-inside text-sm text-gray-300 space-y-1.5">
-                                <li>未公開シーン集（監督解説付き）</li>
-                                <li>メイキング・オブ・エピソード3：「1分以内に」</li>
-                                <li>ドキュメンタリー「選ばれし者」</li>
-                                <li>ライトセーバー・バトルとスタントの舞台裏</li>
-                                <li>ミュージック・ビデオ “A Hero Falls”</li>
-                                <li>劇場予告編、TVスポット集</li>
-                                <li>Xbox用デモ：『バトルフロントII』体験版</li>
-                            </ul>
-                        </div>
+                    <div class="p-3 border-r border-slate-800">
+                        <p class="text-[10px] text-gray-500 uppercase tracking-wider text-emerald-400"><i class="fa-solid fa-arrow-up"></i> シード数</p>
+                        <p class="tech-font text-lg font-bold text-emerald-400 mt-0.5" id="seed-count">254</p>
                     </div>
-
-                    <!-- ディスクイメージのSVGイラスト -->
-                    <div class="pt-4">
-                        <h4 class="text-md font-bold text-white border-b border-slate-700 pb-2 mb-4">🎨 ディスクメディア外観</h4>
-                        <div class="flex flex-wrap gap-6 justify-center">
-                            <!-- Disc 1 -->
-                            <div class="flex flex-col items-center bg-slate-800/40 p-4 rounded-lg border border-slate-700/50 w-full sm:w-64">
-                                <svg class="w-32 h-32 text-amber-500 animate-[spin_10s_linear_infinite]" viewBox="0 0 100 100">
-                                    <circle cx="50" cy="50" r="48" fill="#1e293b" stroke="#eab308" stroke-width="2"/>
-                                    <circle cx="50" cy="50" r="25" fill="none" stroke="#eab308" stroke-width="1" stroke-dasharray="2 2"/>
-                                    <circle cx="50" cy="50" r="15" fill="#121824" stroke="#eab308" stroke-width="2"/>
-                                    <circle cx="50" cy="50" r="7" fill="#1e293b"/>
-                                    <text x="50" y="38" font-size="5" fill="#eab308" font-weight="bold" text-anchor="middle">EPISODE III</text>
-                                    <text x="50" y="44" font-size="4" fill="#eab308" text-anchor="middle">DISC 1: FEATURE</text>
-                                    <text x="50" y="65" font-size="3" fill="#94a3b8" text-anchor="middle">DVD9 / NTSC / JAPANESE</text>
-                                </svg>
-                                <span class="text-sm font-bold mt-3 text-white">Disc 1: 本編ディスク</span>
-                                <span class="text-xs text-gray-400 mt-1">ISOサイズ: 4.37 GB</span>
-                            </div>
-
-                            <!-- Disc 2 -->
-                            <div class="flex flex-col items-center bg-slate-800/40 p-4 rounded-lg border border-slate-700/50 w-full sm:w-64">
-                                <svg class="w-32 h-32 text-emerald-500 animate-[spin_12s_linear_infinite]" viewBox="0 0 100 100">
-                                    <circle cx="50" cy="50" r="48" fill="#1e293b" stroke="#10b981" stroke-width="2"/>
-                                    <circle cx="50" cy="50" r="25" fill="none" stroke="#10b981" stroke-width="1" stroke-dasharray="2 2"/>
-                                    <circle cx="50" cy="50" r="15" fill="#121824" stroke="#10b981" stroke-width="2"/>
-                                    <circle cx="50" cy="50" r="7" fill="#1e293b"/>
-                                    <text x="50" y="38" font-size="5" fill="#10b981" font-weight="bold" text-anchor="middle">EPISODE III</text>
-                                    <text x="50" y="44" font-size="4" fill="#10b981" text-anchor="middle">DISC 2: BONUS</text>
-                                    <text x="50" y="65" font-size="3" fill="#94a3b8" text-anchor="middle">DVD9 / NTSC / JAPANESE</text>
-                                </svg>
-                                <span class="text-sm font-bold mt-3 text-white">Disc 2: 特典ディスク</span>
-                                <span class="text-xs text-gray-400 mt-1">ISOサイズ: 3.58 GB</span>
-                            </div>
-                        </div>
+                    <div class="p-3 border-r border-slate-800">
+                        <p class="text-[10px] text-gray-500 uppercase tracking-wider text-amber-400"><i class="fa-solid fa-arrow-down"></i> ピア数</p>
+                        <p class="tech-font text-lg font-bold text-amber-400 mt-0.5" id="peer-count">48</p>
+                    </div>
+                    <div class="p-3">
+                        <p class="text-[10px] text-gray-500 uppercase tracking-wider text-indigo-400"><i class="fa-solid fa-circle-check"></i> 完了数</p>
+                        <p class="tech-font text-lg font-bold text-indigo-400 mt-0.5">8,912</p>
                     </div>
                 </div>
 
-                <!-- タブ2: 収録ファイル -->
-                <div id="tab-content-files" class="tab-content p-6 hidden">
-                    <h4 class="text-md font-bold text-white border-b border-slate-700 pb-2 mb-3">📂 ファイル構造一覧</h4>
-                    <p class="text-xs text-gray-400 mb-4">トレントアーカイブに含まれるファイルの実際の構成ツリーです。</p>
-                    
-                    <div class="bg-slate-950 p-4 rounded border border-slate-800 font-mono text-sm space-y-2 overflow-x-auto">
-                        <div class="text-emerald-400">📁 Star_Wars_Ep3_Revenge_of_the_Sith_DVD9_JP/</div>
-                        <div class="pl-6 flex justify-between hover:bg-slate-900 py-1 rounded">
-                            <span>├── 💿 Star_Wars_Ep3_Revenge_of_the_Sith_Disc1.iso</span>
-                            <span class="text-gray-400">4,692,254,720 bytes (4.37 GB)</span>
-                        </div>
-                        <div class="pl-6 flex justify-between hover:bg-slate-900 py-1 rounded">
-                            <span>├── 💿 Star_Wars_Ep3_Revenge_of_the_Sith_Disc2.iso</span>
-                            <span class="text-gray-400">3,844,014,080 bytes (3.58 GB)</span>
-                        </div>
-                        <div class="pl-6 flex justify-between hover:bg-slate-900 py-1 rounded">
-                            <span>├── 📜 star-wars-ep3-dvd9-nfo.txt</span>
-                            <span class="text-emerald-600">4,096 bytes (4 KB)</span>
-                        </div>
-                        <div class="pl-6 flex justify-between hover:bg-slate-900 py-1 rounded">
-                            <span>└── 🖼️ dvd_cover_japanese.jpg</span>
-                            <span class="text-gray-400">1,258,291 bytes (1.20 MB)</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- タブ3: .NFO情報 -->
-                <div id="tab-content-nfo" class="tab-content p-6 hidden">
-                    <div class="flex justify-between items-center border-b border-slate-700 pb-2 mb-3">
-                        <h4 class="text-md font-bold text-white">📜 NFOファイルビューアー</h4>
-                        <button onclick="copyNfo()" class="text-xs bg-slate-800 hover:bg-slate-700 border border-slate-600 px-2 py-1 rounded">
-                            テキストをコピー
+                <!-- Action Button Cluster -->
+                <div class="p-4 bg-slate-900/40 flex flex-wrap items-center justify-between gap-3 border-b border-slate-800">
+                    <div class="flex flex-wrap items-center gap-2">
+                        <button onclick="startDownloadSimulation()" class="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-black font-extrabold px-5 py-2.5 rounded-lg text-sm transition-all duration-300 shadow-lg shadow-emerald-950/40 hover:scale-[1.02] flex items-center gap-2">
+                            <i class="fa-solid fa-download text-base"></i>
+                            <span>マグネットリンクを起動</span>
+                        </button>
+                        <button onclick="downloadTorrentFile()" class="bg-slate-800 hover:bg-slate-700 text-gray-200 border border-slate-700 font-semibold px-4 py-2.5 rounded-lg text-sm transition-all flex items-center gap-2">
+                            <i class="fa-regular fa-file-lines text-slate-400"></i>
+                            <span>.torrentをダウンロード</span>
                         </button>
                     </div>
-                    <pre id="nfo-text" class="bg-slate-950 p-4 rounded border border-slate-800 text-xs text-green-400 font-mono overflow-x-auto ascii-art leading-relaxed select-all">
- .-----------------------------------------------------------------.
- |   _      __   ___    ___     ____   _  _   _  _     ____    _   |
- |  | |    / /  / _ \  | _ \   / ___| | || | | || |   / ___|  | |  |
- |  | | /\/ /  | |_| | |   /   \___ \ | || | | || |   \___ \  |_|  |
- |  | |/  \/   |  _  | | _ \    ___/ | \__/   \__/     ___/ |  _   |
- |  |___/\___| |_| |_| |_| \_\ |____/  \__/   \__/    |____/  |_|  |
- |                                                                 |
- `-----------------------------------------------------------------'
-  RETRO PRESERVATION GROUP PRESENTS : STAR WARS EP3 (DVD9-NTSC-JP)
- .-----------------------------------------------------------------.
-   RELEASE DATE ...: 2005-11-23
-   THEATRE DATE ...: 2005-07-09 (Japan)
-   GENRE ..........: Action / Sci-Fi / Fantasy
-   SOURCE .........: Retail DVD9 (Two-Disc Collector's Edition)
-   FORMAT .........: 1:1 ISO Replica (Decrypted, Untouched)
-   VIDEO ..........: MPEG-2 NTSC 16:9 Anamorphic (720x480 @ 29.97fps)
-   AUDIO ..........: English Dolby Digital 5.1 EX
-                     English DTS 5.1
-                     Japanese Dolby Digital 5.1 EX (Official Dub)
-   SUBTITLES ......: Japanese, English
-   SIZE ...........: Disc 1 (Feature): 4.37 GB
-                     Disc 2 (Bonus)  : 3.58 GB
- .-----------------------------------------------------------------.
-   RELEASE NOTES:
-   This is a complete, untouched double-disc archival rip of the
-   Japanese retail DVD set of “Revenge of the Sith”. Includes all
-   menus, interactive special features, audio commentary, and
-   the high-quality Japanese theatrical voice dub.
-   
-   Burn with ImgBurn / Alcohol 120% to Dual Layer DVD+R DL 
-   for best compatibility on hardware players.
-   
-   KEEP ALIVE! SEED AFTER DOWNLOAD!
- .-----------------------------------------------------------------.</pre>
-                </div>
-            </div>
-
-            <!-- トラッカー情報 -->
-            <div class="bg-[#1a2333] border border-[#2d3d5a] rounded-lg p-5 shadow-lg">
-                <h4 class="text-md font-bold text-white border-b border-slate-700 pb-2 mb-3 flex items-center gap-2">
-                    <span>📡</span> 接続トラッカー・ステータス
-                </h4>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-sm text-left text-gray-300">
-                        <thead>
-                            <tr class="border-b border-slate-700 text-gray-400 text-xs">
-                                <th class="pb-2 w-2/3">トラッカーURL</th>
-                                <th class="pb-2 text-center">シード</th>
-                                <th class="pb-2 text-center">ピア</th>
-                                <th class="pb-2 text-right">更新状況</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="border-b border-slate-800/50 hover:bg-slate-800/20">
-                                <td class="py-2.5 font-mono text-xs text-emerald-400">udp://tracker.retro-preservation.net:6969/announce</td>
-                                <td class="py-2.5 text-center font-bold text-emerald-400">342</td>
-                                <td class="py-2.5 text-center font-bold text-sky-400">41</td>
-                                <td class="py-2.5 text-right text-xs text-gray-500">オンライン (12秒前)</td>
-                            </tr>
-                            <tr class="border-b border-slate-800/50 hover:bg-slate-800/20">
-                                <td class="py-2.5 font-mono text-xs text-emerald-400">udp://tracker.coppersurfer.tk:6969/announce</td>
-                                <td class="py-2.5 text-center font-bold text-emerald-400">120</td>
-                                <td class="py-2.5 text-center font-bold text-sky-400">15</td>
-                                <td class="py-2.5 text-right text-xs text-gray-500">オンライン (1分前)</td>
-                            </tr>
-                            <tr class="hover:bg-slate-800/20">
-                                <td class="py-2.5 font-mono text-xs text-emerald-400">udp://tracker.openbittorrent.com:80/announce</td>
-                                <td class="py-2.5 text-center font-bold text-emerald-400">39</td>
-                                <td class="py-2.5 text-center font-bold text-sky-400">10</td>
-                                <td class="py-2.5 text-right text-xs text-gray-500">オンライン (4分前)</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- コメント欄 -->
-            <div class="bg-[#1a2333] border border-[#2d3d5a] rounded-lg p-5 shadow-lg space-y-4">
-                <h4 class="text-md font-bold text-white border-b border-slate-700 pb-2 flex items-center justify-between">
-                    <span>💬 コメント (4)</span>
-                    <span class="text-xs text-gray-400 font-normal">議論・シード要請</span>
-                </h4>
-
-                <!-- 新規コメント作成 -->
-                <div class="space-y-3">
-                    <div class="flex gap-2">
-                        <input type="text" id="comment-author" placeholder="名前 (匿名可能)" class="bg-slate-800 text-sm px-3 py-1.5 rounded border border-slate-700 text-white w-full sm:w-1/3 focus:border-emerald-500 focus:outline-none">
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs text-slate-400">アーカイブ健全度:</span>
+                        <span class="bg-emerald-900/40 text-emerald-400 border border-emerald-500/30 text-xs px-2.5 py-1 rounded font-bold flex items-center gap-1">
+                            <i class="fa-solid fa-shield-halved text-xs"></i> 100% 安全
+                        </span>
                     </div>
-                    <div class="flex gap-2">
-                        <textarea id="comment-text" placeholder="コメントを入力... (シードお願いします！など)" rows="2" class="bg-slate-800 text-sm px-3 py-2 rounded border border-slate-700 text-white w-full focus:border-emerald-500 focus:outline-none"></textarea>
+                </div>
+
+                <!-- ALERT NOTIFICATION AREA -->
+                <div id="status-banner" class="hidden mx-4 my-3 bg-indigo-950/40 border border-indigo-700/40 rounded-lg p-3 text-sm text-indigo-200 flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-circle-notch animate-spin text-indigo-400"></i>
+                        <span id="banner-text">P2Pダウンロードをシミュレート中⋯</span>
                     </div>
-                    <div class="flex justify-end">
-                        <button onclick="postComment()" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold px-4 py-1.5 rounded text-xs transition-colors">
-                            コメント投稿
+                    <button onclick="dismissBanner()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+
+                <!-- TABS INTERFACE -->
+                <div class="border-b border-slate-800 bg-slate-950/20">
+                    <nav class="flex overflow-x-auto text-xs sm:text-sm" aria-label="Tabs">
+                        <button onclick="switchTab('desc')" id="tab-desc" class="px-5 py-3 border-b-2 border-red-500 text-white font-bold transition-all whitespace-nowrap flex items-center gap-2">
+                            <i class="fa-solid fa-circle-info text-red-500"></i> 概要・仕様
                         </button>
-                    </div>
+                        <button onclick="switchTab('files')" id="tab-files" class="px-5 py-3 border-b-2 border-transparent text-gray-400 hover:text-gray-200 transition-all whitespace-nowrap flex items-center gap-2">
+                            <i class="fa-solid fa-folder-open"></i> 内包ファイル <span class="bg-slate-800 text-slate-300 text-[10px] px-1.5 py-0.5 rounded font-mono">11</span>
+                        </button>
+                        <button onclick="switchTab('swarm')" id="tab-swarm" class="px-5 py-3 border-b-2 border-transparent text-gray-400 hover:text-gray-200 transition-all whitespace-nowrap flex items-center gap-2">
+                            <i class="fa-solid fa-chart-network"></i> トラッカー＆スウォーム
+                        </button>
+                        <button onclick="switchTab('reviews')" id="tab-reviews" class="px-5 py-3 border-b-2 border-transparent text-gray-400 hover:text-gray-200 transition-all whitespace-nowrap flex items-center gap-2">
+                            <i class="fa-solid fa-comments"></i> 掲示板スレッド <span class="bg-slate-800 text-slate-300 text-[10px] px-1.5 py-0.5 rounded font-mono" id="comment-count-badge">5</span>
+                        </button>
+                    </nav>
                 </div>
 
-                <!-- コメントスレッド -->
-                <div id="comments-container" class="space-y-4 pt-2">
-                    <!-- コメント 1 -->
-                    <div class="bg-slate-800/40 p-3 rounded border border-slate-800">
-                        <div class="flex justify-between items-center mb-1">
-                            <span class="text-emerald-400 text-xs font-bold">Vader_Fan_Japan</span>
-                            <span class="text-[10px] text-gray-500">2005-11-24 02:15</span>
-                        </div>
-                        <p class="text-sm text-gray-300">
-                            日本語吹替版のISO探してました！Disc 2の特典ディスクに収録されてる「選ばれし者（アナキンがダースベイダーになる軌跡）」のドキュメンタリー、映画館では観れなかった部分がたくさん補完されてて超名作。シードよろしくお願いします！
-                        </p>
-                    </div>
-
-                    <!-- コメント 2 -->
-                    <div class="bg-slate-800/40 p-3 rounded border border-slate-800">
-                        <div class="flex justify-between items-center mb-1">
-                            <span class="text-blue-400 text-xs font-bold">Seed_Eternal_05</span>
-                            <span class="text-[10px] text-gray-500">2005-11-25 11:40</span>
-                        </div>
-                        <p class="text-sm text-gray-300">
-                            本編Disc 1の動作確認（ImgBurnでDL-DVD+Rに焼きました）。東芝の据え置きプレイヤーでもメニュー、音声切り替え（英語/日本語）、字幕ともに完璧に再生できてます！感動した。100Mbpsの光回線から常時シード中。
-                        </p>
-                    </div>
-
-                    <!-- コメント 3 -->
-                    <div class="bg-slate-800/40 p-3 rounded border border-slate-800">
-                        <div class="flex justify-between items-center mb-1">
-                            <span class="text-amber-500 text-xs font-bold">Yoda_Master</span>
-                            <span class="text-[10px] text-gray-500">2005-11-28 19:22</span>
-                        </div>
-                        <p class="text-sm text-gray-300">
-                            アウターカバーの日本語スキャン画像(dvd_cover_japanese.jpg)も一緒に入っててめちゃくちゃ親切。ジャケットをプリントしてDVDのトールケースに入れたら完全に公式パッケージになった。アップローダーさんありがとう。
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- 右側：サイドバー（統計情報、クイックリンク） -->
-        <div class="lg:col-span-1 space-y-6">
-            
-            <!-- ピア・統計情報 -->
-            <div class="bg-[#1a2333] border border-[#2d3d5a] rounded-lg p-4 shadow-lg">
-                <h4 class="text-sm font-bold text-white border-b border-slate-700 pb-2 mb-3">📈 ネットワーク統計</h4>
-                <div class="space-y-4">
-                    <!-- シード (Seeder) -->
-                    <div class="flex justify-between items-center">
-                        <span class="text-sm text-gray-400 flex items-center gap-1.5">
-                            <span class="inline-block w-2.5 h-2.5 bg-emerald-500 rounded-full"></span>
-                            シード (配信中)
-                        </span>
-                        <span class="font-mono font-bold text-emerald-400 text-md">501</span>
-                    </div>
-                    <!-- ピア (Leecher) -->
-                    <div class="flex justify-between items-center">
-                        <span class="text-sm text-gray-400 flex items-center gap-1.5">
-                            <span class="inline-block w-2.5 h-2.5 bg-sky-400 rounded-full"></span>
-                            ピア (DL中)
-                        </span>
-                        <span class="font-mono font-bold text-sky-400 text-md">66</span>
-                    </div>
-                    <!-- 完了数 -->
-                    <div class="flex justify-between items-center">
-                        <span class="text-sm text-gray-400">完了ダウンロード数</span>
-                        <span class="font-mono text-gray-200">2,841 回</span>
-                    </div>
-                    <!-- ヘルスバー -->
-                    <div>
-                        <span class="text-xs text-gray-400 block mb-1">アーカイブ健全度 (Health)</span>
-                        <div class="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
-                            <div class="bg-gradient-to-r from-emerald-500 to-teal-400 h-2 rounded-full" style="width: 100%"></div>
-                        </div>
-                        <div class="flex justify-between text-[10px] text-gray-500 mt-1">
-                            <span>0% (枯渇)</span>
-                            <span class="text-emerald-400 font-bold">100% (極めて良好)</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- DVDインフォメーション画像風プレースホルダー -->
-            <div class="bg-[#1a2333] border border-[#2d3d5a] rounded-lg p-4 shadow-lg text-center space-y-3">
-                <span class="text-xs text-gray-400 uppercase tracking-widest block font-bold">パッケージ外観</span>
-                <div class="bg-slate-950 rounded-lg aspect-[3/4] flex flex-col items-center justify-center p-4 border border-slate-800 relative overflow-hidden group">
-                    <!-- SF風の星背景 -->
-                    <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+                <!-- TAB CONTENTS -->
+                <div class="p-6">
                     
-                    <div class="relative z-10 space-y-4 flex flex-col h-full justify-between items-center w-full">
-                        <div class="text-[10px] bg-red-900/60 text-red-400 border border-red-500/30 px-2 py-0.5 rounded font-bold">DVD-VIDEO</div>
+                    <!-- TAB 1: DESCRIPTION -->
+                    <div id="content-desc" class="space-y-6">
+                        <div class="prose prose-invert max-w-none text-sm text-slate-300 space-y-4">
+                            <p class="leading-relaxed">
+                                2005年11月23日、日本国内で公式発売された「スター・ウォーズ エピソード3/シスの復讐」の初回限定生産2枚組DVD特別編を完全ISOバックアップしたものです。日本のDVD再生規格である <strong class="text-white">NTSC-J（リージョン2）</strong>に完全対応しており、市販のDVDプレーヤーやPCの仮想ドライブでマウントして完璧に再生可能です。
+                            </p>
+                            <p class="leading-relaxed">
+                                ジョージ・ルーカス率いるILMのデジタル・マスターから直接エンコードされた、DVD限界密度のハイクオリティ映像。Disc 2には、ファン垂涎の貴重なドキュメンタリー、ゲーム体験版、未公開シーン、そして有名な隠し機能（イースター・エッグ）が収録されています。
+                            </p>
+                        </div>
+
+                        <!-- Technical Details Accordion -->
+                        <div class="bg-slate-950/50 rounded-lg border border-slate-800 p-4">
+                            <h3 class="text-white font-bold text-sm mb-3 flex items-center gap-2">
+                                <i class="fa-solid fa-sliders text-red-500"></i> メディア詳細スペック (NTSC-J 盤)
+                            </h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                                <ul class="space-y-2">
+                                    <li class="flex justify-between border-b border-slate-800/40 pb-1.5">
+                                        <span class="text-slate-400">ディスク1 (本編)</span>
+                                        <span class="text-white font-mono">片面2層式 (DVD-9) / 7.82 GB</span>
+                                    </li>
+                                    <li class="flex justify-between border-b border-slate-800/40 pb-1.5">
+                                        <span class="text-slate-400">ディスク2 (特典)</span>
+                                        <span class="text-white font-mono">片面2層式 (DVD-9) / 6.30 GB</span>
+                                    </li>
+                                    <li class="flex justify-between border-b border-slate-800/40 pb-1.5">
+                                        <span class="text-slate-400">アスペクト比</span>
+                                        <span class="text-white">16:9 LB (シネマスコープサイズ)</span>
+                                    </li>
+                                    <li class="flex justify-between border-b border-slate-800/40 pb-1.5">
+                                        <span class="text-slate-400">メイン音声</span>
+                                        <span class="text-white">英語ドルビーデジタル 5.1ch EX</span>
+                                    </li>
+                                </ul>
+                                <ul class="space-y-2">
+                                    <li class="flex justify-between border-b border-slate-800/40 pb-1.5">
+                                        <span class="text-slate-400">日本語吹き替え</span>
+                                        <span class="text-white">日本語ドルビーデジタル 5.1ch EX</span>
+                                    </li>
+                                    <li class="flex justify-between border-b border-slate-800/40 pb-1.5">
+                                        <span class="text-slate-400">字幕データ</span>
+                                        <span class="text-white">日本語字幕、英語字幕、音声解説字幕</span>
+                                    </li>
+                                    <li class="flex justify-between border-b border-slate-800/40 pb-1.5">
+                                        <span class="text-slate-400">コメンタリー</span>
+                                        <span class="text-white">G.ルーカス、R.コールマン、B.バーツ他</span>
+                                    </li>
+                                    <li class="flex justify-between border-b border-slate-800/40 pb-1.5">
+                                        <span class="text-slate-400">パッケージ規格</span>
+                                        <span class="text-white tech-font">FXBA-29182 / 4988142323728</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Highlights -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="p-3 bg-red-950/20 border border-red-900/40 rounded-lg">
+                                <h4 class="text-red-400 font-bold text-xs mb-1"><i class="fa-solid fa-compact-disc"></i> DISC 1 本編収録の見どころ</h4>
+                                <p class="text-xs text-slate-300 leading-relaxed">デジタルHDソースから直接デジタル圧縮。コルサント上空の激しい宇宙戦から、ムスタファーの壮絶な火山決戦まで、最高峰のビットレート配分によりブロックノイズを排除。</p>
+                            </div>
+                            <div class="p-3 bg-amber-950/20 border border-amber-900/40 rounded-lg">
+                                <h4 class="text-amber-400 font-bold text-xs mb-1"><i class="fa-solid fa-star"></i> DISC 2 プレミアム映像特典</h4>
+                                <p class="text-xs text-slate-300 leading-relaxed">未公開シーン6本（ルーカスによる解説付き）、特製ドキュメンタリー「クローンは作られた」「1分間のなかに：エピソード3制作の舞台裏」、ヒップホップ・ヨーダ等の隠しコマンド機能。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 2: FILE EXPLORER (ISO Collapsible structure) -->
+                    <div id="content-files" class="hidden space-y-4">
+                        <div class="flex items-center justify-between text-xs text-slate-400 pb-2 border-b border-slate-800">
+                            <span>フォルダ構成一覧</span>
+                            <span class="tech-font">TOTAL: 11 FILES</span>
+                        </div>
                         
-                        <div class="space-y-1">
-                            <div class="text-yellow-500 font-extrabold text-sm tracking-widest leading-none font-serif">STAR WARS</div>
-                            <div class="text-white text-xs font-bold font-mono">EPISODE III</div>
-                            <div class="text-[10px] text-red-500 font-bold tracking-tight">シスの復讐</div>
-                        </div>
+                        <!-- File Tree List -->
+                        <div class="space-y-2 text-xs md:text-sm font-mono">
+                            <!-- Disc 1 ISO Collapse -->
+                            <div class="border border-slate-800/80 rounded-lg bg-slate-950/40 overflow-hidden">
+                                <button onclick="toggleFolder('d1-tree')" class="w-full text-left p-3 hover:bg-slate-900/60 transition flex items-center justify-between">
+                                    <span class="flex items-center gap-2 text-white">
+                                        <i class="fa-solid fa-folder text-amber-500"></i>
+                                        <span>SW_EP3_DISC1_NTSC_ISO/</span>
+                                    </span>
+                                    <span class="text-slate-400 text-xs tech-font">7.82 GB <i class="fa-solid fa-chevron-down ml-1"></i></span>
+                                </button>
+                                <div id="d1-tree" class="p-3 pl-8 border-t border-slate-800 space-y-2 bg-slate-900/20">
+                                    <div class="flex items-center justify-between py-1 border-b border-slate-800/40">
+                                        <span class="text-slate-300"><i class="fa-solid fa-file-invoice"></i> SW_EP3_DISC1.iso</span>
+                                        <span class="text-slate-400 font-mono text-xs">7,823,124 KB</span>
+                                    </div>
+                                    <div class="flex items-center justify-between py-1 border-b border-slate-800/40">
+                                        <span class="text-slate-400 pl-4"><i class="fa-solid fa-file-code"></i> VIDEO_TS.IFO (Vob Structure)</span>
+                                        <span class="text-slate-500 font-mono text-xs">12 KB</span>
+                                    </div>
+                                    <div class="flex items-center justify-between py-1 border-b border-slate-800/40">
+                                        <span class="text-slate-400 pl-4"><i class="fa-solid fa-file-video"></i> VTS_01_1.VOB (Chapter 1-4)</span>
+                                        <span class="text-slate-500 font-mono text-xs">1,048,576 KB</span>
+                                    </div>
+                                    <div class="flex items-center justify-between py-1">
+                                        <span class="text-slate-400 pl-4"><i class="fa-solid fa-file-video"></i> VTS_01_2.VOB (Chapter 5-8)</span>
+                                        <span class="text-slate-500 font-mono text-xs">1,048,576 KB</span>
+                                    </div>
+                                </div>
+                            </div>
 
-                        <!-- 簡易ライトセーバーアート -->
-                        <div class="flex justify-center items-center gap-3 w-full">
-                            <div class="w-1.5 h-16 bg-gradient-to-t from-red-600 to-red-400 rounded-t shadow-[0_0_10px_#ef4444]"></div>
-                            <div class="w-1.5 h-16 bg-gradient-to-t from-blue-600 to-blue-400 rounded-t shadow-[0_0_10px_#3b82f6]"></div>
-                        </div>
+                            <!-- Disc 2 ISO Collapse -->
+                            <div class="border border-slate-800/80 rounded-lg bg-slate-950/40 overflow-hidden">
+                                <button onclick="toggleFolder('d2-tree')" class="w-full text-left p-3 hover:bg-slate-900/60 transition flex items-center justify-between">
+                                    <span class="flex items-center gap-2 text-white">
+                                        <i class="fa-solid fa-folder text-amber-500"></i>
+                                        <span>SW_EP3_DISC2_BONUS_ISO/</span>
+                                    </span>
+                                    <span class="text-slate-400 text-xs tech-font">6.30 GB <i class="fa-solid fa-chevron-down ml-1"></i></span>
+                                </button>
+                                <div id="d2-tree" class="p-3 pl-8 border-t border-slate-800 space-y-2 bg-slate-900/20">
+                                    <div class="flex items-center justify-between py-1 border-b border-slate-800/40">
+                                        <span class="text-slate-300"><i class="fa-solid fa-file-invoice"></i> SW_EP3_DISC2.iso</span>
+                                        <span class="text-slate-400 font-mono text-xs">6,301,452 KB</span>
+                                    </div>
+                                    <div class="flex items-center justify-between py-1 border-b border-slate-800/40">
+                                        <span class="text-slate-400 pl-4"><i class="fa-solid fa-file-code"></i> VIDEO_TS.IFO</span>
+                                        <span class="text-slate-500 font-mono text-xs">16 KB</span>
+                                    </div>
+                                    <div class="flex items-center justify-between py-1">
+                                        <span class="text-slate-400 pl-4"><i class="fa-solid fa-file-video"></i> VTS_02_1.VOB (Documentary)</span>
+                                        <span class="text-slate-500 font-mono text-xs">1,048,576 KB</span>
+                                    </div>
+                                </div>
+                            </div>
 
-                        <div class="space-y-1 w-full">
-                            <div class="bg-slate-800 text-[10px] py-1 rounded text-gray-300 font-bold border border-slate-700">2-DISC SET (DVD9)</div>
-                            <div class="text-[9px] text-gray-500">NTSC / Region 2 / 2005</div>
+                            <!-- Extras -->
+                            <div class="border border-slate-800/80 rounded-lg bg-slate-950/40 p-3 space-y-2">
+                                <div class="flex items-center justify-between py-1 border-b border-slate-800/40">
+                                    <span class="text-white"><i class="fa-solid fa-image text-indigo-400"></i> FXBA-29182-Cover-Scan-600dpi.jpg</span>
+                                    <span class="text-slate-400 text-xs tech-font">4.2 MB</span>
+                                </div>
+                                <div class="flex items-center justify-between py-1 border-b border-slate-800/40">
+                                    <span class="text-white"><i class="fa-solid fa-file-shield text-emerald-400"></i> release_hash_verifications.sfv</span>
+                                    <span class="text-slate-400 text-xs tech-font">2.4 KB</span>
+                                </div>
+                                <div class="flex items-center justify-between py-1">
+                                    <span class="text-white"><i class="fa-solid fa-file-lines text-slate-400"></i> Readme_Japan_Release_Notes.txt</span>
+                                    <span class="text-slate-400 text-xs tech-font">8.5 KB</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
+
+                    <!-- TAB 3: TRACKER & SWARM VISUALIZATION (CANVAS) -->
+                    <div id="content-swarm" class="hidden space-y-4">
+                        <div class="bg-slate-950/80 border border-slate-800 rounded-lg p-4">
+                            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                                <div>
+                                    <h4 class="text-sm font-bold text-white flex items-center gap-1.5">
+                                        <span class="h-2 w-2 rounded-full bg-emerald-500 animate-ping"></span>
+                                        <span>P2P リアルタイム・スウォーム監視</span>
+                                    </h4>
+                                    <p class="text-[10px] text-slate-400">あなた（中央の青）と接続している周辺ノード（シード＆ピア）のトラフィック可視化</p>
+                                </div>
+                                <div class="text-xs text-slate-300 bg-slate-900 border border-slate-800 px-3 py-1 rounded">
+                                    <span class="mr-3 text-emerald-400 font-bold">● シード (データ供給)</span>
+                                    <span class="text-amber-400 font-bold">● ピア (受信中)</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Canvas Container -->
+                            <div class="relative w-full h-[240px] bg-slate-950 rounded-lg border border-slate-900 overflow-hidden">
+                                <canvas id="swarmCanvas" class="w-full h-full block"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Tracker Table -->
+                        <div class="bg-slate-950/40 rounded-lg border border-slate-800/80 p-4">
+                            <h5 class="text-xs font-bold text-slate-300 mb-3"><i class="fa-solid fa-server text-red-500"></i> 応答トラッカーリスト</h5>
+                            <div class="space-y-2 text-xs font-mono">
+                                <div class="flex justify-between p-2 border-b border-slate-900 bg-slate-900/10">
+                                    <span class="text-slate-300">udp://tracker.j-p2p.jp:6969/announce</span>
+                                    <span class="text-emerald-400 font-bold">稼働中 (応答 21ms)</span>
+                                </div>
+                                <div class="flex justify-between p-2 border-b border-slate-900 bg-slate-900/10">
+                                    <span class="text-slate-300">udp://tracker.tokyo-p2p-archive.org:2710/announce</span>
+                                    <span class="text-emerald-400 font-bold">稼働中 (応答 34ms)</span>
+                                </div>
+                                <div class="flex justify-between p-2 bg-slate-900/10">
+                                    <span class="text-slate-300">http://sith-archive.net:80/announce</span>
+                                    <span class="text-slate-500">応答なし (タイムアウト)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 4: COMMUNITY BOARD (COMMENTS) -->
+                    <div id="content-reviews" class="hidden space-y-6">
+                        
+                        <!-- Leave a comment -->
+                        <div class="bg-slate-950/40 border border-slate-800/80 rounded-lg p-4 space-y-3">
+                            <h4 class="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-1.5">
+                                <i class="fa-solid fa-pen-nib text-red-500"></i> コメントを投稿する
+                            </h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <input type="text" id="com-name" placeholder="ハンドルネーム (例: ジェダイの生き残り)" class="bg-slate-900 border border-slate-800 rounded px-3 py-1.5 text-xs text-white focus:outline-none focus:border-red-500/80">
+                                <input type="text" id="com-client" placeholder="使用P2Pクライアント (例: BitComet 0.60)" class="bg-slate-900 border border-slate-800 rounded px-3 py-1.5 text-xs text-white focus:outline-none focus:border-red-500/80">
+                            </div>
+                            <textarea id="com-text" rows="2" placeholder="このリリースに関する意見、感想、シード依頼などを記述..." class="w-full bg-slate-900 border border-slate-800 rounded p-3 text-xs text-white focus:outline-none focus:border-red-500/80 resize-none"></textarea>
+                            <div class="flex justify-end">
+                                <button onclick="postComment()" class="bg-red-600 hover:bg-red-500 text-white font-bold px-4 py-1.5 rounded text-xs transition-all flex items-center gap-1.5">
+                                    <i class="fa-solid fa-paper-plane"></i> スレッドに送信
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Comment List -->
+                        <div id="comments-container" class="space-y-4">
+                            <!-- Dynamic Comments will populate here -->
+                        </div>
+                    </div>
+
                 </div>
-                <p class="text-xs text-gray-400 leading-snug text-left bg-slate-950 p-2.5 rounded border border-slate-800">
-                    <span class="text-emerald-400 font-bold">【特典ディスク収録時間】</span><br>
-                    約320分に及ぶ極秘ドキュメンタリーや未公開シーンを完全収録した、日本独占販売仕様の2枚組セット。
-                </p>
             </div>
 
-            <!-- 免責事項 -->
-            <div class="bg-slate-900/40 border border-slate-800 rounded-lg p-4 text-xs text-gray-500 space-y-2">
-                <span class="font-bold text-gray-400 block">⚠️ 重要告知 / 免責事項</span>
-                <p class="leading-relaxed">
-                    本ページは2005年当時のTorrentカルチャー、ファイル共有ソフト、ネット上の映画保存（デジタルアーカイブ）活動の歴史やUIデザインを学術・鑑賞目的で紹介するシミュレーター（ファンアート）です。
-                </p>
-                <p class="leading-relaxed">
-                    実際のトレントダウンロードや著作権保護された映像データの違法配信および勧誘は一切行っておりません。また、いかなる著作権侵害活動も支持いたしません。
-                </p>
+            <!-- BONUS TRIVIA PANEL -->
+            <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-5 space-y-4 backdrop-blur-sm">
+                <h3 class="text-sm font-bold text-white uppercase tracking-widest border-l-4 border-amber-500 pl-2.5">
+                    DVDトリビア ＆ 日本発売日の豆知識 (2005年11月23日)
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                    <div class="bg-slate-950/50 p-3 rounded border border-slate-800/40">
+                        <span class="text-amber-400 font-bold block mb-1">■ 1. 渋谷・有楽町の深夜狂騒</span>
+                        <p class="text-slate-300 leading-relaxed">2005年11月23日は勤労感謝の日の祝日。前日の11月22日深夜には、主要なDVDメガストアでカウントダウン発売イベントが開催され、無数のジェダイ＆シスコスプレイヤーが大行列を作りました。</p>
+                    </div>
+                    <div class="bg-slate-950/50 p-3 rounded border border-slate-800/40">
+                        <span class="text-amber-400 font-bold block mb-1">■ 2. 秘密のヨーダダンス</span>
+                        <p class="text-slate-300 leading-relaxed">ディスク2の特定のメインメニューでリモコンキーの「11-3-8」（THX番号）を順番に入力すると、ヨーダがクローントルーパーのビートに合わせてヒップホップダンスを披露する極秘映像が再生されます！</p>
+                    </div>
+                    <div class="bg-slate-950/50 p-3 rounded border border-slate-800/40">
+                        <span class="text-amber-400 font-bold block mb-1">■ 3. ドルビーEXとサウンドの極み</span>
+                        <p class="text-slate-300 leading-relaxed">スカイウォーカー・サウンドが総力を結集したドルビー・デジタル5.1ch EXトラックは、後方サラウンドチャンネルを拡張。シス覚醒時、背後を不気味に流れるダークサイドの吐息音が鮮明に分離します。</p>
+                    </div>
+                </div>
             </div>
 
-        </div>
+        </section>
+
+        <!-- RIGHT COLUMN: CLIENT SIMULATOR & ARCHIVE CHAT AI (4/12 cols) -->
+        <section class="lg:col-span-4 space-y-6">
+            
+            <!-- TORRENT CLIENT PANEL -->
+            <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-4 shadow-xl backdrop-blur-sm">
+                <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-4">
+                    <h3 class="text-sm font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-circle-down text-emerald-500 animate-pulse"></i>
+                        <span>P2Pクライアント転送窓</span>
+                    </h3>
+                    <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded tech-font">Simulated v1.0</span>
+                </div>
+
+                <div class="space-y-4">
+                    <!-- Progress Section -->
+                    <div>
+                        <div class="flex justify-between text-xs mb-1">
+                            <span class="text-slate-400">全体進捗率</span>
+                            <span class="text-white font-bold tech-font" id="client-percent">0.00%</span>
+                        </div>
+                        <div class="w-full h-3 bg-slate-950 rounded-full overflow-hidden border border-slate-800">
+                            <div id="client-progress-bar" class="h-full bg-gradient-to-r from-emerald-500 to-teal-400 w-0 transition-all duration-300"></div>
+                        </div>
+                    </div>
+
+                    <!-- Speed & Data Speeds -->
+                    <div class="grid grid-cols-2 gap-3 text-xs bg-slate-950/60 p-3 rounded-lg border border-slate-900">
+                        <div>
+                            <p class="text-[10px] text-gray-500">DLスピード</p>
+                            <p class="tech-font text-white font-bold" id="client-speed">0.00 KB/s</p>
+                        </div>
+                        <div>
+                            <p class="text-[10px] text-gray-500">ダウンロード量</p>
+                            <p class="tech-font text-white font-bold" id="client-downloaded">0.00 GB / 14.12 GB</p>
+                        </div>
+                        <div>
+                            <p class="text-[10px] text-gray-500">接続済ノード</p>
+                            <p class="tech-font text-white font-bold" id="client-peers">0 / 302</p>
+                        </div>
+                        <div>
+                            <p class="text-[10px] text-gray-500">残り時間 (ETA)</p>
+                            <p class="tech-font text-white font-bold" id="client-eta">無限</p>
+                        </div>
+                    </div>
+
+                    <!-- Controls -->
+                    <div class="flex gap-2">
+                        <button id="btn-pause-resume" onclick="togglePauseResume()" disabled class="flex-1 bg-slate-800 hover:bg-slate-700 text-slate-400 cursor-not-allowed text-xs font-bold py-2 rounded transition flex items-center justify-center gap-1.5">
+                            <i class="fa-solid fa-pause"></i> 一時停止
+                        </button>
+                        <button id="btn-reset" onclick="resetDownload()" disabled class="flex-1 bg-slate-800 hover:bg-slate-700 text-slate-400 cursor-not-allowed text-xs font-bold py-2 rounded transition flex items-center justify-center gap-1.5">
+                            <i class="fa-solid fa-rotate-left"></i> リセット
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CHATBOT SIDEBAR: STAR WARS SITH ARCHIVIST AI -->
+            <div class="bg-gradient-to-b from-slate-900 to-slate-950 border border-red-900/30 rounded-xl p-4 shadow-xl flex flex-col h-[480px]">
+                
+                <!-- Chat Header -->
+                <div class="flex items-center space-x-2 pb-3 mb-3 border-b border-red-950/60">
+                    <div class="h-6.5 w-6.5 bg-red-600/10 border border-red-600/30 rounded flex items-center justify-center p-1.5">
+                        <i class="fa-brands fa-jedi-order text-red-500 text-sm"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-bold text-white flex items-center gap-1.5">
+                            <span>Sith Archivist AI</span>
+                            <span class="text-[9px] bg-red-950 text-red-400 px-1 rounded border border-red-900/40">EP3専門</span>
+                        </h4>
+                        <p class="text-[10px] text-slate-400">DVD仕様やエピソード3の疑問に人工知能が回答</p>
+                    </div>
+                </div>
+
+                <!-- Chat History Window -->
+                <div id="ai-chat-history" class="flex-grow overflow-y-auto space-y-3 pr-1 text-xs mb-3">
+                    
+                    <!-- AI intro message -->
+                    <div class="bg-slate-900/60 p-2.5 rounded border border-slate-800 text-slate-300">
+                        <span class="font-bold text-red-400 flex items-center gap-1 mb-1">
+                            <i class="fa-solid fa-circle-nodes text-[10px]"></i> アーカイヴ司書：
+                        </span>
+                        <span>こんにちは。私はシス帝国に保管されたスター・ウォーズ Episode III のアーカイヴ司書です。2005年11月23日に発売された日本版DVDの技術仕様、特典映像、隠し要素、本編シーンのトリビアについて質問してください。</span>
+                    </div>
+
+                </div>
+
+                <!-- Chat Input System -->
+                <div class="space-y-2 mt-auto">
+                    <div class="relative">
+                        <input type="text" id="ai-input" onkeydown="handleAiInputKey(event)" placeholder="コメンタリーの内容は？ ヨーダのダンスは？" class="w-full bg-slate-950 border border-slate-800 rounded-lg py-2.5 pl-3 pr-10 text-xs text-white focus:outline-none focus:border-red-600 focus:ring-1 focus:ring-red-600 transition">
+                        <button onclick="submitAiQuery()" class="absolute right-2 top-2.5 text-slate-400 hover:text-red-500 transition-all">
+                            <i class="fa-regular fa-paper-plane text-sm"></i>
+                        </button>
+                    </div>
+                    <div class="flex flex-wrap gap-1">
+                        <button onclick="quickQuery('シスの復讐日本盤のイースターエッグの出し方は？')" class="text-[9px] bg-slate-900 hover:bg-red-950/30 text-slate-400 border border-slate-800/80 hover:border-red-900/40 px-2 py-0.5 rounded transition">イースターエッグは？</button>
+                        <button onclick="quickQuery('このDVDの音声スペックを詳しく教えて。')" class="text-[9px] bg-slate-900 hover:bg-red-950/30 text-slate-400 border border-slate-800/80 hover:border-red-900/40 px-2 py-0.5 rounded transition">音声スペックは？</button>
+                        <button onclick="quickQuery('Disc2の未公開シーンには何が含まれている？')" class="text-[9px] bg-slate-900 hover:bg-red-950/30 text-slate-400 border border-slate-800/80 hover:border-red-900/40 px-2 py-0.5 rounded transition">未公開シーンは？</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
     </main>
 
-    <!-- フッター -->
-    <footer class="bg-[#121824] border-t border-slate-800 py-6 mt-8 text-center text-xs text-gray-500 space-y-2">
-        <p>© 2004-2026 RetroTracker Portal. For Educational & Archival UI Demonstration.</p>
-        <p>スター・ウォーズ エピソード3／シスの復讐 © 2005 Lucasfilm Ltd. All rights reserved.</p>
-    </footer>
-
-    <!-- インタラクティブ・ダミーダウンロードモーダル -->
-    <div id="dummy-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-        <div class="bg-[#1a2333] border border-emerald-500/40 rounded-xl max-w-md w-full p-6 shadow-2xl space-y-4">
-            <div class="flex justify-between items-start">
-                <h3 class="text-md font-bold text-emerald-400 flex items-center gap-2">
-                    <span>📡</span> 接続シミュレーション
-                </h3>
-                <button onclick="closeModal()" class="text-gray-400 hover:text-white font-mono font-bold text-lg">×</button>
+    <!-- FLOATING STATUS CONTROLS (MOBILE-FRIENDLY FOOTER FLUID ELEMENT) -->
+    <footer class="bg-slate-950/90 border-t border-slate-900 py-6 px-4 mt-auto">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+            <div class="text-center md:text-left space-y-1">
+                <p class="font-bold text-slate-300">スター・ウォーズ エピソード3/シスの復讐 (DVD ISO 2枚組アーカイブ)</p>
+                <p>本データは、2005年11月23日当時のパッケージ文化を技術的に研究・保管するための仮想シミュレータです。</p>
             </div>
-            
-            <div class="space-y-4 text-sm text-gray-300">
-                <p>
-                    <span class="text-amber-500 font-bold" id="modal-download-type">Magnet Link</span> の読み込みをエミュレート中...
-                </p>
-
-                <!-- 仮想プログレスバー -->
-                <div class="space-y-1.5">
-                    <div class="flex justify-between text-xs text-gray-400">
-                        <span>トラッカーからメタデータを取得中...</span>
-                        <span id="progress-percent" class="font-mono">0%</span>
-                    </div>
-                    <div class="w-full bg-slate-800 rounded-full h-2.5 overflow-hidden">
-                        <div id="progress-bar" class="bg-emerald-500 h-2.5 rounded-full transition-all duration-300" style="width: 0%"></div>
-                    </div>
-                </div>
-
-                <!-- ステータスメッセージ -->
-                <div class="bg-slate-950 p-3 rounded border border-slate-800 text-xs font-mono space-y-1 h-24 overflow-y-auto text-emerald-600" id="terminal-log">
-                    <div>[INFO] トラッカー接続中...</div>
-                </div>
-
-                <!-- 注意書き -->
-                <div class="p-3 bg-slate-900 rounded border border-slate-800/80 text-xs text-gray-400">
-                    <span class="font-bold text-amber-500 block mb-1">【ご注意】</span>
-                    このサイトはインタラクティブUIデモであり、実際の著作権侵害ファイルの配信は行っておりません。インターネット上で作品を体験する際は、Disney+等の公式なサブスクリプションサービス、または公式に発売されている市販のBlu-ray/DVDをご購入ください。
-                </div>
-            </div>
-
-            <div class="flex justify-end gap-2">
-                <button onclick="closeModal()" class="bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white text-xs px-4 py-2 rounded transition-colors">
-                    閉じる
-                </button>
-                <a href="https://www.disneyplus.com/" target="_blank" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold text-xs px-4 py-2 rounded transition-colors flex items-center gap-1">
-                    公式で作品を観る ➔
-                </a>
+            <div class="flex items-center gap-4 text-slate-500">
+                <span class="hover:text-red-400 transition cursor-pointer"><i class="fa-solid fa-triangle-exclamation"></i> 著作権表記</span>
+                <span>•</span>
+                <span class="hover:text-red-400 transition cursor-pointer"><i class="fa-solid fa-code"></i> P2P研究プロジェクト</span>
             </div>
         </div>
-    </div>
+    </footer>
 
-    <!-- JavaScript -->
+    <!-- INTERACTIVE JAVASCRIPT LAYER -->
     <script>
-        // タブ切り替えロジック
-        function switchTab(tabId) {
-            // 全てのタブコンテンツを非表示に
-            document.querySelectorAll('.tab-content').forEach(content => {
-                content.classList.add('hidden');
-            });
-            // 全てのタブボタンのスタイルをリセット
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('bg-[#1a2333]', 'text-emerald-400');
-                btn.classList.add('text-gray-400', 'hover:text-gray-200', 'hover:bg-slate-800/30');
-            });
+        // API Configuration (Gemini API runtime parameters)
+        const apiKey = "";
+        
+        // -------------------------------------------------------------
+        // APPLICATION STATE
+        // -------------------------------------------------------------
+        const state = {
+            tab: 'desc',
+            download: {
+                active: false,
+                paused: false,
+                percent: 0.00,
+                speed: 0, // KB/s
+                downloaded: 0, // GB
+                totalSize: 14.12, // GB
+                peersConnected: 0,
+                interval: null,
+            },
+            comments: [
+                {
+                    id: 1,
+                    author: "Jedi_Sentinel_2005",
+                    client: "Azureus 2.3",
+                    timestamp: "2005-11-23 09:12:05",
+                    content: "発売日の朝イチでゲオから持ち帰ってきた！シスの復讐のDVDは本当に画質が極限まで振り切れてる。ILM直出しデジタル圧縮だから、劇場よりクッキリしてる場面もあるね。コメンタリーを聴くのが今から楽しみ。"
+                },
+                {
+                    id: 2,
+                    author: "ムスタファーの熱風",
+                    client: "uTorrent 1.2",
+                    timestamp: "2005-11-23 15:42:19",
+                    content: "Disc 2のヨーダがヒップホップ踊る隠し特典（イースターエッグ）の出し方が分からない人へ。Disc 2の『OPTION』メニューに入り、オーディオ設定でTHXのロゴに合わせて『11』→『3』→『8』を入力すると、ヨーダのダンス映像にジャンプできるぞ！最高すぎ。"
+                },
+                {
+                    id: 3,
+                    author: "BBS_Star_Hunter",
+                    client: "BitComet 0.59",
+                    timestamp: "2005-11-24 01:22:00",
+                    content: "Disc 1、Disc 2ともに問題なくマウント確認。日本語吹き替えキャストの浪川大輔（アナキン）と奥田瑛二（タキン）、そして大塚明夫（ボバ・フェットの父親やクローンのテンプレートとなったテムエラ・モリソン枠）の吹き替えはドルビー5.1 EXでド迫力。"
+                },
+                {
+                    id: 4,
+                    author: "ダース・マウル再来希望",
+                    client: "Share EX2",
+                    timestamp: "2005-11-25 18:30:44",
+                    content: "未公開シーンに入っている「パドメがジェダイ以外と協力して元老院の中で同盟（後の反乱同盟軍）を組織し始めるシーン」は絶対本編に残しておくべきだった。これがあるとエピソード4への繋がりがより深くなるのに、なぜカットしたんだルーカス！"
+                }
+            ],
+            // Collapsible state
+            folders: {
+                'd1-tree': true,
+                'd2-tree': false
+            }
+        };
 
-            // 選択されたタブコンテンツを表示
-            document.getElementById(`tab-content-${tabId}`).classList.remove('hidden');
-            // 選択されたタブボタンのアクティブ化
-            const activeBtn = document.getElementById(`tab-btn-${tabId}`);
-            activeBtn.classList.add('bg-[#1a2333]', 'text-emerald-400');
-            activeBtn.classList.remove('text-gray-400', 'hover:text-gray-200', 'hover:bg-slate-800/30');
+        // Initialize application on window load
+        window.onload = function() {
+            // Display initial comments
+            renderComments();
+            // Start P2P swarm graphics rendering loop
+            initSwarmCanvas();
+            // Initialize collapsibles
+            document.getElementById('d2-tree').style.display = 'none';
+        };
+
+        // -------------------------------------------------------------
+        // TAB NAVIGATION SYSTEM
+        // -------------------------------------------------------------
+        function switchTab(targetTab) {
+            state.tab = targetTab;
+            
+            // Hide all contents
+            document.getElementById('content-desc').classList.add('hidden');
+            document.getElementById('content-files').classList.add('hidden');
+            document.getElementById('content-swarm').classList.add('hidden');
+            document.getElementById('content-reviews').classList.add('hidden');
+            
+            // Remove active classes
+            document.getElementById('tab-desc').className = "px-5 py-3 border-b-2 border-transparent text-gray-400 hover:text-gray-200 transition-all whitespace-nowrap flex items-center gap-2";
+            document.getElementById('tab-files').className = "px-5 py-3 border-b-2 border-transparent text-gray-400 hover:text-gray-200 transition-all whitespace-nowrap flex items-center gap-2";
+            document.getElementById('tab-swarm').className = "px-5 py-3 border-b-2 border-transparent text-gray-400 hover:text-gray-200 transition-all whitespace-nowrap flex items-center gap-2";
+            document.getElementById('tab-reviews').className = "px-5 py-3 border-b-2 border-transparent text-gray-400 hover:text-gray-200 transition-all whitespace-nowrap flex items-center gap-2";
+
+            // Activate target
+            document.getElementById(`content-${targetTab}`).classList.remove('hidden');
+            
+            // Set styles for active tabs
+            const activeClass = "px-5 py-3 border-b-2 border-red-500 text-white font-bold transition-all whitespace-nowrap flex items-center gap-2";
+            document.getElementById(`tab-${targetTab}`).className = activeClass;
+
+            // Trigger canvas redraw if swarm tab activated
+            if (targetTab === 'swarm') {
+                setTimeout(resizeSwarmCanvas, 50);
+            }
         }
 
-        // コメント追加機能
+        // -------------------------------------------------------------
+        // COLLAPSIBLE DIRECTORIES (FILE TREE)
+        // -------------------------------------------------------------
+        function toggleFolder(id) {
+            const folder = document.getElementById(id);
+            const isVisible = folder.style.display !== 'none';
+            folder.style.display = isVisible ? 'none' : 'block';
+        }
+
+        // -------------------------------------------------------------
+        // MOCK TORRENT SIMULATOR
+        // -------------------------------------------------------------
+        function startDownloadSimulation() {
+            if (state.download.active) {
+                showBanner("P2Pダウンロードは既に実行中です！");
+                return;
+            }
+
+            state.download.active = true;
+            state.download.paused = false;
+            
+            // Setup controls
+            const btnPause = document.getElementById('btn-pause-resume');
+            const btnReset = document.getElementById('btn-reset');
+            btnPause.disabled = false;
+            btnPause.className = "flex-1 bg-slate-800 hover:bg-slate-700 text-amber-400 text-xs font-bold py-2 rounded transition flex items-center justify-center gap-1.5";
+            btnReset.disabled = false;
+            btnReset.className = "flex-1 bg-slate-800 hover:bg-slate-700 text-red-500 text-xs font-bold py-2 rounded transition flex items-center justify-center gap-1.5";
+
+            showBanner("マグネットリンク起動完了。トラッカー接続中...");
+
+            // Download Logic Loops
+            state.download.interval = setInterval(() => {
+                if (state.download.paused) return;
+
+                // Simulate progress variables
+                if (state.download.percent < 100) {
+                    // Seed calculations (fluctuating realistic 2005-2006 broadband speeds)
+                    state.download.peersConnected = Math.floor(Math.random() * 50) + 120;
+                    state.download.speed = Math.floor(Math.random() * 800) + 1400; // 1.4 MB/s - 2.2 MB/s
+                    
+                    const downloadedIncrement = (state.download.speed / 1024 / 1024) * 1.5; // Multiply for quick visual progression
+                    state.download.downloaded = Math.min(state.download.totalSize, state.download.downloaded + downloadedIncrement);
+                    state.download.percent = (state.download.downloaded / state.download.totalSize) * 100;
+
+                    // Update UI elements
+                    document.getElementById('client-percent').innerText = `${state.download.percent.toFixed(2)}%`;
+                    document.getElementById('client-progress-bar').style.width = `${state.download.percent}%`;
+                    document.getElementById('client-speed').innerText = `${(state.download.speed / 1024).toFixed(2)} MB/s`;
+                    document.getElementById('client-downloaded').innerText = `${state.download.downloaded.toFixed(2)} GB / ${state.download.totalSize} GB`;
+                    document.getElementById('client-peers').innerText = `${state.download.peersConnected} / 254`;
+
+                    // ETA calculation
+                    const remainingData = (state.download.totalSize - state.download.downloaded) * 1024 * 1024; // KB
+                    const speedKB = state.download.speed; // KB/s
+                    const etaSeconds = speedKB > 0 ? Math.floor(remainingData / speedKB) : 0;
+                    
+                    if (etaSeconds > 0) {
+                        const mins = Math.floor(etaSeconds / 60);
+                        const secs = etaSeconds % 60;
+                        document.getElementById('client-eta').innerText = `${mins}分 ${secs}秒`;
+                    } else {
+                        document.getElementById('client-eta').innerText = "完了";
+                    }
+                } else {
+                    // Completed state
+                    state.download.percent = 100;
+                    state.download.downloaded = state.download.totalSize;
+                    state.download.speed = 0;
+                    
+                    document.getElementById('client-percent').innerText = "100.00%";
+                    document.getElementById('client-progress-bar').style.width = "100%";
+                    document.getElementById('client-speed').innerText = "0.00 KB/s";
+                    document.getElementById('client-downloaded').innerText = "14.12 GB / 14.12 GB";
+                    document.getElementById('client-eta').innerText = "シード完了 (共有比率 1.0)";
+                    
+                    clearInterval(state.download.interval);
+                    showBanner("スター・ウォーズ Episode III DVD ISOイメージのダウンロードが正常に完了しました！仮想ドライブでマウント可能です。");
+                }
+            }, 500);
+        }
+
+        function togglePauseResume() {
+            if (!state.download.active) return;
+            state.download.paused = !state.download.paused;
+            const btn = document.getElementById('btn-pause-resume');
+            if (state.download.paused) {
+                btn.innerHTML = `<i class="fa-solid fa-play"></i> ダウンロード再開`;
+                document.getElementById('client-speed').innerText = "一時停止中";
+                showBanner("ダウンロードシミュレーションを一時停止しました。");
+            } else {
+                btn.innerHTML = `<i class="fa-solid fa-pause"></i> 一時停止`;
+                showBanner("ダウンロードシミュレーションを再開中...");
+            }
+        }
+
+        function resetDownload() {
+            if (state.download.interval) {
+                clearInterval(state.download.interval);
+            }
+            state.download.active = false;
+            state.download.paused = false;
+            state.download.percent = 0;
+            state.download.downloaded = 0;
+            state.download.speed = 0;
+
+            document.getElementById('client-percent').innerText = "0.00%";
+            document.getElementById('client-progress-bar').style.width = "0%";
+            document.getElementById('client-speed').innerText = "0.00 KB/s";
+            document.getElementById('client-downloaded').innerText = "0.00 GB / 14.12 GB";
+            document.getElementById('client-peers').innerText = "0 / 302";
+            document.getElementById('client-eta').innerText = "無限";
+
+            const btnPause = document.getElementById('btn-pause-resume');
+            const btnReset = document.getElementById('btn-reset');
+            btnPause.disabled = true;
+            btnPause.className = "flex-1 bg-slate-800 text-slate-400 cursor-not-allowed text-xs font-bold py-2 rounded transition flex items-center justify-center gap-1.5";
+            btnReset.disabled = true;
+            btnReset.className = "flex-1 bg-slate-800 text-slate-400 cursor-not-allowed text-xs font-bold py-2 rounded transition flex items-center justify-center gap-1.5";
+
+            showBanner("クライアントステートを初期状態にリセットしました。");
+        }
+
+        function downloadTorrentFile() {
+            // Trigger a dummy file download representation of a .torrent meta file
+            const element = document.createElement('a');
+            const content = "d8:announce39:udp://tracker.j-p2p.jp:6969/announce13:announce-listll39:udp://tracker.j-p2p.jp:6969/announceeed4:infod6:lengthi15161582592e4:name55:Star_Wars_Ep3_Revenge_of_the_Sith_2005_DVD_ISO_Japan_NTSCe";
+            const file = new Blob([content], {type: 'text/plain'});
+            element.href = URL.createObjectURL(file);
+            element.download = "Star_Wars_Ep3_Revenge_of_the_Sith_2005_DVD_ISO_Japan_NTSC.torrent";
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+            showBanner("メタファイル 'Star_Wars_Ep3_...torrent' をローカルへ保存しました。");
+        }
+
+        // Custom notification banner inside the site DOM
+        function showBanner(text) {
+            const banner = document.getElementById('status-banner');
+            const bannerText = document.getElementById('banner-text');
+            bannerText.innerText = text;
+            banner.classList.remove('hidden');
+        }
+
+        function dismissBanner() {
+            document.getElementById('status-banner').classList.add('hidden');
+        }
+
+        // -------------------------------------------------------------
+        // NOSTALGIC COMMUNITY BOARD (COMMENTS)
+        // -------------------------------------------------------------
+        function renderComments() {
+            const container = document.getElementById('comments-container');
+            container.innerHTML = "";
+            
+            // Sort comments to display newest first
+            const sorted = [...state.comments].reverse();
+            
+            sorted.forEach(c => {
+                const commentEl = document.createElement('div');
+                commentEl.className = "p-4 bg-slate-900/40 border border-slate-800/80 rounded-lg space-y-2.5 hover:border-slate-700/60 transition";
+                commentEl.innerHTML = `
+                    <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800/60 pb-1.5 text-xs text-slate-400">
+                        <div class="flex items-center gap-2">
+                            <span class="font-bold text-white"><i class="fa-regular fa-user text-red-500"></i> ${escapeHTML(c.author)}</span>
+                            <span class="bg-slate-800/80 px-1.5 py-0.5 rounded text-[10px] tech-font">${escapeHTML(c.client)}</span>
+                        </div>
+                        <span class="tech-font text-slate-500">${c.timestamp}</span>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed whitespace-pre-wrap">${escapeHTML(c.content)}</p>
+                `;
+                container.appendChild(commentEl);
+            });
+
+            // Update badge counters
+            document.getElementById('comment-count-badge').innerText = state.comments.length;
+        }
+
         function postComment() {
-            const authorInput = document.getElementById('comment-author');
-            const textInput = document.getElementById('comment-text');
+            const authorVal = document.getElementById('com-name').value.trim();
+            const clientVal = document.getElementById('com-client').value.trim() || "BitTorrent Client";
+            const textVal = document.getElementById('com-text').value.trim();
 
-            const author = authorInput.value.trim() || 'Anonymous_Peer';
-            const text = textInput.value.trim();
-
-            if (!text) {
-                alert('コメント内容を入力してください。');
+            if (!authorVal || !textVal) {
+                showBanner("エラー: ハンドルネームとメッセージ本文を入力してください！");
                 return;
             }
 
             const now = new Date();
-            const year = now.getFullYear();
-            const month = String(now.getMonth() + 1).padStart(2, '0');
-            const date = String(now.getDate()).padStart(2, '0');
-            const hours = String(now.getHours()).padStart(2, '0');
-            const minutes = String(now.getMinutes()).padStart(2, '0');
-            const formattedDate = `${year}-${month}-${date} ${hours}:${minutes}`;
+            const pad = (num) => String(num).padStart(2, '0');
+            const timestampString = `${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())} ${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
 
-            const container = document.getElementById('comments-container');
+            const newComment = {
+                id: state.comments.length + 1,
+                author: authorVal,
+                client: clientVal,
+                timestamp: timestampString,
+                content: textVal
+            };
 
-            // 新しいコメントのDOM作成
-            const commentDiv = document.createElement('div');
-            commentDiv.className = 'bg-slate-800/40 p-3 rounded border border-emerald-500/20 animation-pulse';
-            commentDiv.innerHTML = `
-                <div class="flex justify-between items-center mb-1">
-                    <span class="text-emerald-400 text-xs font-bold">${escapeHTML(author)}</span>
-                    <span class="text-[10px] text-gray-500">${formattedDate}</span>
-                </div>
-                <p class="text-sm text-gray-300">${escapeHTML(text)}</p>
-            `;
+            state.comments.push(newComment);
+            
+            // Reset input values
+            document.getElementById('com-name').value = "";
+            document.getElementById('com-client').value = "";
+            document.getElementById('com-text').value = "";
 
-            // リストの先頭に追加
-            container.insertBefore(commentDiv, container.firstChild);
-
-            // 入力欄リセット
-            textInput.value = '';
-            authorInput.value = '';
+            renderComments();
+            showBanner("掲示板スレッドに書き込みをポストしました。");
         }
 
         function escapeHTML(str) {
@@ -591,89 +861,222 @@
             );
         }
 
-        // クリップボードへのコピー
-        function copyNfo() {
-            const nfoText = document.getElementById('nfo-text').innerText;
+        // -------------------------------------------------------------
+        // ANIMATED SWARM CANVAS VISUALIZATION
+        // -------------------------------------------------------------
+        let canvas, ctx;
+        let swarmNodes = [];
+        const maxNodes = 25;
+
+        function initSwarmCanvas() {
+            canvas = document.getElementById('swarmCanvas');
+            ctx = canvas.getContext('2d');
+            resizeSwarmCanvas();
             
-            // クリップボード書き込み用のフォールバック対応
-            const tempTextArea = document.createElement('textarea');
-            tempTextArea.value = nfoText;
-            document.body.appendChild(tempTextArea);
-            tempTextArea.select();
-            try {
-                document.execCommand('copy');
-                alert('.NFOファイルの内容をクリップボードにコピーしました！');
-            } catch (err) {
-                alert('コピーに失敗しました。お使いのブラウザで手動コピーしてください。');
+            // Build random seeders/leechers nodes
+            swarmNodes = [];
+            for (let i = 0; i < maxNodes; i++) {
+                swarmNodes.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    radius: Math.random() * 3 + 2,
+                    isSeeder: Math.random() > 0.4, // True/false
+                    speedX: (Math.random() - 0.5) * 0.8,
+                    speedY: (Math.random() - 0.5) * 0.8,
+                    packetAge: Math.random() * 100,
+                    packetSpeed: Math.random() * 0.01 + 0.005
+                });
             }
-            document.body.removeChild(tempTextArea);
+
+            // Bind resize event
+            window.addEventListener('resize', resizeSwarmCanvas);
+            
+            // Start rendering cycle
+            requestAnimationFrame(animateSwarm);
         }
 
-        // ダミーダウンロード接続シミュレーション
-        let progressInterval = null;
+        function resizeSwarmCanvas() {
+            if (!canvas) return;
+            const container = canvas.parentElement;
+            canvas.width = container.clientWidth;
+            canvas.height = container.clientHeight;
+        }
 
-        function showDummyModal(type) {
-            document.getElementById('modal-download-type').innerText = type;
-            const modal = document.getElementById('dummy-modal');
-            modal.classList.remove('hidden');
-
-            const progressBar = document.getElementById('progress-bar');
-            const progressPercent = document.getElementById('progress-percent');
-            const terminalLog = document.getElementById('terminal-log');
-
-            // 初期化
-            progressBar.style.width = '0%';
-            progressPercent.innerText = '0%';
-            terminalLog.innerHTML = '<div>[INFO] トラッカー接続を開始中...</div>';
-
-            const logMessages = [
-                { time: 300, text: '[SUCCESS] tracker.retro-preservation.net への接続確立。' },
-                { time: 600, text: '[INFO] 情報ハッシュ: A9D2F83E... をリクエスト中...' },
-                { time: 1000, text: '[SUCCESS] アクティブなシードノードを 501 件確認。' },
-                { time: 1400, text: '[INFO] メタデータ（.torrent構造情報）の受信を開始...' },
-                { time: 1800, text: '[DATA] Disc1 (Feature): OK / Disc2 (Bonus): OK' },
-                { time: 2200, text: '[DATA] .nfo (Information file): OK' },
-                { time: 2600, text: '[SUCCESS] メタデータ転送が正常に終了しました。' },
-                { time: 2900, text: '[ALERT] 注意: これはUIデモです。実際のデータ取得はここで終了します。' }
-            ];
-
-            let progress = 0;
+        function animateSwarm() {
+            if (!canvas || !ctx) return;
             
-            progressInterval = setInterval(() => {
-                progress += 4;
-                if (progress > 100) {
-                    progress = 100;
-                    clearInterval(progressInterval);
+            // Clear Frame with trails
+            ctx.fillStyle = 'rgba(11, 15, 25, 0.2)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+
+            // Draw center Node (YOU)
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, 8, 0, Math.PI * 2);
+            ctx.fillStyle = '#3b82f6'; // Blue
+            ctx.shadowBlur = 15;
+            ctx.shadowColor = '#2563eb';
+            ctx.fill();
+            ctx.shadowBlur = 0; // Reset
+
+            // Node connections & movements
+            swarmNodes.forEach(node => {
+                // Bounds Collision check
+                node.x += node.speedX;
+                node.y += node.speedY;
+                if (node.x < 0 || node.x > canvas.width) node.speedX *= -1;
+                if (node.y < 0 || node.y > canvas.height) node.speedY *= -1;
+
+                // Draw Network Connection Lines
+                ctx.beginPath();
+                ctx.moveTo(centerX, centerY);
+                ctx.lineTo(node.x, node.y);
+                ctx.strokeStyle = node.isSeeder ? 'rgba(16, 185, 129, 0.05)' : 'rgba(245, 158, 11, 0.04)';
+                ctx.lineWidth = 1;
+                ctx.stroke();
+
+                // Draw Peripheral Node Dots
+                ctx.beginPath();
+                ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+                ctx.fillStyle = node.isSeeder ? '#10b981' : '#f59e0b'; // Green or Amber
+                ctx.fill();
+
+                // Draw Animated Packets sliding down lines
+                node.packetAge += node.packetSpeed;
+                if (node.packetAge > 1) {
+                    node.packetAge = 0;
                 }
-                progressBar.style.width = `${progress}%`;
-                progressPercent.innerText = `${progress}%`;
-            }, 120);
+                
+                let packetX, packetY;
+                if (node.isSeeder) {
+                    // Seeders send packets towards central YOU
+                    packetX = node.x + (centerX - node.x) * node.packetAge;
+                    packetY = node.y + (centerY - node.y) * node.packetAge;
+                } else {
+                    // You send chunks or leechers draw packets from you
+                    packetX = centerX + (node.x - centerX) * node.packetAge;
+                    packetY = centerY + (node.y - centerY) * node.packetAge;
+                }
 
-            // ログの流れる演出
-            logMessages.forEach(msg => {
-                setTimeout(() => {
-                    if (!modal.classList.contains('hidden')) {
-                        const div = document.createElement('div');
-                        if (msg.text.includes('[SUCCESS]')) {
-                            div.className = 'text-emerald-400';
-                        } else if (msg.text.includes('[ALERT]')) {
-                            div.className = 'text-amber-400 font-bold';
-                        } else {
-                            div.className = 'text-gray-400';
-                        }
-                        div.innerText = msg.text;
-                        terminalLog.appendChild(div);
-                        terminalLog.scrollTop = terminalLog.scrollHeight;
-                    }
-                }, msg.time);
+                ctx.beginPath();
+                ctx.arc(packetX, packetY, 1.5, 0, Math.PI * 2);
+                ctx.fillStyle = node.isSeeder ? '#34d399' : '#fbbf24';
+                ctx.fill();
             });
+
+            requestAnimationFrame(animateSwarm);
         }
 
-        function closeModal() {
-            document.getElementById('dummy-modal').classList.add('hidden');
-            if (progressInterval) {
-                clearInterval(progressInterval);
+        // -------------------------------------------------------------
+        // CHATBOT: STAR WARS SITH ARCHIVIST AI (GEMINI ENGINE)
+        // -------------------------------------------------------------
+        function handleAiInputKey(event) {
+            if (event.key === 'Enter') {
+                submitAiQuery();
             }
+        }
+
+        function quickQuery(queryText) {
+            document.getElementById('ai-input').value = queryText;
+            submitAiQuery();
+        }
+
+        async function submitAiQuery() {
+            const inputEl = document.getElementById('ai-input');
+            const query = inputEl.value.trim();
+            if (!query) return;
+
+            // Display user message in chat panel
+            addMessageToChat('user', query);
+            inputEl.value = "";
+
+            // Display typing placeholder
+            const typingId = 'typing-' + Date.now();
+            addMessageToChat('ai', "思考中...", typingId);
+
+            try {
+                const systemPrompt = `あなたはスター・ウォーズ エピソード3/シスの復讐（Star Wars: Episode III – Revenge of the Sith）の日本版DVD（2005年11月23日発売、2枚組DVD、FXBA-29182）に精通したシス帝国アサシン兼アーカイヴ司書AIです。
+日本のDVD独自の収録内容、英語ドルビーデジタル 5.1ch EX・日本語吹き替え仕様、Disc2の特典、および「11-3-8」のイースターエッグ（ヨーダのヒップホップダンス）に関する裏技などを専門的に解説して、ユーザーの質問に情熱的かつ簡潔に日本語で回答してください。`;
+
+                // Gemini implementation with exponential backoff as required
+                let success = false;
+                let attempts = 0;
+                let delay = 1000;
+                let resultText = "";
+
+                while (!success && attempts < 5) {
+                    try {
+                        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({
+                                contents: [{ parts: [{ text: query }] }],
+                                systemInstruction: { parts: [{ text: systemPrompt }] }
+                            })
+                        });
+
+                        if (!response.ok) {
+                            throw new Error(`HTTP Error Status: ${response.status}`);
+                        }
+
+                        const data = await response.json();
+                        resultText = data.candidates?.[0]?.content?.parts?.[0]?.text || "情報を取得できませんでした。";
+                        success = true;
+                    } catch (err) {
+                        attempts++;
+                        if (attempts >= 5) {
+                            throw new Error("API通信接続エラー。リトライ上限に達しました。");
+                        }
+                        await new Promise(resolve => setTimeout(resolve, delay));
+                        delay *= 2;
+                    }
+                }
+
+                // Remove loading element and show final answer
+                document.getElementById(typingId).remove();
+                addMessageToChat('ai', resultText);
+
+            } catch (error) {
+                document.getElementById(typingId).remove();
+                addMessageToChat('ai', `暗黒面のパワーが不安定です (エラー: ${error.message})。もう一度通信を試みてください。`);
+            }
+        }
+
+        function addMessageToChat(sender, text, id = null) {
+            const history = document.getElementById('ai-chat-history');
+            const msgEl = document.createElement('div');
+            
+            if (id) {
+                msgEl.id = id;
+            }
+
+            if (sender === 'user') {
+                msgEl.className = "bg-slate-950 p-2.5 rounded border border-slate-800 text-right text-white ml-6";
+                msgEl.innerHTML = `
+                    <span class="font-bold text-slate-400 block mb-1">あなた：</span>
+                    <span>${escapeHTML(text)}</span>
+                `;
+            } else {
+                msgEl.className = "bg-slate-900/40 p-2.5 rounded border border-slate-800 text-left text-slate-300 mr-6";
+                
+                // Allow markdown styling like asterisks for bolding in AI output
+                let formattedText = escapeHTML(text)
+                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                    .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                    .replace(/\n/g, '<br>');
+                    
+                msgEl.innerHTML = `
+                    <span class="font-bold text-red-400 flex items-center gap-1 mb-1">
+                        <i class="fa-solid fa-circle-nodes text-[10px]"></i> アーカイヴ司書：
+                    </span>
+                    <span>${formattedText}</span>
+                `;
+            }
+
+            history.appendChild(msgEl);
+            history.scrollTop = history.scrollHeight;
         }
     </script>
 </body>
