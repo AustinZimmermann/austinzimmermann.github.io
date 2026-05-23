@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AcreWood Torrents - The New Adventures of Winnie the Pooh Season 4</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: #060b13;
+        }
+        .code-font {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #eab308;
+        }
+        @keyframes pulse-slow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+        .pulse-seed {
+            animation: pulse-slow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes honey-float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(3deg); }
+        }
+        .honey-float-img {
+            animation: honey-float 6s ease-in-out infinite;
+        }
+        @keyframes progress-shimmer {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .shimmer-bg {
+            background: linear-gradient(-45deg, #eab308, #ca8a04, #f59e0b, #d97706);
+            background-size: 300% 300%;
+            animation: progress-shimmer 4s ease infinite;
+        }
+    </style>
+</head>
+<body class="text-slate-200 min-h-screen flex flex-col antialiased selection:bg-yellow-500 selection:text-black">
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="fixed top-5 right-5 z-50 flex flex-col gap-3 pointer-events-none"></div>
+
+    <!-- Navigation Header -->
+    <header class="border-b border-slate-800 bg-slate-950/80 backdrop-blur-md sticky top-0 z-40 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <!-- Brand / Logo -->
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-yellow-500 to-amber-600 flex items-center justify-center shadow-lg shadow-yellow-500/10">
+                    <i class="fa-solid fa-cloud-arrow-down text-slate-950 text-xl"></i>
+                </div>
+                <div>
+                    <span class="font-bold text-lg tracking-tight bg-gradient-to-r from-yellow-400 to-amber-500 bg-clip-text text-transparent">ACREWOOD</span>
+                    <span class="text-xs block text-slate-400 font-medium tracking-widest uppercase -mt-1">Private Tracker</span>
+                </div>
+            </div>
+
+            <!-- Search Bar (Decorative) -->
+            <div class="hidden md:flex items-center flex-1 max-w-md mx-8">
+                <div class="relative w-full">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500"></i>
+                    <input type="text" placeholder="Search elite torrents, releases, collections..." 
+                        class="w-full bg-slate-900 border border-slate-800 rounded-full py-1.5 pl-10 pr-4 text-sm text-slate-200 focus:outline-none focus:border-yellow-500 transition-colors placeholder:text-slate-500"
+                        value="The New Adventures of Winnie the Pooh Season 4">
+                </div>
+            </div>
+
+            <!-- User Status / Stats -->
+            <div class="flex items-center gap-4">
+                <div class="hidden lg:flex items-center gap-5 text-xs border-r border-slate-800 pr-5">
+                    <div>
+                        <span class="text-slate-500 block">CLASS</span>
+                        <span class="text-yellow-400 font-bold flex items-center gap-1">
+                            <i class="fa-solid fa-crown text-[10px]"></i> Elite Seed
+                        </span>
+                    </div>
+                    <div>
+                        <span class="text-slate-500 block">UPLOADED</span>
+                        <span class="text-emerald-400 font-semibold">12.45 TB</span>
+                    </div>
+                    <div>
+                        <span class="text-slate-500 block">DOWNLOADED</span>
+                        <span class="text-rose-400 font-semibold">2.57 TB</span>
+                    </div>
+                    <div>
+                        <span class="text-slate-500 block">RATIO</span>
+                        <span class="text-sky-400 font-bold">4.84</span>
+                    </div>
+                </div>
+
+                <!-- Profile and Messages -->
+                <div class="flex items-center gap-3">
+                    <button class="relative p-2 text-slate-400 hover:text-yellow-400 transition-colors">
+                        <i class="fa-regular fa-bell text-lg"></i>
+                        <span class="absolute top-1 right-1 w-2 h-2 bg-yellow-500 rounded-full animate-ping"></span>
+                    </button>
+                    <div class="w-8 h-8 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center overflow-hidden">
+                        <img src="https://api.dicebear.com/7.x/identicon/svg?seed=Christopher" alt="Avatar" class="w-full h-full">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        
+        <!-- Breadcrumbs -->
+        <nav class="flex text-xs text-slate-400 gap-2 mb-6 items-center flex-wrap">
+            <a href="#" class="hover:text-yellow-400 transition-colors">Home</a>
+            <i class="fa-solid fa-chevron-right text-[8px] text-slate-600"></i>
+            <a href="#" class="hover:text-yellow-400 transition-colors">Torrents</a>
+            <i class="fa-solid fa-chevron-right text-[8px] text-slate-600"></i>
+            <a href="#" class="hover:text-yellow-400 transition-colors">TV Series</a>
+            <i class="fa-solid fa-chevron-right text-[8px] text-slate-600"></i>
+            <span class="text-slate-200">The New Adventures of Winnie the Pooh (Season 4)</span>
+        </nav>
+
+        <!-- Torrent Info Grid / Hero -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-8">
+            
+            <!-- Left: Artwork & Release Badge (4 Cols) -->
+            <div class="lg:col-span-4 flex flex-col gap-4">
+                <div class="relative bg-slate-900 border border-slate-800 rounded-2xl p-4 overflow-hidden group shadow-2xl flex flex-col justify-between aspect-[3/4]">
+                    <!-- Background Art Glow -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent z-10"></div>
+                    <div class="absolute -top-12 -left-12 w-48 h-48 bg-yellow-500/10 rounded-full blur-3xl group-hover:bg-yellow-500/15 transition-all duration-500"></div>
+                    
+                    <!-- Faux Album/Show Cover Art -->
+                    <div class="absolute inset-0 flex items-center justify-center p-6">
+                        <div class="relative w-full h-full border border-slate-800/80 rounded-xl bg-slate-950 overflow-hidden flex flex-col justify-between p-6 shadow-inner">
+                            <div class="absolute top-0 right-0 w-32 h-32 bg-amber-500/5 rounded-full blur-2xl"></div>
+                            
+                            <!-- Header Info inside Mock Cover -->
+                            <div class="flex justify-between items-start z-10">
+                                <span class="bg-yellow-500 text-slate-950 text-[10px] font-bold tracking-widest px-2.5 py-0.5 rounded-full uppercase shadow">Disney+ WEB-DL</span>
+                                <span class="text-xs text-slate-500 code-font">S04 MKV</span>
+                            </div>
+
+                            <!-- Floating SVG Art Winnie Pooh Silhouette Style -->
+                            <div class="flex justify-center items-center my-auto z-10 honey-float-img select-none">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="w-40 h-40 drop-shadow-[0_10px_15px_rgba(234,179,8,0.25)]">
+                                    <!-- Honey Pot & Forest theme -->
+                                    <path d="M50 20 C25 20, 20 50, 20 70 C20 85, 30 90, 50 90 C70 90, 80 85, 80 70 C80 50, 75 20, 50 20 Z" fill="#d97706" />
+                                    <path d="M50 25 C30 25, 26 50, 26 68 C26 80, 34 85, 50 85 C66 85, 74 80, 74 68 C74 50, 70 25, 50 25 Z" fill="#f59e0b" />
+                                    <!-- Honey dripping -->
+                                    <path d="M40 32 Q45 42, 50 32 T60 32 C65 42, 70 42, 70 32 C60 25, 40 25, 40 32 Z" fill="#eab308" />
+                                    <path d="M30 45 Q32 55, 36 50 T40 54 Q44 60, 48 50" stroke="#f59e0b" stroke-width="3" stroke-linecap="round" fill="none" />
+                                    <!-- Text "HUNNY" -->
+                                    <text x="50" y="65" fill="#fef08a" font-size="10" font-weight="900" text-anchor="middle" font-family="'DM Sans', sans-serif">HUNNY</text>
+                                    <!-- Bees around -->
+                                    <circle cx="28" cy="30" r="2" fill="#fff" />
+                                    <circle cx="72" cy="40" r="1.5" fill="#fff" />
+                                </svg>
+                            </div>
+
+                            <!-- Bottom Meta inside Cover -->
+                            <div class="z-10 mt-auto">
+                                <h3 class="text-lg font-bold text-slate-100 leading-tight">Winnie the Pooh</h3>
+                                <p class="text-xs text-yellow-400 font-semibold">The New Adventures • Season 4</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Watermark Logo overlay -->
+                    <div class="absolute bottom-4 right-4 z-20 bg-slate-900/90 backdrop-blur-md px-3 py-1.5 rounded-lg border border-slate-800 text-[10px] text-slate-400 font-bold code-font">
+                        S04.1080p
+                    </div>
+                </div>
+
+                <!-- Verified Metadata Grid -->
+                <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-4 grid grid-cols-2 gap-3 text-xs">
+                    <div class="p-2.5 bg-slate-950/40 border border-slate-900 rounded-xl">
+                        <span class="text-slate-500 block mb-0.5">Total Size</span>
+                        <span class="text-slate-200 font-bold text-sm">7.42 GB</span>
+                    </div>
+                    <div class="p-2.5 bg-slate-950/40 border border-slate-900 rounded-xl">
+                        <span class="text-slate-500 block mb-0.5">Files Count</span>
+                        <span class="text-slate-200 font-bold text-sm">8 MKV Files</span>
+                    </div>
+                    <div class="p-2.5 bg-slate-950/40 border border-slate-900 rounded-xl">
+                        <span class="text-slate-500 block mb-0.5">Language</span>
+                        <span class="text-slate-200 font-bold text-sm">English (US)</span>
+                    </div>
+                    <div class="p-2.5 bg-slate-950/40 border border-slate-900 rounded-xl">
+                        <span class="text-slate-500 block mb-0.5">Subtitles</span>
+                        <span class="text-slate-200 font-bold text-sm">En, Es, Fr, De</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Torrent Detail Head & Actions (8 Cols) -->
+            <div class="lg:col-span-8 flex flex-col justify-between">
+                <div>
+                    <!-- Category Badge & Uploader Info -->
+                    <div class="flex items-center gap-3 mb-3 flex-wrap">
+                        <span class="bg-slate-800 text-yellow-400 text-[10px] font-bold tracking-wider px-2.5 py-1 rounded-md uppercase border border-slate-700">
+                            <i class="fa-solid fa-film mr-1"></i> Nostalgia / Animation
+                        </span>
+                        <span class="text-xs text-slate-400 flex items-center gap-1.5">
+                            <i class="fa-solid fa-circle-check text-emerald-400"></i> Verified Release
+                        </span>
+                        <span class="text-slate-600">•</span>
+                        <span class="text-xs text-slate-400">
+                            Uploaded 3 days ago by <a href="#" class="text-yellow-500 hover:underline font-medium">ChristopherRobin_91</a>
+                        </span>
+                    </div>
+
+                    <!-- Main Torrent Title -->
+                    <h1 class="text-xl md:text-3xl font-extrabold text-slate-100 leading-tight mb-4 code-font">
+                        The.New.Adventures.of.Winnie.the.Pooh.S04.1080p.DSNP.WEB-DL.DDP2.0.H.264-AcreWood
+                    </h1>
+
+                    <!-- Key Technical Badges -->
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="bg-slate-900 border border-slate-800 px-3 py-1 rounded-full text-xs font-semibold text-slate-300">1080p WEB-DL</span>
+                        <span class="bg-slate-900 border border-slate-800 px-3 py-1 rounded-full text-xs font-semibold text-slate-300">H.264 / AVC</span>
+                        <span class="bg-slate-900 border border-slate-800 px-3 py-1 rounded-full text-xs font-semibold text-slate-300">E-AC3 2.0 (Dolby Digital Plus)</span>
+                        <span class="bg-slate-900 border border-slate-800 px-3 py-1 rounded-full text-xs font-semibold text-slate-300">Dual Audio (en-US / es-MX)</span>
+                        <span class="bg-slate-900 border border-slate-800 px-3 py-1 rounded-full text-xs font-semibold text-slate-300">23.976 fps</span>
+                    </div>
+
+                    <!-- Torrent Health Metrics Strip -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 bg-slate-900/40 border border-slate-800 p-4 rounded-2xl mb-6">
+                        <div class="text-center sm:border-r border-slate-800/80 last:border-0 py-1">
+                            <div class="text-slate-400 text-xs mb-1"><i class="fa-solid fa-arrow-up text-emerald-400 mr-1.5"></i> Seeders</div>
+                            <div class="text-emerald-400 font-extrabold text-xl font-mono pulse-seed">142</div>
+                        </div>
+                        <div class="text-center sm:border-r border-slate-800/80 last:border-0 py-1">
+                            <div class="text-slate-400 text-xs mb-1"><i class="fa-solid fa-arrow-down text-rose-400 mr-1.5"></i> Leechers</div>
+                            <div class="text-rose-400 font-extrabold text-xl font-mono">3</div>
+                        </div>
+                        <div class="text-center sm:border-r border-slate-800/80 last:border-0 py-1">
+                            <div class="text-slate-400 text-xs mb-1"><i class="fa-solid fa-check-double text-sky-400 mr-1.5"></i> Completed</div>
+                            <div class="text-slate-200 font-extrabold text-xl font-mono">1,894</div>
+                        </div>
+                        <div class="text-center py-1">
+                            <div class="text-slate-400 text-xs mb-1"><i class="fa-solid fa-gauge-high text-yellow-400 mr-1.5"></i> Avg Speed</div>
+                            <div class="text-yellow-400 font-extrabold text-xl font-mono">82.4 MB/s</div>
+                        </div>
+                    </div>
+
+                    <!-- Synopsis / Info Box -->
+                    <div class="text-sm text-slate-300 bg-slate-950/40 border border-slate-900 p-5 rounded-2xl mb-6 leading-relaxed">
+                        <strong class="text-slate-100 block mb-1">Release Notes:</strong>
+                        This is the definitive WEB-DL release of <strong class="text-yellow-400 font-semibold">The New Adventures of Winnie the Pooh - Season 4</strong>, ripped directly from Disney+ US. Season 4 comprises the final 8 episodes of the series, meticulously preserved with high-bitrate video, multi-language Dolby audio, and pristine soft subtitles. Excellent archival quality for vintage Disney animation.
+                    </div>
+                </div>
+
+                <!-- Primary Call to Actions -->
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <button onclick="downloadTorrent()" class="flex-1 bg-yellow-500 hover:bg-yellow-400 active:bg-yellow-600 text-slate-950 font-bold py-3.5 px-6 rounded-xl flex items-center justify-center gap-2.5 transition-colors shadow-lg shadow-yellow-500/20">
+                        <i class="fa-solid fa-download text-lg"></i> Download .torrent File
+                    </button>
+                    <button onclick="copyMagnet()" class="flex-1 bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-slate-700 text-slate-200 font-semibold py-3.5 px-6 rounded-xl flex items-center justify-center gap-2.5 transition-all">
+                        <i class="fa-solid fa-magnet text-red-500 text-lg"></i> Copy Magnet Link
+                    </button>
+                    <button onclick="openMockDownloader()" class="bg-slate-950 hover:bg-slate-900 border border-slate-800 text-yellow-400 font-semibold py-3.5 px-6 rounded-xl flex items-center justify-center gap-2.5 transition-colors" title="Download inside Tracker Panel">
+                        <i class="fa-solid fa-server"></i> Web Downloader
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Interactive Mock Downloader & Streamer Section -->
+        <div id="downloader-widget" class="hidden bg-slate-900 border-2 border-yellow-500/50 rounded-2xl p-6 mb-8 shadow-xl relative overflow-hidden transition-all duration-300">
+            <!-- Background Accent -->
+            <div class="absolute right-0 top-0 w-64 h-64 bg-yellow-500/5 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div class="flex items-center justify-between mb-4 border-b border-slate-800 pb-3 flex-wrap gap-2">
+                <div class="flex items-center gap-2">
+                    <span class="w-3 h-3 rounded-full bg-yellow-500 animate-pulse"></span>
+                    <h3 class="font-bold text-slate-100 text-base">Interactive Web-P2P Client <span class="text-xs text-yellow-400 font-normal code-font ml-2">[AcreSeed-v1.0.4]</span></h3>
+                </div>
+                <button onclick="closeMockDownloader()" class="text-slate-400 hover:text-slate-200 text-sm flex items-center gap-1">
+                    <i class="fa-solid fa-circle-xmark"></i> Close Widget
+                </button>
+            </div>
+
+            <!-- Client Dashboard Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                
+                <!-- Left: Progress, Speed & Map Controls (5 Cols) -->
+                <div class="lg:col-span-5 flex flex-col justify-between gap-4">
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-end">
+                            <span class="text-xs text-slate-400">Torrent: <span class="text-yellow-400 code-font">Pooh.S04.1080p.WEB-DL</span></span>
+                            <span id="dl-progress-percent" class="text-sm font-bold code-font text-yellow-400">0%</span>
+                        </div>
+                        <div class="w-full bg-slate-950 h-3.5 rounded-full overflow-hidden p-0.5 border border-slate-800">
+                            <div id="dl-progress-bar" class="shimmer-bg h-full rounded-full transition-all duration-300" style="width: 0%"></div>
+                        </div>
+
+                        <!-- Real-time Stat strip -->
+                        <div class="grid grid-cols-3 gap-2 text-center bg-slate-950/80 p-3 rounded-xl border border-slate-800">
+                            <div>
+                                <span class="text-[10px] text-slate-500 block">DL SPEED</span>
+                                <span id="dl-speed" class="text-xs font-bold font-mono text-emerald-400">0 KB/s</span>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-slate-500 block">PEERS</span>
+                                <span id="dl-peers" class="text-xs font-bold font-mono text-sky-400">0 / 142</span>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-slate-500 block">ETA</span>
+                                <span id="dl-eta" class="text-xs font-bold font-mono text-amber-400">--</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Download / Seed Action Toggle -->
+                    <div class="flex gap-2">
+                        <button id="dl-start-btn" onclick="startSimulatedDownload()" class="flex-1 bg-yellow-500 hover:bg-yellow-400 text-slate-950 font-bold py-2 rounded-lg text-xs transition-colors">
+                            <i class="fa-solid fa-play mr-1"></i> Start Download Simulation
+                        </button>
+                        <button id="dl-reset-btn" onclick="resetSimulatedDownload()" class="bg-slate-950 hover:bg-slate-800 border border-slate-800 text-slate-400 hover:text-slate-200 py-2 px-3 rounded-lg text-xs transition-colors">
+                            <i class="fa-solid fa-arrow-rotate-left"></i>
+                        </button>
+                    </div>
+
+                    <p class="text-[10px] text-slate-500 leading-tight">
+                        <i class="fa-solid fa-circle-info text-yellow-500/70 mr-1"></i> Simulate a real P2P transfer session inside your browser. Watch the pieces compile in real-time, then unlock local in-tracker streaming!
+                    </p>
+                </div>
+
+                <!-- Right: P2P Piece Map Grid (7 Cols) -->
+                <div class="lg:col-span-7 flex flex-col">
+                    <span class="text-xs text-slate-400 mb-2 block font-medium">Active Peer Pieces Download Map:</span>
+                    <!-- 10x10 Grid representation -->
+                    <div id="pieces-grid" class="grid grid-cols-10 sm:grid-cols-15 md:grid-cols-20 gap-1 p-2 bg-slate-950 border border-slate-800 rounded-xl overflow-hidden min-h-[140px] max-h-[180px] overflow-y-auto">
+                        <!-- 100 Pieces will be generated by JS -->
+                    </div>
+                    <div class="flex justify-between items-center mt-2 text-[10px] text-slate-500 px-1">
+                        <div class="flex gap-3">
+                            <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-sm bg-slate-900 border border-slate-800 block"></span> Pending</span>
+                            <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-sm bg-yellow-500/50 block"></span> Downloading</span>
+                            <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-sm bg-yellow-400 block animate-pulse"></span> Hash Check</span>
+                            <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-sm bg-emerald-500 block"></span> Completed</span>
+                        </div>
+                        <span id="pieces-completed-count" class="font-mono">0 / 120 Pieces</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Main Content Area: Tabs Detail & Video Streaming Player -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <!-- Left Side: Interactive Tabs Panel (8 Cols) -->
+            <div class="lg:col-span-8 flex flex-col gap-6">
+                
+                <!-- Tab Headers -->
+                <div class="flex border-b border-slate-800 overflow-x-auto gap-1">
+                    <button onclick="switchTab('tab-specs')" id="btn-tab-specs" class="tab-btn px-5 py-3 text-sm font-semibold border-b-2 border-yellow-500 text-yellow-400 whitespace-nowrap transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-circle-info"></i> Technical NFO
+                    </button>
+                    <button onclick="switchTab('tab-files')" id="btn-tab-files" class="tab-btn px-5 py-3 text-sm font-semibold border-b-2 border-transparent text-slate-400 hover:text-slate-200 hover:border-slate-700 whitespace-nowrap transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-folder-open"></i> File Explorer (8)
+                    </button>
+                    <button onclick="switchTab('tab-screens')" id="btn-tab-screens" class="tab-btn px-5 py-3 text-sm font-semibold border-b-2 border-transparent text-slate-400 hover:text-slate-200 hover:border-slate-700 whitespace-nowrap transition-all flex items-center gap-2">
+                        <i class="fa-regular fa-images"></i> Media Screenshots
+                    </button>
+                    <button onclick="switchTab('tab-peers')" id="btn-tab-peers" class="tab-btn px-5 py-3 text-sm font-semibold border-b-2 border-transparent text-slate-400 hover:text-slate-200 hover:border-slate-700 whitespace-nowrap transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-users"></i> Peer Swarm
+                    </button>
+                </div>
+
+                <!-- Tab 1 Content: Technical Specs (NFO Viewer) -->
+                <div id="tab-specs" class="tab-content block">
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h4 class="font-bold text-slate-100 flex items-center gap-2">
+                                <i class="fa-solid fa-terminal text-yellow-400"></i> Release .NFO File
+                            </h4>
+                            <button onclick="copyNFO()" class="text-xs bg-slate-950 hover:bg-slate-800 text-slate-300 px-3 py-1.5 rounded-lg border border-slate-800 flex items-center gap-1.5 transition-colors">
+                                <i class="fa-regular fa-copy"></i> Copy NFO Raw
+                            </button>
+                        </div>
+                        
+                        <!-- Real ASCII Terminal NFO Display -->
+                        <pre id="nfo-text" class="code-font text-xs text-yellow-400/90 bg-slate-950 p-4 rounded-xl overflow-x-auto leading-relaxed border border-slate-950 shadow-inner">
+  _    _                           _     _                         
+ | |  | |                         | |   | |                        
+ | |__| | ___  _ __   ___ _   _   | |   | | ___   ___   _ __ ___  
+ |  __  |/ _ \| '_ \ / _ \ | | |  | | _ | |/ _ \ / _ \ | '_ ` _ \ 
+ | |  | | (_) | | | |  __/ |_| |  | |/ \| | (_) | (_) || | | | | |
+ |_|  |_|\___/|_| |_|\___|\__, |   \__/\__/\___/ \___/ |_| |_| |_|
+                           __/ |                                  
+                          |___/                                   
+===================================================================
+AcreWood Torrents | EXCLUSIVE RELEASE | Retro Preservations
+===================================================================
+
+RELEASE TITLE..: The.New.Adventures.of.Winnie.the.Pooh.S04.1080p.DSNP.WEB-DL.DDP2.0.H.264-AcreWood
+RELEASE DATE...: 2026-05-22
+SOURCE.........: Disney+ (US Web Rip)
+GENRE..........: Animation / Family / Adventure
+EPISODES.......: 8 Episodes (Complete Season 4)
+CONTAINER......: Matroska (.mkv)
+FILE SIZE......: 7.42 GB (Total) / ~950 MB per episode
+
+[VIDEO SPECIFICATIONS]
+Codec..........: H.264 / MPEG-4 AVC (High@L4)
+Resolution.....: 1440x1080 (Pillared 4:3 Original Aspect Ratio)
+Frame Rate.....: 23.976 fps
+Bitrate........: 5600 Kbps (Average)
+
+[AUDIO SPECIFICATIONS]
+Audio Track 1..: English | E-AC-3 (Dolby Digital Plus) | 2.0 Channels | 224 kbps
+Audio Track 2..: Spanish (Es-MX) | AAC | 2.0 Channels | 192 kbps
+
+[SUBTITLE TRACKS]
+Subtitles......: English (SDH), Spanish, French, German
+
+[EPISODE INDEX - SEASON 4]
+S04E01 - Sorry, Wrong Slusher
+S04E02 - Grown But Not Forgotten
+S04E03 - A Pooh Day Afternoon
+S04E04 - The Good, the Bad and the Tigger
+S04E05 - Home Is Where the Home Is
+S04E06 - Shovel, Shovel, Toil and Trouble / The Wise Have It
+S04E07 - Cloud, Cloud, Go Away / To Dream the Impossible Scheme
+S04E08 - Piglet's Poohetry / Owl's Well That Ends Well
+
+===================================================================
+Join the swarm! Please SEED to a ratio of at least 1.5!
+===================================================================</pre>
+                    </div>
+                </div>
+
+                <!-- Tab 2 Content: File Explorer -->
+                <div id="tab-files" class="tab-content hidden">
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <h4 class="font-bold text-slate-100 flex items-center gap-2">
+                                <i class="fa-solid fa-folder-tree text-yellow-400"></i> Torrent File Structure
+                            </h4>
+                            <span class="text-xs text-slate-400">S04 Episode Pack • MKV Container</span>
+                        </div>
+
+                        <!-- Directory Map -->
+                        <div class="border border-slate-800 rounded-xl overflow-hidden text-sm">
+                            <div class="bg-slate-950 px-4 py-2.5 border-b border-slate-800 text-xs text-slate-400 flex items-center gap-2 font-mono">
+                                <i class="fa-solid fa-folder-open text-amber-500"></i> The.New.Adventures.of.Winnie.the.Pooh.S04.1080p.DSNP.WEB-DL.DDP2.0.H.264-AcreWood/
+                            </div>
+                            <div class="divide-y divide-slate-800/60 bg-slate-900/40">
+                                <!-- File Rows -->
+                                <div class="px-4 py-3 flex items-center justify-between hover:bg-slate-800/30 transition-colors">
+                                    <div class="flex items-center gap-3">
+                                        <i class="fa-regular fa-file-video text-rose-400 text-base"></i>
+                                        <span class="code-font text-xs text-slate-200">Winnie.the.Pooh.S04E01.Sorry.Wrong.Slusher.1080p.MKV</span>
+                                    </div>
+                                    <div class="flex items-center gap-4">
+                                        <span class="text-xs text-slate-400 code-font">932.4 MB</span>
+                                        <button onclick="playMockEpisode(1, 'Sorry, Wrong Slusher')" class="bg-yellow-500/10 hover:bg-yellow-500 hover:text-slate-950 text-yellow-400 text-xs py-1 px-3 rounded font-bold transition-all">Stream</button>
+                                    </div>
+                                </div>
+                                <div class="px-4 py-3 flex items-center justify-between hover:bg-slate-800/30 transition-colors">
+                                    <div class="flex items-center gap-3">
+                                        <i class="fa-regular fa-file-video text-rose-400 text-base"></i>
+                                        <span class="code-font text-xs text-slate-200">Winnie.the.Pooh.S04E02.Grown.But.Not.Forgotten.1080p.MKV</span>
+                                    </div>
+                                    <div class="flex items-center gap-4">
+                                        <span class="text-xs text-slate-400 code-font">914.8 MB</span>
+                                        <button onclick="playMockEpisode(2, 'Grown But Not Forgotten')" class="bg-yellow-500/10 hover:bg-yellow-500 hover:text-slate-950 text-yellow-400 text-xs py-1 px-3 rounded font-bold transition-all">Stream</button>
+                                    </div>
+                                </div>
+                                <div class="px-4 py-3 flex items-center justify-between hover:bg-slate-800/30 transition-colors">
+                                    <div class="flex items-center gap-3">
+                                        <i class="fa-regular fa-file-video text-rose-400 text-base"></i>
+                                        <span class="code-font text-xs text-slate-200">Winnie.the.Pooh.S04E03.A.Pooh.Day.Afternoon.1080p.MKV</span>
+                                    </div>
+                                    <div class="flex items-center gap-4">
+                                        <span class="text-xs text-slate-400 code-font">945.1 MB</span>
+                                        <button onclick="playMockEpisode(3, 'A Pooh Day Afternoon')" class="bg-yellow-500/10 hover:bg-yellow-500 hover:text-slate-950 text-yellow-400 text-xs py-1 px-3 rounded font-bold transition-all">Stream</button>
+                                    </div>
+                                </div>
+                                <div class="px-4 py-3 flex items-center justify-between hover:bg-slate-800/30 transition-colors">
+                                    <div class="flex items-center gap-3">
+                                        <i class="fa-regular fa-file-video text-rose-400 text-base"></i>
+                                        <span class="code-font text-xs text-slate-200">Winnie.the.Pooh.S04E04.The.Good.the.Bad.and.the.Tigger.1080p.MKV</span>
+                                    </div>
+                                    <div class="flex items-center gap-4">
+                                        <span class="text-xs text-slate-400 code-font">980.2 MB</span>
+                                        <button onclick="playMockEpisode(4, 'The Good, the Bad and the Tigger')" class="bg-yellow-500/10 hover:bg-yellow-500 hover:text-slate-950 text-yellow-400 text-xs py-1 px-3 rounded font-bold transition-all">Stream</button>
+                                    </div>
+                                </div>
+                                <div class="px-4 py-3 flex items-center justify-between hover:bg-slate-800/30 transition-colors">
+                                    <div class="flex items-center gap-3">
+                                        <i class="fa-regular fa-file-video text-rose-400 text-base"></i>
+                                        <span class="code-font text-xs text-slate-200">Winnie.the.Pooh.S04E05.Home.Is.Where.the.Home.Is.1080p.MKV</span>
+                                    </div>
+                                    <div class="flex items-center gap-4">
+                                        <span class="text-xs text-slate-400 code-font">912.0 MB</span>
+                                        <button onclick="playMockEpisode(5, 'Home Is Where the Home Is')" class="bg-yellow-500/10 hover:bg-yellow-500 hover:text-slate-950 text-yellow-400 text-xs py-1 px-3 rounded font-bold transition-all">Stream</button>
+                                    </div>
+                                </div>
+                                <div class="px-4 py-3 flex items-center justify-between hover:bg-slate-800/30 transition-colors">
+                                    <div class="flex items-center gap-3">
+                                        <i class="fa-regular fa-file-video text-rose-400 text-base"></i>
+                                        <span class="code-font text-xs text-slate-200">Winnie.the.Pooh.S04E06.Shovel.Shovel.Toil.And.Trouble.The.Wise.Have.It.1080p.MKV</span>
+                                    </div>
+                                    <div class="flex items-center gap-4">
+                                        <span class="text-xs text-slate-400 code-font">1.02 GB</span>
+                                        <button onclick="playMockEpisode(6, 'Shovel, Shovel, Toil and Trouble / The Wise Have It')" class="bg-yellow-500/10 hover:bg-yellow-500 hover:text-slate-950 text-yellow-400 text-xs py-1 px-3 rounded font-bold transition-all">Stream</button>
+                                    </div>
+                                </div>
+                                <div class="px-4 py-3 flex items-center justify-between hover:bg-slate-800/30 transition-colors">
+                                    <div class="flex items-center gap-3">
+                                        <i class="fa-regular fa-file-video text-rose-400 text-base"></i>
+                                        <span class="code-font text-xs text-slate-200">Winnie.the.Pooh.S04E07.Cloud.Cloud.Go.Away.To.Dream.Impossible.Scheme.1080p.MKV</span>
+                                    </div>
+                                    <div class="flex items-center gap-4">
+                                        <span class="text-xs text-slate-400 code-font">1.05 GB</span>
+                                        <button onclick="playMockEpisode(7, 'Cloud, Cloud, Go Away / To Dream the Impossible Scheme')" class="bg-yellow-500/10 hover:bg-yellow-500 hover:text-slate-950 text-yellow-400 text-xs py-1 px-3 rounded font-bold transition-all">Stream</button>
+                                    </div>
+                                </div>
+                                <div class="px-4 py-3 flex items-center justify-between hover:bg-slate-800/30 transition-colors">
+                                    <div class="flex items-center gap-3">
+                                        <i class="fa-regular fa-file-video text-rose-400 text-base"></i>
+                                        <span class="code-font text-xs text-slate-200">Winnie.the.Pooh.S04E08.Piglets.Poohetry.Owls.Well.That.Ends.Well.1080p.MKV</span>
+                                    </div>
+                                    <div class="flex items-center gap-4">
+                                        <span class="text-xs text-slate-400 code-font">994.6 MB</span>
+                                        <button onclick="playMockEpisode(8, 'Piglet\'s Poohetry / Owl\'s Well That Ends Well')" class="bg-yellow-500/10 hover:bg-yellow-500 hover:text-slate-950 text-yellow-400 text-xs py-1 px-3 rounded font-bold transition-all">Stream</button>
+                                    </div>
+                                </div>
+                                <!-- Extra .NFO and metadata info -->
+                                <div class="px-4 py-2 bg-slate-950/20 flex items-center justify-between">
+                                    <div class="flex items-center gap-3 pl-2">
+                                        <i class="fa-regular fa-file-lines text-sky-400 text-base"></i>
+                                        <span class="code-font text-xs text-slate-400">AcreWood_Tracker_Release.nfo</span>
+                                    </div>
+                                    <span class="text-xs text-slate-500 code-font">4.2 KB</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 3 Content: Screenshots / Media Gallery -->
+                <div id="tab-screens" class="tab-content hidden">
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+                        <h4 class="font-bold text-slate-100 flex items-center gap-2 mb-4">
+                            <i class="fa-regular fa-image text-yellow-400"></i> Video Capture Gallery (1080p Raw)
+                        </h4>
+                        
+                        <!-- Screen Cards containing SVGs depicting Pooh scenes -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="border border-slate-800 bg-slate-950 rounded-xl overflow-hidden p-3 flex flex-col gap-2">
+                                <div class="bg-slate-900 aspect-video rounded-lg overflow-hidden flex items-center justify-center border border-slate-800/60 relative group">
+                                    <span class="absolute top-2 left-2 bg-slate-950/80 px-2 py-0.5 rounded text-[10px] code-font text-yellow-400">S04E01 - Source Capture</span>
+                                    <!-- Dynamic Vector Concept representing Piglet/Pooh looking at Slusher -->
+                                    <svg viewBox="0 0 160 90" class="w-full h-full opacity-80 group-hover:opacity-100 transition-opacity">
+                                        <rect width="160" height="90" fill="#1e1b4b" />
+                                        <circle cx="80" cy="50" r="12" fill="#eab308" opacity="0.15" />
+                                        <!-- Silhouettes -->
+                                        <circle cx="45" cy="65" r="10" fill="#f59e0b" /> <!-- Pooh shape -->
+                                        <ellipse cx="45" cy="53" rx="7" ry="6" fill="#f59e0b" />
+                                        <circle cx="75" cy="70" r="6" fill="#f43f5e" /> <!-- Piglet shape -->
+                                        <!-- Flashlight beam -->
+                                        <polygon points="45,55 120,30 120,70" fill="#fef08a" opacity="0.25" />
+                                        <text x="80" y="82" fill="#475569" font-size="6" text-anchor="middle" font-family="'JetBrains Mono'">Sorry, Wrong Slusher Capture</text>
+                                    </svg>
+                                </div>
+                                <span class="text-xs text-slate-400 text-center italic">“Pooh and Piglet explore the creepy hallway with flashlights...”</span>
+                            </div>
+
+                            <div class="border border-slate-800 bg-slate-950 rounded-xl overflow-hidden p-3 flex flex-col gap-2">
+                                <div class="bg-slate-900 aspect-video rounded-lg overflow-hidden flex items-center justify-center border border-slate-800/60 relative group">
+                                    <span class="absolute top-2 left-2 bg-slate-950/80 px-2 py-0.5 rounded text-[10px] code-font text-yellow-400">S04E04 - Source Capture</span>
+                                    <svg viewBox="0 0 160 90" class="w-full h-full opacity-80 group-hover:opacity-100 transition-opacity">
+                                        <rect width="160" height="90" fill="#2d1510" />
+                                        <!-- Western elements -->
+                                        <circle cx="80" cy="-20" r="60" fill="#eab308" opacity="0.2" /> <!-- Sun -->
+                                        <polygon points="10,90 40,50 80,90" fill="#1e100a" />
+                                        <polygon points="60,90 100,45 150,90" fill="#251208" />
+                                        <!-- Train sketch -->
+                                        <rect x="50" y="70" width="30" height="15" fill="#f59e0b" opacity="0.4" />
+                                        <circle cx="58" cy="85" r="3" fill="#111" />
+                                        <circle cx="72" cy="85" r="3" fill="#111" />
+                                        <text x="80" y="82" fill="#582f0e" font-size="6" text-anchor="middle" font-family="'JetBrains Mono'">The Good, the Bad and the Tigger Capture</text>
+                                    </svg>
+                                </div>
+                                <span class="text-xs text-slate-400 text-center italic">“Tigger directs the imaginary train across the wild canyon...”</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 4 Content: Peer Swarm Tracker -->
+                <div id="tab-peers" class="tab-content hidden">
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <h4 class="font-bold text-slate-100 flex items-center gap-2">
+                                <i class="fa-solid fa-users text-yellow-400"></i> Active Swarm Connections
+                            </h4>
+                            <span class="text-xs text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">Seeding Node Active</span>
+                        </div>
+
+                        <!-- Peers Table -->
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-xs text-slate-300">
+                                <thead class="bg-slate-950 text-slate-400 font-semibold border-b border-slate-800">
+                                    <tr>
+                                        <th class="p-3">IP Address / Host</th>
+                                        <th class="p-3">Client</th>
+                                        <th class="p-3">Uploaded</th>
+                                        <th class="p-3">Downloaded</th>
+                                        <th class="p-3">Completion</th>
+                                        <th class="p-3">Speed Up / Down</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-800/50">
+                                    <tr class="hover:bg-slate-850/50">
+                                        <td class="p-3 font-mono text-slate-200">92.103.45.19 [UK]</td>
+                                        <td class="p-3"><i class="fa-solid fa-circle text-emerald-500 text-[6px] mr-1.5"></i> qBittorrent/4.6.3</td>
+                                        <td class="p-3 font-mono">245.8 GB</td>
+                                        <td class="p-3 font-mono">7.42 GB</td>
+                                        <td class="p-3 font-mono text-emerald-400 font-bold">100%</td>
+                                        <td class="p-3 font-mono text-slate-400">-- / 12.4 MB/s</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-850/50">
+                                        <td class="p-3 font-mono text-slate-200">172.56.230.14 [US]</td>
+                                        <td class="p-3"><i class="fa-solid fa-circle text-emerald-500 text-[6px] mr-1.5"></i> Transmission/4.0.2</td>
+                                        <td class="p-3 font-mono">82.1 GB</td>
+                                        <td class="p-3 font-mono">7.42 GB</td>
+                                        <td class="p-3 font-mono text-emerald-400 font-bold">100%</td>
+                                        <td class="p-3 font-mono text-slate-400">-- / 45.1 MB/s</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-850/50">
+                                        <td class="p-3 font-mono text-slate-200">198.51.100.222 [DE]</td>
+                                        <td class="p-3"><i class="fa-solid fa-circle text-emerald-500 text-[6px] mr-1.5"></i> Deluge/2.1.1</td>
+                                        <td class="p-3 font-mono">3.4 TB</td>
+                                        <td class="p-3 font-mono">7.42 GB</td>
+                                        <td class="p-3 font-mono text-emerald-400 font-bold">100%</td>
+                                        <td class="p-3 font-mono text-emerald-500 font-bold">24.5 MB/s / --</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-850/50">
+                                        <td class="p-3 font-mono text-slate-200">45.72.10.8 [CA]</td>
+                                        <td class="p-3"><i class="fa-solid fa-circle text-amber-500 text-[6px] mr-1.5"></i> rTorrent/0.9.8</td>
+                                        <td class="p-3 font-mono">0 KB</td>
+                                        <td class="p-3 font-mono">5.23 GB</td>
+                                        <td class="p-3 font-mono text-amber-400">70.4%</td>
+                                        <td class="p-3 font-mono text-emerald-400">8.2 MB/s / 12.5 KB/s</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comments & User Discussion Section -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+                    <h3 class="font-bold text-slate-100 mb-6 text-base flex items-center justify-between">
+                        <span><i class="fa-regular fa-comments text-yellow-400 mr-2"></i> Peer Discussions</span>
+                        <span id="comment-count-badge" class="bg-slate-950 border border-slate-800 px-2.5 py-0.5 rounded-full text-xs text-slate-400 font-mono">6 Comments</span>
+                    </h3>
+
+                    <!-- Comment Submission Box -->
+                    <div class="flex gap-4 mb-6">
+                        <div class="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex-shrink-0 flex items-center justify-center">
+                            <img src="https://api.dicebear.com/7.x/identicon/svg?seed=Christopher" alt="Your Avatar" class="w-full h-full">
+                        </div>
+                        <div class="flex-grow">
+                            <textarea id="comment-input" placeholder="Type a review, download status update, or nostalgic reflection..." 
+                                class="w-full bg-slate-950 border border-slate-800 focus:border-yellow-500 focus:outline-none rounded-xl p-3 text-sm text-slate-200 placeholder:text-slate-500 min-h-[90px] resize-none transition-colors"></textarea>
+                            <div class="flex justify-end mt-2">
+                                <button onclick="postComment()" class="bg-yellow-500 hover:bg-yellow-400 text-slate-950 font-bold py-2 px-5 rounded-lg text-xs transition-colors">
+                                    <i class="fa-solid fa-paper-plane mr-1.5"></i> Post Comment
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Filter Strip -->
+                    <div class="border-b border-slate-800/60 pb-3 mb-4 flex items-center justify-between text-xs text-slate-400">
+                        <span>Showing discussions sorted by date</span>
+                        <div class="flex gap-2">
+                            <button class="text-yellow-400 font-medium">Newest</button>
+                            <span>|</span>
+                            <button class="hover:text-slate-200 transition-colors">Highest Rated</button>
+                        </div>
+                    </div>
+
+                    <!-- Comment List Container -->
+                    <div id="comments-container" class="space-y-4">
+                        <!-- Simulated comments inserted via JavaScript -->
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Right Side: Cloud Stream / WebSeed Video Player (4 Cols) -->
+            <div class="lg:col-span-4 sticky top-24">
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-2xl">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="bg-rose-500/10 text-rose-400 text-[10px] font-bold tracking-widest px-2.5 py-1 rounded-full uppercase border border-rose-500/20 flex items-center gap-1">
+                            <i class="fa-solid fa-play text-[8px] animate-pulse"></i> WEBSEED PLAYER
+                        </span>
+                        <span class="text-xs text-slate-400 font-mono code-font">Stream Engine S04</span>
+                    </div>
+
+                    <!-- Animated Video Player Canvas Container -->
+                    <div class="bg-slate-950 aspect-video rounded-xl border border-slate-800 overflow-hidden relative shadow-inner flex flex-col items-center justify-center p-4">
+                        
+                        <!-- CRT/TV Screen Lines Overlay -->
+                        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0)_60%,rgba(0,0,0,0.6)_100%)] pointer-events-none z-20"></div>
+                        
+                        <!-- Animated Cartoon Player Interface -->
+                        <div id="player-animation-box" class="absolute inset-0 flex flex-col justify-between p-4 z-10 bg-slate-950">
+                            <!-- Background Landscape inside simulated video player -->
+                            <div class="absolute inset-0 opacity-40 bg-indigo-950 overflow-hidden">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="w-full h-full object-cover">
+                                    <!-- Stylized Hills of Hundred Acre Wood -->
+                                    <path d="M-20 100 Q30 70, 70 100 Z" fill="#2d3748" />
+                                    <path d="M30 100 Q70 60, 120 100 Z" fill="#1a202c" />
+                                    <!-- Spooky cartoon trees -->
+                                    <path d="M20 75 L20 40 L22 40 L22 75 Z" fill="#0f172a" />
+                                    <circle cx="21" cy="40" r="10" fill="#0f172a" />
+                                    <path d="M80 80 L80 50 L82 50 L82 80 Z" fill="#0f172a" />
+                                    <circle cx="81" cy="50" r="8" fill="#0f172a" />
+                                </svg>
+                            </div>
+
+                            <!-- Floating Honey Pot Player Animation -->
+                            <div class="my-auto flex flex-col items-center justify-center z-10 text-center gap-2 select-none">
+                                <div id="pooh-svg-character" class="w-16 h-16 transition-all duration-300">
+                                    <!-- Interactive Winnie the Pooh silhouette vector -->
+                                    <svg viewBox="0 0 100 100" class="w-full h-full">
+                                        <!-- Winnie the Pooh inspired silhouette profile -->
+                                        <ellipse cx="50" cy="55" rx="20" ry="25" fill="#f59e0b" />
+                                        <circle cx="50" cy="30" r="15" fill="#f59e0b" />
+                                        <!-- Ears -->
+                                        <circle cx="38" cy="18" r="5" fill="#f59e0b" />
+                                        <circle cx="62" cy="18" r="5" fill="#f59e0b" />
+                                        <!-- Red shirt -->
+                                        <path d="M32 50 C32 40, 68 40, 68 50 C68 62, 32 62, 32 50 Z" fill="#ef4444" />
+                                        <!-- Eyes and Smile -->
+                                        <circle cx="45" cy="27" r="1.5" fill="#000" />
+                                        <circle cx="55" cy="27" r="1.5" fill="#000" />
+                                        <path d="M47 34 Q50 38, 53 34" stroke="#000" stroke-width="1.5" stroke-linecap="round" fill="none" />
+                                    </svg>
+                                </div>
+                                <div class="bg-slate-900/90 backdrop-blur border border-slate-800 py-1 px-3 rounded-md text-[10px] text-slate-300">
+                                    Now Streaming: <span id="player-episode-tag" class="text-yellow-400 font-bold">Winnie S04E01</span>
+                                </div>
+                            </div>
+
+                            <!-- Bottom Control overlay inside simulated video player -->
+                            <div class="z-10 flex items-center justify-between text-[10px] text-slate-400 bg-slate-900/80 px-2 py-1.5 rounded border border-slate-800/50">
+                                <div class="flex items-center gap-2">
+                                    <button onclick="togglePlayback()" id="player-play-btn" class="text-yellow-400 hover:text-white"><i class="fa-solid fa-pause"></i></button>
+                                    <span id="player-time" class="font-mono">01:45 / 23:14</span>
+                                </div>
+                                <span class="text-[9px] text-slate-500 flex items-center gap-1">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> WebSeed Active
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Stream Instructions & Track Status -->
+                    <div class="mt-4 space-y-3">
+                        <div class="text-xs text-slate-300">
+                            <span class="font-semibold block text-slate-200">Audio Channels:</span>
+                            <div class="flex gap-2 mt-1">
+                                <button onclick="setAudioStream('en')" id="audio-en-btn" class="bg-yellow-500 text-slate-950 font-semibold px-2.5 py-1 rounded text-[10px] transition-colors">English (Dolby D+)</button>
+                                <button onclick="setAudioStream('es')" id="audio-es-btn" class="bg-slate-950 hover:bg-slate-800 text-slate-300 px-2.5 py-1 rounded text-[10px] border border-slate-800 transition-colors">Spanish (AAC)</button>
+                            </div>
+                        </div>
+
+                        <div class="text-xs text-slate-300">
+                            <span class="font-semibold block text-slate-200">Episode Select:</span>
+                            <select id="player-episode-select" onchange="onEpisodeSelectChange()" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs text-slate-300 focus:outline-none focus:border-yellow-500 mt-1">
+                                <option value="1">Episode 1 - Sorry, Wrong Slusher</option>
+                                <option value="2">Episode 2 - Grown But Not Forgotten</option>
+                                <option value="3">Episode 3 - A Pooh Day Afternoon</option>
+                                <option value="4">Episode 4 - The Good, the Bad and the Tigger</option>
+                                <option value="5">Episode 5 - Home Is Where the Home Is</option>
+                                <option value="6">Episode 6 - Shovel, Shovel, Toil & Trouble / The Wise Have It</option>
+                                <option value="7">Episode 7 - Cloud, Cloud, Go Away / To Dream the Impossible Scheme</option>
+                                <option value="8">Episode 8 - Piglet’s Poohetry / Owl’s Well That Ends Well</option>
+                            </select>
+                        </div>
+
+                        <p class="text-[10px] text-slate-500 italic text-center mt-3">
+                            *WebSeed technology relies on seeding peers to stream directly. Ensure your download client or our Web Downloader widget has active handshakes.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Interactive Footer -->
+    <footer class="mt-12 bg-slate-950 border-t border-slate-800/80 py-8 text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-3">
+                <span class="font-bold text-sm tracking-tight bg-gradient-to-r from-yellow-400 to-amber-500 bg-clip-text text-transparent">ACREWOOD</span>
+                <span class="text-[10px]">Preserving Magic & Whimsy Since 2012</span>
+            </div>
+            
+            <div class="flex gap-4 flex-wrap justify-center">
+                <a href="#" class="hover:text-yellow-400 transition-colors">Rules</a>
+                <span>•</span>
+                <a href="#" class="hover:text-yellow-400 transition-colors">Wiki</a>
+                <span>•</span>
+                <a href="#" class="hover:text-yellow-400 transition-colors">IRC Chat</a>
+                <span>•</span>
+                <a href="#" class="hover:text-yellow-400 transition-colors">DMCA Policy</a>
+                <span>•</span>
+                <a href="#" class="hover:text-yellow-400 transition-colors">API</a>
+            </div>
+
+            <p class="text-center md:text-right">
+                All P2P ratios are locally validated. Happy seeding in the 100 Acre Wood!
+            </p>
+        </div>
+    </footer>
+
+    <!-- Core Scripting / Logic -->
+    <script>
+        // Predefined Comments Database for Realism
+        const initialComments = [
+            {
+                id: 1,
+                user: "Tiggerific_Lover",
+                avatar: "https://api.dicebear.com/7.x/identicon/svg?seed=Tiggerific_Lover",
+                time: "2 hours ago",
+                text: "Words can't describe how glad I am this has been uploaded in 1080p WEB-DL! This is absolute childhood gold. The colors of the Hundred Acre Wood are so vibrant compared to the washed-out VHS rips floating around! Highly recommend E5 'Home Is Where the Home Is' - purely heartwarming.",
+                likes: 34,
+                liked: false,
+                isElite: true
+            },
+            {
+                id: 2,
+                user: "NostalgicBear91",
+                avatar: "https://api.dicebear.com/7.x/identicon/svg?seed=NostalgicBear91",
+                time: "Yesterday",
+                text: "Verified the track sync. English audio is perfectly crisp Dolby Digital Plus 2.0, direct pull from Disney+ stream. Spanish dub sounds amazing too. Thank you, ChristopherRobin_91, for compiling this final season!",
+                likes: 18,
+                liked: false,
+                isElite: false
+            },
+            {
+                id: 3,
+                user: "RabbitGardener",
+                avatar: "https://api.dicebear.com/7.x/identicon/svg?seed=RabbitGardener",
+                time: "2 days ago",
+                text: "Seeding this from my 10Gbps seedbox in Dublin! I will seed this indefinitely, vintage gems like this must be preserved forever. Enjoy the high speeds!",
+                likes: 56,
+                liked: false,
+                isElite: true
+            },
+            {
+                id: 4,
+                user: "EeyoreGloomy",
+                avatar: "https://api.dicebear.com/7.x/identicon/svg?seed=EeyoreGloomy",
+                time: "3 days ago",
+                text: "S4E01 'Sorry, Wrong Slusher' is one of the best parodies ever made for kids. Pooh and the gang getting terrified by a mystery movie is peak writing. Thanks for the clean release.",
+                likes: 11,
+                liked: false,
+                isElite: false
+            }
+        ];
+
+        // Global State
+        let commentsList = [...initialComments];
+        let downloadInterval = null;
+        let isDownloading = false;
+        let dlProgress = 0;
+        let piecesMap = [];
+        const maxPieces = 120;
+        let isPlaying = true;
+        let activeAudio = 'en';
+
+        // Initialize Page
+        window.addEventListener('DOMContentLoaded', () => {
+            renderComments();
+            generatePiecesGrid();
+            // Start character animation bouncing in video player
+            startPlayerCharacterAnimation();
+        });
+
+        // Toast Notification Trigger
+        function showToast(message, type = "success") {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            
+            // Set styles based on toast type
+            const bgColor = type === "success" ? "bg-slate-900 border-yellow-500" : "bg-slate-900 border-rose-500";
+            const icon = type === "success" ? "fa-circle-check text-yellow-500" : "fa-circle-exclamation text-rose-500";
+            
+            toast.className = `flex items-center gap-3 p-4 rounded-xl border-2 ${bgColor} text-slate-200 text-xs font-semibold shadow-2xl transition-all duration-300 translate-y-2 opacity-0 pointer-events-auto`;
+            toast.innerHTML = `
+                <i class="fa-solid ${icon} text-lg"></i>
+                <div class="flex-grow">
+                    <span>${message}</span>
+                </div>
+            `;
+            
+            container.appendChild(toast);
+            
+            // Animate In
+            setTimeout(() => {
+                toast.classList.remove('translate-y-2', 'opacity-0');
+            }, 10);
+            
+            // Remove after 3.5s
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-[-10px]');
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+
+        // Torrent Actions Simulation
+        function downloadTorrent() {
+            showToast("Generating secure torrent download link...");
+            setTimeout(() => {
+                // Mock browser download triggered safely
+                const link = document.createElement('a');
+                link.href = '#';
+                showToast("Downloading file: The.New.Adventures.of.Winnie.the.Pooh.S04.torrent");
+            }, 1200);
+        }
+
+        function copyMagnet() {
+            const magnetLink = "magnet:?xt=urn:btih:6c7810df6ea77d9c8da1be8ee7c244b7f8c09a80&dn=The.New.Adventures.of.Winnie.the.Pooh.S04.1080p.DSNP.WEB-DL.DDP2.0.H.264-AcreWood&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969%2Fannounce";
+            
+            // Fallback copy utility for iframe safe usage
+            const el = document.createElement('textarea');
+            el.value = magnetLink;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            
+            showToast("Magnet URI copied securely to clipboard!");
+        }
+
+        function copyNFO() {
+            const nfoText = document.getElementById('nfo-text').innerText;
+            const el = document.createElement('textarea');
+            el.value = nfoText;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            
+            showToast("NFO raw text copied to clipboard!");
+        }
+
+        // Tab Switching
+        function switchTab(tabId) {
+            // Hide all tab contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.add('hidden'));
+            
+            // Deactivate all tab buttons
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('border-yellow-500', 'text-yellow-400');
+                btn.classList.add('border-transparent', 'text-slate-400');
+            });
+
+            // Show current active content
+            document.getElementById(tabId).classList.remove('hidden');
+
+            // Highlight active button
+            const activeBtn = document.getElementById(`btn-${tabId}`);
+            activeBtn.classList.add('border-yellow-500', 'text-yellow-400');
+            activeBtn.classList.remove('border-transparent', 'text-slate-400');
+        }
+
+        // Render Comments list dynamically
+        function renderComments() {
+            const container = document.getElementById('comments-container');
+            container.innerHTML = '';
+
+            commentsList.forEach(comment => {
+                const commentEl = document.createElement('div');
+                commentEl.className = "p-4 bg-slate-950/60 border border-slate-900 rounded-xl flex gap-4 text-xs";
+                
+                // Construct Elite badge
+                const badge = comment.isElite 
+                    ? `<span class="bg-yellow-500/10 text-yellow-400 text-[9px] px-1.5 py-0.5 rounded border border-yellow-500/20 font-bold ml-2">Elite Seeder</span>` 
+                    : '';
+
+                commentEl.innerHTML = `
+                    <div class="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 overflow-hidden flex-shrink-0">
+                        <img src="${comment.avatar}" alt="${comment.user}" class="w-full h-full">
+                    </div>
+                    <div class="flex-grow">
+                        <div class="flex justify-between items-center mb-1.5">
+                            <div>
+                                <span class="font-bold text-slate-200 hover:text-yellow-400 transition-colors cursor-pointer">${comment.user}</span>
+                                ${badge}
+                            </div>
+                            <span class="text-[10px] text-slate-500 font-mono">${comment.time}</span>
+                        </div>
+                        <p class="text-slate-300 leading-relaxed mb-3">${comment.text}</p>
+                        <div class="flex items-center gap-3">
+                            <button onclick="likeComment(${comment.id})" class="text-slate-500 hover:text-yellow-400 transition-colors flex items-center gap-1">
+                                <i class="${comment.liked ? 'fa-solid text-yellow-400' : 'fa-regular'} fa-thumbs-up"></i> 
+                                <span class="font-mono">${comment.likes}</span>
+                            </button>
+                            <span class="text-slate-700">|</span>
+                            <button onclick="deleteComment(${comment.id})" class="text-slate-500 hover:text-rose-400 transition-colors">Delete</button>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(commentEl);
+            });
+
+            // Update Badge Count
+            document.getElementById('comment-count-badge').innerText = `${commentsList.length} Comments`;
+        }
+
+        // Post a new comment
+        function postComment() {
+            const input = document.getElementById('comment-input');
+            const text = input.value.trim();
+
+            if (!text) {
+                showToast("Please enter a non-empty comment or review.", "error");
+                return;
+            }
+
+            const newComment = {
+                id: Date.now(),
+                user: "ChristopherRobin_91",
+                avatar: "https://api.dicebear.com/7.x/identicon/svg?seed=Christopher",
+                time: "Just now",
+                text: text,
+                likes: 0,
+                liked: false,
+                isElite: true
+            };
+
+            commentsList.unshift(newComment);
+            input.value = '';
+            renderComments();
+            showToast("Comment successfully posted to AcreWood swarm!");
+        }
+
+        // Like Comment
+        function likeComment(commentId) {
+            const comment = commentsList.find(c => c.id === commentId);
+            if (comment) {
+                if (comment.liked) {
+                    comment.likes--;
+                    comment.liked = false;
+                } else {
+                    comment.likes++;
+                    comment.liked = true;
+                }
+                renderComments();
+            }
+        }
+
+        // Delete Comment
+        function deleteComment(commentId) {
+            commentsList = commentsList.filter(c => c.id !== commentId);
+            renderComments();
+            showToast("Comment deleted successfully.");
+        }
+
+        // Toggle Widget
+        function openMockDownloader() {
+            const widget = document.getElementById('downloader-widget');
+            widget.classList.remove('hidden');
+            // Scroll to widget smoothly
+            widget.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function closeMockDownloader() {
+            const widget = document.getElementById('downloader-widget');
+            widget.classList.add('hidden');
+        }
+
+        // Interactive P2P Map Simulation
+        function generatePiecesGrid() {
+            const grid = document.getElementById('pieces-grid');
+            grid.innerHTML = '';
+            piecesMap = [];
+
+            for (let i = 0; i < maxPieces; i++) {
+                // Initialize block status: 0 = Pending, 1 = Downloading, 2 = Hash Checking, 3 = Completed
+                piecesMap.push(0);
+                const block = document.createElement('div');
+                block.id = `piece-block-${i}`;
+                block.className = "bg-slate-900 border border-slate-950 rounded-sm aspect-square transition-colors duration-200";
+                grid.appendChild(block);
+            }
+            updatePiecesCounter();
+        }
+
+        function updatePiecesCounter() {
+            const completed = piecesMap.filter(status => status === 3).length;
+            document.getElementById('pieces-completed-count').innerText = `${completed} / ${maxPieces} Pieces`;
+        }
+
+        // Simulated Transfer Engine
+        function startSimulatedDownload() {
+            if (isDownloading) {
+                // Pause it
+                clearInterval(downloadInterval);
+                isDownloading = false;
+                document.getElementById('dl-start-btn').innerHTML = '<i class="fa-solid fa-play mr-1"></i> Resume Download Simulation';
+                document.getElementById('dl-speed').innerText = '0 KB/s';
+                showToast("Simulation downloading paused.");
+                return;
+            }
+
+            isDownloading = true;
+            document.getElementById('dl-start-btn').innerHTML = '<i class="fa-solid fa-pause mr-1"></i> Pause Download';
+            showToast("AcreSeed swarm transfer session initiated!");
+
+            downloadInterval = setInterval(() => {
+                // Pick random index to start downloading
+                const pendingIndices = [];
+                piecesMap.forEach((status, idx) => {
+                    if (status < 3) pendingIndices.push(idx);
+                });
+
+                if (pendingIndices.length === 0) {
+                    // Completed!
+                    clearInterval(downloadInterval);
+                    isDownloading = false;
+                    document.getElementById('dl-start-btn').innerHTML = '<i class="fa-solid fa-circle-check text-emerald-400 mr-1"></i> Download Finished!';
+                    document.getElementById('dl-start-btn').disabled = true;
+                    document.getElementById('dl-speed').innerText = '0 KB/s';
+                    document.getElementById('dl-eta').innerText = '0s';
+                    document.getElementById('dl-peers').innerText = '142 / 142';
+                    showToast("Torrent download complete! WebSeed local player ready.", "success");
+                    return;
+                }
+
+                // Pick a few random pieces to progress
+                const batchSize = Math.min(pendingIndices.length, Math.floor(Math.random() * 5) + 2);
+                for (let b = 0; b < batchSize; b++) {
+                    const randomPendingIndex = pendingIndices[Math.floor(Math.random() * pendingIndices.length)];
+                    const currentStatus = piecesMap[randomPendingIndex];
+
+                    if (currentStatus === 0) {
+                        piecesMap[randomPendingIndex] = 1; // Downloading
+                        const el = document.getElementById(`piece-block-${randomPendingIndex}`);
+                        el.className = "bg-yellow-500/50 border border-slate-950 rounded-sm aspect-square";
+                    } else if (currentStatus === 1) {
+                        piecesMap[randomPendingIndex] = 2; // Hash Check
+                        const el = document.getElementById(`piece-block-${randomPendingIndex}`);
+                        el.className = "bg-yellow-400 border border-slate-950 rounded-sm aspect-square animate-pulse";
+                    } else if (currentStatus === 2) {
+                        piecesMap[randomPendingIndex] = 3; // Completed
+                        const el = document.getElementById(`piece-block-${randomPendingIndex}`);
+                        el.className = "bg-emerald-500 border border-slate-950 rounded-sm aspect-square";
+                    }
+                }
+
+                // Update Stats
+                const completedCount = piecesMap.filter(s => s === 3).length;
+                dlProgress = Math.floor((completedCount / maxPieces) * 100);
+
+                document.getElementById('dl-progress-percent').innerText = `${dlProgress}%`;
+                document.getElementById('dl-progress-bar').style.width = `${dlProgress}%`;
+
+                // Speed / ETA calculation
+                const mockSpeed = (Math.random() * 45 + 50).toFixed(1); // MB/s
+                const activePeers = Math.floor(Math.random() * 10) + 120;
+                const remainingSecs = Math.max(1, Math.floor((maxPieces - completedCount) / 4.5));
+
+                document.getElementById('dl-speed').innerText = `${mockSpeed} MB/s`;
+                document.getElementById('dl-peers').innerText = `${activePeers} / 142`;
+                document.getElementById('dl-eta').innerText = `${remainingSecs}s`;
+
+                updatePiecesCounter();
+            }, 500);
+        }
+
+        function resetSimulatedDownload() {
+            clearInterval(downloadInterval);
+            isDownloading = false;
+            dlProgress = 0;
+            document.getElementById('dl-progress-percent').innerText = `0%`;
+            document.getElementById('dl-progress-bar').style.width = `0%`;
+            document.getElementById('dl-speed').innerText = '0 KB/s';
+            document.getElementById('dl-peers').innerText = '0 / 142';
+            document.getElementById('dl-eta').innerText = '--';
+            document.getElementById('dl-start-btn').innerHTML = '<i class="fa-solid fa-play mr-1"></i> Start Download Simulation';
+            document.getElementById('dl-start-btn').disabled = false;
+            generatePiecesGrid();
+            showToast("Simulator download states cleared.");
+        }
+
+        // WebSeed Player Logic
+        function playMockEpisode(epNum, title) {
+            const selectEl = document.getElementById('player-episode-select');
+            selectEl.value = epNum;
+            document.getElementById('player-episode-tag').innerText = `Winnie S04E0${epNum}`;
+            showToast(`Loading WebSeed Stream: Episode 0${epNum} - ${title}`);
+            
+            // Highlight player
+            const playerBox = document.getElementById('player-animation-box');
+            playerBox.classList.add('ring-2', 'ring-yellow-400');
+            setTimeout(() => {
+                playerBox.classList.remove('ring-2', 'ring-yellow-400');
+            }, 1000);
+        }
+
+        function onEpisodeSelectChange() {
+            const selectEl = document.getElementById('player-episode-select');
+            const epNum = selectEl.value;
+            const options = selectEl.options;
+            const title = options[selectEl.selectedIndex].text;
+            playMockEpisode(epNum, title);
+        }
+
+        function togglePlayback() {
+            isPlaying = !isPlaying;
+            const playBtn = document.getElementById('player-play-btn');
+            const character = document.getElementById('pooh-svg-character');
+
+            if (isPlaying) {
+                playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+                character.style.animationPlayState = 'running';
+                showToast("Stream resumed.");
+            } else {
+                playBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+                character.style.animationPlayState = 'paused';
+                showToast("Stream paused.");
+            }
+        }
+
+        function setAudioStream(lang) {
+            activeAudio = lang;
+            const enBtn = document.getElementById('audio-en-btn');
+            const esBtn = document.getElementById('audio-es-btn');
+
+            if (lang === 'en') {
+                enBtn.className = "bg-yellow-500 text-slate-950 font-semibold px-2.5 py-1 rounded text-[10px] transition-colors";
+                esBtn.className = "bg-slate-950 hover:bg-slate-800 text-slate-300 px-2.5 py-1 rounded text-[10px] border border-slate-800 transition-colors";
+                showToast("Audio track switched to: English Dolby Digital Plus 2.0");
+            } else {
+                esBtn.className = "bg-yellow-500 text-slate-950 font-semibold px-2.5 py-1 rounded text-[10px] transition-colors";
+                enBtn.className = "bg-slate-950 hover:bg-slate-800 text-slate-300 px-2.5 py-1 rounded text-[10px] border border-slate-800 transition-colors";
+                showToast("Audio track switched to: Spanish (es-MX) AAC 2.0");
+            }
+        }
+
+        // Custom Animation Loop inside Video Player
+        function startPlayerCharacterAnimation() {
+            const character = document.getElementById('pooh-svg-character');
+            let position = 0;
+            let direction = 1;
+
+            setInterval(() => {
+                if (!isPlaying) return;
+                
+                // Bounce up and down slightly
+                position += 0.8 * direction;
+                if (position > 10 || position < -10) {
+                    direction *= -1;
+                }
+                character.style.transform = `translateY(${position}px)`;
+            }, 50);
+
+            // Mock Time ticking
+            let seconds = 105;
+            setInterval(() => {
+                if (!isPlaying) return;
+                seconds++;
+                const mins = Math.floor(seconds / 60);
+                const secs = seconds % 60;
+                document.getElementById('player-time').innerText = `0${mins}:${secs < 10 ? '0' : ''}${secs} / 23:14`;
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
