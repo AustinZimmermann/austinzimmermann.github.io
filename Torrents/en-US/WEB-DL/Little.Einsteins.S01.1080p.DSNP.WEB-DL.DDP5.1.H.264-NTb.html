@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AetherBytes | Little Einsteins Season 1 WEB-DL</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #0b0f19;
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(31, 41, 234, 0.08) 0px, transparent 50%),
+        radial-gradient(at 50% 0%, rgba(147, 51, 234, 0.05) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.05) 0px, transparent 50%);
+      background-attachment: fixed;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.3);
+      border-radius: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: rgba(147, 51, 234, 0.4);
+      border-radius: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: rgba(147, 51, 234, 0.6);
+    }
+    .glass-panel {
+      background: rgba(17, 24, 39, 0.7);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .glow-purple:hover {
+      box-shadow: 0 0 20px rgba(168, 85, 247, 0.25);
+    }
+  </style>
+</head>
+<body class="text-slate-200 min-h-screen relative overflow-x-hidden antialiased selection:bg-purple-600 selection:text-white pb-12">
+
+  <!-- Toast Notification System -->
+  <div id="toast-container" class="fixed top-6 right-6 z-50 flex flex-col gap-3 pointer-events-none"></div>
+
+  <!-- Header Navigation -->
+  <header class="border-b border-slate-800/80 sticky top-0 z-40 bg-[#0b0f19]/80 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+      
+      <!-- Brand Logo -->
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-600 via-indigo-600 to-blue-500 flex items-center justify-center shadow-lg shadow-purple-900/30">
+          <i data-lucide="activity" class="w-5 h-5 text-white animate-pulse"></i>
+        </div>
+        <div>
+          <span class="font-extrabold text-xl tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">AETHER<span class="text-purple-500">BYTES</span></span>
+          <span class="hidden sm:inline-block ml-2 px-1.5 py-0.5 text-[10px] uppercase font-bold tracking-wider bg-purple-500/15 text-purple-400 rounded-md border border-purple-500/20">Private Tracker</span>
+        </div>
+      </div>
+
+      <!-- Quick Search bar -->
+      <div class="hidden md:flex flex-1 max-w-lg relative">
+        <div class="absolute inset-y-0 left-3 flex items-center pointer-events-none text-slate-500">
+          <i data-lucide="search" class="w-4 h-4"></i>
+        </div>
+        <input type="text" placeholder="Search 8.4M active torrents, titles, IMDB, hash..." class="w-full pl-10 pr-4 py-1.5 bg-slate-950/60 rounded-lg text-sm border border-slate-800 focus:outline-none focus:border-purple-500 transition-colors focus:ring-1 focus:ring-purple-500 text-slate-300">
+      </div>
+
+      <!-- User Stats & Navigation -->
+      <div class="flex items-center gap-4">
+        <!-- Ratios Badge -->
+        <div class="hidden lg:flex items-center gap-3 text-xs bg-slate-900/80 border border-slate-800 px-3 py-1.5 rounded-lg">
+          <div class="flex items-center gap-1.5 text-emerald-400">
+            <i data-lucide="arrow-up-circle" class="w-3.5 h-3.5"></i>
+            <span>Up: <strong class="font-semibold text-slate-100">4.12 TB</strong></span>
+          </div>
+          <div class="w-px h-3.5 bg-slate-800"></div>
+          <div class="flex items-center gap-1.5 text-rose-400">
+            <i data-lucide="arrow-down-circle" class="w-3.5 h-3.5"></i>
+            <span>Down: <strong class="font-semibold text-slate-100">1.22 TB</strong></span>
+          </div>
+          <div class="w-px h-3.5 bg-slate-800"></div>
+          <div class="flex items-center gap-1 text-purple-400">
+            <span>Ratio: <strong class="font-bold text-emerald-400">3.37</strong></span>
+          </div>
+        </div>
+
+        <!-- User profile icon -->
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-full bg-slate-800 border-2 border-purple-500 flex items-center justify-center text-xs font-bold text-purple-300 shadow">
+            EL
+          </div>
+          <span class="hidden sm:inline text-xs font-semibold text-slate-400">Einstein_Lover</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
+    
+    <!-- Torrent Title Header Panel -->
+    <div class="glass-panel rounded-2xl p-6 mb-6">
+      <div class="flex flex-col md:flex-row md:items-start justify-between gap-6">
+        
+        <!-- Main Info -->
+        <div class="space-y-3">
+          <!-- Category Tags -->
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="px-2.5 py-1 rounded-md text-xs font-bold bg-blue-500/15 text-blue-400 border border-blue-500/25 uppercase tracking-wide">TV Series</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-bold bg-purple-500/15 text-purple-400 border border-purple-500/25 uppercase tracking-wide">1080p WEB-DL</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-bold bg-teal-500/15 text-teal-400 border border-teal-500/25 uppercase tracking-wide">H.264</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-bold bg-emerald-500/15 text-emerald-400 border border-emerald-500/25 uppercase tracking-wide">DDP 5.1</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-bold bg-slate-800 text-slate-400 border border-slate-700 uppercase tracking-wide">NTb Release</span>
+          </div>
+
+          <!-- Title -->
+          <h1 class="text-xl sm:text-2xl md:text-3xl font-extrabold tracking-tight text-white leading-tight">
+            Little.Einsteins.S01.1080p.DSNP.WEB-DL.DDP5.1.H.264-NTb
+          </h1>
+
+          <!-- Meta Info List -->
+          <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-slate-400">
+            <span class="flex items-center gap-1.5"><i data-lucide="clock" class="w-3.5 h-3.5 text-purple-400"></i> Added: <strong class="text-slate-300">May 11, 2026 (11 days ago)</strong></span>
+            <span class="flex items-center gap-1.5"><i data-lucide="database" class="w-3.5 h-3.5 text-purple-400"></i> Size: <strong class="text-slate-300">22.42 GB</strong></span>
+            <span class="flex items-center gap-1.5"><i data-lucide="users" class="w-3.5 h-3.5 text-purple-400"></i> Info Hash: <code class="bg-slate-950 px-1.5 py-0.5 rounded text-rose-400 font-mono text-[11px]">89c9e8316dfa99b45b41000fbc982056aeef0e6d</code></span>
+          </div>
+        </div>
+
+        <!-- Call to Action Buttons -->
+        <div class="flex flex-wrap sm:flex-nowrap gap-3 self-center md:self-start w-full md:w-auto">
+          <!-- Download Torrent -->
+          <button onclick="triggerDownload()" class="flex-1 sm:flex-initial flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold px-5 py-3 rounded-xl transition-all shadow-lg shadow-purple-950/40 shrink-0 select-none glow-purple active:scale-95">
+            <i data-lucide="download" class="w-5 h-5"></i>
+            <span>Download .torrent</span>
+          </button>
+          
+          <!-- Copy Magnet -->
+          <button onclick="copyMagnet()" class="flex-1 sm:flex-initial flex items-center justify-center gap-2 bg-slate-900 border border-slate-700/80 hover:bg-slate-800 text-slate-100 font-bold px-4 py-3 rounded-xl transition-all shrink-0 active:scale-95">
+            <i data-lucide="magnet" class="w-4 h-4 text-red-500"></i>
+            <span>Copy Magnet</span>
+          </button>
+
+          <!-- Bookmark -->
+          <button id="btn-bookmark" onclick="toggleBookmark()" class="p-3 bg-slate-900 border border-slate-700/80 hover:bg-slate-800 rounded-xl text-slate-400 hover:text-yellow-400 transition-colors">
+            <i data-lucide="bookmark" class="w-5 h-5"></i>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Quick Summary Torrent Health bar -->
+      <div class="mt-6 pt-6 border-t border-slate-800/80 grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-4">
+        <div class="bg-slate-950/40 border border-slate-900 p-3 rounded-xl text-center">
+          <span class="block text-[10px] text-slate-500 font-bold uppercase tracking-wider mb-1">Seeders</span>
+          <span class="text-xl font-extrabold text-emerald-400 flex items-center justify-center gap-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+            142
+          </span>
+        </div>
+        <div class="bg-slate-950/40 border border-slate-900 p-3 rounded-xl text-center">
+          <span class="block text-[10px] text-slate-500 font-bold uppercase tracking-wider mb-1">Leechers</span>
+          <span class="text-xl font-extrabold text-red-400 flex items-center justify-center gap-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-red-500"></span>
+            12
+          </span>
+        </div>
+        <div class="bg-slate-950/40 border border-slate-900 p-3 rounded-xl text-center">
+          <span class="block text-[10px] text-slate-500 font-bold uppercase tracking-wider mb-1">Snatchers</span>
+          <span class="text-xl font-extrabold text-blue-400 flex items-center justify-center gap-1.5">
+            <i data-lucide="check" class="w-4 h-4 text-blue-400"></i>
+            1,439
+          </span>
+        </div>
+        <div class="bg-slate-950/40 border border-slate-900 p-3 rounded-xl text-center">
+          <span class="block text-[10px] text-slate-500 font-bold uppercase tracking-wider mb-1">Health Metric</span>
+          <span class="text-xl font-extrabold text-purple-400 flex items-center justify-center gap-1">
+            98.5%
+          </span>
+        </div>
+        <div class="hidden md:block bg-slate-950/40 border border-slate-900 p-3 rounded-xl text-center col-span-1">
+          <span class="block text-[10px] text-slate-500 font-bold uppercase tracking-wider mb-1">Checked By</span>
+          <span class="text-xs font-semibold text-amber-400 flex items-center justify-center gap-1 mt-1">
+            <i data-lucide="shield-check" class="w-4 h-4"></i> Verified Mod
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Columns Layout: Left Content, Right Information panel -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      
+      <!-- Left 2-Cols: Details, Files Explorer, MediaInfo, Comments -->
+      <div class="lg:col-span-2 space-y-6">
+
+        <!-- Active Mock Downloader Section (Visible only during simulated download) -->
+        <div id="mock-download-pnl" class="hidden glass-panel border border-purple-500/30 rounded-2xl p-6 relative overflow-hidden bg-gradient-to-r from-slate-950/90 via-[#131227] to-slate-950/90">
+          <div class="absolute -right-12 -top-12 w-32 h-32 bg-purple-600/10 rounded-full blur-2xl"></div>
+          <div class="flex items-start justify-between mb-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 bg-purple-600/20 text-purple-400 rounded-lg flex items-center justify-center">
+                <i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-white text-sm">Interactive Client Sandbox</h3>
+                <p class="text-[11px] text-slate-400">Simulating .torrent extraction &amp; network cache</p>
+              </div>
+            </div>
+            <button onclick="closeDownloadPanel()" class="text-slate-500 hover:text-slate-300 text-xs">
+              <i data-lucide="x" class="w-4 h-4"></i>
+            </button>
+          </div>
+          
+          <!-- Download Status Details -->
+          <div id="dl-status-txt" class="text-xs font-mono text-purple-300 bg-slate-950/80 p-3 rounded-lg border border-slate-800 max-h-32 overflow-y-auto mb-4 custom-scrollbar">
+            [SYS_OK] Initializing download simulator...<br>
+            [CONNECTING] Connecting to 4 trackers...<br>
+          </div>
+
+          <!-- Progress Bar -->
+          <div class="space-y-1.5">
+            <div class="flex justify-between text-xs font-semibold">
+              <span id="dl-progress-title" class="text-slate-300">Fetching File Dictionary...</span>
+              <span id="dl-percentage" class="text-purple-400 font-mono">0%</span>
+            </div>
+            <div class="w-full bg-slate-900 rounded-full h-2.5 overflow-hidden border border-slate-800">
+              <div id="dl-progress-bar" class="bg-gradient-to-r from-purple-500 to-emerald-400 h-full w-0 transition-all duration-300"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Descriptive Section & Artwork -->
+        <div class="glass-panel rounded-2xl p-6">
+          <h2 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+            <i data-lucide="file-text" class="w-5 h-5 text-purple-400"></i> Release Description
+          </h2>
+          
+          <!-- Description Content -->
+          <div class="space-y-4 text-sm text-slate-300 leading-relaxed">
+            <p>
+              This is the complete <strong>Season 1 of <em>Disney’s Little Einsteins</em></strong>, compiled in premium quality. Ripped directly from the Disney+ service using professional WEB-DL techniques. Every episode is encoded into high-quality MKV containers using <code class="bg-slate-950 text-purple-300 px-1 py-0.5 rounded text-xs font-mono">x264</code>, featuring standard original <code class="bg-slate-950 text-purple-300 px-1 py-0.5 rounded text-xs font-mono">Dolby Digital Plus 5.1 (DDP 5.1)</code> audio encoding alongside comprehensive en-US subtitles.
+            </p>
+            <p class="bg-purple-950/20 border border-purple-900/40 p-3.5 rounded-xl text-slate-300 text-xs">
+              <strong>Educational Concept:</strong> Little Einsteins introduces preschoolers to classical art masterpieces and classical music compositions. Join Leo, June, Quincy, Annie, and Rocket on their exciting musical adventures across the globe!
+            </p>
+          </div>
+
+          <!-- Specifications Grid -->
+          <div class="mt-6 pt-6 border-t border-slate-800/80 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-xs">
+            <div class="space-y-1">
+              <span class="text-slate-500 font-semibold block">Format / Container</span>
+              <span class="text-slate-200 font-mono">Matroska (.mkv)</span>
+            </div>
+            <div class="space-y-1">
+              <span class="text-slate-500 font-semibold block">Video Stream</span>
+              <span class="text-slate-200 font-mono">H.264 / AVC @ 5,450 kbps</span>
+            </div>
+            <div class="space-y-1">
+              <span class="text-slate-500 font-semibold block">Resolution / Framerate</span>
+              <span class="text-slate-200 font-mono">1920x1080 @ 23.976 fps</span>
+            </div>
+            <div class="space-y-1">
+              <span class="text-slate-500 font-semibold block">Audio Track</span>
+              <span class="text-slate-200 font-mono">English E-AC-3 5.1 (448 kbps)</span>
+            </div>
+            <div class="space-y-1">
+              <span class="text-slate-500 font-semibold block">Subtitles Available</span>
+              <span class="text-slate-200 font-mono">English (SDH), Spanish, French</span>
+            </div>
+            <div class="space-y-1">
+              <span class="text-slate-500 font-semibold block">Original Provider</span>
+              <span class="text-purple-400 font-semibold">Disney+ (Web Rip - NTb Group)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Files Explorer Component (With interactive size adjustments) -->
+        <div class="glass-panel rounded-2xl p-6">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
+            <div class="space-y-1">
+              <h2 class="text-lg font-bold text-white flex items-center gap-2">
+                <i data-lucide="folder-tree" class="w-5 h-5 text-purple-400"></i> File Browser
+              </h2>
+              <p class="text-xs text-slate-400">Check or uncheck files to dynamically recalculate select sizes</p>
+            </div>
+            
+            <!-- Selector controls -->
+            <div class="flex items-center gap-2 self-start sm:self-center">
+              <button onclick="selectAllFiles(true)" class="px-2.5 py-1 text-[11px] font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 rounded transition-colors">Select All</button>
+              <button onclick="selectAllFiles(false)" class="px-2.5 py-1 text-[11px] font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 rounded transition-colors">Deselect All</button>
+            </div>
+          </div>
+
+          <!-- Total size calculator badge -->
+          <div class="flex justify-between items-center bg-slate-950/80 p-3 rounded-xl border border-slate-900 mb-4 text-xs">
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-indigo-500"></span>
+              <span class="text-slate-400">Selected Payload Size:</span>
+            </div>
+            <div>
+              <span id="selected-size-val" class="text-indigo-400 font-bold font-mono text-sm">22.42 GB</span>
+              <span class="text-slate-600 font-mono"> / 22.42 GB</span>
+            </div>
+          </div>
+
+          <!-- File List Body -->
+          <div class="max-h-96 overflow-y-auto custom-scrollbar border border-slate-800/80 rounded-xl divide-y divide-slate-800 bg-slate-950/40">
+            <!-- Root Folder Title row -->
+            <div class="p-3 bg-slate-900/60 flex items-center justify-between text-xs font-bold text-slate-300">
+              <div class="flex items-center gap-2">
+                <i data-lucide="folder" class="w-4 h-4 text-amber-500 fill-amber-500/10"></i>
+                <span>Little.Einsteins.S01.1080p.DSNP.WEB-DL.DDP5.1.H.264-NTb/</span>
+              </div>
+              <span class="font-mono text-slate-500">28 Files</span>
+            </div>
+
+            <!-- Individual Files Tree (28 Episodes) -->
+            <div id="file-list-container" class="divide-y divide-slate-900 text-xs">
+              <!-- Rendered Dynamically in JS with accurate episode titles and sizes -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Technical MediaInfo (Collapsible Panel) -->
+        <div class="glass-panel rounded-2xl p-6">
+          <button onclick="toggleCollapse('mediainfo-box')" class="w-full flex items-center justify-between font-bold text-white text-left focus:outline-none">
+            <span class="flex items-center gap-2 text-lg">
+              <i data-lucide="binary" class="w-5 h-5 text-purple-400"></i> Full MediaInfo Raw File
+            </span>
+            <span id="mediainfo-chevron" class="text-slate-400 transition-transform">
+              <i data-lucide="chevron-down" class="w-5 h-5"></i>
+            </span>
+          </button>
+          
+          <div id="mediainfo-box" class="hidden mt-4 space-y-3 transition-all">
+            <div class="relative bg-slate-950 rounded-xl border border-slate-900 p-4 font-mono text-[11px] text-slate-300 overflow-x-auto custom-scrollbar">
+              <div class="absolute right-3 top-3">
+                <button onclick="copyRawMediaInfo()" class="p-1.5 bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-400 hover:text-white rounded transition-colors" title="Copy Raw MediaInfo">
+                  <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+              <pre id="mediainfo-pre" class="leading-relaxed">General
+Unique ID                      : 184511204481005124018933220491823101155 (0x8AFDF6FA22B104F5C0B3E8C1039ACEE3)
+Complete name                  : Little.Einsteins.S01E01.Ring.Around.the.Planet.1080p.DSNP.WEB-DL.DDP5.1.H.264-NTb.mkv
+Format                         : Matroska
+Format version                 : Version 4
+File size                      : 814 MiB
+Duration                       : 24 min 12 s
+Overall bit rate               : 4 702 kb/s
+Encoded date                   : UTC 2026-05-11 14:22:15
+Writing application            : mkvmerge v59.0.0 ('Sundance') 64-bit
+Writing library                : libebml v1.4.2 + libmatroska v1.6.4
+
+Video
+ID                             : 1
+Format                         : AVC
+Format/Info                    : Advanced Video Codec
+Format profile                 : High@L4
+Format settings, CABAC         : Yes
+Format settings, ReFrames      : 4 frames
+Codec ID                       : V_MPEG4/ISO/AVC
+Duration                       : 24 min 12 s
+Bit rate                       : 4 212 kb/s
+Width                          : 1 920 pixels
+Height                         : 1 080 pixels
+Display aspect ratio           : 16:9
+Frame rate mode                : Constant
+Frame rate                     : 23.976 fps
+Color space                    : YUV
+Chroma subsampling             : 4:2:0
+Bit depth                      : 8 bits
+Scan type                      : Progressive
+Bits/(Pixel*Frame)             : 0.085
+Stream size                    : 727 MiB (89%)
+
+Audio
+ID                             : 2
+Format                         : E-AC-3
+Format/Info                    : Enhanced Audio Coding 3
+Commercial name                : Dolby Digital Plus
+Codec ID                       : A_EAC3
+Duration                       : 24 min 12 s
+Bit rate mode                  : Constant
+Bit rate                       : 448 kb/s
+Channel(s)                     : 6 channels
+Channel layout                 : L R C Lfe Ls Rs
+Sampling rate                  : 48.0 kHz
+Language                       : English
+Service kind                   : Complete Main
+
+Text #1
+ID                             : 3
+Format                         : UTF-8
+Codec ID                       : S_TEXT/UTF8
+Language                       : English (SDH)
+
+Text #2
+ID                             : 4
+Format                         : UTF-8
+Codec ID                       : S_TEXT/UTF8
+Language                       : Spanish</pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Screenshots Carousel Panel -->
+        <div class="glass-panel rounded-2xl p-6">
+          <h2 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+            <i data-lucide="image" class="w-5 h-5 text-purple-400"></i> Video Frame Screenshots
+          </h2>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            
+            <!-- Screenshot 1 -->
+            <div onclick="openLightbox('frame-1')" class="group relative aspect-video rounded-xl bg-slate-950 border border-slate-800/80 overflow-hidden cursor-zoom-in">
+              <!-- Nice SVG mock illustration of an animation landscape -->
+              <svg class="w-full h-full text-slate-800" viewBox="0 0 100 60" preserveAspectRatio="none">
+                <rect width="100" height="60" fill="#0c1020" />
+                <circle cx="50" cy="30" r="18" fill="#1e1b4b" />
+                <polygon points="10,60 40,30 60,60" fill="#312e81" opacity="0.6"/>
+                <polygon points="40,60 70,20 100,60" fill="#312e81" opacity="0.8"/>
+                <circle cx="50" cy="30" r="4" fill="#a855f7" />
+              </svg>
+              <div class="absolute inset-0 bg-slate-950/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all duration-300">
+                <i data-lucide="eye" class="w-6 h-6 text-white scale-75 group-hover:scale-100 transition-all"></i>
+              </div>
+              <span class="absolute bottom-2 left-2 px-1.5 py-0.5 rounded bg-black/75 text-[10px] text-slate-400 font-mono">Frame_01_Rocket_S01.png</span>
+            </div>
+
+            <!-- Screenshot 2 -->
+            <div onclick="openLightbox('frame-2')" class="group relative aspect-video rounded-xl bg-slate-950 border border-slate-800/80 overflow-hidden cursor-zoom-in">
+              <svg class="w-full h-full text-slate-800" viewBox="0 0 100 60" preserveAspectRatio="none">
+                <rect width="100" height="60" fill="#08101a" />
+                <path d="M 0,30 Q 25,10 50,30 T 100,30 L 100,60 L 0,60 Z" fill="#0f2b3e" />
+                <path d="M 0,40 Q 30,20 70,45 T 100,40 L 100,60 L 0,60 Z" fill="#164e63" opacity="0.7"/>
+                <circle cx="20" cy="15" r="3" fill="#facc15" />
+                <line x1="15" y1="15" x2="25" y2="15" stroke="#facc15" stroke-width="0.5"/>
+              </svg>
+              <div class="absolute inset-0 bg-slate-950/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all duration-300">
+                <i data-lucide="eye" class="w-6 h-6 text-white scale-75 group-hover:scale-100 transition-all"></i>
+              </div>
+              <span class="absolute bottom-2 left-2 px-1.5 py-0.5 rounded bg-black/75 text-[10px] text-slate-400 font-mono">Frame_02_Leo_Conducting.png</span>
+            </div>
+
+            <!-- Screenshot 3 -->
+            <div onclick="openLightbox('frame-3')" class="group relative aspect-video rounded-xl bg-slate-950 border border-slate-800/80 overflow-hidden cursor-zoom-in">
+              <svg class="w-full h-full text-slate-800" viewBox="0 0 100 60" preserveAspectRatio="none">
+                <rect width="100" height="60" fill="#11051c" />
+                <circle cx="80" cy="15" r="6" fill="#f43f5e" opacity="0.8"/>
+                <circle cx="76" cy="12" r="2" fill="#fff" />
+                <circle cx="25" cy="35" r="10" fill="#3b0764" />
+                <circle cx="30" cy="35" r="8" fill="#4c0519" opacity="0.6"/>
+              </svg>
+              <div class="absolute inset-0 bg-slate-950/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all duration-300">
+                <i data-lucide="eye" class="w-6 h-6 text-white scale-75 group-hover:scale-100 transition-all"></i>
+              </div>
+              <span class="absolute bottom-2 left-2 px-1.5 py-0.5 rounded bg-black/75 text-[10px] text-slate-400 font-mono">Frame_03_Pyramid_Art.png</span>
+            </div>
+
+            <!-- Screenshot 4 -->
+            <div onclick="openLightbox('frame-4')" class="group relative aspect-video rounded-xl bg-slate-950 border border-slate-800/80 overflow-hidden cursor-zoom-in">
+              <svg class="w-full h-full text-slate-800" viewBox="0 0 100 60" preserveAspectRatio="none">
+                <rect width="100" height="60" fill="#04140c" />
+                <path d="M10,10 C30,30 50,10 90,50" stroke="#059669" stroke-width="2" fill="none"/>
+                <rect x="15" y="40" width="10" height="15" fill="#065f46" />
+                <circle cx="50" cy="15" r="3" fill="#fbbf24" />
+              </svg>
+              <div class="absolute inset-0 bg-slate-950/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all duration-300">
+                <i data-lucide="eye" class="w-6 h-6 text-white scale-75 group-hover:scale-100 transition-all"></i>
+              </div>
+              <span class="absolute bottom-2 left-2 px-1.5 py-0.5 rounded bg-black/75 text-[10px] text-slate-400 font-mono">Frame_04_VanGogh_Recital.png</span>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Interactive Peer Reviews & Comments Section -->
+        <div class="glass-panel rounded-2xl p-6">
+          <h2 class="text-lg font-bold text-white mb-6 flex items-center justify-between">
+            <span class="flex items-center gap-2">
+              <i data-lucide="messages-square" class="w-5 h-5 text-purple-400"></i> Peer Comments &amp; Feedback
+            </span>
+            <span class="text-xs font-semibold px-2 py-1 rounded bg-slate-950 text-slate-400 border border-slate-900">4 Active Threads</span>
+          </h2>
+
+          <!-- Comments Feed wrapper -->
+          <div id="comments-feed" class="space-y-6">
+            <!-- Comment 1 -->
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-indigo-800 flex items-center justify-center text-white font-extrabold text-xs shrink-0 shadow">
+                HD
+              </div>
+              <div class="flex-1 space-y-2">
+                <div class="flex flex-wrap items-center justify-between gap-1">
+                  <div class="flex items-center gap-2">
+                    <span class="font-bold text-sm text-slate-100">HD_Collector</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded font-bold uppercase bg-amber-500/10 text-amber-400 border border-amber-500/15">Seeder VIP</span>
+                  </div>
+                  <span class="text-[11px] text-slate-500">2 days ago</span>
+                </div>
+                <p class="text-xs sm:text-sm text-slate-300 bg-slate-950/40 p-3.5 rounded-xl border border-slate-900/60 leading-relaxed">
+                  Excellent capture! The quality of this web-dl is fantastic. It's so hard to find high-bitrate encodes of classic preschool animations. The Dolby 5.1 tracks sound perfect on my home theater. Thanks for uploading this full package!
+                </p>
+                <div class="flex items-center gap-4 text-xs text-slate-500 pl-1">
+                  <button class="flex items-center gap-1 hover:text-purple-400 transition-colors"><i data-lucide="thumbs-up" class="w-3.5 h-3.5"></i> 24</button>
+                  <button class="flex items-center gap-1 hover:text-rose-400 transition-colors"><i data-lucide="thumbs-down" class="w-3.5 h-3.5"></i> 0</button>
+                  <span class="text-slate-700">|</span>
+                  <button class="hover:underline hover:text-slate-300">Reply</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Comment 2 -->
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-teal-500 to-teal-800 flex items-center justify-center text-white font-extrabold text-xs shrink-0 shadow">
+                MR
+              </div>
+              <div class="flex-1 space-y-2">
+                <div class="flex flex-wrap items-center justify-between gap-1">
+                  <div class="flex items-center gap-2">
+                    <span class="font-bold text-sm text-slate-100">MelodyRider</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded font-bold uppercase bg-purple-500/10 text-purple-400 border border-purple-500/15">Uploader</span>
+                  </div>
+                  <span class="text-[11px] text-slate-500">5 days ago</span>
+                </div>
+                <p class="text-xs sm:text-sm text-slate-300 bg-slate-950/40 p-3.5 rounded-xl border border-slate-900/60 leading-relaxed">
+                  To anyone downloading: Remember to stay on seed! I'll be seeding with my 10 Gbps gigabit slot, but we need long term keepers. Enjoy the nostalgia--the classical music arrangements here are superb.
+                </p>
+                <div class="flex items-center gap-4 text-xs text-slate-500 pl-1">
+                  <button class="flex items-center gap-1 hover:text-purple-400 transition-colors"><i data-lucide="thumbs-up" class="w-3.5 h-3.5"></i> 41</button>
+                  <button class="flex items-center gap-1 hover:text-rose-400 transition-colors"><i data-lucide="thumbs-down" class="w-3.5 h-3.5"></i> 1</button>
+                  <span class="text-slate-700">|</span>
+                  <button class="hover:underline hover:text-slate-300">Reply</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Post New Comment Section -->
+          <div class="mt-8 pt-6 border-t border-slate-800/80">
+            <h3 class="text-sm font-bold text-white mb-3 flex items-center gap-2">
+              <i data-lucide="pen-square" class="w-4 h-4 text-purple-400"></i> Add Your Review / Comment
+            </h3>
+            
+            <div class="space-y-4">
+              <textarea id="comment-textarea" placeholder="Type your review, feedback on quality, audio/video synchronization, or seed status here..." class="w-full h-28 bg-slate-950/60 p-4 border border-slate-800 rounded-xl focus:outline-none focus:border-purple-500 transition-colors text-slate-300 text-sm focus:ring-1 focus:ring-purple-500 placeholder-slate-600 custom-scrollbar"></textarea>
+              
+              <div class="flex justify-between items-center">
+                <div class="text-[11px] text-slate-500">
+                  Please keep reviews constructive. Respect the upload rules.
+                </div>
+                <button onclick="postComment()" class="px-5 py-2.5 bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold rounded-xl transition-all shadow-md active:scale-95">
+                  Post Comment
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Right 1-Col: Media Sidebar details & Tracker information -->
+      <div class="space-y-6">
+
+        <!-- Series Poster Art Illustration -->
+        <div class="glass-panel rounded-2xl p-5 text-center overflow-hidden relative group">
+          
+          <!-- Poster Top Badge -->
+          <div class="absolute top-4 left-4 z-10 bg-black/75 border border-slate-800 px-2 py-0.5 rounded text-[10px] text-slate-300 font-bold uppercase tracking-wider">
+            Disney+ Exclusive
+          </div>
+
+          <!-- Clean Thematic SVG Art mimicking the show theme -->
+          <div class="w-full aspect-[2/3] bg-[#0c1328] rounded-xl relative overflow-hidden flex flex-col items-center justify-between p-6 border border-slate-800">
+            <!-- Background space constellations -->
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_#1e1b4b_0%,_#090514_100%)]"></div>
+            
+            <!-- Abstract vector representation of the ship "Rocket" and music waves -->
+            <div class="relative w-full h-full flex flex-col justify-between z-10">
+              
+              <!-- Sky and Music Waves -->
+              <div class="w-full h-1/3 flex flex-col items-center justify-center space-y-1">
+                <svg class="w-32 h-10 text-slate-500 opacity-60" viewBox="0 0 100 30" fill="none">
+                  <!-- Musical G-Clef vector concept -->
+                  <path d="M10,25 Q30,5 50,25 T90,25" stroke="rgba(168, 85, 247, 0.4)" stroke-width="2" stroke-dasharray="4 2"/>
+                  <path d="M5,15 Q35,5 65,15 T95,15" stroke="rgba(59, 130, 246, 0.4)" stroke-width="1.5"/>
+                </svg>
+                <span class="text-[10px] font-extrabold tracking-widest text-purple-400 uppercase">WE'RE GOING ON A MISSION!</span>
+              </div>
+
+              <!-- Main Red Rocket Ship Graphic -->
+              <div class="w-full h-1/3 flex items-center justify-center relative py-6">
+                <!-- Custom SVG design of the "Rocket" -->
+                <svg class="w-40 h-24 filter drop-shadow-[0_8px_16px_rgba(239,68,68,0.3)]" viewBox="0 0 120 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Rocket Body (Red oval) -->
+                  <path d="M15,30 C15,12 45,6 85,20 C100,25 110,30 110,30 C110,30 100,35 85,40 C45,48 15,48 15,30 Z" fill="#ef4444" />
+                  <!-- Yellow Trim -->
+                  <path d="M35,16 C55,18 75,25 85,30 C75,35 55,42 35,44 C32,40 32,20 35,16 Z" fill="#facc15" />
+                  <!-- Windows (Large glass bubble dome) -->
+                  <path d="M50,18 C65,18 75,25 75,30 C75,35 65,42 50,42 C45,35 45,25 50,18 Z" fill="#38bdf8" stroke="#1e293b" stroke-width="1.5" />
+                  <ellipse cx="60" cy="30" rx="6" ry="8" fill="#e0f2fe" opacity="0.8"/>
+                  <!-- Boosters / Headlights -->
+                  <circle cx="20" cy="20" r="5" fill="#f87171" />
+                  <circle cx="20" cy="40" r="5" fill="#f87171" />
+                  <!-- Rocket Jet Engine Flame trail -->
+                  <path d="M15,26 L0,20 L10,30 L0,40 L15,34 Z" fill="#f97316" />
+                </svg>
+              </div>
+
+              <!-- Typography & Branding Footer inside art -->
+              <div class="w-full text-center space-y-1 mt-auto">
+                <h2 class="text-xl font-extrabold tracking-wider text-white uppercase drop-shadow">LITTLE EINSTEINS</h2>
+                <div class="h-1.5 w-12 bg-purple-500 mx-auto rounded"></div>
+                <p class="text-[10px] text-slate-400 font-bold tracking-wider mt-1">THE COMPLETE SEASON 1</p>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- Poster Quick Stats -->
+          <div class="mt-4 grid grid-cols-3 gap-2 text-center text-xs divide-x divide-slate-800">
+            <div>
+              <span class="block text-[10px] text-slate-500 font-semibold uppercase">Rating</span>
+              <span class="text-slate-200 font-bold">TV-Y</span>
+            </div>
+            <div>
+              <span class="block text-[10px] text-slate-500 font-semibold uppercase">Released</span>
+              <span class="text-slate-200 font-bold">2005</span>
+            </div>
+            <div>
+              <span class="block text-[10px] text-slate-500 font-semibold uppercase">Studio</span>
+              <span class="text-slate-200 font-bold">Disney</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Metadata & Synopsis Panel -->
+        <div class="glass-panel rounded-2xl p-6">
+          <h2 class="text-sm font-bold text-white uppercase tracking-wider mb-4 pb-2 border-b border-slate-800/80">
+            Show Information
+          </h2>
+          
+          <div class="space-y-4 text-xs">
+            <div class="space-y-1">
+              <span class="text-slate-500 font-semibold block uppercase">Synopsis</span>
+              <p class="text-slate-300 leading-relaxed text-[11px]">
+                <i>Little Einsteins</i> features an interactive cartoon format where four children (Leo, June, Quincy, Annie) fly around the world in their companion ship Rocket. They resolve puzzles and missions utilizing world-famous classic arts, landmarks, and compositions of legendary musicians like Mozart, Beethoven, Bach, and Vivaldi.
+              </p>
+            </div>
+
+            <div class="space-y-1.5">
+              <span class="text-slate-500 font-semibold block uppercase">Starring Voices</span>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="bg-slate-900 border border-slate-800 px-2 py-1 rounded text-slate-300">Jesse Schwartz (Leo)</span>
+                <span class="bg-slate-900 border border-slate-800 px-2 py-1 rounded text-slate-300">Natalia Wojcik (June)</span>
+                <span class="bg-slate-900 border border-slate-800 px-2 py-1 rounded text-slate-300">Aiden Pompey (Quincy)</span>
+                <span class="bg-slate-900 border border-slate-800 px-2 py-1 rounded text-slate-300">Erica Huang (Annie)</span>
+              </div>
+            </div>
+
+            <div class="space-y-1.5">
+              <span class="text-slate-500 font-semibold block uppercase">Genres / Tags</span>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="bg-slate-900 text-blue-400 border border-blue-900 px-2 py-0.5 rounded-full">Educational</span>
+                <span class="bg-slate-900 text-purple-400 border border-purple-900 px-2 py-0.5 rounded-full">Musical</span>
+                <span class="bg-slate-900 text-indigo-400 border border-indigo-900 px-2 py-0.5 rounded-full">Adventure</span>
+                <span class="bg-slate-900 text-amber-400 border border-amber-900 px-2 py-0.5 rounded-full">Preschool</span>
+              </div>
+            </div>
+
+            <!-- Tracker List & Connectivity Health Statuses -->
+            <div class="space-y-2 pt-4 border-t border-slate-800/80">
+              <span class="text-slate-500 font-semibold block uppercase mb-2">Connected Trackers (4)</span>
+              <div class="space-y-2 font-mono text-[10px] text-slate-400 bg-slate-950/80 p-3 rounded-xl border border-slate-900">
+                <div class="flex items-center justify-between">
+                  <span class="truncate pr-4">udp://tracker.aetherbytes.me:6969/announce</span>
+                  <span class="text-emerald-400 flex items-center gap-1 shrink-0"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span>Online</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span class="truncate pr-4">udp://tracker.coppersurfer.tk:6969/announce</span>
+                  <span class="text-emerald-400 flex items-center gap-1 shrink-0"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>Online</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span class="truncate pr-4">udp://tracker.opentrackr.org:1337/announce</span>
+                  <span class="text-emerald-400 flex items-center gap-1 shrink-0"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>Online</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span class="truncate pr-4">http://tracker.torrenty.me:80/announce</span>
+                  <span class="text-amber-400 shrink-0">Connecting...</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Related Torrents Panel -->
+        <div class="glass-panel rounded-2xl p-6">
+          <h2 class="text-sm font-bold text-white uppercase tracking-wider mb-4 pb-2 border-b border-slate-800/80">
+            Related Releases
+          </h2>
+          <div class="space-y-3.5 text-xs">
+            
+            <!-- Item 1 -->
+            <a href="#" class="block group space-y-1">
+              <span class="text-slate-300 group-hover:text-purple-400 transition-colors font-semibold block line-clamp-2 leading-snug">
+                Little Einsteins Season 2 COMPLETE 1080p WEB-DL DDP5.1 H.264-NTb
+              </span>
+              <div class="flex items-center justify-between text-[10px] text-slate-500">
+                <span>31.20 GB • TV Series</span>
+                <span class="text-emerald-500 font-bold font-mono">S: 184 / L: 9</span>
+              </div>
+            </a>
+
+            <div class="h-px bg-slate-800"></div>
+
+            <!-- Item 2 -->
+            <a href="#" class="block group space-y-1">
+              <span class="text-slate-300 group-hover:text-purple-400 transition-colors font-semibold block line-clamp-2 leading-snug">
+                Little Einsteins: Our Huge Adventure 2005 1080p DSNP WEB-DL AAC2.0 H.264
+              </span>
+              <div class="flex items-center justify-between text-[10px] text-slate-500">
+                <span>2.45 GB • Movies</span>
+                <span class="text-emerald-500 font-bold font-mono">S: 73 / L: 1</span>
+              </div>
+            </a>
+
+            <div class="h-px bg-slate-800"></div>
+
+            <!-- Item 3 -->
+            <a href="#" class="block group space-y-1">
+              <span class="text-slate-300 group-hover:text-purple-400 transition-colors font-semibold block line-clamp-2 leading-snug">
+                Disney Preschool Collection (Mickey Mouse Clubhouse, Special Agent Oso)
+              </span>
+              <div class="flex items-center justify-between text-[10px] text-slate-500">
+                <span>104.50 GB • Pack</span>
+                <span class="text-emerald-500 font-bold font-mono">S: 32 / L: 5</span>
+              </div>
+            </a>
+
+          </div>
+        </div>
+
+        <!-- DMCA & Verification Badges -->
+        <div class="bg-slate-950/40 border border-slate-900/60 p-4 rounded-2xl space-y-3 text-[11px] text-slate-400">
+          <div class="flex items-center gap-2 text-amber-500 font-bold">
+            <i data-lucide="shield-check" class="w-4 h-4"></i> Secure Torrent Verification
+          </div>
+          <p class="leading-relaxed">
+            This file metadata hash has been securely checked and signed using decentralized cryptographic keys. No executable files, scripts, or unwanted malware have been embedded within this container rip.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Image Lightbox Modal -->
+  <div id="lightbox-modal" class="fixed inset-0 z-50 bg-black/95 flex flex-col items-center justify-center p-4 hidden">
+    <!-- Close button -->
+    <button onclick="closeLightbox()" class="absolute top-6 right-6 text-slate-400 hover:text-white bg-slate-900/60 p-2.5 rounded-full border border-slate-800">
+      <i data-lucide="x" class="w-6 h-6"></i>
+    </button>
+    
+    <!-- Lightbox Image Wrapper -->
+    <div class="w-full max-w-4xl aspect-video rounded-2xl bg-slate-950 border border-slate-800 flex items-center justify-center relative overflow-hidden">
+      <div id="lightbox-svg-container" class="w-full h-full"></div>
+    </div>
+    
+    <span id="lightbox-title-txt" class="mt-4 text-xs font-mono text-slate-400">Screenshot file</span>
+  </div>
+
+  <!-- JavaScript Logics -->
+  <script>
+    // System Config Init
+    const episodes = [
+      { id: 1, ep: "S01E01", title: "Ring Around the Planet", size: "814 MiB", checked: true },
+      { id: 2, ep: "S01E02", title: "I Love to Conduct", size: "802 MiB", checked: true },
+      { id: 3, ep: "S01E03", title: "Hungarian Hiccups", size: "789 MiB", checked: true },
+      { id: 4, ep: "S01E04", title: "Whale Tale", size: "811 MiB", checked: true },
+      { id: 5, ep: "S01E05", title: "Pirate’s Treasure", size: "825 MiB", checked: true },
+      { id: 6, ep: "S01E06", title: "The Birthday Balloons", size: "818 MiB", checked: true },
+      { id: 7, ep: "S01E07", title: "The Legend of the Golden Pyramid", size: "830 MiB", checked: true },
+      { id: 8, ep: "S01E08", title: "Dragon Kite", size: "795 MiB", checked: true },
+      { id: 9, ep: "S01E09", title: "Go West, Young Train", size: "812 MiB", checked: true },
+      { id: 10, ep: "S01E10", title: "Annie’s Solo Mission", size: "806 MiB", checked: true },
+      { id: 11, ep: "S01E11", title: "The Missing Invitation", size: "820 MiB", checked: true },
+      { id: 12, ep: "S01E12", title: "A Brand New Outfit", size: "822 MiB", checked: true },
+      { id: 13, ep: "S01E13", title: "The Birthday Machine", size: "814 MiB", checked: true },
+      { id: 14, ep: "S01E14", title: "A Galactic Goodnight", size: "809 MiB", checked: true },
+      { id: 15, ep: "S01E15", title: "Knock on Wood", size: "801 MiB", checked: true },
+      { id: 16, ep: "S01E16", title: "Rocket Safari", size: "817 MiB", checked: true },
+      { id: 17, ep: "S01E17", title: "Duck, Duck, June", size: "813 MiB", checked: true },
+      { id: 18, ep: "S01E18", title: "The Big and Small Machine", size: "824 MiB", checked: true },
+      { id: 19, ep: "S01E19", title: "A Tall Totem Tale", size: "807 MiB", checked: true },
+      { id: 20, ep: "S01E20", title: "Oh Yes, Oh Yes, It’s Springtime", size: "810 MiB", checked: true },
+      { id: 21, ep: "S01E21", title: "The Northern Night Light", size: "821 MiB", checked: true },
+      { id: 22, ep: "S01E22", title: "Jump for Joey", size: "815 MiB", checked: true },
+      { id: 23, ep: "S01E23", title: "How We Became Little Einsteins", size: "832 MiB", checked: true },
+      { id: 24, ep: "S01E24", title: "The Christmas Wish", size: "819 MiB", checked: true },
+      { id: 25, ep: "S01E25", title: "The Good Knight and Bad Knight", size: "823 MiB", checked: true },
+      { id: 26, ep: "S01E26", title: "The Mouse and the Moon", size: "816 MiB", checked: true },
+      { id: 27, ep: "S01E27", title: "Farmer Annie", size: "811 MiB", checked: true },
+      { id: 28, ep: "S01E28", title: "June and Twinkle", size: "804 MiB", checked: true }
+    ];
+
+    let downloadInterval = null;
+    let isBookmarked = false;
+
+    // Load Episodes on Launch
+    window.addEventListener('DOMContentLoaded', () => {
+      // Init Lucide Icons
+      lucide.createIcons();
+      renderFileList();
+      calculateTotalSelectedSize();
+    });
+
+    // Render interactive file structure rows
+    function renderFileList() {
+      const container = document.getElementById('file-list-container');
+      container.innerHTML = '';
+      
+      episodes.forEach((file) => {
+        const fileDiv = document.createElement('div');
+        fileDiv.className = 'flex items-center justify-between p-3 hover:bg-slate-900/40 transition-colors';
+        fileDiv.innerHTML = `
+          <div class="flex items-center gap-3 pr-4">
+            <input type="checkbox" id="chk-${file.id}" ${file.checked ? 'checked' : ''} onchange="handleFileCheckChange(${file.id})" class="rounded border-slate-700 text-purple-600 focus:ring-purple-500 bg-slate-950 cursor-pointer">
+            <i data-lucide="video" class="w-3.5 h-3.5 text-purple-400 shrink-0"></i>
+            <span class="truncate text-slate-300 font-medium hover:text-white cursor-pointer" onclick="toggleCheckbox(${file.id})">
+              Little.Einsteins.${file.ep}.${file.title.replace(/\s+/g, '.')}.1080p.DSNP.WEB-DL.DDP5.1.H.264-NTb.mkv
+            </span>
+          </div>
+          <span class="font-mono text-slate-400 shrink-0 text-[11px]">${file.size}</span>
+        `;
+        container.appendChild(fileDiv);
+      });
+      lucide.createIcons();
+    }
+
+    // Toggle Checkbox state programmatically
+    function toggleCheckbox(id) {
+      const chk = document.getElementById(`chk-${id}`);
+      if (chk) {
+        chk.checked = !chk.checked;
+        handleFileCheckChange(id);
+      }
+    }
+
+    // Toggle single episode selection logic
+    function handleFileCheckChange(id) {
+      const file = episodes.find(f => f.id === id);
+      if (file) {
+        const chk = document.getElementById(`chk-${id}`);
+        file.checked = chk.checked;
+        calculateTotalSelectedSize();
+      }
+    }
+
+    // Select all/none helper functions
+    function selectAllFiles(status) {
+      episodes.forEach(f => f.checked = status);
+      renderFileList();
+      calculateTotalSelectedSize();
+    }
+
+    // Dynamic calculations logic
+    function calculateTotalSelectedSize() {
+      const totalSelectedMiB = episodes.reduce((acc, file) => {
+        if (!file.checked) return acc;
+        const sizeVal = parseFloat(file.size);
+        const isGiB = file.size.includes('GiB'); // standard check if we had any GiBs
+        return acc + sizeVal; 
+      }, 0);
+
+      // Convert MiB to GB beautifully
+      const gigabytesTotal = (totalSelectedMiB * 1.048576) / 1000;
+      const roundedGB = gigabytesTotal.toFixed(2);
+      
+      document.getElementById('selected-size-val').innerText = `${roundedGB} GB`;
+    }
+
+    // Copy magnet payload to clipboard (System fallback integrated safely)
+    function copyMagnet() {
+      const mockMagnetURI = "magnet:?xt=urn:btih:89c9e8316dfa99b45b41000fbc982056aeef0e6d&dn=Little.Einsteins.S01.1080p.DSNP.WEB-DL.DDP5.1.H.264-NTb&tr=udp%3A%2F%2Ftracker.aetherbytes.me%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969%2Fannounce";
+      
+      // Fallback method execution as per sandbox constraint rules
+      const el = document.createElement('textarea');
+      el.value = mockMagnetURI;
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+
+      showToast("Magnet URI copied successfully to clipboard!");
+    }
+
+    // Show Beautiful System Toast notifications
+    function showToast(msg) {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      toast.className = "flex items-center gap-2 bg-slate-900 border border-purple-500/40 text-slate-100 text-xs font-bold px-4 py-3 rounded-xl shadow-2xl pointer-events-auto transform transition-all duration-300 translate-y-2 opacity-0";
+      toast.innerHTML = `
+        <i data-lucide="info" class="w-4 h-4 text-purple-400"></i>
+        <span>${msg}</span>
+      `;
+      
+      container.appendChild(toast);
+      lucide.createIcons();
+
+      // Trigger animation entry
+      setTimeout(() => {
+        toast.classList.remove('opacity-0', 'translate-y-2');
+      }, 10);
+
+      // Dismiss after 4 seconds
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-2');
+        setTimeout(() => toast.remove(), 300);
+      }, 4000);
+    }
+
+    // Interactive download client simulation
+    function triggerDownload() {
+      const pnl = document.getElementById('mock-download-pnl');
+      pnl.classList.remove('hidden');
+      
+      const logBox = document.getElementById('dl-status-txt');
+      const progressTitle = document.getElementById('dl-progress-title');
+      const percentageText = document.getElementById('dl-percentage');
+      const progressBar = document.getElementById('dl-progress-bar');
+
+      logBox.innerHTML = "[SYS_OK] Initializing download sandbox...<br>[CONNECTING] Connecting to 4 trackers...<br>";
+      progressBar.style.width = '0%';
+      percentageText.innerText = '0%';
+      progressTitle.innerText = 'Retrieving metadata dictionary...';
+
+      if (downloadInterval) clearInterval(downloadInterval);
+      
+      let step = 0;
+      downloadInterval = setInterval(() => {
+        step += 5;
+        if (step <= 100) {
+          progressBar.style.width = `${step}%`;
+          percentageText.innerText = `${step}%`;
+          
+          if (step === 15) {
+            logBox.innerHTML += "[TRACKER] Connected to 'udp://tracker.aetherbytes.me:6969/announce'<br>[PEERS] Received peer array dictionary (142 seeds, 12 leech)<br>";
+            progressTitle.innerText = "Parsing piece list dictionary...";
+          }
+          if (step === 35) {
+            logBox.innerHTML += "[PIECES] Chunk map parsed successfully (2,870 pieces total)<br>[CLIENT] Negotiating file offsets with seeds...<br>";
+            progressTitle.innerText = "Synchronizing files hash list...";
+          }
+          if (step === 65) {
+            logBox.innerHTML += "[BUFFER] Prefetching stream descriptors for episodes...<br>[LOCAL] Initialized storage pointers...<br>";
+            progressTitle.innerText = "Downloading .torrent packet metadata...";
+          }
+          if (step === 90) {
+            logBox.innerHTML += "[COMPLETED] Integrity hashes confirmed.<br>";
+            progressTitle.innerText = "Writing .torrent metadata payload...";
+          }
+        } else {
+          clearInterval(downloadInterval);
+          progressTitle.innerText = "Complete! Torrent file dispatched.";
+          logBox.innerHTML += "[SANDBOX] Complete. Dispatching local download trigger...";
+          
+          // Generate actual browser file save payload as a nice simulation
+          triggerRealBrowserFileDownload();
+        }
+        logBox.scrollTop = logBox.scrollHeight;
+      }, 200);
+    }
+
+    function triggerRealBrowserFileDownload() {
+      // Create a dummy blob representing a .torrent file and trigger download
+      const fakeTorrentData = "d8:announce39:udp://tracker.aetherbytes.me:6969/announce4:infod6:lengthi24075124018e4:name54:Little.Einsteins.S01.1080p.DSNP.WEB-DL.DDP5.1.H.264-NTb7:piece lengthi262144e6:pieces20:89c9e8316dfa99b45b41ee";
+      const blob = new Blob([fakeTorrentData], { type: "application/x-bittorrent" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = "Little.Einsteins.S01.1080p.DSNP.WEB-DL.DDP5.1.H.264-NTb.torrent";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      
+      showToast("Torrent file dispatched to your system downloads folder!");
+    }
+
+    function closeDownloadPanel() {
+      document.getElementById('mock-download-pnl').classList.add('hidden');
+      if (downloadInterval) clearInterval(downloadInterval);
+    }
+
+    // Toggle raw media info block
+    function toggleCollapse(id) {
+      const box = document.getElementById(id);
+      const chev = document.getElementById('mediainfo-chevron');
+      if (box.classList.contains('hidden')) {
+        box.classList.remove('hidden');
+        chev.style.transform = "rotate(180deg)";
+      } else {
+        box.classList.add('hidden');
+        chev.style.transform = "rotate(0deg)";
+      }
+    }
+
+    function copyRawMediaInfo() {
+      const code = document.getElementById('mediainfo-pre').innerText;
+      const el = document.createElement('textarea');
+      el.value = code;
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+      showToast("MediaInfo raw file copied to clipboard!");
+    }
+
+    // Bookmark Toggle logic
+    function toggleBookmark() {
+      isBookmarked = !isBookmarked;
+      const btn = document.getElementById('btn-bookmark');
+      if (isBookmarked) {
+        btn.innerHTML = `<i data-lucide="bookmark" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>`;
+        showToast("Torrent added to your bookmarks list");
+      } else {
+        btn.innerHTML = `<i data-lucide="bookmark" class="w-5 h-5 text-slate-400"></i>`;
+        showToast("Torrent removed from your bookmarks list");
+      }
+      lucide.createIcons();
+    }
+
+    // Sandbox Comment system posting
+    function postComment() {
+      const ta = document.getElementById('comment-textarea');
+      const val = ta.value.trim();
+      if (!val) {
+        showToast("Please write a comment message before submitting");
+        return;
+      }
+
+      const feed = document.getElementById('comments-feed');
+      const commentDiv = document.createElement('div');
+      commentDiv.className = "flex items-start gap-4 animate-translate-y";
+      commentDiv.innerHTML = `
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-purple-800 flex items-center justify-center text-white font-extrabold text-xs shrink-0 shadow">
+          EL
+        </div>
+        <div class="flex-1 space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-1">
+            <div class="flex items-center gap-2">
+              <span class="font-bold text-sm text-slate-100">Einstein_Lover</span>
+              <span class="text-[10px] px-1.5 py-0.5 rounded font-bold uppercase bg-blue-500/10 text-blue-400 border border-blue-500/15">Active Peer</span>
+            </div>
+            <span class="text-[11px] text-slate-500">Just Now</span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-300 bg-slate-950/40 p-3.5 rounded-xl border border-slate-900/60 leading-relaxed">
+            ${val.replace(/</g, "&lt;").replace(/>/g, "&gt;")}
+          </p>
+          <div class="flex items-center gap-4 text-xs text-slate-500 pl-1">
+            <button class="flex items-center gap-1 hover:text-purple-400 transition-colors"><i data-lucide="thumbs-up" class="w-3.5 h-3.5"></i> 1</button>
+            <button class="flex items-center gap-1 hover:text-rose-400 transition-colors"><i data-lucide="thumbs-down" class="w-3.5 h-3.5"></i> 0</button>
+            <span class="text-slate-700">|</span>
+            <button class="hover:underline hover:text-slate-300">Reply</button>
+          </div>
+        </div>
+      `;
+      feed.appendChild(commentDiv);
+      ta.value = '';
+      lucide.createIcons();
+      showToast("Comment published to tracker sandbox successfully!");
+    }
+
+    // Lightbox Modal for Screenshots
+    function openLightbox(frameId) {
+      const modal = document.getElementById('lightbox-modal');
+      const svgContainer = document.getElementById('lightbox-svg-container');
+      const titleTxt = document.getElementById('lightbox-title-txt');
+
+      let innerArt = '';
+      if (frameId === 'frame-1') {
+        titleTxt.innerText = "Screenshot: Frame_01_Rocket_S01.png";
+        innerArt = `
+          <svg class="w-full h-full text-slate-800" viewBox="0 0 100 60" preserveAspectRatio="none">
+            <rect width="100" height="60" fill="#0c1020" />
+            <circle cx="50" cy="30" r="18" fill="#1e1b4b" />
+            <polygon points="10,60 40,30 60,60" fill="#312e81" opacity="0.6"/>
+            <polygon points="40,60 70,20 100,60" fill="#312e81" opacity="0.8"/>
+            <circle cx="50" cy="30" r="4" fill="#a855f7" />
+            <text x="50" y="55" fill="#a855f7" font-size="2.5" text-anchor="middle" font-family="monospace">EPISODE 1: RING AROUND THE PLANET</text>
+          </svg>
+        `;
+      } else if (frameId === 'frame-2') {
+        titleTxt.innerText = "Screenshot: Frame_02_Leo_Conducting.png";
+        innerArt = `
+          <svg class="w-full h-full text-slate-800" viewBox="0 0 100 60" preserveAspectRatio="none">
+            <rect width="100" height="60" fill="#08101a" />
+            <path d="M 0,30 Q 25,10 50,30 T 100,30 L 100,60 L 0,60 Z" fill="#0f2b3e" />
+            <path d="M 0,40 Q 30,20 70,45 T 100,40 L 100,60 L 0,60 Z" fill="#164e63" opacity="0.7"/>
+            <circle cx="20" cy="15" r="3" fill="#facc15" />
+            <line x1="15" y1="15" x2="25" y2="15" stroke="#facc15" stroke-width="0.5"/>
+            <text x="50" y="55" fill="#facc15" font-size="2.5" text-anchor="middle" font-family="monospace">EPISODE 2: I LOVE TO CONDUCT</text>
+          </svg>
+        `;
+      } else if (frameId === 'frame-3') {
+        titleTxt.innerText = "Screenshot: Frame_03_Pyramid_Art.png";
+        innerArt = `
+          <svg class="w-full h-full text-slate-800" viewBox="0 0 100 60" preserveAspectRatio="none">
+            <rect width="100" height="60" fill="#11051c" />
+            <circle cx="80" cy="15" r="6" fill="#f43f5e" opacity="0.8"/>
+            <circle cx="76" cy="12" r="2" fill="#fff" />
+            <circle cx="25" cy="35" r="10" fill="#3b0764" />
+            <circle cx="30" cy="35" r="8" fill="#4c0519" opacity="0.6"/>
+            <text x="50" y="55" fill="#f43f5e" font-size="2.5" text-anchor="middle" font-family="monospace">EPISODE 7: LEGEND OF GOLDEN PYRAMID</text>
+          </svg>
+        `;
+      } else {
+        titleTxt.innerText = "Screenshot: Frame_04_VanGogh_Recital.png";
+        innerArt = `
+          <svg class="w-full h-full text-slate-800" viewBox="0 0 100 60" preserveAspectRatio="none">
+            <rect width="100" height="60" fill="#04140c" />
+            <path d="M10,10 C30,30 50,10 90,50" stroke="#059669" stroke-width="2" fill="none"/>
+            <rect x="15" y="40" width="10" height="15" fill="#065f46" />
+            <circle cx="50" cy="15" r="3" fill="#fbbf24" />
+            <text x="50" y="55" fill="#fbbf24" font-size="2.5" text-anchor="middle" font-family="monospace">CLASSICAL ART FOCUS: VAN GOGH STYLE</text>
+          </svg>
+        `;
+      }
+
+      svgContainer.innerHTML = innerArt;
+      modal.classList.remove('hidden');
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox-modal').classList.add('hidden');
+    }
+  </script>
+</body>
+</html>
