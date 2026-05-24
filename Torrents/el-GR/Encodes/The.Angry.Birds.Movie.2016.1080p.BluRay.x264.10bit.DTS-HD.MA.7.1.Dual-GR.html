@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="el-GR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angry Birds: Η Ταινία - Interactive Release Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Helvetica, sans-serif;
+            background-color: #f8fafc; /* Warm neutral light background */
+            color: #334155;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Mandatory Chart Container Styling */
+        .chart-container { 
+            position: relative; 
+            width: 100%; 
+            max-width: 600px; 
+            margin-left: auto; 
+            margin-right: auto; 
+            height: 300px; 
+            max-height: 400px; 
+        } 
+        @media (min-width: 768px) { 
+            .chart-container { height: 350px; } 
+        }
+
+        .nfo-box::-webkit-scrollbar {
+            width: 8px;
+        }
+        .nfo-box::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+        .nfo-box::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Chosen Palette: Warm Neutrals with Red Accents (Slate-50 bg, Slate-800 text, Red-600 accents for the 'Angry Birds' theme) -->
+    
+    <!-- Application Structure Plan: A dashboard-style SPA with tabbed navigation. 
+    1. 'Σύνοψη & Πληροφορίες' (Overview): Contains the movie plot, poster, and general metadata. 
+    2. 'Μεταγλώττιση & Cast' (Cast): Side-by-side comparison of the Greek and English voice actors.
+    3. 'Τεχνική Ανάλυση' (Tech Specs): Focuses on the encode quality, using a Chart.js visualization to compare bitrates, and presents the raw NFO in a collapsible/scrollable terminal-like window.
+    4. 'Οδηγίες & Seeding' (Instructions): Playback guide and community seeding rules.
+    This structure was chosen to transform a linear, text-heavy forum post into an explorable, user-driven interface, allowing users to find specific release information (like tech specs or dub cast) instantly without excessive scrolling. -->
+    
+    <!-- Visualization & Content Choices: 
+    1. Goal: Inform about the movie -> Viz: Clean grid layout and large typography for Plot/Info -> Justification: Easy reading -> Library: HTML/Tailwind.
+    2. Goal: Compare audio/video quality -> Viz: Bar Chart of Bitrates -> Interaction: Hover tooltips -> Justification: Shows visually why this is a high-quality 'Blu-ray Encode' by comparing the massive video/DTS bitrates against standard AC3 -> Library: Chart.js (NO SVG).
+    3. Goal: Organize Cast -> Viz: Two-column comparative list -> Justification: Cleans up the textual list into a readable directory -> Library: HTML/CSS.
+    4. Goal: Present NFO -> Viz: Dark mode monospaced scrollable box -> Justification: Preserves the authentic 'scene' look of the NFO file while keeping it contained -> Library: HTML/CSS.
+    CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <div class="max-w-5xl mx-auto p-4 md:p-6 lg:p-8">
+        
+        <!-- Header Section -->
+        <header class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8 mb-6">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                    <h1 class="text-3xl md:text-4xl font-bold text-slate-800 mb-2">Angry Birds: Η Ταινία <span class="text-slate-400 text-2xl font-normal">(2016)</span></h1>
+                    <p class="text-slate-500 font-medium">The Angry Birds Movie • Κινούμενα Σχέδια, Κωμωδία</p>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold">1080p x264 10bit</span>
+                    <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-semibold">GR DUB / ENG</span>
+                    <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-semibold">⭐ IMDb: 6.3/10</span>
+                </div>
+            </div>
+            
+            <!-- Navigation -->
+            <nav class="flex flex-wrap gap-2 mt-8 border-b border-slate-200 pb-px" id="main-nav">
+                <button onclick="switchTab('tab-overview')" class="nav-btn active px-4 py-2 text-sm font-semibold text-red-600 border-b-2 border-red-600 transition-colors">🎬 Σύνοψη & Πληροφορίες</button>
+                <button onclick="switchTab('tab-cast')" class="nav-btn px-4 py-2 text-sm font-semibold text-slate-500 hover:text-slate-700 border-b-2 border-transparent hover:border-slate-300 transition-colors">🗣️ Μεταγλώττιση & Cast</button>
+                <button onclick="switchTab('tab-tech')" class="nav-btn px-4 py-2 text-sm font-semibold text-slate-500 hover:text-slate-700 border-b-2 border-transparent hover:border-slate-300 transition-colors">📊 Τεχνική Ανάλυση & NFO</button>
+                <button onclick="switchTab('tab-guide')" class="nav-btn px-4 py-2 text-sm font-semibold text-slate-500 hover:text-slate-700 border-b-2 border-transparent hover:border-slate-300 transition-colors">⚠️ Οδηγίες & Seeding</button>
+            </nav>
+        </header>
+
+        <!-- TAB 1: Overview -->
+        <section id="tab-overview" class="tab-content active">
+            <p class="text-slate-500 mb-6 text-sm">
+                <strong>Σχετικά με αυτή την ενότητα:</strong> Εδώ παρουσιάζονται οι βασικές πληροφορίες της ταινίας, η πλοκή της και τα γενικά στοιχεία παραγωγής. Σκοπός είναι να πάρετε μια γρήγορη γεύση από το περιεχόμενο της ταινίας πριν την κατεβάσετε.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="md:col-span-1">
+                    <div class="bg-slate-200 rounded-xl aspect-[2/3] flex items-center justify-center border border-slate-300 shadow-inner overflow-hidden relative group cursor-pointer">
+                        <div class="text-center p-4">
+                            <span class="text-6xl mb-2 block">🖼️</span>
+                            <span class="text-slate-500 text-sm font-semibold">Επίσημο Poster (Placeholder)</span>
+                        </div>
+                    </div>
+                    <div class="mt-4 p-4 bg-white rounded-xl shadow-sm border border-slate-200 text-sm">
+                        <ul class="space-y-2 text-slate-600">
+                            <li><strong class="text-slate-800">Σκηνοθεσία:</strong> Clay Kaytis, Fergal Reilly</li>
+                            <li><strong class="text-slate-800">Σενάριο:</strong> Jon Vitti</li>
+                            <li><strong class="text-slate-800">Διάρκεια:</strong> 97 λεπτά</li>
+                            <li><strong class="text-slate-800">Καταλληλότητα:</strong> Όλοι (PG)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="md:col-span-2 space-y-6">
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                        <h2 class="text-xl font-bold text-slate-800 mb-4 border-b pb-2">📝 Υπόθεση (Plot)</h2>
+                        <p class="text-slate-600 leading-relaxed mb-4">
+                            Σε ένα πανέμορφο, τροπικό και απομονωμένο νησί, ζουν ευτυχισμένα διάφορα πουλιά που δεν έχουν τη δυνατότητα να πετάξουν. Σε αυτόν τον καταπράσινο παράδεισο, ο <strong>Ρεντ</strong> (ένα κόκκινο πουλί με μόνιμα νευρική διάθεση), ο υπερκινητικός <strong>Τσακ</strong> και ο εκρηκτικός <strong>Μπομπ</strong> αποτελούν πάντα τους “περιθωριακούς” της κοινότητας λόγω των προβλημάτων διαχείρισης θυμού που αντιμετωπίζουν.
+                        </p>
+                        <p class="text-slate-600 leading-relaxed">
+                            Όλα όμως θα ανατραπούν όταν στο νησί καταφθάνουν απρόσκλητοι επισκέπτες: μια ομάδα από μυστηριώδη πράσινα γουρούνια με αρχηγό τον πανούργο <strong>Λέοναρντ</strong>. Ενώ τα υπόλοιπα πουλιά τούς υποδέχονται με ενθουσιασμό, ο δύσπιστος Ρεντ υποψιάζεται ότι τα γουρούνια κρύβουν σκοτεινά σχέδια. Όταν τα γουρούνια κλέβουν όλα τα αυγά των πουλιών, ο Ρεντ και η παρέα του θα πρέπει να οργανώσουν την αντεπίθεση, να ζητήσουν τη βοήθεια του θρυλικού <strong>Σούπερ Αετού</strong> και να μάθουν να χρησιμοποιούν τον θυμό τους ως το απόλυτο όπλο για να σώσουν το μέλλον τους!
+                        </p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                        <h2 class="text-xl font-bold text-slate-800 mb-4 border-b pb-2">🎬 Επίσημο Τρέιλερ</h2>
+                        <div class="flex items-center justify-between p-4 bg-red-50 rounded-lg border border-red-100">
+                            <span class="text-red-800 font-medium">▶️ Επίσημο Ελληνικό Trailer (YouTube)</span>
+                            <a href="https://www.youtube.com/watch?v=ZJr6jThE2G0" target="_blank" class="bg-red-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-700 transition-colors text-sm">Προβολή</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: Cast & Dub -->
+        <section id="tab-cast" class="tab-content">
+            <p class="text-slate-500 mb-6 text-sm">
+                <strong>Σχετικά με αυτή την ενότητα:</strong> Ανακαλύψτε τις φωνές πίσω από τους χαρακτήρες. Η έκδοση προσφέρει Dual Audio, οπότε μπορείτε να δείτε συγκριτικά τους ηθοποιούς της εξαιρετικής Ελληνικής Μεταγλώττισης και του Πρωτότυπου Αγγλικού Ήχου.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Greek Dub -->
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                    <div class="bg-blue-50 px-6 py-4 border-b border-blue-100">
+                        <h3 class="font-bold text-blue-900 text-lg flex items-center gap-2">🇬🇷 Ελληνική Μεταγλώττιση</h3>
+                        <p class="text-xs text-blue-700 mt-1">Επιλογή Audio 1 (Default) • AC3 5.1</p>
+                    </div>
+                    <ul class="divide-y divide-slate-100 p-2" id="gr-cast-list">
+                        <!-- Populated by JS -->
+                    </ul>
+                    <div class="bg-slate-50 p-4 text-xs text-slate-500 border-t border-slate-200">
+                        <strong>Συντελεστές:</strong> Σκηνοθετική Επιμέλεια & Προσαρμογή: Πέτρος Δαμουλής | Μετάφραση: Λένα Μαραβέα | Διανομή: Feelgood Ent.
+                    </div>
+                </div>
+
+                <!-- English Original -->
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden h-fit">
+                    <div class="bg-red-50 px-6 py-4 border-b border-red-100">
+                        <h3 class="font-bold text-red-900 text-lg flex items-center gap-2">🇺🇸 Αρχικό Cast (English)</h3>
+                        <p class="text-xs text-red-700 mt-1">Επιλογή Audio 2 • DTS-HD MA 7.1</p>
+                    </div>
+                    <ul class="divide-y divide-slate-100 p-2" id="en-cast-list">
+                        <!-- Populated by JS -->
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: Tech Specs & NFO -->
+        <section id="tab-tech" class="tab-content">
+            <p class="text-slate-500 mb-6 text-sm">
+                <strong>Σχετικά με αυτή την ενότητα:</strong> Αναλυτικά τεχνικά δεδομένα της κυκλοφορίας (Release Data). Το γράφημα απεικονίζει τη συγκριτική ποιότητα (bitrate) των ροών εικόνας και ήχου, ενώ ακολουθεί το αυθεντικό αρχείο πληροφοριών NFO για τους έμπειρους χρήστες.
+            </p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                <!-- Specs Info -->
+                <div class="space-y-4">
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                        <h3 class="font-bold text-slate-800 text-lg border-b pb-2 mb-4">💿 Χαρακτηριστικά Αρχείου</h3>
+                        <ul class="space-y-3 text-sm">
+                            <li class="flex justify-between items-center"><span class="text-slate-500">Πηγή (Source)</span> <span class="font-semibold text-slate-800">BluRay 1080p AVC DTS-HD</span></li>
+                            <li class="flex justify-between items-center"><span class="text-slate-500">Μορφή / Μέγεθος</span> <span class="font-semibold text-slate-800">Matroska (.mkv) / 6.45 GB</span></li>
+                            <li class="flex justify-between items-center"><span class="text-slate-500">Κωδικοποίηση Βίντεο</span> <span class="font-semibold text-slate-800">x264 (High@L4.1) 10-bit depth</span></li>
+                            <li class="flex justify-between items-center"><span class="text-slate-500">Ανάλυση / Καρέ</span> <span class="font-semibold text-slate-800">1920x1038 / 23.976 fps</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                        <h3 class="font-bold text-slate-800 text-lg border-b pb-2 mb-4">💬 Υπότιτλοι (Muxed SRT)</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-slate-100 text-slate-700 rounded text-sm font-medium">🇬🇷 Ελληνικοί (Full)</span>
+                            <span class="px-3 py-1 bg-slate-100 text-slate-700 rounded text-sm font-medium">🇬🇷 Ελληνικοί (Forced)</span>
+                            <span class="px-3 py-1 bg-slate-100 text-slate-700 rounded text-sm font-medium">🇬🇧 English (SDH)</span>
+                        </div>
+                        <p class="text-xs text-slate-500 mt-3">* Οι Forced υπότιτλοι είναι ιδανικοί όταν παρακολουθείτε με την Ελληνική μεταγλώττιση, για μετάφραση επιγραφών.</p>
+                    </div>
+                </div>
+
+                <!-- Chart Container -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
+                    <h3 class="font-bold text-slate-800 text-lg border-b pb-2 mb-4">📊 Ανάλυση Ποιότητας (Bitrate)</h3>
+                    <p class="text-xs text-slate-500 mb-4">Σύγκριση δεδομένων ανά δευτερόλεπτο (Kbps) μεταξύ του βίντεο και των δύο καναλιών ήχου. Η υψηλή τιμή υποδηλώνει κορυφαία ποιότητα (Blu-ray encode).</p>
+                    <div class="chart-container flex-grow">
+                        <canvas id="bitrateChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NFO Terminal -->
+            <div class="bg-[#0f172a] rounded-2xl shadow-lg border border-slate-800 overflow-hidden">
+                <div class="bg-[#1e293b] px-4 py-2 border-b border-slate-700 flex items-center justify-between">
+                    <span class="text-slate-300 font-mono text-sm">📄 Release.NFO</span>
+                    <div class="flex gap-2">
+                        <div class="w-3 h-3 rounded-full bg-slate-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-slate-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-slate-500"></div>
+                    </div>
+                </div>
+                <div class="p-4 overflow-y-auto max-h-96 nfo-box">
+<pre class="text-emerald-400 font-mono text-xs leading-relaxed whitespace-pre-wrap">
+===========================================================================
+ The.Angry.Birds.Movie.2016.1080p.BluRay.x264.10bit.DTS-HD.MA.7.1.Dual-GR
+===========================================================================
+
+[RELEASE INFORMATION]
+RELEASE DATE........: 24/05/2026
+ENCODER.............: GR_EnCoders_Team
+RELEASE SIZE........: 6.45 GiB
+SOURCE..............: Blu-ray 1080p AVC DTS-HD MA 7.1 (Thanks!)
+
+[VIDEO SPECIFICATIONS]
+CONTAINER...........: Matroska (.mkv)
+VIDEO CODEC.........: x264 (MPEG-4 AVC) HP@L4.1 (10-bit)
+RESOLUTION..........: 1920x1038
+ASPECT RATIO........: 1.85:1
+FRAME RATE..........: 23.976 fps
+BIT RATE............: 7 200 Kbps
+CRF.................: 17.5 (High Quality Preset)
+
+[AUDIO SPECIFICATIONS]
+AUDIO TRACK 1 (GR)..: AC-3 5.1 Channels @ 640 kbps (Greek Dubbed - Retail)
+AUDIO TRACK 2 (EN)..: DTS-HD Master Audio 7.1 @ 3 450 kbps (English Original)
+
+[SUBTITLE SPECIFICATIONS]
+SUBTITLE 1..........: Greek (External Retail - Properly Synced)
+SUBTITLE 2..........: Greek Forced (Only for Signs & Songs in Dub)
+SUBTITLE 3..........: English (Full SDH)
+
+[GOP / ENCODER SETTINGS]
+cabac=1 / ref=5 / deblock=1:-3:-3 / analyse=0x3:0x113 / me=umh / subme=10
+psy=1 / psy_rd=1.00:0.15 / mixed_ref=1 / me_range=24 / chroma_me=1 / trellis=2
+8x8dct=1 / cqm=0 / deadzone=21,11 / fast_pskip=1 / chroma_qp_offset=-3
+threads=12 / lookahead_threads=2 / sliced_threads=0 / nr=0 / decimate=1
+interlaced=0 / bluray_compat=0 / constrained_intra=0 / bframes=6 / b_pyramid=2
+b_adapt=2 / b_bias=0 / direct=3 / weightb=1 / open_gop=0 / weightp=2
+keyint=250 / keyint_min=23 / scenecut=40 / intra_refresh=0 / rc_lookahead=60
+rc=crf / mbtree=1 / crf=17.5 / qcomp=0.60 / qpmin=0 / qpmax=69 / qpstep=4
+===========================================================================
+</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 4: Instructions -->
+        <section id="tab-guide" class="tab-content">
+            <p class="text-slate-500 mb-6 text-sm">
+                <strong>Σχετικά με αυτή την ενότητα:</strong> Οδηγίες για την ομαλή αναπαραγωγή του αρχείου MKV, πώς να αλλάξετε κανάλια ήχου (Dual Audio), και οι βασικοί κανόνες διαμοιρασμού (seeding) στην κοινότητα.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Playback Guide -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                    <div class="flex items-center gap-3 mb-4 border-b pb-2">
+                        <span class="text-2xl">⚙️</span>
+                        <h2 class="text-xl font-bold text-slate-800">Οδηγίες Αναπαραγωγής</h2>
+                    </div>
+                    <p class="text-sm text-slate-600 mb-4">Για σωστή αποκωδικοποίηση των 10-bit χρωμάτων και του DTS-HD ήχου προτείνεται:</p>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex gap-2 items-start text-sm">
+                            <span class="text-green-600 font-bold">✓</span>
+                            <span><strong>VLC Media Player</strong> (v3.0+): Υποστηρίζει αυτόματα εναλλαγή ήχου/υποτίτλων.</span>
+                        </li>
+                        <li class="flex gap-2 items-start text-sm">
+                            <span class="text-green-600 font-bold">✓</span>
+                            <span><strong>MPC-HC</strong> με εγκατεστημένο το K-Lite Codec Pack.</span>
+                        </li>
+                        <li class="flex gap-2 items-start text-sm">
+                            <span class="text-green-600 font-bold">✓</span>
+                            <span><strong>Kodi / Plex</strong>: Για TV Boxes και Smart TVs.</span>
+                        </li>
+                    </ul>
+
+                    <div class="bg-blue-50 p-4 rounded-xl border border-blue-100">
+                        <h4 class="font-bold text-blue-900 text-sm mb-2">📌 Εναλλαγή Γλώσσας (Ελληνικά ➔ Αγγλικά)</h4>
+                        <ul class="text-sm text-blue-800 space-y-1">
+                            <li><strong>VLC:</strong> Δεξί κλικ ➔ Ήχος (Audio) ➔ Κανάλι Ήχου (Audio Track) ➔ “English”</li>
+                            <li><strong>MPC-HC:</strong> Δεξί κλικ ➔ Audio ➔ Επιλογή 2ου καναλιού.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Seeding Rules -->
+                <div class="bg-gradient-to-br from-green-50 to-emerald-100 p-6 rounded-2xl shadow-sm border border-emerald-200 flex flex-col justify-center text-center">
+                    <span class="text-5xl mb-4">🌱</span>
+                    <h2 class="text-2xl font-bold text-emerald-900 mb-2">Κανόνας Κοινότητας</h2>
+                    <h3 class="text-xl font-black text-emerald-700 mb-4">❤️ KEEP SEEDING!</h3>
+                    <p class="text-emerald-800 text-sm leading-relaxed max-w-sm mx-auto">
+                        Μην σβήνετε το torrent μετά την ολοκλήρωση της λήψης! Κρατήστε το αρχείο σε <strong>seeding (διαμοιρασμό)</strong> για να βοηθήσετε και τους υπόλοιπους χρήστες της ελληνικής κοινότητας να το κατεβάσουν με υψηλές ταχύτητες. Ο διαμοιρασμός κρατάει το δίκτυο ζωντανό.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Application Logic -->
+    <script>
+        // Data Storage for Cast
+        const castData = {
+            greek: [
+                { actor: "Γιώργος Πυρπασόπουλος", role: "Ρεντ (Red)" },
+                { actor: "Φοίβος Ριμένας", role: "Τσακ (Chuck)" },
+                { actor: "Χάρης Γρηγορόπουλος", role: "Μπομπ (Bomb)" },
+                { actor: "Βασίλης Μήλιος", role: "Λέοναρντ (Leonard)" },
+                { actor: "Γιάννης Ζουγανέλης", role: "Σούπερ Αετός" },
+                { actor: "Σοφία Τσάκα", role: "Ματίλντα (Matilda)" },
+                { actor: "Μαίρη Συνατσάκη", role: "Στέλλα (Stella)" },
+                { actor: "Γιάννης Στεφόπουλος", role: "Δικαστής Πεκίνπα" }
+            ],
+            english: [
+                { actor: "Jason Sudeikis", role: "Red" },
+                { actor: "Josh Gad", role: "Chuck" },
+                { actor: "Danny McBride", role: "Bomb" },
+                { actor: "Bill Hader", role: "Leonard" },
+                { actor: "Peter Dinklage", role: "Mighty Eagle" },
+                { actor: "Maya Rudolph", role: "Matilda" },
+                { actor: "Kate McKinnon", role: "Stella" }
+            ]
+        };
+
+        // State Management
+        let chartInstance = null;
+
+        // Populate Cast Lists
+        function populateCast() {
+            const grList = document.getElementById('gr-cast-list');
+            const enList = document.getElementById('en-cast-list');
+
+            castData.greek.forEach(item => {
+                grList.innerHTML += `<li class="px-4 py-3 hover:bg-blue-50 transition-colors flex justify-between items-center"><span class="font-semibold text-slate-800">${item.actor}</span> <span class="text-sm text-blue-600 bg-blue-100 px-2 py-1 rounded-full">${item.role}</span></li>`;
+            });
+
+            castData.english.forEach(item => {
+                enList.innerHTML += `<li class="px-4 py-3 hover:bg-red-50 transition-colors flex justify-between items-center"><span class="font-semibold text-slate-800">${item.actor}</span> <span class="text-sm text-red-600 bg-red-100 px-2 py-1 rounded-full">${item.role}</span></li>`;
+            });
+        }
+
+        // Initialize Chart.js
+        function initChart() {
+            const ctx = document.getElementById('bitrateChart').getContext('2d');
+            
+            // Destroy existing instance to prevent artifacts if re-rendered
+            if(chartInstance) {
+                chartInstance.destroy();
+            }
+
+            chartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Video (x264 10-bit)', 'Audio EN (DTS-HD)', 'Audio GR (AC3)'],
+                    datasets: [{
+                        label: 'Bitrate (Kbps)',
+                        data: [7200, 3450, 640],
+                        backgroundColor: [
+                            'rgba(59, 130, 246, 0.8)', // Blue for Video
+                            'rgba(239, 68, 68, 0.8)',  // Red for EN Audio
+                            'rgba(16, 185, 129, 0.8)'  // Green for GR Audio
+                        ],
+                        borderColor: [
+                            'rgb(37, 99, 235)',
+                            'rgb(220, 38, 38)',
+                            'rgb(5, 150, 105)'
+                        ],
+                        borderWidth: 1,
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.parsed.y + ' Kbps';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Kilobits per second (Kbps)'
+                            },
+                            grid: {
+                                color: '#e2e8f0'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Functional Navigation (Tab Switching)
+        window.switchTab = function(tabId) {
+            // Hide all contents
+            document.querySelectorAll('.tab-content').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            // Reset all button styles
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('text-red-600', 'border-red-600', 'active');
+                btn.classList.add('text-slate-500', 'border-transparent');
+            });
+
+            // Show selected content
+            document.getElementById(tabId).classList.add('active');
+            
+            // Update clicked button style
+            const clickedBtn = document.querySelector(`button[onclick="switchTab('${tabId}')"]`);
+            if(clickedBtn) {
+                clickedBtn.classList.remove('text-slate-500', 'border-transparent');
+                clickedBtn.classList.add('text-red-600', 'border-red-600', 'active');
+            }
+
+            // Initialize/Refresh chart if tech tab is opened to handle canvas resizing properly
+            if(tabId === 'tab-tech') {
+                setTimeout(initChart, 50); // slight delay to ensure DOM is visible for sizing
+            }
+        };
+
+        // Initialize App
+        document.addEventListener('DOMContentLoaded', () => {
+            populateCast();
+            // Initializing chart on load, although it's hidden, to establish data.
+            // It will re-init when the tab is actually clicked for proper sizing.
+            initChart(); 
+        });
+    </script>
+</body>
+</html>
