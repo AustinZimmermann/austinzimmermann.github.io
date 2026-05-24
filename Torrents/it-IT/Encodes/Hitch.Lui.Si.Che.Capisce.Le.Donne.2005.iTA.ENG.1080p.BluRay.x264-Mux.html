@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hitch (2005) [BluRay 1080p x264 iTALiAN ENG] - MondoTorrent</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#090d16',
+                        darkCard: '#111827',
+                        accentBlue: '#2563eb',
+                        seedGreen: '#10b981',
+                        leechRed: '#f43f5e',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #090d16;
+        }
+        .mono-font {
+            font-family: 'JetBrains+Mono', monospace;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #090d16;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1f2937;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #374151;
+        }
+    </style>
+</head>
+<body class="text-gray-200 min-h-screen flex flex-col selection:bg-accentBlue selection:text-white">
+
+    <!-- BARRA DI NAVIGAZIONE SUPERIORE -->
+    <header class="border-b border-gray-800 bg-darkCard/90 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <!-- Logo -->
+            <div class="flex items-center space-x-3">
+                <div class="bg-gradient-to-tr from-blue-600 to-indigo-500 p-2 rounded-lg text-white shadow-lg shadow-blue-500/20">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                </div>
+                <div>
+                    <span class="font-extrabold text-xl tracking-wider text-white">MONDO<span class="text-blue-500">TORRENT</span></span>
+                    <span class="text-xs block text-gray-500 -mt-1 font-semibold tracking-widest uppercase">Tracker Italiano</span>
+                </div>
+            </div>
+
+            <!-- Ricerca Torrent -->
+            <div class="hidden md:flex flex-1 max-w-md mx-8">
+                <div class="relative w-full">
+                    <input type="text" placeholder="Cerca film, serie TV, musica..." class="w-full bg-gray-900/60 border border-gray-700/80 rounded-full py-2 pl-4 pr-10 text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all text-gray-200 placeholder-gray-500">
+                    <button class="absolute right-3 top-2.5 text-gray-400 hover:text-white">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Status Utente / Quick Menu -->
+            <div class="flex items-center space-x-4">
+                <div class="hidden lg:flex items-center space-x-4 text-xs border-r border-gray-800 pr-4">
+                    <div class="text-right">
+                        <p class="text-gray-400 font-medium">Ratio: <span class="text-green-400 font-bold">2.45</span></p>
+                        <p class="text-[10px] text-gray-500">UL: 1.84 TB / DL: 768 GB</p>
+                    </div>
+                    <div class="bg-blue-500/10 text-blue-400 px-2 py-1 rounded border border-blue-500/20 font-semibold uppercase tracking-wider">
+                        VIP USER
+                    </div>
+                </div>
+                <!-- Avatar -->
+                <button class="flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-full p-1 transition-all">
+                    <div class="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-pink-500 flex items-center justify-center font-bold text-white text-sm">
+                        MT
+                    </div>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- SOTTO-NAVIGAZIONE -->
+    <nav class="bg-gray-950 border-b border-gray-800/50 py-2.5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between text-xs sm:text-sm text-gray-400 font-medium">
+            <div class="flex space-x-6 overflow-x-auto whitespace-nowrap py-1">
+                <a href="#" class="hover:text-white transition-colors">Sfoglia Torrents</a>
+                <a href="#" class="text-blue-400 font-semibold border-b-2 border-blue-500 pb-2 -mb-2.5">Dettaglio Torrent</a>
+                <a href="#" class="hover:text-white transition-colors">Richieste</a>
+                <a href="#" class="hover:text-white transition-colors">Forum</a>
+                <a href="#" class="hover:text-white transition-colors">Upload</a>
+                <a href="#" class="hover:text-white transition-colors">Wiki & Regole</a>
+            </div>
+            <div class="hidden sm:flex items-center space-x-3 text-xs">
+                <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-green-500/10 text-green-400 font-semibold">
+                    <span class="w-1.5 h-1.5 rounded-full bg-green-500 mr-1.5 animate-pulse"></span>
+                    Online: 14,841 peers
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- CONTENUTO PRINCIPALE -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+        <!-- BREADCRUMB -->
+        <nav class="flex text-gray-500 text-xs mb-6 space-x-2 items-center" aria-label="Breadcrumb">
+            <a href="#" class="hover:text-gray-300">Home</a>
+            <span>/</span>
+            <a href="#" class="hover:text-gray-300">Film</a>
+            <span>/</span>
+            <a href="#" class="hover:text-gray-300">BluRay 1080p</a>
+            <span>/</span>
+            <span class="text-gray-300">Hitch (2005)</span>
+        </nav>
+
+        <!-- TITOLO TORRENT -->
+        <div class="mb-8 border-b border-gray-800 pb-6">
+            <div class="flex flex-wrap items-center gap-3 mb-3">
+                <span class="bg-blue-600/20 text-blue-400 text-xs font-bold px-2.5 py-1 rounded border border-blue-500/30 uppercase tracking-wide">
+                    FILM / HD 1080P
+                </span>
+                <span class="bg-indigo-600/20 text-indigo-400 text-xs font-bold px-2.5 py-1 rounded border border-indigo-500/30 uppercase tracking-wide">
+                    BLU-RAY ENCODE
+                </span>
+                <span class="bg-emerald-600/20 text-emerald-400 text-xs font-bold px-2.5 py-1 rounded border border-emerald-500/30 uppercase tracking-wide">
+                    FREELEECH
+                </span>
+                <button onclick="toggleBookmark(this)" class="ml-auto text-gray-400 hover:text-yellow-400 transition-colors flex items-center space-x-1 text-sm bg-gray-900 border border-gray-800 px-3 py-1 rounded-lg">
+                    <svg class="w-4 h-4 text-gray-400" id="bookmarkStar" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.907c.961 0 1.36 1.253.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.557-.383-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
+                    </svg>
+                    <span id="bookmarkTxt">Aggiungi ai Preferiti</span>
+                </button>
+            </div>
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight leading-tight">
+                Hitch - Lui sì che capisce le donne (2005) [BluRay 1080p x264 iTALiAN ENG AC3 5.1 - Mux]
+            </h1>
+            <p class="text-sm text-gray-400 mt-2 font-mono break-all selection:bg-blue-600/30">
+                Hitch.2005.iTA.ENG.1080p.BluRay.x264.AC3-MondoMux
+            </p>
+        </div>
+
+        <!-- GRIGLIA CONTENUTI PRINCIPALI -->
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            
+            <!-- COLONNA DESTRA / SIDEBAR INFO TORRENT (Posizionata per prima su mobile se desiderato, qui inserita a destra in desktop) -->
+            <div class="lg:col-span-1 space-y-6 lg:order-2">
+                
+                <!-- SCATOLA DOWNLOAD PRINCIPALE -->
+                <div class="bg-gradient-to-b from-gray-900 to-darkCard border border-gray-800 rounded-2xl p-6 shadow-xl relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 rounded-full blur-2xl -mr-10 -mt-10"></div>
+                    
+                    <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4 flex items-center">
+                        <span class="w-1.5 h-1.5 rounded-full bg-blue-500 mr-2"></span> Scarica Torrent
+                    </h3>
+
+                    <div class="space-y-3.5">
+                        <!-- Tasto Magnet -->
+                        <a href="magnet:?xt=urn:btih:6c738096f9cf5c64391cf8e99bc7b2cf3a537f88&dn=Hitch.2005.iTA.ENG.1080p.BluRay.x264-Mux&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969%2Fannounce" 
+                           class="w-full bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white font-bold py-3 px-4 rounded-xl shadow-lg shadow-blue-600/20 transition-all flex items-center justify-center space-x-3 text-sm transform active:scale-[0.98]">
+                            <svg class="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                            <span>DOWNLOAD MAGNET</span>
+                        </a>
+
+                        <!-- Tasto File Torrent -->
+                        <button onclick="simulateDownload()" 
+                           class="w-full bg-gray-800 hover:bg-gray-700 text-gray-100 font-semibold py-3 px-4 rounded-xl border border-gray-700/80 transition-all flex items-center justify-center space-x-3 text-sm">
+                            <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                            <span>Scarica .torrent</span>
+                        </button>
+
+                        <!-- Copia Hash Magnet -->
+                        <button onclick="copyHash('6c738096f9cf5c64391cf8e99bc7b2cf3a537f88')" 
+                                class="w-full hover:bg-gray-900/40 text-gray-400 hover:text-white py-2 px-3 rounded-lg border border-dashed border-gray-800 text-center transition-all text-xs flex items-center justify-center space-x-2">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path>
+                            </svg>
+                            <span class="truncate font-mono">Copia Info Hash</span>
+                        </button>
+                    </div>
+
+                    <!-- Peer Status -->
+                    <div class="mt-6 pt-6 border-t border-gray-800/80 grid grid-cols-2 gap-4 text-center">
+                        <div class="bg-emerald-500/5 rounded-xl p-2.5 border border-emerald-500/10">
+                            <span class="block text-xl font-extrabold text-emerald-400">142</span>
+                            <span class="text-[10px] text-emerald-500 uppercase tracking-widest font-semibold">Seeders</span>
+                        </div>
+                        <div class="bg-rose-500/5 rounded-xl p-2.5 border border-rose-500/10">
+                            <span class="block text-xl font-extrabold text-rose-400">4</span>
+                            <span class="text-[10px] text-rose-500 uppercase tracking-widest font-semibold">Leechers</span>
+                        </div>
+                    </div>
+
+                    <!-- Health bar -->
+                    <div class="mt-4">
+                        <div class="flex justify-between text-[11px] text-gray-500 mb-1">
+                            <span>Stato Torrent (Salute)</span>
+                            <span class="text-emerald-400 font-semibold">100%</span>
+                        </div>
+                        <div class="w-full bg-gray-850 rounded-full h-1.5 overflow-hidden">
+                            <div class="bg-gradient-to-r from-emerald-500 to-teal-400 h-1.5 rounded-full" style="width: 100%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- METADATI TORRENT -->
+                <div class="bg-darkCard border border-gray-800 rounded-2xl p-6 space-y-4 shadow-lg text-sm">
+                    <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest pb-3 border-b border-gray-800 flex items-center">
+                        <svg class="w-4 h-4 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        Informazioni File
+                    </h3>
+
+                    <div class="flex justify-between items-center py-0.5">
+                        <span class="text-gray-500">Dimensione:</span>
+                        <span class="font-semibold text-white">9.45 GB</span>
+                    </div>
+                    <div class="flex justify-between items-center py-0.5">
+                        <span class="text-gray-500">Aggiunto il:</span>
+                        <span class="text-white">12 Maggio 2026</span>
+                    </div>
+                    <div class="flex justify-between items-center py-0.5">
+                        <span class="text-gray-500">Caricato da:</span>
+                        <a href="#" class="text-blue-400 hover:text-blue-300 font-semibold flex items-center">
+                            MondoMuxer 
+                            <svg class="w-3.5 h-3.5 ml-1 text-blue-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M6.267 3.455a.75.75 0 00-.708-.523H4.5a2.5 2.5 0 00-2.5 2.5v1.047a.75.75 0 00.318.618l2.25 1.5a.75.75 0 00.864-.047L6 7.82l.068.046a.75.75 0 00.864.047l2.25-1.5a.75.75 0 00.318-.618V5.432a2.5 2.5 0 00-2.5-2.5H6.267zm5.5 0a.75.75 0 00-.708-.523h-1.059a2.5 2.5 0 00-2.5 2.5v1.047a.75.75 0 00.318.618l2.25 1.5a.75.75 0 00.864-.047l.068-.046.068.046a.75.75 0 00.864.047l2.25-1.5a.75.75 0 00.318-.618V5.432a2.5 2.5 0 00-2.5-2.5h-1.059z" clip-rule="evenodd"></path>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="flex justify-between items-center py-0.5">
+                        <span class="text-gray-500">N. File:</span>
+                        <span class="text-white">2 File (MKV + NFO)</span>
+                    </div>
+                    <div class="flex justify-between items-center py-0.5">
+                        <span class="text-gray-500">Completato:</span>
+                        <span class="text-white">2,842 volte</span>
+                    </div>
+                    <div class="flex justify-between items-center py-0.5">
+                        <span class="text-gray-500">Voto Community:</span>
+                        <div class="flex items-center space-x-1 text-yellow-400">
+                            <span class="font-bold text-white mr-1">4.8</span>
+                            <span class="text-xs text-gray-500">(54 voti)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SEZIONE RECENSIONI E LIKE VELOCI -->
+                <div class="bg-darkCard border border-gray-800 rounded-2xl p-6 shadow-lg text-center">
+                    <p class="text-xs text-gray-400 font-semibold mb-3 uppercase tracking-wider">Ti piace questa release?</p>
+                    <div class="flex justify-center space-x-4">
+                        <button onclick="voteTorrent('up')" class="bg-gray-900 border border-gray-850 hover:border-emerald-500/50 hover:bg-emerald-500/5 px-4 py-2.5 rounded-xl flex items-center space-x-2 text-sm text-gray-300 hover:text-emerald-400 transition-all">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"></path>
+                            </svg>
+                            <span class="font-bold" id="upVotes">32</span>
+                        </button>
+                        <button onclick="voteTorrent('down')" class="bg-gray-900 border border-gray-850 hover:border-rose-500/50 hover:bg-rose-500/5 px-4 py-2.5 rounded-xl flex items-center space-x-2 text-sm text-gray-300 hover:text-rose-400 transition-all">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 14H5.236a2 2 0 01-1.789-2.894l3.5-7A2 2 0 018.736 3h4.018c.163 0 .326.02.485.06L17 4m-7 10v5a2 2 0 002 2h.095c.5 0 .905-.405.905-.905 0-.714.211-1.412.608-2.006L17 13V4m-7 10h2m7-10h2a2 2 0 012 2v6a2 2 0 01-2 2h-2.5"></path>
+                            </svg>
+                            <span class="font-bold">1</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COLONNA SINISTRA / DETTAGLIO FILM E SCHEDE -->
+            <div class="lg:col-span-3 space-y-8 lg:order-1">
+                
+                <!-- SEZIONE PRESENTAZIONE FILM (POSTER STILIZZATO + SCHEDA) -->
+                <div class="bg-darkCard border border-gray-800 rounded-2xl p-6 shadow-xl flex flex-col md:flex-row gap-6 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-transparent pointer-events-none"></div>
+                    
+                    <!-- Poster Cinematografico Stilizzato in CSS/SVG -->
+                    <div class="w-full md:w-56 h-80 flex-shrink-0 bg-gradient-to-b from-indigo-950 to-gray-950 rounded-xl border border-gray-700/80 shadow-md relative overflow-hidden flex flex-col justify-between p-4">
+                        <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none"></div>
+                        
+                        <!-- Mini Badge Anno -->
+                        <div class="flex justify-between items-center z-10">
+                            <span class="bg-blue-600 text-white font-extrabold text-[10px] px-2 py-0.5 rounded shadow">HD</span>
+                            <span class="text-white font-bold text-xs bg-gray-900/80 px-2 py-0.5 rounded backdrop-blur-sm">2005</span>
+                        </div>
+
+                        <!-- Elementi Stilizzati (HITCH) -->
+                        <div class="my-auto text-center z-10 flex flex-col items-center">
+                            <!-- Silhouette stilizzata di un paio di occhiali e cravatta -->
+                            <svg class="w-16 h-16 text-blue-400 opacity-80 mb-3" viewBox="0 0 100 100" fill="currentColor">
+                                <!-- Occhiali -->
+                                <path d="M15,40 Q35,40 35,48 Q35,56 25,56 Q15,56 15,48 Z" />
+                                <path d="M65,40 Q85,40 85,48 Q85,56 75,56 Q65,56 65,48 Z" />
+                                <rect x="35" y="44" width="30" height="4" />
+                                <!-- Cravatta/Colletto -->
+                                <path d="M42,58 L58,58 L55,90 L50,95 L45,90 Z" fill="url(#posterGradient)" />
+                                <defs>
+                                    <linearGradient id="posterGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#3b82f6" />
+                                        <stop offset="100%" stop-color="#a855f7" />
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                            <h2 class="text-3xl font-extrabold tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-pink-400 uppercase leading-none">
+                                HITCH
+                            </h2>
+                            <p class="text-[9px] text-gray-400 tracking-wider uppercase mt-1 font-semibold">Lui sì che capisce le donne</p>
+                        </div>
+
+                        <!-- Credits -->
+                        <div class="text-center z-10">
+                            <p class="text-[9px] text-gray-500 font-medium">WILL SMITH • EVA MENDES</p>
+                            <p class="text-[8px] text-gray-600 mt-0.5">UN FILM DI ANDY TENNANT</p>
+                        </div>
+                    </div>
+
+                    <!-- Scheda Informativa Film -->
+                    <div class="flex-grow flex flex-col justify-between space-y-4">
+                        <div>
+                            <div class="flex items-center space-x-2 text-xs font-semibold text-gray-400 mb-1.5">
+                                <span>2005</span>
+                                <span>•</span>
+                                <span>118 Minuti</span>
+                                <span>•</span>
+                                <span class="bg-gray-800 text-gray-300 px-1.5 py-0.5 rounded text-[10px]">T (Per tutti)</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-2">Hitch - Lui sì che capisce le donne</h3>
+                            
+                            <!-- Genere -->
+                            <div class="flex flex-wrap gap-1.5 mb-4">
+                                <span class="bg-gray-800 hover:bg-gray-700 text-gray-300 text-xs px-2.5 py-0.5 rounded-full border border-gray-700 cursor-pointer transition-all">Commedia</span>
+                                <span class="bg-gray-800 hover:bg-gray-700 text-gray-300 text-xs px-2.5 py-0.5 rounded-full border border-gray-700 cursor-pointer transition-all">Romantico</span>
+                            </div>
+
+                            <!-- Sinossi -->
+                            <p class="text-sm text-gray-400 leading-relaxed line-clamp-4 md:line-clamp-none">
+                                Alex “Hitch” Hitchens è un leggendario consulente d’amore newyorkese che, dietro pagamento di un compenso, aiuta gli uomini più insicuri e impacciati a conquistare le donne dei loro sogni. La sua nuova sfida è Albert, un contabile timido innamorato della bellissima ereditiera Allegra Cole. Nel frattempo, Hitch incontra l’affascinante Sara Melas, una giornalista scandalistica che non crede nell’amore, e per la prima volta i suoi infallibili metodi sembrano fallire.
+                            </p>
+                        </div>
+
+                        <!-- Cast rapido -->
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-3 text-xs border-t border-gray-800/60 pt-4">
+                            <div>
+                                <span class="block text-gray-500">Regia:</span>
+                                <span class="text-gray-300 font-medium">Andy Tennant</span>
+                            </div>
+                            <div>
+                                <span class="block text-gray-500">Sceneggiatura:</span>
+                                <span class="text-gray-300 font-medium">Kevin Bisch</span>
+                            </div>
+                            <div class="col-span-2 md:col-span-1">
+                                <span class="block text-gray-500">Cast Principale:</span>
+                                <span class="text-gray-300 font-medium truncate block">Will Smith, Eva Mendes, Kevin James</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARTELLA TABS INTERATTIVA -->
+                <div class="bg-darkCard border border-gray-800 rounded-2xl shadow-xl overflow-hidden">
+                    
+                    <!-- Menu Tab Header -->
+                    <div class="bg-gray-950/60 border-b border-gray-800 flex overflow-x-auto">
+                        <button onclick="switchTab('nfo')" id="tab-btn-nfo" class="tab-btn px-6 py-4 text-sm font-semibold border-b-2 border-blue-500 text-blue-400 focus:outline-none transition-all flex items-center space-x-2 whitespace-nowrap">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                            <span>Dettagli Tecnici (NFO)</span>
+                        </button>
+                        <button onclick="switchTab('files')" id="tab-btn-files" class="tab-btn px-6 py-4 text-sm font-semibold border-b-2 border-transparent text-gray-400 hover:text-white hover:bg-gray-900/40 focus:outline-none transition-all flex items-center space-x-2 whitespace-nowrap">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
+                            </svg>
+                            <span>Lista File (2)</span>
+                        </button>
+                        <button onclick="switchTab('trackers')" id="tab-btn-trackers" class="tab-btn px-6 py-4 text-sm font-semibold border-b-2 border-transparent text-gray-400 hover:text-white hover:bg-gray-900/40 focus:outline-none transition-all flex items-center space-x-2 whitespace-nowrap">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+                            </svg>
+                            <span>Tracker List</span>
+                        </button>
+                        <button onclick="switchTab('comments')" id="tab-btn-comments" class="tab-btn px-6 py-4 text-sm font-semibold border-b-2 border-transparent text-gray-400 hover:text-white hover:bg-gray-900/40 focus:outline-none transition-all flex items-center space-x-2 whitespace-nowrap">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                            </svg>
+                            <span>Commenti <span id="comments-badge" class="ml-1.5 px-1.5 py-0.5 bg-blue-600 text-white rounded-full text-[10px] font-bold">2</span></span>
+                        </button>
+                    </div>
+
+                    <!-- Corpo Tab Content -->
+                    <div class="p-6">
+                        
+                        <!-- TAB: NFO (Dettagli Tecnici) -->
+                        <div id="tab-content-nfo" class="tab-content space-y-6">
+                            
+                            <!-- Box Informativo Grafico -->
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                                <div class="bg-gray-900/50 border border-gray-800 p-4 rounded-xl text-center">
+                                    <span class="block text-xs text-gray-500 uppercase tracking-widest font-semibold mb-1">Video Codec</span>
+                                    <span class="text-sm font-bold text-white font-mono">x264 (H.264)</span>
+                                </div>
+                                <div class="bg-gray-900/50 border border-gray-800 p-4 rounded-xl text-center">
+                                    <span class="block text-xs text-gray-500 uppercase tracking-widest font-semibold mb-1">Risoluzione</span>
+                                    <span class="text-sm font-bold text-white font-mono">1920x800</span>
+                                </div>
+                                <div class="bg-gray-900/50 border border-gray-800 p-4 rounded-xl text-center">
+                                    <span class="block text-xs text-gray-500 uppercase tracking-widest font-semibold mb-1">Audio ITA</span>
+                                    <span class="text-sm font-bold text-white font-mono">AC3 5.1 @ 640kbps</span>
+                                </div>
+                                <div class="bg-gray-900/50 border border-gray-800 p-4 rounded-xl text-center">
+                                    <span class="block text-xs text-gray-500 uppercase tracking-widest font-semibold mb-1">Sottotitoli</span>
+                                    <span class="text-sm font-bold text-white font-mono">ITA (Forzati/Full)</span>
+                                </div>
+                            </div>
+
+                            <!-- Codice NFO -->
+                            <div class="relative">
+                                <div class="absolute top-3 right-3 z-10">
+                                    <button onclick="copyNFO()" class="bg-gray-800 hover:bg-gray-700 text-gray-300 px-2.5 py-1 rounded text-xs border border-gray-700 transition-colors flex items-center space-x-1">
+                                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path>
+                                        </svg>
+                                        <span>Copia NFO</span>
+                                    </button>
+                                </div>
+                                <pre id="nfo-text" class="mono-font bg-gray-950 border border-gray-800 p-4 rounded-xl text-xs text-green-500/90 overflow-x-auto leading-relaxed shadow-inner">
+#========================================================================#
+#   __  __                  _       _______                              #
+#  |  \/  |                | |     |__   __|                             #
+#  | \  / | ___  _ __   _  | | ___    | | ___  _ __ _ __ ___ _ __   _    #
+#  | |\/| |/ _ \| '_ \ / _` |/ _ \   | |/ _ \| '__| '__/ _ \ '_ \ / _` | #
+#  | |  | | (_) | | | | (_| | (_) |  | | (_) | |  | | |  __/ | | | (_| | #
+#  |_|  |_|\___/|_| |_|\__,_|\___/   |_|\___/|_|  |_|  \___|_| |_|\__,_| #
+#                                                                        #
+#========================================================================#
+RELEASE NAME..: Hitch.Lui.Si.Che.Capisce.Le.Donne.2005.iTA.ENG.1080p.BluRay.x264-Mux
+RELEASE DATE..: 12/05/2026
+ENCODER.......: MondoMuxer
+SOURCE........: Hitch (2005) Blu-ray AVC GBR-Mondo
+
+TECHNICAL INFORMATION:
+* GENRE.......: Comedy, Romance
+* SIZE........: 9.45 GiB
+* RUNTIME.....: 1h 58m 10s
+* VIDEO CODEC.: x264 Core 164 r3095 (High @ L4.1)
+* RESOLUTION..: 1920x800 (Aspect Ratio: 2.40:1)
+* BITRATE.....: 9200 kbps
+* FRAME RATE..: 23.976 fps
+
+AUDIO SPECS:
+* AUDIO 1.....: ITALIANO AC-3 5.1 @ 640 kbps (Doppiaggio Storico)
+* AUDIO 2.....: INGLESE AC-3 5.1 @ 640 kbps (Original Audio)
+
+SUBTITLES:
+* SUB 1.......: ITALIANO (Forzati - per le parti in lingua straniera)
+* SUB 2.......: ITALIANO (Completi)
+* SUB 3.......: INGLESE (Completi)
+
+NOTES / SCREENSHOTS INFO:
+- Traccia italiana estratta da Blu-ray ITA retail e sincronizzata.
+- Video ripulito da rumore video non necessario mantenendo il grain originale.
+- Compatibile al 100% con tutti i player standalone e smart TV.
+==========================================================================</pre>
+                            </div>
+                        </div>
+
+                        <!-- TAB: FILES -->
+                        <div id="tab-content-files" class="tab-content hidden space-y-4">
+                            <h4 class="text-sm font-bold text-white mb-2">Contenuto del Torrent</h4>
+                            <div class="border border-gray-800 rounded-xl overflow-hidden bg-gray-950/40">
+                                <div class="grid grid-cols-12 bg-gray-950 px-4 py-3 text-xs font-semibold text-gray-400 border-b border-gray-800">
+                                    <div class="col-span-8 flex items-center">Nome File</div>
+                                    <div class="col-span-4 text-right">Dimensione</div>
+                                </div>
+                                <div class="divide-y divide-gray-800/60 text-xs font-mono">
+                                    <div class="grid grid-cols-12 px-4 py-3 hover:bg-gray-900/20 transition-colors">
+                                        <div class="col-span-8 flex items-center text-gray-200">
+                                            <!-- Icona Video -->
+                                            <svg class="w-4 h-4 text-blue-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                            </svg>
+                                            <span class="truncate">Hitch.Lui.Si.Che.Capisce.Le.Donne.2005.iTA.ENG.1080p.BluRay.x264-Mux.mkv</span>
+                                        </div>
+                                        <div class="col-span-4 text-right text-gray-400 self-center">9.45 GB</div>
+                                    </div>
+                                    <div class="grid grid-cols-12 px-4 py-3 hover:bg-gray-900/20 transition-colors">
+                                        <div class="col-span-8 flex items-center text-gray-200">
+                                            <!-- Icona Info -->
+                                            <svg class="w-4 h-4 text-gray-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                            </svg>
+                                            <span class="truncate">Hitch.2005.NFO-Info.txt</span>
+                                        </div>
+                                        <div class="col-span-4 text-right text-gray-400 self-center">3.4 KB</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- TAB: TRACKERS -->
+                        <div id="tab-content-trackers" class="tab-content hidden space-y-4">
+                            <h4 class="text-sm font-bold text-white mb-2">Lista degli Announce Tracker</h4>
+                            <p class="text-xs text-gray-500 mb-4">Questa lista di tracker pubblici e privati viene integrata nel file torrent per ottimizzare la velocità di download e la reperibilità delle fonti.</p>
+                            
+                            <div class="border border-gray-800 rounded-xl overflow-hidden bg-gray-950/40">
+                                <div class="grid grid-cols-12 bg-gray-950 px-4 py-3 text-xs font-semibold text-gray-400 border-b border-gray-800">
+                                    <div class="col-span-8">Indirizzo Tracker</div>
+                                    <div class="col-span-4 text-right">Stato</div>
+                                </div>
+                                <div class="divide-y divide-gray-800/60 text-xs font-mono">
+                                    <div class="grid grid-cols-12 px-4 py-3 hover:bg-gray-900/20 transition-colors">
+                                        <div class="col-span-8 text-gray-300 truncate">udp://tracker.mondotorrent.it:8080/announce</div>
+                                        <div class="col-span-4 text-right text-emerald-400 font-semibold">ATTIVO (Privato)</div>
+                                    </div>
+                                    <div class="grid grid-cols-12 px-4 py-3 hover:bg-gray-900/20 transition-colors">
+                                        <div class="col-span-8 text-gray-300 truncate">udp://tracker.coppersurfer.tk:6969/announce</div>
+                                        <div class="col-span-4 text-right text-emerald-400 font-semibold">ATTIVO</div>
+                                    </div>
+                                    <div class="grid grid-cols-12 px-4 py-3 hover:bg-gray-900/20 transition-colors">
+                                        <div class="col-span-8 text-gray-300 truncate">udp://tracker.leechers-paradise.org:6969/announce</div>
+                                        <div class="col-span-4 text-right text-emerald-400 font-semibold">ATTIVO</div>
+                                    </div>
+                                    <div class="grid grid-cols-12 px-4 py-3 hover:bg-gray-900/20 transition-colors">
+                                        <div class="col-span-8 text-gray-350 truncate">udp://open.demonii.com:1337/announce</div>
+                                        <div class="col-span-4 text-right text-amber-500 font-semibold">IN ATTESA</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- TAB: COMMENTS -->
+                        <div id="tab-content-comments" class="tab-content hidden space-y-6">
+                            
+                            <!-- Box Inserimento Commento -->
+                            <div class="bg-gray-900/40 p-4 rounded-xl border border-gray-850">
+                                <h5 class="text-sm font-semibold text-white mb-3">Lascia un commento su questa release</h5>
+                                <div class="space-y-3">
+                                    <textarea id="commentInput" rows="3" placeholder="Scrivi il tuo feedback... Ricorda di commentare sulla qualità audio/video per aiutare gli altri utenti!" class="w-full bg-gray-950 border border-gray-800 rounded-lg p-3 text-sm focus:outline-none focus:border-blue-500 transition-all text-gray-200 placeholder-gray-500 resize-none"></textarea>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-[11px] text-gray-500">Mantieni un tono rispettoso secondo le regole del Forum.</span>
+                                        <button onclick="addComment()" class="bg-blue-600 hover:bg-blue-500 text-white font-semibold px-4 py-2 rounded-lg text-xs shadow-md shadow-blue-600/10 transition-colors">
+                                            Invia Commento
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Elenco Commenti -->
+                            <div id="comments-container" class="space-y-4">
+                                <!-- Commento 1 -->
+                                <div class="bg-gray-900/20 border border-gray-800 p-4 rounded-xl flex space-x-3.5">
+                                    <div class="w-9 h-9 rounded-full bg-blue-600/20 text-blue-400 flex items-center justify-center font-bold text-xs flex-shrink-0">
+                                        CN
+                                    </div>
+                                    <div class="flex-grow space-y-1">
+                                        <div class="flex justify-between items-center">
+                                            <span class="font-semibold text-sm text-white">Cinematik_Nerd</span>
+                                            <span class="text-[10px] text-gray-500">12 Maggio 2026, 14:32</span>
+                                        </div>
+                                        <p class="text-sm text-gray-300 leading-relaxed">
+                                            Mux fantastico! Traccia audio italiana limpida e video eccezionale. Avevo una vecchia release da 4GB ma questa da 9.45GB è nettamente superiore. Grazie mille all'uploader! Consigliatissimo!
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Commento 2 -->
+                                <div class="bg-gray-900/20 border border-gray-800 p-4 rounded-xl flex space-x-3.5">
+                                    <div class="w-9 h-9 rounded-full bg-emerald-650/20 text-emerald-400 flex items-center justify-center font-bold text-xs flex-shrink-0">
+                                        MF
+                                    </div>
+                                    <div class="flex-grow space-y-1">
+                                        <div class="flex justify-between items-center">
+                                            <span class="font-semibold text-sm text-white">MondoFan92</span>
+                                            <span class="text-[10px] text-gray-500">12 Maggio 2026, 18:15</span>
+                                        </div>
+                                        <p class="text-sm text-gray-300 leading-relaxed">
+                                            Adoro questa commedia con Will Smith! Sincronizzazione perfetta per l'audio. Resto in seed finché non raggiungo una ratio di 5.0! Grazie!
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- SEZIONE ANTEPRIME / SCREENSHOTS -->
+                <div class="bg-darkCard border border-gray-800 rounded-2xl p-6 shadow-xl space-y-4">
+                    <h3 class="text-sm font-bold text-white uppercase tracking-widest flex items-center pb-3 border-b border-gray-800">
+                        <svg class="w-4 h-4 mr-2 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                        Anteprime (Screenshots dell'Encode)
+                    </h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Placeholder Frame 1 -->
+                        <div class="relative group rounded-xl overflow-hidden bg-gray-950 aspect-video border border-gray-800">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-4 z-10">
+                                <span class="text-xs text-white font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">Scena 1: Consulenza d'Amore</span>
+                                <span class="text-[10px] text-gray-400 font-mono">1920x800 @ Frame 24,800</span>
+                            </div>
+                            <!-- Mocking Screenshot inside SVG -->
+                            <svg class="w-full h-full text-indigo-950/40" fill="currentColor" viewBox="0 0 16 9">
+                                <rect width="100%" height="100%" fill="#1a1c24" />
+                                <text x="50%" y="45%" dominant-baseline="middle" text-anchor="middle" fill="#4b5563" class="text-xs font-semibold">Screenshot Frame 1</text>
+                                <text x="50%" y="60%" dominant-baseline="middle" text-anchor="middle" fill="#374151" class="text-[9px] font-mono">Simulato in Alta Definizione</text>
+                            </svg>
+                        </div>
+
+                        <!-- Placeholder Frame 2 -->
+                        <div class="relative group rounded-xl overflow-hidden bg-gray-950 aspect-video border border-gray-800">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-4 z-10">
+                                <span class="text-xs text-white font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">Scena 2: Disastri sentimentali di Albert</span>
+                                <span class="text-[10px] text-gray-400 font-mono">1920x800 @ Frame 62,450</span>
+                            </div>
+                            <!-- Mocking Screenshot inside SVG -->
+                            <svg class="w-full h-full text-indigo-950/40" fill="currentColor" viewBox="0 0 16 9">
+                                <rect width="100%" height="100%" fill="#1a1c24" />
+                                <text x="50%" y="45%" dominant-baseline="middle" text-anchor="middle" fill="#4b5563" class="text-xs font-semibold">Screenshot Frame 2</text>
+                                <text x="50%" y="60%" dominant-baseline="middle" text-anchor="middle" fill="#374151" class="text-[9px] font-mono">Simulato in Alta Definizione</text>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- SEZIONE CORRELATI -->
+        <section class="mt-12 pt-8 border-t border-gray-800">
+            <h3 class="text-lg font-bold text-white mb-6 flex items-center">
+                <svg class="w-5 h-5 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                </svg>
+                Potrebbe interessarti anche (Commedie Correlate)
+            </h3>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                
+                <!-- Correlato 1 -->
+                <div class="bg-darkCard border border-gray-800/80 rounded-xl p-3 hover:border-blue-500/50 transition-all cursor-pointer group">
+                    <div class="h-40 bg-gray-900 rounded-lg mb-2.5 flex items-center justify-center font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-rose-400 text-sm p-2 text-center select-none uppercase border border-gray-800">
+                        La ricerca della felicità
+                    </div>
+                    <span class="text-[10px] text-gray-500 block uppercase tracking-wider font-semibold">Will Smith • 2006</span>
+                    <h4 class="text-xs font-bold text-gray-200 group-hover:text-blue-400 transition-colors truncate mt-1">La ricerca della felicità (1080p)</h4>
+                </div>
+
+                <!-- Correlato 2 -->
+                <div class="bg-darkCard border border-gray-800/80 rounded-xl p-3 hover:border-blue-500/50 transition-all cursor-pointer group">
+                    <div class="h-40 bg-gray-900 rounded-lg mb-2.5 flex items-center justify-center font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400 text-sm p-2 text-center select-none uppercase border border-gray-800">
+                        HANCOCK
+                    </div>
+                    <span class="text-[10px] text-gray-500 block uppercase tracking-wider font-semibold">Will Smith • 2008</span>
+                    <h4 class="text-xs font-bold text-gray-200 group-hover:text-blue-400 transition-colors truncate mt-1">Hancock [BluRay 1080p]</h4>
+                </div>
+
+                <!-- Correlato 3 -->
+                <div class="bg-darkCard border border-gray-800/80 rounded-xl p-3 hover:border-blue-500/50 transition-all cursor-pointer group">
+                    <div class="h-40 bg-gray-900 rounded-lg mb-2.5 flex items-center justify-center font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400 text-sm p-2 text-center select-none uppercase border border-gray-800">
+                        Hitch 723p
+                    </div>
+                    <span class="text-[10px] text-gray-500 block uppercase tracking-wider font-semibold">Commedia • 2005</span>
+                    <h4 class="text-xs font-bold text-gray-200 group-hover:text-blue-400 transition-colors truncate mt-1">Hitch (2005) [BRRip 720p]</h4>
+                </div>
+
+                <!-- Correlato 4 -->
+                <div class="bg-darkCard border border-gray-800/80 rounded-xl p-3 hover:border-blue-500/50 transition-all cursor-pointer group">
+                    <div class="h-40 bg-gray-900 rounded-lg mb-2.5 flex items-center justify-center font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-yellow-400 text-sm p-2 text-center select-none uppercase border border-gray-800">
+                        Crazy, Stupid, Love.
+                    </div>
+                    <span class="text-[10px] text-gray-500 block uppercase tracking-wider font-semibold">Commedia • 2011</span>
+                    <h4 class="text-xs font-bold text-gray-200 group-hover:text-blue-400 transition-colors truncate mt-1">Crazy, Stupid, Love. (1080p)</h4>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-950 border-t border-gray-800/80 py-8 text-center text-xs text-gray-500 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-3">
+            <p class="font-semibold text-gray-400 uppercase tracking-wider">MondoTorrent Premium Tracker Italiano -- Progetto Amatoriale No-Profit</p>
+            <p>I contenuti mostrati sono puramente illustrativi ed evocativi di un'esperienza d'uso prototipata. Non viene ospitato o diffuso alcun materiale protetto da copyright.</p>
+            <div class="flex justify-center space-x-6 pt-2 text-[11px]">
+                <a href="#" class="hover:text-gray-300 transition-colors">DMCA Policy</a>
+                <a href="#" class="hover:text-gray-300 transition-colors">Contattaci</a>
+                <a href="#" class="hover:text-gray-300 transition-colors">Richiesta Invito</a>
+                <a href="#" class="hover:text-gray-300 transition-colors">Regolamento Ratio</a>
+            </div>
+            <p class="text-[10px] text-gray-650 pt-3">© 2026 MondoTorrent. Tutti i diritti simulati.</p>
+        </div>
+    </footer>
+
+    <!-- SISTEMA DI TOAST NOTIFICATION (Sostituto di alert) -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 bg-gray-900 border border-gray-800 text-gray-100 px-4 py-3.5 rounded-xl shadow-2xl flex items-center space-x-3 transition-all transform translate-y-20 opacity-0 pointer-events-none duration-300 max-w-sm">
+        <div class="p-1 rounded bg-blue-600 text-white flex-shrink-0" id="toastIcon">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+            </svg>
+        </div>
+        <div>
+            <h5 class="text-xs font-bold text-white uppercase tracking-wider" id="toastTitle">Successo</h5>
+            <p class="text-xs text-gray-400 mt-0.5" id="toastMsg">Operazione completata con successo.</p>
+        </div>
+    </div>
+
+    <!-- LOGICA JAVASCRIPT -->
+    <script>
+        // Funzione per mostrare un Toast personalizzato senza bloccare il browser con alert
+        function showToast(title, msg, type = 'success') {
+            const toast = document.getElementById('toast');
+            const toastTitle = document.getElementById('toastTitle');
+            const toastMsg = document.getElementById('toastMsg');
+            const toastIcon = document.getElementById('toastIcon');
+
+            toastTitle.innerText = title;
+            toastMsg.innerText = msg;
+
+            if (type === 'success') {
+                toastIcon.className = "p-1 rounded bg-emerald-600 text-white flex-shrink-0";
+                toastIcon.innerHTML = `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>`;
+            } else {
+                toastIcon.className = "p-1 rounded bg-blue-600 text-white flex-shrink-0";
+                toastIcon.innerHTML = `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`;
+            }
+
+            // Animazione ingresso toast
+            toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+            }, 4000);
+        }
+
+        // Cambio schede (Tab switcher)
+        function switchTab(tabId) {
+            // Nascondi tutte le tab
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.add('hidden'));
+
+            // Resetta stile bottoni
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('border-blue-500', 'text-blue-400');
+                btn.classList.add('border-transparent', 'text-gray-400');
+            });
+
+            // Mostra tab selezionata
+            document.getElementById(`tab-content-${tabId}`).classList.remove('hidden');
+
+            // Applica stile attivo al bottone
+            const activeBtn = document.getElementById(`tab-btn-${tabId}`);
+            activeBtn.classList.remove('border-transparent', 'text-gray-400');
+            activeBtn.classList.add('border-blue-500', 'text-blue-400');
+        }
+
+        // Copia dell'hash del torrent negli appunti
+        function copyHash(hashText) {
+            const tempInput = document.createElement("textarea");
+            tempInput.value = hashText;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            
+            try {
+                document.execCommand("copy");
+                showToast("Copiato!", "Info Hash del Torrent copiato con successo negli appunti.", "success");
+            } catch (err) {
+                showToast("Errore", "Impossibile copiare negli appunti, prova manualmente.", "error");
+            }
+            
+            document.body.removeChild(tempInput);
+        }
+
+        // Copia del testo NFO
+        function copyNFO() {
+            const nfoText = document.getElementById("nfo-text").innerText;
+            const tempInput = document.createElement("textarea");
+            tempInput.value = nfoText;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            
+            try {
+                document.execCommand("copy");
+                showToast("Copiato!", "File NFO copiato negli appunti.", "success");
+            } catch (err) {
+                showToast("Errore", "Impossibile copiare il testo dell'NFO.", "error");
+            }
+            
+            document.body.removeChild(tempInput);
+        }
+
+        // Simulazione del download del file torrent
+        function simulateDownload() {
+            showToast("In download...", "Inizializzazione download del file torrent 'Hitch.2005.Mux.torrent'.", "info");
+        }
+
+        // Aggiungi ai preferiti
+        let isBookmarked = false;
+        function toggleBookmark(btn) {
+            isBookmarked = !isBookmarked;
+            const star = document.getElementById("bookmarkStar");
+            const txt = document.getElementById("bookmarkTxt");
+
+            if (isBookmarked) {
+                star.setAttribute("fill", "currentColor");
+                star.setAttribute("class", "w-4 h-4 text-yellow-400");
+                txt.innerText = "Nei Preferiti";
+                showToast("Preferiti", "Questo torrent è stato aggiunto ai tuoi preferiti.", "success");
+            } else {
+                star.setAttribute("fill", "none");
+                star.setAttribute("class", "w-4 h-4 text-gray-400");
+                txt.innerText = "Aggiungi ai Preferiti";
+                showToast("Preferiti", "Questo torrent è stato rimosso dai tuoi preferiti.", "info");
+            }
+        }
+
+        // Voto Torrent
+        let hasVoted = false;
+        function voteTorrent(direction) {
+            if (hasVoted) {
+                showToast("Voto già registrato", "Hai già votato questa release.", "info");
+                return;
+            }
+            if (direction === 'up') {
+                const upVotes = document.getElementById("upVotes");
+                upVotes.innerText = parseInt(upVotes.innerText) + 1;
+                showToast("Grazie!", "Hai aggiunto un voto positivo per questa release.", "success");
+            } else {
+                showToast("Voto registrato", "Grazie per il tuo feedback sulla release.", "info");
+            }
+            hasVoted = true;
+        }
+
+        // Aggiunta Commento
+        function addComment() {
+            const input = document.getElementById("commentInput");
+            const text = input.value.trim();
+
+            if (!text) {
+                showToast("Errore", "Impossibile inviare un commento vuoto.", "error");
+                return;
+            }
+
+            const container = document.getElementById("comments-container");
+            const badge = document.getElementById("comments-badge");
+
+            // Generazione data corrente
+            const opzioni = { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' };
+            const dataOggi = new Date().toLocaleDateString('it-IT', opzioni);
+
+            // Costruzione blocco HTML commento
+            const nuovoCommento = document.createElement("div");
+            nuovoCommento.className = "bg-gray-900/40 border border-blue-500/30 p-4 rounded-xl flex space-x-3.5 animate-fadeIn transition-all";
+            nuovoCommento.innerHTML = `
+                <div class="w-9 h-9 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-xs flex-shrink-0 shadow-md">
+                    MT
+                </div>
+                <div class="flex-grow space-y-1">
+                    <div class="flex justify-between items-center">
+                        <span class="font-semibold text-sm text-blue-400">Tu (VIP User)</span>
+                        <span class="text-[10px] text-gray-500">${dataOggi}</span>
+                    </div>
+                    <p class="text-sm text-gray-200 leading-relaxed">
+                        ${escapeHTML(text)}
+                    </p>
+                </div>
+            `;
+
+            // Inserisci in cima alla lista
+            container.insertBefore(nuovoCommento, container.firstChild);
+            
+            // Pulisci l'input
+            input.value = "";
+            
+            // Aggiorna Badge Commenti
+            badge.innerText = parseInt(badge.innerText) + 1;
+            
+            showToast("Commento pubblicato", "Il tuo commento è stato pubblicato con successo nella discussione.", "success");
+        }
+
+        // Protezione base da attacchi XSS nei commenti simulati
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g, 
+                tag => ({
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    "'": '&#39;',
+                    '"': '&quot;'
+                }[tag] || tag)
+            );
+        }
+    </script>
+</body>
+</html>
