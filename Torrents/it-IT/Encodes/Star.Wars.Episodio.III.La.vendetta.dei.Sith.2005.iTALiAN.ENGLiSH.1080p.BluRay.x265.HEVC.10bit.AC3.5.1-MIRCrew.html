@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="it-IT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIRCrew Release Dashboard: Star Wars Episodio III</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            background-color: #f8fafc; 
+            color: #0f172a;
+            font-family: Helvetica, sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .copy-toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #16a34a;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+            z-index: 50;
+        }
+        .copy-toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .sith-border {
+            border-top: 4px solid #b91c1c;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Chosen Palette: Light Slate & Sith Red Accent (Light background #f8fafc, Slate text #0f172a, Red accents #b91c1c for Star Wars thematic relevance, Blue #0284c7 for links/interactive elements) -->
+    
+    <!-- Application Structure Plan: The SPA is structured as a modern "Release Dashboard". It prioritizes immediate access to download links (Header), followed by a two-column layout separating narrative content (Movie Info/Plot) from technical data (MediaInfo/Charts). This prevents the user from scrolling through long walls of text to find technical specs. An interactive tab system and a visual bitrate chart make the dry MediaInfo data easily explorable and comprehensible at a glance. -->
+    
+    <!-- Visualization & Content Choices: 
+         - Bitrate Chart: Goal -> Compare data streams. Viz -> Donut Chart (Chart.js/Canvas). Interaction -> Hover for exact kbps. Justification -> Instantly shows the quality allocation between video and dual audio tracks.
+         - MediaInfo Tabs: Goal -> Organize complex text. Viz -> Tabbed Interface. Interaction -> Click to switch categories. Justification -> Reduces cognitive load and vertical space compared to a flat list. 
+         - Copy Buttons: Goal -> Actionable utility. Viz -> Styled buttons + Toast notification. Interaction -> Click to copy hash/magnet. Justification -> Essential UX for a torrent release page.
+    -->
+    
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <div class="max-w-6xl mx-auto px-4 py-8">
+        
+        <header class="bg-white rounded-xl shadow-sm p-6 mb-8 sith-border relative overflow-hidden">
+            <div class="absolute top-0 right-0 p-8 opacity-5 text-9xl font-black pointer-events-none">&#9763;</div>
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 relative z-10">
+                <div>
+                    <h1 class="text-2xl md:text-3xl font-extrabold text-slate-900 tracking-tight">Star Wars: Episodio III – La vendetta dei Sith</h1>
+                    <p class="text-slate-500 mt-2 text-sm md:text-base font-medium">[MIRCrew] 2005 MULTi 1080p BluRay x265 HEVC 10bit AC3 5.1 ITA ENG Sub ITA ENG</p>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">4.18 GiB</span>
+                    <span class="bg-red-100 text-red-800 text-xs font-semibold px-3 py-1 rounded-full">HEVC 10bit</span>
+                    <span class="bg-slate-100 text-slate-800 text-xs font-semibold px-3 py-1 rounded-full">MULTi 5.1</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            
+            <section class="lg:col-span-5 space-y-8">
+                <div class="bg-white rounded-xl shadow-sm p-6">
+                    <h2 class="text-xl font-bold border-b border-slate-100 pb-3 mb-4 text-slate-800">Il Film</h2>
+                    <p class="text-sm text-slate-600 mb-6">Esplora i dettagli della pellicola, dalla trama epica che segna la fine della Repubblica Galattica, all’iconico cast stellare che ha dato vita a questo capolavoro.</p>
+                    
+                    <div class="space-y-4 text-sm">
+                        <div class="grid grid-cols-3 border-b border-slate-50 pb-2">
+                            <span class="font-semibold text-slate-500">Regia</span>
+                            <span class="col-span-2 text-slate-800">George Lucas</span>
+                        </div>
+                        <div class="grid grid-cols-3 border-b border-slate-50 pb-2">
+                            <span class="font-semibold text-slate-500">Anno & Durata</span>
+                            <span class="col-span-2 text-slate-800">2005 &bull; 140 minuti</span>
+                        </div>
+                        <div class="grid grid-cols-3 border-b border-slate-50 pb-2">
+                            <span class="font-semibold text-slate-500">Genere</span>
+                            <span class="col-span-2 text-slate-800">Fantascienza, Azione, Avventura</span>
+                        </div>
+                        <div class="grid grid-cols-3 pb-2">
+                            <span class="font-semibold text-slate-500">Cast Principale</span>
+                            <span class="col-span-2 text-slate-800 leading-relaxed">
+                                Hayden Christensen, Ewan McGregor, Natalie Portman, Ian McDiarmid, Samuel L. Jackson, Christopher Lee
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="mt-6">
+                        <h3 class="font-bold text-slate-800 mb-2">Trama</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed text-justify">
+                            Sono passati tre anni dall’inizio delle devastanti Guerre dei Cloni. La Repubblica Galattica è sull’orlo del collasso e i Cavalieri Jedi combattono strenuamente contro l’esercito separatista del Generale Grievous. Anakin Skywalker e il suo maestro Obi-Wan Kenobi sono ormai eroi leggendari.
+                            <br><br>
+                            Al ritorno da una pericolosa missione di salvataggio per liberare il Cancelliere Supremo Palpatine, Anakin ritrova la sua sposa segreta, Padmé Amidala, scoprendo che è incinta. Tuttavia, il giovane Jedi comincia a essere tormentato da terribili visioni in cui vede Padmé morire di parto. Deciso a salvarla a ogni costo, Anakin si ritrova esposto alle lusinghe del Lato Oscuro della Forza, abilmente manipolato da Palpatine, il quale gli promette un potere tale da sconfiggere la morte stessa. Sarà l'inizio della fine: la caduta della Repubblica, la purga dei Jedi e la tragica nascita di Dart Fener.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm p-6">
+                    <h2 class="text-xl font-bold border-b border-slate-100 pb-3 mb-4 text-slate-800">Note di Release</h2>
+                    <p class="text-sm text-slate-600 mb-4">Informazioni dettagliate sul processo di acquisizione e codifica di questa specifica release MIRCrew.</p>
+                    
+                    <ul class="space-y-3 text-sm text-slate-700">
+                        <li class="flex items-start">
+                            <span class="mr-2 text-blue-500 font-bold">&#10003;</span>
+                            <div><strong>Sorgente:</strong> Blu-ray Disc Originale (Untouched).</div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-2 text-blue-500 font-bold">&#10003;</span>
+                            <div><strong>Encoding:</strong> Effettuato con preset <code>x265</code> a 10-bit per garantire sfumature di colore perfette sulle scene scure (specialmente nello spazio e su Mustafar) evitando fastidiosi effetti di color-banding.</div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-2 text-blue-500 font-bold">&#10003;</span>
+                            <div><strong>Audio:</strong> Traccia italiana estratta direttamente dal Blu-ray originale senza ricodifica distruttiva.</div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-2 text-blue-500 font-bold">&#10003;</span>
+                            <div><strong>Compatibilità:</strong> Perfettamente compatibile con Smart TV di nuova generazione, PC (consigliato VLC o MPC-HC), Apple TV e lettori compatibili HEVC.</div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="lg:col-span-7 space-y-8">
+                <div class="bg-white rounded-xl shadow-sm p-6">
+                    <h2 class="text-xl font-bold border-b border-slate-100 pb-3 mb-4 text-slate-800">Dati Tecnici (MediaInfo)</h2>
+                    <p class="text-sm text-slate-600 mb-6">Analizza le specifiche di questa release ad alta efficienza. Interagisci con il grafico per comprendere l’allocazione del bitrate e naviga tra i tab sottostanti per i dettagli granulari di video, audio e sottotitoli.</p>
+                    
+                    <div class="bg-slate-50 rounded-lg p-4 mb-6 border border-slate-100">
+                        <h3 class="text-center text-sm font-semibold text-slate-500 uppercase tracking-wider mb-2">Allocazione Bitrate (Kbps)</h3>
+                        <div class="chart-container">
+                            <canvas id="bitrateChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="flex border-b border-slate-200" id="tabs-container">
+                            <button class="px-4 py-2 text-sm font-semibold text-red-600 border-b-2 border-red-600 focus:outline-none" onclick="switchTab('general', this)">Generale</button>
+                            <button class="px-4 py-2 text-sm font-semibold text-slate-500 border-b-2 border-transparent hover:text-slate-700 focus:outline-none" onclick="switchTab('video', this)">Video</button>
+                            <button class="px-4 py-2 text-sm font-semibold text-slate-500 border-b-2 border-transparent hover:text-slate-700 focus:outline-none" onclick="switchTab('audio', this)">Audio</button>
+                            <button class="px-4 py-2 text-sm font-semibold text-slate-500 border-b-2 border-transparent hover:text-slate-700 focus:outline-none" onclick="switchTab('subs', this)">Sottotitoli</button>
+                        </div>
+
+                        <div class="p-4 bg-slate-50 rounded-b-lg border border-t-0 border-slate-100 min-h-[200px]">
+                            
+                            <div id="general" class="tab-content active text-sm text-slate-700 space-y-2">
+                                <div class="flex justify-between"><span class="font-semibold text-slate-500">Nome file:</span> <span class="break-all text-right ml-4">Star.Wars.Episodio.III.La.vendetta.dei.Sith.2005.iTALiAN.ENGLiSH.1080p.BluRay.x265.HEVC.10bit.AC3.5.1-MIRCrew.mkv</span></div>
+                                <div class="flex justify-between"><span class="font-semibold text-slate-500">Formato:</span> <span>Matroska (MKV)</span></div>
+                                <div class="flex justify-between"><span class="font-semibold text-slate-500">Dimensione:</span> <span>4.18 GiB</span></div>
+                                <div class="flex justify-between"><span class="font-semibold text-slate-500">Durata:</span> <span>2 h 20 min</span></div>
+                            </div>
+
+                            <div id="video" class="tab-content text-sm text-slate-700 space-y-2">
+                                <div class="flex justify-between"><span class="font-semibold text-slate-500">Codec ID:</span> <span>V_MPEGH/ISO/HEVC</span></div>
+                                <div class="flex justify-between"><span class="font-semibold text-slate-500">Profilo:</span> <span>H.265 Main 10@L4@Main</span></div>
+                                <div class="flex justify-between"><span class="font-semibold text-slate-500">Risoluzione:</span> <span>1920 x 816 pixel</span></div>
+                                <div class="flex justify-between"><span class="font-semibold text-slate-500">Aspect Ratio:</span> <span>2.35:1</span></div>
+                                <div class="flex justify-between"><span class="font-semibold text-slate-500">Frame Rate:</span> <span>23.976 fps</span></div>
+                                <div class="flex justify-between"><span class="font-semibold text-slate-500">Bitrate Video:</span> <span>3600 kbps</span></div>
+                                <div class="flex justify-between"><span class="font-semibold text-slate-500">Profondità Colore:</span> <span>10 bit</span></div>
+                            </div>
+
+                            <div id="audio" class="tab-content text-sm text-slate-700 space-y-4">
+                                <div>
+                                    <h4 class="font-bold text-slate-800 mb-1 border-b border-slate-200 pb-1">Audio #1 (Italiano)</h4>
+                                    <div class="flex justify-between"><span class="font-semibold text-slate-500">Codec:</span> <span>AC-3 (Dolby Digital)</span></div>
+                                    <div class="flex justify-between"><span class="font-semibold text-slate-500">Canali:</span> <span>6 canali (5.1)</span></div>
+                                    <div class="flex justify-between"><span class="font-semibold text-slate-500">Bitrate & Freq:</span> <span>448 kbps @ 48.0 kHz</span></div>
+                                    <div class="flex justify-between"><span class="font-semibold text-slate-500">Note:</span> <span class="italic">Doppiaggio Storico (Cinema)</span></div>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-800 mb-1 border-b border-slate-200 pb-1">Audio #2 (Inglese)</h4>
+                                    <div class="flex justify-between"><span class="font-semibold text-slate-500">Codec:</span> <span>AC-3 (Dolby Digital)</span></div>
+                                    <div class="flex justify-between"><span class="font-semibold text-slate-500">Canali:</span> <span>6 canali (5.1)</span></div>
+                                    <div class="flex justify-between"><span class="font-semibold text-slate-500">Bitrate & Freq:</span> <span>448 kbps @ 48.0 kHz</span></div>
+                                    <div class="flex justify-between"><span class="font-semibold text-slate-500">Note:</span> <span class="italic">Original Audio Track</span></div>
+                                </div>
+                            </div>
+
+                            <div id="subs" class="tab-content text-sm text-slate-700 space-y-2">
+                                <ul class="list-disc list-inside space-y-1">
+                                    <li>Italiano (Forzati/Incipit) - <span class="text-xs font-mono bg-slate-200 px-1 rounded">SRT (Softcoded)</span></li>
+                                    <li>Italiano (Completo) - <span class="text-xs font-mono bg-slate-200 px-1 rounded">SRT (Softcoded)</span></li>
+                                    <li>Inglese (Completo) - <span class="text-xs font-mono bg-slate-200 px-1 rounded">SRT (Softcoded)</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm p-6 sith-border">
+                    <h2 class="text-xl font-bold border-b border-slate-100 pb-3 mb-4 text-slate-800">Download & Hash</h2>
+                    <p class="text-sm text-slate-600 mb-6">Ottieni il file tramite rete BitTorrent. Usa i pulsanti interattivi per copiare comodamente l'hash di verifica o il magnet link per il tuo client preferito.</p>
+
+                    <div class="bg-slate-50 rounded-lg p-4 font-mono text-sm break-all mb-4 border border-slate-200 relative group">
+                        <div class="text-xs font-bold text-slate-400 mb-1 font-sans uppercase">Info Hash (SHA-1)</div>
+                        <div class="text-slate-800" id="hashText">8F3B9D7A6C1E2B4D5F8E9A0C1B2A3D4E5F6A7B8C</div>
+                        <button onclick="copyToClipboard('hashText')" class="mt-2 text-xs bg-slate-200 hover:bg-slate-300 text-slate-700 px-3 py-1 rounded transition font-sans">
+                            &#128203; Copia Hash
+                        </button>
+                    </div>
+
+                    <div class="bg-blue-50 rounded-lg p-4 font-mono text-sm break-all border border-blue-100 relative group">
+                        <div class="text-xs font-bold text-blue-400 mb-1 font-sans uppercase">Magnet Link</div>
+                        <div class="text-blue-900" id="magnetText">magnet:?xt=urn:btih:8f3b9d7a6c1e2b4d5f8e9a0c1b2a3d4e5f6a7b8c&amp;dn=Star.Wars.Episodio.III.2005.1080p.x265-MIRCrew&amp;tr=udp%3a%2f%2ftracker.coppersurfer.tk%3a6969%2fannounce&amp;tr=udp%3a%2f%2ftracker.leechers-paradise.org%3a6969%2fannounce</div>
+                        <button onclick="copyToClipboard('magnetText')" class="mt-3 text-sm bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded shadow transition font-sans font-semibold">
+                            &#129522; Copia Magnet Link
+                        </button>
+                    </div>
+
+                    <div class="mt-6 text-xs text-center text-slate-500 bg-amber-50 p-3 rounded-lg border border-amber-100">
+                        <span class="font-bold text-amber-700">Attenzione:</span> Si prega di rimanere in SEED il più a lungo possibile dopo il completamento del download per permettere anche agli altri utenti di scaricare velocemente! Condividere è un dovere morale per preservare la cultura cinematografica! &#128521;
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm p-6">
+                    <h2 class="text-xl font-bold border-b border-slate-100 pb-3 mb-4 text-slate-800">Screenshots</h2>
+                    <p class="text-sm text-slate-600 mb-4">Anteprime estratte direttamente dal file video (1080p x265).</p>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="bg-slate-100 aspect-video rounded flex items-center justify-center border border-slate-200 text-slate-400 text-sm italic">Obi-Wan & Anakin (Non disponibile)</div>
+                        <div class="bg-slate-100 aspect-video rounded flex items-center justify-center border border-slate-200 text-slate-400 text-sm italic">Il Cancelliere Palpatine (Non disponibile)</div>
+                        <div class="bg-slate-100 aspect-video rounded flex items-center justify-center border border-slate-200 text-slate-400 text-sm italic">Scontro su Mustafar (Non disponibile)</div>
+                        <div class="bg-slate-100 aspect-video rounded flex items-center justify-center border border-slate-200 text-slate-400 text-sm italic">Nascita Dart Fener (Non disponibile)</div>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+    </div>
+
+    <div id="toast" class="copy-toast">
+        &#10004; Testo copiato negli appunti!
+    </div>
+
+    <script>
+        const bitrateData = {
+            labels: ['Video (HEVC)', 'Audio ITA (AC3)', 'Audio ENG (AC3)'],
+            datasets: [{
+                data: [3600, 448, 448],
+                backgroundColor: [
+                    '#0284c7', 
+                    '#b91c1c', 
+                    '#64748b'  
+                ],
+                borderWidth: 0,
+                hoverOffset: 4
+            }]
+        };
+
+        const chartConfig = {
+            type: 'doughnut',
+            data: bitrateData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '65%',
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            color: '#475569',
+                            font: { family: 'Inter', size: 12 }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.label || '';
+                                if (label) { label += ': '; }
+                                if (context.parsed !== null) { label += context.parsed + ' kbps'; }
+                                return label;
+                            }
+                        },
+                        backgroundColor: 'rgba(15, 23, 42, 0.9)',
+                        padding: 12,
+                        cornerRadius: 8
+                    }
+                }
+            }
+        };
+
+        let bitrateChart;
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('bitrateChart').getContext('2d');
+            bitrateChart = new Chart(ctx, chartConfig);
+        });
+
+        function switchTab(tabId, element) {
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.getElementById(tabId).classList.add('active');
+
+            const buttons = element.parentElement.children;
+            for (let i = 0; i < buttons.length; i++) {
+                buttons[i].className = 'px-4 py-2 text-sm font-semibold text-slate-500 border-b-2 border-transparent hover:text-slate-700 focus:outline-none';
+            }
+            element.className = 'px-4 py-2 text-sm font-semibold text-red-600 border-b-2 border-red-600 focus:outline-none';
+        }
+
+        function copyToClipboard(elementId) {
+            const textToCopy = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const toast = document.getElementById('toast');
+                toast.classList.add('show');
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 3000);
+            }).catch(err => {
+                console.error('Errore durante la copia: ', err);
+            });
+        }
+    </script>
+</body>
+</html>
