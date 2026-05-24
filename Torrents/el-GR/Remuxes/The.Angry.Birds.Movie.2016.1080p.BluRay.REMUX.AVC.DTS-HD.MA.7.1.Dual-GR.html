@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="el-GR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angry Birds: Η Ταινία - Interactive Release Report</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Chosen Palette: Warm Neutral & Subtle Red (bg-stone-50, text-stone-800, accent-red-600) -->
+    <!-- Application Structure Plan: The application is structured as a single-page interactive movie dashboard. It moves linearly from high-level context (poster, synopsis) to interactive exploration (cast toggles), and culminates in a deep technical analysis (interactive chart showing bitrate allocation). This structure is chosen because it mimics a user's journey from deciding if they want the content to verifying its technical superiority (the 'Remux' aspect). -->
+    <!-- Visualization & Content Choices: Report Info: Technical Specs -> Goal: Demonstrate the high quality of the Remux format -> Viz/Presentation Method: Interactive Bar Chart -> Interaction: Hover to see exact kbps, responsive scaling -> Justification: A visual comparison of bitrates highlights the uncompressed nature of the video and DTS-HD audio better than raw numbers -> Library/Method: Chart.js Canvas. Cast Info -> Goal: Organize dual-audio voice actors -> Method: Interactive Tabs -> Library/Method: Vanilla JS + HTML/CSS. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body { font-family: Helvetica, sans-serif; }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (max-width: 640px) {
+            .chart-container { height: 250px; }
+        }
+        .tab-active { border-bottom: 2px solid #dc2626; color: #dc2626; font-weight: bold; }
+        .tab-inactive { border-bottom: 2px solid transparent; color: #57534e; }
+        .tab-inactive:hover { color: #292524; }
+        .nav-link { transition: color 0.2s ease; }
+        .nav-link:hover { color: #dc2626; }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-800 antialiased selection:bg-red-200 selection:text-red-900">
+
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center gap-2 font-bold text-xl text-red-600">
+                    <span>🎬</span> Release Info
+                </div>
+                <div class="flex space-x-4 sm:space-x-8 text-sm font-medium">
+                    <button data-scroll-to="overview" class="nav-link">Σύνοψη</button>
+                    <button data-scroll-to="cast" class="nav-link">Ηθοποιοί</button>
+                    <button data-scroll-to="tech" class="nav-link">Τεχνικά</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-16">
+
+        <header class="flex flex-col md:flex-row gap-8 items-center md:items-start bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-stone-100">
+            <div class="shrink-0">
+                <img src="https://www.e-shop.gr/images/DVD/BIG/DVD.08525.jpg" alt="The Angry Birds Movie Poster" class="w-48 sm:w-64 rounded-xl shadow-md object-cover">
+            </div>
+            <div class="flex-1 space-y-4 text-center md:text-left">
+                <div>
+                    <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-stone-900">Angry Birds: Η Ταινία</h1>
+                    <h2 class="text-lg text-stone-500 mt-1">The Angry Birds Movie (2016)</h2>
+                </div>
+                
+                <div class="flex flex-wrap gap-2 justify-center md:justify-start">
+                    <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-blue-100 text-blue-800">Blu-Ray Remux</span>
+                    <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-stone-100 text-stone-800">1080p AVC</span>
+                    <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-purple-100 text-purple-800">DTS-HD MA 7.1</span>
+                    <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-800">Dual Audio (GR/EN)</span>
+                </div>
+
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-stone-100">
+                    <div>
+                        <p class="text-xs text-stone-500 uppercase tracking-wide">Διάρκεια</p>
+                        <p class="font-semibold text-stone-800">97 λεπτά</p>
+                    </div>
+                    <div>
+                        <p class="text-xs text-stone-500 uppercase tracking-wide">Βαθμολογία</p>
+                        <p class="font-semibold text-stone-800">⭐ 6.3/10</p>
+                    </div>
+                    <div>
+                        <p class="text-xs text-stone-500 uppercase tracking-wide">Σκηνοθεσία</p>
+                        <p class="font-semibold text-stone-800 text-sm">Clay Kaytis, Fergal Reilly</p>
+                    </div>
+                    <div>
+                        <p class="text-xs text-stone-500 uppercase tracking-wide">Είδος</p>
+                        <p class="font-semibold text-stone-800 text-sm">Animation, Κωμωδία</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section id="overview" class="space-y-4">
+            <h3 class="text-2xl font-bold flex items-center gap-2"><span>📖</span> Σύνοψη & Γενικές Πληροφορίες</h3>
+            <p class="text-stone-600 bg-stone-100 p-4 rounded-lg border border-stone-200 text-sm">
+                Αυτή η ενότητα παρουσιάζει την κεντρική πλοκή της ταινίας. Εξερευνήστε την ιστορία του Ρεντ και των υπόλοιπων πουλιών, κατανοώντας το υπόβαθρο της σύγκρουσής τους με τα πράσινα γουρούνια, όπως παρουσιάζεται στο Source Report.
+            </p>
+            <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-stone-100 text-stone-700 leading-relaxed space-y-4">
+                <p>Στο πανέμορφο “Νησί των Πουλιών”, μια κοινότητα από χαρούμενα, ανίκανα να πετάξουν πουλιά ζει σε απόλυτη αρμονία. Ανάμεσά τους, όμως, ξεχωρίζει ο <strong class="text-red-600">Ρεντ (Red)</strong>, ένα κόκκινο πουλί με σοβαρά προβλήματα διαχείρισης θυμού, που τον έχουν καταστήσει απόβλητο της κοινωνίας.</p>
+                <p>Όταν ο δικαστής του νησιού τον καταδικάζει σε υποχρεωτικά μαθήματα αυτοελέγχου, ο Ρεντ γνωρίζει τον υπερκινητικό <strong class="text-stone-900">Τσακ (Chuck)</strong> και τον εκρηκτικό <strong class="text-stone-900">Μπομπ (Bomb)</strong>. Η ήσυχη καθημερινότητα του νησιού ανατρέπεται ξαφνικά όταν καταφθάνει ένα πλοίο γεμάτο με μυστηριώδη πράσινα γουρούνια, υπό την ηγεσία του χαρισματικού <strong class="text-stone-900">Λέοναρντ</strong>.</p>
+                <p>Ενώ όλα τα πουλιά τους υποδέχονται με ανοιχτές αγκάλες, ο Ρεντ είναι ο μόνος που υποψιάζεται τις πραγματικές, σκοτεινές τους προθέσεις. Όταν τα γουρούνια κλέβουν όλα τα αυγά του νησιού, τα πουλιά θα πρέπει να επιστρατεύσουν τον “θυμό” τους για να σώσουν το μέλλον τους!</p>
+            </div>
+        </section>
+
+        <section id="cast" class="space-y-4">
+            <h3 class="text-2xl font-bold flex items-center gap-2"><span>🎙️</span> Συντελεστές Μεταγλώττισης</h3>
+            <p class="text-stone-600 bg-stone-100 p-4 rounded-lg border border-stone-200 text-sm">
+                Εδώ μπορείτε να εξερευνήσετε διαδραστικά το καστ των ηθοποιών. Δεδομένου ότι πρόκειται για Dual Audio κυκλοφορία, χρησιμοποιήστε τα παρακάτω κουμπιά (tabs) για να κάνετε εναλλαγή μεταξύ των φωνών της Ελληνικής Μεταγλώττισης και του αυθεντικού Αγγλικού Καστ.
+            </p>
+            
+            <div class="bg-white rounded-2xl shadow-sm border border-stone-100 overflow-hidden">
+                <div class="flex border-b border-stone-200">
+                    <button id="tab-gr" class="flex-1 py-4 text-center tab-active transition-colors">🇬🇷 Ελληνική Μεταγλώττιση</button>
+                    <button id="tab-en" class="flex-1 py-4 text-center tab-inactive transition-colors">🇬🇧 Πρωτότυπες Φωνές</button>
+                </div>
+                
+                <div class="p-6">
+                    <ul id="cast-list" class="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8">
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="tech" class="space-y-4">
+            <h3 class="text-2xl font-bold flex items-center gap-2"><span>📊</span> Τεχνική Ανάλυση (Remux Quality)</h3>
+            <p class="text-stone-600 bg-stone-100 p-4 rounded-lg border border-stone-200 text-sm">
+                Αυτή η ενότητα αναλύει τα τεχνικά χαρακτηριστικά του αρχείου από το MediaInfo. Το παρακάτω διαδραστικό γράφημα απεικονίζει τη ροή δεδομένων (Bitrate). Μπορείτε να κάνετε hover στις μπάρες για ακριβή νούμερα. Η τεράστια διαφορά του Video Bitrate αποδεικνύει την απουσία συμπίεσης, χαρακτηριστικό των εκδόσεων Blu-Ray Remux.
+            </p>
+            
+            <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-stone-100 space-y-8">
+                
+                <div class="chart-container">
+                    <canvas id="bitrateChart"></canvas>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6 border-t border-stone-100">
+                    <div class="bg-stone-50 p-4 rounded-xl border border-stone-200">
+                        <h4 class="font-bold text-stone-800 flex items-center gap-2 mb-3"><span>🎥</span> Βίντεο</h4>
+                        <ul class="text-sm space-y-2 text-stone-600">
+                            <li><strong>Format:</strong> AVC (MPEG-4 AVC)</li>
+                            <li><strong>Profile:</strong> High@L4.1</li>
+                            <li><strong>Ανάλυση:</strong> 1920 x 1080 (16:9)</li>
+                            <li><strong>Frame Rate:</strong> 23.976 FPS</li>
+                        </ul>
+                    </div>
+                    <div class="bg-stone-50 p-4 rounded-xl border border-stone-200">
+                        <h4 class="font-bold text-stone-800 flex items-center gap-2 mb-3"><span>🔊</span> Ήχος (EN)</h4>
+                        <ul class="text-sm space-y-2 text-stone-600">
+                            <li><strong>Format:</strong> DTS-HD Master Audio</li>
+                            <li><strong>Κανάλια:</strong> 7.1 channels</li>
+                            <li><strong>Κατηγορία:</strong> Πρωτότυπος (Original)</li>
+                        </ul>
+                    </div>
+                    <div class="bg-stone-50 p-4 rounded-xl border border-stone-200">
+                        <h4 class="font-bold text-stone-800 flex items-center gap-2 mb-3"><span>🔊</span> Ήχος (GR)</h4>
+                        <ul class="text-sm space-y-2 text-stone-600">
+                            <li><strong>Format:</strong> AC-3 (Dolby Digital)</li>
+                            <li><strong>Κανάλια:</strong> 5.1 channels</li>
+                            <li><strong>Κατηγορία:</strong> Επίσημη Μεταγλώττιση</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-stone-800 text-stone-200 p-4 rounded-xl text-sm font-mono overflow-x-auto">
+                    <p class="text-stone-400 mb-2">// File Information</p>
+                    <p>Όνομα Αρχείου........: The.Angry.Birds.Movie.2016.1080p.BluRay.REMUX.AVC.DTS-HD.MA.7.1.Dual-GR.mkv</p>
+                    <p>Format...............: Matroska (MKV)</p>
+                    <p>Υπότιτλοι............: Ελληνικοί (Full/Forced), Αγγλικοί (SDH)</p>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-stone-900 text-stone-400 py-8 text-center text-sm">
+        <p>Καλή Θέαση! / Enjoy the Movie!</p>
+        <p class="mt-2 text-xs">Interactive Release Report created dynamically.</p>
+    </footer>
+
+    <script>
+        const castData = {
+            gr: [
+                { actor: "Γιώργος Πυρπασόπουλος", role: "Ρεντ (Red)" },
+                { actor: "Φοίβος Ριμένας", role: "Τσακ (Chuck)" },
+                { actor: "Χάρης Γρηγορόπουλος", role: "Μπομπ (Bomb)" },
+                { actor: "Βασίλης Μήλιος", role: "Λέοναρντ (Leonard)" },
+                { actor: "Γιάννης Ζουγανέλης", role: "Σούπερ Αετός (Mighty Eagle)" },
+                { actor: "Σοφία Τσάκα", role: "Ματίλντα (Matilda)" },
+                { actor: "Γιάννης Στεφόπουλος", role: "Δικαστής Πεκίνπα" },
+                { actor: "Μαίρη Συνατσάκη", role: "Στέλλα" }
+            ],
+            en: [
+                { actor: "Jason Sudeikis", role: "Red" },
+                { actor: "Josh Gad", role: "Chuck" },
+                { actor: "Danny McBride", role: "Bomb" },
+                { actor: "Bill Hader", role: "Leonard" },
+                { actor: "Peter Dinklage", role: "Mighty Eagle" },
+                { actor: "Maya Rudolph", role: "Matilda" }
+            ]
+        };
+
+        const castListContainer = document.getElementById('cast-list');
+        const tabGr = document.getElementById('tab-gr');
+        const tabEn = document.getElementById('tab-en');
+
+        function renderCast(languageCode) {
+            castListContainer.innerHTML = '';
+            castData[languageCode].forEach(item => {
+                const li = document.createElement('li');
+                li.className = "flex justify-between items-center p-3 hover:bg-stone-50 rounded-lg transition-colors border border-transparent hover:border-stone-200";
+                li.innerHTML = `
+                    <span class="font-bold text-stone-800">${item.actor}</span>
+                    <span class="text-sm text-stone-500 bg-white px-2 py-1 rounded shadow-sm border border-stone-100">ως ${item.role}</span>
+                `;
+                castListContainer.appendChild(li);
+            });
+        }
+
+        function switchTab(activeTabId, inactiveTabId, lang) {
+            const activeTab = document.getElementById(activeTabId);
+            const inactiveTab = document.getElementById(inactiveTabId);
+            
+            activeTab.classList.remove('tab-inactive');
+            activeTab.classList.add('tab-active');
+            
+            inactiveTab.classList.remove('tab-active');
+            inactiveTab.classList.add('tab-inactive');
+            
+            renderCast(lang);
+        }
+
+        tabGr.addEventListener('click', () => switchTab('tab-gr', 'tab-en', 'gr'));
+        tabEn.addEventListener('click', () => switchTab('tab-en', 'tab-gr', 'en'));
+
+        renderCast('gr');
+
+        const ctx = document.getElementById('bitrateChart').getContext('2d');
+        const bitrateChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Video (AVC 1080p)', 'Audio (EN DTS-HD)', 'Audio (GR AC-3)'],
+                datasets: [{
+                    label: 'Bitrate σε kbps',
+                    data: [28500, 4850, 448],
+                    backgroundColor: [
+                        'rgba(59, 130, 246, 0.7)',
+                        'rgba(168, 85, 247, 0.7)',
+                        'rgba(34, 197, 94, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgb(29, 78, 216)',
+                        'rgb(126, 34, 206)',
+                        'rgb(21, 128, 61)'
+                    ],
+                    borderWidth: 1,
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) { label += ': '; }
+                                if (context.parsed.y !== null) {
+                                    label += new Intl.NumberFormat('el-GR').format(context.parsed.y) + ' kbps';
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Kilobits per second (kbps)',
+                            color: '#57534e'
+                        },
+                        grid: { color: '#f5f5f4' }
+                    },
+                    x: {
+                        grid: { display: false }
+                    }
+                }
+            }
+        });
+
+        document.querySelectorAll('button[data-scroll-to]').forEach(button => {
+            button.addEventListener('click', () => {
+                const targetId = button.getAttribute('data-scroll-to');
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    const headerOffset = 80;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
