@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Wars: Episodio II - El ataque de los clones [Blu-ray Remux 1080p DTS] (2002) - CineTorrent</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind Custom Config to fit Episode II Kamino & Geonosis Theme -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        kaminoCyan: '#00f0ff',
+                        geonosisOrange: '#ff8c00',
+                        forceYellow: '#ffe81f',
+                        darkBg: '#090d16',
+                        cardBg: '#121a2a'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #04070d;
+            background-image: 
+                radial-gradient(circle at 15% 25%, rgba(0, 240, 255, 0.05) 0%, transparent 45%),
+                radial-gradient(circle at 85% 75%, rgba(255, 140, 0, 0.04) 0%, transparent 45%);
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #090d16;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 3px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #334155;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeIn {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="text-slate-100 min-h-screen flex flex-col antialiased selection:bg-kaminoCyan/30 selection:text-kaminoCyan">
+
+    <!-- HEADER / NAV -->
+    <header class="sticky top-0 z-40 bg-darkBg/95 backdrop-blur-md border-b border-slate-800/80 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-2 group shrink-0">
+                <span class="text-2xl font-extrabold tracking-wider bg-gradient-to-r from-kaminoCyan via-forceYellow to-geonosisOrange bg-clip-text text-transparent group-hover:opacity-90 transition-opacity">
+                    CineTorrent
+                </span>
+                <span class="hidden sm:inline-block px-1.5 py-0.5 text-[10px] uppercase tracking-widest bg-slate-800 text-kaminoCyan rounded border border-kaminoCyan/20 font-bold">
+                    PREMIUM
+                </span>
+            </a>
+
+            <!-- Buscador -->
+            <div class="flex-1 max-w-lg relative">
+                <form id="searchForm" class="relative">
+                    <input type="text" id="searchInput" placeholder="Buscar torrents de películas, series, trackers..." 
+                           class="w-full bg-slate-900/90 text-sm rounded-full pl-10 pr-4 py-2 border border-slate-800 focus:outline-none focus:border-kaminoCyan transition-colors text-slate-200 placeholder-slate-500">
+                    <div class="absolute left-3 top-2.5 text-slate-500 pointer-events-none">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Enlaces Rápidos -->
+            <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-400">
+                <a href="#" class="hover:text-white transition-colors">Inicio</a>
+                <a href="#" class="text-kaminoCyan hover:text-white transition-colors flex items-center gap-1">
+                    <span class="w-1.5 h-1.5 rounded-full bg-kaminoCyan animate-ping"></span>
+                    Estrenos Remux
+                </a>
+                <a href="#" class="hover:text-white transition-colors">Colecciones</a>
+                <a href="#" class="hover:text-white transition-colors">Foro</a>
+            </nav>
+
+            <!-- Acceso Usuario -->
+            <div class="flex items-center gap-3 shrink-0">
+                <button onclick="showToast('Función de inicio de sesión temporalmente deshabilitada.', 'info')" class="text-xs font-semibold px-4 py-2 text-slate-300 hover:text-white transition-colors hidden sm:block">
+                    Acceder
+                </button>
+                <button onclick="showToast('Las invitaciones para nuevos miembros están cerradas.', 'warning')" class="text-xs font-semibold px-4 py-2 rounded-full bg-gradient-to-r from-kaminoCyan to-blue-500 text-slate-950 hover:opacity-90 transition-all font-bold">
+                    Registrarse
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        
+        <!-- BREADCRUMBS -->
+        <nav class="flex items-center gap-2 text-xs text-slate-500 mb-6 overflow-x-auto whitespace-nowrap py-1">
+            <a href="#" class="hover:text-slate-300 transition-colors">Inicio</a>
+            <span class="text-slate-700">/</span>
+            <a href="#" class="hover:text-slate-300 transition-colors">Películas</a>
+            <span class="text-slate-700">/</span>
+            <a href="#" class="hover:text-slate-300 transition-colors">Blu-ray Remux</a>
+            <span class="text-slate-700">/</span>
+            <span class="text-slate-300 truncate">Star Wars: Episodio II - El ataque de los clones</span>
+        </nav>
+
+        <!-- CABECERA DE LA FICHA -->
+        <div class="mb-8">
+            <div class="flex flex-wrap items-center gap-2 mb-3">
+                <span class="px-2.5 py-0.5 text-xs font-bold uppercase rounded bg-cyan-600/30 text-cyan-400 border border-cyan-500/20">
+                    BDRemux 1080p
+                </span>
+                <span class="px-2.5 py-0.5 text-xs font-bold uppercase rounded bg-amber-600/30 text-amber-400 border border-amber-500/20">
+                    Multi Latino-Castellano-Inglés
+                </span>
+                <span class="px-2.5 py-0.5 text-xs font-bold uppercase rounded bg-rose-600/30 text-rose-400 border border-rose-500/20">
+                    2002
+                </span>
+                <span class="px-2.5 py-0.5 text-xs font-bold uppercase rounded bg-slate-800 text-slate-300">
+                    Saga Star Wars
+                </span>
+            </div>
+            <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-white mb-2 leading-tight">
+                Star Wars: Episodio II - El ataque de los clones <span class="text-slate-500 font-normal text-xl sm:text-2xl">(2002)</span>
+            </h1>
+            <p class="text-sm text-slate-400 flex flex-wrap items-center gap-x-4 gap-y-1">
+                <span class="font-medium text-slate-300">Título original:</span> Star Wars: Episode II - Attack of the Clones
+                <span class="text-slate-700">•</span>
+                <span class="font-medium text-slate-300">Director:</span> George Lucas
+            </p>
+        </div>
+
+        <!-- CONTENIDO: REPARTO EN DOS COLUMNAS -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <!-- COLUMNA IZQUIERDA: PORTADA, DESCARGAS, VALORACIÓN -->
+            <div class="lg:col-span-4 flex flex-col gap-6">
+                
+                <!-- Poster con contenedor premium -->
+                <div class="relative group rounded-2xl overflow-hidden bg-slate-900 shadow-2xl border border-slate-800/80 aspect-[2/3] max-w-sm mx-auto lg:max-w-none w-full">
+                    <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=600&q=80" 
+                         alt="Star Wars Episodio II El ataque de los clones Poster" 
+                         id="moviePoster"
+                         onerror="this.src='https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=600&q=80'; this.onerror=null;"
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    
+                    <div class="absolute inset-0 bg-gradient-to-t from-darkBg via-transparent to-transparent opacity-90"></div>
+
+                    <!-- Botón Flotante Tráiler -->
+                    <button onclick="openTrailerModal()" class="absolute bottom-4 left-4 right-4 py-3 px-4 rounded-xl bg-slate-900/95 hover:bg-slate-900 backdrop-blur text-sm font-semibold flex items-center justify-center gap-2 border border-slate-750 hover:border-kaminoCyan/50 text-white shadow-xl transition-all active:scale-98">
+                        <svg class="w-5 h-5 text-geonosisOrange fill-geonosisOrange" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                        Ver Tráiler de la Película
+                    </button>
+                </div>
+
+                <!-- Bloque de Descargas e Info de Tracker -->
+                <div class="bg-cardBg rounded-2xl p-5 border border-slate-800 shadow-lg">
+                    <h3 class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-4 flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-kaminoCyan animate-pulse"></span>
+                        Opciones de Enlace
+                    </h3>
+
+                    <!-- Descargar Torrent -->
+                    <button onclick="startTorrentDownload()" class="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-bold text-center flex items-center justify-center gap-3 transition-all shadow-lg shadow-cyan-500/10 hover:shadow-cyan-500/20 active:scale-98 mb-3">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                        <span>Descargar archivo .torrent</span>
+                    </button>
+
+                    <!-- Magnet Link -->
+                    <button onclick="copyMagnet()" class="w-full py-3 px-4 rounded-xl bg-slate-900 hover:bg-slate-850 text-slate-200 hover:text-white font-semibold text-sm flex items-center justify-center gap-2 border border-slate-800 hover:border-slate-700 transition-colors mb-4">
+                        <svg class="w-4 h-4 text-geonosisOrange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                        <span>Enlace Directo Magnet</span>
+                    </button>
+
+                    <!-- Simulador de Barra de Progreso -->
+                    <div id="downloadProgressContainer" class="hidden bg-slate-950 border border-slate-850 rounded-xl p-3 mb-4">
+                        <div class="flex justify-between items-center text-xs mb-1.5">
+                            <span class="text-slate-400">Analizando hashes de bloques...</span>
+                            <span id="downloadPercentage" class="font-bold text-kaminoCyan">0%</span>
+                        </div>
+                        <div class="w-full bg-slate-900 h-2 rounded-full overflow-hidden">
+                            <div id="downloadProgressBar" class="bg-gradient-to-r from-kaminoCyan to-blue-500 h-full w-0 transition-all duration-300"></div>
+                        </div>
+                    </div>
+
+                    <!-- Ficha del Torrent -->
+                    <div class="space-y-2 text-xs border-t border-slate-800 pt-4 text-slate-400">
+                        <div class="flex justify-between py-1">
+                            <span>Tamaño:</span>
+                            <span class="font-semibold text-slate-200">36.54 GB</span>
+                        </div>
+                        <div class="flex justify-between py-1">
+                            <span>Semillas (Seeders):</span>
+                            <span class="font-bold text-emerald-400 flex items-center gap-1">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+                                289
+                            </span>
+                        </div>
+                        <div class="flex justify-between py-1">
+                            <span>Clientes (Leechers):</span>
+                            <span class="font-semibold text-rose-400 flex items-center gap-1">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                                31
+                            </span>
+                        </div>
+                        <div class="flex justify-between py-1">
+                            <span>Completado:</span>
+                            <span class="font-semibold text-slate-200">1,154 veces</span>
+                        </div>
+                        <div class="flex justify-between py-1">
+                            <span>Fecha de Subida:</span>
+                            <span class="font-semibold text-slate-200">Ayer</span>
+                        </div>
+                        <div class="flex justify-between py-1">
+                            <span>Uploader VIP:</span>
+                            <span class="font-bold text-kaminoCyan flex items-center gap-1 hover:underline cursor-pointer">
+                                ObiWan_Files
+                                <svg class="w-3 h-3 text-kaminoCyan" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a.75.75 0 00-.708-.523H4.5a2.5 2.5 0 00-2.5 2.5v1.5a.75.75 0 001.5 0v-1.5a1 1 0 011-1h.352a.75.75 0 00.708-.523L6.267 3.455zM13.733 3.455a.75.75 0 01.708-.523H15.5a2.5 2.5 0 012.5 2.5v1.5a.75.75 0 01-1.5 0v-1.5a1 1 0 00-1-1h-.352a.75.75 0 01-.708-.523L13.733 3.455zM3.5 13.25a.75.75 0 00-.75.75v1.5a2.5 2.5 0 002.5 2.5h1.5a.75.75 0 000-1.5H5.25a1 1 0 01-1-1v-1.5a.75.75 0 00-.75-.75zM16.5 13.25a.75.75 0 01.75.75v1.5a2.5 2.5 0 01-2.5 2.5h-1.5a.75.75 0 010-1.5h1.5a1 1 0 001-1v-1.5a.75.75 0 01.75-.75z" clip-rule="evenodd"/></svg>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Hash -->
+                    <div class="mt-4 pt-3 border-t border-slate-800">
+                        <label class="block text-[10px] uppercase font-bold text-slate-500 tracking-wider mb-1">Hash Info-SHA1</label>
+                        <div class="flex items-center gap-1 bg-slate-950 p-2 rounded-lg border border-slate-850">
+                            <code id="torrentHash" class="text-[10px] text-slate-400 font-mono select-all truncate">E5A3B8C1D9F0E1D2C3B4A596E7F8091A2B3C4D5E</code>
+                            <button onclick="copyHash()" class="p-1 text-slate-400 hover:text-white hover:bg-slate-800 rounded transition-colors shrink-0" title="Copiar Hash">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bloque Valoración Interactiva -->
+                <div class="bg-cardBg rounded-2xl p-5 border border-slate-800 shadow-lg text-center">
+                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Puntuación P2P</h4>
+                    <div class="flex items-center justify-center gap-3 mb-1">
+                        <span id="averageScore" class="text-4xl font-extrabold text-kaminoCyan">4.5</span>
+                        <div class="text-left">
+                            <div class="flex text-kaminoCyan text-lg" id="starContainer">
+                                ★★★★★
+                            </div>
+                            <span class="text-xs text-slate-500"><span id="voteCount">98</span> valoraciones</span>
+                        </div>
+                    </div>
+                    <div class="mt-3 pt-3 border-t border-slate-800">
+                        <p class="text-xs text-slate-400 mb-2">Vota esta calidad de Remux:</p>
+                        <!-- Estrellas de puntuación -->
+                        <div class="flex justify-center gap-1.5 text-2xl text-slate-600">
+                            <button onclick="submitUserRating(1)" class="hover:text-kaminoCyan focus:outline-none transition-colors duration-150 star-btn" data-star="1">★</button>
+                            <button onclick="submitUserRating(2)" class="hover:text-kaminoCyan focus:outline-none transition-colors duration-150 star-btn" data-star="2">★</button>
+                            <button onclick="submitUserRating(3)" class="hover:text-kaminoCyan focus:outline-none transition-colors duration-150 star-btn" data-star="3">★</button>
+                            <button onclick="submitUserRating(4)" class="hover:text-kaminoCyan focus:outline-none transition-colors duration-150 star-btn" data-star="4">★</button>
+                            <button onclick="submitUserRating(5)" class="hover:text-kaminoCyan focus:outline-none transition-colors duration-150 star-btn" data-star="5">★</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- COLUMNA DERECHA: TABS DE INFORMACIÓN -->
+            <div class="lg:col-span-8 flex flex-col gap-6">
+                
+                <!-- Barra de pestañas -->
+                <div class="flex border-b border-slate-800 overflow-x-auto custom-scrollbar">
+                    <button onclick="switchTab('sinopsis')" id="tabBtn-sinopsis" class="px-6 py-3.5 text-sm font-semibold border-b-2 border-kaminoCyan text-kaminoCyan transition-all shrink-0">
+                        Sinopsis e Intro
+                    </button>
+                    <button onclick="switchTab('detalles')" id="tabBtn-detalles" class="px-6 py-3.5 text-sm font-semibold border-b-2 border-transparent text-slate-400 hover:text-white transition-all shrink-0">
+                        Ficha Técnica
+                    </button>
+                    <button onclick="switchTab('mediainfo')" id="tabBtn-mediainfo" class="px-6 py-3.5 text-sm font-semibold border-b-2 border-transparent text-slate-400 hover:text-white transition-all shrink-0">
+                        MediaInfo Log
+                    </button>
+                    <button onclick="switchTab('comentarios')" id="tabBtn-comentarios" class="px-6 py-3.5 text-sm font-semibold border-b-2 border-transparent text-slate-400 hover:text-white transition-all shrink-0 flex items-center gap-1.5">
+                        Comentarios <span id="commentBadge" class="bg-slate-800 text-slate-300 text-xs px-2 py-0.5 rounded-full font-bold">4</span>
+                    </button>
+                </div>
+
+                <!-- CONTENEDOR DE CONTENIDO DINÁMICO -->
+                <div class="bg-cardBg rounded-2xl p-6 md:p-8 border border-slate-800 shadow-xl min-h-[350px]">
+                    
+                    <!-- SINOPSIS -->
+                    <div id="tabContent-sinopsis" class="space-y-6">
+                        <div>
+                            <h2 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+                                <span class="w-1.5 h-5 bg-kaminoCyan rounded-full"></span>
+                                Sinopsis del «Episodio II»
+                            </h2>
+                            <p class="text-slate-300 leading-relaxed text-sm md:text-base">
+                                Han pasado diez años desde los acontecimientos del «Episodio I». La República continúa sumida en el conflicto. Un movimiento separatista, liderado por el antiguo Caballero Jedi, el Conde Dooku, amenaza la paz galáctica. Tras un intento de asesinato contra la senadora Padmé Amidala, el joven aprendiz Anakin Skywalker es asignado para protegerla, mientras que su maestro, Obi-Wan Kenobi, investiga los orígenes de una misteriosa conspiración militar que le llevará al planeta Kamino...
+                            </p>
+                        </div>
+
+                        <!-- Bloque de datos de producción -->
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-slate-800/60">
+                            <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800/40">
+                                <span class="block text-xs text-slate-500 mb-0.5">Director</span>
+                                <span class="text-xs sm:text-sm font-bold text-white">George Lucas</span>
+                            </div>
+                            <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800/40">
+                                <span class="block text-xs text-slate-500 mb-0.5">Año</span>
+                                <span class="text-xs sm:text-sm font-bold text-white">2002</span>
+                            </div>
+                            <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800/40">
+                                <span class="block text-xs text-slate-500 mb-0.5">Duración</span>
+                                <span class="text-xs sm:text-sm font-bold text-white">142 min.</span>
+                            </div>
+                            <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800/40">
+                                <span class="block text-xs text-slate-500 mb-0.5">Cámara</span>
+                                <span class="text-xs sm:text-sm font-bold text-white">Digital HD 1080p</span>
+                            </div>
+                        </div>
+
+                        <!-- Reparto -->
+                        <div>
+                            <h3 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-3">Reparto Clave</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-xs text-slate-300">Ewan McGregor (Obi-Wan Kenobi)</span>
+                                <span class="px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-xs text-slate-300">Natalie Portman (Padmé Amidala)</span>
+                                <span class="px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-xs text-slate-300">Hayden Christensen (Anakin Skywalker)</span>
+                                <span class="px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-xs text-slate-300">Christopher Lee (Conde Dooku)</span>
+                                <span class="px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-xs text-slate-300">Samuel L. Jackson (Mace Windu)</span>
+                                <span class="px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-xs text-slate-300">Temuera Morrison (Jango Fett)</span>
+                            </div>
+                        </div>
+
+                        <!-- Capturas sin compresión -->
+                        <div>
+                            <h3 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-3">Capturas del Remux</h3>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div class="rounded-lg overflow-hidden border border-slate-800 bg-slate-900 aspect-video relative group">
+                                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80" 
+                                         alt="Captura 1 Episodio II" 
+                                         class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300"
+                                         onerror="this.src='https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=600&q=80'">
+                                    <div class="absolute bottom-2 left-2 bg-slate-950/80 backdrop-blur px-2 py-0.5 rounded text-[10px] text-slate-300 font-mono">Capture #1 - Ciudad de Tipoca</div>
+                                </div>
+                                <div class="rounded-lg overflow-hidden border border-slate-800 bg-slate-900 aspect-video relative group">
+                                    <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=600&q=80" 
+                                         alt="Captura 2 Episodio II" 
+                                         class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300"
+                                         onerror="this.src='https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?auto=format&fit=crop&w=600&q=80'">
+                                    <div class="absolute bottom-2 left-2 bg-slate-950/80 backdrop-blur px-2 py-0.5 rounded text-[10px] text-slate-300 font-mono">Capture #2 - Arena de Geonosis</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FICHA TÉCNICA -->
+                    <div id="tabContent-detalles" class="hidden space-y-6">
+                        <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                            <span class="w-1.5 h-5 bg-kaminoCyan rounded-full"></span>
+                            Ficha Técnica del Contenedor MKV
+                        </h2>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 text-sm text-slate-300">
+                            <div class="space-y-3">
+                                <div class="flex justify-between pb-2 border-b border-slate-800/50">
+                                    <span class="text-slate-500">Tipo:</span>
+                                    <span class="font-semibold text-white">Full Remux (Sin comprimir)</span>
+                                </div>
+                                <div class="flex justify-between pb-2 border-b border-slate-800/50">
+                                    <span class="text-slate-500">Contenedor:</span>
+                                    <span class="font-semibold text-white">Matroska (MKV)</span>
+                                </div>
+                                <div class="flex justify-between pb-2 border-b border-slate-800/50">
+                                    <span class="text-slate-500">Codec de Vídeo:</span>
+                                    <span class="font-semibold text-white">MPEG-4 AVC / H.264</span>
+                                </div>
+                                <div class="flex justify-between pb-2 border-b border-slate-800/50">
+                                    <span class="text-slate-500">Resolución original:</span>
+                                    <span class="font-semibold text-white">1920 x 1080p (23.976 fps)</span>
+                                </div>
+                                <div class="flex justify-between pb-2 border-b border-slate-800/50">
+                                    <span class="text-slate-500">Origen de Captura:</span>
+                                    <span class="font-semibold text-white">Blu-ray Disc Oficial (EUR)</span>
+                                </div>
+                            </div>
+
+                            <div class="space-y-3">
+                                <div class="flex justify-between pb-2 border-b border-slate-800/50">
+                                    <span class="text-slate-500">Canales de Audio:</span>
+                                    <span class="font-semibold text-geonosisOrange text-right">Esp. Castellano / Latino / Inglés</span>
+                                </div>
+                                <div class="flex justify-between pb-2 border-b border-slate-800/50">
+                                    <span class="text-slate-500">Español Cast.:</span>
+                                    <span class="font-semibold text-white text-right">DTS 5.1 (768 kbps)</span>
+                                </div>
+                                <div class="flex justify-between pb-2 border-b border-slate-800/50">
+                                    <span class="text-slate-500">Español Latino:</span>
+                                    <span class="font-semibold text-white text-right">Dolby Digital 5.1 (448 kbps)</span>
+                                </div>
+                                <div class="flex justify-between pb-2 border-b border-slate-800/50">
+                                    <span class="text-slate-500">Inglés DTS-HD MA:</span>
+                                    <span class="font-semibold text-white text-right">6.1 Canales (Master Audio)</span>
+                                </div>
+                                <div class="flex justify-between pb-2 border-b border-slate-800/50">
+                                    <span class="text-slate-500">Subtítulos Integrados:</span>
+                                    <span class="font-semibold text-white text-right">Srt completos y forzados</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 p-4 rounded-xl bg-slate-900 border border-slate-800 text-xs leading-relaxed text-slate-400">
+                            <span class="font-semibold text-slate-300 block mb-1">Nota del Editor P2P:</span>
+                            Este archivo ha sido extraído directamente del disco utilizando AnyDVD HD y MKVToolNix sin recodificar. El Episodio II destaca por ser una de las primeras grandes superproducciones filmadas enteramente en digital, lo que ofrece un look nítido, libre de imperfecciones físicas de celuloide.
+                        </div>
+                    </div>
+
+                    <!-- MEDIAINFO -->
+                    <div id="tabContent-mediainfo" class="hidden space-y-4">
+                        <div class="flex justify-between items-center mb-2">
+                            <h2 class="text-xl font-bold text-white flex items-center gap-2">
+                                <span class="w-1.5 h-5 bg-kaminoCyan rounded-full"></span>
+                                Registro MediaInfo del Torrent
+                            </h2>
+                            <button onclick="copyMediaInfo()" class="px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-850 text-xs font-semibold text-slate-300 hover:text-white border border-slate-800 transition-colors flex items-center gap-1.5">
+                                <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+                                Copiar Registro Completo
+                            </button>
+                        </div>
+                        
+                        <div class="relative bg-slate-950 p-4 rounded-xl border border-slate-900">
+                            <pre id="mediaInfoText" class="text-xs text-cyan-400 font-mono overflow-x-auto max-h-[350px] custom-scrollbar leading-relaxed">
+General
+Unique ID                                : 239084750918237490182740928340192834091
+Complete name                            : Star.Wars.Episode.II.Attack.of.the.Clones.2002.1080p.BluRay.REMUX.AVC.DTS-HD.MA.6.1-ObiWan.mkv
+Format                                   : Matroska
+Format version                           : Version 4
+File size                                : 36.54 GiB
+Duration                                 : 2 h 22 min
+Overall bit rate                         : 36.8 Mb/s
+Encoded date                             : UTC 2026-05-23 18:24:11
+Writing application                      : mkvmerge v74.0.0 ('The Phantom') 64-bit
+
+Video
+ID                                       : 1
+Format                                   : AVC
+Format/Info                              : Advanced Video Codec
+Format profile                           : High@L4.1
+Format settings                          : CABAC / 4 Ref Frames
+Codec ID                                 : V_MPEG4/ISO/AVC
+Duration                                 : 2 h 22 min
+Bit rate mode                            : Variable
+Bit rate                                 : 29.8 Mb/s
+Maximum bit rate                         : 40.0 Mb/s
+Width                                    : 1 920 pixels
+Height                                   : 1 080 pixels
+Display aspect ratio                     : 16:9
+Frame rate mode                          : Constant
+Frame rate                               : 23.976 (24000/1001) FPS
+
+Audio #1 (Castellano)
+ID                                       : 2
+Format                                   : DTS
+Format/Info                              : Digital Theater Systems
+Codec ID                                 : A_DTS
+Duration                                 : 2 h 22 min
+Bit rate mode                            : Constant
+Bit rate                                 : 768 kb/s
+Channel(s)                               : 6 channels
+Language                                 : Spanish (Castilian)
+
+Audio #2 (Latino)
+ID                                       : 3
+Format                                   : AC-3
+Format/Info                              : Audio Coding 3
+Codec ID                                 : A_AC3
+Duration                                 : 2 h 22 min
+Bit rate mode                            : Constant
+Bit rate                                 : 448 kb/s
+Channel(s)                               : 6 channels
+Language                                 : Spanish (Latin)
+
+Audio #3 (Inglés Original)
+ID                                       : 4
+Format                                   : DTS LBR / DTS
+Format profile                           : DTS-HD Master Audio
+Codec ID                                 : A_DTS
+Duration                                 : 2 h 22 min
+Bit rate mode                            : Variable
+Bit rate                                 : 5 102 kb/s
+Channel(s)                               : 7 channels
+Channel layout                           : C L R Ls Rs Lb Rb LFE
+Language                                 : English
+                            </pre>
+                        </div>
+                    </div>
+
+                    <!-- COMENTARIOS -->
+                    <div id="tabContent-comentarios" class="hidden space-y-6">
+                        <div class="flex items-center justify-between">
+                            <h2 class="text-xl font-bold text-white flex items-center gap-2">
+                                <span class="w-1.5 h-5 bg-kaminoCyan rounded-full"></span>
+                                Foro de Discusión
+                            </h2>
+                            <span class="text-xs text-slate-500">Sigue las normas de seed y respeto</span>
+                        </div>
+
+                        <!-- Añadir nuevo comentario -->
+                        <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800/50 space-y-3">
+                            <h4 class="text-xs font-bold text-slate-300 uppercase tracking-wide">Publicar nueva respuesta</h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <input type="text" id="commentUser" placeholder="Tu alias de usuario..." 
+                                       class="bg-slate-950 text-xs rounded-lg px-3 py-2 border border-slate-800 focus:outline-none focus:border-kaminoCyan text-slate-200">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs text-slate-500">Puntuación:</span>
+                                    <select id="commentRating" class="bg-slate-950 text-xs rounded-lg px-2 py-1.5 border border-slate-800 focus:outline-none focus:border-kaminoCyan text-forceYellow font-semibold">
+                                        <option value="5">★★★★★ (Excelente Remux)</option>
+                                        <option value="4">★★★★☆ (Muy Recomendado)</option>
+                                        <option value="3">★★★☆☆ (Aceptable)</option>
+                                        <option value="2">★★☆☆☆ (Regular)</option>
+                                        <option value="1">★☆☆☆☆ (Problemas)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <textarea id="commentText" rows="3" placeholder="Comenta la calidad de los audios, subtítulos, velocidades de bajada o cualquier detalle técnico..." 
+                                      class="w-full bg-slate-950 text-xs sm:text-sm rounded-lg p-3 border border-slate-800 focus:outline-none focus:border-kaminoCyan text-slate-200 resize-none"></textarea>
+                            
+                            <div class="flex justify-end">
+                                <button onclick="addNewComment()" class="px-5 py-2 rounded-lg bg-kaminoCyan text-slate-950 font-bold text-xs hover:opacity-90 active:scale-98 transition-all flex items-center gap-1.5">
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+                                    Publicar Comentario
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Lista de comentarios -->
+                        <div id="commentsList" class="space-y-4 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
+                            
+                            <!-- Comentario 1 -->
+                            <div class="p-4 bg-slate-900/40 rounded-xl border border-slate-800/40 space-y-2">
+                                <div class="flex justify-between items-start gap-2">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-8 h-8 rounded-full bg-cyan-500/30 border border-cyan-500/20 flex items-center justify-center text-xs text-cyan-300 font-bold">
+                                            JF
+                                        </div>
+                                        <div>
+                                            <span class="text-xs sm:text-sm font-bold text-slate-200 block leading-tight">Jango_Seismic</span>
+                                            <span class="text-[10px] text-slate-500">Hace 4 horas • VIP</span>
+                                        </div>
+                                    </div>
+                                    <span class="text-xs text-forceYellow font-bold bg-slate-900 px-2 py-0.5 rounded border border-slate-800">★★★★★</span>
+                                </div>
+                                <p class="text-xs sm:text-sm text-slate-300">
+                                    ¡Vaya delicia de Remux! El audio en inglés DTS-HD MA es indispensable para este Episodio II. Los efectos de sonido de las cargas sísmicas de Jango Fett en los asteroides de Geonosis hacen temblar todo el salón si tienes un buen subwoofer. ¡Gracias por compartir!
+                                </p>
+                            </div>
+
+                            <!-- Comentario 2 -->
+                            <div class="p-4 bg-slate-900/40 rounded-xl border border-slate-800/40 space-y-2">
+                                <div class="flex justify-between items-start gap-2">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-8 h-8 rounded-full bg-amber-500/30 border border-amber-500/20 flex items-center justify-center text-xs text-amber-300 font-bold">
+                                            DC
+                                        </div>
+                                        <div>
+                                            <span class="text-xs sm:text-sm font-bold text-slate-200 block leading-tight">Dooku_Count</span>
+                                            <span class="text-[10px] text-slate-500">Ayer • Colaborador</span>
+                                        </div>
+                                    </div>
+                                    <span class="text-xs text-forceYellow font-bold bg-slate-900 px-2 py-0.5 rounded border border-slate-800">★★★★☆</span>
+                                </div>
+                                <p class="text-xs sm:text-sm text-slate-300">
+                                    Descarga super rápida. Logré bajarlo al máximo de mi conexión de 600Mb. Ya lo tengo en mi seedbox aportando un ratio excelente. La pista de audio en Castellano se escucha nítida y fiel al doblaje de cine.
+                                </p>
+                            </div>
+
+                            <!-- Comentario 3 -->
+                            <div class="p-4 bg-slate-900/40 rounded-xl border border-slate-800/40 space-y-2">
+                                <div class="flex justify-between items-start gap-2">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-8 h-8 rounded-full bg-indigo-500/30 border border-indigo-500/20 flex items-center justify-center text-xs text-indigo-300 font-bold">
+                                            CA
+                                        </div>
+                                        <div>
+                                            <span class="text-xs sm:text-sm font-bold text-slate-200 block leading-tight">CineAltaFan</span>
+                                            <span class="text-[10px] text-slate-500">Hace 2 días • Usuario</span>
+                                        </div>
+                                    </div>
+                                    <span class="text-xs text-forceYellow font-bold bg-slate-900 px-2 py-0.5 rounded border border-slate-800">★★★★★</span>
+                                </div>
+                                <p class="text-xs sm:text-sm text-slate-300">
+                                    Excelente tener un Remux sin compresiones raras. Para los amantes de la historia del cine, este film es un hito por su tecnología digital pura de captación de imagen de la época. ¡Muy buen aporte!
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Bloques Informativos de Soporte -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800/50 flex items-start gap-3 text-slate-300">
+                        <div class="text-kaminoCyan shrink-0 mt-0.5">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                        <div class="text-xs">
+                            <span class="font-bold text-white block mb-0.5">Semillas Críticas</span>
+                            Dado el gran tamaño (36.54 GB) de los archivos Remux, mantén encendido tu cliente todo el tiempo posible para garantizar que los nuevos usuarios puedan completarlo.
+                        </div>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800/50 flex items-start gap-3 text-slate-300">
+                        <div class="text-geonosisOrange shrink-0 mt-0.5">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                        </div>
+                        <div class="text-xs">
+                            <span class="font-bold text-white block mb-0.5">Verificación de Integridad</span>
+                            Todos nuestros aportes cuentan con hashes verificados para evitar inyecciones de adware o ejecutables maliciosos. Confía solo en uploaders verificados.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-darkBg border-t border-slate-900 mt-12 py-8 text-slate-500 text-xs text-center">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+            <div class="flex justify-center gap-6 text-slate-400">
+                <a href="#" class="hover:text-kaminoCyan transition-colors">Normas del Portal</a>
+                <a href="#" class="hover:text-kaminoCyan transition-colors">FAQ / Ayuda</a>
+                <a href="#" class="hover:text-kaminoCyan transition-colors">Soporte P2P</a>
+                <a href="#" class="hover:text-kaminoCyan transition-colors">Reportar Abuso DMCA</a>
+            </div>
+            <p>
+                CineTorrent es un índice y catálogo de metadatos de libre distribución. No almacenamos copias físicas ni archivos audiovisuales en nuestros sistemas.
+            </p>
+            <p class="text-slate-600">
+                &copy; 2026 CineTorrent ES. Desarrollado como simulación de tracker privado de alto rendimiento.
+            </p>
+        </div>
+    </footer>
+
+    <!-- CONTENEDOR DE NOTIFICACIONES TOASTS -->
+    <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 max-w-sm w-full pointer-events-none"></div>
+
+    <!-- MODAL DE TRÁILER -->
+    <div id="trailerModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm hidden transition-opacity duration-300">
+        <div class="relative w-full max-w-3xl bg-slate-950 rounded-2xl border border-slate-800 overflow-hidden shadow-2xl">
+            <!-- Header Modal -->
+            <div class="flex justify-between items-center px-4 py-3 border-b border-slate-900">
+                <span class="text-sm font-semibold text-slate-300">Tráiler Oficial: Star Wars II - El ataque de los clones</span>
+                <button onclick="closeTrailerModal()" class="text-slate-400 hover:text-white p-1 hover:bg-slate-900 rounded-lg transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <!-- Cuerpo Multimedia Ficticio -->
+            <div class="aspect-video w-full bg-slate-900 flex flex-col items-center justify-center p-6 text-center relative">
+                <div class="absolute inset-0 bg-cover bg-center opacity-25" style="background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80')"></div>
+                
+                <div class="relative z-10 space-y-4">
+                    <div class="w-16 h-16 rounded-full bg-geonosisOrange/20 border border-geonosisOrange/40 flex items-center justify-center text-geonosisOrange animate-pulse mx-auto cursor-pointer" onclick="showToast('Reproduciendo trailer ficticio...', 'info')">
+                        <svg class="w-8 h-8 fill-geonosisOrange text-geonosisOrange" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold text-white">"La Batalla de Geonosis" - Trailer Oficial HD</p>
+                        <p class="text-xs text-slate-400 max-w-md mx-auto">Esta es una simulación del reproductor de tráilers. En un entorno real, se cargaría un iframe de reproductor sin publicidad.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- COMPORTAMIENTO INTERACTIVO JAVASCRIPT -->
+    <script>
+        // Datos reactivos de valoración
+        let userHasVoted = false;
+        let originalScore = 4.5;
+        let originalVotes = 98;
+
+        // Cambiar pestañas dinámicas
+        function switchTab(tabId) {
+            document.getElementById('tabContent-sinopsis').classList.add('hidden');
+            document.getElementById('tabContent-detalles').classList.add('hidden');
+            document.getElementById('tabContent-mediainfo').classList.add('hidden');
+            document.getElementById('tabContent-comentarios').classList.add('hidden');
+
+            const tabs = ['sinopsis', 'detalles', 'mediainfo', 'comentarios'];
+            tabs.forEach(t => {
+                const btn = document.getElementById(`tabBtn-${t}`);
+                if (btn) {
+                    btn.classList.remove('border-kaminoCyan', 'text-kaminoCyan');
+                    btn.classList.add('border-transparent', 'text-slate-400');
+                }
+            });
+
+            document.getElementById(`tabContent-${tabId}`).classList.remove('hidden');
+
+            const activeBtn = document.getElementById(`tabBtn-${tabId}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('border-transparent', 'text-slate-400');
+                activeBtn.classList.add('border-kaminoCyan', 'text-kaminoCyan');
+            }
+        }
+
+        // Sistema Toasts CineTorrent
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            const toastId = 'toast_' + Math.random().toString(36).substr(2, 9);
+            
+            let bgClass = 'bg-slate-900 border-slate-800 text-white';
+            let iconColor = 'text-kaminoCyan';
+            let iconSvg = `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`;
+
+            if (type === 'success') {
+                bgClass = 'bg-slate-900/95 border-emerald-500/30 text-slate-100';
+                iconColor = 'text-emerald-400';
+                iconSvg = `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`;
+            } else if (type === 'error') {
+                bgClass = 'bg-slate-900/95 border-rose-500/30 text-slate-100';
+                iconColor = 'text-rose-400';
+                iconSvg = `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`;
+            } else if (type === 'warning') {
+                bgClass = 'bg-slate-900/95 border-geonosisOrange/30 text-slate-100';
+                iconColor = 'text-geonosisOrange';
+                iconSvg = `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>`;
+            }
+
+            const toastHTML = `
+                <div id="${toastId}" class="flex items-start gap-3 p-4 rounded-xl border ${bgClass} shadow-2xl transition-all duration-300 transform translate-y-2 opacity-0 pointer-events-auto">
+                    <div class="${iconColor} shrink-0">${iconSvg}</div>
+                    <div class="flex-1 text-xs sm:text-sm font-medium">${message}</div>
+                    <button onclick="dismissToast('${toastId}')" class="text-slate-500 hover:text-slate-300 shrink-0">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+                </div>
+            `;
+
+            container.insertAdjacentHTML('beforeend', toastHTML);
+
+            setTimeout(() => {
+                const el = document.getElementById(toastId);
+                if (el) {
+                    el.classList.remove('translate-y-2', 'opacity-0');
+                    el.classList.add('translate-y-0', 'opacity-100');
+                }
+            }, 50);
+
+            setTimeout(() => {
+                dismissToast(toastId);
+            }, 5000);
+        }
+
+        function dismissToast(toastId) {
+            const el = document.getElementById(toastId);
+            if (el) {
+                el.classList.add('opacity-0', 'scale-95');
+                setTimeout(() => {
+                    el.remove();
+                }, 300);
+            }
+        }
+
+        // Portapapeles mediante execCommand para compatibilidad iFrame
+        function copyToClipboardRaw(text) {
+            const tempInput = document.createElement('input');
+            tempInput.style.position = 'absolute';
+            tempInput.style.left = '-9999px';
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            
+            let success = false;
+            try {
+                success = document.execCommand('copy');
+            } catch (err) {
+                success = false;
+            }
+            
+            document.body.removeChild(tempInput);
+            return success;
+        }
+
+        function copyMagnet() {
+            const magnetLink = "magnet:?xt=urn:btih:e5a3b8c1d9f0e1d2c3b4a596e7f8091a2b3c4d5e&dn=Star.Wars.Ep.II.Attack.of.the.Clones.2002.1080p.BluRay.REMUX.AVC.DTS-HD.MA.7.1-ObiWan.mkv";
+            const ok = copyToClipboardRaw(magnetLink);
+            if (ok) {
+                showToast("¡Enlace Magnet copiado correctamente!", "success");
+            } else {
+                showToast("No se pudo copiar el enlace magnet.", "error");
+            }
+        }
+
+        function copyHash() {
+            const hash = document.getElementById('torrentHash').innerText;
+            const ok = copyToClipboardRaw(hash);
+            if (ok) {
+                showToast("¡Hash SHA1 copiado con éxito!", "success");
+            } else {
+                showToast("No se pudo copiar el hash.", "error");
+            }
+        }
+
+        function copyMediaInfo() {
+            const logText = document.getElementById('mediaInfoText').innerText;
+            const ok = copyToClipboardRaw(logText);
+            if (ok) {
+                showToast("¡Log de MediaInfo copiado!", "success");
+            } else {
+                showToast("No se pudo copiar el log.", "error");
+            }
+        }
+
+        // Simulación interactiva de descarga de archivo .torrent
+        function startTorrentDownload() {
+            const container = document.getElementById('downloadProgressContainer');
+            const bar = document.getElementById('downloadProgressBar');
+            const text = document.getElementById('downloadPercentage');
+
+            container.classList.remove('hidden');
+            bar.style.width = '0%';
+            text.innerText = '0%';
+
+            showToast("Estableciendo conexión con los trackers para descargar metadatos...", "info");
+
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.floor(Math.random() * 18) + 6;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                    bar.style.width = '100%';
+                    text.innerText = '100%';
+                    
+                    setTimeout(() => {
+                        showToast("¡Archivo .torrent guardado con éxito! Listo para importar en tu cliente BitTorrent.", "success");
+                        container.classList.add('hidden');
+                    }, 800);
+                } else {
+                    bar.style.width = `${progress}%`;
+                    text.innerText = `${progress}%`;
+                }
+            }, 200);
+        }
+
+        // Sistema de Valoración por Estrellas
+        function submitUserRating(stars) {
+            if (userHasVoted) {
+                showToast("Ya has emitido tu voto para este torrent hoy.", "warning");
+                return;
+            }
+
+            userHasVoted = true;
+            const totalVotes = originalVotes + 1;
+            const currentTotalSum = (originalScore * originalVotes) + stars;
+            const newAverage = (currentTotalSum / totalVotes).toFixed(1);
+
+            document.getElementById('averageScore').innerText = newAverage;
+            document.getElementById('voteCount').innerText = totalVotes;
+
+            const starContainer = document.getElementById('starContainer');
+            let starString = '';
+            for (let i = 1; i <= 5; i++) {
+                starString += i <= Math.round(newAverage) ? '★' : '☆';
+            }
+            starContainer.innerText = starString;
+
+            // Bloquear los botones de las estrellas
+            const buttons = document.querySelectorAll('.star-btn');
+            buttons.forEach(btn => {
+                const starVal = parseInt(btn.getAttribute('data-star'));
+                btn.style.color = starVal <= stars ? '#00f0ff' : '#1e293b';
+                btn.disabled = true;
+                btn.style.cursor = 'default';
+            });
+
+            showToast(`¡Gracias! Has calificado el torrent con ${stars} estrella(s).`, "success");
+        }
+
+        // Sistema de comentarios en vivo
+        function addNewComment() {
+            const usernameInput = document.getElementById('commentUser');
+            const commentTextInput = document.getElementById('commentText');
+            const ratingInput = document.getElementById('commentRating');
+
+            const username = usernameInput.value.trim() || "Anónimo";
+            const commentText = commentTextInput.value.trim();
+            const ratingValue = parseInt(ratingInput.value);
+
+            if (!commentText) {
+                showToast("Por favor, introduce el texto del comentario.", "warning");
+                return;
+            }
+
+            let starsString = '';
+            for (let i = 0; i < 5; i++) {
+                starsString += i < ratingValue ? '★' : '☆';
+            }
+
+            const initials = username.substring(0, 2).toUpperCase();
+
+            const list = document.getElementById('commentsList');
+            const commentHTML = `
+                <div class="p-4 bg-slate-900/60 rounded-xl border border-kaminoCyan/20 space-y-2 animate-fadeIn transition-all">
+                    <div class="flex justify-between items-start gap-2">
+                        <div class="flex items-center gap-2">
+                            <div class="w-8 h-8 rounded-full bg-kaminoCyan/30 border border-kaminoCyan/20 flex items-center justify-center text-xs text-kaminoCyan font-bold">
+                                ${initials}
+                            </div>
+                            <div>
+                                <span class="text-xs sm:text-sm font-bold text-slate-100 block leading-tight">${username}</span>
+                                <span class="text-[10px] text-slate-500">Ahora mismo • Miembro</span>
+                            </div>
+                        </div>
+                        <span class="text-xs text-forceYellow font-bold bg-slate-900 px-2 py-0.5 rounded border border-slate-800">${starsString}</span>
+                    </div>
+                    <p class="text-xs sm:text-sm text-slate-300">
+                        ${commentText}
+                    </p>
+                </div>
+            `;
+
+            list.insertAdjacentHTML('afterbegin', commentHTML);
+
+            const badge = document.getElementById('commentBadge');
+            badge.innerText = parseInt(badge.innerText) + 1;
+
+            commentTextInput.value = '';
+            usernameInput.value = '';
+
+            showToast("Tu respuesta se ha publicado correctamente en la ficha.", "success");
+        }
+
+        // Control Modal Tráiler
+        function openTrailerModal() {
+            document.getElementById('trailerModal').classList.remove('hidden');
+        }
+
+        function closeTrailerModal() {
+            document.getElementById('trailerModal').classList.add('hidden');
+        }
+
+        // Buscador superior
+        document.getElementById('searchForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const query = document.getElementById('searchInput').value.trim();
+            if (query) {
+                showToast(`Iniciando búsqueda de "${query}" en los servidores...`, 'info');
+            } else {
+                showToast('Introduce un término de búsqueda válido.', 'warning');
+            }
+        });
+    </script>
+</body>
+</html>
