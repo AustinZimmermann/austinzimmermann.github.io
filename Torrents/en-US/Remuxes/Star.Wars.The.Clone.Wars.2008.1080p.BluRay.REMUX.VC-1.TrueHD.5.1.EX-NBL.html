@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NebulaBits Tracker - Star Wars: The Clone Wars (2008) Remux</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['Fira Code', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#ecfeff',
+              100: '#cffafe',
+              500: '#06b6d4',
+              600: '#0891b2',
+              700: '#0e7490',
+              900: '#164e63',
+            },
+            darkbg: '#0B0F19',
+            darkcard: '#161F30',
+            darkborder: '#233044',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Custom scrollbar styling for torrent aesthetics */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0B0F19;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #233044;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #0891b2;
+    }
+  </style>
+</head>
+<body class="bg-darkbg text-slate-100 font-sans antialiased selection:bg-cyan-500 selection:text-white">
+
+  <!-- Floating Toast Notification System -->
+  <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 max-w-sm w-full pointer-events-none"></div>
+
+  <!-- Header Navigation -->
+  <header class="border-b border-darkborder bg-darkcard/80 backdrop-blur sticky top-0 z-40 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        
+        <!-- Logo and Left Nav -->
+        <div class="flex items-center gap-8">
+          <a href="#" class="flex items-center gap-2 group">
+            <svg class="w-8 h-8 text-brand-500 group-hover:rotate-12 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+            <span class="text-xl font-extrabold tracking-wider bg-gradient-to-r from-brand-500 to-cyan-300 bg-clip-text text-transparent">NEBULABITS</span>
+          </a>
+          <nav class="hidden md:flex items-center gap-5 text-sm font-medium text-slate-300">
+            <a href="#" class="hover:text-brand-500 transition-colors py-1 border-b-2 border-transparent hover:border-brand-500">Browse</a>
+            <a href="#" class="text-brand-500 border-b-2 border-brand-500 py-1 font-semibold">Movies</a>
+            <a href="#" class="hover:text-brand-500 transition-colors py-1 border-b-2 border-transparent hover:border-brand-500">Forums</a>
+            <a href="#" class="hover:text-brand-500 transition-colors py-1 border-b-2 border-transparent hover:border-brand-500 font-bold flex items-center gap-1 text-yellow-500">
+              <span class="w-2 h-2 rounded-full bg-yellow-500 animate-ping"></span> Upload
+            </a>
+            <a href="#" class="hover:text-brand-500 transition-colors py-1 border-b-2 border-transparent hover:border-brand-500">Rules</a>
+          </nav>
+        </div>
+
+        <!-- Search Bar Header (Desktop Only) -->
+        <div class="hidden lg:flex items-center flex-1 max-w-md mx-8">
+          <div class="relative w-full">
+            <input type="text" placeholder="Search movies, TV, remux..." class="w-full bg-darkbg/90 border border-darkborder focus:border-brand-500 text-slate-100 rounded-lg pl-10 pr-4 py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-brand-500 transition-all placeholder:text-slate-500">
+            <svg class="w-4 h-4 text-slate-500 absolute left-3.5 top-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- User Panel (Stats & Profile) -->
+        <div class="flex items-center gap-4">
+          <!-- Stats Panel -->
+          <div class="hidden sm:flex flex-col text-right text-xs border-r border-darkborder pr-4">
+            <div class="flex items-center gap-1.5 justify-end">
+              <span class="text-slate-500">Ratio:</span>
+              <span class="font-semibold text-emerald-400">4.82</span>
+            </div>
+            <div class="flex gap-2 text-[10px] text-slate-400">
+              <span>Up: <b class="text-slate-300 font-medium">12.4 TB</b></span>
+              <span>Down: <b class="text-slate-300 font-medium">2.57 TB</b></span>
+            </div>
+          </div>
+          <!-- Profile Badge -->
+          <div class="flex items-center gap-2">
+            <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-brand-600 to-cyan-400 p-[2px] cursor-pointer">
+              <div class="w-full h-full bg-darkcard rounded-full flex items-center justify-center text-xs font-bold text-slate-200">
+                SW
+              </div>
+            </div>
+            <div class="hidden md:block">
+              <div class="text-xs font-bold text-slate-300 flex items-center gap-1">
+                Skywalker_99
+                <span class="text-[9px] bg-brand-900 text-brand-100 px-1.5 py-0.5 rounded uppercase tracking-wider font-extrabold">Elite</span>
+              </div>
+              <div class="text-[10px] text-yellow-500 flex items-center gap-1">
+                <svg class="w-3 h-3 inline" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                15,420 Pts
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+    <!-- Torrent Title Header Badge Section -->
+    <div class="bg-darkcard border border-darkborder rounded-xl p-6 mb-6 relative overflow-hidden shadow-2xl">
+      <div class="absolute top-0 right-0 w-32 h-32 bg-brand-500/10 rounded-full blur-2xl pointer-events-none"></div>
+      
+      <!-- Top Badges -->
+      <div class="flex flex-wrap items-center gap-2 mb-3">
+        <span class="bg-brand-500 text-slate-100 text-xs font-bold px-2.5 py-1 rounded">Movie / REMUX</span>
+        <span class="bg-yellow-500/10 text-yellow-500 border border-yellow-500/20 text-xs font-bold px-2.5 py-1 rounded flex items-center gap-1 animate-pulse">
+          <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"/></svg>
+          Double Upload & Freeleech
+        </span>
+        <span class="bg-slate-800 text-slate-400 text-xs px-2 py-1 rounded border border-darkborder">Added: 2026-05-24</span>
+      </div>
+
+      <!-- Real Torrent Title -->
+      <h1 class="text-xl sm:text-2xl md:text-3xl font-extrabold text-slate-100 tracking-tight leading-tight mb-2">
+        Star Wars: The Clone Wars (2008) 1080p BluRay REMUX VC-1 TrueHD 5.1 EX - NBL
+      </h1>
+      <p class="text-sm text-slate-400 flex flex-wrap gap-x-4 gap-y-1">
+        <span><b>Codec:</b> VC-1 (16.93 Mbps)</span>
+        <span class="text-slate-600">|</span>
+        <span><b>Audio:</b> TrueHD 5.1 EX (2.0 Mbps, 16-bit)</span>
+        <span class="text-slate-600">|</span>
+        <span><b>Container:</b> MKV</span>
+        <span class="text-slate-600">|</span>
+        <span><b>Size:</b> 21.43 GiB</span>
+      </p>
+
+      <!-- Main Actions Row -->
+      <div class="mt-6 flex flex-wrap gap-3 items-center border-t border-darkborder/50 pt-5">
+        <button onclick="downloadTorrent()" class="flex-1 sm:flex-initial bg-brand-500 hover:bg-brand-600 active:bg-brand-700 text-white font-bold px-6 py-3 rounded-lg flex items-center justify-center gap-2 transition-all shadow-lg shadow-brand-500/20 text-sm">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+          </svg>
+          Download .torrent
+        </button>
+        
+        <button onclick="copyMagnet()" class="flex-1 sm:flex-initial bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-bold px-6 py-3 rounded-lg flex items-center justify-center gap-2 transition-all shadow-lg shadow-emerald-500/10 text-sm">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+          </svg>
+          Magnet Link
+        </button>
+
+        <!-- Icon Actions Buttons -->
+        <div class="flex gap-2 w-full sm:w-auto justify-between sm:justify-start">
+          <button id="thanks-btn" onclick="sendThanks()" class="flex-1 sm:flex-initial px-4 py-3 rounded-lg border border-darkborder hover:border-brand-500 bg-darkbg/50 hover:bg-brand-500/10 text-slate-300 hover:text-brand-400 transition-all flex items-center justify-center gap-2 text-xs font-semibold">
+            <svg class="w-4 h-4 text-pink-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/></svg>
+            <span id="thanks-text">Say Thanks</span> (<span id="thanks-count">34</span>)
+          </button>
+          
+          <button onclick="toggleBookmark(this)" class="px-4 py-3 rounded-lg border border-darkborder hover:border-yellow-500 bg-darkbg/50 hover:bg-yellow-500/10 text-slate-300 hover:text-yellow-500 transition-all flex items-center justify-center gap-1.5 text-xs font-semibold">
+            <svg id="bookmark-icon" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/></svg>
+            <span>Bookmark</span>
+          </button>
+
+          <button onclick="reportTorrent()" class="px-3.5 py-3 rounded-lg border border-darkborder hover:border-red-500 bg-darkbg/50 hover:bg-red-500/10 text-slate-400 hover:text-red-500 transition-all flex items-center justify-center">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Layout Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+      <!-- Left / Center Column (Description, NFO, Files, Comments) -->
+      <div class="lg:col-span-8 flex flex-col gap-6">
+
+        <!-- IMDb Info Card & Quick Plot -->
+        <section class="bg-darkcard border border-darkborder rounded-xl p-5 md:p-6 shadow-xl">
+          <div class="flex flex-col md:flex-row gap-6">
+            <!-- Simulated Film Poster -->
+            <div class="w-full md:w-44 flex-shrink-0 flex flex-col items-center">
+              <div class="w-full aspect-[2/3] rounded-lg bg-gradient-to-br from-indigo-950 to-slate-900 border border-darkborder relative overflow-hidden flex flex-col justify-between p-3 text-center shadow-lg group">
+                <!-- Stars styling bg -->
+                <div class="absolute inset-0 opacity-25 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+                <!-- Neon Clone Wars stylized logo -->
+                <div class="relative z-10 flex flex-col items-center justify-center h-full gap-2">
+                  <div class="text-[10px] tracking-[0.25em] text-cyan-400 font-extrabold">STAR WARS</div>
+                  <div class="text-xs font-black tracking-wider text-slate-100 border-y border-brand-500/50 py-1 px-2 bg-black/60">THE CLONE WARS</div>
+                  <div class="text-[9px] text-slate-400 mt-2">THE FEATURE FILM</div>
+                </div>
+                <div class="relative z-10 text-[9px] text-brand-500 font-bold bg-darkbg py-1 px-2 rounded border border-darkborder">Blu-ray.com 3.0 ★</div>
+              </div>
+              <!-- External Links -->
+              <div class="flex gap-2 mt-3 w-full">
+                <a href="https://www.imdb.com/title/tt1185834/" target="_blank" class="flex-1 bg-yellow-500/10 border border-yellow-500/30 text-yellow-500 hover:bg-yellow-500/20 text-[11px] font-bold py-1 px-2 rounded text-center transition-all">IMDb 5.9</a>
+                <a href="https://www.blu-ray.com/movies/Star-Wars-The-Clone-Wars-Feature-Film-Blu-ray/1169/" target="_blank" class="flex-1 bg-blue-500/10 border border-blue-500/30 text-blue-400 hover:bg-blue-500/20 text-[11px] font-bold py-1 px-2 rounded text-center transition-all">Blu-ray</a>
+              </div>
+            </div>
+
+            <!-- Film Metadata -->
+            <div class="flex-1 flex flex-col justify-between">
+              <div>
+                <div class="flex flex-wrap items-center justify-between gap-2 border-b border-darkborder/50 pb-3 mb-3">
+                  <div>
+                    <h2 class="text-xl font-extrabold text-slate-200">Star Wars: The Clone Wars (2008)</h2>
+                    <p class="text-xs text-slate-400">Warner Bros. | Lucasfilm Animation | 98 mins</p>
+                  </div>
+                  <!-- Rating badge -->
+                  <div class="bg-darkbg border border-darkborder rounded-lg p-2 flex items-center gap-2">
+                    <span class="text-2xl font-black text-yellow-500">5.9</span>
+                    <div class="text-[9px] text-slate-400 leading-none">
+                      <div class="font-bold text-slate-300">IMDb Rating</div>
+                      <div>71k votes</div>
+                    </div>
+                  </div>
+                </div>
+
+                <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                  As the Clone Wars sweep through the galaxy, Jedi Knight Anakin Skywalker and his new Padawan learner Ahsoka Tano plunge into a dangerous mission to rescue the kidnapped son of notorious crime lord Jabba the Hutt. The renegade Count Dooku is determined to make sure that they fail, and with his deadly assassin Asajj Ventress in pursuit, this is a mission with grave consequences.
+                </p>
+
+                <!-- Technical Attributes Grid -->
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-y-3 gap-x-6 text-xs border-t border-darkborder/50 pt-4">
+                  <div>
+                    <span class="text-slate-500 block">Director</span>
+                    <span class="font-semibold text-slate-300">Dave Filoni</span>
+                  </div>
+                  <div>
+                    <span class="text-slate-500 block">Producer</span>
+                    <span class="font-semibold text-slate-300">Catherine Winder</span>
+                  </div>
+                  <div>
+                    <span class="text-slate-500 block">Screenplay</span>
+                    <span class="font-semibold text-slate-300 font-mono">Henry Gilroy, Scott Murphy</span>
+                  </div>
+                  <div class="col-span-2">
+                    <span class="text-slate-500 block">Starring</span>
+                    <span class="font-semibold text-slate-300">Matt Lanter, Ashley Eckstein, James Arnold Taylor, Dee Bradley Baker, Tom Kane</span>
+                  </div>
+                  <div>
+                    <span class="text-slate-500 block">Genre</span>
+                    <span class="font-semibold text-brand-500">Animation, Sci-Fi, Action</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Media Screenshots Tabbed / Carousel View -->
+        <section class="bg-darkcard border border-darkborder rounded-xl p-5 md:p-6 shadow-xl">
+          <h3 class="text-base font-bold text-slate-200 mb-4 flex items-center gap-2">
+            <svg class="w-5 h-5 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            Screenshots (Lossless PNG Remux Grabs)
+          </h3>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <!-- Simulated Screen 1 -->
+            <div class="group relative rounded-lg overflow-hidden border border-darkborder bg-darkbg aspect-video flex items-center justify-center cursor-pointer hover:border-brand-500/50 transition-all">
+              <div class="absolute inset-0 bg-cover bg-center opacity-70 group-hover:opacity-100 transition-opacity" style="background-image: url('https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=400&auto=format&fit=crop&q=60');"></div>
+              <!-- Dynamic Canvas Simulation Overlay for Clone Wars colors -->
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30"></div>
+              <span class="absolute bottom-2 left-2 text-[10px] bg-black/75 px-1.5 py-0.5 rounded text-slate-300 font-mono">1080p VC-1 #1</span>
+              <div class="opacity-0 group-hover:opacity-100 absolute inset-0 flex items-center justify-center bg-brand-900/40 backdrop-blur-[1px] transition-all">
+                <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+              </div>
+            </div>
+            <!-- Simulated Screen 2 -->
+            <div class="group relative rounded-lg overflow-hidden border border-darkborder bg-darkbg aspect-video flex items-center justify-center cursor-pointer hover:border-brand-500/50 transition-all">
+              <div class="absolute inset-0 bg-cover bg-center opacity-70 group-hover:opacity-100 transition-opacity" style="background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&auto=format&fit=crop&q=60');"></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30"></div>
+              <span class="absolute bottom-2 left-2 text-[10px] bg-black/75 px-1.5 py-0.5 rounded text-slate-300 font-mono">1080p VC-1 #2</span>
+              <div class="opacity-0 group-hover:opacity-100 absolute inset-0 flex items-center justify-center bg-brand-900/40 backdrop-blur-[1px] transition-all">
+                <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+              </div>
+            </div>
+            <!-- Simulated Screen 3 -->
+            <div class="group relative rounded-lg overflow-hidden border border-darkborder bg-darkbg aspect-video flex items-center justify-center cursor-pointer hover:border-brand-500/50 transition-all">
+              <div class="absolute inset-0 bg-cover bg-center opacity-70 group-hover:opacity-100 transition-opacity" style="background-image: url('https://images.unsplash.com/photo-1534447677768-be436bb09401?w=400&auto=format&fit=crop&q=60');"></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30"></div>
+              <span class="absolute bottom-2 left-2 text-[10px] bg-black/75 px-1.5 py-0.5 rounded text-slate-300 font-mono">1080p VC-1 #3</span>
+              <div class="opacity-0 group-hover:opacity-100 absolute inset-0 flex items-center justify-center bg-brand-900/40 backdrop-blur-[1px] transition-all">
+                <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- NFO & MediaInfo Viewer Section -->
+        <section class="bg-darkcard border border-darkborder rounded-xl shadow-xl overflow-hidden">
+          <div class="border-b border-darkborder bg-darkbg/40 px-5 py-4 flex items-center justify-between">
+            <h3 class="text-sm font-bold text-slate-200 flex items-center gap-2">
+              <svg class="w-4 h-4 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              NBL.nfo (Release Info)
+            </h3>
+            <button onclick="copyNFO()" class="bg-darkbg border border-darkborder hover:border-brand-500 text-slate-300 hover:text-brand-400 text-xs px-2.5 py-1 rounded transition-all flex items-center gap-1.5 font-medium">
+              <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+              </svg>
+              Copy NFO
+            </button>
+          </div>
+          <!-- Codeblock Container -->
+          <div class="relative">
+            <pre class="overflow-x-auto p-5 text-xs text-cyan-400 font-mono leading-relaxed bg-darkbg max-h-96 select-text" id="nfo-text">
+▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+███╗   ██╗███████╗██████╗ ██╗   ██╗██╗      █████╗ ██████╗ ██╗████████╗███████╗
+████╗  ██║██╔════╝██╔══██╗██║   ██║██║     ██╔══██╗██╔══██╗██║╚══██╔══╝██╔════╝
+██╔██╗ ██║█████╗  ██████╔╝██║   ██║██║     ███████║██████╔╝██║   ██║   ███████╗
+██║╚██╗██║██╔══╝  ██╔══██╗██║   ██║██║     ██╔══██║██╔══██╗██║   ██║   ╚════██║
+██║ ╚████║███████╗██████╔╝╚██████╔╝███████╗██║  ██║██████╔╝██║   ██║   ███████║
+╚═╝  ╚═══╝╚══════╝╚═════╝  ╚═════╝ ╚══════╝╚═╝  ╚═╝╚═════╝ ╚═╝   ╚═╝   ╚══════╝
+▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+
+PROUDLY PRESENTS:
+Star.Wars.The.Clone.Wars.2008.1080p.BluRay.REMUX.VC-1.TrueHD.5.1.EX-NBL
+
+RELEASE DATE....: 2026-05-24 (Internal) / BD Released: 11/11/2008
+THEATRE DATE....: 08/15/2008
+RUNTiME.........: 1h 38mn
+SiZE............: 21.43 GiB
+ViDEO CODEC.....: VC-1 AP@L3 (Warner Bros Transfer)
+FRAMERATE.......: 23.976 fps
+BiTRATE.........: 16.93 Mbps (Main Movie Stream)
+RESOLUTiON......: 1920x1080 (2.35:1 Widescreen)
+
+AUDiO 1.........: English Dolby TrueHD 5.1 EX @ 2012 kbps (16-bit / 48kHz)
+AUDiO 2.........: English Dolby Digital 5.1 EX @ 640 kbps
+AUDiO 3.........: French Dolby Digital 5.1 EX @ 640 kbps
+AUDiO 4.........: Spanish Dolby Digital 5.1 EX @ 640 kbps
+AUDiO 5.........: Portuguese Dolby Digital 5.1 EX @ 640 kbps
+
+SUBTiTLES.......: English (SDH), French, Spanish, Portuguese
+SOURCE..........: Star Wars: The Clone Wars 2008 1080p Blu-ray BD50
+GREETiNGS.......: To all HD enthusiasts around the galaxy! Enjoy the Remux.
+
+[ MEDIA INFO / LOGS ]
+- Direct Digital-to-Digital VC-1 encoding preserves pristine CGI details.
+- Original TrueHD 5.1 EX audio tracks intact for the perfect theater sound.
+- No dynamic range compression applied.
+            </pre>
+          </div>
+        </section>
+
+        <!-- Interactive File List Component -->
+        <section class="bg-darkcard border border-darkborder rounded-xl shadow-xl overflow-hidden">
+          <div class="border-b border-darkborder bg-darkbg/40 px-5 py-4 flex items-center justify-between cursor-pointer" onclick="toggleFiles()">
+            <h3 class="text-sm font-bold text-slate-200 flex items-center gap-2">
+              <svg class="w-4 h-4 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+              </svg>
+              Torrent File List (4 files, 1 folder)
+            </h3>
+            <div class="flex items-center gap-2">
+              <span class="text-xs text-slate-400 font-mono">21.43 GiB</span>
+              <svg id="files-chevron" class="w-4 h-4 text-slate-400 transform transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+          </div>
+          <!-- Expandable file list body -->
+          <div id="files-list" class="bg-darkbg/50 border-t border-darkborder p-4 text-xs font-mono transition-all">
+            <!-- Root Folder -->
+            <div class="flex items-center gap-1.5 text-slate-300 font-semibold mb-1">
+              <span class="text-yellow-500">📁</span>
+              <span>Star.Wars.The.Clone.Wars.2008.1080p.BluRay.REMUX.VC-1.TrueHD.5.1.EX-NBL/</span>
+            </div>
+            
+            <!-- Files (indented) -->
+            <div class="pl-6 space-y-1.5 text-slate-400">
+              <div class="flex justify-between items-center py-0.5 hover:bg-darkcard rounded px-1 transition-colors">
+                <div class="flex items-center gap-2">
+                  <span class="text-brand-500">📄</span>
+                  <span class="text-slate-300">Star.Wars.The.Clone.Wars.2008.1080p.BluRay.REMUX.VC-1.TrueHD.5.1.EX-NBL.mkv</span>
+                </div>
+                <span class="text-slate-500">21.43 GiB</span>
+              </div>
+
+              <div class="flex justify-between items-center py-0.5 hover:bg-darkcard rounded px-1 transition-colors">
+                <div class="flex items-center gap-2">
+                  <span class="text-cyan-500">ℹ️</span>
+                  <span>NBL.nfo</span>
+                </div>
+                <span class="text-slate-500">4.12 KiB</span>
+              </div>
+
+              <!-- Nested Folder -->
+              <div class="pt-1">
+                <div class="flex items-center gap-1.5 text-slate-300 font-medium mb-1">
+                  <span class="text-yellow-500">📁</span>
+                  <span>Screenshots/</span>
+                </div>
+                <div class="pl-6 space-y-1 text-slate-500">
+                  <div class="flex justify-between items-center py-0.5 hover:bg-darkcard rounded px-1 transition-colors">
+                    <span class="text-slate-400">01_ahsoka_anakin.png</span>
+                    <span>2.04 MiB</span>
+                  </div>
+                  <div class="flex justify-between items-center py-0.5 hover:bg-darkcard rounded px-1 transition-colors">
+                    <span class="text-slate-400">02_battle_christophsis.png</span>
+                    <span>1.92 MiB</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Dynamic Comments Section -->
+        <section class="bg-darkcard border border-darkborder rounded-xl shadow-xl p-5 md:p-6">
+          <h3 class="text-base font-bold text-slate-200 mb-6 flex items-center gap-2">
+            <svg class="w-5 h-5 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+            </svg>
+            Discussion & Feedback (<span id="comment-count-header">3</span>)
+          </h3>
+
+          <!-- Add Comment Input Box -->
+          <div class="flex gap-4 mb-8">
+            <div class="w-10 h-10 rounded-full bg-darkbg border border-darkborder flex items-center justify-center font-bold text-slate-200 flex-shrink-0">
+              SW
+            </div>
+            <div class="flex-1">
+              <textarea id="comment-input" rows="3" placeholder="Add to the conversation... Remux quality feedback is appreciated!" class="w-full bg-darkbg border border-darkborder focus:border-brand-500 text-slate-200 rounded-lg p-3 text-sm focus:outline-none focus:ring-1 focus:ring-brand-500 transition-all placeholder:text-slate-500 resize-none"></textarea>
+              <div class="mt-2 flex justify-between items-center">
+                <span class="text-xs text-slate-500">Be respectful and stay on topic.</span>
+                <button onclick="postComment()" class="bg-brand-500 hover:bg-brand-600 text-white font-bold px-4 py-2 rounded-lg text-xs transition-all shadow-md shadow-brand-500/10">
+                  Post Comment
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Comment List -->
+          <div class="space-y-6" id="comments-container">
+            <!-- Comment 1 -->
+            <div class="flex gap-4 border-b border-darkborder/50 pb-5">
+              <div class="w-10 h-10 rounded-full bg-slate-800 border border-darkborder flex items-center justify-center font-black text-brand-400 flex-shrink-0 text-xs">
+                KJ
+              </div>
+              <div class="flex-1">
+                <div class="flex items-center justify-between mb-1">
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-sm font-bold text-slate-300">Kenobi_Jedi</span>
+                    <span class="text-[9px] bg-emerald-900/40 text-emerald-400 px-1.5 py-0.5 rounded font-extrabold uppercase tracking-wide">Seeder</span>
+                  </div>
+                  <span class="text-xs text-slate-500">2 days ago</span>
+                </div>
+                <p class="text-sm text-slate-400 leading-relaxed">
+                  Excellent remux! Finally glad to get this off the original Warner Bros VC-1 source instead of the heavy compression on streaming platforms. The sound is massive on a 5.1 TrueHD setup--even if the sub is famously subtle on this particular track, the surround clarity is top notch!
+                </p>
+                <div class="mt-3 flex items-center gap-4 text-xs text-slate-500">
+                  <button class="hover:text-brand-500 transition-colors flex items-center gap-1">
+                    👍 12
+                  </button>
+                  <button class="hover:text-red-500 transition-colors">Report</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Comment 2 -->
+            <div class="flex gap-4 border-b border-darkborder/50 pb-5">
+              <div class="w-10 h-10 rounded-full bg-slate-800 border border-darkborder flex items-center justify-center font-black text-purple-400 flex-shrink-0 text-xs">
+                AT
+              </div>
+              <div class="flex-1">
+                <div class="flex items-center justify-between mb-1">
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-sm font-bold text-slate-300">AhsokaTano_Snips</span>
+                    <span class="text-[9px] bg-slate-800 text-slate-400 px-1.5 py-0.5 rounded font-bold uppercase tracking-wide">Member</span>
+                  </div>
+                  <span class="text-xs text-slate-500">1 day ago</span>
+                </div>
+                <p class="text-sm text-slate-400 leading-relaxed">
+                  Ahsoka's very first introduction! Incredible piece of Star Wars lore history. Downloading right away to complete my movie collection alongside Season 1. Thanks for the quick upload!
+                </p>
+                <div class="mt-3 flex items-center gap-4 text-xs text-slate-500">
+                  <button class="hover:text-brand-500 transition-colors flex items-center gap-1">
+                    👍 8
+                  </button>
+                  <button class="hover:text-red-500 transition-colors">Report</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Comment 3 -->
+            <div class="flex gap-4 border-b border-darkborder/50 pb-5">
+              <div class="w-10 h-10 rounded-full bg-slate-800 border border-darkborder flex items-center justify-center font-black text-blue-400 flex-shrink-0 text-xs">
+                CR
+              </div>
+              <div class="flex-1">
+                <div class="flex items-center justify-between mb-1">
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-sm font-bold text-slate-300">CaptainRex_501</span>
+                    <span class="text-[9px] bg-blue-900/40 text-blue-400 px-1.5 py-0.5 rounded font-bold uppercase tracking-wide">Leecher</span>
+                  </div>
+                  <span class="text-xs text-slate-500">12 hours ago</span>
+                </div>
+                <p class="text-sm text-slate-400 leading-relaxed">
+                  Speeding along nicely. 10MB/s on my connection, seeding back immediately to keep that ratio looking strong. Long live the clone army!
+                </p>
+                <div class="mt-3 flex items-center gap-4 text-xs text-slate-500">
+                  <button class="hover:text-brand-500 transition-colors flex items-center gap-1">
+                    👍 3
+                  </button>
+                  <button class="hover:text-red-500 transition-colors">Report</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- Right Column (Torrent Tracker Sidebar & Real-time Stats) -->
+      <div class="lg:col-span-4 flex flex-col gap-6">
+
+        <!-- Real-Time Peer Stats Widget -->
+        <section class="bg-darkcard border border-darkborder rounded-xl shadow-xl overflow-hidden">
+          <div class="bg-gradient-to-r from-brand-600/30 to-cyan-500/10 p-5 border-b border-darkborder">
+            <h3 class="text-sm font-bold text-slate-200 tracking-wider uppercase mb-3 flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+              Tracker Stats
+            </h3>
+            <div class="grid grid-cols-3 gap-2 text-center">
+              <div class="bg-darkbg/60 border border-darkborder p-3 rounded-lg">
+                <div class="text-xl font-extrabold text-emerald-400" id="seeder-count">142</div>
+                <div class="text-[10px] text-slate-500 uppercase tracking-wider font-semibold mt-0.5">Seeders</div>
+              </div>
+              <div class="bg-darkbg/60 border border-darkborder p-3 rounded-lg">
+                <div class="text-xl font-extrabold text-red-400">3</div>
+                <div class="text-[10px] text-slate-500 uppercase tracking-wider font-semibold mt-0.5">Leechers</div>
+              </div>
+              <div class="bg-darkbg/60 border border-darkborder p-3 rounded-lg">
+                <div class="text-xl font-extrabold text-brand-500">1,289</div>
+                <div class="text-[10px] text-slate-500 uppercase tracking-wider font-semibold mt-0.5">Snatched</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dynamic Info Hash -->
+          <div class="p-5 space-y-4 text-xs">
+            <div class="flex justify-between items-center py-2 border-b border-darkborder/50">
+              <span class="text-slate-500 font-semibold">Info Hash</span>
+              <div class="flex items-center gap-1.5 font-mono">
+                <span class="text-slate-300">7f9b8c2d...8a7f6e</span>
+                <button onclick="copyHash()" class="text-slate-500 hover:text-brand-500 transition-colors">
+                  <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="flex justify-between items-center py-2 border-b border-darkborder/50">
+              <span class="text-slate-500 font-semibold">Uploader</span>
+              <span class="text-slate-300 font-bold flex items-center gap-1">
+                JediMaster_Obi
+                <span class="text-[9px] bg-red-900/30 text-red-400 px-1 rounded uppercase tracking-wider font-bold">VIP</span>
+              </span>
+            </div>
+
+            <div class="flex justify-between items-center py-2 border-b border-darkborder/50">
+              <span class="text-slate-500 font-semibold">Last Checked</span>
+              <span class="text-slate-300">6 minutes ago</span>
+            </div>
+
+            <div class="flex justify-between items-center py-2 border-b border-darkborder/50">
+              <span class="text-slate-500 font-semibold">Average Speed</span>
+              <span class="text-emerald-400 font-semibold">↑ 41.2 MB/s</span>
+            </div>
+
+            <div class="flex justify-between items-center py-2 border-b border-darkborder/50">
+              <span class="text-slate-500 font-semibold">Uploader Thanks List</span>
+              <button onclick="viewThanks()" class="text-brand-500 hover:underline">View 34 users</button>
+            </div>
+
+            <!-- Thanks List Container (Expandable on click) -->
+            <div id="thanks-list-container" class="hidden bg-darkbg p-3 rounded-lg border border-darkborder max-h-40 overflow-y-auto space-y-1 text-[10px] text-slate-400 font-mono">
+              <div class="text-slate-300 font-bold pb-1 border-b border-darkborder/50">Who Said Thanks:</div>
+              <div id="thanks-list">
+                Skywalker_99, Kenobi_Jedi, AhsokaTano_Snips, MasterYoda_Green, Mace_W, Rex501, Cody212, PloKoon, ShaakTi, KitFisto, Windu9, DookuCount, VentressS, GrievousGeneral, AnakinFan, StarWarsNut, HDRemuxLover, TorrentKing, BitJedi, ForceBytes.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Similar Torrents (Interactive cross-promotional list) -->
+        <section class="bg-darkcard border border-darkborder rounded-xl shadow-xl p-5 md:p-6">
+          <h3 class="text-sm font-bold text-slate-200 tracking-wider uppercase mb-4 flex items-center gap-2">
+            <svg class="w-4 h-4 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+            </svg>
+            Similar Releases
+          </h3>
+          <div class="space-y-3.5">
+            
+            <!-- Item 1 -->
+            <a href="#" onclick="showSimilarToast('Star Wars: Rebels (2014) Season 1-4 1080p BluRay REMUX')" class="block group">
+              <div class="flex items-center justify-between border-b border-darkborder/40 pb-2.5">
+                <div class="flex-1 pr-2">
+                  <div class="text-xs font-semibold text-slate-300 group-hover:text-brand-500 transition-colors line-clamp-1">
+                    Star Wars: Rebels Season 1-4 1080p BluRay REMUX AVC
+                  </div>
+                  <div class="text-[10px] text-slate-500 flex items-center gap-2 mt-0.5">
+                    <span>94.2 GiB</span>
+                    <span>•</span>
+                    <span class="text-emerald-500 font-bold">S: 82</span>
+                  </div>
+                </div>
+                <span class="bg-darkbg text-[10px] font-bold text-slate-400 group-hover:text-brand-500 border border-darkborder py-1 px-2 rounded transition-colors">
+                  View
+                </span>
+              </div>
+            </a>
+
+            <!-- Item 2 -->
+            <a href="#" onclick="showSimilarToast('Star Wars: The Clone Wars Season 1-7 1080p Blu-ray REMUX')" class="block group">
+              <div class="flex items-center justify-between border-b border-darkborder/40 pb-2.5">
+                <div class="flex-1 pr-2">
+                  <div class="text-xs font-semibold text-slate-300 group-hover:text-brand-500 transition-colors line-clamp-1">
+                    Star Wars: The Clone Wars Complete Series S01-S07 REMUX
+                  </div>
+                  <div class="text-[10px] text-slate-500 flex items-center gap-2 mt-0.5">
+                    <span>412.8 GiB</span>
+                    <span>•</span>
+                    <span class="text-emerald-500 font-bold">S: 214</span>
+                  </div>
+                </div>
+                <span class="bg-darkbg text-[10px] font-bold text-slate-400 group-hover:text-brand-500 border border-darkborder py-1 px-2 rounded transition-colors">
+                  View
+                </span>
+              </div>
+            </a>
+
+            <!-- Item 3 -->
+            <a href="#" onclick="showSimilarToast('Star Wars: Episode III - Revenge of the Sith 1080p BluRay REMUX')" class="block group">
+              <div class="flex items-center justify-between border-b border-darkborder/40 pb-2.5">
+                <div class="flex-1 pr-2">
+                  <div class="text-xs font-semibold text-slate-300 group-hover:text-brand-500 transition-colors line-clamp-1">
+                    Star Wars: Episode III - Revenge of the Sith REMUX AVC
+                  </div>
+                  <div class="text-[10px] text-slate-500 flex items-center gap-2 mt-0.5">
+                    <span>36.1 GiB</span>
+                    <span>•</span>
+                    <span class="text-emerald-500 font-bold">S: 99</span>
+                  </div>
+                </div>
+                <span class="bg-darkbg text-[10px] font-bold text-slate-400 group-hover:text-brand-500 border border-darkborder py-1 px-2 rounded transition-colors">
+                  View
+                </span>
+              </div>
+            </a>
+
+          </div>
+        </section>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Premium Footer -->
+  <footer class="border-t border-darkborder bg-darkcard/40 py-8 mt-16 text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <span class="font-bold tracking-wider text-slate-400">NEBULABITS TRACER</span>
+        <span>•</span>
+        <span>Premium Private Torrent Tracker © 2026</span>
+      </div>
+      <div class="flex gap-4">
+        <a href="#" class="hover:text-brand-500 transition-colors">IRC Chat</a>
+        <span>•</span>
+        <a href="#" class="hover:text-brand-500 transition-colors">API Endpoint</a>
+        <span>•</span>
+        <a href="#" class="hover:text-brand-500 transition-colors">Tracker Status</a>
+        <span>•</span>
+        <a href="#" class="hover:text-brand-500 transition-colors">Contact Staff</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script block for interactions -->
+  <script>
+    // Global Toast Notifier
+    function showToast(title, message, type = 'success') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      toast.className = `flex gap-3 items-center p-4 bg-darkcard border border-darkborder rounded-xl shadow-2xl transition-all duration-300 translate-y-2 opacity-0 pointer-events-auto w-full max-w-sm`;
+      
+      const iconSuccess = `<svg class="w-5 h-5 text-emerald-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>`;
+      const iconInfo = `<svg class="w-5 h-5 text-brand-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>`;
+      const iconWarning = `<svg class="w-5 h-5 text-yellow-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>`;
+      
+      const icon = type === 'success' ? iconSuccess : (type === 'warning' ? iconWarning : iconInfo);
+
+      toast.innerHTML = `
+        ${icon}
+        <div class="flex-1">
+          <div class="text-xs font-bold text-slate-200">${title}</div>
+          <div class="text-[11px] text-slate-400 mt-0.5">${message}</div>
+        </div>
+        <button class="text-slate-500 hover:text-slate-300 transition-colors ml-auto flex-shrink-0" onclick="this.parentElement.remove()">
+          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      `;
+
+      container.appendChild(toast);
+      
+      // Animate entry
+      setTimeout(() => {
+        toast.classList.remove('translate-y-2', 'opacity-0');
+      }, 50);
+
+      // Self destroy
+      setTimeout(() => {
+        toast.classList.add('translate-y-2', 'opacity-0');
+        setTimeout(() => toast.remove(), 300);
+      }, 5000);
+    }
+
+    // Toggle File Tree
+    let filesExpanded = true;
+    function toggleFiles() {
+      const filesList = document.getElementById('files-list');
+      const filesChevron = document.getElementById('files-chevron');
+      filesExpanded = !filesExpanded;
+      if (filesExpanded) {
+        filesList.classList.remove('hidden');
+        filesChevron.classList.remove('rotate-180');
+      } else {
+        filesList.classList.add('hidden');
+        filesChevron.classList.add('rotate-180');
+      }
+    }
+
+    // Toggle Bookmarking
+    let bookmarked = false;
+    function toggleBookmark(btn) {
+      bookmarked = !bookmarked;
+      const icon = document.getElementById('bookmark-icon');
+      const text = btn.querySelector('span');
+      if (bookmarked) {
+        icon.setAttribute('fill', 'currentColor');
+        icon.classList.add('text-yellow-500');
+        btn.classList.add('border-yellow-500/50', 'bg-yellow-500/10');
+        text.innerText = 'Bookmarked';
+        showToast('Bookmarked!', 'Added this release to your private bookmarks.', 'success');
+      } else {
+        icon.setAttribute('fill', 'none');
+        icon.classList.remove('text-yellow-500');
+        btn.classList.remove('border-yellow-500/50', 'bg-yellow-500/10');
+        text.innerText = 'Bookmark';
+        showToast('Bookmark Removed', 'This torrent was removed from your bookmarks.', 'info');
+      }
+    }
+
+    // Download Torrent Simulation
+    function downloadTorrent() {
+      showToast('Downloading Torrent File', 'Star.Wars.The.Clone.Wars.2008.REMUX.torrent sent to client.', 'success');
+    }
+
+    // Magnet Copy Simulation (uses standard fallback pattern)
+    function copyMagnet() {
+      const dummyText = 'magnet:?xt=urn:btih:7f9b8c2d1e0a9f8e7d6c5b4a3f2e1d0c9b8a7f6e&dn=Star.Wars.The.Clone.Wars.2008.1080p.BluRay.REMUX.VC-1.TrueHD.5.1.EX-NBL&tr=https%3A%2F%2Ftracker.nebulabits.org%2Fannounce';
+      
+      const el = document.createElement('textarea');
+      el.value = dummyText;
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+
+      showToast('Copied Magnet Link!', 'Torrent magnet URI copied to clipboard successfully.', 'success');
+    }
+
+    // Copy NFO Text
+    function copyNFO() {
+      const nfoContent = document.getElementById('nfo-text').innerText;
+      
+      const el = document.createElement('textarea');
+      el.value = nfoContent;
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+
+      showToast('Copied NFO!', 'NBL group release notes copied to clipboard.', 'success');
+    }
+
+    // Copy Info Hash
+    function copyHash() {
+      const hash = '7f9b8c2d1e0a9f8e7d6c5b4a3f2e1d0c9b8a7f6e';
+      
+      const el = document.createElement('textarea');
+      el.value = hash;
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+
+      showToast('Copied Info Hash!', 'SHA-1 Hash copied to clipboard.', 'success');
+    }
+
+    // Thanks Button Interaction
+    let thanked = false;
+    let thanksCount = 34;
+    function sendThanks() {
+      if (thanked) {
+        showToast('Already Thanked!', 'You have already thanked the uploader.', 'info');
+        return;
+      }
+      thanked = true;
+      thanksCount++;
+      document.getElementById('thanks-count').innerText = thanksCount;
+      document.getElementById('thanks-text').innerText = 'Thanked!';
+      
+      // Append current user to thanks list container if visible
+      const listEl = document.getElementById('thanks-list');
+      listEl.innerHTML = '<b>Skywalker_99</b>, ' + listEl.innerHTML;
+      
+      // Increment Seeder counter by 1 just as mock tracker health appreciation boost
+      const seederEl = document.getElementById('seeder-count');
+      seederEl.innerText = parseInt(seederEl.innerText) + 1;
+
+      showToast('Thanks Registered!', 'You have expressed gratitude to the uploader. +10 Bonus points awarded!', 'success');
+    }
+
+    // Toggle Who Said Thanks List View
+    let thanksVisible = false;
+    function viewThanks() {
+      const container = document.getElementById('thanks-list-container');
+      thanksVisible = !thanksVisible;
+      if (thanksVisible) {
+        container.classList.remove('hidden');
+      } else {
+        container.classList.add('hidden');
+      }
+    }
+
+    // Report Torrent Simulation
+    function reportTorrent() {
+      showToast('Report Window', 'Staff feedback report window initialized. Ensure you specify rule violation.', 'warning');
+    }
+
+    // Similar release preview click
+    function showSimilarToast(name) {
+      showToast('Navigating', `Redirecting to "${name}" detail page...`, 'info');
+    }
+
+    // Dynamic Comments Posting Logic
+    let commentCount = 3;
+    function postComment() {
+      const input = document.getElementById('comment-input');
+      const text = input.value.trim();
+      
+      if (!text) {
+        showToast('Empty Comment', 'Please write something before posting.', 'warning');
+        return;
+      }
+
+      const container = document.getElementById('comments-container');
+      
+      // Create new comment element
+      const commentDiv = document.createElement('div');
+      commentDiv.className = "flex gap-4 border-b border-darkborder/50 pb-5 animate-pulse";
+      
+      commentDiv.innerHTML = `
+        <div class="w-10 h-10 rounded-full bg-brand-900 border border-brand-500/40 flex items-center justify-center font-bold text-brand-300 flex-shrink-0 text-xs">
+          SW
+        </div>
+        <div class="flex-1">
+          <div class="flex items-center justify-between mb-1">
+            <div class="flex items-center gap-1.5">
+              <span class="text-sm font-bold text-slate-300">Skywalker_99</span>
+              <span class="text-[9px] bg-brand-900 text-brand-400 px-1.5 py-0.5 rounded font-extrabold uppercase tracking-wide">You</span>
+            </div>
+            <span class="text-xs text-slate-500">Just now</span>
+          </div>
+          <p class="text-sm text-slate-400 leading-relaxed">${escapeHtml(text)}</p>
+          <div class="mt-3 flex items-center gap-4 text-xs text-slate-500">
+            <button class="hover:text-brand-500 transition-colors flex items-center gap-1">
+              👍 0
+            </button>
+            <span class="text-slate-600">|</span>
+            <span class="text-[11px] text-brand-500 font-semibold flex items-center gap-1">
+              <span class="w-1.5 h-1.5 bg-brand-500 rounded-full animate-ping"></span> Uploading to tracker...
+            </span>
+          </div>
+        </div>
+      `;
+
+      // Prepend to list
+      container.insertBefore(commentDiv, container.firstChild);
+      
+      // Clear input
+      input.value = '';
+      
+      // Increment header stats
+      commentCount++;
+      document.getElementById('comment-count-header').innerText = commentCount;
+
+      // Finish "upload" animation
+      setTimeout(() => {
+        commentDiv.classList.remove('animate-pulse');
+        commentDiv.querySelector('.animate-ping').parentElement.remove();
+        showToast('Comment Posted!', 'Your message has been broadcasted to the tracker swarm.', 'success');
+      }, 1200);
+    }
+
+    // Helper sanitization method
+    function escapeHtml(text) {
+      return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+  </script>
+</body>
+</html>
