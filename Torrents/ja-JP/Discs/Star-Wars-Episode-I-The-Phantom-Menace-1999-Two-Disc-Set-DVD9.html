@@ -1,1051 +1,1141 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja-JP">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEO-TOKYO P2P INDEX - Star Wars: Episode I (DVD9 JP ISO)</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=DotGothic16&family=Share+Tech+Mono&family=Sawarabi+Gothic&display=swap');
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Star Wars Ep1 JP DVD9 - Galactic Archive Tracker</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons (CDN) -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Space+Grotesk:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
+    
+    body {
+      font-family: 'Space Grotesk', 'Noto Sans JP', sans-serif;
+      background-color: #06070d;
+      background-image: 
+        radial-gradient(circle at 20% 30%, rgba(0, 240, 255, 0.04) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(255, 232, 31, 0.03) 0%, transparent 40%);
+    }
 
-        /* Retro Cyberpunk Theme Constants */
-        :root {
-            --glow-color: #00ff66;
-            --crt-bg: #0a0e14;
-            --amber-glow: #ffb300;
-        }
+    .mono-font {
+      font-family: 'Share Tech Mono', monospace;
+    }
 
-        body {
-            background-color: #05070a;
-            color: #d1d5db;
-            font-family: 'Sawarabi Gothic', 'MS PGothic', sans-serif;
-            background-image: 
-                radial-gradient(circle at 50% 120%, #0d2216 0%, #05070a 80%),
-                linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
-            background-size: 100% 100%, 100% 4px;
-            overflow-x: hidden;
-        }
+    /* スター・ウォーズ イエロー & ホログラム シアンのネオン効果 */
+    .glow-cyan {
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.25);
+    }
+    .glow-yellow {
+      box-shadow: 0 0 15px rgba(255, 232, 31, 0.25);
+    }
+    
+    .border-glow-cyan {
+      border-color: rgba(0, 240, 255, 0.4);
+      box-shadow: 0 0 10px rgba(0, 240, 255, 0.1);
+    }
 
-        .retro-title {
-            font-family: 'DotGothic16', monospace;
-            text-shadow: 0 0 8px var(--glow-color);
-        }
+    /* スクロールバーのカスタマイズ */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0d0f17;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1f2438;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #00f0ff;
+    }
 
-        .mono-font {
-            font-family: 'Share Tech Mono', monospace;
-        }
-
-        /* Scanline Overlay for retro vibe */
-        .scanlines {
-            position: relative;
-        }
-        .scanlines::before {
-            content: " ";
-            display: block;
-            position: absolute;
-            top: 0; left: 0; bottom: 0; right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.4) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-            z-index: 10;
-            background-size: 100% 3px, 3px 100%;
-            pointer-events: none;
-        }
-
-        /* CRT Screen flicker effect */
-        @keyframes crt-flicker {
-            0% { opacity: 0.985; }
-            50% { opacity: 0.995; }
-            100% { opacity: 0.985; }
-        }
-        .crt-glow {
-            animation: crt-flicker 0.15s infinite;
-        }
-
-        /* 2001 vintage styling components */
-        .retro-border {
-            border: 3px double #00ff66;
-            box-shadow: 0 0 10px rgba(0, 255, 102, 0.2);
-        }
-
-        .retro-border-amber {
-            border: 3px double var(--amber-glow);
-            box-shadow: 0 0 10px rgba(255, 179, 0, 0.2);
-        }
-
-        .retro-button {
-            background: linear-gradient(180deg, #1f2937 0%, #111827 100%);
-            border: 1px solid #00ff66;
-            transition: all 0.2s ease;
-        }
-        .retro-button:hover {
-            background: #00ff66;
-            color: #000;
-            box-shadow: 0 0 15px #00ff66;
-        }
-
-        .retro-button-amber {
-            background: linear-gradient(180deg, #1f2937 0%, #111827 100%);
-            border: 1px solid var(--amber-glow);
-            transition: all 0.2s ease;
-        }
-        .retro-button-amber:hover {
-            background: var(--amber-glow);
-            color: #000;
-            box-shadow: 0 0 15px var(--amber-glow);
-        }
-
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0d1117;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #1f2937;
-            border: 1px solid #00ff66;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #00ff66;
-        }
-
-        /* Text selection */
-        ::selection {
-            background: #00ff66;
-            color: #000;
-        }
-    </style>
+    /* レトロなスキャンライン効果 */
+    .scanlines {
+      position: relative;
+    }
+    .scanlines::before {
+      content: " ";
+      display: block;
+      position: absolute;
+      top: 0; left: 0; bottom: 0; right: 0;
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+      z-index: 10;
+      background-size: 100% 4px, 6px 100%;
+      pointer-events: none;
+    }
+  </style>
 </head>
-<body class="min-h-screen flex flex-col p-2 md:p-6 scanlines">
+<body class="text-slate-200 min-h-screen pb-12">
 
-    <!-- Top Retro Banner & Status Bar -->
-    <header class="w-full max-w-7xl mx-auto mb-6">
-        <div class="flex flex-col md:flex-row justify-between items-center bg-[#0d1117] border-b-2 border-green-500 p-3 mb-2 gap-4">
+  <!-- トースト通知システム -->
+  <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <!-- ナビゲーションヘッダー -->
+  <header class="border-b border-slate-800 bg-slate-950/80 backdrop-blur-md sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center gap-4">
+      <div class="flex items-center gap-3">
+        <!-- ホログラムロゴ -->
+        <div class="relative w-10 h-10 flex items-center justify-center bg-cyan-950/50 border border-cyan-500 rounded-lg overflow-hidden">
+          <div class="absolute inset-0 bg-cyan-500/20 animate-pulse"></div>
+          <span class="text-cyan-400 font-bold tracking-widest text-lg mono-font">R2</span>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-xs bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 px-2 py-0.5 rounded-full mono-font uppercase">P2P Archive v2.01</span>
+          </div>
+          <h1 class="text-lg font-bold text-slate-100 flex items-center gap-1.5 tracking-tight">
+            GALACTIC ARCHIVE <span class="text-yellow-400 font-normal text-sm">TRACKER</span>
+          </h1>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-4 text-xs">
+        <div class="flex items-center gap-2 bg-slate-900 border border-slate-800 px-3 py-1.5 rounded-lg">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+          <span class="text-slate-400">Node Status:</span>
+          <span class="text-emerald-400 font-semibold mono-font">ONLINE</span>
+        </div>
+        <div class="flex items-center gap-2 bg-slate-900 border border-slate-800 px-3 py-1.5 rounded-lg hidden sm:flex">
+          <span class="text-slate-400">Time:</span>
+          <span class="text-cyan-400 font-semibold mono-font" id="current-time">2001-11-08 12:00:00</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- メインコンテンツ -->
+  <main class="max-w-7xl mx-auto px-4 mt-6">
+    
+    <!-- メディアヘッダー & ブレッドクラム -->
+    <div class="mb-6 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-400">
+      <div class="flex items-center gap-2">
+        <a href="#" class="hover:text-cyan-400 transition-colors">ARCHIVE HOME</a>
+        <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+        <a href="#" class="hover:text-cyan-400 transition-colors">MOVIES</a>
+        <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+        <a href="#" class="hover:text-cyan-400 transition-colors">DVD-ISO</a>
+        <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+        <span class="text-slate-200 font-semibold">FXBA-22733</span>
+      </div>
+      <div class="text-slate-500">Registered: 2001-11-08 15:43 JST</div>
+    </div>
+
+    <!-- トレントアイテム詳細メイン -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      
+      <!-- 左コラム: ポスター・簡易ステータス・ダウンロード -->
+      <div class="lg:col-span-1 flex flex-col gap-6">
+        
+        <!-- DVDパッケージ風ビジュアル -->
+        <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-4 flex flex-col items-center relative overflow-hidden group">
+          <div class="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-950/5 to-cyan-950/20 pointer-events-none"></div>
+          
+          <!-- DVDケース表現 -->
+          <div class="relative w-full max-w-[280px] aspect-[1/1.4] bg-slate-950 rounded-lg border border-slate-700 shadow-2xl overflow-hidden flex flex-col justify-between p-4 mb-4 group-hover:border-cyan-500/50 transition-all duration-300">
+            <!-- 上部リボン -->
+            <div class="flex justify-between items-center text-[10px] text-yellow-400/80 font-mono tracking-widest border-b border-slate-800 pb-1.5">
+              <span>DVD-9 TWO-DISC SET</span>
+              <span>NTSC JP</span>
+            </div>
+            
+            <!-- スター・ウォーズロゴとアートワーク（SVG & CSS によるミニマルSFアート） -->
+            <div class="my-auto flex flex-col items-center justify-center py-6 relative">
+              <!-- ホログラム効果の背景 -->
+              <div class="absolute w-36 h-36 bg-cyan-500/5 rounded-full filter blur-xl animate-pulse"></div>
+              
+              <div class="text-yellow-400 text-center font-bold tracking-widest scale-y-125 mb-1 text-xs">STAR WARS</div>
+              <div class="text-slate-400 text-center font-semibold text-[10px] tracking-widest uppercase mb-4">EPISODE I</div>
+              
+              <!-- 象徴的なダース・モールアイを模したデザイン -->
+              <div class="w-24 h-24 relative flex items-center justify-center border border-dashed border-red-500/20 rounded-full mb-4">
+                <div class="absolute w-20 h-20 border border-red-500/40 rounded-full animate-spin" style="animation-duration: 20s;"></div>
+                <div class="absolute flex gap-10">
+                  <div class="w-3 h-3 rounded-full bg-red-600 animate-pulse shadow-[0_0_8px_rgba(220,38,38,0.8)]"></div>
+                  <div class="w-3 h-3 rounded-full bg-red-600 animate-pulse shadow-[0_0_8px_rgba(220,38,38,0.8)]"></div>
+                </div>
+                <!-- 縦のダブルブレードライトセーバー -->
+                <div class="w-[2px] h-16 bg-red-500 animate-pulse"></div>
+              </div>
+              
+              <div class="text-center font-bold text-slate-100 text-sm tracking-tight px-2 bg-slate-950/95 py-1 rounded border border-slate-800">
+                THE PHANTOM MENACE
+              </div>
+            </div>
+
+            <!-- 下部バーコード風 & 20世紀フォックスオマージュ -->
+            <div class="flex justify-between items-end border-t border-slate-800 pt-2 text-[8px] text-slate-500 font-mono">
+              <div>
+                <p>FXBA-22733</p>
+                <p>FOX HOME ENTERTAINMENT</p>
+              </div>
+              <div class="flex gap-0.5 items-end h-5">
+                <!-- 簡易バーコード風 -->
+                <div class="w-[1px] h-4 bg-slate-500"></div>
+                <div class="w-[2px] h-4 bg-slate-500"></div>
+                <div class="w-[1px] h-4 bg-slate-500"></div>
+                <div class="w-[3px] h-4 bg-slate-500"></div>
+                <div class="w-[1px] h-4 bg-slate-500"></div>
+                <div class="w-[2px] h-4 bg-slate-500"></div>
+                <div class="w-[4px] h-4 bg-slate-500"></div>
+              </div>
+            </div>
+          </div>
+          
+          <span class="text-slate-400 text-xs font-semibold">品番: FXBA-22733 (日本盤2枚組)</span>
+          <span class="text-slate-500 text-[11px] mt-1">発売日: 2001年11月8日 / 劇場公開: 1999年</span>
+        </div>
+
+        <!-- ダウンロード & リンクモジュール -->
+        <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-5 flex flex-col gap-4">
+          <h3 class="text-sm font-bold text-slate-300 border-b border-slate-800 pb-2 flex items-center gap-2">
+            <i data-lucide="download-cloud" class="w-4 h-4 text-cyan-400"></i>
+            DOWNLOAD OPTIONS
+          </h3>
+          
+          <button onclick="triggerDownload('torrent')" class="w-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2.5 transition-all duration-200 shadow-lg shadow-cyan-500/10 active:scale-[0.98] glow-cyan">
+            <i data-lucide="file-down" class="w-5 h-5"></i>
+            <span>DL .torrent ファイル</span>
+          </button>
+          
+          <button onclick="triggerDownload('magnet')" class="w-full bg-slate-850 hover:bg-slate-800 border border-slate-700 hover:border-cyan-500/40 text-slate-200 font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2.5 transition-all duration-200 active:scale-[0.98]">
+            <i data-lucide="magnet" class="w-5 h-5 text-red-400"></i>
+            <span>マグネットリンクを起動</span>
+          </button>
+
+          <div class="mt-2 bg-slate-950/80 rounded-xl p-3 border border-slate-850/80 flex flex-col gap-2">
+            <div class="flex justify-between text-xs">
+              <span class="text-slate-400">Info Hash (Disc1):</span>
+              <button onclick="copyHash('7c5a019ef8973b8cae28f110bc50672e', 'MD5ハッシュ')" class="text-cyan-400 hover:text-cyan-300 font-mono flex items-center gap-1">
+                COPY <i data-lucide="copy" class="w-3 h-3"></i>
+              </button>
+            </div>
+            <p class="font-mono text-[10px] text-slate-500 break-all bg-slate-900/60 p-2 rounded border border-slate-800 select-all">
+              7c5a019ef8973b8cae28f110bc50672e
+            </p>
+          </div>
+        </div>
+
+        <!-- トラッカーステータス (P2Pレトロ風) -->
+        <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-5">
+          <h3 class="text-sm font-bold text-slate-300 border-b border-slate-800 pb-2 flex items-center gap-2 mb-4">
+            <i data-lucide="activity" class="w-4 h-4 text-emerald-400"></i>
+            SWARM STATS
+          </h3>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="bg-slate-950/60 p-3 rounded-xl border border-slate-850 text-center">
+              <span class="text-xs text-emerald-400 font-semibold block mb-1">SEEDERS</span>
+              <span class="text-2xl font-bold mono-font text-emerald-300" id="seeder-count">501</span>
+              <span class="text-[9px] text-slate-500 block mt-1">(501st Legion)</span>
+            </div>
+            <div class="bg-slate-950/60 p-3 rounded-xl border border-slate-850 text-center">
+              <span class="text-xs text-amber-500 font-semibold block mb-1">LEECHERS</span>
+              <span class="text-2xl font-bold mono-font text-amber-300" id="leecher-count">66</span>
+              <span class="text-[9px] text-slate-500 block mt-1">(Order 66)</span>
+            </div>
+          </div>
+
+          <!-- ヘルスバー -->
+          <div class="mt-4">
+            <div class="flex justify-between text-xs mb-1">
+              <span class="text-slate-400">Torrent Health (健康度)</span>
+              <span class="text-emerald-400 font-bold mono-font">100%</span>
+            </div>
+            <div class="w-full bg-slate-950 h-2.5 rounded-full overflow-hidden border border-slate-850">
+              <div class="bg-gradient-to-r from-cyan-500 to-emerald-400 h-full w-full rounded-full"></div>
+            </div>
+          </div>
+
+          <!-- ダウンロード履歴簡易メーター -->
+          <div class="mt-4 pt-4 border-t border-slate-800/60 flex flex-col gap-2 text-xs">
+            <div class="flex justify-between">
+              <span class="text-slate-400">ファイル総容量:</span>
+              <span class="text-slate-200 font-mono font-semibold">14.97 GB (2 Discs)</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-slate-400">完了数:</span>
+              <span class="text-slate-200 font-mono font-semibold">2,381 times</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 右コラム: タブ構造、詳細スペック、検証ツール、NFO、レトロ掲示板 -->
+      <div class="lg:col-span-2 flex flex-col gap-6">
+        
+        <!-- トレントタイトルバナー -->
+        <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-6 relative overflow-hidden scanlines">
+          <div class="flex flex-wrap items-center gap-2 mb-2">
+            <span class="bg-yellow-400/10 text-yellow-400 border border-yellow-400/30 text-[10px] px-2 py-0.5 rounded font-mono font-bold uppercase">DVD9-NTSC</span>
+            <span class="bg-cyan-400/10 text-cyan-400 border border-cyan-400/30 text-[10px] px-2 py-0.5 rounded font-mono font-bold uppercase">2-DISC RETAIL</span>
+            <span class="bg-red-500/10 text-red-400 border border-red-500/30 text-[10px] px-2 py-0.5 rounded font-mono font-bold uppercase">JP EXCLUSIVE</span>
+          </div>
+          <h2 class="text-lg md:text-xl font-bold tracking-tight text-white mb-3">
+            Star.Wars.Episode.I.The.Phantom.Menace.1999.DVD9.2Discs.NTSC.JP.FXBA-22733-Archive
+          </h2>
+          <p class="text-slate-400 text-xs md:text-sm leading-relaxed max-w-2xl">
+            2001年11月8日発売、日本初の公式スター・ウォーズDVD化。劇場公開版に約4分間の新規映像を追加した「DVD特別版」ディスク1と、6時間を超える膨大なコンテンツの特典ディスク2を完全物理バックアップ（DVD9イメージ化）。
+          </p>
+        </div>
+
+        <!-- インタラクティブ・タブメニュー -->
+        <div class="flex border-b border-slate-800 overflow-x-auto gap-2">
+          <button onclick="switchTab('specs')" id="tab-btn-specs" class="tab-btn active px-5 py-3 text-sm font-semibold border-b-2 border-cyan-400 text-cyan-400 flex items-center gap-2 whitespace-nowrap transition-all duration-150">
+            <i data-lucide="info" class="w-4 h-4"></i>
+            詳細スペック
+          </button>
+          <button onclick="switchTab('files')" id="tab-btn-files" class="tab-btn px-5 py-3 text-sm font-semibold border-b-2 border-transparent text-slate-400 hover:text-slate-200 flex items-center gap-2 whitespace-nowrap transition-all duration-150">
+            <i data-lucide="folder-tree" class="w-4 h-4"></i>
+            ファイル構造
+          </button>
+          <button onclick="switchTab('nfo')" id="tab-btn-nfo" class="tab-btn px-5 py-3 text-sm font-semibold border-b-2 border-transparent text-slate-400 hover:text-slate-200 flex items-center gap-2 whitespace-nowrap transition-all duration-150">
+            <i data-lucide="terminal" class="w-4 h-4"></i>
+            NFO情報 (.nfo)
+          </button>
+          <button onclick="switchTab('verifier')" id="tab-btn-verifier" class="tab-btn px-5 py-3 text-sm font-semibold border-b-2 border-transparent text-slate-400 hover:text-slate-200 flex items-center gap-2 whitespace-nowrap transition-all duration-150">
+            <i data-lucide="shield-check" class="w-4 h-4"></i>
+            ハッシュ検証ツール
+          </button>
+          <button onclick="switchTab('comments')" id="tab-btn-comments" class="tab-btn px-5 py-3 text-sm font-semibold border-b-2 border-transparent text-slate-400 hover:text-slate-200 flex items-center gap-2 whitespace-nowrap transition-all duration-150">
+            <i data-lucide="messages-square" class="w-4 h-4"></i>
+            掲示板 (Comments)
+          </button>
+        </div>
+
+        <!-- タブコンテンツエリア -->
+        <div class="bg-slate-900/20 border border-slate-800 rounded-2xl p-6 min-h-[400px]">
+          
+          <!-- TAB 1: 詳細スペック -->
+          <div id="tab-content-specs" class="tab-panel flex flex-col gap-6">
+            
+            <!-- 特徴カード -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="bg-slate-950/60 p-4 rounded-xl border border-slate-850 flex flex-col gap-2">
+                <span class="text-xs text-cyan-400 font-bold tracking-wider uppercase">Disc 1: 本編 (Feature Film)</span>
+                <p class="text-xs text-slate-400">劇場上映時の133分から、ジョージ・ルーカス自身の手により、ポッドレース選手紹介シーンなどを追加した137分DVD特別版。本邦初の5.1ch EXサラウンドを完全真空パック。</p>
+                <div class="mt-2 flex flex-wrap gap-1">
+                  <span class="text-[10px] bg-slate-800/80 px-2 py-0.5 rounded text-slate-300">Dolby 5.1ch EX</span>
+                  <span class="text-[10px] bg-slate-800/80 px-2 py-0.5 rounded text-slate-300">日本語吹替収録</span>
+                  <span class="text-[10px] bg-slate-800/80 px-2 py-0.5 rounded text-slate-300">戸田奈津子劇場字幕</span>
+                </div>
+              </div>
+              <div class="bg-slate-950/60 p-4 rounded-xl border border-slate-850 flex flex-col gap-2">
+                <span class="text-xs text-yellow-400 font-bold tracking-wider uppercase">Disc 2: 特典 (Bonus Video)</span>
+                <p class="text-xs text-slate-400">制作舞台裏に迫る驚異的な66分メガ・メイキング「Beginning」を筆頭に、幻のカットシーンを含む7つの削除シーンや各種デザイン画ギャラリーをフルボリューム収録。</p>
+                <div class="mt-2 flex flex-wrap gap-1">
+                  <span class="text-[10px] bg-slate-800/80 px-2 py-0.5 rounded text-slate-300">Making "Beginning"</span>
+                  <span class="text-[10px] bg-slate-800/80 px-2 py-0.5 rounded text-slate-300">Deleted Scenes</span>
+                  <span class="text-[10px] bg-slate-800/80 px-2 py-0.5 rounded text-slate-300">Easter Eggs</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- メディア詳細スペック表 -->
+            <div>
+              <h4 class="text-sm font-bold text-slate-300 mb-3 flex items-center gap-2">
+                <span class="w-1.5 h-3 bg-cyan-400 rounded-sm"></span>
+                物理ディスクデータ詳細 (Technical Properties)
+              </h4>
+              <div class="overflow-x-auto">
+                <table class="w-full text-left text-xs text-slate-400 border-collapse">
+                  <thead>
+                    <tr class="border-b border-slate-800 text-slate-300">
+                      <th class="py-2.5 px-3 font-semibold">ディスク</th>
+                      <th class="py-2.5 px-3 font-semibold">メディア容量 (バイト数)</th>
+                      <th class="py-2.5 px-3 font-semibold">規格/形式</th>
+                      <th class="py-2.5 px-3 font-semibold">主要音声</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-slate-800/40">
+                    <tr>
+                      <td class="py-2.5 px-3 font-semibold text-slate-200">Disc 1 (本編)</td>
+                      <td class="py-2.5 px-3 font-mono">8,401,235,968 bytes</td>
+                      <td class="py-2.5 px-3">DVD-9 / NTSC / 16:9 LB</td>
+                      <td class="py-2.5 px-3">英語・日本語 Dolby Digital 5.1ch EX (448kbps)</td>
+                    </tr>
+                    <tr>
+                      <td class="py-2.5 px-3 font-semibold text-slate-200">Disc 2 (特典)</td>
+                      <td class="py-2.5 px-3 font-mono">7,682,504,704 bytes</td>
+                      <td class="py-2.5 px-3">DVD-9 / NTSC / 4:3 混在</td>
+                      <td class="py-2.5 px-3">英語 Dolby Digital 2.0chステレオ (192kbps)</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- インタラクティブ イースターエッグ情報 -->
+            <div class="bg-slate-950/40 p-5 rounded-xl border border-slate-850">
+              <h4 class="text-sm font-bold text-slate-200 mb-2 flex items-center gap-2">
+                <i data-lucide="egg-fried" class="w-4 h-4 text-yellow-400 animate-bounce"></i>
+                Disc 1 隠し要素の出し方 (Interactive Easter Eggs)
+              </h4>
+              <p class="text-xs text-slate-400 mb-4">
+                当時のフォックス盤お得意のインタラクティブ設計。実機のDVDプレイヤーまたは仮想再生ソフトから以下の手順で幻のNGアウトルック（珍プレー集）にアクセスできます。
+              </p>
+              <div class="bg-slate-900/80 p-3 rounded-lg border border-slate-800 flex items-start gap-3">
+                <div class="w-6 h-6 rounded bg-yellow-400/10 text-yellow-400 flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
+                  1
+                </div>
+                <div class="text-xs leading-relaxed text-slate-300">
+                  <span class="font-bold text-slate-100">THX オプティマイザーに移動</span>: Disc 1のオプション/音声字幕設定（Options）メニューへ移動し、THXロゴマークを選択してTHX調整画面に進む。
+                </div>
+              </div>
+              <div class="bg-slate-900/80 p-3 rounded-lg border border-slate-800 flex items-start gap-3 mt-2">
+                <div class="w-6 h-6 rounded bg-yellow-400/10 text-yellow-400 flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
+                  2
+                </div>
+                <div class="text-xs leading-relaxed text-slate-300">
+                  <span class="font-bold text-slate-100">暗号コードキーの入力</span>: リモコンから番号キーを使って <span class="text-yellow-400 font-mono font-bold">1 1</span> キー、続いて <span class="text-yellow-400 font-mono font-bold">3</span> 、最後に <span class="text-yellow-400 font-mono font-bold">8</span> を順番に押す（『THX 1138』にオマージュされた暗証キー）。
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- TAB 2: ファイル構造 (インタラクティブなツリー) -->
+          <div id="tab-content-files" class="tab-panel hidden flex flex-col gap-4">
+            <div class="flex items-center justify-between">
+              <span class="text-xs text-slate-400">フォルダーをクリックして展開 / 収納が可能です。</span>
+              <button onclick="expandAllFolders()" class="text-xs text-cyan-400 hover:text-cyan-300 font-medium">
+                すべて展開
+              </button>
+            </div>
+
+            <!-- ディスク選択タブ -->
+            <div class="flex gap-2 mb-2 bg-slate-950/80 p-1 rounded-lg border border-slate-850">
+              <button onclick="toggleDiscTree(1)" id="tree-disc-1-btn" class="flex-1 py-1.5 text-xs font-semibold rounded bg-cyan-500/10 border border-cyan-500/30 text-cyan-400">
+                Disc 1 (本編) のVOBリスト
+              </button>
+              <button onclick="toggleDiscTree(2)" id="tree-disc-2-btn" class="flex-1 py-1.5 text-xs font-semibold rounded text-slate-400 hover:text-slate-200">
+                Disc 2 (特典) のVOBリスト
+              </button>
+            </div>
+
+            <!-- Tree Structure container -->
+            <div class="bg-slate-950/60 rounded-xl border border-slate-850 p-4 font-mono text-xs text-slate-300 select-none">
+              
+              <!-- DISC 1 TREE -->
+              <div id="disc-1-tree" class="flex flex-col gap-1">
+                <div class="flex items-center gap-1.5 text-cyan-400">
+                  <i data-lucide="disc" class="w-4 h-4"></i>
+                  <span>SW_EP1_DISC1 [ISO IMAGE/9901_JP]</span>
+                </div>
+                
+                <!-- AUDIO_TS Folder -->
+                <div class="ml-4 pl-3 border-l border-slate-800 py-1">
+                  <div onclick="toggleFolder('folder-audio-1')" class="flex items-center gap-2 cursor-pointer hover:text-slate-100 py-0.5">
+                    <i data-lucide="folder" class="w-3.5 h-3.5 text-slate-500" id="folder-audio-1-icon"></i>
+                    <span class="text-slate-400">AUDIO_TS</span>
+                    <span class="text-[9px] text-slate-600">(0 files, 0 KB)</span>
+                  </div>
+                  <div id="folder-audio-1" class="hidden ml-4 pl-3 border-l border-slate-800 text-slate-500 italic py-1 text-[10px]">
+                    (ディレクトリは空です。DVD-Video音声トラックはVIDEO_TS内のVOBにエンベッドされています)
+                  </div>
+                </div>
+
+                <!-- VIDEO_TS Folder -->
+                <div class="ml-4 pl-3 border-l border-slate-800 py-1">
+                  <div onclick="toggleFolder('folder-video-1')" class="flex items-center gap-2 cursor-pointer hover:text-slate-100 py-0.5">
+                    <i data-lucide="folder-open" class="w-3.5 h-3.5 text-yellow-500" id="folder-video-1-icon"></i>
+                    <span class="text-slate-200 font-medium">VIDEO_TS</span>
+                    <span class="text-[9px] text-cyan-400">(13 files, 7.82 GB)</span>
+                  </div>
+                  <div id="folder-video-1" class="ml-4 pl-3 border-l border-slate-800 flex flex-col gap-1.5 py-1 text-[11px]">
+                    <div class="flex justify-between hover:bg-slate-900/40 p-1 rounded">
+                      <span class="flex items-center gap-2 text-slate-300"><i data-lucide="file" class="w-3 h-3 text-slate-500"></i>VIDEO_TS.BUP</span>
+                      <span class="text-slate-500">12 KB</span>
+                    </div>
+                    <div class="flex justify-between hover:bg-slate-900/40 p-1 rounded">
+                      <span class="flex items-center gap-2 text-slate-300"><i data-lucide="file-text" class="w-3 h-3 text-cyan-400"></i>VIDEO_TS.IFO</span>
+                      <span class="text-slate-500">12 KB</span>
+                    </div>
+                    <div class="flex justify-between hover:bg-slate-900/40 p-1 rounded">
+                      <span class="flex items-center gap-2 text-amber-300"><i data-lucide="video" class="w-3 h-3 text-amber-500"></i>VIDEO_TS.VOB</span>
+                      <span class="text-slate-400">22.4 MB <span class="text-[9px] text-slate-600">(Menus & Intros)</span></span>
+                    </div>
+                    <div class="flex justify-between hover:bg-slate-900/40 p-1 rounded">
+                      <span class="flex items-center gap-2 text-slate-300"><i data-lucide="file" class="w-3 h-3 text-slate-500"></i>VTS_01_0.BUP</span>
+                      <span class="text-slate-500">78 KB</span>
+                    </div>
+                    <div class="flex justify-between hover:bg-slate-900/40 p-1 rounded">
+                      <span class="flex items-center gap-2 text-slate-300"><i data-lucide="file-text" class="w-3 h-3 text-cyan-400"></i>VTS_01_0.IFO</span>
+                      <span class="text-slate-500">78 KB</span>
+                    </div>
+                    <!-- 本編VOBセグメントスプリット (DVD仕様の1GB制限) -->
+                    <div class="flex justify-between hover:bg-slate-900/40 p-1 rounded bg-cyan-950/10">
+                      <span class="flex items-center gap-2 text-emerald-300 font-medium"><i data-lucide="video" class="w-3 h-3 text-emerald-400"></i>VTS_01_1.VOB</span>
+                      <span class="text-emerald-400 font-bold">1.07 GB <span class="text-[9px] text-slate-500">(Feature Pt.1)</span></span>
+                    </div>
+                    <div class="flex justify-between hover:bg-slate-900/40 p-1 rounded bg-cyan-950/10">
+                      <span class="flex items-center gap-2 text-emerald-300 font-medium"><i data-lucide="video" class="w-3 h-3 text-emerald-400"></i>VTS_01_2.VOB</span>
+                      <span class="text-emerald-400 font-bold">1.07 GB <span class="text-[9px] text-slate-500">(Feature Pt.2)</span></span>
+                    </div>
+                    <div class="flex justify-between hover:bg-slate-900/40 p-1 rounded bg-cyan-950/10">
+                      <span class="flex items-center gap-2 text-emerald-300 font-medium"><i data-lucide="video" class="w-3 h-3 text-emerald-400"></i>VTS_01_3.VOB</span>
+                      <span class="text-emerald-400 font-bold">1.07 GB <span class="text-[9px] text-slate-500">(Feature Pt.3)</span></span>
+                    </div>
+                    <div class="flex justify-between hover:bg-slate-900/40 p-1 rounded bg-cyan-950/10">
+                      <span class="flex items-center gap-2 text-emerald-300 font-medium"><i data-lucide="video" class="w-3 h-3 text-emerald-400"></i>VTS_01_4.VOB</span>
+                      <span class="text-emerald-400 font-bold">1.07 GB <span class="text-[9px] text-slate-500">(Feature Pt.4)</span></span>
+                    </div>
+                    <div class="flex justify-between hover:bg-slate-900/40 p-1 rounded bg-cyan-950/10">
+                      <span class="flex items-center gap-2 text-emerald-300 font-medium"><i data-lucide="video" class="w-3 h-3 text-emerald-400"></i>VTS_01_5.VOB</span>
+                      <span class="text-emerald-400 font-bold">1.07 GB <span class="text-[9px] text-slate-500">(Feature Pt.5)</span></span>
+                    </div>
+                    <div class="flex justify-between hover:bg-slate-900/40 p-1 rounded bg-cyan-950/10">
+                      <span class="flex items-center gap-2 text-emerald-300 font-medium"><i data-lucide="video" class="w-3 h-3 text-emerald-400"></i>VTS_01_6.VOB</span>
+                      <span class="text-emerald-400 font-bold">1.07 GB <span class="text-[9px] text-slate-500">(Feature Pt.6)</span></span>
+                    </div>
+                    <div class="flex justify-between hover:bg-slate-900/40 p-1 rounded bg-cyan-950/10">
+                      <span class="flex items-center gap-2 text-emerald-300 font-medium"><i data-lucide="video" class="w-3 h-3 text-emerald-400"></i>VTS_01_7.VOB</span>
+                      <span class="text-emerald-400 font-bold">1.07 GB <span class="text-[9px] text-slate-500">(Feature Pt.7)</span></span>
+                    </div>
+                    <div class="flex justify-between hover:bg-slate-900/40 p-1 rounded">
+                      <span class="flex items-center gap-2 text-slate-300"><i data-lucide="video" class="w-3 h-3 text-slate-500"></i>VTS_01_8.VOB</span>
+                      <span class="text-slate-400">348 MB <span class="text-[9px] text-slate-600">(Feature Outro/Credits)</span></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- DISC 2 TREE (Initially Hidden) -->
+              <div id="disc-2-tree" class="flex flex-col gap-1 hidden">
+                <div class="flex items-center gap-1.5 text-yellow-400">
+                  <i data-lucide="disc" class="w-4 h-4"></i>
+                  <span>SW_EP1_DISC2 [ISO IMAGE/9901_JP]</span>
+                </div>
+                
+                <div class="ml-4 pl-3 border-l border-slate-800 py-1">
+                  <div onclick="toggleFolder('folder-audio-2')" class="flex items-center gap-2 cursor-pointer hover:text-slate-100 py-0.5">
+                    <i data-lucide="folder" class="w-3.5 h-3.5 text-slate-500" id="folder-audio-2-icon"></i>
+                    <span class="text-slate-400">AUDIO_TS</span>
+                    <span class="text-[9px] text-slate-600">(0 files, 0 KB)</span>
+                  </div>
+                  <div id="folder-audio-2" class="hidden ml-4 pl-3 border-l border-slate-800 text-slate-500 italic py-1 text-[10px]">
+                    (ディレクトリは空です)
+                  </div>
+                </div>
+
+                <div class="ml-4 pl-3 border-l border-slate-800 py-1">
+                  <div onclick="toggleFolder('folder-video-2')" class="flex items-center gap-2 cursor-pointer hover:text-slate-100 py-0.5">
+                    <i data-lucide="folder-open" class="w-3.5 h-3.5 text-yellow-500" id="folder-video-2-icon"></i>
+                    <span class="text-slate-200 font-medium">VIDEO_TS</span>
+                    <span class="text-[9px] text-cyan-400">(11 files, 7.15 GB)</span>
+                  </div>
+                  <div id="folder-video-2" class="ml-4 pl-3 border-l border-slate-800 flex flex-col gap-1.5 py-1 text-[11px]">
+                    <div class="flex justify-between hover:bg-slate-900/40 p-1 rounded">
+                      <span class="flex items-center gap-2 text-slate-300"><i data-lucide="file" class="w-3 h-3 text-slate-500"></i>VIDEO_TS.BUP</span>
+                      <span class="text-slate-500">14 KB</span>
+                    </div>
+                    <div class="flex justify-between hover:bg-slate-900/40 p-1 rounded">
+                      <span class="flex items-center gap-2 text-slate-300"><i data-lucide="file-text" class="w-3 h-3 text-cyan-400"></i>VIDEO_TS.IFO</span>
+                      <span class="text-slate-500">14 KB</span>
+                    </div>
+                    <div class="flex justify-between hover:bg-slate-900/40 p-1 rounded">
+                      <span class="flex items-center gap-2 text-amber-300"><i data-lucide="video" class="w-3 h-3 text-amber-500"></i>VIDEO_TS.VOB</span>
+                      <span class="text-slate-400">18.9 MB</span>
+                    </div>
+                    <div class="flex justify-between hover:bg-slate-900/40 p-1 rounded bg-yellow-950/10">
+                      <span class="flex items-center gap-2 text-yellow-300 font-medium"><i data-lucide="video" class="w-3 h-3 text-yellow-500"></i>VTS_01_1.VOB</span>
+                      <span class="text-yellow-400 font-bold">1.07 GB <span class="text-[9px] text-slate-500">(Documentary Pt.1)</span></span>
+                    </div>
+                    <div class="flex justify-between hover:bg-slate-900/40 p-1 rounded bg-yellow-950/10">
+                      <span class="flex items-center gap-2 text-yellow-300 font-medium"><i data-lucide="video" class="w-3 h-3 text-yellow-500"></i>VTS_01_2.VOB</span>
+                      <span class="text-yellow-400 font-bold">1.07 GB <span class="text-[9px] text-slate-500">(Documentary Pt.2)</span></span>
+                    </div>
+                    <div class="flex justify-between hover:bg-slate-900/40 p-1 rounded bg-yellow-950/10">
+                      <span class="flex items-center gap-2 text-yellow-300 font-medium"><i data-lucide="video" class="w-3 h-3 text-yellow-500"></i>VTS_01_3.VOB</span>
+                      <span class="text-yellow-400 font-bold">1.07 GB <span class="text-[9px] text-slate-500">(Bonus Clips)</span></span>
+                    </div>
+                    <div class="flex justify-between hover:bg-slate-900/40 p-1 rounded bg-yellow-950/10">
+                      <span class="flex items-center gap-2 text-yellow-300 font-medium"><i data-lucide="video" class="w-3 h-3 text-yellow-500"></i>VTS_01_4.VOB</span>
+                      <span class="text-yellow-400 font-bold">1.07 GB <span class="text-[9px] text-slate-500">(Deleted Scenes)</span></span>
+                    </div>
+                    <div class="flex justify-between hover:bg-slate-900/40 p-1 rounded bg-yellow-950/10">
+                      <span class="flex items-center gap-2 text-yellow-300 font-medium"><i data-lucide="video" class="w-3 h-3 text-yellow-500"></i>VTS_01_5.VOB</span>
+                      <span class="text-yellow-400 font-bold">1.07 GB <span class="text-[9px] text-slate-500">(Galleries & Trailers)</span></span>
+                    </div>
+                    <div class="flex justify-between hover:bg-slate-900/40 p-1 rounded bg-yellow-950/10">
+                      <span class="flex items-center gap-2 text-yellow-300 font-medium"><i data-lucide="video" class="w-3 h-3 text-yellow-500"></i>VTS_01_6.VOB</span>
+                      <span class="text-yellow-400 font-bold">1.07 GB <span class="text-[9px] text-slate-500">(Galleries & Extras)</span></span>
+                    </div>
+                    <div class="flex justify-between hover:bg-slate-900/40 p-1 rounded">
+                      <span class="flex items-center gap-2 text-slate-300"><i data-lucide="video" class="w-3 h-3 text-slate-500"></i>VTS_01_7.VOB</span>
+                      <span class="text-slate-400">728 MB <span class="text-[9px] text-slate-600">(Promos)</span></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- TAB 3: NFO Viewer (Retro Term) -->
+          <div id="tab-content-nfo" class="tab-panel hidden flex flex-col gap-4">
+            <div class="flex justify-between items-center">
+              <span class="text-xs text-slate-400">グループの公式リリースノートです。(ANSI Character Emulation)</span>
+              <button onclick="copyNfo()" class="text-xs text-cyan-400 hover:text-cyan-300 flex items-center gap-1.5 font-medium">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> NFO全文をコピー
+              </button>
+            </div>
+
+            <div class="bg-black text-emerald-400 rounded-xl border border-emerald-950 p-5 font-mono text-[11px] overflow-x-auto whitespace-pre leading-5 select-text shadow-inner shadow-emerald-950/20 max-h-[420px]">
+              <div class="text-emerald-500 opacity-80 mb-4">
+   ███████╗████████╗ █████╗ ██████╗     ██╗    ██╗ █████╗ ██████╗  ███████╗
+   ██╔════╝╚══██╔══╝██╔══██╗██╔══██╗    ██║    ██║██╔══██╗██╔══██╗ ██╔════╝
+   ███████╗   ██║   ███████║██████╔╝    ██║ █╗ ██║███████║██████╔╝ ███████╗
+   ╚════██║   ██║   ██╔══██║██╔══██╗    ██║███╗██║██╔══██║██╔══██╗ ╚════██║
+   ███████║   ██║   ██║  ██║██║  ██║    ╚███╔███╔╝██║  ██║██║  ██║ ███████║
+   ╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝     ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═╝ ╚══════╝
+              </div>====================================================================
+  ■ STAR WARS EPISODE I: THE PHANTOM MENACE (1999) - DVD9 ARCHIVE ■
+====================================================================
+  RELEASE DATE.....: 2001-11-08 (Official Japan Retail)
+  SOURCE...........: R2 Retail DVD (FXBA-22733)
+  FORMAT...........: ISO (Untouched / Complete DVD9)
+  GENRE............: Sci-Fi / Space Opera
+  VIDEO............: NTSC MPEG-2 Anamorphic (16:9 widescreen)
+  AUDIO............: English DD 5.1ch EX @ 448 Kbps
+                   : Japanese DD 5.1ch EX @ 448 Kbps
+                   : Director & Crew Commentary DD 2.0 @ 192 Kbps
+  SUBTITLES........: Japanese (Feature), English (Feature), Japanese (Commentary)
+  DEVELOPMENT INFO.: Decrypted via DeCSS & Saved with complete sector data.
+                     Compatible with daemon-tools and high-end hardware.
+
+--------------------------------------------------------------------
+  [DISC 1 PROPERTIES]
+  Size.............: 8,401,235,968 bytes
+  MD5..............: 7c5a019ef8973b8cae28f110bc50672e
+  SHA-1............: b87c88df3301a0be81ff70c53444ad9936cc1722
+
+  [DISC 2 PROPERTIES]
+  Size.............: 7,682,504,704 bytes
+  MD5..............: f015ab672da019e9921c3b876a11e2f4
+  SHA-1............: c09199fa281896e7039a047ba3ef2009ad1202e2
+
+--------------------------------------------------------------------
+  [RELEASE NOTES]
+  スター・ウォーズ初のオフィシャルDVD。
+  本編はジョージ・ルーカス監督監修による約4分の追加映像を含む特別版。
+  Disc 1には隠しコマンドによるアウトテイク集が実装されています。
+  100%オリジナルのレイアウト、メニュー構造を完全保持しています。
+  バックアップ保管用、およびマニアの技術検証用、永久保存版。
+
+====================================================================
+  ASC-II generated by R2D2-NFO-Maker. Keep Star Wars DVD Alive!
+====================================================================</div>
+          </div>
+
+          <!-- TAB 4: ハッシュ検証ツール -->
+          <div id="tab-content-verifier" class="tab-panel hidden flex flex-col gap-6">
+            <div class="bg-slate-950/60 p-5 rounded-xl border border-slate-850">
+              <h3 class="text-sm font-bold text-slate-200 mb-2 flex items-center gap-1.5">
+                <i data-lucide="shield-check" class="w-4 h-4 text-cyan-400"></i>
+                物理吸い出しデータの同一性チェッカー
+              </h3>
+              <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                お持ちの物理DVDメディアをPCでリッピングしてISO等を作成した際、ドライブの劣化、ディスクの傷、あるいは経年変化（ディスク・ロット）による読み込み不備がないかを、本アーカイブのマスター・ハッシュと比較してチェックします。
+              </p>
+
+              <!-- チェッカーフォーム -->
+              <div class="flex flex-col gap-4">
+                <div>
+                  <label class="text-xs text-slate-300 font-semibold block mb-1.5">1. 比較するディスク対象を選択</label>
+                  <div class="grid grid-cols-2 gap-3">
+                    <button onclick="setVerifierTarget(1)" id="btn-target-1" class="py-2.5 px-3 rounded-xl text-xs font-semibold border bg-cyan-500/10 border-cyan-500 text-cyan-400 text-left flex items-center justify-between">
+                      <span>Disc 1 (本編ディスク)</span>
+                      <span class="text-[10px] font-mono text-cyan-500">Target MD5: 7c5a019e...</span>
+                    </button>
+                    <button onclick="setVerifierTarget(2)" id="btn-target-2" class="py-2.5 px-3 rounded-xl text-xs font-semibold border bg-slate-950 border-slate-800 text-slate-400 hover:text-slate-300 text-left flex items-center justify-between">
+                      <span>Disc 2 (特典ディスク)</span>
+                      <span class="text-[10px] font-mono text-slate-600">Target MD5: f015ab67...</span>
+                    </button>
+                  </div>
+                </div>
+
+                <div>
+                  <label class="text-xs text-slate-300 font-semibold block mb-1.5">2. リッピングしたファイルのMD5/SHA1値を入力</label>
+                  <div class="relative">
+                    <input type="text" id="hash-input" placeholder="例：7c5a019ef8973b8cae28f110bc50672e などを入力、または貼り付け" class="w-full bg-slate-950 border border-slate-800 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 rounded-xl px-4 py-3 text-xs font-mono text-slate-200 placeholder-slate-600 transition-all outline-none">
+                    <button onclick="pasteFromClipboard()" class="absolute right-3 top-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded px-2.5 py-1 text-[10px] transition-colors flex items-center gap-1">
+                      <i data-lucide="clipboard" class="w-3 h-3"></i> 貼付
+                    </button>
+                  </div>
+                </div>
+
+                <!-- アクション & サポートボタン -->
+                <div class="flex flex-wrap gap-2 pt-2">
+                  <button onclick="runHashVerification()" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold px-5 py-2.5 rounded-xl text-xs transition-colors flex items-center gap-1.5 glow-cyan">
+                    <i data-lucide="play" class="w-3.5 h-3.5"></i> 整合性検証を実行
+                  </button>
+                  <button onclick="simulateMatch()" class="bg-slate-800 hover:bg-slate-750 text-slate-300 font-medium px-4 py-2.5 rounded-xl text-xs transition-colors">
+                    検証のデモンストレーション (一致パターン)
+                  </button>
+                  <button onclick="simulateMismatch()" class="bg-slate-800 hover:bg-slate-750 text-slate-300 font-medium px-4 py-2.5 rounded-xl text-xs transition-colors">
+                    検証デモ (不一致エラーパターン)
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- 検証結果フィードバックプレースホルダー -->
+            <div id="verifier-result-box" class="hidden rounded-xl p-5 border flex items-start gap-3">
+              <!-- アイコン領域 -->
+              <div id="result-icon-wrapper" class="w-8 h-8 rounded-full flex items-center justify-center shrink-0 mt-0.5"></div>
+              <!-- テキスト詳細領域 -->
+              <div class="flex-1">
+                <h4 id="result-title" class="text-sm font-bold mb-1"></h4>
+                <p id="result-description" class="text-xs leading-relaxed"></p>
+                <div id="result-hashes-box" class="mt-3 bg-black/40 p-3 rounded-lg border font-mono text-[10px] flex flex-col gap-1.5"></div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- TAB 5: レトロ掲示板 / コメント (インタラクティブ) -->
+          <div id="tab-content-comments" class="tab-panel hidden flex flex-col gap-6">
+            
+            <div class="bg-slate-950/50 p-4 rounded-xl border border-slate-850/60">
+              <h3 class="text-xs text-slate-400 font-bold tracking-wider uppercase mb-3 flex items-center gap-1.5">
+                <i data-lucide="message-square-plus" class="w-3.5 h-3.5 text-cyan-400"></i>
+                新規コメントを書き込む (Anonymous Tracker Board)
+              </h3>
+              <div class="flex flex-col gap-3">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <input type="text" id="comment-author" placeholder="ハンドルネーム (例: Anakin_99)" class="bg-slate-950 border border-slate-800 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 rounded-lg px-3 py-2 text-xs text-slate-200 outline-none">
+                  <span class="text-[11px] text-slate-500 self-center sm:text-right font-mono">IP: 210.134.***.*** (匿名ハッシュ暗号化)</span>
+                </div>
+                <textarea id="comment-text" rows="3" placeholder="物理ディスクFXBA-22733に関する情報交換、整合性報告、その他雑談にご使用ください。" class="bg-slate-950 border border-slate-800 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 rounded-lg px-3 py-2 text-xs text-slate-200 outline-none resize-none"></textarea>
+                <div class="flex justify-end">
+                  <button onclick="addComment()" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold px-4 py-2 rounded-lg text-xs transition-all flex items-center gap-1 glow-cyan">
+                    <i data-lucide="send" class="w-3.5 h-3.5"></i> 送信する
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- コメントスレッド -->
+            <div class="flex flex-col gap-4">
+              <h4 class="text-xs text-slate-400 font-bold tracking-wider uppercase border-b border-slate-800 pb-2">
+                スレッド：FXBA-22733 メディアディスカッション (総数: <span id="comment-count-label">3</span>)
+              </h4>
+              <div id="comments-container" class="flex flex-col gap-3">
+                <!-- 初期ダミーコメントはJS側で生成されます -->
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- フッター -->
+  <footer class="max-w-7xl mx-auto px-4 mt-12 pt-6 border-t border-slate-800 text-center text-xs text-slate-500 flex flex-col sm:flex-row justify-between items-center gap-4">
+    <div>
+      <p>© 2001-2026 GALACTIC ARCHIVE PROJECTS. Star Wars is TM and © Lucasfilm Ltd.</p>
+      <p class="text-[10px] text-slate-600 mt-1">This is a non-profit simulation portal meant for physics media preservation and hash integrity data.</p>
+    </div>
+    <div class="flex gap-4">
+      <a href="#" class="hover:text-cyan-400 transition-colors">プライバシー</a>
+      <a href="#" class="hover:text-cyan-400 transition-colors">免責事項</a>
+      <a href="#" class="hover:text-cyan-400 transition-colors">Tracker API</a>
+    </div>
+  </footer>
+
+  <!-- スクリプト制御 -->
+  <script>
+    // 時刻の更新 (レトロな時間経過)
+    function updateTime() {
+      const now = new Date();
+      // ユーザーのローカル時間をYY-MM-DD HH:MM:SSで表示
+      const year = now.getFullYear();
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+      const day = String(now.getDate()).padStart(2, '0');
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      document.getElementById('current-time').innerText = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+    }
+    setInterval(updateTime, 1000);
+    updateTime();
+
+    // Lucide アイコン初期化
+    lucide.createIcons();
+
+    // トースト通知機能 (ブラウザ標準alert防止ルール)
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      toast.className = `p-3 rounded-xl border text-xs font-semibold shadow-lg flex items-center gap-2 transform translate-y-2 opacity-0 transition-all duration-300 pointer-events-auto bg-slate-900 min-w-[260px] max-w-sm`;
+      
+      let icon = 'info';
+      let borderClass = 'border-slate-800';
+      let textClass = 'text-slate-300';
+      
+      if (type === 'success') {
+        icon = 'check-circle2';
+        borderClass = 'border-emerald-500/30';
+        textClass = 'text-emerald-400';
+      } else if (type === 'error') {
+        icon = 'alert-triangle';
+        borderClass = 'border-red-500/30';
+        textClass = 'text-red-400';
+      } else if (type === 'cyan') {
+        icon = 'info';
+        borderClass = 'border-cyan-500/30';
+        textClass = 'text-cyan-400';
+      }
+
+      toast.classList.add(borderClass);
+      toast.classList.add(textClass);
+
+      toast.innerHTML = `
+        <i data-lucide="${icon}" class="w-4 h-4 shrink-0"></i>
+        <span>${message}</span>
+      `;
+
+      container.appendChild(toast);
+      lucide.createIcons({attrs: {class: 'w-4 h-4 shrink-0'}});
+
+      // アニメーション表示
+      setTimeout(() => {
+        toast.classList.remove('translate-y-2', 'opacity-0');
+      }, 50);
+
+      // 自動消去
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-[-10px]');
+        setTimeout(() => {
+          toast.remove();
+        }, 300);
+      }, 3500);
+    }
+
+    // タブ切り替えロジック
+    function switchTab(tabId) {
+      // 全タブを非アクティブ化
+      document.querySelectorAll('.tab-panel').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.tab-btn').forEach(el => {
+        el.className = "tab-btn px-5 py-3 text-sm font-semibold border-b-2 border-transparent text-slate-400 hover:text-slate-200 flex items-center gap-2 whitespace-nowrap transition-all duration-150";
+      });
+
+      // 対象タブをアクティブ化
+      document.getElementById(`tab-content-${tabId}`).classList.remove('hidden');
+      
+      // ボタンデザインの調整
+      const activeBtn = document.getElementById(`tab-btn-${tabId}`);
+      activeBtn.className = "tab-btn active px-5 py-3 text-sm font-semibold border-b-2 border-cyan-400 text-cyan-400 flex items-center gap-2 whitespace-nowrap transition-all duration-150";
+    }
+
+    // 擬似ダウンロードアクション
+    function triggerDownload(type) {
+      if (type === 'torrent') {
+        showToast('トレントファイルのDLを開始します: Star_Wars_Ep1_JP_DVD9.torrent', 'cyan');
+      } else if (type === 'magnet') {
+        showToast('ローカルのP2Pクライアントへマグネット送信中...', 'success');
+      }
+    }
+
+    // コピー機能 (navigator.clipboard非推奨環境への安全なフォールバック対応)
+    function copyTextDirect(text, typeName = 'データ') {
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.style.position = 'fixed';  // 画面外に配置
+      document.body.appendChild(textarea);
+      textarea.select();
+      try {
+        const successful = document.execCommand('copy');
+        if (successful) {
+          showToast(`${typeName}をクリップボードにコピーしました。`, 'success');
+        } else {
+          showToast('コピーに失敗しました。手動でコピーしてください。', 'error');
+        }
+      } catch (err) {
+        showToast('コピー非対応の環境です。', 'error');
+      }
+      document.body.removeChild(textarea);
+    }
+
+    function copyHash(hash, label) {
+      copyTextDirect(hash, label);
+    }
+
+    function copyNfo() {
+      const nfoContent = `====================================================================
+  ■ STAR WARS EPISODE I: THE PHANTOM MENACE (1999) - DVD9 ARCHIVE ■
+====================================================================
+  RELEASE DATE.....: 2001-11-08 (Official Japan Retail)
+  SOURCE...........: R2 Retail DVD (FXBA-22733)
+  FORMAT...........: ISO (Untouched / Complete DVD9)
+  SIZE.............: 14.97 GB (Combined)`;
+      copyTextDirect(nfoContent, 'NFO情報');
+    }
+
+    // ディスクツリーの表示切り替え
+    function toggleDiscTree(discNum) {
+      if (discNum === 1) {
+        document.getElementById('disc-1-tree').classList.remove('hidden');
+        document.getElementById('disc-2-tree').classList.add('hidden');
+        document.getElementById('tree-disc-1-btn').className = "flex-1 py-1.5 text-xs font-semibold rounded bg-cyan-500/10 border border-cyan-500/30 text-cyan-400";
+        document.getElementById('tree-disc-2-btn').className = "flex-1 py-1.5 text-xs font-semibold rounded text-slate-400 hover:text-slate-200";
+      } else {
+        document.getElementById('disc-1-tree').classList.add('hidden');
+        document.getElementById('disc-2-tree').classList.remove('hidden');
+        document.getElementById('tree-disc-2-btn').className = "flex-1 py-1.5 text-xs font-semibold rounded bg-yellow-500/10 border border-yellow-500/30 text-yellow-400";
+        document.getElementById('tree-disc-1-btn').className = "flex-1 py-1.5 text-xs font-semibold rounded text-slate-400 hover:text-slate-200";
+      }
+    }
+
+    // ディレクトリツリー展開/収納
+    function toggleFolder(folderId) {
+      const el = document.getElementById(folderId);
+      const icon = document.getElementById(`${folderId}-icon`);
+      if (el.classList.contains('hidden')) {
+        el.classList.remove('hidden');
+        if (icon) {
+          icon.setAttribute('data-lucide', 'folder-open');
+          lucide.createIcons();
+        }
+      } else {
+        el.classList.add('hidden');
+        if (icon) {
+          icon.setAttribute('data-lucide', 'folder');
+          lucide.createIcons();
+        }
+      }
+    }
+
+    function expandAllFolders() {
+      ['folder-audio-1', 'folder-video-1', 'folder-audio-2', 'folder-video-2'].forEach(id => {
+        const el = document.getElementById(id);
+        const icon = document.getElementById(`${id}-icon`);
+        if (el) {
+          el.classList.remove('hidden');
+          if (icon) {
+            icon.setAttribute('data-lucide', 'folder-open');
+          }
+        }
+      });
+      lucide.createIcons();
+      showToast('すべてのフォルダーを展開しました。', 'cyan');
+    }
+
+    // 整合性検証ツール
+    let currentVerifyTarget = 1; // 1 = Disc 1, 2 = Disc 2
+    const targetHashes = {
+      1: {
+        name: 'Star_Wars_Ep1_Phantom_Menace_D1_JP.iso',
+        md5: '7c5a019ef8973b8cae28f110bc50672e',
+        sha1: 'b87c88df3301a0be81ff70c53444ad9936cc1722',
+        size: '8,401,235,968 bytes'
+      },
+      2: {
+        name: 'Star_Wars_Ep1_Phantom_Menace_D2_JP.iso',
+        md5: 'f015ab672da019e9921c3b876a11e2f4',
+        sha1: 'c09199fa281896e7039a047ba3ef2009ad1202e2',
+        size: '7,682,504,704 bytes'
+      }
+    };
+
+    function setVerifierTarget(num) {
+      currentVerifyTarget = num;
+      const b1 = document.getElementById('btn-target-1');
+      const b2 = document.getElementById('btn-target-2');
+      
+      if (num === 1) {
+        b1.className = "py-2.5 px-3 rounded-xl text-xs font-semibold border bg-cyan-500/10 border-cyan-500 text-cyan-400 text-left flex items-center justify-between";
+        b2.className = "py-2.5 px-3 rounded-xl text-xs font-semibold border bg-slate-950 border-slate-800 text-slate-400 hover:text-slate-300 text-left flex items-center justify-between";
+      } else {
+        b2.className = "py-2.5 px-3 rounded-xl text-xs font-semibold border bg-yellow-500/10 border-yellow-500 text-yellow-400 text-left flex items-center justify-between";
+        b1.className = "py-2.5 px-3 rounded-xl text-xs font-semibold border bg-slate-950 border-slate-800 text-slate-400 hover:text-slate-300 text-left flex items-center justify-between";
+      }
+      showToast(`検証対象を Disc ${num} に切り替えました。`, 'cyan');
+    }
+
+    async function pasteFromClipboard() {
+      try {
+        const text = await navigator.clipboard.readText();
+        document.getElementById('hash-input').value = text.trim();
+        showToast('クリップボードから値を貼り付けました。', 'cyan');
+      } catch (err) {
+        showToast('ブラウザの権限が無いため貼り付けできません。手動で入力してください。', 'error');
+      }
+    }
+
+    function runHashVerification() {
+      const input = document.getElementById('hash-input').value.trim().toLowerCase();
+      if (!input) {
+        showToast('検証するハッシュ値（MD5またはSHA1）を入力してください。', 'error');
+        return;
+      }
+
+      const target = targetHashes[currentVerifyTarget];
+      const resultBox = document.getElementById('verifier-result-box');
+      const iconWrapper = document.getElementById('result-icon-wrapper');
+      const titleEl = document.getElementById('result-title');
+      const descEl = document.getElementById('result-description');
+      const hashesBox = document.getElementById('result-hashes-box');
+
+      resultBox.classList.remove('hidden');
+
+      // 完全一致の判定
+      const isMd5Match = (input === target.md5);
+      const isSha1Match = (input === target.sha1);
+
+      if (isMd5Match || isSha1Match) {
+        // マッチ
+        resultBox.className = "rounded-xl p-5 border flex items-start gap-3 bg-emerald-950/20 border-emerald-500/30 text-emerald-300";
+        iconWrapper.className = "w-8 h-8 rounded-full flex items-center justify-center shrink-0 mt-0.5 bg-emerald-500/10 text-emerald-400";
+        iconWrapper.innerHTML = '<i data-lucide="check-circle2" class="w-5 h-5"></i>';
+        titleEl.innerText = "データ整合性確認：一致 (VERIFIED)";
+        descEl.innerText = `素晴らしい！入力されたハッシュ値は、当データベースに保管されている公式日本盤「Disc ${currentVerifyTarget} (${target.name})」のマスター記録と100%一致しました。吸い出し不良（ロットエラー、セクター破壊）の心配は皆無です。`;
+        
+        hashesBox.innerHTML = `
+          <div class="flex justify-between"><span class="text-slate-400">検証ファイル:</span><span>${target.name}</span></div>
+          <div class="flex justify-between"><span class="text-slate-400">入力ハッシュ:</span><span class="text-emerald-400">${input}</span></div>
+          <div class="flex justify-between"><span class="text-slate-400">比較対象値:</span><span>${isMd5Match ? target.md5 : target.sha1} (${isMd5Match ? 'MD5' : 'SHA-1'})</span></div>
+        `;
+        showToast('整合性が検証されました！ハッシュ値が一致しました。', 'success');
+      } else {
+        // ミスマッチ
+        resultBox.className = "rounded-xl p-5 border flex items-start gap-3 bg-red-950/20 border-red-500/30 text-red-300";
+        iconWrapper.className = "w-8 h-8 rounded-full flex items-center justify-center shrink-0 mt-0.5 bg-red-500/10 text-red-400";
+        iconWrapper.innerHTML = '<i data-lucide="alert-triangle" class="w-5 h-5"></i>';
+        titleEl.innerText = "データ不整合：不一致 (MISMATCH ERROR)";
+        descEl.innerText = `ハッシュ値が一致しません。お持ちの物理ディスクの経年劣化による「読み込み欠落（ロット）」、またはリッピング時の読み出し設定ミスが発生している可能性があります。`;
+        
+        hashesBox.innerHTML = `
+          <div class="flex justify-between"><span class="text-slate-400">想定ファイル:</span><span>${target.name}</span></div>
+          <div class="flex justify-between"><span class="text-slate-400">入力された値:</span><span class="text-red-400">${input}</span></div>
+          <div class="flex justify-between"><span class="text-slate-400">期待されるMD5:</span><span>${target.md5}</span></div>
+          <div class="flex justify-between"><span class="text-slate-400">期待されるSHA1:</span><span>${target.sha1}</span></div>
+        `;
+        showToast('ハッシュ値が一致しません。再度吸い出しを検討してください。', 'error');
+      }
+      lucide.createIcons();
+    }
+
+    // デモ検証用
+    function simulateMatch() {
+      const target = targetHashes[currentVerifyTarget];
+      document.getElementById('hash-input').value = target.md5;
+      runHashVerification();
+    }
+
+    function simulateMismatch() {
+      document.getElementById('hash-input').value = 'e99a019ef8973b8cae28f110bc50672e';
+      runHashVerification();
+    }
+
+    // レトロ掲示板コメント管理
+    const initialComments = [
+      {
+        id: 1,
+        author: 'Obi-Wan-Ken_JP',
+        text: 'ついにファントム・メナスの日本語盤DVDがP2Pアーカイブに！実機ディスク（FXBA-22733）を持っていますが、本当にメニューが毎回ランダムにコルサント、タトゥイーン、ナブーへ変わる細部へのこだわり。素晴らしい出来映えです。手元のバックアップはDisc1のMD5がピッタリ7c5a019e...で一致しました！',
+        time: '2001-11-08 19:12:05',
+        ip: '192.168.0.32'
+      },
+      {
+        id: 2,
+        author: 'anonymous_sith',
+        text: 'ポッドレースシーンの追加カット（DVD特別版の数分）の音圧、ウーファーが本当に振動する。Dolby 5.1ch EXサラウンドの再生環境がある人は絶対にこのバージョンで見るべき。',
+        time: '2001-11-08 21:44:31',
+        ip: '211.134.12.89'
+      },
+      {
+        id: 3,
+        author: 'G_Lucas_99',
+        text: 'Disc 1に仕込まれた「11 3 8」のイースターエッグ、最初発見した人凄すぎ。撮影中のおふざけシーンやセリフ忘れアウトルックが見られますよ！',
+        time: '2001-11-09 01:05:59',
+        ip: '127.0.0.1'
+      }
+    ];
+
+    // ローカルメモリ読み込み（あれば）
+    let currentComments = [...initialComments];
+
+    function renderComments() {
+      const container = document.getElementById('comments-container');
+      container.innerHTML = '';
+
+      currentComments.forEach(c => {
+        const item = document.createElement('div');
+        item.className = 'bg-slate-950/70 p-4 rounded-xl border border-slate-850 flex flex-col gap-2 transition-all';
+        item.innerHTML = `
+          <div class="flex justify-between items-center text-[11px] text-slate-500 border-b border-slate-900 pb-1.5">
+            <div class="flex items-center gap-1.5">
+              <span class="font-bold text-cyan-400 text-xs">${escapeHtml(c.author)}</span>
+              <span class="bg-slate-900 border border-slate-800 px-1 py-0.5 rounded text-[9px]">Contributor</span>
+            </div>
             <div class="flex items-center gap-3">
-                <span class="text-xs bg-green-950 text-green-400 px-2 py-1 border border-green-500 rounded animate-pulse">ONLINE</span>
-                <span class="mono-font text-xs text-gray-400">TRACKER v2.4.1-BETA</span>
-                <span class="text-xs text-gray-500 hidden md:inline">|</span>
-                <span class="text-xs text-amber-400 font-bold hidden md:inline">ADSL/FTTH HIGH SPEED PORTAL</span>
+              <span>IP: ${c.ip}</span>
+              <span class="mono-font">${c.time}</span>
             </div>
-            <!-- Dynamic 2001 Clock & Date -->
-            <div class="mono-font text-sm flex gap-4 text-green-400 items-center">
-                <span>[ 現在時刻: <span id="current-time" class="text-white">2001/11/08 21:04:32</span> ]</span>
-                <span class="bg-gray-800 px-2 py-0.5 rounded text-xs border border-gray-700">Ping: 34ms (JPN-1)</span>
-            </div>
-        </div>
-
-        <!-- Main Portal Logo Header -->
-        <div class="retro-border bg-[#0a0e14] p-4 md:p-6 flex flex-col md:flex-row justify-between items-center gap-6 relative overflow-hidden">
-            <!-- Cyber Matrix Grid Backing (simulation) -->
-            <div class="absolute inset-0 opacity-5 pointer-events-none" style="background-image: linear-gradient(0deg, transparent 24%, rgba(0, 255, 102, .5) 25%, rgba(0, 255, 102, .5) 26%, transparent 27%, transparent 74%, rgba(0, 255, 102, .5) 75%, rgba(0, 255, 102, .5) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(0, 255, 102, .5) 25%, rgba(0, 255, 102, .5) 26%, transparent 27%, transparent 74%, rgba(0, 255, 102, .5) 75%, rgba(0, 255, 102, .5) 76%, transparent 77%, transparent); background-size:30px 30px;"></div>
-
-            <div class="z-10 text-center md:text-left">
-                <h1 class="text-3xl md:text-5xl font-black retro-title tracking-widest text-green-400 flex items-center justify-center md:justify-start gap-3">
-                    <svg class="w-8 h-8 md:w-12 md:h-12 fill-current animate-bounce text-green-400" viewBox="0 0 24 24">
-                        <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/>
-                    </svg>
-                    ネオ東京 P2P INDEX
-                </h1>
-                <p class="text-xs md:text-sm text-gray-400 font-bold mt-2 tracking-wide">
-                    日本最大級の高速ブロードバンド0day・DVD/CD-ROM ISOトラッカー [2001-11-08 本日開設!!]
-                </p>
-            </div>
-
-            <!-- Portal Statistics Counters -->
-            <div class="z-10 flex flex-wrap gap-3 justify-center">
-                <div class="bg-black/80 px-4 py-2 border border-green-800 rounded text-center">
-                    <div class="text-[10px] text-gray-500">ONLINE PEERS</div>
-                    <div class="mono-font text-lg text-green-400 font-bold">124,892</div>
-                </div>
-                <div class="bg-black/80 px-4 py-2 border border-green-800 rounded text-center">
-                    <div class="text-[10px] text-gray-500">TRACKED torrents</div>
-                    <div class="mono-font text-lg text-green-400 font-bold">42,019</div>
-                </div>
-                <div class="bg-black/80 px-4 py-2 border border-amber-800 rounded text-center">
-                    <div class="text-[10px] text-amber-500">VISITOR COUNTER</div>
-                    <div class="mono-font text-lg text-amber-400 font-bold tracking-widest">00762198</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Marquee Ticker -->
-        <div class="bg-black border-x-2 border-b-2 border-green-500/50 p-1 overflow-hidden">
-            <div class="whitespace-nowrap text-xs text-green-300 font-mono animate-[marquee_25s_linear_infinite] flex gap-20">
-                <span>【緊急速報】2001年11月08日、SF超大作「スター・ウォーズ エピソード1 ファントム・メナス」待望の日本国内盤DVD（2枚組特別版）が本日店頭発売！</span>
-                <span>【お知らせ】当サイトは高速FTTHおよびADSLブロードバンド環境を推奨しております。常時シードへのご協力をお願いします。</span>
-                <span>【警告】ISPによるファイル共有P2Pソフト（WinMX / Winny）の帯域制限情報が寄せられています。ポート変更を推奨します。</span>
-            </div>
-        </div>
-    </header>
-
-    <!-- Main Content Layout -->
-    <main class="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-6 flex-grow">
-
-        <!-- Left Navigation & Fast Search Sidebar (1 Column) -->
-        <aside class="space-y-6 lg:col-span-1">
-            <!-- Navigation -->
-            <div class="retro-border bg-[#0a0e14] p-4">
-                <h3 class="text-green-400 border-b border-green-700 pb-2 mb-3 text-sm font-bold flex items-center gap-2">
-                    <span>■</span> カテゴリ検索
-                </h3>
-                <nav class="space-y-1.5 text-sm">
-                    <a href="#" class="block px-2 py-1.5 bg-green-950/20 text-green-400 border border-green-900 rounded hover:bg-green-500 hover:text-black transition">
-                        💿 DVD9 / ISO 劇場版 <span class="float-right text-xs mono-font">(1,289)</span>
-                    </a>
-                    <a href="#" class="block px-2 py-1.5 text-gray-400 hover:text-green-400 hover:bg-gray-900/50 rounded transition">
-                        🎵 MP3 / 音楽アルバム <span class="float-right text-xs mono-font">(14,204)</span>
-                    </a>
-                    <a href="#" class="block px-2 py-1.5 text-gray-400 hover:text-green-400 hover:bg-gray-900/50 rounded transition">
-                        🎮 Windows ゲィムス <span class="float-right text-xs mono-font">(3,820)</span>
-                    </a>
-                    <a href="#" class="block px-2 py-1.5 text-gray-400 hover:text-green-400 hover:bg-gray-900/50 rounded transition">
-                        🎬 DIVX / XVID 高圧縮映像 <span class="float-right text-xs mono-font">(9,411)</span>
-                    </a>
-                    <a href="#" class="block px-2 py-1.5 text-gray-400 hover:text-green-400 hover:bg-gray-900/50 rounded transition">
-                        📖 日本語パッチ / ANIME <span class="float-right text-xs mono-font">(2,118)</span>
-                    </a>
-                </nav>
-            </div>
-
-            <!-- Instant Search Widget -->
-            <div class="retro-border bg-[#0a0e14] p-4">
-                <h3 class="text-green-400 border-b border-green-700 pb-2 mb-3 text-sm font-bold flex items-center gap-2">
-                    <span>■</span> インデックス高速検索
-                </h3>
-                <div class="space-y-3">
-                    <input type="text" placeholder="キーワードを入力..." class="w-full bg-black text-green-400 border border-green-700 px-3 py-2 rounded text-xs focus:outline-none focus:ring-1 focus:ring-green-500 font-mono">
-                    <button onclick="simulateSearch()" class="w-full retro-button text-green-400 text-xs py-2 rounded font-bold">
-                        検 索 (Search)
-                    </button>
-                    <!-- Search suggestion tagcloud -->
-                    <div class="flex flex-wrap gap-1.5 text-[10px] text-gray-500">
-                        <span class="bg-gray-900 hover:bg-green-950 px-1.5 py-0.5 rounded cursor-pointer hover:text-green-400">Matrix_Reloaded</span>
-                        <span class="bg-gray-900 hover:bg-green-950 px-1.5 py-0.5 rounded cursor-pointer hover:text-green-400">Cowboy_Bebop_Movie</span>
-                        <span class="bg-gray-900 hover:bg-green-950 px-1.5 py-0.5 rounded cursor-pointer hover:text-green-400">WinXP_PRO</span>
-                        <span class="bg-gray-900 hover:bg-green-950 px-1.5 py-0.5 rounded cursor-pointer hover:text-green-400">FF10_PS2</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Hot Torrent Index ranking -->
-            <div class="retro-border bg-[#0a0e14] p-4">
-                <h3 class="text-amber-500 border-b border-amber-800 pb-2 mb-3 text-sm font-bold flex items-center gap-2">
-                    <span>★</span> 24時間急上昇ランキング
-                </h3>
-                <ul class="space-y-2 text-xs">
-                    <li class="flex items-center gap-2 border-b border-gray-800/40 pb-1.5 justify-between">
-                        <span class="text-amber-400 font-bold">1.</span>
-                        <span class="text-gray-300 truncate w-32">Star_Wars_Ep1_DVD9</span>
-                        <span class="mono-font text-green-400">13.3k S</span>
-                    </li>
-                    <li class="flex items-center gap-2 border-b border-gray-800/40 pb-1.5 justify-between">
-                        <span class="text-gray-400">2.</span>
-                        <span class="text-gray-400 truncate w-32">Win_XP_Corp_JP_ISO</span>
-                        <span class="mono-font text-green-500">4.1k S</span>
-                    </li>
-                    <li class="flex items-center gap-2 border-b border-gray-800/40 pb-1.5 justify-between">
-                        <span class="text-gray-400">3.</span>
-                        <span class="text-gray-400 truncate w-32">Gundam_C_E_C_VCD</span>
-                        <span class="mono-font text-green-500">1.8k S</span>
-                    </li>
-                    <li class="flex items-center gap-2 justify-between">
-                        <span class="text-gray-400">4.</span>
-                        <span class="text-gray-400 truncate w-32">Macross_Plus_HighQuality</span>
-                        <span class="mono-font text-green-500">920 S</span>
-                    </li>
-                </ul>
-            </div>
-        </aside>
-
-        <!-- Center Target Release Info Panel (3 Columns) -->
-        <section class="lg:col-span-3 space-y-6">
-            
-            <!-- Breadcrumb Navigation -->
-            <div class="bg-[#0a0e14]/90 p-2 border border-gray-800 text-xs flex gap-2 text-gray-500 rounded">
-                <a href="#" class="hover:text-green-400">INDEX</a> <span>&gt;</span>
-                <a href="#" class="hover:text-green-400">DVD9 ISOs</a> <span>&gt;</span>
-                <span class="text-green-400 font-bold">Star Wars Episode I - The Phantom Menace (2-Disc Set)</span>
-            </div>
-
-            <!-- Primary Release Details Card -->
-            <div class="retro-border bg-[#0a0e14] overflow-hidden crt-glow">
-                <!-- Top Title Bar -->
-                <div class="bg-gradient-to-r from-green-950 via-black to-green-950 p-4 border-b border-green-500 flex flex-col md:flex-row justify-between items-start md:items-center gap-2">
-                    <div>
-                        <span class="text-[10px] bg-red-600 text-white font-bold px-1.5 py-0.5 rounded align-middle mr-2">HOT HOT!!</span>
-                        <h2 class="text-lg md:text-xl font-bold text-white inline-block align-middle">
-                            Star Wars: Episode I – The Phantom Menace (DVD9, 1999, Two-Disc Set, ISO)
-                        </h2>
-                    </div>
-                    <span class="mono-font text-xs text-green-400 bg-black px-2 py-1 border border-green-900 rounded">
-                        RELEASED: 2001-11-08 00:15
-                    </span>
-                </div>
-
-                <!-- Technical Properties Grid -->
-                <div class="p-4 md:p-6 grid grid-cols-1 md:grid-cols-3 gap-6">
-                    
-                    <!-- Left: Graphic / Retro Cover Card -->
-                    <div class="md:col-span-1 flex flex-col items-center">
-                        <div class="relative w-full max-w-[200px] border-4 border-gray-800 rounded bg-black aspect-[3/4] flex flex-col justify-between p-4 shadow-2xl overflow-hidden group">
-                            <!-- Starry galaxy backdrop -->
-                            <div class="absolute inset-0 opacity-40" style="background-image: radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px); background-size: 100px 100px;"></div>
-                            
-                            <!-- Custom Vector Darth Maul Light Saber SVG Graphic -->
-                            <div class="absolute inset-x-0 bottom-0 top-0 flex flex-col justify-center items-center opacity-30 pointer-events-none">
-                                <svg class="w-full h-full text-red-600 animate-pulse" viewBox="0 0 100 100">
-                                    <circle cx="50" cy="40" r="15" fill="none" stroke="currentColor" stroke-width="2"/>
-                                    <line x1="10" y1="50" x2="90" y2="50" stroke="currentColor" stroke-width="4"/>
-                                    <line x1="50" y1="10" x2="50" y2="90" stroke="currentColor" stroke-width="1"/>
-                                </svg>
-                            </div>
-
-                            <div class="z-10 text-center">
-                                <p class="text-[10px] text-amber-500 tracking-widest font-mono">STAR WARS</p>
-                                <p class="text-xs text-white font-bold tracking-tight">EPISODE I</p>
-                            </div>
-
-                            <div class="z-10 border border-green-500 bg-black/80 px-2 py-1 rounded text-center">
-                                <p class="text-[10px] text-green-400 font-mono leading-none">THE PHANTOM</p>
-                                <p class="text-[9px] text-green-300 font-mono leading-none mt-1">MENACE</p>
-                            </div>
-
-                            <div class="z-10 flex justify-between text-[8px] text-gray-500 font-mono border-t border-gray-800 pt-2">
-                                <span>2-DISC DVD</span>
-                                <span>1999/2001</span>
-                            </div>
-                        </div>
-                        <div class="mt-3 text-center">
-                            <span class="text-xs bg-gray-900 border border-gray-800 text-gray-400 px-3 py-1 rounded-full">
-                                NTSC NATIVE R2 JAPAN
-                            </span>
-                        </div>
-                    </div>
-
-                    <!-- Right: Info Panel & Metadata Specifications -->
-                    <div class="md:col-span-2 space-y-4 text-xs md:text-sm">
-                        <div class="grid grid-cols-2 gap-3 bg-black/50 p-4 border border-gray-800 rounded">
-                            <div>
-                                <span class="text-gray-500 block">ファイルサイズ (Total Size):</span>
-                                <span class="mono-font font-bold text-green-400 text-base">15.57 GB</span>
-                            </div>
-                            <div>
-                                <span class="text-gray-500 block">ファイル構成 (Content):</span>
-                                <span class="font-bold text-white">DVD9 ISOイメージ × 2枚組</span>
-                            </div>
-                            <div>
-                                <span class="text-gray-500 block">シード数 (Seeders):</span>
-                                <span id="meta-seeders" class="mono-font font-bold text-green-400 text-base">13,372</span> <span class="text-gray-500 text-[10px]">(高速シード確保)</span>
-                            </div>
-                            <div>
-                                <span class="text-gray-500 block">ピア数 (Leechers):</span>
-                                <span id="meta-leechers" class="mono-font font-bold text-red-400 text-base">4,120</span>
-                            </div>
-                            <div class="col-span-2 border-t border-gray-800 pt-2">
-                                <span class="text-gray-500 block">HASH INFO (ファイル一意識別子):</span>
-                                <span class="mono-font text-amber-500 text-[11px] select-all break-all block bg-black p-1 border border-amber-950/40 rounded mt-0.5">
-                                    A59D870E28F3CB9EF3B12389A744CB890100F8DA
-                                </span>
-                            </div>
-                        </div>
-
-                        <!-- Releases Notes / Quick Highlight -->
-                        <div class="space-y-2">
-                            <p class="text-xs text-gray-300 leading-relaxed">
-                                <span class="text-green-400 font-bold">解説:</span> 本日11月8日発売の国内セル用DVD9 (2枚組仕様) を完全オリジナル等倍無劣化バックアップ！
-                                Disc 1には本編映画（ドルビーデジタル5.1ch EXの日本語吹替・英語・音声解説マルチチャンネル、スクイーズ収録）、Disc 2には幻の未公開シーン、特番ドキュメンタリーなどを含む豪華特典ディスクをまるごとISO化。2ch有志・海外サーバー群の協力による史上空前のギガバイト級メガシードをお楽しみください。
-                            </p>
-                        </div>
-
-                        <!-- Action Controls: Direct download triggering retro client -->
-                        <div class="flex flex-col sm:flex-row gap-3 pt-2">
-                            <button onclick="triggerTorrentDownload()" class="flex-1 retro-button text-green-400 font-bold py-3 px-4 rounded text-center text-sm md:text-base flex items-center justify-center gap-2">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
-                                </svg>
-                                <span>Torrentをダウンロード (.torrent)</span>
-                            </button>
-                            <button onclick="copyHashToClipboard()" class="retro-button-amber text-amber-500 font-bold py-3 px-4 rounded text-xs md:text-sm flex items-center justify-center gap-1.5">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/>
-                                </svg>
-                                <span>マグネット/ハッシュを保存</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Internal Files Structure Tab Box -->
-                <div class="border-t border-green-900 bg-black/60 p-4">
-                    <h4 class="text-xs font-bold text-green-400 mb-2 flex items-center gap-1">
-                        📁 トレント内の格納ファイル一覧 (4 files)
-                    </h4>
-                    <div class="border border-gray-800 rounded bg-[#070b10] overflow-x-auto">
-                        <table class="w-full text-left text-xs font-mono">
-                            <thead>
-                                <tr class="bg-gray-900 text-gray-400 border-b border-gray-800">
-                                    <th class="p-2">ファイル名</th>
-                                    <th class="p-2">サイズ</th>
-                                    <th class="p-2">ファイル形式</th>
-                                    <th class="p-2 text-right">優先度</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-gray-900 text-gray-300">
-                                <tr class="hover:bg-green-950/10">
-                                    <td class="p-2 text-green-300">SW_EP1_DISC1_MOVIE.ISO</td>
-                                    <td class="p-2">7.92 GB</td>
-                                    <td class="p-2 text-gray-500">DVD-VIDEO ISO</td>
-                                    <td class="p-2 text-right text-green-500">最高優先 (High)</td>
-                                </tr>
-                                <tr class="hover:bg-green-950/10">
-                                    <td class="p-2 text-green-300">SW_EP1_DISC2_EXTRAS.ISO</td>
-                                    <td class="p-2">7.65 GB</td>
-                                    <td class="p-2 text-gray-500">DVD-VIDEO ISO</td>
-                                    <td class="p-2 text-right text-gray-400">通常 (Normal)</td>
-                                </tr>
-                                <tr class="hover:bg-green-950/10">
-                                    <td class="p-2 text-amber-300">WAKOKU_RELEASE_INFO.NFO</td>
-                                    <td class="p-2">5.12 KB</td>
-                                    <td class="p-2 text-gray-500">Scene Release Info</td>
-                                    <td class="p-2 text-right text-gray-400">通常 (Normal)</td>
-                                </tr>
-                                <tr class="hover:bg-green-950/10">
-                                    <td class="p-2 text-gray-300">English_Sub_Pack.srt</td>
-                                    <td class="p-2">85.4 KB</td>
-                                    <td class="p-2 text-gray-500">SubRip Subtitle</td>
-                                    <td class="p-2 text-right text-gray-500">オプション</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Interactive BitTorrent Download Simulation Client Window (Initially Hidden, Pops up when starting DL) -->
-            <div id="retro-client-window" class="hidden retro-border-amber bg-[#05070a] overflow-hidden rounded relative shadow-2xl transition-all duration-300">
-                <!-- Retro Program Title bar -->
-                <div class="bg-gradient-to-r from-amber-950 via-black to-amber-950 border-b border-amber-500 p-2 flex justify-between items-center text-xs">
-                    <span class="mono-font text-amber-400 font-bold flex items-center gap-2">
-                        <span class="w-2.5 h-2.5 bg-amber-500 rounded-full animate-ping"></span>
-                        μ-BitTorrent v1.0.1 (JP Client Interface) - 【実行中】
-                    </span>
-                    <button onclick="toggleClientMinimize()" class="text-amber-500 hover:text-white font-mono bg-amber-950 px-2 rounded">
-                        ✕ 閉じる (Hide)
-                    </button>
-                </div>
-
-                <!-- Simulation Info Header -->
-                <div class="p-4 grid grid-cols-1 md:grid-cols-4 gap-4 bg-amber-950/10 border-b border-gray-900 text-xs">
-                    <div class="md:col-span-1">
-                        <span class="text-gray-500">ステータス:</span>
-                        <span id="client-status" class="text-amber-400 font-bold block">ピア接続中...</span>
-                    </div>
-                    <div class="md:col-span-1">
-                        <span class="text-gray-500">ダウンロード速度:</span>
-                        <span id="client-speed" class="mono-font text-green-400 font-bold block">0.0 KB/s</span>
-                    </div>
-                    <div class="md:col-span-1">
-                        <span class="text-gray-500">進捗割合 (Progress):</span>
-                        <span id="client-progress" class="mono-font text-white font-bold block">0.00 %</span>
-                    </div>
-                    <div class="md:col-span-1">
-                        <span class="text-gray-500">完了予定時刻 (ETA):</span>
-                        <span id="client-eta" class="mono-font text-amber-400 block">計算中...</span>
-                    </div>
-                </div>
-
-                <!-- Live Bandwidth Wave Graph Area -->
-                <div class="p-4 border-b border-gray-900 bg-black/80">
-                    <div class="flex justify-between items-center text-[10px] text-gray-500 mb-1">
-                        <span>転送速度グラフ (Bandwidth Chart)</span>
-                        <span class="text-green-400" id="graph-peak">Max: 12.5 Mbps (FTTH HighSpeed Mode)</span>
-                    </div>
-                    <!-- Custom SVG Graph mimicking 2001 layout -->
-                    <div class="relative h-24 bg-gray-950 rounded border border-gray-800 overflow-hidden">
-                        <svg class="absolute inset-0 w-full h-full" preserveAspectRatio="none">
-                            <defs>
-                                <linearGradient id="graphGrad" x1="0" y1="0" x2="0" y2="1">
-                                    <stop offset="0%" stop-color="rgba(16, 185, 129, 0.4)"/>
-                                    <stop offset="100%" stop-color="rgba(16, 185, 129, 0)"/>
-                                </linearGradient>
-                            </defs>
-                            <!-- Background Grid Lines -->
-                            <line x1="0" y1="25%" x2="100%" y2="25%" stroke="#1f2937" stroke-dasharray="2,2"/>
-                            <line x1="0" y1="50%" x2="100%" y2="50%" stroke="#1f2937" stroke-dasharray="2,2"/>
-                            <line x1="0" y1="75%" x2="100%" y2="75%" stroke="#1f2937" stroke-dasharray="2,2"/>
-                            
-                            <!-- Main dynamic SVG path representing live bandwidth -->
-                            <path id="graph-path" d="M 0 96 L 0 96" fill="url(#graphGrad)" stroke="#10b981" stroke-width="2.5"/>
-                        </svg>
-                    </div>
-                </div>
-
-                <!-- Grid Box indicating block downloading blocks -->
-                <div class="p-4 bg-black/40">
-                    <div class="flex justify-between items-center text-[10px] text-gray-500 mb-2">
-                        <span>ディスク断片イメージブロック (Download Pieces Matrix)</span>
-                        <span>ブロックサイズ: 4MB (合計 3,986 ブロック)</span>
-                    </div>
-                    <!-- Small interactive grids (300 cells) that populate dynamic colors -->
-                    <div id="pieces-grid" class="grid grid-cols-12 sm:grid-cols-24 md:grid-cols-30 gap-[2px] bg-gray-950 p-2 rounded border border-gray-900 max-h-[140px] overflow-y-auto">
-                        <!-- Dynamic content filled by JS -->
-                    </div>
-                </div>
-
-                <!-- Simulation Settings Options -->
-                <div class="p-4 bg-gray-950 border-t border-gray-900 flex flex-wrap justify-between items-center gap-3 text-xs">
-                    <div class="flex items-center gap-3">
-                        <label class="text-gray-400">プロバイダ速度制限:</label>
-                        <select id="network-speed-preset" onchange="changeSimulationSpeed()" class="bg-black border border-amber-800 text-amber-500 px-2 py-1 rounded focus:outline-none">
-                            <option value="FTTH">超高速 FTTH 光ファイバー (100Mbps)</option>
-                            <option value="ADSL">高速 ADSL ブロードバンド (1.5Mbps)</option>
-                            <option value="ISDN">ISDN 回線 / テレホーダイ (64kbps)</option>
-                        </select>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <button onclick="pauseResumeDownload()" id="btn-pause-resume" class="bg-amber-950 hover:bg-amber-900 border border-amber-500 px-3 py-1.5 rounded text-amber-400 font-bold transition">
-                            一時停止
-                        </button>
-                        <button onclick="resetDownload()" class="bg-gray-900 hover:bg-gray-800 border border-gray-700 px-3 py-1.5 rounded text-gray-400 transition">
-                            リセット
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Scene NFO File Reader Terminal -->
-            <div class="retro-border bg-black text-green-400 p-4 font-mono text-[11px] leading-tight relative shadow-lg">
-                <!-- NFO Window Headers -->
-                <div class="border-b border-green-800 pb-2 mb-3 flex flex-wrap justify-between items-center gap-2">
-                    <span class="text-xs font-bold text-white flex items-center gap-2">
-                        💾 WAKOKU_RELEASE_INFO.NFO - 統合ビューアー
-                    </span>
-                    <div class="flex items-center gap-3">
-                        <span class="text-xs text-gray-500">CRTフィルター:</span>
-                        <button onclick="toggleCrtScanlines()" class="bg-green-950/60 hover:bg-green-500 hover:text-black border border-green-700 px-2 py-0.5 rounded text-[10px] transition">
-                            オン/オフ切替
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Actual ASCII text simulation block -->
-                <div class="overflow-x-auto whitespace-pre bg-[#05070a] p-4 border border-green-950 rounded shadow-inner" id="nfo-text">
- █▄ █ █▀▀ █▀█   ▀█▀ █▀█ █▄▀ █▄█ █▀█   █▀█ ▀█▀ █▀█ █▀▀ █▄▀ █▀▀ █▀█
- █ ▀█ ██▄ █▄█    █  █▄█ █ █  █  █▄█   █▀▀  █  █▀▄ █▄▄ █ █ ██▄ █▀▄
-
--━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━-
-  ★ WAKOKU ISOs Release Division - 0day division ★ [2001-11-08]
--━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━-
-
-■ 映画情報 (MOVIE INFORMATION)
-  - 映画タイトル : STAR WARS Episode I: The Phantom Menace (1999)
-  - 邦題タイトル : スター・ウォーズ エピソード1／ファントム・メナス
-  - ディスク枚数 : DVD9 NTSC Region 2 Dual-Disc Special Edition Original ISO
-  - 国内発売日   : 2001年11月08日 (JAPAN DOMESTIC RETAIL RELEASE)
-  - 収録言語     : 1) 英語 5.1ch EX   2) 日本語 5.1ch EX   3) コメンタリー
-  - 字幕収録     : 日本語字幕、英語字幕
-  - ビデオ形式   : NTSC 16:9 Anamorphic Widescreen 
-  - 本編時間     : 約136分 (Disc 1) + 特典約360分 (Disc 2)
-
-■ ファイル整合性情報 (SHA-1 CHECKSUMS)
-  * SW_EP1_DISC1_MOVIE.ISO   : a870e28f3cb9ef3b12389a744cb890100f8da7ea
-  * SW_EP1_DISC2_EXTRAS.ISO  : df73cb9ef3b12389a744cb890100f8da7ea198f3
-
-■ グループ声明 (WAKOKU GROUP GREETINGS)
-  日本国内盤DVD発売初日の夜、世界中のJediファンに捧ぐ最高画質の無劣化ISO！
-  本作品は日本のブロードバンド革命（FTTH/ADSL高速化）に伴う
-  大容量ファイル共有インフラ普及の記念碑的リリースとなるでしょう。
-  常時高速シードのご協力をお待ちしております。2ch P2P板の有志に最大級の敬意を！
-
--━━━━━━ WAKOKU ISOs DIVISION: SHARING THE CINEMATIC UNIVERSE ━━━━━━-
-                </div>
-            </div>
-
-            <!-- Custom 2ch styled BBS comment section / Shoutbox -->
-            <div class="retro-border bg-[#0a0e14] p-4 md:p-6">
-                <div class="border-b border-green-700 pb-2 mb-4 flex justify-between items-center">
-                    <h3 class="text-green-400 font-bold text-sm md:text-base flex items-center gap-2">
-                        💬 2ch風リリース特設実況掲示板 (BBS Shoutbox)
-                    </h3>
-                    <span class="text-xs text-gray-500">1分ごとに自動更新</span>
-                </div>
-
-                <!-- List of comments (2ch-style typography) -->
-                <div id="bbs-comments" class="space-y-4 max-h-[400px] overflow-y-auto mb-6 pr-2">
-                    <!-- Comment 1 -->
-                    <div class="border-b border-gray-900 pb-3 text-xs md:text-sm">
-                        <div class="text-green-500 font-mono flex flex-wrap gap-2 mb-1">
-                            <span class="font-bold">1: 名無しさん＠お腹いっぱい。</span>
-                            <span>2001/11/08(木) 00:20:15</span>
-                            <span class="text-gray-600">ID:9o4gHxk3</span>
-                        </div>
-                        <p class="text-gray-300 leading-relaxed pl-2">
-                            うおおおおおお！！ついに国内盤発売日に降臨キタ━━━━━━(ﾟ∀ﾟ)━━━━━━ !!!!!<br>
-                            WAKOKUさん神すぎる。Disc 1だけで本編無劣化8GB近いか、これは熱いな。
-                        </p>
-                    </div>
-
-                    <!-- Comment 2 -->
-                    <div class="border-b border-gray-900 pb-3 text-xs md:text-sm">
-                        <div class="text-green-500 font-mono flex flex-wrap gap-2 mb-1">
-                            <span class="font-bold">2: 名無しさん＠お腹いっぱい。</span>
-                            <span>2001/11/08(木) 00:34:44</span>
-                            <span class="text-gray-600">ID:zV19LpsW</span>
-                        </div>
-                        <p class="text-gray-300 leading-relaxed pl-2">
-                            ADSL 1.5Mの俺、完了予定が200時間と出て絶望中ｗｗｗ<br>
-                            誰かBフレッツか有線ブロードバンド（100M）の豪傑、鬼シードよろしく頼む！
-                        </p>
-                    </div>
-
-                    <!-- Comment 3 -->
-                    <div class="border-b border-gray-900 pb-3 text-xs md:text-sm">
-                        <div class="text-green-500 font-mono flex flex-wrap gap-2 mb-1">
-                            <span class="font-bold">3: 名無しさん＠お腹いっぱい。</span>
-                            <span>2001/11/08(木) 01:10:22</span>
-                            <span class="text-gray-600">ID:rQ81Ma9L</span>
-                        </div>
-                        <p class="text-gray-300 leading-relaxed pl-2">
-                            &gt;&gt;2 おう！こっちUSENの光ファイバだ。今1.2MB/s（約10Mbps）で爆速シードしてやってるぞ。<br>
-                            今回の特典ディスクDisc 2の未公開シーン、ダース・モールとクワイ＝ガンの決闘の追加シーンがマジでやばい！
-                        </p>
-                    </div>
-
-                    <!-- Comment 4 -->
-                    <div class="border-b border-gray-900 pb-3 text-xs md:text-sm">
-                        <div class="text-green-500 font-mono flex flex-wrap gap-2 mb-1">
-                            <span class="font-bold">4: 名無しさん＠お腹いっぱい。</span>
-                            <span>2001/11/08(木) 03:45:12</span>
-                            <span class="text-gray-600">ID:mS92Ok8X</span>
-                        </div>
-                        <p class="text-gray-300 leading-relaxed pl-2">
-                            無事に落とせました！DAEMON ToolsでマウントしてPowerDVDで日本語再生完了。<br>
-                            やっぱりドルビー5.1 EXのサラウンド音響半端ない。部屋中が映画館だわ。感謝！
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Add Comment Interactive Form -->
-                <div class="bg-black/50 p-4 border border-gray-800 rounded space-y-3">
-                    <span class="text-xs text-amber-500 font-bold block">▼ 実況板に書き込む</span>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        <input type="text" id="bbs-name" value="名無しさん＠お腹いっぱい。" placeholder="名前（省略可）" class="bg-black text-green-400 border border-green-800 p-2 text-xs rounded focus:outline-none focus:ring-1 focus:ring-green-500 font-mono">
-                        <input type="text" id="bbs-email" placeholder="E-mail (sage等)" class="bg-black text-green-400 border border-green-800 p-2 text-xs rounded focus:outline-none focus:ring-1 focus:ring-green-500 font-mono">
-                    </div>
-                    <textarea id="bbs-message" rows="3" placeholder="スター・ウォーズ Episode I DVD9 ISO リリースについて書き込む..." class="w-full bg-black text-green-400 border border-green-800 p-2 text-xs rounded focus:outline-none focus:ring-1 focus:ring-green-500 font-mono"></textarea>
-                    
-                    <div class="flex justify-between items-center">
-                        <span class="text-[10px] text-gray-500">※他者を誹謗中傷する書き込みはお控えください。</span>
-                        <button onclick="postBbsComment()" class="retro-button text-green-400 px-6 py-2 rounded text-xs font-bold font-mono">
-                            書き込む (Submit)
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Toast Notification Box for in-page messaging -->
-            <div id="custom-toast" class="hidden fixed bottom-6 right-6 z-50 bg-[#0d1117] border-2 border-green-500 p-4 rounded shadow-2xl max-w-sm text-xs md:text-sm animate-bounce">
-                <div class="flex items-center gap-3">
-                    <span class="text-green-400 font-bold">📢 [システム通知]:</span>
-                    <span id="toast-text" class="text-white">メッセージ</span>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Page Footer with retro attributes -->
-    <footer class="w-full max-w-7xl mx-auto border-t border-green-900 mt-12 py-6 text-center text-xs text-gray-500 space-y-2">
-        <p>NEO-TOKYO P2P INDEX PROJECT © 2001. All Releases compiled under WAKOKU-TRACKER Network.</p>
-        <p class="mono-font text-[10px] text-gray-600">
-            Powered by BitTorrent Core Prototype Beta | HTML compiled at 2001-11-08 (JAPAN)
-        </p>
-    </footer>
-
-    <!-- Audio Chimes Object Simulator using Web Audio API (No outside assets needed!) -->
-    <script>
-        // Web Audio API helper for retro UI chimes
-        let audioCtx = null;
-
-        function getAudioContext() {
-            if (!audioCtx) {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            }
-            return audioCtx;
-        }
-
-        function playBeep(frequency, duration, type = 'sine', volume = 0.1) {
-            try {
-                const ctx = getAudioContext();
-                const osc = ctx.createOscillator();
-                const gain = ctx.createGain();
-                
-                osc.type = type;
-                osc.frequency.setValueAtTime(frequency, ctx.currentTime);
-                
-                gain.gain.setValueAtTime(volume, ctx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + duration);
-                
-                osc.connect(gain);
-                gain.connect(ctx.destination);
-                
-                osc.start();
-                osc.stop(ctx.currentTime + duration);
-            } catch (e) {
-                // Ignore audio restriction errors from browsers
-            }
-        }
-
-        function playDlStartSfx() {
-            playBeep(440, 0.1, 'sine', 0.15);
-            setTimeout(() => playBeep(880, 0.15, 'sine', 0.15), 100);
-        }
-
-        function playDlCompleteSfx() {
-            playBeep(523.25, 0.15, 'square', 0.1); // C5
-            setTimeout(() => playBeep(659.25, 0.15, 'square', 0.1), 120); // E5
-            setTimeout(() => playBeep(783.99, 0.15, 'square', 0.1), 240); // G5
-            setTimeout(() => playBeep(1046.50, 0.3, 'square', 0.15), 360); // C6
-        }
-
-        function playUiClickSfx() {
-            playBeep(1200, 0.05, 'triangle', 0.08);
-        }
-    </script>
-
-    <!-- Client Download Simulation Script Engine -->
-    <script>
-        // Torrent client simulation state
-        let dlInterval = null;
-        let isDownloading = false;
-        let dlProgress = 0.0;
-        let dlSpeed = 0.0; // Current KB/s
-        let peerCount = 0;
-        let bytesDownloaded = 0;
-        const totalBytes = 15.57 * 1024 * 1024 * 1024; // 15.57 GB in Bytes
-        let speedPreset = 'FTTH'; // FTTH, ADSL, ISDN
-        let speedLog = Array(30).fill(0); // For dynamic SVG rendering
-
-        // Piece matrix setup
-        const totalPieces = 240; // representation pieces
-        let pieceState = Array(totalPieces).fill(0); // 0=unfetched, 1=downloading, 2=finished
-
-        // Initialize clock on screen load
-        window.onload = function() {
-            setInterval(updateClock, 1000);
-            initializePiecesGrid();
-            
-            // Randomly simulate seeding fluctuation values in background
-            setInterval(fluctuateSeeders, 4000);
-        };
-
-        function updateClock() {
-            const now = new Date();
-            // Freeze date to simulated release timeline 2001-11-08 but use dynamic live clock seconds for active feel
-            const h = String(now.getHours()).padStart(2, '0');
-            const m = String(now.getMinutes()).padStart(2, '0');
-            const s = String(now.getSeconds()).padStart(2, '0');
-            document.getElementById('current-time').innerText = `2001/11/08 ${h}:${m}:${s}`;
-        }
-
-        function showToast(message) {
-            const toast = document.getElementById('custom-toast');
-            document.getElementById('toast-text').innerText = message;
-            toast.classList.remove('hidden');
-            playBeep(600, 0.25, 'triangle', 0.12);
-            setTimeout(() => {
-                toast.classList.add('hidden');
-            }, 5000);
-        }
-
-        function copyHashToClipboard() {
-            playUiClickSfx();
-            // Retro clipboard copy
-            const textToCopy = "A59D870E28F3CB9EF3B12389A744CB890100F8DA";
-            const tempInput = document.createElement("input");
-            tempInput.value = textToCopy;
-            document.body.appendChild(tempInput);
-            tempInput.select();
-            document.execCommand("copy");
-            document.body.removeChild(tempInput);
-            showToast("ハッシュ値をクリップボードにコピーしました！P2Pクライアントに入力してください。");
-        }
-
-        function toggleCrtScanlines() {
-            playUiClickSfx();
-            document.body.classList.toggle('scanlines');
-        }
-
-        function simulateSearch() {
-            playUiClickSfx();
-            showToast("インデックス検索エンジン：接続中... 現在シードの多い Star Wars リリースのみに最適化されています。");
-        }
-
-        function initializePiecesGrid() {
-            const grid = document.getElementById('pieces-grid');
-            grid.innerHTML = '';
-            for(let i=0; i<totalPieces; i++) {
-                const cell = document.createElement('div');
-                cell.id = `piece-${i}`;
-                cell.className = 'aspect-square bg-gray-900 border border-black rounded-[1px] transition-all duration-300';
-                grid.appendChild(cell);
-            }
-        }
-
-        // Trigger BitTorrent client UI visualization
-        function triggerTorrentDownload() {
-            const clientWin = document.getElementById('retro-client-window');
-            if (clientWin.classList.contains('hidden')) {
-                clientWin.classList.remove('hidden');
-                clientWin.scrollIntoView({ behavior: 'smooth' });
-                showToast("BitTorrent クライアントを起動しました。接続初期化中...");
-                playDlStartSfx();
-                startDownloadSimulation();
-            } else {
-                showToast("BitTorrent ダウンロードは既にアクティブです。");
-                clientWin.scrollIntoView({ behavior: 'smooth' });
-            }
-        }
-
-        function toggleClientMinimize() {
-            playUiClickSfx();
-            document.getElementById('retro-client-window').classList.add('hidden');
-            showToast("BitTorrentクライアントはバックグラウンドで最小化中...");
-        }
-
-        function changeSimulationSpeed() {
-            playUiClickSfx();
-            speedPreset = document.getElementById('network-speed-preset').value;
-            showToast(`プロバイダ通信規格を変更しました: ${speedPreset}`);
-        }
-
-        function startDownloadSimulation() {
-            if (isDownloading) return;
-            isDownloading = true;
-            document.getElementById('client-status').innerText = 'ピア接続確立中...';
-            document.getElementById('btn-pause-resume').innerText = '一時停止';
-            document.getElementById('btn-pause-resume').className = "bg-amber-950 hover:bg-amber-900 border border-amber-500 px-3 py-1.5 rounded text-amber-400 font-bold transition";
-
-            dlInterval = setInterval(simulateTick, 800);
-        }
-
-        function simulateTick() {
-            if (!isDownloading) return;
-
-            // Generate realistic speed based on 2001 broadband limits
-            let maxSpeed = 0; // in KB/s
-            if (speedPreset === 'FTTH') {
-                maxSpeed = 1000 + Math.random() * 800; // ~1.5 MB/s
-                peerCount = Math.floor(120 + Math.random() * 40);
-            } else if (speedPreset === 'ADSL') {
-                maxSpeed = 120 + Math.random() * 40; // ~150 KB/s
-                peerCount = Math.floor(25 + Math.random() * 10);
-            } else {
-                maxSpeed = 7 + Math.random() * 1.5; // ~8 KB/s (ISDN dialup)
-                peerCount = Math.floor(2 + Math.random() * 3);
-            }
-
-            dlSpeed = maxSpeed;
-            // Accumulate bytes
-            bytesDownloaded += dlSpeed * 1024 * 0.8; // ticks every 800ms
-            if (bytesDownloaded >= totalBytes) {
-                bytesDownloaded = totalBytes;
-                dlProgress = 100.0;
-                dlSpeed = 0;
-                completeDownload();
-            } else {
-                dlProgress = (bytesDownloaded / totalBytes) * 100;
-            }
-
-            // Update DOM text
-            document.getElementById('client-status').innerText = `データ受信中 (${peerCount} peers)`;
-            document.getElementById('client-speed').innerText = `${dlSpeed.toFixed(1)} KB/s`;
-            document.getElementById('client-progress').innerText = `${dlProgress.toFixed(2)} %`;
-
-            // ETA calculation
-            if (dlSpeed > 0) {
-                const remainingBytes = totalBytes - bytesDownloaded;
-                const remainingSeconds = remainingBytes / (dlSpeed * 1024);
-                if (remainingSeconds > 3600) {
-                    const hours = Math.floor(remainingSeconds / 3600);
-                    const minutes = Math.floor((remainingSeconds % 3600) / 60);
-                    document.getElementById('client-eta').innerText = `約 ${hours}時間 ${minutes}分`;
-                } else {
-                    const minutes = Math.floor(remainingSeconds / 60);
-                    const seconds = Math.floor(remainingSeconds % 60);
-                    document.getElementById('client-eta').innerText = `約 ${minutes}分 ${seconds}秒`;
-                }
-            } else {
-                document.getElementById('client-eta').innerText = `∞`;
-            }
-
-            // Append live bandwidth graph path
-            speedLog.push(dlSpeed);
-            speedLog.shift();
-            renderBandwidthGraph();
-
-            // Populate some visual download blocks representation
-            updatePiecesGrid();
-        }
-
-        function renderBandwidthGraph() {
-            const maxVal = Math.max(...speedLog, 1);
-            let pathD = "M 0 96";
-            const step = 100 / (speedLog.length - 1);
-            
-            for(let i=0; i<speedLog.length; i++) {
-                const x = i * step;
-                const normVal = (speedLog[i] / maxVal) * 90; // scale inside SVG viewBox height
-                const y = 96 - normVal;
-                pathD += ` L ${x}% ${y}`;
-            }
-            pathD += " L 100% 96 Z";
-            document.getElementById('graph-path').setAttribute('d', pathD);
-            
-            // Peak speed label translation
-            let mbps = (maxVal * 8) / 1024;
-            document.getElementById('graph-peak').innerText = `Max Peak Bandwidth: ${mbps.toFixed(2)} Mbps`;
-        }
-
-        function updatePiecesGrid() {
-            // Distribute blocks matching progress ratio
-            const filledCount = Math.floor((dlProgress / 100) * totalPieces);
-            
-            // Randomly active some downloading blocks that represent "current pieces"
-            for(let i=0; i<totalPieces; i++) {
-                const block = document.getElementById(`piece-${i}`);
-                if (!block) continue;
-
-                if (i < filledCount) {
-                    // Fully downloaded piece
-                    block.className = 'aspect-square bg-green-500 border border-black rounded-[1px] transition-all duration-300 shadow-[0_0_4px_rgba(0,255,102,0.3)]';
-                } else if (i === filledCount || (i > filledCount && i < filledCount + 5 && Math.random() > 0.4)) {
-                    // Downloading block
-                    block.className = 'aspect-square bg-amber-500 border border-black rounded-[1px] transition-all duration-100 animate-pulse';
-                } else {
-                    // Blank block
-                    block.className = 'aspect-square bg-gray-900 border border-black rounded-[1px]';
-                }
-            }
-        }
-
-        function pauseResumeDownload() {
-            playUiClickSfx();
-            if (isDownloading) {
-                isDownloading = false;
-                document.getElementById('client-status').innerText = 'ダウンロード一時停止中 (Paused)';
-                document.getElementById('client-speed').innerText = '0.0 KB/s';
-                document.getElementById('btn-pause-resume').innerText = '再 開';
-                document.getElementById('btn-pause-resume').className = "bg-green-950 hover:bg-green-900 border border-green-500 px-3 py-1.5 rounded text-green-400 font-bold transition";
-            } else {
-                startDownloadSimulation();
-            }
-        }
-
-        function resetDownload() {
-            playUiClickSfx();
-            isDownloading = false;
-            clearInterval(dlInterval);
-            dlProgress = 0.0;
-            bytesDownloaded = 0;
-            speedLog = Array(30).fill(0);
-            renderBandwidthGraph();
-            initializePiecesGrid();
-            
-            document.getElementById('client-status').innerText = '待機中';
-            document.getElementById('client-speed').innerText = '0.0 KB/s';
-            document.getElementById('client-progress').innerText = '0.00 %';
-            document.getElementById('client-eta').innerText = 'リセット完了';
-            document.getElementById('btn-pause-resume').innerText = '開始';
-            document.getElementById('btn-pause-resume').className = "bg-green-950 hover:bg-green-900 border border-green-500 px-3 py-1.5 rounded text-green-400 font-bold transition";
-        }
-
-        function completeDownload() {
-            isDownloading = false;
-            clearInterval(dlInterval);
-            document.getElementById('client-status').innerText = '【シード中】完了しました！無制限高速アップロード中';
-            document.getElementById('client-speed').innerText = '0.0 KB/s';
-            document.getElementById('client-progress').innerText = '100.00 %';
-            document.getElementById('client-eta').innerText = '完了 (SEED)';
-            
-            // Mark all pieces complete
-            for(let i=0; i<totalPieces; i++) {
-                const block = document.getElementById(`piece-${i}`);
-                if (block) block.className = 'aspect-square bg-green-500 border border-black rounded-[1px] shadow-[0_0_4px_rgba(0,255,102,0.3)]';
-            }
-
-            playDlCompleteSfx();
-            showToast("🎉 おめでとうございます！Star Wars Episode I ISOファイルのダウンロードが完了しました。常時シードへのご協力をお願いします！");
-        }
-
-        // Simulating organic seed/peer dynamic fluctuations over time
-        function fluctuateSeeders() {
-            if (!document.getElementById('meta-seeders')) return;
-            const currentSeeds = parseInt(document.getElementById('meta-seeders').innerText.replace(',', ''));
-            const fluctuation = Math.floor(Math.random() * 20) - 10;
-            const newSeeds = currentSeeds + fluctuation;
-            document.getElementById('meta-seeders').innerText = newSeeds.toLocaleString();
-        }
-
-        // Live Shoutbox Comment posting system
-        function postBbsComment() {
-            const nameInput = document.getElementById('bbs-name');
-            const messageInput = document.getElementById('bbs-message');
-
-            const name = nameInput.value.trim() || "名無しさん＠お腹いっぱい。";
-            const message = messageInput.value.trim();
-
-            if (!message) {
-                showToast("エラー: メッセージ本文が空です。書き込みできません。");
-                return;
-            }
-
-            playUiClickSfx();
-
-            // Get Current Simulated Date and Time formatted
-            const now = new Date();
-            const year = "2001";
-            const month = "11";
-            const date = "08";
-            const dayOfWeek = ["日", "月", "火", "水", "木", "金", "土"][now.getDay()];
-            const hour = String(now.getHours()).padStart(2, '0');
-            const minute = String(now.getMinutes()).padStart(2, '0');
-            const second = String(now.getSeconds()).padStart(2, '0');
-            const timeStr = `${year}/${month}/${date}(${dayOfWeek}) ${hour}:${minute}:${second}`;
-
-            // Generate mock ID
-            const pool = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-            let mockId = '';
-            for (let i = 0; i < 8; i++) {
-                mockId += pool.charAt(Math.floor(Math.random() * pool.length));
-            }
-
-            // Find current list count
-            const list = document.getElementById('bbs-comments');
-            const currentComments = list.getElementsByClassName('border-b').length;
-            const nextIndex = currentComments + 1;
-
-            // Generate new comment markup
-            const newDiv = document.createElement('div');
-            newDiv.className = 'border-b border-gray-900 pb-3 text-xs md:text-sm animate-[fadeIn_0.5s_ease-out]';
-            newDiv.innerHTML = `
-                <div class="text-green-500 font-mono flex flex-wrap gap-2 mb-1">
-                    <span class="font-bold">${nextIndex}: ${name}</span>
-                    <span>${timeStr}</span>
-                    <span class="text-gray-600">ID:${mockId}</span>
-                </div>
-                <p class="text-gray-300 leading-relaxed pl-2">
-                    ${message.replace(/\n/g, '<br>')}
-                </p>
-            `;
-
-            // Prepend or Append Comment
-            list.appendChild(newDiv);
-            list.scrollTop = list.scrollHeight; // Auto scroll to newest comment
-
-            // Clean inputs
-            messageInput.value = '';
-            showToast("レスを正常に書き込みました！");
-        }
-    </script>
+          </div>
+          <p class="text-xs text-slate-300 leading-relaxed whitespace-pre-wrap">${escapeHtml(c.text)}</p>
+        `;
+        container.appendChild(item);
+      });
+
+      document.getElementById('comment-count-label').innerText = currentComments.length;
+    }
+
+    function addComment() {
+      const authorInput = document.getElementById('comment-author');
+      const textInput = document.getElementById('comment-text');
+
+      const author = authorInput.value.trim() || 'Anonymous_Jedi';
+      const text = textInput.value.trim();
+
+      if (!text) {
+        showToast('コメント内容を入力してください。', 'error');
+        return;
+      }
+
+      const now = new Date();
+      const timeStr = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')} ${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}:${String(now.getSeconds()).padStart(2,'0')}`;
+
+      const newC = {
+        id: currentComments.length + 1,
+        author: author,
+        text: text,
+        time: timeStr,
+        ip: '124.39.***.*** (Encrypted)'
+      };
+
+      currentComments.unshift(newC); // 先頭に追加
+      renderComments();
+
+      // クリア
+      textInput.value = '';
+      authorInput.value = '';
+
+      showToast('コメントがスレッドに投稿されました！', 'success');
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+    }
+
+    // 初期化ロード
+    window.onload = function() {
+      renderComments();
+    };
+
+  </script>
 </body>
 </html>
