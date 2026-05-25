@@ -3,584 +3,554 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TNT-Scambio - Star Wars: La saga completa (1977-2005) - Disco 3 [BD50]</title>
-    <!-- Tailwind CSS for modern structure with retro accents -->
+    <title>TNT Village :: [BD50] Star Wars: La saga completa - Disco 3 (1977-2005)</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts for retro/modern balance -->
     <style>
         body {
             font-family: Helvetica, sans-serif;
-            background-color: #eef2f7;
+            background-color: #f3f4f6;
         }
-        .forum-header {
-            background: linear-gradient(180deg, #1e40af 0%, #1e3a8a 100%);
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
+        .code-font {
+            font-family: monospace;
         }
-        .custom-dashed {
-            border-style: dashed;
+        /* Custom scrollbar for utorrent feel */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
         }
-        .terminal-text {
-            font-family: 'Courier Prime', monospace;
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
         }
-        .retro-table th {
-            background: linear-gradient(180deg, #3b82f6 0%, #2563eb 100%);
-            color: white;
-            text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
         }
-        .torrent-box {
-            background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
         }
     </style>
 </head>
-<body class="text-gray-800 antialiased">
+<body class="bg-slate-100 text-slate-800 antialiased min-h-screen flex flex-col">
 
-    <!-- TOP BAR (2011 retro navigation) -->
-    <div class="bg-gray-900 text-gray-300 text-xs py-1.5 px-4 flex justify-between items-center border-b border-gray-700">
-        <div class="flex items-center space-x-4">
-            <span><i class="fa-solid fa-clock mr-1"></i> Data: 16 Settembre 2011, 14:32</span>
-            <span class="hidden md:inline">|</span>
-            <span class="hidden md:inline"><i class="fa-solid fa-users mr-1"></i> Utenti Online: 14,892 (2,056 registrati, 12,836 ospiti)</span>
-        </div>
-        <div class="flex items-center space-x-3">
-            <span class="text-yellow-400 font-semibold"><i class="fa-solid fa-gift mr-1"></i> Area Donazioni Attiva</span>
-            <span>Benvenuto, <strong>Ospite</strong> (<a href="#" class="underline hover:text-white" onclick="alert('La registrazione è temporaneamente chiusa per manutenzione tracker.')">Registrati</a> / <a href="#" class="underline hover:text-white" onclick="toggleLoginModal()">Accedi</a>)</span>
-        </div>
-    </div>
-
-    <!-- MAIN HEADER -->
-    <header class="forum-header text-white py-6 px-4 md:px-8 border-b-4 border-yellow-500">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-            <div>
-                <h1 class="text-3xl md:text-4xl font-black tracking-tight flex items-center gap-2">
-                    <span class="text-yellow-400 font-serif">TNT</span>
-                    <span class="text-white font-light">Scambio</span>
-                    <span class="text-xs bg-yellow-500 text-black font-bold px-1.5 py-0.5 rounded uppercase self-start mt-1">P2P</span>
-                </h1>
-                <p class="text-blue-200 text-xs mt-1 italic">“La condivisione è cultura, lo scambio è un diritto etico.” - Fondato nel 2005</p>
-            </div>
-            <!-- Interactive Search in Header -->
-            <div class="w-full md:w-96">
-                <div class="relative">
-                    <input type="text" id="searchInput" placeholder="Cerca tra oltre 340.000 torrent attivi..." class="w-full px-4 py-2 text-sm text-gray-900 bg-white rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-500">
-                    <button onclick="handleSearch()" class="absolute right-2 top-1.5 text-gray-500 hover:text-blue-800"><i class="fa-solid fa-magnifying-glass"></i></button>
+    <!-- TOP HEADER: TNT Village Classic Style with modern polishing -->
+    <header class="bg-gradient-to-r from-emerald-800 to-teal-950 text-white shadow-md border-b-4 border-amber-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                <!-- Brand Logo & Motto -->
+                <div class="flex items-center space-x-4">
+                    <div class="bg-white p-2 rounded-full border-2 border-amber-500 shadow">
+                        <!-- Custom SVG representing TNT's globe/hand concept -->
+                        <svg class="w-12 h-12 text-emerald-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 009 11.5c0-.733.161-1.424.451-2.044m.022-2.09A13.947 13.947 0 0012 2.651M12 2.651A12.082 12.082 0 0118.062 12c0 3.196-1.25 6.1-3.3 8.25m-3.3-15.599c.997.41 1.875 1.053 2.574 1.87M8.802 2.597c.997.41 1.875 1.053 2.574 1.87m0 0a13.947 13.947 0 011.877 7.03m0 0a13.91 13.91 0 01-1.877 7.03M15 11h.01M12 15h.01M9 11h.01M12 8h.01M12 12h.01M12 16h.01"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="text-3xl font-extrabold tracking-tight">TNT Village</h1>
+                        <p class="text-xs text-amber-400 font-semibold uppercase tracking-wider">L’alternativa Etica - Condividere è un dovere sociale</p>
+                    </div>
                 </div>
-                <div class="flex justify-end space-x-2 text-[10px] mt-1 text-blue-200">
-                    <a href="#" class="hover:underline">Ricerca Avanzata</a><span>|</span><a href="#" class="hover:underline">Lista Tag</a>
+
+                <!-- Live Statistics Mini-panel -->
+                <div class="grid grid-cols-3 gap-2 text-center text-xs bg-black/30 p-2 rounded-lg border border-teal-700/50 w-full md:w-auto">
+                    <div class="px-2">
+                        <span class="block text-emerald-400 font-bold">112,403</span>
+                        <span class="text-slate-300">Torrent Attivi</span>
+                    </div>
+                    <div class="px-2 border-x border-teal-700/50">
+                        <span class="block text-emerald-400 font-bold">872,141</span>
+                        <span class="text-slate-300">Utenti Registrati</span>
+                    </div>
+                    <div class="px-2">
+                        <span class="block text-amber-400 font-bold">6.14 TB/s</span>
+                        <span class="text-slate-300">Banda Totale</span>
+                    </div>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- NAVIGATION TABS -->
-    <nav class="bg-blue-900 border-b border-blue-950 text-white px-4">
-        <div class="max-w-6xl mx-auto flex space-x-1 text-xs md:text-sm font-semibold overflow-x-auto whitespace-nowrap">
-            <a href="#" class="px-4 py-3 bg-blue-800 hover:bg-blue-700 border-r border-blue-950 flex items-center gap-1.5"><i class="fa-solid fa-house"></i> Home</a>
-            <a href="#" class="px-4 py-3 bg-yellow-500 text-black hover:bg-yellow-400 border-r border-blue-950 flex items-center gap-1.5"><i class="fa-solid fa-film"></i> Film / Blu-ray</a>
-            <a href="#" class="px-4 py-3 hover:bg-blue-800 border-r border-blue-950 flex items-center gap-1.5"><i class="fa-solid fa-compact-disc"></i> Serie TV</a>
-            <a href="#" class="px-4 py-3 hover:bg-blue-800 border-r border-blue-950 flex items-center gap-1.5"><i class="fa-solid fa-gamepad"></i> Giochi PC/Console</a>
-            <a href="#" class="px-4 py-3 hover:bg-blue-800 border-r border-blue-950 flex items-center gap-1.5"><i class="fa-solid fa-music"></i> Musica</a>
-            <a href="#" class="px-4 py-3 hover:bg-blue-800 border-r border-blue-950 flex items-center gap-1.5"><i class="fa-solid fa-gavel"></i> Regolamento</a>
-            <a href="#" class="px-4 py-3 hover:bg-blue-800 text-yellow-300 flex items-center gap-1.5"><i class="fa-solid fa-users-viewfinder"></i> Staff</a>
+    <!-- NAVIGATION SUBBAR & ALERTS -->
+    <nav class="bg-emerald-900 text-white text-sm font-medium shadow-inner border-b border-teal-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between">
+            <div class="flex space-x-1 sm:space-x-4 py-3 overflow-x-auto">
+                <a href="#" class="px-3 py-1 rounded bg-emerald-800 hover:bg-emerald-700 transition">Home Forum</a>
+                <a href="#" class="px-3 py-1 rounded bg-amber-600 hover:bg-amber-500 text-slate-900 font-bold transition">Archivio Torrent</a>
+                <a href="#" class="px-3 py-1 rounded hover:bg-emerald-800 transition">Regolamento</a>
+                <a href="#" class="px-3 py-1 rounded hover:bg-emerald-800 transition">Donazioni</a>
+                <a href="#" class="px-3 py-1 rounded hover:bg-emerald-800 transition">Aiuto & FAQ</a>
+            </div>
+            <div class="py-2 text-xs text-slate-300 flex items-center gap-2">
+                <span class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span>Benvenuto, <strong class="text-white">JediMaster_94</strong> (Share Ratio: <strong class="text-emerald-400">2.14</strong>)</span>
+            </div>
         </div>
     </nav>
 
-    <!-- BREADCRUMBS -->
-    <div class="bg-gray-200 py-2 px-4 border-b border-gray-300 text-xs">
-        <div class="max-w-6xl mx-auto flex items-center space-x-2 text-gray-600">
-            <a href="#" class="hover:underline hover:text-blue-800">TNT Scambio Forum</a>
-            <span>&raquo;</span>
-            <a href="#" class="hover:underline hover:text-blue-800">Sezione Release Alta Definizione</a>
-            <span>&raquo;</span>
-            <a href="#" class="hover:underline hover:text-blue-800">Cofanetti / Saga Complete</a>
-            <span>&raquo;</span>
-            <span class="text-gray-900 font-semibold">Star Wars: The Complete Saga (Disc 3) BD50 Untouched (1977-2005)</span>
-        </div>
-    </div>
+    <!-- MAIN GRID CONTAINER -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-grow grid grid-cols-1 lg:grid-cols-4 gap-6">
 
-    <!-- MAIN BODY CONTAINER -->
-    <main class="max-w-6xl mx-auto my-6 px-4 grid grid-cols-1 lg:grid-cols-4 gap-6">
-        
-        <!-- LEFT COLUMN: RELEASE DETAILS & DOWNLOAD (3 cols wide) -->
+        <!-- LEFT 3 COLUMNS: TOPIC CONTENT, RELEASES, TECHNICAL DETAILS -->
         <div class="lg:col-span-3 space-y-6">
             
-            <!-- TORRENT MAIN BANNER & CONTROLS -->
-            <div class="bg-white rounded-lg border border-gray-300 shadow-sm overflow-hidden">
-                <div class="p-4 bg-gray-50 border-b border-gray-200 flex flex-wrap justify-between items-start gap-4">
-                    <div>
-                        <span class="bg-red-600 text-white font-bold text-[10px] px-2 py-0.5 rounded tracking-wider uppercase">RELEASE ESCLUSIVA</span>
-                        <h2 class="text-xl md:text-2xl font-bold text-gray-900 mt-1 leading-tight">
-                            Star Wars: The Complete Saga (1977-2005) - Disc 3 [BD50 - Untouched - AVC - ITA/ENG]
-                        </h2>
-                        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-gray-500 mt-2">
-                            <span><i class="fa-solid fa-user text-blue-600"></i> Postato da: <strong><a href="#" class="hover:underline text-blue-700 font-semibold">MasterReleaser_83</a></strong> (SuperMod)</span>
-                            <span>|</span>
-                            <span><i class="fa-solid fa-calendar"></i> Oggi, ore 10:14</span>
-                            <span>|</span>
-                            <span><i class="fa-solid fa-folder-open"></i> Cat: <strong class="text-blue-600">Blu-Ray 1:1 BD50</strong></span>
-                        </div>
-                    </div>
-                    <!-- Stats in brief -->
-                    <div class="flex gap-2">
-                        <div class="bg-green-100 border border-green-300 text-green-800 px-3 py-1.5 rounded text-center min-w-[70px]">
-                            <p class="text-[10px] font-semibold uppercase leading-none">Seed</p>
-                            <p id="seedCount" class="text-lg font-bold">412</p>
-                        </div>
-                        <div class="bg-red-100 border border-red-300 text-red-800 px-3 py-1.5 rounded text-center min-w-[70px]">
-                            <p class="text-[10px] font-semibold uppercase leading-none">Leech</p>
-                            <p id="leechCount" class="text-lg font-bold">24</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- DOWNLOAD COMPONENT -->
-                <div class="torrent-box p-6 border-b border-gray-300 flex flex-col md:flex-row gap-6 items-center">
-                    
-                    <!-- Cover Generator or Image Representation -->
-                    <div class="w-full md:w-1/3 flex-shrink-0 flex flex-col items-center">
-                        <div class="relative w-48 h-64 rounded-lg shadow-lg overflow-hidden bg-gradient-to-b from-blue-950 via-gray-900 to-black border-4 border-yellow-500 flex flex-col justify-between p-4 text-center">
-                            <!-- Starry background mock -->
-                            <div class="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-yellow-300 via-transparent to-transparent"></div>
-                            
-                            <div class="z-10">
-                                <span class="text-[9px] text-yellow-500 font-bold tracking-widest uppercase">La saga completa</span>
-                                <h3 class="text-lg font-black text-white uppercase tracking-tight leading-none mt-1">STAR WARS</h3>
-                                <p class="text-[9px] text-blue-300 font-semibold mt-0.5">DISCO 3 - EPISODIO III</p>
-                            </div>
-
-                            <!-- Mock lightsaber/sith graphics -->
-                            <div class="z-10 my-2 flex justify-center items-center relative">
-                                <div class="w-2 h-20 bg-red-600 rounded-full blur-[1px] shadow-[0_0_12px_4px_rgba(239,68,68,0.8)] relative">
-                                    <div class="absolute bottom-0 left-0 w-2 h-4 bg-gray-400 rounded-b"></div>
-                                </div>
-                                <div class="absolute text-yellow-400 text-xs opacity-80 mt-10">BD50 1:1 UNTOUCHED</div>
-                            </div>
-
-                            <div class="z-10 bg-black bg-opacity-70 py-1 px-2 rounded border border-gray-800">
-                                <p class="text-[8px] text-gray-400 font-mono">1977-2005 BOXSET</p>
-                                <p class="text-[9px] text-red-400 font-bold uppercase leading-none mt-0.5">La vendetta dei Sith</p>
-                            </div>
-                        </div>
-                        <p class="text-[10px] text-gray-500 mt-2 italic text-center">Nessuna cover commerciale disponibile per il solo Disco 3. Grafica creata ad hoc.</p>
-                    </div>
-
-                    <!-- Action Details & Interaction -->
-                    <div class="w-full md:w-2/3 space-y-4">
-                        <h3 class="font-bold text-gray-900 text-lg border-b pb-1 flex items-center gap-2">
-                            <i class="fa-solid fa-download text-blue-600"></i> Download Torrent & Info Magnet
-                        </h3>
-                        
-                        <!-- Actions Grid -->
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            <button onclick="downloadTorrentFile()" class="flex items-center justify-center gap-2.5 bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded shadow transition-all transform hover:-translate-y-0.5">
-                                <i class="fa-solid fa-file-arrow-down text-lg"></i>
-                                <span class="text-left text-sm leading-tight">Scarica .TORRENT<br><span class="text-[10px] font-normal opacity-90">Senza registrarsi (46.2 KB)</span></span>
-                            </button>
-                            <button onclick="triggerMagnet()" class="flex items-center justify-center gap-2.5 bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded shadow transition-all transform hover:-translate-y-0.5">
-                                <i class="fa-solid fa-magnet text-lg"></i>
-                                <span class="text-left text-sm leading-tight">Link MAGNET<br><span class="text-[10px] font-normal opacity-90">Collegamento Diretto</span></span>
-                            </button>
-                        </div>
-
-                        <!-- Technical Summary Table -->
-                        <div class="bg-gray-100 p-3 rounded border border-gray-200 text-xs grid grid-cols-2 gap-y-2 gap-x-4">
-                            <div><span class="text-gray-500">Dimensione File:</span> <strong class="text-gray-800">44.82 GiB</strong> (48,124,112,021 byte)</div>
-                            <div><span class="text-gray-500">Completati:</span> <strong class="text-gray-800 text-blue-600">1,942 volte</strong></div>
-                            <div><span class="text-gray-500">Data Aggiunta:</span> <strong class="text-gray-800">16-Set-2011 10:14</strong></div>
-                            <div><span class="text-gray-500">Stato Torrent:</span> <span class="bg-green-200 text-green-800 font-bold px-1 rounded text-[10px]">VERIFICATO</span></div>
-                            <div class="col-span-2 flex items-center gap-2 pt-1 border-t border-gray-200">
-                                <span class="text-gray-500">Info Hash:</span>
-                                <span class="font-mono bg-white px-2 py-0.5 rounded border text-gray-700 select-all block overflow-hidden text-[10px] w-full" id="infohashText">3b82f6a1e3a8adbc2fca89876fae85e100bcd411</span>
-                                <button onclick="copyInfoHash()" class="text-blue-600 hover:text-blue-800 text-xs shrink-0"><i class="fa-solid fa-copy"></i> Copia</button>
-                            </div>
-                        </div>
-
-                        <!-- User feedback message area -->
-                        <div id="actionFeedback" class="hidden text-xs bg-yellow-50 border border-yellow-300 text-yellow-800 p-2.5 rounded transition-all duration-300"></div>
-                    </div>
-                </div>
-
-                <!-- DETTAGLI RELEASE ("La Scheda") -->
-                <div class="p-6 space-y-6">
-                    <div>
-                        <h3 class="text-lg font-bold text-blue-800 border-b-2 border-blue-800 pb-1 mb-4 flex items-center justify-between">
-                            <span><i class="fa-solid fa-circle-info mr-2"></i> Scheda Informativa della Release</span>
-                            <span class="text-xs font-normal text-gray-500">TNT-V Staff</span>
-                        </h3>
-                        
-                        <p class="text-sm text-gray-700 leading-relaxed">
-                            Mentre i primi due dischi comprendono l’Episodio I e II, questo terzo disco del nuovissimo e attesissimo cofanetto <strong>Star Wars: La saga completa</strong> (rilasciato in Europa proprio in questa settimana di Settembre 2011) contiene il film completo <strong>“Episodio III – La vendetta dei Sith”</strong> in formato Blu-ray 50GB nativo, non alterato, con menu originali, lingue multiple e contenuti speciali intatti.
-                        </p>
-                    </div>
-
-                    <!-- Dettagli Film -->
-                    <div class="bg-blue-50 border border-blue-200 rounded p-4">
-                        <h4 class="font-bold text-blue-900 text-sm mb-2 uppercase flex items-center gap-1.5"><i class="fa-solid fa-clapperboard"></i> Dettagli Tecnici del Film</h4>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-2 text-xs text-gray-700">
-                            <div><strong>Titolo Italiano:</strong> Star Wars: Episodio III – La vendetta dei Sith</div>
-                            <div><strong>Titolo Originale:</strong> Star Wars: Episode III – Revenge of the Sith</div>
-                            <div><strong>Anno:</strong> 2005 (Incluso nel Box Set del 2011)</div>
-                            <div><strong>Regia:</strong> George Lucas</div>
-                            <div><strong>Genere:</strong> Sci-Fi, Azione, Avventura</div>
-                            <div><strong>Sottotitoli:</strong> Italiano, Inglese, Tedesco, Spagnolo</div>
-                            <div><strong>Audio Principale:</strong> Italiano DTS 5.1 / Inglese DTS-HD Master Audio 6.1</div>
-                            <div><strong>Dimensione:</strong> 1:1 Copia speculare BD50 (ISO decriptata o struttura BDMV)</div>
-                        </div>
-                    </div>
-
-                    <!-- Trama Spoiler -->
-                    <div>
-                        <div class="flex items-center gap-2 mb-2">
-                            <span class="font-bold text-gray-800 text-sm">Trama del film (Episodio III):</span>
-                            <button onclick="toggleSpoiler('tramaSpoiler')" class="bg-gray-300 text-gray-700 px-2 py-0.5 rounded text-[11px] font-semibold hover:bg-gray-400 focus:outline-none">Mostra / Nascondi Spoiler</button>
-                        </div>
-                        <div id="tramaSpoiler" class="hidden text-xs bg-gray-100 border-l-4 border-yellow-500 p-3 italic text-gray-600 transition-all">
-                            Tre anni dopo l’inizio delle Guerre dei Cloni, la galassia è consumata dallo scontro titanico tra la Repubblica e i Separatisti. Anakin Skywalker è tormentato da spaventose visioni profetiche sulla morte di sua moglie, Padmé Amidala. Sfruttando questa debolezza, il Cancelliere Palpatine attira il giovane Jedi verso il lato oscuro della Forza, rivelandosi come il malvagio Signore dei Sith, Darth Sidious. Anakin compie il tradimento definitivo e si schiera contro l’Ordine Jedi, ponendo le basi per la nascita dell’Impero Galattico e la sua trasformazione nel temibile Dart Fener.
-                        </div>
-                    </div>
-
-                    <!-- MediaInfo Block (The classic 2011 forum codeblock) -->
-                    <div>
-                        <h4 class="font-bold text-gray-800 text-sm mb-2 flex items-center gap-2">
-                            <i class="fa-solid fa-code text-gray-500"></i> Report MediaInfo & Specifiche Tecniche:
-                        </h4>
-                        <div class="bg-gray-900 rounded-md p-4 text-xs font-mono text-green-400 overflow-x-auto max-h-72 border border-gray-700">
-<pre class="terminal-text leading-relaxed">
-GENERAL INFO:
--------------
-Disc Title:       STAR_WARS_SAGA_DISC3
-Disc Size:        48,124,112,021 bytes (44.82 GiB)
-Protection:       BD-Java / AACS (Removed)
-BD-Info Report:   0.2.1-tnt
-
-VIDEO INFO:
------------
-Codec:            MPEG-4 AVC Video / High Profile 4.1
-Resolution:       1080p / 23.976 fps
-Aspect Ratio:     2.35:1
-Average Bitrate:  28.4 Mbps
-
-AUDIO INFO:
------------
-Audio 1 (ITA):    DTS Audio / 5.1 / 48 kHz / 768 kbps / 24-bit
-Audio 2 (ENG):    DTS-HD Master Audio / 6.1-ES / 48 kHz / 4892 kbps (Lossless)
-Audio 3 (DEU):    DTS Audio / 5.1 / 48 kHz / 768 kbps / 24-bit
-
-SUBTITLES:
-----------
-Codec:            PGS (Presentation Graphic Stream)
-Languages:        Italiano, English, Deutsch, Español, Polish
-
-MENU & BONUS:
--------------
-- Full Untouched Menus (Interactive BD-J)
-- Commentari Audio con George Lucas, Rick McCallum, Ben Burtt, ecc.
-- Archivio documentari integrato nel disco
-</pre>
-                        </div>
-                    </div>
-
-                    <!-- Screenshots Mockup (Visual placeholder) -->
-                    <div>
-                        <h4 class="font-bold text-gray-800 text-sm mb-3"><i class="fa-solid fa-images mr-1 text-blue-600"></i> Screenshot Reali dal BD50 (Clicca per ingrandire)</h4>
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                            <!-- Image 1 -->
-                            <div class="relative group cursor-pointer border border-gray-300 rounded overflow-hidden h-32 bg-gray-900 flex items-center justify-center" onclick="showScreenshot('La battaglia di Coruscant (Inizio film)', 'Space battle over Coruscant. Obi-Wan Kenobi and Anakin Skywalker flying their starfighters.')">
-                                <div class="absolute inset-0 bg-gradient-to-r from-red-950 via-gray-950 to-blue-950 opacity-90 group-hover:opacity-100 transition-opacity"></div>
-                                <div class="absolute text-center z-10 px-2">
-                                    <p class="text-[10px] text-yellow-500 font-bold uppercase">Screen #1</p>
-                                    <p class="text-xs text-white mt-1 font-semibold">Battaglia di Coruscant</p>
-                                </div>
-                                <div class="absolute bottom-2 right-2 text-white opacity-60 text-xs"><i class="fa-solid fa-expand-arrows-alt"></i></div>
-                            </div>
-                            <!-- Image 2 -->
-                            <div class="relative group cursor-pointer border border-gray-300 rounded overflow-hidden h-32 bg-gray-900 flex items-center justify-center" onclick="showScreenshot('Il duello su Mustafar', 'Epic lightsaber duel between Anakin Skywalker and Obi-Wan Kenobi on the lava planet Mustafar.')">
-                                <div class="absolute inset-0 bg-gradient-to-r from-orange-950 via-black to-red-950 opacity-90 group-hover:opacity-100 transition-opacity"></div>
-                                <div class="absolute text-center z-10 px-2">
-                                    <p class="text-[10px] text-yellow-500 font-bold uppercase">Screen #2</p>
-                                    <p class="text-xs text-white mt-1 font-semibold">Duello su Mustafar</p>
-                                </div>
-                                <div class="absolute bottom-2 right-2 text-white opacity-60 text-xs"><i class="fa-solid fa-expand-arrows-alt"></i></div>
-                            </div>
-                            <!-- Image 3 -->
-                            <div class="relative group cursor-pointer border border-gray-300 rounded overflow-hidden h-32 bg-gray-900 flex items-center justify-center" onclick="showScreenshot('La nascita di Darth Vader', 'Lord Vader is fully assembled and raised onto the operating table as Emperor Palpatine watches.')">
-                                <div class="absolute inset-0 bg-gradient-to-r from-gray-950 via-neutral-900 to-black opacity-90 group-hover:opacity-100 transition-opacity"></div>
-                                <div class="absolute text-center z-10 px-2">
-                                    <p class="text-[10px] text-yellow-500 font-bold uppercase">Screen #3</p>
-                                    <p class="text-xs text-white mt-1 font-semibold">Nascita di Dart Fener</p>
-                                </div>
-                                <div class="absolute bottom-2 right-2 text-white opacity-60 text-xs"><i class="fa-solid fa-expand-arrows-alt"></i></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- RELEASER NOTES -->
-                    <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded-r text-xs text-gray-700 space-y-2">
-                        <p class="font-bold text-gray-900 uppercase flex items-center gap-1"><i class="fa-solid fa-bullhorn text-yellow-600"></i> Note del Releaser (MasterReleaser_83):</p>
-                        <ul class="list-disc pl-4 space-y-1">
-                            <li>Questo torrent fa parte della release collettiva coordinata da <strong>TNT-V</strong> per preservare l'intera saga in qualità lossless Blu-ray. Per favore non effettuate re-mux se non prima di 15 giorni dalla release originale.</li>
-                            <li><strong>Consigli di riproduzione:</strong> Usate software che supportino i menu BD-J (quali PowerDVD 11 o TotalMedia Theatre 5). Se usate VLC o MPC-HC, potete lanciare direttamente i file .m2ts principali all'interno della cartella STREAM.</li>
-                            <li><strong>Importante:</strong> Lasciate in seed almeno fino a un ratio di 1.5x per permettere a tutti di scaricare. Lo scambio etico è basato sul vostro buonsenso!</li>
-                        </ul>
-                    </div>
-
-                </div>
-
-                <!-- GRATEFUL MEMBERS SECTION ("I Ringraziamenti" - Retro tracker feature) -->
-                <div class="p-6 bg-gray-50 border-t border-gray-200">
-                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                        <div>
-                            <h4 class="font-bold text-gray-900 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-heart text-red-500 animate-pulse"></i> Utenti che hanno ringraziato il Releaser
-                            </h4>
-                            <p class="text-xs text-gray-500 mt-0.5">Ringrazia l'uploader per sbloccare più banda e mantenere vivo il torrent!</p>
-                        </div>
-                        <button onclick="clickThankUploader()" id="thanksBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs px-4 py-2 rounded shadow transition flex items-center gap-1.5 shrink-0">
-                            <i class="fa-solid fa-thumbs-up"></i> Ringrazia il Releaser
-                        </button>
-                    </div>
-
-                    <!-- Thanks list display -->
-                    <div class="mt-4 p-3 bg-white rounded border border-gray-200">
-                        <p class="text-xs text-gray-600 font-semibold mb-2">
-                            Totale ringraziamenti: <span id="thanksCounter" class="text-blue-600 font-bold">148</span> utenti
-                        </p>
-                        <div id="thanksNames" class="flex flex-wrap gap-1.5 text-[11px] text-gray-500">
-                            <span class="bg-gray-100 px-2 py-0.5 rounded border">DartVener_99</span>
-                            <span class="bg-gray-100 px-2 py-0.5 rounded border">LukeSky_85</span>
-                            <span class="bg-gray-100 px-2 py-0.5 rounded border">SoloHan77</span>
-                            <span class="bg-gray-100 px-2 py-0.5 rounded border">PadmeQueen</span>
-                            <span class="bg-gray-100 px-2 py-0.5 rounded border">Chewby_Wookie</span>
-                            <span class="bg-gray-100 px-2 py-0.5 rounded border">JediMasterYoda</span>
-                            <span class="bg-gray-100 px-2 py-0.5 rounded border">R2D2_Beep</span>
-                            <span class="bg-gray-100 px-2 py-0.5 rounded border">C3PO_Gold</span>
-                            <span class="bg-gray-100 px-2 py-0.5 rounded border">Bobafett93</span>
-                            <span class="bg-gray-100 px-2 py-0.5 rounded border">Palpatine_66</span>
-                            <span class="bg-gray-100 px-2 py-0.5 rounded border">Obi1Kenobi</span>
-                            <span class="bg-gray-100 px-2 py-0.5 rounded border">LandoCal</span>
-                        </div>
-                    </div>
-                </div>
-
+            <!-- BREADCRUMBS -->
+            <div class="text-xs text-slate-500 flex items-center space-x-2">
+                <a href="#" class="hover:underline">TNT Board</a>
+                <span>➔</span>
+                <a href="#" class="hover:underline">Film HD Alta Definizione</a>
+                <span>➔</span>
+                <a href="#" class="hover:underline">Blu-ray Untouched BD50</a>
+                <span>➔</span>
+                <span class="text-slate-800 font-medium">[BD50] Star Wars: La saga completa – Disco 3</span>
             </div>
 
-            <!-- COMMENTS / DISCUSSION SECTION -->
-            <div class="bg-white rounded-lg border border-gray-300 shadow-sm overflow-hidden">
-                <div class="p-4 bg-gray-50 border-b border-gray-200">
-                    <h3 class="text-lg font-bold text-gray-900 flex items-center gap-2">
-                        <i class="fa-solid fa-comments text-blue-600"></i> Commenti degli utenti (Discussione Forum)
-                    </h3>
+            <!-- TORRENT TITLE BLOCK -->
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="p-6 bg-gradient-to-br from-slate-50 to-slate-100 border-b border-slate-200">
+                    <div class="flex flex-wrap items-center gap-2 mb-3">
+                        <span class="px-2 py-1 bg-amber-500 text-slate-950 font-bold rounded text-xs">BD50 1:1</span>
+                        <span class="px-2 py-1 bg-emerald-600 text-white font-semibold rounded text-xs">MIRCrew Release</span>
+                        <span class="px-2 py-1 bg-slate-200 text-slate-700 rounded text-xs">Data: 16 Settembre 2011</span>
+                    </div>
+                    <h2 class="text-xl sm:text-2xl md:text-3xl font-black text-slate-900 leading-tight">
+                        Star Wars: La saga completa (BD50, 1977-2005, Disco 3) - Episodio III – La vendetta dei Sith [ITA/ENG]
+                    </h2>
                 </div>
 
-                <!-- User Comment Thread -->
-                <div class="divide-y divide-gray-200" id="commentsContainer">
+                <!-- INSTANT DOWNLOAD PANEL -->
+                <div class="p-4 bg-emerald-50 border-b border-emerald-100 flex flex-col md:flex-row items-center justify-between gap-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="p-2 bg-emerald-600 text-white rounded-lg">
+                            <svg class="w-6 h-6 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="text-xs text-slate-500 uppercase font-bold tracking-wider">Dimensioni File</div>
+                            <div class="text-lg font-extrabold text-emerald-950">46.57 Gigabytes</div>
+                        </div>
+                    </div>
+
+                    <!-- Action buttons -->
+                    <div class="flex flex-wrap items-center gap-3 w-full md:w-auto">
+                        <button onclick="startEmulatedDownload()" class="flex-1 md:flex-none px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-lg shadow-md transition transform hover:-translate-y-0.5 flex items-center justify-center space-x-2">
+                            <span>Scarica Torrent</span>
+                        </button>
+                        <button onclick="copyMagnetLink()" class="flex-1 md:flex-none px-4 py-3 bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold rounded-lg shadow-md transition transform hover:-translate-y-0.5 flex items-center justify-center space-x-2">
+                            <span>Link Magnetico</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- TABS SWITCHER -->
+                <div class="flex border-b border-slate-200 bg-slate-50/50">
+                    <button onclick="switchTab('tab-info')" id="btn-tab-info" class="tab-btn px-6 py-3 font-semibold text-sm border-b-2 border-emerald-600 text-emerald-600">Scheda Tecnica</button>
+                    <button onclick="switchTab('tab-files')" id="btn-tab-files" class="tab-btn px-6 py-3 font-semibold text-sm border-b-2 border-transparent text-slate-500 hover:text-slate-800">Struttura File BD50</button>
+                    <button onclick="switchTab('tab-nfo')" id="btn-tab-nfo" class="tab-btn px-6 py-3 font-semibold text-sm border-b-2 border-transparent text-slate-500 hover:text-slate-800">NFO Originale</button>
+                </div>
+
+                <!-- TAB CONTENT: INFO -->
+                <div id="tab-info" class="tab-content p-6 space-y-6">
+                    <!-- Film details & Poster Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- Left Poster column (Styled SVG representing Ep III / Boxset Cover) -->
+                        <div class="md:col-span-1">
+                            <div class="relative bg-slate-900 rounded-lg overflow-hidden shadow-lg border border-slate-700 aspect-[2/3] flex flex-col justify-between p-4">
+                                <div class="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-amber-500 via-red-900 to-black"></div>
+                                <div class="relative z-10 text-center">
+                                    <span class="text-amber-400 font-serif tracking-widest text-lg block border-b border-amber-500/30 pb-2">STAR WARS</span>
+                                    <span class="text-slate-300 text-xs tracking-wider block mt-1 uppercase">LA SAGA COMPLETA</span>
+                                </div>
+                                <div class="relative z-10 my-auto text-center py-6">
+                                    <h3 class="text-red-500 font-black text-2xl tracking-tight leading-none">EPISODIO III</h3>
+                                    <p class="text-slate-200 text-sm font-semibold tracking-wide uppercase mt-1">La vendetta dei Sith</p>
+                                    <div class="w-16 h-1 bg-red-600 mx-auto my-3"></div>
+                                    <span class="text-slate-400 text-xs">DISCO 3 — BD-50</span>
+                                </div>
+                                <div class="relative z-10 text-center border-t border-slate-800 pt-3">
+                                    <span class="px-2 py-1 bg-red-600 text-white text-[10px] font-bold rounded">BLU-RAY DEBUT</span>
+                                    <span class="text-slate-400 text-[10px] block mt-1">Uscito il 16 Settembre 2011</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Info Column -->
+                        <div class="md:col-span-2 space-y-4">
+                            <h3 class="text-xl font-bold text-slate-900 border-b pb-2">Dettagli del Rilascio</h3>
+                            <dl class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3 text-sm">
+                                <div class="bg-slate-50 p-2 rounded">
+                                    <dt class="text-slate-500 font-semibold text-xs">Titolo Italiano</dt>
+                                    <dd class="text-slate-800 font-bold">Star Wars: Episodio III – La vendetta dei Sith</dd>
+                                </div>
+                                <div class="bg-slate-50 p-2 rounded">
+                                    <dt class="text-slate-500 font-semibold text-xs">Anno di Produzione</dt>
+                                    <dd class="text-slate-800 font-bold">2005</dd>
+                                </div>
+                                <div class="bg-slate-50 p-2 rounded">
+                                    <dt class="text-slate-500 font-semibold text-xs">Rilascio Blu-ray</dt>
+                                    <dd class="text-slate-800 font-bold">16 Settembre 2011</dd>
+                                </div>
+                                <div class="bg-slate-50 p-2 rounded">
+                                    <dt class="text-slate-500 font-semibold text-xs">Formato Disco</dt>
+                                    <dd class="text-slate-800 font-bold">Blu-ray 50 (BD-50 Untouched)</dd>
+                                </div>
+                                <div class="bg-slate-50 p-2 rounded">
+                                    <dt class="text-slate-500 font-semibold text-xs">Lingue Disponibili</dt>
+                                    <dd class="text-slate-800 font-bold">Italiano, Inglese, Tedesco, Spagnolo</dd>
+                                </div>
+                                <div class="bg-slate-50 p-2 rounded">
+                                    <dt class="text-slate-500 font-semibold text-xs">Audio Principale</dt>
+                                    <dd class="text-slate-800 font-bold">Inglese DTS-HD Master Audio 6.1 / Italiano DTS 5.1</dd>
+                                </div>
+                            </dl>
+
+                            <!-- Plot outline -->
+                            <div class="space-y-2 mt-4">
+                                <h4 class="text-sm font-bold text-slate-900 uppercase tracking-wider">Sinossi del Rilascio</h4>
+                                <p class="text-slate-600 text-sm leading-relaxed">
+                                    Episodio III – La vendetta dei Sith: Sono passati tre anni dall’inizio delle Guerre dei Cloni. Il Cavaliere Jedi Anakin Skywalker, sedotto dal lato oscuro della Forza, tradisce l’Ordine e si unisce al Cancelliere Palpatine, diventando Dart Fener. Questo disco è il <strong>Disco 3</strong> estratto direttamente dal monumentale box-set Blu-ray uscito oggi nei negozi italiani. Contiene il film completo in altissima definizione BD50 nativo e senza alcuna compressione video o audio.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MediaInfo Block -->
+                    <div class="space-y-3 pt-4 border-t border-slate-100">
+                        <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                            <span>Specifiche Tecniche Completa (MediaInfo)</span>
+                        </h3>
+                        <div class="bg-slate-900 text-slate-100 p-4 rounded-lg text-xs font-mono overflow-x-auto space-y-1 shadow-inner">
+                            <div><span class="text-amber-400">DISC INFO:</span></div>
+                            <div>Disc Size: 49,934,510,080 bytes (46.5 GB)</div>
+                            <div>Protection: None (AACS Decrypted)</div>
+                            <div><span class="text-emerald-400">VIDEO CODEC:</span> MPEG-4 AVC Video / 24108 kbps / 1080p / 23.976 fps / 16:9</div>
+                            <div><span class="text-cyan-400">AUDIO TRACS:</span></div>
+                            <div>- Audio 1: DTS-HD Master Audio / English / 6.1 / 48 kHz / 4851 kbps / 24-bit (DTS Core: 5.1 / 1509 kbps)</div>
+                            <div>- Audio 2: DTS Audio / Italian / 5.1 / 48 kHz / 768 kbps / 24-bit (Traccia Doppiata Originale Cinema)</div>
+                            <div>- Audio 3: DTS Audio / German / 5.1 / 48 kHz / 768 kbps / 24-bit</div>
+                            <div>- Audio 4: DTS Audio / Spanish / 5.1 / 48 kHz / 768 kbps / 24-bit</div>
+                            <div>- Audio 5: Commento Audio con George Lucas, Rick McCallum, Rob Coleman, John Knoll...</div>
+                            <div><span class="text-purple-400">SUBTITLES:</span></div>
+                            <div>Italiano, English, Deutsch, Español, French, Dutch</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB CONTENT: FILES STRUCT -->
+                <div id="tab-files" class="tab-content hidden p-6 space-y-4">
+                    <h3 class="text-lg font-bold text-slate-900">Struttura della Directory ISO BD50</h3>
+                    <p class="text-xs text-slate-500">I file contenuti in questa immagine ISO una volta montata o estratta.</p>
                     
-                    <!-- Comment 1 -->
-                    <div class="p-4 sm:p-6 flex flex-col sm:flex-row gap-4">
-                        <div class="sm:w-36 flex-shrink-0 text-center flex sm:flex-col items-center sm:items-center justify-between sm:justify-start gap-2 border-b sm:border-b-0 pb-2 sm:pb-0 border-gray-100">
-                            <div>
-                                <p class="font-bold text-xs text-blue-700 hover:underline cursor-pointer">JediMasterYoda</p>
-                                <p class="text-[9px] text-gray-400">Utente Storico</p>
-                            </div>
-                            <!-- Mock Avatar -->
-                            <div class="w-12 h-12 bg-green-100 rounded border border-green-300 flex items-center justify-center text-green-700 font-bold text-lg">
-                                JY
-                            </div>
-                            <div class="hidden sm:block text-[10px] text-gray-500 mt-1 leading-tight">
-                                <p>Messaggi: 1,402</p>
-                                <p>Registrato: 2007</p>
-                                <p class="text-yellow-600 font-bold">Rep: +114</p>
-                            </div>
+                    <div class="bg-slate-50 p-4 rounded-lg border text-sm font-mono text-slate-700">
+                        <div class="flex items-center space-x-2 text-emerald-700 font-bold">
+                            <span>📁 STAR_WARS_EP3_SAGA_DISC3 (Root)</span>
                         </div>
-                        <div class="flex-grow space-y-2">
-                            <div class="flex justify-between items-center text-xs text-gray-400">
-                                <span>Oggi alle 10:28</span>
-                                <span class="bg-gray-200 px-1.5 py-0.5 rounded">#1</span>
+                        <div class="ml-4 pl-4 border-l border-slate-300 py-1 space-y-1">
+                            <div>📁 BDMV</div>
+                            <div class="ml-4 pl-4 border-l border-slate-300 py-1 space-y-1">
+                                <div>📁 CLIPINF (128 file .clpi)</div>
+                                <div>📁 PLAYLIST (86 file .mpls)</div>
+                                <div class="text-amber-700 font-semibold">📁 STREAM (I file video m2ts)</div>
+                                <div class="ml-4 pl-4 border-l border-slate-300 py-1 text-slate-500 space-y-1">
+                                    <div>📄 00001.m2ts (42.41 GB) <span class="text-xs text-slate-400">[Video Principale Film]</span></div>
+                                    <div>📄 00002.m2ts (1.10 GB) <span class="text-xs text-slate-400">[Audio Commentario & Menu]</span></div>
+                                    <div>📄 00003.m2ts (324 MB) <span class="text-xs text-slate-400">[Introduzione Logo Lucasfilm]</span></div>
+                                    <div>📄 00004.m2ts (124 MB)</div>
+                                </div>
+                                <div>📁 AUXDATA</div>
+                                <div>📁 META</div>
                             </div>
-                            <p class="text-sm text-gray-700">
-                                Finalmente! Siete fantastici ragazzi. Sto scaricando a tutta banda con la mia ADSL 20 Mega (aggancio circa 12 Mega effettivi). 
-                                Questo pacchetto BD50 è imperdibile. Lo lascerò in seed a tempo indeterminato sul mio server di casa. Grazie infinite al mitico MasterReleaser!
-                            </p>
+                            <div>📁 CERTIFICATE</div>
+                            <div class="text-blue-600">📄 tnt_village_scambio_etico.txt</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB CONTENT: NFO ORIGINAL -->
+                <div id="tab-nfo" class="tab-content hidden p-6 space-y-3">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-lg font-bold text-slate-900">File informativo .NFO della Release</h3>
+                        <span class="text-xs text-slate-400">Standard ASCII Art Encoder 2011</span>
+                    </div>
+                    <pre class="bg-slate-950 text-slate-300 p-4 rounded-lg overflow-x-auto text-[11px] leading-tight code-font shadow-inner">
+*************************************************************************
+* _ _____ _   _ _____  __     _____ _      _        _  ____ _____     *
+* | |_   _| \ | |_   _| \ \   / /_ _| |    | |      / \|  _ \_   _|    *
+* | | | | |  \| | | |    \ \ / / | || |    | |     / _ \ |_) || |      *
+* | | | | | |\  | | |     \ V /  | || |___ | |___ / ___ \  _ < | |      *
+* |_| |_| |_| \_| |_|      \_/  |___|_____||_____/_/   \_\_| \_\|_|      *
+* *
+* TNT Village - Scambio Etico presenta:                 *
+* *
+* Star Wars: La saga completa - Disco 3 (BD50 untouched)         *
+* Episodio III – La vendetta dei Sith                    *
+*************************************************************************
+
+ [ RELEASE INFO ]
+ - Titolo Originale: Star Wars: Episode III – Revenge of the Sith
+ - Uscita Cinema: 2005
+ - Uscita Blu-Ray: 16 Settembre 2011 (Edizione Italiana)
+ - Releaser: MIRCrew / TheBlackPearl
+ - Tipo Rilascio: ISO Blu-Ray 1:1 Intatta
+ - Protezione: Rimossa con AnyDVD HD v6.8.8.0
+
+ [ SPECIFICHE TECNICHE ]
+ - Dimensione: 48,828 MB (BD50 Dual Layer)
+ - Compressione: Nessuna, 100% Bit-to-Bit copia fedele
+ - Risoluzione: 1920x1080p (2.35:1 Widescreen)
+ - Frame Rate: 23.976 fps
+ - Audio ITA: DTS Digital 5.1 @ 768 kbps
+ - Audio ENG: DTS-HD Master Audio 6.1 @ 4851 kbps (Splendido!)
+ - Sottotitoli: Italiano (Completi), Italiano (Forzati), Inglese
+
+ [ GUIDA ALLA RIPRODUZIONE ]
+ 1. Potete montare il file ISO su PC con Virtual CloneDrive o Daemon Tools.
+ 2. Per la riproduzione è consigliato PowerDVD 11 o TotalMedia Theatre 5.
+ 3. Su lettori da tavolo: masterizzare su supporto BD-R DL a velocità 2x 
+    usando esclusivamente ImgBurn per garantire l’integrità del Layer Break.
+ 4. NON COMPRIMETE QUESTO CAPOLAVORO! CONDIVIDETE E SEEDATE!
+
+*************************************************************************
+* Supportate lo Scambio Etico! Se scaricate, rimanete in SEED!        *
+*************************************************************************</pre>
+                </div>
+            </div>
+
+            <!-- EMBEDDED RETRO UTORRENT CLIENT SIMULATOR (Amazing Interactive Feature!) -->
+            <div id="utorrent-box" class="bg-slate-100 rounded-xl shadow-md border border-slate-300 overflow-hidden hidden transition-all duration-300">
+                <!-- Titlebar resembling old Windows / classic uTorrent 2.2.1 -->
+                <div class="bg-gradient-to-r from-emerald-800 to-emerald-950 text-white px-4 py-2 flex items-center justify-between text-xs font-semibold">
+                    <div class="flex items-center space-x-2">
+                        <span class="bg-white text-emerald-900 rounded-full px-1.5 font-black text-[10px]">µ</span>
+                        <span>uTorrent v2.2.1 (Simulatore di Download TNT-Etico)</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <span id="speed-indicator-badge" class="px-2 py-0.5 bg-amber-500 text-slate-900 rounded font-bold">Velocità ADSL 7M</span>
+                        <button onclick="closeUTorrent()" class="hover:bg-red-600 px-2 py-0.5 rounded transition">✕</button>
+                    </div>
+                </div>
+
+                <!-- Client Main Layout Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-4 bg-white text-slate-800 text-xs">
+                    
+                    <!-- Left Sidebar resembling uTorrent category tree -->
+                    <div class="bg-slate-50 border-r border-slate-200 p-3 hidden md:block space-y-4">
+                        <div class="space-y-1">
+                            <span class="font-bold text-slate-400 block pb-1 uppercase text-[10px]">Torrent</span>
+                            <a href="#" class="flex items-center justify-between px-2 py-1 rounded bg-emerald-100 text-emerald-900 font-semibold">
+                                <span>Tutti (1)</span> <span class="text-slate-500 font-mono">1</span>
+                            </a>
+                            <a href="#" class="flex items-center justify-between px-2 py-1 rounded hover:bg-slate-200">
+                                <span>In Download</span> <span class="text-slate-500 font-mono" id="downloading-sidebar-count">1</span>
+                            </a>
+                            <a href="#" class="flex items-center justify-between px-2 py-1 rounded hover:bg-slate-200">
+                                <span>In Seed / Completati</span> <span class="text-slate-500 font-mono" id="seeding-sidebar-count">0</span>
+                            </a>
+                        </div>
+                        <div class="border-t pt-3">
+                            <label class="block font-bold text-slate-400 pb-2 uppercase text-[10px]">Velocità Connessione</label>
+                            <select id="connection-speed" onchange="changeSimulatedSpeed()" class="w-full p-2 bg-white border border-slate-300 rounded text-slate-700 font-medium">
+                                <option value="adsl7m">ADSL 7 Mega (850 KB/s - Nostalgia 2011)</option>
+                                <option value="adsl20m">ADSL 20 Mega (2.2 MB/s)</option>
+                                <option value="fttc100m">Fibra FTTC 100M (11.5 MB/s)</option>
+                                <option value="ftth1g">Fibra FTTH 1G (110 MB/s - Moderna)</option>
+                            </select>
                         </div>
                     </div>
 
-                    <!-- Comment 2 -->
-                    <div class="p-4 sm:p-6 flex flex-col sm:flex-row gap-4">
-                        <div class="sm:w-36 flex-shrink-0 text-center flex sm:flex-col items-center sm:items-center justify-between sm:justify-start gap-2 border-b sm:border-b-0 pb-2 sm:pb-0 border-gray-100">
-                            <div>
-                                <p class="font-bold text-xs text-red-600 hover:underline cursor-pointer">DartVener_99</p>
-                                <p class="text-[9px] text-gray-400">Novellino</p>
-                            </div>
-                            <!-- Mock Avatar -->
-                            <div class="w-12 h-12 bg-red-100 rounded border border-red-300 flex items-center justify-center text-red-700 font-bold text-lg">
-                                DV
-                            </div>
-                            <div class="hidden sm:block text-[10px] text-gray-500 mt-1 leading-tight">
-                                <p>Messaggi: 12</p>
-                                <p>Registrato: 2011</p>
-                                <p class="text-gray-500 font-bold">Rep: 0</p>
-                            </div>
+                    <!-- Right Main Content Space -->
+                    <div class="md:col-span-3 flex flex-col min-h-[350px]">
+                        
+                        <!-- List of torrents table -->
+                        <div class="overflow-x-auto border-b border-slate-200 flex-grow">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-slate-100 text-[10px] text-slate-500 uppercase font-bold border-b border-slate-200">
+                                        <th class="p-2">Nome</th>
+                                        <th class="p-2">Dimensione</th>
+                                        <th class="p-2">Stato</th>
+                                        <th class="p-2">Avanzamento</th>
+                                        <th class="p-2">Down Speed</th>
+                                        <th class="p-2">Up Speed</th>
+                                        <th class="p-2">ETA</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="border-b border-slate-100 hover:bg-slate-50">
+                                        <td class="p-2 font-medium text-slate-900 truncate max-w-[180px]">Star.Wars.Completo.Disco3.BD50.1977-2005.tntvillage.iso</td>
+                                        <td class="p-2 font-mono">46.57 GB</td>
+                                        <td id="dl-status" class="p-2 text-emerald-600 font-bold">Download</td>
+                                        <td class="p-2">
+                                            <div class="flex items-center space-x-2">
+                                                <span class="font-mono" id="dl-percent">0.0%</span>
+                                                <div class="w-20 bg-slate-200 rounded h-2 overflow-hidden">
+                                                    <div id="dl-progress-bar" class="bg-emerald-500 h-full w-[0%]"></div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td id="dl-speed" class="p-2 font-mono text-emerald-600 font-bold">850 kB/s</td>
+                                        <td class="p-2 font-mono text-blue-500">85 kB/s</td>
+                                        <td id="dl-eta" class="p-2 font-mono">Calcolo...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="flex-grow space-y-2">
-                            <div class="flex justify-between items-center text-xs text-gray-400">
-                                <span>Oggi alle 11:05</span>
-                                <span class="bg-gray-200 px-1.5 py-0.5 rounded">#2</span>
-                            </div>
-                            <p class="text-sm text-gray-700">
-                                Qualcuno mi sa dire se in questo terzo disco ci sono i contenuti speciali di Mustafar e le interviste di Lucas?
-                                Ho visto che pesa parecchio ma la mia connessione non è velocissima... ci metterò 3 giorni a scaricare tutta la ISO intera. Cmq grande release!
-                            </p>
-                        </div>
-                    </div>
 
-                    <!-- Comment 3 (Staff Response) -->
-                    <div class="p-4 sm:p-6 flex flex-col sm:flex-row gap-4 bg-yellow-50/50">
-                        <div class="sm:w-36 flex-shrink-0 text-center flex sm:flex-col items-center sm:items-center justify-between sm:justify-start gap-2 border-b sm:border-b-0 pb-2 sm:pb-0 border-gray-100">
-                            <div>
-                                <p class="font-bold text-xs text-blue-800 hover:underline cursor-pointer">MasterReleaser_83</p>
-                                <p class="text-[9px] text-blue-800 font-bold uppercase">SuperMod / Uploader</p>
+                        <!-- Bottom Information Tabs / Pieces Map -->
+                        <div class="bg-slate-50 p-3 border-t border-slate-200">
+                            <div class="flex space-x-4 border-b border-slate-300 pb-1 mb-2">
+                                <span class="font-bold text-slate-700 pb-0.5 border-b-2 border-slate-800">Mappa dei Pezzi Scaricati</span>
+                                <span class="text-slate-500">Velocità di Download: <strong class="font-mono text-emerald-600" id="dl-chart-text">850 KB/s</strong></span>
                             </div>
-                            <!-- Mock Avatar -->
-                            <div class="w-12 h-12 bg-blue-900 rounded border border-blue-950 flex items-center justify-center text-yellow-400 font-bold text-lg">
-                                MR
-                            </div>
-                            <div class="hidden sm:block text-[10px] text-gray-500 mt-1 leading-tight">
-                                <p>Messaggi: 8,495</p>
-                                <p>Registrato: 2005</p>
-                                <p class="text-green-600 font-bold">Rep: +982</p>
-                            </div>
-                        </div>
-                        <div class="flex-grow space-y-2">
-                            <div class="flex justify-between items-center text-xs text-gray-400">
-                                <span>Oggi alle 11:20</span>
-                                <span class="bg-gray-200 px-1.5 py-0.5 rounded">#3</span>
-                            </div>
-                            <p class="text-sm text-gray-700 font-semibold text-blue-900">
-                                <i class="fa-solid fa-reply"></i> Risposta per @DartVener_99:
-                            </p>
-                            <p class="text-sm text-gray-700">
-                                Ciao, sì! Essendo il disco 3 originale intatto (untouched), contiene tutti i contenuti speciali previsti in questo disco della saga, comprese le gallerie interattive della trilogia prequel e i commenti della troupe. Ne vale assolutamente la pena. Abbi pazienza per il download, con oltre 400 seed attivi dovresti saturare la tua banda a breve!
-                            </p>
-                        </div>
-                    </div>
 
+                            <!-- Interactive Block visualization -->
+                            <div class="grid grid-cols-20 sm:grid-cols-30 md:grid-cols-40 gap-[2px]" id="pieces-grid">
+                                <!-- Generated blocks go here -->
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- COMMENT SECTION (DISCUSSIONS & THANKS) -->
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 space-y-6">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b pb-4">
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-900">Commenti e Scambio Opinioni</h3>
+                        <p class="text-xs text-slate-500">Unisciti alla conversazione dello Scambio Etico</p>
+                    </div>
+                    <div class="flex items-center space-x-2 bg-emerald-50 px-4 py-2 rounded-lg border border-emerald-100">
+                        <span class="text-sm font-semibold text-emerald-800">Ringraziamenti ricevuti:</span>
+                        <span id="thanks-count" class="font-mono font-black text-emerald-600 bg-white px-2 py-0.5 rounded border shadow-sm">184</span>
+                        <button onclick="sendThanks()" id="btn-thanks" class="ml-2 px-3 py-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded transition transform active:scale-95">
+                            👍 Ringrazia l'uploader
+                        </button>
+                    </div>
                 </div>
 
                 <!-- NEW COMMENT FORM -->
-                <div class="p-6 bg-gray-100 border-t border-gray-200 space-y-4">
-                    <h4 class="font-bold text-gray-900 text-sm flex items-center gap-2">
-                        <i class="fa-solid fa-pen"></i> Aggiungi un commento alla discussione
-                    </h4>
-                    
-                    <form id="commentForm" onsubmit="postComment(event)" class="space-y-3">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-xs text-gray-600 font-semibold mb-1">Nome Utente (Simulato):</label>
-                                <input type="text" id="formUsername" value="Ospite_Galattico" class="w-full px-3 py-1.5 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600">
-                            </div>
-                            <div>
-                                <label class="block text-xs text-gray-600 font-semibold mb-1">Tipo Profilo:</label>
-                                <select id="formUserType" class="w-full px-3 py-1.5 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600">
-                                    <option value="Fanatico di Star Wars">Fanatico di Star Wars</option>
-                                    <option value="Collezionista Blu-Ray">Collezionista Blu-Ray</option>
-                                    <option value="Leecher Professionista">Leecher Professionista</option>
-                                    <option value="Socio TNT">Socio Consigliato</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div>
-                            <label class="block text-xs text-gray-600 font-semibold mb-1">Messaggio:</label>
-                            <textarea id="formMessage" rows="3" required placeholder="Inserisci il tuo commento o una richiesta di chiarimenti tecnici..." class="w-full p-3 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600"></textarea>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-[10px] text-gray-500 italic"><i class="fa-solid fa-triangle-exclamation"></i> Mantieni un tono educato e rispetta il regolamento.</span>
-                            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs py-2 px-5 rounded shadow">
-                                <i class="fa-solid fa-paper-plane mr-1"></i> Invia Commento
-                            </button>
-                        </div>
-                    </form>
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
+                    <h4 class="text-sm font-bold text-slate-800">Scrivi un commento come <span class="text-emerald-700">JediMaster_94</span></h4>
+                    <div class="flex gap-2">
+                        <input id="new-comment-text" type="text" placeholder="Scrivi una domanda o ringrazia per la release..." class="flex-grow p-3 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                        <button onclick="addComment()" class="px-5 py-3 bg-slate-800 hover:bg-slate-900 text-white font-bold rounded-lg text-sm transition">
+                            Invia
+                        </button>
+                    </div>
                 </div>
 
+                <!-- COMMENTS LIST -->
+                <div id="comments-container" class="space-y-4">
+                    
+                    <!-- Pre-existing Retro Comments -->
+                    <div class="p-4 bg-white border border-slate-100 rounded-xl flex gap-4">
+                        <div class="w-12 h-12 bg-emerald-700 text-white rounded-full flex-shrink-0 flex items-center justify-center font-bold text-sm shadow">
+                            OB1
+                        </div>
+                        <div class="space-y-1 flex-grow">
+                            <div class="flex items-center justify-between">
+                                <span class="font-extrabold text-sm text-slate-900">ObiKenobi_88 <span class="ml-2 px-2 py-0.5 bg-emerald-100 text-emerald-800 text-[10px] font-bold rounded">Socio</span></span>
+                                <span class="text-xs text-slate-400">16 Settembre 2011 -- 14:32</span>
+                            </div>
+                            <p class="text-sm text-slate-600 leading-relaxed">
+                                Finalmente in alta definizione! Siete mostruosi! Sto scaricando adesso col mio abbonamento ADSL Libero Infostrada a 7 Mega, speriamo ci siano abbastanza seed. Per il momento aggancio 600 KB/s stabilissimi. Grazie mille!
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-white border border-slate-100 rounded-xl flex gap-4">
+                        <div class="w-12 h-12 bg-amber-500 text-slate-900 rounded-full flex-shrink-0 flex items-center justify-center font-bold text-sm shadow">
+                            TP
+                        </div>
+                        <div class="space-y-1 flex-grow">
+                            <div class="flex items-center justify-between">
+                                <span class="font-extrabold text-sm text-slate-900">TheBlackPearl <span class="ml-2 px-2 py-0.5 bg-amber-500 text-slate-900 text-[10px] font-bold rounded">Releaser</span></span>
+                                <span class="text-xs text-slate-400">16 Settembre 2011 -- 15:05</span>
+                            </div>
+                            <p class="text-sm text-slate-600 leading-relaxed">
+                                Ragazzi, per i primi giorni andate piano con le richieste di banda! Sto caricando da un server dedicato a 100 Mbps in Francia, quindi la velocità aumenterà man mano che la gente completa i primi chunk del BD50. Se avete una linea ADSL impostate l'upload a massimo 40 KB/s altrimenti vi si blocca il download! Scambio Etico sempre!
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-white border border-slate-100 rounded-xl flex gap-4">
+                        <div class="w-12 h-12 bg-slate-800 text-white rounded-full flex-shrink-0 flex items-center justify-center font-bold text-sm shadow">
+                            SM
+                        </div>
+                        <div class="space-y-1 flex-grow">
+                            <div class="flex items-center justify-between">
+                                <span class="font-extrabold text-sm text-slate-900">Skywalker_Max <span class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-700 text-[10px] rounded">Utente</span></span>
+                                <span class="text-xs text-slate-400">16 Settembre 2011 -- 16:20</span>
+                            </div>
+                            <p class="text-sm text-slate-600 leading-relaxed">
+                                Visto ora in anteprima in alcune scene su proiettore di mio fratello. Rispetto al vecchio DVD del 2005 il miglioramento è indescrivibile! La battaglia iniziale di Coruscant toglie il fiato, non si notano artefatti di compressione. Il DTS-HD master audio inglese fa tremare i muri. Grazie TNT!
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
             </div>
 
         </div>
 
-        <!-- RIGHT COLUMN: SIDEBAR (1 col wide) -->
+        <!-- RIGHT SIDEBAR: USER INFO, METRICS, SCENE NEWS -->
         <div class="space-y-6">
             
-            <!-- COFANETTO STATUS & NAVIGATION -->
-            <div class="bg-white rounded-lg border border-gray-300 shadow-sm overflow-hidden">
-                <div class="p-3 bg-blue-900 text-white font-bold text-xs flex justify-between items-center">
-                    <span><i class="fa-solid fa-circle-play mr-1"></i> LA SAGAFULL BOXSET</span>
-                    <span class="bg-yellow-500 text-black px-1 rounded text-[9px] font-black">9 DISCHI</span>
-                </div>
-                <div class="p-3 text-xs space-y-2 bg-gray-50">
-                    <p class="text-gray-500">Stato indicizzazione cofanetto su TNT:</p>
-                    <ul class="space-y-1">
-                        <li class="flex justify-between items-center">
-                            <span class="text-gray-700">Disc 1 (Episodio I)</span>
-                            <span class="text-green-600 font-bold"><i class="fa-solid fa-circle-check"></i> Attivo</span>
-                        </li>
-                        <li class="flex justify-between items-center">
-                            <span class="text-gray-700">Disc 2 (Episodio II)</span>
-                            <span class="text-green-600 font-bold"><i class="fa-solid fa-circle-check"></i> Attivo</span>
-                        </li>
-                        <li class="flex justify-between items-center">
-                            <span class="text-gray-900 font-bold">Disc 3 (Episodio III)</span>
-                            <span class="bg-yellow-500 text-black font-bold px-1 rounded text-[10px]">CORRENTE</span>
-                        </li>
-                        <li class="flex justify-between items-center">
-                            <span class="text-gray-500">Disc 4 (Episodio IV)</span>
-                            <span class="text-gray-400 font-medium">In arrivo domani</span>
-                        </li>
-                        <li class="flex justify-between items-center">
-                            <span class="text-gray-500">Disc 5 (Episodio V)</span>
-                            <span class="text-gray-400 font-medium">In arrivo domani</span>
-                        </li>
-                        <li class="flex justify-between items-center">
-                            <span class="text-gray-500">Disc 6 (Episodio VI)</span>
-                            <span class="text-gray-400 font-medium">In arrivo Sabato</span>
-                        </li>
-                        <li class="flex justify-between items-center">
-                            <span class="text-gray-500">Dischi 7-9 (Extra)</span>
-                            <span class="text-gray-400 font-medium">Fine Settimana</span>
-                        </li>
-                    </ul>
+            <!-- PEER STATS WIDGET -->
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 space-y-4">
+                <h3 class="text-sm font-extrabold text-slate-900 uppercase tracking-wider border-b pb-2">Stato dello Sciame</h3>
+                
+                <div class="space-y-3">
+                    <div class="flex items-center justify-between">
+                        <span class="text-slate-500 text-sm">Seeders (Completi)</span>
+                        <span class="text-emerald-600 font-bold font-mono">142</span>
+                    </div>
+                    <div class="w-full bg-slate-200 h-1.5 rounded overflow-hidden">
+                        <div class="bg-emerald-500 h-full w-[65%]"></div>
+                    </div>
+                    
+                    <div class="flex items-center justify-between">
+                        <span class="text-slate-500 text-sm">Leechers (In scaricamento)</span>
+                        <span class="text-amber-500 font-bold font-mono">89</span>
+                    </div>
+                    <div class="w-full bg-slate-200 h-1.5 rounded overflow-hidden">
+                        <div class="bg-amber-500 h-full w-[35%]"></div>
+                    </div>
+
+                    <div class="flex items-center justify-between border-t pt-3">
+                        <span class="text-slate-500 text-sm">Download completati</span>
+                        <span class="text-slate-800 font-bold font-mono">451 volte</span>
+                    </div>
                 </div>
             </div>
 
-            <!-- ADVERTISING MOCK (Nostalgic 2011 banner) -->
-            <div class="bg-white rounded-lg border border-gray-300 shadow-sm overflow-hidden">
-                <div class="p-2 bg-gray-200 text-[10px] text-gray-500 text-center uppercase tracking-wider">ANNUNCIO SPONSOR</div>
-                <div class="p-4 bg-gradient-to-r from-purple-900 to-indigo-950 text-white text-center space-y-2">
-                    <h5 class="text-yellow-400 font-bold text-xs">TI SERVE PIÙ SPAZIO?</h5>
-                    <p class="text-[10px] text-gray-300 leading-tight">I nuovi Hard Disk Esterni da <strong class="text-white">2 Terabyte</strong> USB 3.0 sono in offerta a soli 89€!</p>
-                    <a href="#" onclick="alert('Link sponsor simulato per l\'atmosfera del 2011')" class="inline-block bg-yellow-500 hover:bg-yellow-400 text-black font-bold text-[9px] py-1 px-3 rounded uppercase">Vedi Offerta</a>
+            <!-- UPLOADER PROFILE CARD -->
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 space-y-4 text-center">
+                <div class="w-16 h-16 bg-gradient-to-tr from-amber-400 to-amber-600 rounded-full mx-auto flex items-center justify-center text-slate-950 font-black text-xl shadow-md border-2 border-white">
+                    TP
+                </div>
+                <div>
+                    <h3 class="font-extrabold text-slate-900">TheBlackPearl</h3>
+                    <span class="px-2 py-0.5 bg-amber-100 text-amber-800 text-xs font-bold rounded-full">Uploader Benemerito</span>
+                </div>
+                <div class="text-xs text-slate-500 space-y-1">
+                    <div>Data di Registrazione: Ottobre 2008</div>
+                    <div>Torrent Caricati: <strong>412</strong></div>
+                    <div>Ratio Globale: <strong class="text-emerald-600">3.82</strong></div>
                 </div>
             </div>
 
-            <!-- COMMUNITY RULES BANNER -->
-            <div class="bg-white rounded-lg border border-gray-300 shadow-sm p-4 space-y-3">
-                <h4 class="font-bold text-xs text-red-600 uppercase border-b pb-1 flex items-center gap-1"><i class="fa-solid fa-circle-exclamation"></i> Regole del Tracker</h4>
-                <div class="text-[11px] text-gray-600 space-y-2 leading-relaxed">
-                    <p><strong>1. Rapporto di Share:</strong> Cerca di non far mai scendere il tuo ratio globale sotto 0.8.</p>
-                    <p><strong>2. No Fake:</strong> Tutti i file caricati sono testati dallo staff. Chiunque posti materiale fasullo verrà bannato.</p>
-                    <p><strong>3. Educazione:</strong> All'interno dei commenti sono vietate le offese e il linguaggio scurrile.</p>
-                </div>
-            </div>
-
-            <!-- RECENT DOWNLOADS FEED -->
-            <div class="bg-white rounded-lg border border-gray-300 shadow-sm overflow-hidden">
-                <div class="p-3 bg-gray-100 border-b border-gray-200 font-bold text-xs text-gray-700 flex justify-between items-center">
-                    <span><i class="fa-solid fa-circle-arrow-down mr-1 text-green-600"></i> CHI STA SCARICANDO...</span>
-                    <span class="bg-green-200 text-green-800 text-[9px] px-1 rounded font-bold uppercase animate-pulse">Live</span>
-                </div>
-                <div class="p-3 text-[11px] space-y-2" id="liveDownloadsFeed">
-                    <!-- Dynamic simulated live list -->
-                    <div class="flex justify-between items-center"><span class="text-blue-700">UploaderBoss</span> <span class="text-gray-500">Iniziato ora</span></div>
-                    <div class="flex justify-between items-center"><span class="text-gray-700">LeiaOrg_81</span> <span class="text-green-600 font-semibold">Completato al 100%</span></div>
-                    <div class="flex justify-between items-center"><span class="text-gray-700">GeneralGriev</span> <span class="text-blue-500">In download: 82.1%</span></div>
-                    <div class="flex justify-between items-center"><span class="text-gray-700">WampaIce</span> <span class="text-blue-500">In download: 14.5%</span></div>
+            <!-- SCENE INFO / FAQ BOX -->
+            <div class="bg-slate-900 text-slate-100 rounded-xl shadow-md p-6 space-y-4">
+                <h3 class="text-xs font-black tracking-widest text-amber-400 uppercase">Perché Scambio Etico?</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">
+                    TNT Village promuove lo scambio etico e la libera diffusione della cultura. Scaricando questa ISO ti impegni a non rivenderla e a lasciarla in condivisione nel tuo client torrent per consentire ad altri di usufruirne liberamente senza profitto commerciale.
+                </p>
+                <div class="border-t border-slate-800 pt-3 flex justify-between items-center text-xs text-slate-400">
+                    <span>Versione Pagina: 1.4</span>
+                    <a href="#" class="text-amber-400 hover:underline">Approfondisci ➔</a>
                 </div>
             </div>
 
@@ -589,331 +559,297 @@ MENU & BONUS:
     </main>
 
     <!-- FOOTER -->
-    <footer class="bg-gray-900 text-gray-400 text-xs py-8 px-4 mt-12 border-t-4 border-yellow-500">
-        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div>
-                <h4 class="text-white font-bold text-sm mb-2">TNT Scambio</h4>
-                <p class="leading-relaxed">Portando la cultura nelle case degli italiani attraverso la condivisione etica e trasparente. Tutto il materiale indicizzato è distribuito esclusivamente per fini educativi e di critica sociale.</p>
+    <footer class="bg-slate-900 text-slate-400 text-xs py-8 border-t border-slate-800 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+            <p>TNT Village Scambio Etico -- Pagina archiviata per scopi storici/nostalgici. Rilascio originale: 16 Settembre 2011.</p>
+            <div class="flex justify-center space-x-6 text-slate-500">
+                <a href="#" class="hover:underline">Contattaci</a>
+                <span>•</span>
+                <a href="#" class="hover:underline">DMCA Policy</a>
+                <span>•</span>
+                <a href="#" class="hover:underline">Manifesto dello Scambio Etico</a>
             </div>
-            <div>
-                <h4 class="text-white font-bold text-sm mb-2">Collegamenti Utili</h4>
-                <ul class="space-y-1">
-                    <li><a href="#" class="hover:underline hover:text-white">Forum di Supporto</a></li>
-                    <li><a href="#" class="hover:underline hover:text-white">Politica sulla Privacy</a></li>
-                    <li><a href="#" class="hover:underline hover:text-white">Statistiche del Tracker</a></li>
-                    <li><a href="#" class="hover:underline hover:text-white">Canale IRC Ufficiale (#tnt-scambio)</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="text-white font-bold text-sm mb-2">Disclaimer Tecnico</h4>
-                <p class="leading-relaxed">Questo sito è una ricostruzione storica a scopi dimostrativi ed artistici. Nessun file protetto da copyright è realmente ospitato o distribuito sui nostri server remoti.</p>
-            </div>
-        </div>
-        <div class="max-w-6xl mx-auto border-t border-gray-800 mt-6 pt-6 text-center text-gray-600">
-            <p>&copy; 2005-2011 TNT-Scambio Network. Tutti i marchi registrati appartengono ai rispettivi proprietari.</p>
-            <p class="mt-1">Pagina generata in 0.041 secondi. Server Loc: Milano, Italia.</p>
+            <p class="text-slate-600">Star Wars e tutti i marchi associati sono di proprietà esclusiva di Lucasfilm Ltd / Disney. Nessun copyright infranto in questo ambiente di simulazione.</p>
         </div>
     </footer>
 
-    <!-- INTERACTIVE SCREENSHOT MODAL -->
-    <div id="screenshotModal" class="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 hidden">
-        <div class="bg-gray-900 border-2 border-yellow-500 max-w-2xl w-full rounded-lg overflow-hidden shadow-2xl relative">
-            <button onclick="closeScreenshot()" class="absolute right-4 top-4 text-white hover:text-yellow-500 text-xl font-bold z-10"><i class="fa-solid fa-circle-xmark"></i></button>
-            <div class="p-4 bg-gray-800 border-b border-gray-700">
-                <h3 id="modalTitle" class="text-white font-bold text-sm"></h3>
+    <!-- REAL-TIME MOCK POPUPS (CUSTOM ALERT INSTEAD OF BROWSER ALERT) -->
+    <div id="custom-alert" class="fixed bottom-6 right-6 bg-slate-900 text-white p-4 rounded-xl shadow-2xl border border-emerald-500 max-w-sm hidden z-50 transition-all duration-300 transform translate-y-2">
+        <div class="flex items-start space-x-3">
+            <div class="bg-emerald-600 p-2 rounded-full text-white">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
             </div>
-            <!-- Mock detailed screen representation with retro design -->
-            <div class="p-8 bg-black flex flex-col items-center justify-center space-y-4">
-                <div class="w-full h-64 rounded bg-gradient-to-tr from-gray-950 via-slate-900 to-indigo-950 relative border border-gray-800 flex items-center justify-center overflow-hidden">
-                    <div class="absolute inset-0 bg-opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-500 via-transparent to-transparent"></div>
-                    <div class="text-center p-4">
-                        <i class="fa-solid fa-film text-gray-700 text-6xl mb-2"></i>
-                        <p id="modalDesc" class="text-xs text-gray-400 italic max-w-md mx-auto"></p>
-                    </div>
-                    <div class="absolute top-2 left-2 bg-yellow-500 text-black font-black text-[9px] px-1.5 py-0.5 rounded uppercase">Blu-Ray Capture (1080p)</div>
-                    <div class="absolute bottom-2 right-2 text-gray-500 text-[10px] font-mono">Res: 1920x1080 | Bitrate: 34.2 Mbps</div>
-                </div>
-            </div>
-            <div class="p-3 bg-gray-800 flex justify-end">
-                <button onclick="closeScreenshot()" class="bg-yellow-500 hover:bg-yellow-400 text-black font-bold text-xs py-1 px-4 rounded">Chiudi Anteprima</button>
+            <div>
+                <h4 class="font-bold text-sm" id="alert-title">Ringraziamento Inviato!</h4>
+                <p class="text-xs text-slate-400 mt-1" id="alert-message">Grazie per aver ringraziato l'uploader. Questo sostiene la reputazione di rilascio.</p>
             </div>
         </div>
     </div>
 
-    <!-- MOCK LOGIN MODAL -->
-    <div id="loginModal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden">
-        <div class="bg-white border-t-4 border-blue-900 max-w-sm w-full rounded-lg overflow-hidden shadow-2xl">
-            <div class="p-4 bg-gray-50 border-b border-gray-200 flex justify-between items-center">
-                <h3 class="font-bold text-gray-900 text-sm"><i class="fa-solid fa-lock mr-1 text-blue-900"></i> Accedi a TNT Scambio</h3>
-                <button onclick="toggleLoginModal()" class="text-gray-500 hover:text-gray-800"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            <form onsubmit="handleMockLogin(event)" class="p-4 space-y-3">
-                <div>
-                    <label class="block text-xs text-gray-600 mb-1">Nome Utente:</label>
-                    <input type="text" id="loginUser" required class="w-full px-3 py-1.5 text-xs border border-gray-300 rounded focus:ring-1 focus:ring-blue-600 outline-none">
-                </div>
-                <div>
-                    <label class="block text-xs text-gray-600 mb-1">Password:</label>
-                    <input type="password" required class="w-full px-3 py-1.5 text-xs border border-gray-300 rounded focus:ring-1 focus:ring-blue-600 outline-none">
-                </div>
-                <div class="flex items-center justify-between text-[11px] text-gray-500">
-                    <label class="flex items-center gap-1"><input type="checkbox"> Ricordami</label>
-                    <a href="#" class="hover:underline text-blue-700">Password persa?</a>
-                </div>
-                <button type="submit" class="w-full bg-blue-900 hover:bg-blue-800 text-white font-bold text-xs py-2 rounded shadow">Accedi</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- JAVASCRIPT LOGIC -->
+    <!-- MAIN JAVASCRIPT: EMULATOR CONTROLLER -->
     <script>
-        // Trackers dynamic updates
-        let seeds = 412;
-        let leechers = 24;
-        let thanksListCount = 148;
+        // Tab switching logic
+        function switchTab(tabId) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.add('hidden');
+            });
+            // Reset buttons styling
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('border-emerald-600', 'text-emerald-600');
+                btn.classList.add('border-transparent', 'text-slate-500');
+            });
 
-        // Periodic fluctuations to simulate living tracker activity
-        setInterval(() => {
-            seeds += Math.floor(Math.random() * 7) - 3;
-            if (seeds < 380) seeds = 380;
-            leechers += Math.floor(Math.random() * 5) - 2;
-            if (leechers < 10) leechers = 10;
-            
-            document.getElementById('seedCount').innerText = seeds;
-            document.getElementById('leechCount').innerText = leechers;
-        }, 4000);
+            // Show current active tab
+            document.getElementById(tabId).classList.remove('hidden');
+            // Style current active button
+            const activeBtn = document.getElementById('btn-' + tabId);
+            activeBtn.classList.add('border-emerald-600', 'text-emerald-600');
+            activeBtn.classList.remove('border-transparent', 'text-slate-500');
+        }
 
-        // Simulated live user download feed
-        const liveUsers = ["DartVener_99", "SoloHan77", "PadmeQueen", "WookiePower", "Stormtrooper_A", "TatooineFan", "NabooPalace", "XWing_Pilot", "RancorBait"];
-        const feedContainer = document.getElementById('liveDownloadsFeed');
-        setInterval(() => {
-            const randomUser = liveUsers[Math.floor(Math.random() * liveUsers.length)];
-            const actions = [
-                `<span class="text-blue-500">In download: ${Math.floor(Math.random() * 90) + 5}%</span>`,
-                `<span class="text-green-600 font-semibold">Completato al 100%</span>`,
-                `<span class="text-gray-500">Iniziato ora</span>`
-            ];
-            const randomAction = actions[Math.floor(Math.random() * actions.length)];
+        // Custom notification system
+        function showNotification(title, message) {
+            const alertBox = document.getElementById('custom-alert');
+            document.getElementById('alert-title').innerText = title;
+            document.getElementById('alert-message').innerText = message;
             
-            // Remove last element and prepend new one
-            if (feedContainer.children.length >= 4) {
-                feedContainer.removeChild(feedContainer.lastElementChild);
+            alertBox.classList.remove('hidden');
+            setTimeout(() => {
+                alertBox.classList.remove('translate-y-2');
+                alertBox.classList.add('translate-y-0');
+            }, 10);
+
+            // Hide after 3.5 seconds
+            setTimeout(() => {
+                alertBox.classList.add('translate-y-2');
+                setTimeout(() => {
+                    alertBox.classList.add('hidden');
+                }, 300);
+            }, 3500);
+        }
+
+        // Magnet link copy fallback using standard clipboard methods (robust to iframe constraints)
+        function copyMagnetLink() {
+            const mockMagnet = "magnet:?xt=urn:btih:9a8b7c6d5e4f3a2b1c0d9e8f7a6b5c4d3e2f1a0b&dn=Star.Wars.La.Saga.Completa.Disco3.BD50.1977-2005.ITA.ENG.tntvillage&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969%2Fannounce";
+            
+            // Create a temporary hidden textarea to perform the copy
+            const textarea = document.createElement('textarea');
+            textarea.value = mockMagnet;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            
+            try {
+                document.execCommand('copy');
+                showNotification("Magnet Link Copiato!", "Il link magnetico è stato copiato nei tuoi appunti. Incollalo sul tuo client torrent.");
+                startEmulatedDownload(); // also trigger uTorrent interface view automatically for interactive fun!
+            } catch (err) {
+                showNotification("Errore di Copia", "Usa ctrl+C sul link: " + mockMagnet);
             }
-            
-            const newFeed = document.createElement('div');
-            newFeed.className = "flex justify-between items-center transition-all duration-500 opacity-0 transform -translate-y-2";
-            newFeed.innerHTML = `<span class="text-gray-700 font-medium">${randomUser}</span> ${randomAction}`;
-            
-            feedContainer.insertBefore(newFeed, feedContainer.firstChild);
-            
-            setTimeout(() => {
-                newFeed.classList.remove('opacity-0', '-translate-y-2');
-            }, 100);
-
-        }, 5000);
-
-        // Toggle spoiler functionality
-        function toggleSpoiler(id) {
-            const spoiler = document.getElementById(id);
-            if (spoiler.classList.contains('hidden')) {
-                spoiler.classList.remove('hidden');
-            } else {
-                spoiler.classList.add('hidden');
-            }
+            document.body.removeChild(textarea);
         }
 
-        // Action Trigger - Download Torrent File
-        function downloadTorrentFile() {
-            const feedback = document.getElementById('actionFeedback');
-            feedback.classList.remove('hidden');
-            feedback.innerHTML = `
-                <div class="flex items-center gap-2">
-                    <i class="fa-solid fa-spinner animate-spin text-lg"></i>
-                    <span><strong>[Richiesta Avviata]</strong> Download del file <code>[TNT-Village]_SW_TheCompleteSaga_Disc3_BD50.torrent</code> avviato sul tuo client!</span>
-                </div>
-            `;
-            // Simulate direct file trigger
-            setTimeout(() => {
-                feedback.innerHTML = `
-                    <div class="flex items-center gap-2 text-green-800">
-                        <i class="fa-solid fa-circle-check text-lg"></i>
-                        <span>File scaricato correttamente. Per avviare la condivisione, aprilo con uTorrent, qBittorrent o Transmission.</span>
-                    </div>
-                `;
-            }, 1500);
-        }
-
-        // Action Trigger - Magnet Link
-        function triggerMagnet() {
-            const feedback = document.getElementById('actionFeedback');
-            feedback.classList.remove('hidden');
-            feedback.innerHTML = `
-                <div class="flex items-center gap-2 text-red-800">
-                    <i class="fa-solid fa-magnet text-lg"></i>
-                    <span><strong>[Magnet URI aperto]</strong> Tentativo di invio del magnet link al client P2P predefinito del tuo sistema operativo.</span>
-                </div>
-            `;
-            // Optional: simulate copy clipboard fallback
-            setTimeout(() => {
-                feedback.innerHTML = `
-                    <div class="flex items-center gap-2 text-green-800">
-                        <i class="fa-solid fa-circle-check text-lg"></i>
-                        <span>Magnet link caricato! Link: <code>magnet:?xt=urn:btih:3b82f6a1e3...</code></span>
-                    </div>
-                `;
-            }, 1200);
-        }
-
-        // Clipboard copy compatibility helper
-        function copyInfoHash() {
-            const hashText = document.getElementById('infohashText').innerText;
-            
-            // Recommending standard document execCommand for iframe safety
-            const dummy = document.createElement("textarea");
-            document.body.appendChild(dummy);
-            dummy.value = hashText;
-            dummy.select();
-            document.execCommand("copy");
-            document.body.removeChild(dummy);
-
-            const feedback = document.getElementById('actionFeedback');
-            feedback.classList.remove('hidden');
-            feedback.innerHTML = `
-                <div class="flex items-center gap-2 text-blue-800">
-                    <i class="fa-solid fa-circle-check text-lg"></i>
-                    <span>Info Hash copiato negli appunti con successo!</span>
-                </div>
-            `;
-            setTimeout(() => {
-                feedback.classList.add('hidden');
-            }, 4000);
-        }
-
-        // Interactive "Thanks" button logic
-        let hasThanked = false;
-        function clickThankUploader() {
-            if (hasThanked) {
-                alert("Hai già ringraziato per questa magnifica release!");
+        // Thanks button counter increment logic
+        let thanksClicked = false;
+        function sendThanks() {
+            if (thanksClicked) {
+                showNotification("Già ringraziato!", "Hai già ringraziato l'uploader per questo prezioso rilascio.");
                 return;
             }
+            const countEl = document.getElementById('thanks-count');
+            let val = parseInt(countEl.innerText);
+            countEl.innerText = val + 1;
+            thanksClicked = true;
             
-            hasThanked = true;
-            thanksListCount++;
+            // Change button color to show active/disabled state
+            const btn = document.getElementById('btn-thanks');
+            btn.classList.add('bg-slate-400', 'cursor-not-allowed');
+            btn.classList.remove('bg-emerald-600', 'hover:bg-emerald-700');
+            btn.innerText = "Grazie Inviato ✓";
             
-            // Increment UI counter
-            document.getElementById('thanksCounter').innerText = thanksListCount;
-            
-            // Add user's name to list (simulated Guest)
-            const thanksList = document.getElementById('thanksNames');
-            const newThanks = document.createElement('span');
-            newThanks.className = "bg-yellow-100 text-yellow-900 font-bold px-2 py-0.5 rounded border border-yellow-300";
-            newThanks.innerText = "TU (Ospite_Soddisfatto)";
-            thanksList.appendChild(newThanks);
-            
-            // Style update for button
-            const btn = document.getElementById('thanksBtn');
-            btn.className = "bg-gray-400 text-white font-bold text-xs px-4 py-2 rounded shadow cursor-not-allowed flex items-center gap-1.5 shrink-0";
-            btn.innerHTML = `<i class="fa-solid fa-check"></i> Grazie inviato!`;
+            showNotification("Grazie registrato!", "Il tuo ringraziamento è stato inviato all'uploader. Continua a condividere!");
         }
 
-        // Open detailed screenshot simulator
-        function showScreenshot(title, desc) {
-            document.getElementById('modalTitle').innerText = title;
-            document.getElementById('modalDesc').innerText = desc;
-            document.getElementById('screenshotModal').classList.remove('hidden');
-        }
+        // Comment writing simulation
+        function addComment() {
+            const textInput = document.getElementById('new-comment-text');
+            const commentVal = textInput.value.trim();
+            if (commentVal === '') return;
 
-        function closeScreenshot() {
-            document.getElementById('screenshotModal').classList.add('hidden');
-        }
+            // Generate today's timestamp in retro style
+            const now = new Date();
+            const dateStr = now.toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' });
+            const timeStr = now.toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' });
 
-        // Login Modal Control
-        function toggleLoginModal() {
-            const modal = document.getElementById('loginModal');
-            if (modal.classList.contains('hidden')) {
-                modal.classList.remove('hidden');
-            } else {
-                modal.classList.add('hidden');
-            }
-        }
-
-        function handleMockLogin(event) {
-            event.preventDefault();
-            const username = document.getElementById('loginUser').value;
-            alert(`Benvenuto su TNT, ${username}! (Simulazione d'accesso completata)`);
-            toggleLoginModal();
-        }
-
-        // Dynamic Comments submission
-        function postComment(event) {
-            event.preventDefault();
+            const commentsContainer = document.getElementById('comments-container');
             
-            const username = document.getElementById('formUsername').value.trim() || "Ospite_Anonimo";
-            const userType = document.getElementById('formUserType').value;
-            const message = document.getElementById('formMessage').value.trim();
-            
-            if (!message) return;
-
-            // Generate first-letters icon for avatar
-            const init = username.slice(0, 2).toUpperCase();
-
-            // Structure new comment
-            const commentHTML = `
-                <div class="p-4 sm:p-6 flex flex-col sm:flex-row gap-4 bg-blue-50/20">
-                    <div class="sm:w-36 flex-shrink-0 text-center flex sm:flex-col items-center sm:items-center justify-between sm:justify-start gap-2 border-b sm:border-b-0 pb-2 sm:pb-0 border-gray-100">
-                        <div>
-                            <p class="font-bold text-xs text-blue-700 hover:underline cursor-pointer">${username}</p>
-                            <p class="text-[9px] text-gray-400">${userType}</p>
-                        </div>
-                        <div class="w-12 h-12 bg-gray-200 rounded border border-gray-300 flex items-center justify-center text-gray-700 font-bold text-lg">
-                            ${init}
-                        </div>
-                        <div class="hidden sm:block text-[10px] text-gray-500 mt-1 leading-tight">
-                            <p>Messaggi: 1</p>
-                            <p>Registrato: Oggi</p>
-                            <p class="text-green-600 font-bold">Rep: +1</p>
-                        </div>
+            // Generate modern HTML structure for the new comment
+            const newCommentHtml = `
+                <div class="p-4 bg-white border border-slate-100 rounded-xl flex gap-4 animate-fade-in-down">
+                    <div class="w-12 h-12 bg-slate-900 text-amber-400 rounded-full flex-shrink-0 flex items-center justify-center font-bold text-sm shadow">
+                        JM
                     </div>
-                    <div class="flex-grow space-y-2">
-                        <div class="flex justify-between items-center text-xs text-gray-400">
-                            <span>Adesso</span>
-                            <span class="bg-blue-200 text-blue-800 px-1.5 py-0.5 rounded font-bold">NUOVO</span>
+                    <div class="space-y-1 flex-grow">
+                        <div class="flex items-center justify-between">
+                            <span class="font-extrabold text-sm text-slate-900">JediMaster_94 <span class="ml-2 px-2 py-0.5 bg-emerald-100 text-emerald-800 text-[10px] font-bold rounded">Utente</span></span>
+                            <span class="text-xs text-slate-400">${dateStr} -- ${timeStr}</span>
                         </div>
-                        <p class="text-sm text-gray-700">
-                            ${escapeHTML(message)}
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            ${commentVal}
                         </p>
                     </div>
                 </div>
             `;
-
-            const container = document.getElementById('commentsContainer');
-            container.insertAdjacentHTML('beforeend', commentHTML);
-
-            // Clean form inputs
-            document.getElementById('formMessage').value = "";
             
-            // Scroll down smoothly to new comment
-            container.lastElementChild.scrollIntoView({ behavior: 'smooth' });
+            // Prepend the new comment
+            commentsContainer.insertAdjacentHTML('afterbegin', newCommentHtml);
+            textInput.value = '';
+            showNotification("Commento aggiunto!", "Il tuo commento è stato pubblicato con successo sul forum.");
         }
 
-        // Escape helper for basic safety
-        function escapeHTML(str) {
-            return str.replace(/[&<>'"]/g, 
-                tag => ({
-                    '&': '&amp;',
-                    '<': '&lt;',
-                    '>': '&gt;',
-                    "'": '&#39;',
-                    '"': '&quot;'
-                }[tag] || tag)
-            );
+        // --- UTORRENT DOWNLOAD CLIENT SIMULATOR LOGIC ---
+        let dlInterval = null;
+        let currentProgress = 0;
+        let selectedSpeedKey = "adsl7m";
+
+        const speedConfigs = {
+            adsl7m: { name: "ADSL 7 Mega", baseSpeed: 820 * 1024, upload: 80 * 1024, label: "Velocità ADSL 7M" },
+            adsl20m: { name: "ADSL 20 Mega", baseSpeed: 2100 * 1024, upload: 120 * 1024, label: "Velocità ADSL 20M" },
+            fttc100m: { name: "Fibra FTTC 100M", baseSpeed: 11400 * 1024, upload: 2100 * 1024, label: "Fibra FTTC 100M" },
+            ftth1g: { name: "Fibra FTTH 1G", baseSpeed: 98000 * 1024, upload: 45000 * 1024, label: "Fibra FTTH 1G" }
+        };
+
+        const totalBytes = 46.57 * 1024 * 1024 * 1024; // 46.57 GB in bytes
+
+        // Build piece grid (300 blocks)
+        function generatePiecesGrid() {
+            const gridContainer = document.getElementById('pieces-grid');
+            gridContainer.innerHTML = '';
+            for (let i = 0; i < 200; i++) {
+                const block = document.createElement('div');
+                block.className = 'w-2 h-2 sm:w-3 sm:h-3 border border-slate-200 bg-slate-100 transition-colors duration-200';
+                block.id = `piece-block-${i}`;
+                gridContainer.appendChild(block);
+            }
         }
 
-        // Quick search simulator
-        function handleSearch() {
-            const query = document.getElementById('searchInput').value.trim();
-            if (query) {
-                alert(`Ricerca di "${query}" avviata nel database storico del 2011! (Simulazione)`);
+        function startEmulatedDownload() {
+            const uTorrentBox = document.getElementById('utorrent-box');
+            uTorrentBox.classList.remove('hidden');
+            uTorrentBox.scrollIntoView({ behavior: 'smooth' });
+
+            if (dlInterval !== null) {
+                showNotification("Client attivo!", "Il download è già in esecuzione nel client torrent virtuale.");
+                return;
+            }
+
+            // Generate initial block grid mapping
+            generatePiecesGrid();
+            currentProgress = 0;
+            document.getElementById('dl-status').innerText = "In Download";
+            document.getElementById('dl-status').className = "p-2 text-emerald-600 font-bold";
+
+            // Main download loop mimicking real uTorrent dynamics
+            dlInterval = setInterval(() => {
+                const config = speedConfigs[selectedSpeedKey];
+                
+                // Add fluctuating delta speed
+                const speedDelta = (Math.random() - 0.5) * 0.1 * config.baseSpeed;
+                const activeSpeed = Math.max(config.baseSpeed + speedDelta, 10 * 1024); // never drop to zero
+
+                // Bytes downloaded in this 1-second step
+                const downloadedBytesStep = activeSpeed;
+                const progressIncrementPercent = (downloadedBytesStep / totalBytes) * 100;
+                
+                currentProgress = Math.min(currentProgress + progressIncrementPercent, 100);
+
+                // Format speeds
+                const speedString = formatBytes(activeSpeed) + "/s";
+                document.getElementById('dl-speed').innerText = speedString;
+                document.getElementById('dl-chart-text').innerText = speedString;
+                document.getElementById('dl-percent').innerText = currentProgress.toFixed(2) + "%";
+                document.getElementById('dl-progress-bar').style.width = currentProgress + "%";
+
+                // Update blocks depending on progress
+                const finishedBlocksCount = Math.floor((currentProgress / 100) * 200);
+                for (let i = 0; i < 200; i++) {
+                    const block = document.getElementById(`piece-block-${i}`);
+                    if (block) {
+                        if (i < finishedBlocksCount) {
+                            block.className = 'w-2 h-2 sm:w-3 sm:h-3 bg-emerald-500 border border-emerald-400';
+                        } else if (i === finishedBlocksCount) {
+                            block.className = 'w-2 h-2 sm:w-3 sm:h-3 bg-amber-400 border border-amber-300 animate-pulse';
+                        } else {
+                            block.className = 'w-2 h-2 sm:w-3 sm:h-3 bg-slate-100 border border-slate-200';
+                        }
+                    }
+                }
+
+                // Update ETA
+                const remainingBytes = totalBytes * (1 - (currentProgress / 100));
+                const etaSeconds = remainingBytes / activeSpeed;
+                document.getElementById('dl-eta').innerText = formatETA(etaSeconds);
+
+                // Finished condition
+                if (currentProgress >= 100) {
+                    clearInterval(dlInterval);
+                    dlInterval = null;
+                    document.getElementById('dl-status').innerText = "In Seed";
+                    document.getElementById('dl-status').className = "p-2 text-blue-600 font-bold";
+                    document.getElementById('dl-speed').innerText = "0 kB/s";
+                    document.getElementById('dl-eta').innerText = "Completato";
+                    document.getElementById('downloading-sidebar-count').innerText = "0";
+                    document.getElementById('seeding-sidebar-count').innerText = "1";
+                    showNotification("Download Completato!", "Star Wars Episodio III (BD50) è completato al 100%! Lascialo in Seed!");
+                }
+            }, 1000);
+
+            showNotification("Download Avviato!", "Aggiunto a uTorrent v2.2.1. Guarda lo stato in basso nella pagina.");
+        }
+
+        // Change active emulation speed
+        function changeSimulatedSpeed() {
+            selectedSpeedKey = document.getElementById('connection-speed').value;
+            const badge = document.getElementById('speed-indicator-badge');
+            badge.innerText = speedConfigs[selectedSpeedKey].label;
+            showNotification("Cambio di Connessione", "Velocità modificata in: " + speedConfigs[selectedSpeedKey].name);
+        }
+
+        function closeUTorrent() {
+            document.getElementById('utorrent-box').classList.add('hidden');
+            if (dlInterval) {
+                clearInterval(dlInterval);
+                dlInterval = null;
+            }
+        }
+
+        // Utility formatting functions
+        function formatBytes(bytes) {
+            if (bytes === 0) return '0 B';
+            const k = 1024;
+            const sizes = ['B', 'kB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
+        }
+
+        function formatETA(seconds) {
+            if (seconds === Infinity || isNaN(seconds)) return "In calcolo...";
+            if (seconds <= 0) return "Finito";
+            
+            const hours = Math.floor(seconds / 3600);
+            const minutes = Math.floor((seconds % 3600) / 60);
+            const secs = Math.floor(seconds % 60);
+
+            if (hours > 0) {
+                return `${hours}h ${minutes}m`;
+            } else if (minutes > 0) {
+                return `${minutes}m ${secs}s`;
+            } else {
+                return `${secs}s`;
             }
         }
     </script>
