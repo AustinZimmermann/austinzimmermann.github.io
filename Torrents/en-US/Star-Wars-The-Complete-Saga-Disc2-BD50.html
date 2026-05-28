@@ -3,363 +3,1279 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Star Wars: The Complete Saga (BD50, 1977-2005, Disc 2) BluRay 1080p AVC DTS-HD MA 6.1-GALAXY :: Bits&Bytes Torrent Tracker</title>
+    <title>Star.Wars.The.Complete.Saga.1977-2005.Disc2.BD50.1080p.BluRay.AVC.DTS-HD.MA.6.1-GALAXY - Torrents.com</title>
+    <!-- Tailwind CSS for modern structure and utility layout -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome 4.7 for early 2010s vintage web icon feel -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
-        /* 2011 Era Torrent Site Styling */
+        /* Retro Web 2.0 Styling & Gradients from September 2011 */
         body {
+            background-color: #f0f4f7;
             font-family: Helvetica, sans-serif;
-            background-color: #1a1a1a;
-            color: #dddddd;
-            margin: 0;
-            padding: 0;
-            font-size: 13px;
+            color: #333333;
         }
-
-        header {
-            background: linear-gradient(to bottom, #333333, #111111);
-            padding: 15px 20px;
-            border-bottom: 2px solid #444;
+        .wayback-gradient {
+            background: linear-gradient(to bottom, #404040 0%, #222222 100%);
         }
-
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #3399ff;
-            text-shadow: 1px 1px 2px #000;
-            display: inline-block;
+        .header-gradient {
+            background: linear-gradient(to bottom, #114c7a 0%, #0e3759 100%);
         }
-
-        .logo span {
-            color: #fff;
+        .btn-green-gradient {
+            background: linear-gradient(to bottom, #5cb85c 0%, #4cae4c 100%);
+            border: 1px solid #4cae4c;
+            text-shadow: 0 1px 1px rgba(0,0,0,0.3);
         }
-
-        nav {
-            margin-top: 10px;
+        .btn-green-gradient:hover {
+            background: linear-gradient(to bottom, #4cae4c 0%, #449d44 100%);
         }
-
-        nav a {
-            color: #aaa;
-            text-decoration: none;
-            margin-right: 15px;
-            font-weight: bold;
+        .btn-blue-gradient {
+            background: linear-gradient(to bottom, #337ab7 0%, #2e6da4 100%);
+            border: 1px solid #2e6da4;
+            text-shadow: 0 1px 1px rgba(0,0,0,0.3);
         }
-
-        nav a:hover, nav a.active {
-            color: #fff;
-            text-decoration: underline;
+        .btn-blue-gradient:hover {
+            background: linear-gradient(to bottom, #2e6da4 0%, #245580 100%);
         }
-
-        .container {
-            max-width: 1100px;
-            margin: 20px auto;
-            background-color: #222222;
-            padding: 20px;
-            border: 1px solid #333;
-            border-radius: 5px;
-            box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+        .btn-gray-gradient {
+            background: linear-gradient(to bottom, #fcfcfc 0%, #e6e6e6 100%);
+            border: 1px solid #ccc;
+            color: #333;
         }
-
-        .torrent-title {
-            font-size: 19px;
-            color: #fff;
-            border-bottom: 1px solid #444;
-            padding-bottom: 10px;
-            margin-top: 0;
+        .btn-gray-gradient:hover {
+            background: linear-gradient(to bottom, #e6e6e6 0%, #d4d4d4 100%);
         }
-
-        .date-row {
-            font-size: 11px;
-            color: #888;
-            margin-bottom: 15px;
+        .torrent-card-header {
+            background: linear-gradient(to bottom, #f7fafc 0%, #e2e8f0 100%);
+            border-bottom: 1px solid #cbd5e0;
         }
-
-        .download-box {
-            background-color: #2a2a2a;
-            border: 1px dashed #555;
-            padding: 15px;
-            margin-bottom: 20px;
+        .ascii-nfo {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #0d0d0d;
+            color: #15f405;
+            text-shadow: 0 0 2px rgba(21, 244, 5, 0.5);
+            line-height: 1.15;
+            letter-spacing: -0.5px;
+        }
+        /* Custom scrollbar to match retro terminal look */
+        .ascii-nfo::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        .ascii-nfo::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+        .ascii-nfo::-webkit-scrollbar-thumb {
+            background: #444;
             border-radius: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
         }
-
-        .btn-download {
-            background: linear-gradient(to bottom, #5cb85c, #4cae4c);
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            font-weight: bold;
-            font-size: 14px;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        /* File explorer hover transitions */
+        .file-row:hover {
+            background-color: #f1f5f9;
         }
-
-        .btn-download:hover {
-            background: #449d44;
+        /* uTorrent Simulator styling */
+        .utorrent-client {
+            background-color: #f3f3f3;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            border: 1px solid #a0a0a0;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
         }
-
-        .torrent-details {
-            display: grid;
-            grid-template-columns: 250px 1fr;
-            gap: 20px;
+        .utorrent-header {
+            background: linear-gradient(to bottom, #e3f2fd 0%, #bbdefb 100%);
+            border-bottom: 1px solid #90caf9;
         }
-
-        @media (max-width: 768px) {
-            .torrent-details {
-                grid-template-columns: 1fr;
-            }
+        .utorrent-sidebar {
+            background-color: #ffffff;
+            border-right: 1px solid #d0d0d0;
         }
-
-        .cover-art img {
-            width: 100%;
-            max-width: 230px;
-            border: 4px solid #333;
-            border-radius: 3px;
+        .utorrent-table th {
+            background: linear-gradient(to bottom, #f5f5f5 0%, #e0e0e0 100%);
+            border-right: 1px solid #c0c0c0;
+            border-bottom: 1px solid #b0b0b0;
         }
-
-        .info-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
+        /* Bounce Animation for Seed Count Pulse */
+        @keyframes pulse-subtle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
         }
-
-        .info-table td {
-            padding: 6px;
-            border-bottom: 1px solid #333;
-            vertical-align: top;
-        }
-
-        .info-table td.label {
-            font-weight: bold;
-            color: #999;
-            width: 120px;
-        }
-
-        .stats-badge {
-            display: inline-block;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-weight: bold;
-            font-size: 12px;
-        }
-
-        .seeders { background-color: #2e4d2e; color: #66ff66; }
-        .leechers { background-color: #4d2e2e; color: #ff6666; }
-
-        .tabs {
-            margin-top: 30px;
-            border-bottom: 1px solid #444;
-        }
-
-        .tab {
-            display: inline-block;
-            padding: 8px 16px;
-            background-color: #2d2d2d;
-            border: 1px solid #444;
-            border-bottom: none;
-            cursor: pointer;
-            color: #aaa;
-            margin-right: 5px;
-            border-top-left-radius: 4px;
-            border-top-right-radius: 4px;
-        }
-
-        .tab.active {
-            background-color: #222;
-            color: #fff;
-            font-weight: bold;
-            border-bottom: 1px solid #222;
-            margin-bottom: -1px;
-        }
-
-        .tab-content {
-            padding: 20px 0;
-        }
-
-        .nfo-viewer {
-            background-color: #000;
-            color: #00ff00;
-            font-family: "Courier New", Courier, monospace;
-            padding: 15px;
-            border: 1px solid #333;
-            white-space: pre-wrap;
-            overflow-x: auto;
-            font-size: 12px;
-            line-height: 1.2;
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: #666;
-            font-size: 11px;
-            border-top: 1px solid #333;
-            margin-top: 40px;
+        .pulse-seeds {
+            animation: pulse-subtle 2s infinite ease-in-out;
         }
     </style>
 </head>
-<body>
+<body class="min-h-screen flex flex-col antialiased">
 
-<header>
-    <div class="logo">Bits&<span>Bytes</span></div>
-    <nav>
-        <a href="#">Browse</a>
-        <a href="#" class="active">Torrents</a>
-        <a href="#">Upload</a>
-        <a href="#">Forums</a>
-        <a href="#">Rules</a>
-    </nav>
-</header>
-
-<div class="container">
-    <h1 class="torrent-title">Star Wars: The Complete Saga (BD50, 1977-2005, Disc 2) BluRay 1080p AVC DTS-HD MA 6.1-GALAXY</h1>
-    <div class="date-row">
-        <strong>Uploaded:</strong> September 16, 2011 09:14:32 UTC &nbsp;|&nbsp; 
-        <strong>By:</strong> <span style="color: #ff9900; font-weight: bold;">Skywalker99</span> &nbsp;|&nbsp;
-        <strong>Type:</strong> Video - Video - Blu-ray/BD50
-    </div>
-
-    <div class="download-box">
-        <div>
-            <strong style="font-size: 14px; color: #fff;">Download Torrent File</strong><br>
-            <span style="font-size: 11px; color: #aaa;">Hash: 8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c</span>
+    <!-- WAYBACK MACHINE HEADER (Internet Archive September 16, 2011) -->
+    <div class="wayback-gradient text-white text-xs px-3 py-2 flex flex-wrap items-center justify-between border-b border-black select-none">
+        <div class="flex items-center space-x-3 mb-2 sm:mb-0">
+            <a href="https://web.archive.org" target="_blank" class="flex items-center space-x-1.5 opacity-90 hover:opacity-100 transition-opacity">
+                <img src="https://web.archive.org/images/wayback-logo-100.png" alt="Wayback Machine" class="h-6 filter brightness-110">
+            </a>
+            <span class="text-gray-400">|</span>
+            <div class="flex items-center space-x-2">
+                <span class="text-yellow-400 font-bold">ARCHIVED PAGE</span>
+                <span class="text-gray-300">September 16, 2011</span>
+            </div>
         </div>
-        <a href="#" class="btn-download" id="dl-btn">▼ DOWNLOAD .TORRENT</a>
-    </div>
-
-    <div class="torrent-details">
-        <div class="cover-art">
-            <img src="https://images.static-bluray.com/movies/covers/14903_slip.jpg" alt="Star Wars The Complete Saga Box Art">
-        </div>
-        <div>
-            <table class="info-table">
-                <tr>
-                    <td class="label">Size:</td>
-                    <td>45.82 GB (49,201,348,116 bytes)</td>
-                </tr>
-                <tr>
-                    <td class="label">Content:</td>
-                    <td><strong>Disc 2: <em>Star Wars: Episode II – Attack of the Clones</em></strong><br>Includes Movie, Audio Commentaries, and Archival Commentary.</td>
-                </tr>
-                <tr>
-                    <td class="label">Video Specs:</td>
-                    <td>MPEG-4 AVC Video / 1080p / 23.976 fps / 16:9 / High Profile 4.1</td>
-                </tr>
-                <tr>
-                    <td class="label">Audio Specs:</td>
-                    <td>English DTS-HD Master Audio 6.1 / 48 kHz / 24-bit<br>French DTS Audio 5.1<br>Spanish Dolby Digital 5.1<br>Portuguese Dolby Digital 5.1</td>
-                </tr>
-                <tr>
-                    <td class="label">Subtitles:</td>
-                    <td>English SDH, French, Spanish, Portuguese</td>
-                </tr>
-                <tr>
-                    <td class="label">Peers:</td>
-                    <td>
-                        <span class="stats-badge seeders">984 seeders</span> &nbsp; 
-                        <span class="stats-badge leechers">312 leechers</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="label">Completed:</td>
-                    <td>523 times</td>
-                </tr>
-            </table>
-
-            <p style="line-height: 1.5; color: #ccc;">
-                <strong>Release Notes:</strong> Continuing the street day push! This is the untouched 1:1 BD50 release of Disc 2 from the newly released 9-Disc Box Set <em>Star Wars: The Complete Saga</em> (Dropped today, September 16, 2011). This disc contains <em>Episode II – Attack of the Clones</em> in gorgeous high definition, complete with all its commentary tracks. Get your high-speed connections ready and remember to help seed the swarm!
-            </p>
-        </div>
-    </div>
-
-    <div class="tabs">
-        <div class="tab active" onclick="switchTab('nfo')">NFO File</div>
-        <div class="tab" onclick="switchTab('files')">File List (3)</div>
-    </div>
-
-    <div class="tab-content" id="tab-nfo">
-        <div class="nfo-viewer">
-*******************************************************************************
-  Star.Wars.The.Complete.Saga.1977-2005.Disc2.BD50.1080p.AVC.DTS-HD.MA.6.1-GALAXY
-*******************************************************************************
-
-[RELEASE INFORMATION]
-- RELEASE DATE.......: 2011-09-16
-- THEATRE DATE.......: 2002-05-16 (Episode II)
-- RUN TIME...........: 2:22:26
-- SIZE...............: 45.82 GB
-- VIDEO CODEC........: AVC
-- RESOLUTION.........: 1920x1080
-- FRAME RATE.........: 23.976 fps
-- AUDIO..............: English DTS-HD Master Audio 6.1 @ 48khz 24-bit
-                       French (Canadian) Dolby Digital 5.1
-                       French DTS 5.1
-                       Spanish Dolby Digital 5.1
-                       Portuguese Dolby Digital 5.1
-- SUBTITLES..........: English SDH, French, Spanish, Portuguese
-- SOURCE.............: Retail Blu-ray Region A (US)
-
-[NOTES]
-Untouched BD50 structure. Perfect 1:1 backup. 
-May the Force be with you. Please SEED!
-        </div>
-    </div>
-
-    <div class="tab-content" id="tab-files" style="display:none;">
-        <table class="info-table">
-            <tr style="background-color: #2a2a2a; font-weight: bold;">
-                <td>File Name</td>
-                <td style="width: 120px; text-align: right;">Size</td>
-            </tr>
-            <tr>
-                <td>ATTACK_OF_THE_CLONES/BDMV/STREAM/00001.m2ts</td>
-                <td style="text-align: right;">37.1 GB</td>
-            </tr>
-            <tr>
-                <td>ATTACK_OF_THE_CLONES/ (Other Assets & Audio Tracks)</td>
-                <td style="text-align: right;">8.72 GB</td>
-            </tr>
-            <tr>
-                <td>galaxy-sw-disc2.nfo</td>
-                <td style="text-align: right;">1.2 KB</td>
-            </tr>
-        </table>
-    </div>
-
-</div>
-
-<footer>
-    &copy; 2011 Bits&Bytes Torrent Tracker. For archival purposes only. Standard Disclaimer Applies.
-</footer>
-
-<script>
-    function switchTab(tabName) {
-        // Toggle tab highlights
-        const tabs = document.querySelectorAll('.tab');
-        tabs.forEach(tab => tab.classList.remove('active'));
         
-        // Toggle visibility
-        document.getElementById('tab-nfo').style.display = 'none';
-        document.getElementById('tab-files').style.display = 'none';
+        <div class="flex items-center space-x-4">
+            <div class="bg-black/40 px-3 py-1 rounded border border-gray-600 flex items-center space-x-2">
+                <span class="text-gray-400">URL:</span>
+                <span class="text-emerald-400 font-mono text-[11px] select-all truncate max-w-xs md:max-w-md">http://torrents.com/torrent/star-wars-complete-saga-bd50-disc-2/</span>
+            </div>
+            <div class="hidden lg:flex items-center space-x-2 text-[10px] text-gray-400">
+                <span>1 capture</span>
+                <span class="text-gray-500">•</span>
+                <span>16 Sep 11 - 16 Sep 11</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN TORRENTS.COM HEADER -->
+    <header class="header-gradient text-white">
+        <!-- Top bar utility row -->
+        <div class="max-w-7xl mx-auto px-4 py-2 flex justify-between items-center text-xs opacity-90 border-b border-blue-900/40">
+            <div class="flex items-center space-x-4">
+                <span class="text-blue-200">Locale: <strong class="text-white">en-US</strong></span>
+                <span>•</span>
+                <span class="hidden sm:inline text-blue-200">Torrents Index: <strong class="text-white">14,249,102</strong></span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="#" onclick="showRetroToast('Login system offline on archived snapshots.')" class="hover:underline hover:text-blue-200">Login</a>
+                <span>|</span>
+                <a href="#" onclick="showRetroToast('Registrations locked for September 2011 index.')" class="hover:underline hover:text-blue-200">Register</a>
+                <span>|</span>
+                <a href="#" class="hover:underline text-yellow-400 font-bold flex items-center"><i class="fa fa-star mr-1"></i>Go Premium</a>
+            </div>
+        </div>
+
+        <!-- Main site identity and search bar -->
+        <div class="max-w-7xl mx-auto px-4 py-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center space-x-3">
+                <!-- Retro Logo -->
+                <div class="flex items-baseline select-none">
+                    <span class="text-3xl font-extrabold tracking-tight text-white drop-shadow-md">torrents</span>
+                    <span class="text-3xl font-light text-emerald-400">.com</span>
+                </div>
+                <div class="hidden lg:block border-l border-blue-800 pl-3">
+                    <p class="text-[10px] text-blue-300 uppercase tracking-widest font-bold">The Torrent Search Engine</p>
+                    <p class="text-[9px] text-emerald-300">Clean. Verified. Fast.</p>
+                </div>
+            </div>
+
+            <!-- Search bar with classic 2011 styling -->
+            <div class="w-full md:max-w-xl">
+                <form onsubmit="handleSearch(event)" class="flex shadow-md">
+                    <div class="relative flex-grow">
+                        <input type="text" id="searchInput" placeholder="Search millions of torrents..." value="Star Wars The Complete Saga BD50 Disc 2" class="w-full px-4 py-2.5 text-black rounded-l border border-r-0 border-blue-900 focus:outline-none focus:ring-2 focus:ring-emerald-400 text-sm">
+                        <span class="absolute right-3 top-3 text-gray-400 text-xs hidden sm:inline">SafeSearch Active</span>
+                    </div>
+                    <button type="submit" class="btn-green-gradient text-white px-6 py-2.5 font-bold rounded-r text-sm transition-all flex items-center space-x-2">
+                        <i class="fa fa-search"></i>
+                        <span>SEARCH</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Category Horizontal bar -->
+        <nav class="bg-[#0b2f4c] border-t border-b border-blue-900/70">
+            <div class="max-w-7xl mx-auto px-2 overflow-x-auto flex space-x-1 py-1">
+                <a href="#" class="px-3 py-1.5 rounded text-xs font-semibold hover:bg-blue-900/50 transition-colors text-blue-200 flex items-center space-x-1.5 shrink-0"><i class="fa fa-home"></i> <span>Home</span></a>
+                <a href="#" class="px-3 py-1.5 rounded text-xs font-semibold bg-blue-950/80 text-white flex items-center space-x-1.5 shrink-0"><i class="fa fa-film text-emerald-400"></i> <span>Movies</span></a>
+                <a href="#" class="px-3 py-1.5 rounded text-xs font-semibold hover:bg-blue-900/50 text-blue-200 flex items-center space-x-1.5 shrink-0"><i class="fa fa-television"></i> <span>TV Shows</span></a>
+                <a href="#" class="px-3 py-1.5 rounded text-xs font-semibold hover:bg-blue-900/50 text-blue-200 flex items-center space-x-1.5 shrink-0"><i class="fa fa-music"></i> <span>Music</span></a>
+                <a href="#" class="px-3 py-1.5 rounded text-xs font-semibold hover:bg-blue-900/50 text-blue-200 flex items-center space-x-1.5 shrink-0"><i class="fa fa-gamepad"></i> <span>Games</span></a>
+                <a href="#" class="px-3 py-1.5 rounded text-xs font-semibold hover:bg-blue-900/50 text-blue-200 flex items-center space-x-1.5 shrink-0"><i class="fa fa-laptop"></i> <span>Applications</span></a>
+                <a href="#" class="px-3 py-1.5 rounded text-xs font-semibold hover:bg-blue-900/50 text-blue-200 flex items-center space-x-1.5 shrink-0"><i class="fa fa-book"></i> <span>Books</span></a>
+                <a href="#" class="px-3 py-1.5 rounded text-xs font-semibold hover:bg-blue-900/50 text-blue-200 flex items-center space-x-1.5 shrink-0 text-emerald-400"><i class="fa fa-upload"></i> <span>Upload Torrent</span></a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- CONTENT WRAPPER -->
+    <main class="flex-grow max-w-7xl mx-auto w-full px-4 py-6">
         
-        if (tabName === 'nfo') {
-            tabs[0].classList.add('active');
-            document.getElementById('tab-nfo').style.display = 'block';
-        } else {
-            tabs[1].classList.add('active');
-            document.getElementById('tab-files').style.display = 'block';
+        <!-- Breadcrumbs -->
+        <div class="text-xs text-slate-500 mb-4 flex items-center space-x-2">
+            <a href="#" class="hover:underline">Home</a>
+            <i class="fa fa-angle-right"></i>
+            <a href="#" class="hover:underline">Movies</a>
+            <i class="fa fa-angle-right"></i>
+            <a href="#" class="hover:underline">Blu-Ray Untouched</a>
+            <i class="fa fa-angle-right"></i>
+            <span class="text-slate-800 font-semibold truncate">Star Wars: The Complete Saga (BD50, 1977-2005, Disc 2)</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            
+            <!-- LEFT MAIN COL -->
+            <div class="lg:col-span-8 flex flex-col space-y-6">
+                
+                <!-- Main Torrent Header Card -->
+                <div class="bg-white rounded border border-slate-200 shadow-sm overflow-hidden">
+                    <div class="torrent-card-header px-4 py-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        <div>
+                            <span class="inline-block bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded mb-1 uppercase tracking-wide">
+                                Verified Untouched BD50
+                            </span>
+                            <h1 class="text-lg md:text-xl font-bold text-slate-900 leading-snug">
+                                Star Wars: The Complete Saga (BD50, 1977-2005, Disc 2)
+                            </h1>
+                            <p class="text-xs text-slate-500 mt-1">
+                                Added on <span class="font-semibold text-slate-700">September 16, 2011 08:32 AM</span> by <span class="text-blue-600 font-semibold hover:underline cursor-pointer">SW_Saga_Uploader</span>
+                            </p>
+                        </div>
+                        <div class="flex items-center space-x-2 shrink-0">
+                            <span class="text-xs text-slate-500">Security check:</span>
+                            <span class="inline-flex items-center text-xs bg-green-100 text-green-800 font-bold px-2 py-1 rounded">
+                                <i class="fa fa-check-shield text-green-600 mr-1"></i> Clean (100%)
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Direct Action / Download Buttons Area (Nostalgic 2011 Layout) -->
+                    <div class="p-4 bg-slate-50 border-b border-slate-100 flex flex-col sm:flex-row gap-3">
+                        
+                        <!-- Primary Retro Green Torrent download button -->
+                        <button onclick="launchTorrentClient()" class="flex-grow btn-green-gradient text-white font-bold py-3.5 px-4 rounded shadow-md flex items-center justify-center space-x-3 text-sm md:text-base">
+                            <i class="fa fa-download text-lg animate-bounce"></i>
+                            <div class="text-left">
+                                <span class="block text-[15px] font-extrabold leading-none">DOWNLOAD TORRENT</span>
+                                <span class="block text-[10px] text-emerald-100 font-normal mt-1 leading-none">Direct file with client setup (.torrent)</span>
+                            </div>
+                        </button>
+
+                        <!-- Magnet Link Button -->
+                        <button onclick="copyMagnet()" class="btn-blue-gradient text-white font-bold py-3.5 px-4 rounded shadow-md flex items-center justify-center space-x-3 text-sm">
+                            <i class="fa fa-magnet text-lg"></i>
+                            <div class="text-left">
+                                <span class="block text-xs font-bold leading-none">MAGNET DOWNLOAD</span>
+                                <span class="block text-[9px] text-blue-100 font-normal mt-1 leading-none">Instant hash stream (no file needed)</span>
+                            </div>
+                        </button>
+
+                        <!-- Premium Sponsor Ad Link -->
+                        <a href="#" onclick="showRetroToast('Redirecting to High-Speed Usenet Sponsor Download portal... (Mock)')" class="btn-gray-gradient font-bold py-3.5 px-4 rounded shadow-sm flex items-center justify-center space-x-2 text-sm text-center">
+                            <i class="fa fa-flash text-orange-500"></i>
+                            <div class="text-left">
+                                <span class="block text-xs font-bold leading-none">DIRECT FAST DOWNLOAD</span>
+                                <span class="block text-[9px] text-red-600 font-semibold mt-1 leading-none">Anonymized Sponsor Link (No torrenting)</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Details Tab navigation -->
+                    <div class="bg-slate-100 px-4 pt-3 flex space-x-1 border-b border-slate-200">
+                        <button class="px-4 py-2 text-xs font-bold bg-white text-slate-800 border border-b-0 border-slate-200 rounded-t">Description & Cover</button>
+                        <button onclick="scrollToElement('files-section')" class="px-4 py-2 text-xs font-semibold text-slate-600 hover:text-slate-950 transition-colors">Files List (13)</button>
+                        <button onclick="scrollToElement('comments-section')" class="px-4 py-2 text-xs font-semibold text-slate-600 hover:text-slate-950 transition-colors">Comments (10)</button>
+                    </div>
+
+                    <!-- Main Torrent Description / Info Body -->
+                    <div class="p-5 flex flex-col md:flex-row gap-6">
+                        <!-- Left Side: Cover Image -->
+                        <div class="w-full md:w-1/3 shrink-0">
+                            <div class="bg-slate-100 p-2 rounded border border-slate-300 shadow-sm relative group">
+                                <img src="https://images.static-bluray.com/movies/covers/14903_slip.jpg" alt="Star Wars The Complete Saga Blu-ray cover" class="w-full h-auto rounded object-cover" onerror="this.onerror=null; this.src='https://images.static-bluray.com/movies/covers/14903_slip.jpg';">
+                                <span class="absolute top-4 left-4 bg-blue-600 text-white text-[9px] font-bold px-2 py-0.5 rounded shadow">Official Blu-Ray Cover</span>
+                                <p class="text-center text-[10px] text-slate-500 mt-2 font-mono">14903_slip.jpg</p>
+                            </div>
+                        </div>
+
+                        <!-- Right Side: Metadata / Movie info -->
+                        <div class="flex-grow space-y-4">
+                            <div>
+                                <h2 class="text-base font-bold text-slate-900 border-b border-slate-100 pb-1">SAGA OVERVIEW & SPECIFICATIONS</h2>
+                                <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                                    Released on September 16, 2011, this untouched <strong>BD50 copy of Disc 2</strong> contains the complete uncompressed digital master of <strong class="text-slate-800">Episode II: Attack of the Clones (2002)</strong>.
+                                    This classic release marks the first-ever purely digital production movie of the franchise preserved in high-bitrate VC-1/AVC codecs directly from the native master format.
+                                </p>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4 text-xs">
+                                <div class="bg-slate-50 p-2 rounded border border-slate-100">
+                                    <span class="text-slate-500 block">Codec / Encoding:</span>
+                                    <strong class="text-slate-800">1080p AVC MPEG-4 (High Profile)</strong>
+                                </div>
+                                <div class="bg-slate-50 p-2 rounded border border-slate-100">
+                                    <span class="text-slate-500 block">Audio Tracks:</span>
+                                    <strong class="text-slate-800">English DTS-HD Master Audio 6.1</strong>
+                                </div>
+                                <div class="bg-slate-50 p-2 rounded border border-slate-100">
+                                    <span class="text-slate-500 block">Subtitles:</span>
+                                    <strong class="text-slate-800">English SDH, Spanish, French</strong>
+                                </div>
+                                <div class="bg-slate-50 p-2 rounded border border-slate-100">
+                                    <span class="text-slate-500 block">Untouched Features:</span>
+                                    <strong class="text-slate-800">Complete BD-Live, Interactive Menus</strong>
+                                </div>
+                            </div>
+
+                            <!-- Interactive Disc Content highlight -->
+                            <div class="bg-emerald-50/50 border border-emerald-100 p-3.5 rounded">
+                                <h4 class="text-xs font-bold text-emerald-900 flex items-center mb-1">
+                                    <i class="fa fa-info-circle mr-1.5 text-emerald-600"></i> Disc 2 Episode II Notes:
+                                </h4>
+                                <ul class="list-disc list-inside text-[11px] text-emerald-850 space-y-1 leading-relaxed">
+                                    <li>Native digital-to-digital transfer captures pure image specifications directly from the Sony CineAlta HDW-F900 recordings.</li>
+                                    <li>Audio contains the ground-shaking Seismic Charge deep frequencies in lossless DTS-HD 6.1 glory.</li>
+                                    <li>Includes all audio commentaries by George Lucas, Rick McCallum, Ben Burtt, Rob Coleman, and the digital design cast.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive NFO File Viewer -->
+                <div class="bg-white rounded border border-slate-200 shadow-sm overflow-hidden">
+                    <div class="torrent-card-header px-4 py-3 flex justify-between items-center">
+                        <span class="text-xs font-bold text-slate-800 uppercase flex items-center">
+                            <i class="fa fa-file-code-o mr-2 text-slate-500"></i> Star_Wars_Complete_Saga_Disc2.nfo
+                        </span>
+                        <button onclick="copyNFO()" class="text-xs text-blue-600 hover:text-blue-800 flex items-center">
+                            <i class="fa fa-copy mr-1"></i> Copy NFO text
+                        </button>
+                    </div>
+                    <div class="p-4 bg-neutral-900">
+                        <pre id="nfoContent" class="ascii-nfo text-[10px] p-3 rounded overflow-x-auto max-h-72 border border-neutral-800 select-all whitespace-pre">
+████████╗ ██████╗ ██████╗ ██████╗ ███████╗███╗   ██╗████████╗███████╗
+╚══██╔══╝██╔═══██╗██╔══██╗██╔══██╗██╔════╝████╗  ██║╚══██╔══╝██╔════╝
+   ██║   ██║   ██║██████╔╝██████╔╝█████╗  ██╔██╗ ██║   ██║   ███████╗
+   ██║   ██║   ██║██╔══██╗██╔══██╗██╔══╝  ██║╚██╗██║   ██║   ╚════██║
+   ██║   ╚██████╔╝██║  ██║██║  ██║███████╗██║ ╚████║   ██║   ███████║
+   ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚══════╝
+
+RELEASE DETAILS:
+-------------------------------------------------------------------------
+Release Name...: Star.Wars.The.Complete.Saga.1977-2005.Disc2.BD50.1080p.BluRay.AVC.DTS-HD.MA.6.1-GALAXY
+Release Date...: 16 September 2011 (Official Store Launch Release Day!)
+Source.........: RETAIL US BLU-RAY (Untouched ISO Extraction)
+Disc Size......: 46.12 GB (49,521,444,820 bytes) - Double Layer BD50
+Video Codec....: AVC MPEG-4 / High Profile
+Framerate......: 23.976 fps
+Resolution.....: 1080p True-HD
+Audio..........: English DTS-HD Master Audio 6.1 (Lossless Core)
+                 French Dolby Digital 5.1 (448 kbps)
+                 Spanish Dolby Digital 5.1 (448 kbps)
+                 Portuguese Dolby Digital 5.1 (448 kbps)
+Subtitles......: English SDH, French, Spanish, Portuguese
+
+DISC CONTENTS:
+-------------------------------------------------------------------------
+[Disc 2]: Star Wars: Episode II – Attack of the Clones (2002)
+- Run time: 2:22:26
+- Direct-to-digital sensor transfer (Zero film-grain, maximum fidelity)
+- Full audio commentary tracks
+
+HOW TO PLAY:
+-------------------------------------------------------------------------
+1. Mount using Virtual CloneDrive or Daemon Tools.
+2. Play with PowerDVD 11, TotalMedia Theatre, or VLC Player (BD-J menu support).
+3. Do not modify folder structures to preserve BD50 layout integrity.
+-------------------------------------------------------------------------
+Enjoy the release! Seeding is loving. Keep this swarm alive!
+                        </pre>
+                    </div>
+                </div>
+
+                <!-- File Directory Explorer Section -->
+                <div id="files-section" class="bg-white rounded border border-slate-200 shadow-sm overflow-hidden scroll-mt-6">
+                    <div class="torrent-card-header px-4 py-3 flex justify-between items-center">
+                        <span class="text-xs font-bold text-slate-800 uppercase flex items-center">
+                            <i class="fa fa-folder-open-o mr-2 text-slate-500"></i> Untouched File Directory Tree (BD50 Structure)
+                        </span>
+                        <span class="text-xs text-slate-500">
+                            Total Files: <strong>13</strong> | Click folders to toggle view
+                        </span>
+                    </div>
+                    
+                    <div class="p-3 bg-slate-50 border-b border-slate-200 text-xs text-slate-600 font-mono">
+                        <i class="fa fa-cube text-blue-500 mr-1.5"></i> /Star_Wars_Complete_Saga_Disc2_BD50/
+                    </div>
+
+                    <!-- File Explorer Grid -->
+                    <div class="divide-y divide-slate-100 text-xs font-mono select-none">
+                        
+                        <!-- Root Level NFO -->
+                        <div class="file-row p-3 flex justify-between items-center pl-6">
+                            <div class="flex items-center space-x-2">
+                                <i class="fa fa-file-text-o text-slate-500"></i>
+                                <span class="text-slate-800">Star_Wars_Complete_Saga_Disc2.nfo</span>
+                            </div>
+                            <span class="text-slate-500 text-[11px]">19.4 KB</span>
+                        </div>
+
+                        <!-- BDMV Directory Node -->
+                        <div>
+                            <div onclick="toggleDirectory('bdmvDir')" class="file-row p-3 flex justify-between items-center pl-6 cursor-pointer bg-slate-50/50">
+                                <div class="flex items-center space-x-2">
+                                    <i id="bdmvDir_icon" class="fa fa-folder-open text-amber-500"></i>
+                                    <span class="text-slate-900 font-bold">BDMV/</span>
+                                </div>
+                                <span class="text-slate-500 text-[11px] font-semibold">Folder (10 files)</span>
+                            </div>
+
+                            <!-- BDMV Children -->
+                            <div id="bdmvDir_children" class="bg-white">
+                                <!-- index.bdmv -->
+                                <div class="file-row p-3 flex justify-between items-center pl-12 border-b border-slate-100">
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fa fa-file-code-o text-slate-400"></i>
+                                        <span class="text-slate-800">index.bdmv</span>
+                                    </div>
+                                    <span class="text-slate-500 text-[11px]">128 bytes</span>
+                                </div>
+
+                                <!-- MovieObject.bdmv -->
+                                <div class="file-row p-3 flex justify-between items-center pl-12 border-b border-slate-100">
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fa fa-file-code-o text-slate-400"></i>
+                                        <span class="text-slate-800">MovieObject.bdmv</span>
+                                    </div>
+                                    <span class="text-slate-500 text-[11px]">256 bytes</span>
+                                </div>
+
+                                <!-- CLIPINF Folder -->
+                                <div>
+                                    <div onclick="toggleDirectory('clipinfDir')" class="file-row p-3 flex justify-between items-center pl-12 cursor-pointer border-b border-slate-100 bg-slate-50/20">
+                                        <div class="flex items-center space-x-2">
+                                            <i id="clipinfDir_icon" class="fa fa-folder-open text-amber-400"></i>
+                                            <span class="text-slate-700 font-semibold">CLIPINF/</span>
+                                        </div>
+                                        <span class="text-slate-400 text-[10px]">Folder</span>
+                                    </div>
+                                    <div id="clipinfDir_children" class="pl-6 bg-slate-50/10">
+                                        <div class="file-row p-3 flex justify-between items-center pl-12 border-b border-slate-100">
+                                            <div class="flex items-center space-x-2">
+                                                <i class="fa fa-file-sound-o text-slate-400"></i>
+                                                <span class="text-slate-600">00001.clpi</span>
+                                            </div>
+                                            <span class="text-slate-500 text-[11px]">110 KB</span>
+                                        </div>
+                                        <div class="file-row p-3 flex justify-between items-center pl-12 border-b border-slate-100">
+                                            <div class="flex items-center space-x-2">
+                                                <i class="fa fa-file-sound-o text-slate-400"></i>
+                                                <span class="text-slate-600">00002.clpi</span>
+                                            </div>
+                                            <span class="text-slate-500 text-[11px]">92 KB</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- STREAM Folder (Actual big files) -->
+                                <div>
+                                    <div onclick="toggleDirectory('streamDir')" class="file-row p-3 flex justify-between items-center pl-12 cursor-pointer border-b border-slate-100 bg-slate-50/20">
+                                        <div class="flex items-center space-x-2">
+                                            <i id="streamDir_icon" class="fa fa-folder-open text-amber-400"></i>
+                                            <span class="text-slate-700 font-semibold">STREAM/</span>
+                                        </div>
+                                        <span class="text-slate-400 text-[10px]">Folder (Contains Video Streams)</span>
+                                    </div>
+                                    <div id="streamDir_children" class="pl-6 bg-slate-50/10">
+                                        <!-- Main feature stream -->
+                                        <div class="file-row p-3 flex justify-between items-center pl-12 border-b border-slate-100 bg-emerald-50/30">
+                                            <div class="flex items-center space-x-2">
+                                                <i class="fa fa-file-movie-o text-emerald-600"></i>
+                                                <span class="text-emerald-900 font-semibold">00001.m2ts (Main Movie: Ep II)</span>
+                                            </div>
+                                            <span class="text-emerald-700 text-[11px] font-bold">43.52 GB</span>
+                                        </div>
+                                        <!-- commentary stream -->
+                                        <div class="file-row p-3 flex justify-between items-center pl-12 border-b border-slate-100">
+                                            <div class="flex items-center space-x-2">
+                                                <i class="fa fa-file-movie-o text-slate-400"></i>
+                                                <span class="text-slate-600">00002.m2ts (Commentaries & Extras)</span>
+                                            </div>
+                                            <span class="text-slate-500 text-[11px]">1.95 GB</span>
+                                        </div>
+                                        <!-- menu loop -->
+                                        <div class="file-row p-3 flex justify-between items-center pl-12 border-b border-slate-100">
+                                            <div class="flex items-center space-x-2">
+                                                <i class="fa fa-file-movie-o text-slate-400"></i>
+                                                <span class="text-slate-600">00003.m2ts (Menu Background Loops)</span>
+                                            </div>
+                                            <span class="text-slate-500 text-[11px]">640.2 MB</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- PLAYLIST Folder -->
+                                <div class="file-row p-3 flex justify-between items-center pl-12 border-b border-slate-100">
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fa fa-file-text-o text-slate-400"></i>
+                                        <span class="text-slate-700">PLAYLIST/00001.mpls</span>
+                                    </div>
+                                    <span class="text-slate-500 text-[11px]">480 KB</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CERTIFICATE Directory Node -->
+                        <div>
+                            <div onclick="toggleDirectory('certDir')" class="file-row p-3 flex justify-between items-center pl-6 cursor-pointer bg-slate-50/50">
+                                <div class="flex items-center space-x-2">
+                                    <i id="certDir_icon" class="fa fa-folder-open text-amber-500"></i>
+                                    <span class="text-slate-900 font-bold">CERTIFICATE/</span>
+                                </div>
+                                <span class="text-slate-500 text-[11px] font-semibold">Folder (2 files)</span>
+                            </div>
+                            <div id="certDir_children" class="bg-white">
+                                <div class="file-row p-3 flex justify-between items-center pl-12 border-b border-slate-100">
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fa fa-file-code-o text-slate-400"></i>
+                                        <span class="text-slate-800">id.bdmv</span>
+                                    </div>
+                                    <span class="text-slate-500 text-[11px]">4 KB</span>
+                                </div>
+                                <div class="file-row p-3 flex justify-between items-center pl-12">
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fa fa-file-code-o text-slate-400"></i>
+                                        <span class="text-slate-800">BACKUP/id.bdmv</span>
+                                    </div>
+                                    <span class="text-slate-500 text-[11px]">4 KB</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Swarm / Torrent Comments Section -->
+                <div id="comments-section" class="bg-white rounded border border-slate-200 shadow-sm overflow-hidden scroll-mt-6">
+                    <div class="torrent-card-header px-4 py-3 flex justify-between items-center">
+                        <span class="text-xs font-bold text-slate-800 uppercase flex items-center">
+                            <i class="fa fa-comments mr-2 text-slate-500"></i> Live Swarm Comments (September 16, 2011)
+                        </span>
+                        <span id="commentCount" class="text-xs text-blue-700 font-bold">10 comments</span>
+                    </div>
+
+                    <!-- Post a Comment Form -->
+                    <div class="p-4 bg-slate-50 border-b border-slate-100">
+                        <h4 class="text-xs font-bold text-slate-700 mb-2">Join the Swarm Discussion:</h4>
+                        <form onsubmit="postComment(event)" class="space-y-3">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <input type="text" id="commentAuthor" placeholder="Username (e.g. PadmeLover)" required class="text-xs p-2 rounded border border-slate-300 focus:outline-none focus:ring-1 focus:ring-blue-500">
+                                <input type="text" id="commentAvatar" placeholder="Custom Tag (e.g. Member, Seeder)" class="text-xs p-2 rounded border border-slate-300 focus:outline-none focus:ring-1 focus:ring-blue-500">
+                            </div>
+                            <textarea id="commentText" rows="2" placeholder="Write comment... Remember: seed after downloading!" required class="w-full text-xs p-2.5 rounded border border-slate-300 focus:outline-none focus:ring-1 focus:ring-blue-500"></textarea>
+                            <div class="flex justify-between items-center">
+                                <div class="text-[10px] text-slate-500">Your timestamp will align with snapshot (Sep 16, 2011)</div>
+                                <button type="submit" class="btn-blue-gradient text-white text-xs px-4 py-1.5 rounded font-bold shadow-sm">
+                                    POST COMMENT
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Comments List -->
+                    <div id="commentsList" class="divide-y divide-slate-100">
+                        
+                        <!-- Comment 1 -->
+                        <div class="p-4 text-xs">
+                            <div class="flex justify-between items-start">
+                                <div class="flex items-center space-x-2">
+                                    <strong class="text-slate-900 font-bold">Padme_Fan_2002</strong>
+                                    <span class="bg-blue-100 text-blue-800 text-[9px] font-bold px-1.5 py-0.5 rounded">Seeder</span>
+                                </div>
+                                <span class="text-slate-400 text-[10px]">Sep 16, 2011 - 09:55 AM</span>
+                            </div>
+                            <p class="text-slate-700 mt-2 leading-relaxed">
+                                Episode II was shot entirely on early 1080p digital cameras (Sony F900). On Blu-Ray, the digital clarity is insane! No film grain at all, looks super clean. Thanks for uploading Disc 2 so quickly!
+                            </p>
+                        </div>
+
+                        <!-- Comment 2 -->
+                        <div class="p-4 text-xs">
+                            <div class="flex justify-between items-start">
+                                <div class="flex items-center space-x-2">
+                                    <strong class="text-emerald-700 font-bold">Watto_Seeder</strong>
+                                    <span class="bg-emerald-100 text-emerald-850 text-[9px] font-bold px-1.5 py-0.5 rounded">VIP</span>
+                                </div>
+                                <span class="text-slate-400 text-[10px]">Sep 16, 2011 - 10:42 AM</span>
+                            </div>
+                            <p class="text-slate-700 mt-2 leading-relaxed">
+                                The Arena scene with the Geonosian monsters in DTS-HD 6.1 is absolutely mind-blowing. My subwoofer is literally shaking the floor! Highly recommend everyone download this untouched copy rather than compressed rips.
+                            </p>
+                        </div>
+
+                        <!-- Comment 3 -->
+                        <div class="p-4 text-xs">
+                            <div class="flex justify-between items-start">
+                                <div class="flex items-center space-x-2">
+                                    <strong class="text-slate-900 font-bold">Jango_Fett_Rip</strong>
+                                    <span class="bg-slate-100 text-slate-600 text-[9px] px-1.5 py-0.5 rounded">Member</span>
+                                </div>
+                                <span class="text-slate-400 text-[10px]">Sep 16, 2011 - 11:20 AM</span>
+                            </div>
+                            <p class="text-slate-700 mt-2 leading-relaxed">
+                                Does this disc have the deleted scenes or is that only on the bonus discs (7-9)? Seed please! Stuck at 98.4% on my client but hanging in there.
+                            </p>
+                        </div>
+
+                        <!-- Comment 4 -->
+                        <div class="p-4 text-xs">
+                            <div class="flex justify-between items-start">
+                                <div class="flex items-center space-x-2">
+                                    <strong class="text-slate-900 font-bold">ObiWan_Kenobi</strong>
+                                    <span class="bg-slate-100 text-slate-600 text-[9px] px-1.5 py-0.5 rounded">Member</span>
+                                </div>
+                                <span class="text-slate-400 text-[10px]">Sep 16, 2011 - 12:02 PM</span>
+                            </div>
+                            <p class="text-slate-700 mt-2 leading-relaxed">
+                                The arena battle has incredible depth in high def. Seeding this untampered BD50 copy back on my server. May the force be with you!
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- RIGHT SIDEBAR -->
+            <div class="lg:col-span-4 flex flex-col space-y-6">
+                
+                <!-- Torrent Stats Widget -->
+                <div class="bg-white rounded border border-slate-200 shadow-sm overflow-hidden">
+                    <div class="torrent-card-header px-4 py-3">
+                        <h3 class="text-xs font-bold text-slate-800 uppercase flex items-center">
+                            <i class="fa fa-line-chart mr-2 text-slate-500"></i> Torrent Swarm Statistics
+                        </h3>
+                    </div>
+                    <div class="p-4 space-y-4">
+                        
+                        <!-- Seed/Leech Split -->
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="bg-emerald-50 border border-emerald-100 rounded p-3 text-center">
+                                <span class="text-xs text-emerald-600 block font-semibold">Seeders (S)</span>
+                                <strong id="sidebarSeeds" class="text-xl md:text-2xl font-black text-emerald-700 block pulse-seeds">10,853</strong>
+                                <span class="text-[9px] text-emerald-500 block mt-0.5">Active connections</span>
+                            </div>
+                            <div class="bg-rose-50 border border-rose-100 rounded p-3 text-center">
+                                <span class="text-xs text-rose-600 block font-semibold">Leechers (L)</span>
+                                <strong id="sidebarLeechers" class="text-xl md:text-2xl font-black text-rose-700 block">8,124</strong>
+                                <span class="text-[9px] text-rose-500 block mt-0.5">Downloading now</span>
+                            </div>
+                        </div>
+
+                        <!-- General Details table -->
+                        <table class="w-full text-xs text-slate-600">
+                            <tr class="border-b border-slate-100">
+                                <td class="py-2 text-slate-400">Torrent Health:</td>
+                                <td class="py-2 text-right text-emerald-600 font-bold">
+                                    <i class="fa fa-heartbeat mr-1"></i> Excellent
+                                </td>
+                            </tr>
+                            <tr class="border-b border-slate-100">
+                                <td class="py-2 text-slate-400">Total Completed:</td>
+                                <td class="py-2 text-right text-slate-800 font-bold">39,122 times</td>
+                            </tr>
+                            <tr class="border-b border-slate-100">
+                                <td class="py-2 text-slate-400">File Size:</td>
+                                <td class="py-2 text-right text-slate-800 font-bold">46.12 Gigabytes</td>
+                            </tr>
+                            <tr class="border-b border-slate-100">
+                                <td class="py-2 text-slate-400">Hash ID:</td>
+                                <td class="py-2 text-right font-mono text-[9px] text-slate-500 truncate max-w-[150px] cursor-pointer hover:text-blue-600" onclick="copyHash()" title="Click to Copy Hash">
+                                    8B7E3F17C95BBFFA531C2D8A412A45B6C89D12D4
+                                </td>
+                            </tr>
+                        </table>
+
+                        <!-- User Rating System -->
+                        <div class="pt-2 border-t border-slate-100">
+                            <div class="flex justify-between items-center text-xs text-slate-500">
+                                <span>User Star Rating:</span>
+                                <span id="ratingDisplay" class="font-bold text-slate-800">4.7 / 5.0</span>
+                            </div>
+                            <div class="flex items-center space-x-1.5 mt-2 justify-center" id="starContainer">
+                                <i onclick="rateTorrent(1)" class="fa fa-star text-yellow-400 text-lg cursor-pointer hover:scale-110 transition-transform"></i>
+                                <i onclick="rateTorrent(2)" class="fa fa-star text-yellow-400 text-lg cursor-pointer hover:scale-110 transition-transform"></i>
+                                <i onclick="rateTorrent(3)" class="fa fa-star text-yellow-400 text-lg cursor-pointer hover:scale-110 transition-transform"></i>
+                                <i onclick="rateTorrent(4)" class="fa fa-star text-yellow-400 text-lg cursor-pointer hover:scale-110 transition-transform"></i>
+                                <i onclick="rateTorrent(5)" class="fa fa-star text-slate-300 text-lg cursor-pointer hover:scale-110 transition-transform"></i>
+                            </div>
+                            <p class="text-center text-[10px] text-slate-400 mt-1" id="voteCount">Based on 318 user votes</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Classic September 2011 Advert / Banner -->
+                <div class="bg-gradient-to-br from-slate-900 to-slate-950 rounded border border-slate-800 p-4 shadow-md text-white flex flex-col justify-between space-y-4">
+                    <div class="flex justify-between items-start">
+                        <span class="text-[9px] bg-yellow-500 text-black px-1.5 py-0.2 rounded font-bold uppercase">Sponsor Advertisement</span>
+                        <i class="fa fa-times text-slate-500 cursor-pointer hover:text-white"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-black tracking-wide text-amber-400">PROTECT YOUR TORRENTING IN 2011!</h4>
+                        <p class="text-[10px] text-slate-300 mt-1 leading-relaxed">
+                            ISP throttle warning active. Encrypt your downloads with the premium <strong>FastVPN Proxy</strong>. No logs, high bandwidth, absolute safety!
+                        </p>
+                    </div>
+                    <button onclick="showRetroToast('Ad link redirected! Simulate safety with VPN connection (Mock).')" class="w-full bg-amber-500 hover:bg-amber-600 text-black text-xs font-bold py-2 rounded transition-colors uppercase">
+                        Secure Client Stream Now
+                    </button>
+                </div>
+
+                <!-- Related Saga Torrents Widget -->
+                <div class="bg-white rounded border border-slate-200 shadow-sm overflow-hidden">
+                    <div class="torrent-card-header px-4 py-3">
+                        <h3 class="text-xs font-bold text-slate-800 uppercase flex items-center">
+                            <i class="fa fa-link mr-2 text-slate-500"></i> Related Saga Uploads (Untouched)
+                        </h3>
+                    </div>
+                    <div class="divide-y divide-slate-100 text-xs">
+                        
+                        <!-- Related Item 1 (Disc 1) -->
+                        <div class="p-3 hover:bg-slate-50 transition-colors flex justify-between items-center gap-2">
+                            <div class="truncate">
+                                <a href="#" onclick="showRetroToast('Disc 1 represents Episode I: The Phantom Menace Untouched BD50.')" class="text-blue-600 font-semibold hover:underline block truncate">
+                                    Star Wars: The Complete Saga (BD50, Disc 1)
+                                </a>
+                                <span class="text-[10px] text-slate-400">Size: 44.64 GB • Movies / BD50</span>
+                            </div>
+                            <span class="text-xs font-bold text-emerald-600 shrink-0">S: 12.4k</span>
+                        </div>
+
+                        <!-- Related Item 2 (Disc 3) -->
+                        <div class="p-3 hover:bg-slate-50 transition-colors flex justify-between items-center gap-2">
+                            <div class="truncate">
+                                <a href="#" onclick="showRetroToast('Disc 3 represents Episode III: Revenge of the Sith Untouched BD50.')" class="text-blue-600 font-semibold hover:underline block truncate">
+                                    Star Wars: The Complete Saga (BD50, Disc 3)
+                                </a>
+                                <span class="text-[10px] text-slate-400">Size: 45.62 GB • Movies / BD50</span>
+                            </div>
+                            <span class="text-xs font-bold text-emerald-600 shrink-0">S: 5.2k</span>
+                        </div>
+
+                        <!-- Related Item 3 (Disc 4) -->
+                        <div class="p-3 hover:bg-slate-50 transition-colors flex justify-between items-center gap-2">
+                            <div class="truncate">
+                                <a href="#" onclick="showRetroToast('Disc 4 represents Episode IV: A New Hope Untouched BD50.')" class="text-blue-600 font-semibold hover:underline block truncate">
+                                    Star Wars: The Complete Saga (BD50, Disc 4)
+                                </a>
+                                <span class="text-[10px] text-slate-400">Size: 41.83 GB • Movies / BD50</span>
+                            </div>
+                            <span class="text-xs font-bold text-emerald-600 shrink-0">S: 6.8k</span>
+                        </div>
+
+                        <!-- Related Item 4 (Standard 720p YIFY Rip) -->
+                        <div class="p-3 hover:bg-slate-50 transition-colors flex justify-between items-center gap-2">
+                            <div class="truncate">
+                                <a href="#" onclick="showRetroToast('YIFY Rip representation of Episode II.')" class="text-blue-600 font-semibold hover:underline block truncate">
+                                    Star Wars: Episode II - Attack of the Clones (2002) 720p BRRip x264-YIFY
+                                </a>
+                                <span class="text-[10px] text-slate-400">Size: 999 MB • Movies / HD x264</span>
+                            </div>
+                            <span class="text-xs font-bold text-emerald-600 shrink-0">S: 15.1k</span>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- FOOTER AREA -->
+    <footer class="bg-slate-800 text-slate-400 text-xs py-8 border-t border-slate-900 mt-12">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div>
+                <div class="flex items-baseline mb-3">
+                    <span class="text-lg font-extrabold text-white">torrents</span>
+                    <span class="text-lg font-light text-emerald-400">.com</span>
+                </div>
+                <p class="text-slate-500 leading-relaxed text-[11px]">
+                    Torrents.com is an index & meta-search aggregator of torrent files from across the public peer-to-peer web. We do not host, store, or stream any content directly. 
+                </p>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-3">Disclaimer & Safety</h4>
+                <p class="text-slate-500 leading-relaxed text-[11px]">
+                    Please ensure download paths conform to local digital copyright and fair use mandates. Run local firewalls and check hash signatures prior to mounting ISO/BDMV structures.
+                </p>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-3">Snapshot Information</h4>
+                <p class="text-slate-500 leading-relaxed text-[11px]">
+                    Historical mirror captured on September 16, 2011 to celebrate the worldwide release day of Star Wars: The Complete Saga on Blu-Ray.
+                </p>
+                <p class="text-[10px] text-slate-600 mt-3 font-mono">
+                    Snapshot Engine v2.11 • UTC Offset en-US
+                </p>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 mt-8 pt-4 border-t border-slate-700/50 text-center text-[10px] text-slate-600">
+            &copy; 2011 Torrents.com. All rights preserved. Saved using the Wayback Machine engine.
+        </div>
+    </footer>
+
+
+    <!-- RETRO µTORRENT 2.2.1 DOWNLOAD SIMULATOR MODAL -->
+    <div id="utorrentModal" class="fixed inset-0 bg-black/65 flex items-center justify-center p-4 z-50 hidden select-none">
+        <div class="utorrent-client w-full max-w-4xl rounded shadow-2xl overflow-hidden flex flex-col text-xs text-slate-800">
+            
+            <!-- Window Title bar -->
+            <div class="utorrent-header px-3 py-2 flex justify-between items-center text-slate-700 font-semibold select-all">
+                <div class="flex items-center space-x-2">
+                    <div class="w-4 h-4 rounded-full bg-green-600 text-white flex items-center justify-center text-[10px] font-bold">µ</div>
+                    <span>µTorrent 2.2.1 (build 25302) - [Star_Wars_The_Complete_Saga_Disc2_BD50]</span>
+                </div>
+                <div class="flex space-x-3 items-center text-sm">
+                    <button class="hover:text-slate-900" onclick="minimizeUtorrent()"><i class="fa fa-minus"></i></button>
+                    <button class="hover:text-slate-900" onclick="toggleMaximizeUtorrent()"><i class="fa fa-window-maximize"></i></button>
+                    <button class="text-rose-600 hover:text-rose-800 font-bold" onclick="closeUtorrent()"><i class="fa fa-close"></i></button>
+                </div>
+            </div>
+
+            <!-- Toolbar row -->
+            <div class="bg-slate-50 border-b border-slate-200 p-1.5 flex flex-wrap gap-2 items-center text-[11px]">
+                <button onclick="pauseResumeTorrent()" id="pauseBtn" class="px-2 py-1 rounded bg-slate-200 hover:bg-slate-300 border border-slate-300 flex items-center space-x-1">
+                    <i class="fa fa-pause text-amber-600"></i> <span>Pause</span>
+                </button>
+                <button onclick="forceRecheck()" class="px-2 py-1 rounded bg-slate-200 hover:bg-slate-300 border border-slate-300 flex items-center space-x-1">
+                    <i class="fa fa-refresh text-blue-600"></i> <span>Recheck</span>
+                </button>
+                <span class="text-slate-300">|</span>
+                <div class="flex items-center space-x-1 bg-white border border-slate-300 px-2 py-0.5 rounded">
+                    <span class="text-slate-400">Download Limit:</span>
+                    <strong class="text-emerald-700">Unlimited</strong>
+                </div>
+                <div class="flex items-center space-x-1 bg-white border border-slate-300 px-2 py-0.5 rounded">
+                    <span class="text-slate-400">Upload Limit:</span>
+                    <strong class="text-rose-700">50 KB/s</strong>
+                </div>
+                <span class="text-slate-300">|</span>
+                <span class="text-slate-500 italic hidden sm:inline text-[10px]">Simulated peer download representation</span>
+            </div>
+
+            <!-- Client Workspace: Sidebar + Torrent Main Info -->
+            <div class="grid grid-cols-1 md:grid-cols-12 min-h-[300px]">
+                
+                <!-- Left Sidebar of client -->
+                <div class="hidden md:block md:col-span-3 utorrent-sidebar p-3 space-y-2 text-slate-700 text-[11px]">
+                    <div class="font-bold text-slate-800 pb-1 border-b border-slate-200 mb-2">Category</div>
+                    <a href="#" class="flex justify-between items-center px-2 py-1 bg-blue-100 text-blue-800 rounded font-semibold">
+                        <span>All Torrents</span>
+                        <strong class="text-[10px] bg-blue-200 px-1.5 py-0.2 rounded">1</strong>
+                    </a>
+                    <a href="#" class="flex justify-between items-center px-2 py-1 hover:bg-slate-100 rounded">
+                        <span>Downloading</span>
+                        <strong id="sidebarDlCount" class="text-[10px] bg-slate-200 px-1.5 py-0.2 rounded">1</strong>
+                    </a>
+                    <a href="#" class="flex justify-between items-center px-2 py-1 hover:bg-slate-100 rounded">
+                        <span>Completed</span>
+                        <strong id="sidebarCompCount" class="text-[10px] bg-slate-200 px-1.5 py-0.2 rounded">0</strong>
+                    </a>
+                    <a href="#" class="flex justify-between items-center px-2 py-1 hover:bg-slate-100 rounded">
+                        <span>Active</span>
+                        <strong class="text-[10px] bg-emerald-100 text-emerald-800 px-1.5 py-0.2 rounded">1</strong>
+                    </a>
+                    <a href="#" class="flex justify-between items-center px-2 py-1 hover:bg-slate-100 rounded">
+                        <span>Inactive</span>
+                        <strong class="text-[10px] bg-slate-200 px-1.5 py-0.2 rounded">0</strong>
+                    </a>
+                </div>
+
+                <!-- Main Grid area for Torrent Entry progress -->
+                <div class="md:col-span-9 bg-white flex flex-col justify-between">
+                    
+                    <div class="overflow-x-auto">
+                        <table class="utorrent-table w-full text-left border-collapse min-w-[500px]">
+                            <thead>
+                                <tr class="text-slate-600 font-bold">
+                                    <th class="p-2 w-1/3">Name</th>
+                                    <th class="p-2">Size</th>
+                                    <th class="p-2">Done %</th>
+                                    <th class="p-2">Status</th>
+                                    <th class="p-2">Down Speed</th>
+                                    <th class="p-2">Seeds</th>
+                                    <th class="p-2">ETA</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-slate-100 font-mono text-[11px] bg-blue-50/40">
+                                    <td class="p-2 font-sans truncate font-semibold" title="Star_Wars_Complete_Saga_Disc2_BD50">
+                                        Star_Wars_The_Complete_Saga_Disc2_BD50
+                                    </td>
+                                    <td class="p-2">46.12 GB</td>
+                                    <td class="p-2">
+                                        <div class="flex items-center space-x-2">
+                                            <span id="progressPercent" class="font-bold">14.2%</span>
+                                            <!-- Progress bar -->
+                                            <div class="w-16 h-3 bg-slate-200 rounded-sm overflow-hidden border border-slate-300">
+                                                <div id="progressBar" class="h-full bg-emerald-500 transition-all duration-300" style="width: 14.2%"></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p-2 text-emerald-700 font-bold" id="statusLabel">Downloading</td>
+                                    <td class="p-2 font-bold" id="speedLabel">1.45 MB/s</td>
+                                    <td class="p-2" id="seedsLabel">10,853 (12)</td>
+                                    <td class="p-2" id="etaLabel">08h 55m</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Lower Diagnostics pane -->
+                    <div class="bg-slate-50 border-t border-slate-200 p-3 space-y-3">
+                        <div class="flex space-x-2 border-b border-slate-200 pb-1.5">
+                            <span class="font-bold text-slate-800">General Information</span>
+                            <span class="text-slate-400">•</span>
+                            <span class="text-blue-700 font-semibold">Peers Swarm list</span>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-[11px]">
+                            <div>
+                                <span class="text-slate-400 block">Downloaded:</span>
+                                <strong id="bytesDownloaded" class="text-slate-800">6.55 GB</strong>
+                            </div>
+                            <div>
+                                <span class="text-slate-400 block">Uploaded:</span>
+                                <strong id="bytesUploaded" class="text-slate-800">142 MB</strong>
+                            </div>
+                            <div>
+                                <span class="text-slate-400 block">Share Ratio:</span>
+                                <strong id="shareRatio" class="text-slate-800">0.021</strong>
+                            </div>
+                            <div>
+                                <span class="text-slate-400 block">Active Connections:</span>
+                                <strong id="connectionsCount" class="text-slate-800">28 / 200</strong>
+                            </div>
+                        </div>
+
+                        <!-- Mini simulated notification -->
+                        <div id="simCompleteBanner" class="hidden bg-emerald-100 border border-emerald-300 p-2.5 rounded text-emerald-800 flex justify-between items-center animate-pulse">
+                            <span class="font-bold text-xs"><i class="fa fa-check-circle mr-1"></i> SIMULATION DOWNLOAD COMPLETED successfully! Please continue to seed.</span>
+                            <button onclick="dismissCompleteBanner()" class="text-emerald-900 font-bold"><i class="fa fa-times"></i></button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Client Status Bar -->
+            <div class="bg-slate-200 border-t border-slate-300 px-3 py-1 flex justify-between items-center text-[10px] text-slate-600">
+                <div class="flex items-center space-x-3">
+                    <span class="text-emerald-700"><i class="fa fa-check-circle"></i> DHT: 14,249,102 nodes</span>
+                    <span>•</span>
+                    <span>Status: Connected to tracker</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <span>Down: <strong id="statusBarDown" class="text-slate-800">1.45 MB/s</strong></span>
+                    <span>|</span>
+                    <span>Up: <strong id="statusBarUp" class="text-slate-800">48.6 KB/s</strong></span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- NOTIFICATION POPUP BOX -->
+    <div id="retroToast" class="fixed bottom-6 right-6 bg-slate-900 border border-slate-700 text-white px-5 py-3.5 rounded shadow-2xl text-xs z-50 flex items-center space-x-3 transform translate-y-12 opacity-0 transition-all duration-300 pointer-events-none max-w-sm">
+        <div class="w-6 h-6 rounded-full bg-emerald-500 text-slate-900 flex items-center justify-center font-bold">
+            <i class="fa fa-info"></i>
+        </div>
+        <div>
+            <strong class="block text-emerald-400">Torrents.com notification</strong>
+            <span id="toastMessage" class="text-slate-300">Action successfully executed.</span>
+        </div>
+    </div>
+
+
+    <script>
+        // Torrent details ratings state
+        let votesCount = 318;
+        let starValue = 4.7;
+
+        // Custom simulated Retro Toast alert
+        function showRetroToast(message) {
+            const toast = document.getElementById('retroToast');
+            const msgEl = document.getElementById('toastMessage');
+            
+            msgEl.textContent = message;
+            toast.classList.remove('pointer-events-none', 'translate-y-12', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-12', 'opacity-0', 'pointer-events-none');
+            }, 4000);
         }
-    }
 
-    document.getElementById('dl-btn').addEventListener('click', function(e) {
-        e.preventDefault();
-        alert('Torrent download started! Please remember to keep your client open and seed to a ratio of at least 1.0.');
-    });
-</script>
+        // Copy hash logic
+        function copyHash() {
+            const dummy = document.createElement("input");
+            document.body.appendChild(dummy);
+            dummy.value = "8B7E3F17C95BBFFA531C2D8A412A45B6C89D12D4";
+            dummy.select();
+            document.execCommand("copy");
+            document.body.removeChild(dummy);
+            showRetroToast("Torrent hash (8B7E3F17C95BB...) copied to your clipboard!");
+        }
 
+        // Copy NFO content
+        function copyNFO() {
+            const nfo = document.getElementById('nfoContent').textContent;
+            const dummy = document.createElement("textarea");
+            document.body.appendChild(dummy);
+            dummy.value = nfo;
+            dummy.select();
+            document.execCommand("copy");
+            document.body.removeChild(dummy);
+            showRetroToast("Raw release NFO ASCII-text copied successfully!");
+        }
+
+        // Magnet copy simulated interaction
+        function copyMagnet() {
+            const dummy = document.createElement("input");
+            document.body.appendChild(dummy);
+            dummy.value = "magnet:?xt=urn:btih:8B7E3F17C95BBFFA531C2D8A412A45B6C89D12D4&dn=Star_Wars_Complete_Saga_Disc2_BD50";
+            dummy.select();
+            document.execCommand("copy");
+            document.body.removeChild(dummy);
+            showRetroToast("Magnet Link copied! Ready to load inside your µTorrent client.");
+        }
+
+        // Toggle file directory tree views
+        function toggleDirectory(dirId) {
+            const children = document.getElementById(dirId + '_children');
+            const icon = document.getElementById(dirId + '_icon');
+            
+            if (children.classList.contains('hidden')) {
+                children.classList.remove('hidden');
+                icon.className = "fa fa-folder-open text-amber-500";
+            } else {
+                children.classList.add('hidden');
+                icon.className = "fa fa-folder text-amber-500";
+            }
+        }
+
+        // Simple mock search functionality
+        function handleSearch(event) {
+            event.preventDefault();
+            const query = document.getElementById('searchInput').value;
+            showRetroToast(`Searching 2011 archive index for: "${query}"... Displaying matching snapshots.`);
+        }
+
+        // Interactive Ratings
+        function rateTorrent(stars) {
+            votesCount += 1;
+            starValue = ((starValue * (votesCount - 1)) + stars) / votesCount;
+            
+            document.getElementById('ratingDisplay').textContent = starValue.toFixed(2) + " / 5.0";
+            document.getElementById('voteCount').textContent = `Based on ${votesCount} user votes`;
+
+            // Redraw Star icons
+            const starContainer = document.getElementById('starContainer');
+            starContainer.innerHTML = '';
+            for (let i = 1; i <= 5; i++) {
+                const isGold = i <= stars;
+                const star = document.createElement('i');
+                star.className = `fa fa-star ${isGold ? 'text-yellow-400' : 'text-slate-300'} text-lg cursor-pointer hover:scale-110 transition-transform`;
+                star.setAttribute('onclick', `rateTorrent(${i})`);
+                starContainer.appendChild(star);
+            }
+            
+            showRetroToast(`Thank you! You rated this release ${stars} Stars.`);
+        }
+
+        // Post a custom comment simulation
+        function postComment(event) {
+            event.preventDefault();
+            const author = document.getElementById('commentAuthor').value;
+            const tag = document.getElementById('commentAvatar').value || "Seeder";
+            const text = document.getElementById('commentText').value;
+
+            // Generate early 2011 comment template
+            const commentsList = document.getElementById('commentsList');
+            const newComment = document.createElement('div');
+            newComment.className = "p-4 text-xs bg-blue-50/25 border-l-2 border-emerald-500 transition-all duration-500";
+            
+            newComment.innerHTML = `
+                <div class="flex justify-between items-start">
+                    <div class="flex items-center space-x-2">
+                        <strong class="text-slate-900 font-bold">${author}</strong>
+                        <span class="bg-emerald-100 text-emerald-800 text-[9px] font-bold px-1.5 py-0.5 rounded">${tag}</span>
+                    </div>
+                    <span class="text-slate-400 text-[10px]">Sep 16, 2011 - Just now</span>
+                </div>
+                <p class="text-slate-700 mt-2 leading-relaxed font-semibold">
+                    ${text}
+                </p>
+            `;
+
+            commentsList.insertBefore(newComment, commentsList.firstChild);
+
+            // Increment count display
+            const countEl = document.getElementById('commentCount');
+            countEl.textContent = "11 comments";
+
+            // Reset form
+            document.getElementById('commentAuthor').value = '';
+            document.getElementById('commentAvatar').value = '';
+            document.getElementById('commentText').value = '';
+
+            showRetroToast("Your message was successfully integrated into the archived comment log!");
+        }
+
+        // Scroll helper
+        function scrollToElement(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        /* µTORRENT DOWNLOAD SIMULATOR CODE */
+        let simInterval = null;
+        let isSimPaused = false;
+        let simProgress = 14.2;
+        let simSeeds = 10853;
+        let simSpeed = 1.45; // MB/s
+        const totalSize = 46.12; // GB
+
+        function launchTorrentClient() {
+            const modal = document.getElementById('utorrentModal');
+            modal.classList.remove('hidden');
+            
+            // Start simulation if not already running
+            if (!simInterval) {
+                isSimPaused = false;
+                runSimulation();
+            }
+            showRetroToast("µTorrent client launched! Tracking file progress in real-time.");
+        }
+
+        function closeUtorrent() {
+            document.getElementById('utorrentModal').classList.add('hidden');
+        }
+
+        function minimizeUtorrent() {
+            showRetroToast("Client minimized to Windows 7 system tray.");
+            closeUtorrent();
+        }
+
+        function toggleMaximizeUtorrent() {
+            showRetroToast("Maximized layout toggle disabled on snapshot screen resolutions.");
+        }
+
+        function runSimulation() {
+            simInterval = setInterval(() => {
+                if (isSimPaused || simProgress >= 100) return;
+
+                // Simulate progress increments based on speed
+                const speedMod = (Math.random() * 0.4 + 0.8) * simSpeed; // Jitter downspeed
+                const increment = (speedMod / 46120) * 100; // translate speed to percent
+                
+                simProgress += increment;
+
+                if (simProgress >= 100) {
+                    simProgress = 100;
+                    handleDownloadComplete();
+                }
+
+                updateSimulationUI(speedMod);
+            }, 1000);
+        }
+
+        function updateSimulationUI(speedMod) {
+            // Update percentage and progress bar width
+            document.getElementById('progressPercent').textContent = simProgress.toFixed(1) + "%";
+            document.getElementById('progressBar').style.width = simProgress + "%";
+
+            // Jitter seed connections slightly
+            const jitterSeeds = Math.floor(simSeeds + (Math.random() * 10 - 5));
+            document.getElementById('seedsLabel').textContent = `${jitterSeeds} (28)`;
+
+            // Render current simulated download speed
+            const speedText = speedMod.toFixed(2) + " MB/s";
+            document.getElementById('speedLabel').textContent = speedText;
+            document.getElementById('statusBarDown').textContent = speedText;
+
+            // Bytes Downloaded text
+            const bytesDl = (totalSize * (simProgress / 100)).toFixed(2);
+            document.getElementById('bytesDownloaded').textContent = `${bytesDl} GB`;
+
+            // Share Ratio calculation
+            const ratio = (0.142 / parseFloat(bytesDl)).toFixed(3);
+            document.getElementById('shareRatio').textContent = ratio;
+
+            // ETA remaining text
+            if (simProgress < 100) {
+                const remainingGB = totalSize - parseFloat(bytesDl);
+                const secondsLeft = (remainingGB * 1024) / speedMod;
+                const hours = Math.floor(secondsLeft / 3600);
+                const minutes = Math.floor((secondsLeft % 3600) / 60);
+                document.getElementById('etaLabel').textContent = `${hours}h ${minutes}m`;
+            } else {
+                document.getElementById('etaLabel').textContent = "Finished";
+            }
+        }
+
+        function pauseResumeTorrent() {
+            const btn = document.getElementById('pauseBtn');
+            const statusLabel = document.getElementById('statusLabel');
+
+            if (isSimPaused) {
+                isSimPaused = false;
+                btn.innerHTML = `<i class="fa fa-pause text-amber-600"></i> <span>Pause</span>`;
+                statusLabel.textContent = "Downloading";
+                statusLabel.className = "p-2 text-emerald-700 font-bold";
+                showRetroToast("Resumed download from 2011 peer swarm.");
+            } else {
+                isSimPaused = true;
+                btn.innerHTML = `<i class="fa fa-play text-emerald-600"></i> <span>Resume</span>`;
+                statusLabel.textContent = "Paused";
+                statusLabel.className = "p-2 text-amber-600 font-bold";
+                document.getElementById('speedLabel').textContent = "0.0 KB/s";
+                document.getElementById('statusBarDown').textContent = "0.0 KB/s";
+                showRetroToast("Torrent download suspended.");
+            }
+        }
+
+        function forceRecheck() {
+            showRetroToast("Hashing local structures: 100% OK. Star Wars BD50 integrity validated.");
+        }
+
+        function handleDownloadComplete() {
+            clearInterval(simInterval);
+            simInterval = null;
+
+            document.getElementById('statusLabel').textContent = "Seeding";
+            document.getElementById('statusLabel').className = "p-2 text-blue-700 font-bold";
+            document.getElementById('speedLabel').textContent = "0.0 KB/s";
+            document.getElementById('statusBarDown').textContent = "0.0 KB/s";
+            document.getElementById('etaLabel').textContent = "Seeding";
+            
+            // Show custom complete notification inside client
+            document.getElementById('simCompleteBanner').classList.remove('hidden');
+
+            // Update local swarm values in background page too!
+            document.getElementById('sidebarSeeds').textContent = "10,854";
+            document.getElementById('sidebarLeechers').textContent = "8,123";
+
+            // Update sidebar counts in uTorrent client
+            document.getElementById('sidebarDlCount').textContent = "0";
+            document.getElementById('sidebarCompCount').textContent = "1";
+
+            showRetroToast("Download Complete! You are now seeding Star Wars: The Complete Saga Disc 2.");
+        }
+
+        function dismissCompleteBanner() {
+            document.getElementById('simCompleteBanner').classList.add('hidden');
+        }
+
+        // Initialize viewports and load metrics
+        window.onload = function() {
+            // Close tree folders by default for compact load layout except main stream content
+            toggleDirectory('bdmvDir');
+            toggleDirectory('certDir');
+        }
+    </script>
 </body>
 </html>
