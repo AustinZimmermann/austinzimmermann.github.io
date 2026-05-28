@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Torrents.com | X2.2003.1080p.Disc2.BD25.BluRay.AVC.DD2.0-CtrlHD</title>
+    <!-- Tailwind CSS for robust styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for retro icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Hiragino Kaku Gothic Pro', sans-serif;
+            background-color: #0b0f11;
+            color: #e2e8f0;
+        }
+
+        /* Scanline effect for retro terminal aesthetics */
+        .scanline-bg {
+            background: linear-gradient(rgba(14, 20, 22, 0.98), rgba(14, 20, 22, 0.98)), 
+                        linear-gradient(rgba(18, 18, 18, 0) 50%, rgba(0, 0, 0, 0.3) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.04), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.04));
+            background-size: 100% 100%, 100% 4px, 6px 100%;
+        }
+
+        /* Webkit scrollbar tuning */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #11171a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2d3748;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4a5568;
+        }
+
+        .grid-cols-16 {
+            grid-template-columns: repeat(16, minmax(0, 1fr));
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-16">
+
+    <!-- Header Status Line -->
+    <div class="bg-[#070b0c] border-b border-gray-800 text-[11px] text-gray-500 py-2 px-4">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-1.5">
+            <div class="flex items-center gap-2">
+                <span class="inline-block w-2 h-2 rounded-full bg-green-500"></span>
+                <span>アーカイブミラー日: <strong>2009年8月28日 23:59:15 JST</strong></span>
+                <span class="text-gray-700">|</span>
+                <span class="text-gray-400">Torrents.com 日本語 P2P ネットワークインデックス</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <span class="text-green-500"><i class="fa-solid fa-server mr-1"></i>DHTノード: 15,294,204</span>
+                <span class="text-blue-400"><i class="fa-solid fa-cloud mr-1 text-xs"></i>Seedbox最適化済</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Retro Banner Ad Block -->
+    <div class="max-w-6xl mx-auto mt-3 px-4">
+        <div class="bg-gradient-to-r from-red-950/40 to-amber-950/40 border border-red-500/30 rounded-lg p-3 flex flex-col md:flex-row justify-between items-center text-xs text-red-200 gap-2 shadow-inner">
+            <div class="flex items-center gap-3">
+                <span class="bg-red-600 text-white font-black px-2 py-0.5 rounded text-[10px] animate-pulse">2009 警告</span>
+                <span>⚠️ <strong>プロバイダ(ISP)による通信帯域制限・ファイル共有監視にお悩みですか？</strong> プロバイダのパケット検閲を回避し、最高速度を誇る専用VPN接続の利用をお勧めします。</span>
+            </div>
+            <button onclick="simulateVPNAccel()" class="bg-red-600 hover:bg-red-500 text-white px-3.5 py-1.5 rounded font-bold transition text-[11px] whitespace-nowrap"><i class="fa-solid fa-unlock-keyhole mr-1"></i>検閲を回避してブースト</button>
+        </div>
+    </div>
+
+    <!-- Navigation & Logo Header -->
+    <header class="max-w-6xl mx-auto mt-4 px-4">
+        <div class="bg-[#12181b] border border-gray-800 rounded-t-xl p-5 flex flex-col md:flex-row justify-between items-center gap-4">
+            <!-- Retro Site Logo -->
+            <div class="flex items-center gap-3">
+                <div class="bg-gradient-to-br from-green-500 to-emerald-700 text-black p-2.5 rounded-lg shadow-inner font-extrabold text-2xl tracking-tighter flex items-center justify-center w-12 h-12">
+                    <i class="fa-solid fa-magnet text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-black text-white tracking-wider flex items-center gap-1">Torrents<span class="text-green-500">.com</span> <span class="text-[10px] bg-gray-800 text-gray-400 font-normal px-1.5 py-0.5 rounded ml-1">JAPAN</span></h1>
+                    <p class="text-[10px] text-gray-500 font-semibold tracking-wide uppercase">High-Speed BitTorrent Index & Tracker</p>
+                </div>
+            </div>
+
+            <!-- Static Statistics of the portal -->
+            <div class="hidden lg:flex items-center gap-6 text-xs border-l border-gray-800 pl-6 py-1">
+                <div>
+                    <span class="text-gray-500 block">現在の総Torrent数</span>
+                    <span class="text-gray-300 font-bold text-sm">3,491,288 件</span>
+                </div>
+                <div>
+                    <span class="text-gray-500 block">アクティブピア数</span>
+                    <span class="text-green-400 font-bold text-sm">4,812,904 Peers</span>
+                </div>
+                <div>
+                    <span class="text-gray-500 block">最終追加</span>
+                    <span class="text-blue-400 font-bold text-xs">数分前</span>
+                </div>
+            </div>
+
+            <!-- Header Search Engine Form -->
+            <div class="w-full md:w-auto flex flex-col sm:flex-row gap-2">
+                <div class="relative flex-grow">
+                    <input id="torrentSearch" type="text" placeholder="洋画、ブルーレイ、字幕パッチを検索..." class="w-full md:w-64 bg-[#0a0e10] text-gray-200 placeholder-gray-600 text-xs border border-gray-700 focus:border-green-500 focus:ring-1 focus:ring-green-500 rounded px-3 py-2.5 pl-9 outline-none transition">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-gray-600 text-xs"></i>
+                </div>
+                <button onclick="triggerMockSearch()" class="bg-green-600 hover:bg-green-500 text-black font-bold px-4 py-2 rounded text-xs transition">インデックス検索</button>
+            </div>
+        </div>
+
+        <!-- Portal Tabs navigation bar -->
+        <nav class="bg-[#0e1315] border-x border-b border-gray-800 rounded-b-xl px-4 py-2 flex flex-wrap justify-between items-center text-xs text-gray-400">
+            <div class="flex flex-wrap gap-2 sm:gap-4 py-1">
+                <a href="#" class="hover:text-white transition py-1 px-2"><i class="fa-solid fa-house mr-1"></i>トップ</a>
+                <a href="#" class="text-white border-b-2 border-green-500 font-bold transition py-1 px-2"><i class="fa-solid fa-film mr-1"></i>映画/洋画</a>
+                <a href="#" class="hover:text-white transition py-1 px-2"><i class="fa-solid fa-compact-disc mr-1"></i>音楽BD</a>
+                <a href="#" class="hover:text-white transition py-1 px-2"><i class="fa-solid fa-gamepad mr-1"></i>ゲーム</a>
+                <a href="#" class="hover:text-white transition py-1 px-2"><i class="fa-solid fa-upload mr-1 text-green-500"></i>高速登録</a>
+            </div>
+            <div class="flex gap-4 py-1 text-[11px]">
+                <a href="#" class="text-yellow-500 hover:text-yellow-400 font-semibold"><i class="fa-solid fa-crown mr-1"></i>プレミアムシード会員</a>
+                <a href="#" class="hover:text-white transition"><i class="fa-solid fa-network-wired mr-1"></i>IRCチャット</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content layout -->
+    <main class="max-w-6xl mx-auto mt-6 px-4 grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+        <!-- LEFT SIDE: Details, Cover, File Browser, NFO & Comments (8 columns) -->
+        <div class="lg:col-span-8 flex flex-col gap-6">
+
+            <!-- Breadcrumbs -->
+            <div class="text-xs text-gray-500 flex items-center gap-2">
+                <a href="#" class="hover:text-gray-300">映画・ドキュメンタリー</a>
+                <i class="fa-solid fa-angle-right text-[10px]"></i>
+                <a href="#" class="hover:text-gray-300">Blu-ray Untouched</a>
+                <i class="fa-solid fa-angle-right text-[10px]"></i>
+                <span class="text-gray-300 font-semibold">X-Men 2 (2003) BD25 Disc 2 (Bonus Disc)</span>
+            </div>
+
+            <!-- Title block with basic statistics -->
+            <div class="bg-[#12181b] border border-gray-800 rounded-xl p-5 shadow-sm">
+                <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+                    <div>
+                        <div class="flex flex-wrap gap-1.5 items-center">
+                            <span class="bg-[#291e1b] text-[#f97316] border border-[#ea580c]/30 text-[9px] uppercase font-bold px-2 py-0.5 rounded tracking-wider">BD25 (Untouched)</span>
+                            <span class="bg-[#1d291b] text-[#22c55e] border border-[#22c55e]/20 text-[9px] uppercase font-bold px-2 py-0.5 rounded tracking-wider">Disc 2 (特典ディスク)</span>
+                        </div>
+                        <h2 class="text-lg sm:text-xl font-bold text-white mt-2 leading-snug font-sans">X2.2003.1080p.Disc2.BD25.BluRay.AVC.DD2.0-CtrlHD</h2>
+                        <p class="text-[11px] text-gray-500 mt-1.5">
+                            アップロード完了: <span class="text-gray-300">2009-08-28 23:45:10</span> | 
+                            登録ファイル数: <span class="text-gray-300">82 ファイル</span> | 
+                            ディスク容量: <span class="text-green-500 font-bold">22.30 GB</span>
+                        </p>
+                    </div>
+                    <button onclick="toggleBookmark()" id="bookmarkBtn" class="bg-[#182023] hover:bg-[#202b2f] text-gray-400 hover:text-yellow-400 border border-gray-800 p-2.5 rounded-lg transition self-start flex items-center gap-1" title="お気に入り追加">
+                        <i id="bookmarkIcon" class="fa-regular fa-star text-base"></i>
+                        <span class="text-xs hidden sm:inline">ブックマーク</span>
+                    </button>
+                </div>
+
+                <!-- Specs fast view -->
+                <div class="flex flex-wrap gap-2 mt-4 text-xs">
+                    <span class="bg-[#161d20] text-gray-300 px-2.5 py-1 rounded border border-gray-800">🎞️ 映像: AVC 1080p / 1080i 混合</span>
+                    <span class="bg-[#161d20] text-gray-300 px-2.5 py-1 rounded border border-gray-800">🔉 音声: 英語 DD 2.0 & DD 5.1</span>
+                    <span class="bg-[#161d20] text-gray-300 px-2.5 py-1 rounded border border-gray-800">🇯🇵 字幕: 日本語字幕(完全収録)・英語他</span>
+                    <span class="bg-[#161d20] text-gray-300 px-2.5 py-1 rounded border border-gray-800">📀 メディア: BD25 (25GB 片面1層)</span>
+                </div>
+            </div>
+
+            <!-- Cover, Description & Uploader comment -->
+            <div class="bg-[#12181b] border border-gray-800 rounded-xl p-5">
+                <h3 class="text-sm font-bold text-white border-b border-gray-800 pb-2 mb-4 flex items-center gap-2">
+                    <i class="fa-regular fa-image text-green-500"></i>ディスク仕様 & パッケージ内容
+                </h3>
+                <div class="flex flex-col md:flex-row gap-6">
+                    <!-- Artwork -->
+                    <div class="w-full md:w-48 shrink-0 flex flex-col items-center">
+                        <div class="bg-[#0a0e10] border border-gray-700 rounded p-1.5 shadow-md">
+                            <img src="https://images.static-bluray.com/movies/covers/85557_slip.jpg" 
+                                 alt="X-Men 2 Bonus Disc Cover" 
+                                 class="w-full h-auto object-cover rounded max-w-[160px] md:max-w-none"
+                                 onerror="this.src='https://images.unsplash.com/photo-1594909122845-11baa439b7bf?auto=format&fit=crop&q=80&w=400';">
+                        </div>
+                        <span class="text-[10px] text-gray-500 mt-2 text-center">※画像はDisc 1/2共通パッケージ</span>
+                    </div>
+
+                    <!-- Meta text content -->
+                    <div class="flex-grow flex flex-col justify-between">
+                        <div class="space-y-3 text-xs sm:text-sm text-gray-300 leading-relaxed">
+                            <p>
+                                先ほどリリースした『X-MEN2』本編Disc 1 (BD50) に引き続き、ファン待望の<strong>特典映像専用ディスク「Disc 2 (BD25)」</strong>の無圧縮(Untouched)イメージです。
+                            </p>
+                            <p>
+                                映画製作チームによる膨大な舞台裏映像、特殊メイク、デリートシーン、ナイトクローラー特集を含む充実した<strong>5時間以上のドキュメンタリー</strong>が収められています。日本の公式盤と同様に、すべての主要ドキュメンタリーに<strong>日本語字幕がフル収録</strong>されている超極上仕様です。
+                            </p>
+                            <div class="bg-[#0b0e10] border border-gray-800 rounded p-3 text-xs space-y-1 text-gray-400">
+                                <span class="text-green-400 font-bold block mb-1">💡 Uploader [MagnetoHD] メモ:</span>
+                                <li>「Disc 1と同じフォルダでBitTorrentに読み込ませれば、完全な2枚組Blu-rayセットがローカルに完成します。初期シードに全帯域を割り振っていますので、ダウンロード後のシェアにご協力ください！」</li>
+                            </div>
+                        </div>
+
+                        <!-- Technical indicators Grid -->
+                        <div class="grid grid-cols-2 gap-4 border-t border-gray-800 pt-4 mt-4 text-xs text-gray-400">
+                            <div>
+                                <span class="text-gray-500 block">映画公開年:</span>
+                                <span class="text-gray-200 font-semibold">2003年</span>
+                            </div>
+                            <div>
+                                <span class="text-gray-500 block">リージョンコード:</span>
+                                <span class="text-gray-200 font-semibold">Region A / B / C (フリー)</span>
+                            </div>
+                            <div>
+                                <span class="text-gray-500 block">正確なダンプサイズ:</span>
+                                <span class="text-gray-200 font-semibold text-green-400">23,944,120,551 bytes</span>
+                            </div>
+                            <div>
+                                <span class="text-gray-500 block">製作元リリーサー:</span>
+                                <span class="text-gray-200 font-semibold text-blue-400">CtrlHD</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dynamic File Structure Browser of Disc 2 -->
+            <div class="bg-[#12181b] border border-gray-800 rounded-xl p-5">
+                <div class="flex justify-between items-center border-b border-gray-800 pb-2 mb-4">
+                    <h3 class="text-sm font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-folder-tree text-yellow-500"></i>
+                        Disc 2 ファイルディレクトリ構造 (BD25)
+                    </h3>
+                    <button onclick="toggleFileTree()" id="treeToggleBtn" class="text-xs text-gray-400 hover:text-white transition">
+                        すべて折りたたむ
+                    </button>
+                </div>
+
+                <!-- Interactive Folder tree view -->
+                <div class="bg-[#0a0e10] border border-gray-800 rounded p-3 text-xs font-mono space-y-2 select-all overflow-x-auto max-h-72 overflow-y-auto">
+                    
+                    <!-- Root Folder of Torrent -->
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-folder-open text-yellow-500"></i>
+                        <span class="text-white font-bold">X2.2003.1080p.Disc2.BD25.BluRay.AVC.DD2.0-CtrlHD/</span>
+                    </div>
+
+                    <!-- Inner contents wrapper -->
+                    <div class="pl-4 space-y-2" id="treeRoot">
+                        
+                        <!-- NFO file -->
+                        <div class="flex items-center justify-between hover:bg-[#161d20] p-1 rounded">
+                            <div class="flex items-center gap-2 pl-2">
+                                <i class="fa-regular fa-file-lines text-blue-400"></i>
+                                <span class="text-gray-300">CtrlHD_Release_Disc2.nfo</span>
+                            </div>
+                            <span class="text-gray-500 text-[11px]">3.8 KB</span>
+                        </div>
+
+                        <!-- Readme TXT file -->
+                        <div class="flex items-center justify-between hover:bg-[#161d20] p-1 rounded">
+                            <div class="flex items-center gap-2 pl-2">
+                                <i class="fa-regular fa-file-lines text-blue-400"></i>
+                                <span class="text-gray-300">torrents.com_read_me.txt</span>
+                            </div>
+                            <span class="text-gray-500 text-[11px]">1.1 KB</span>
+                        </div>
+
+                        <!-- BDMV Subfolder -->
+                        <div class="pl-2">
+                            <div onclick="toggleSubFolder('sub-bdmv')" class="flex items-center gap-2 cursor-pointer hover:text-white py-1">
+                                <i id="chevron-bdmv" class="fa-solid fa-chevron-down text-[10px] text-gray-500"></i>
+                                <i class="fa-solid fa-folder text-yellow-500"></i>
+                                <span class="text-yellow-400 font-bold">BDMV/</span>
+                            </div>
+
+                            <div id="sub-bdmv" class="pl-4 space-y-2 mt-1 border-l border-gray-800">
+                                
+                                <!-- CLIPINF -->
+                                <div>
+                                    <div onclick="toggleSubFolder('sub-clipinf')" class="flex items-center gap-2 cursor-pointer py-0.5 hover:text-white">
+                                        <i id="chevron-clipinf" class="fa-solid fa-chevron-down text-[10px] text-gray-500"></i>
+                                        <i class="fa-solid fa-folder text-yellow-600"></i>
+                                        <span class="text-gray-300">CLIPINF/</span>
+                                    </div>
+                                    <div id="sub-clipinf" class="pl-4 text-gray-500 text-[11px] py-1">
+                                        📂 クリックすると展開: 82個のメタ再生情報アセット (.clpi)
+                                    </div>
+                                </div>
+
+                                <!-- STREAM folder (Key files) -->
+                                <div>
+                                    <div onclick="toggleSubFolder('sub-stream')" class="flex items-center gap-2 cursor-pointer py-0.5 hover:text-white">
+                                        <i id="chevron-stream" class="fa-solid fa-chevron-down text-[10px] text-gray-500"></i>
+                                        <i class="fa-solid fa-folder text-yellow-600"></i>
+                                        <span class="text-gray-300">STREAM/ (特典ストリーム群)</span>
+                                    </div>
+                                    <div id="sub-stream" class="pl-4 space-y-1.5 mt-1 border-l border-gray-800">
+                                        
+                                        <div class="flex items-center justify-between hover:bg-[#161d20] p-0.5 rounded">
+                                            <span>📄 00010.m2ts <span class="text-orange-400">[メインドキュメンタリー]</span></span>
+                                            <span class="text-gray-400">4.8 GB</span>
+                                        </div>
+                                        <div class="flex items-center justify-between hover:bg-[#161d20] p-0.5 rounded">
+                                            <span>📄 00011.m2ts <span class="text-yellow-500">[ナイトクローラー変遷記]</span></span>
+                                            <span class="text-gray-400">3.2 GB</span>
+                                        </div>
+                                        <div class="flex items-center justify-between hover:bg-[#161d20] p-0.5 rounded">
+                                            <span>📄 00012.m2ts <span class="text-green-500">[デリートシーン集]</span></span>
+                                            <span class="text-gray-400">2.5 GB</span>
+                                        </div>
+                                        <div class="flex items-center justify-between hover:bg-[#161d20] p-0.5 rounded">
+                                            <span>📄 00013.m2ts <span class="text-blue-400">[格闘シーン・マルチアングル]</span></span>
+                                            <span class="text-gray-400">1.8 GB</span>
+                                        </div>
+                                        <div class="flex items-center justify-between hover:bg-[#161d20] p-0.5 rounded">
+                                            <span>📄 00014.m2ts <span class="text-gray-400">[デザイン画・静止画ギャラリー]</span></span>
+                                            <span class="text-gray-400">950 MB</span>
+                                        </div>
+                                        <div class="text-gray-500 text-[11px] pl-2">※その他、小さなナビゲーション用メニュームービーが約40個含まれます。</div>
+
+                                    </div>
+                                </div>
+
+                                <!-- index.bdmv -->
+                                <div class="flex items-center justify-between hover:bg-[#161d20] p-1 rounded pl-4">
+                                    <div class="flex items-center gap-2">
+                                        <i class="fa-regular fa-file text-gray-500"></i>
+                                        <span class="text-gray-300">index.bdmv</span>
+                                    </div>
+                                    <span class="text-gray-500">280 KB</span>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- NFO Terminal Block -->
+            <div class="bg-[#12181b] border border-gray-800 rounded-xl p-5">
+                <div class="flex justify-between items-center border-b border-gray-800 pb-2 mb-4">
+                    <h3 class="text-sm font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-code text-green-500"></i>
+                        CtrlHD リリース NFO ビューアー (Disc 2)
+                    </h3>
+                    <button onclick="copyNFOToClipboard()" class="bg-[#182023] hover:bg-[#202b2f] text-xs text-gray-300 px-3 py-1 rounded border border-gray-700 transition">
+                        <i class="fa-regular fa-copy mr-1"></i>テキストとしてコピー
+                    </button>
+                </div>
+
+                <!-- Green glowing terminal style container -->
+                <div class="scanline-bg text-emerald-400 font-mono text-[11px] sm:text-xs p-4 rounded-lg border border-emerald-900/30 leading-relaxed overflow-x-auto max-h-80 select-all">
+                    <pre id="nfoBody" class="whitespace-pre">
+================================================================================
+ X-Men 2 (2003) COMPLETE BLU-RAY (BD25) - Disc 2 (Special Features & Documentaries)
+================================================================================
+
+* RELEASE DATE....: 2009/08/28
+* THEATRE DATE....: 2003/05/02
+* GENRE...........: Action / Sci-Fi / Thriller / Behind-The-Scenes
+* RUNTiME.........: Approx. 5 Hours of Total Material
+* ViDEO BiTRATE...: AVC / Mix of 1080i, 1080p, and SD Upconverted
+* RESOLUTiON......: 1080p & 1080i / 23.976 fps / 16:9
+* AUDiO 1.........: English Dolby Digital 2.0 (224 kbps)
+* AUDiO 2.........: English Dolby Digital 5.1 (448 kbps) [一部の主要ドキュメンタリー用]
+* SUBTiTLES.......: English, Japanese (日本語字幕), Spanish, Cantonese, Korean
+* SOURCE..........: Blu-ray Disc 25GB (Region A/B/C)
+* DiSC SiZE.......: 23,944,120,551 bytes (~22.3 GB on Disc 2)
+
+--------------------------------------------------------------------------------
+[ 収録内容・ドキュメンタリー詳細 - Disc 2 ]
+--------------------------------------------------------------------------------
+- 【X-メンの歴史】(Evolution of the Mutants)
+- 【「X-MEN2」製作の舞台裏】
+  * 再生と復活 (Rebirth of the Franchise)
+  * メイキング・オブ・「X-MEN2」 (The Secret Origin of X-Men 2)
+  * 戦闘シーンの構築 (Fight Choreography)
+- 【キャラクター・スタディ】
+  * ナイトクローラーの誕生秘話 (Nightcrawler Reborn)
+  * デスストライクVSウルヴァリン
+- 【デザイン・ギャラリー】
+  * コスチューム・デザイン、ストーリーボード、コンセプトアート集
+- 【未公開シーン集】(Deleted Scenes) 
+- 【各種プロモーション映像】
+
+================================================================================
+* release group : CtrlHD
+* encoded with pride, shared for archival purpose.
+================================================================================</pre>
+                </div>
+            </div>
+
+            <!-- Comment forum thread -->
+            <div class="bg-[#12181b] border border-gray-800 rounded-xl p-5">
+                <h3 class="text-sm font-bold text-white border-b border-gray-800 pb-2 mb-4">
+                    <i class="fa-regular fa-comments mr-2 text-green-500"></i>
+                    スレッドコメント (<span id="userCommentCounter">5</span>)
+                </h3>
+
+                <div class="space-y-4 mb-6 max-h-[500px] overflow-y-auto pr-2" id="commentList">
+                    
+                    <!-- Comment 1 -->
+                    <div class="bg-[#0e1315] border border-gray-800 p-4 rounded-lg">
+                        <div class="flex justify-between items-center text-xs text-gray-500 mb-2">
+                            <span class="font-bold text-green-400 flex items-center gap-1.5">
+                                <i class="fa-solid fa-user text-gray-400"></i> t_xavier
+                                <span class="bg-gray-800 text-[10px] text-gray-400 px-1.5 py-0.2 rounded font-normal">メンバー</span>
+                            </span>
+                            <span>2009-08-28 23:48</span>
+                        </div>
+                        <p class="text-sm text-gray-300 leading-relaxed">
+                            おお！！MagnetoHDさん、本当に今夜アップロードしてくれたのですね！約束を守っていただき大感謝です！！<br>
+                            さっそくクライアントに追加しました。Disc 1をシードしながら、こちらのDisc 2もフルスピード（光100M）で引っ張ります！
+                        </p>
+                    </div>
+
+                    <!-- Comment 2 -->
+                    <div class="bg-[#0e1315] border border-gray-800 p-4 rounded-lg">
+                        <div class="flex justify-between items-center text-xs text-gray-500 mb-2">
+                            <span class="font-bold text-gray-300 flex items-center gap-1.5">
+                                <i class="fa-solid fa-user text-gray-400"></i> M_Logan
+                            </span>
+                            <span>2009-08-28 23:55</span>
+                        </div>
+                        <p class="text-sm text-gray-300 leading-relaxed">
+                            MagnetoHDさん、お疲れ様です！<br>
+                            現在シードボックスからの供給を検知しました。ダウンロード側のピアが100人を超えているので、お互いにシードを止めずに、完了後もしばらく共有し合いましょう。私も完了次第、速やかに 2x 以上のシード比率（Ratio）を維持します。
+                        </p>
+                    </div>
+
+                    <!-- Comment 3 -->
+                    <div class="bg-[#0e1315] border border-gray-800 p-4 rounded-lg">
+                        <div class="flex justify-between items-center text-xs text-gray-500 mb-2">
+                            <span class="font-bold text-blue-400 flex items-center gap-1.5">
+                                <i class="fa-solid fa-user text-gray-400"></i> sub_hunter
+                                <span class="bg-blue-950 text-blue-300 text-[10px] px-1.5 py-0.2 rounded font-normal font-semibold">字幕翻訳スタッフ</span>
+                            </span>
+                            <span>2009-08-29 00:05</span>
+                        </div>
+                        <p class="text-sm text-gray-300 leading-relaxed">
+                            こちらもダウンロード開始しました。特典用のNFO仕様を見る限り、主要なメイキングパートにも日本語字幕（Japanese Sub）が含まれているようですね！海外盤BDの多くは特典の字幕が省かれがちなので、こうして日本語がフル収録されているバージョンはめちゃくちゃ貴重です。
+                        </p>
+                    </div>
+
+                    <!-- Comment 4 -->
+                    <div class="bg-[#0e1315] border border-gray-800 p-4 rounded-lg">
+                        <div class="flex justify-between items-center text-xs text-gray-500 mb-2">
+                            <span class="font-bold text-emerald-400 flex items-center gap-1.5">
+                                <i class="fa-solid fa-user-tag text-emerald-500"></i> MagnetoHD
+                                <span class="bg-emerald-950 text-emerald-300 text-[10px] px-1.5 py-0.2 rounded font-bold">Uploader</span>
+                            </span>
+                            <span>2009-08-29 00:15</span>
+                        </div>
+                        <p class="text-sm text-gray-300 leading-relaxed">
+                            @t_xavier どういたしまして！無事にお届けできて良かったです。<br>
+                            @sub_hunter はい、その通りです。このディスクはリージョンフリーかつ、アジア市場向け（日本語含む）の完全マスターなので、特典映像の細部まで日本語字幕でしっかりと楽しむことができます。映画製作の裏側は本編以上に面白いですよ！
+                        </p>
+                    </div>
+
+                    <!-- Comment 5 -->
+                    <div class="bg-[#0e1315] border border-gray-800 p-4 rounded-lg">
+                        <div class="flex justify-between items-center text-xs text-gray-500 mb-2">
+                            <span class="font-bold text-purple-400 flex items-center gap-1.5">
+                                <i class="fa-solid fa-user-shield text-purple-400"></i> Gamer_Z
+                                <span class="bg-purple-950 text-purple-300 text-[10px] px-1.5 py-0.2 rounded font-normal font-bold">VIPモデレータ</span>
+                            </span>
+                            <span>2009-08-29 00:42</span>
+                        </div>
+                        <p class="text-sm text-gray-300 leading-relaxed">
+                            Disc 1が先ほど完了し、Disc 2のこちらも現在 1.8 MB/s で滑り出し好調です。CtrlHDはNFOのまとめ方も相変わらず完璧ですね。今週末は最高の「X-MEN2」BDシアターが自宅で楽しめそうです。ありがとうございます！
+                        </p>
+                    </div>
+
+                </div>
+
+                <!-- Input box form -->
+                <div class="border-t border-gray-800 pt-4">
+                    <h4 class="text-xs text-gray-400 font-bold mb-3">新しい返答を書き込む</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+                        <div>
+                            <label class="block text-[11px] text-gray-500 mb-1">表示名:</label>
+                            <input id="postUsername" type="text" placeholder="匿名ピア" class="w-full bg-[#0a0e10] text-gray-300 text-xs border border-gray-700 rounded px-3 py-2 outline-none focus:border-green-500">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] text-gray-500 mb-1">コミュニティロール表示 (任意):</label>
+                            <select id="postUserRole" class="w-full bg-[#0a0e10] text-gray-300 text-xs border border-gray-700 rounded px-3 py-2 outline-none focus:border-green-500">
+                                <option value="メンバー">メンバー</option>
+                                <option value="シード会員">シード会員</option>
+                                <option value="匿名ピア">匿名ピア</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-[11px] text-gray-500 mb-1">コメント内容:</label>
+                        <textarea id="postCommentBody" rows="3" placeholder="質問、再生機器情報、現在のダウンロード速度などを記入してください..." class="w-full bg-[#0a0e10] text-gray-300 text-xs border border-gray-700 rounded p-3 outline-none focus:border-green-500 resize-none"></textarea>
+                    </div>
+                    <div class="flex justify-between items-center mt-3">
+                        <span class="text-[10px] text-gray-500">※Torrents.comコミュニティガイドラインに準拠した発言をお願いします。</span>
+                        <button onclick="publishUserComment()" class="bg-[#182023] hover:bg-[#202b2f] text-white hover:text-green-400 font-bold text-xs border border-gray-700 px-4 py-2 rounded transition">
+                            コメントを送信
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- RIGHT SIDE: Downloads, Live Tracker, uTorrent simulator, playback compatibility (4 columns) -->
+        <div class="lg:col-span-4 flex flex-col gap-6">
+
+            <!-- Premium Classic Download Box -->
+            <div class="bg-gradient-to-br from-[#1b2529] to-[#12181a] border-2 border-green-500/70 rounded-xl p-5 shadow-md">
+                <span class="bg-green-500 text-black font-extrabold text-[9px] tracking-widest px-2 py-0.5 rounded uppercase block w-max mb-3">
+                    Verified P2P Link
+                </span>
+                
+                <h3 class="text-base font-bold text-white mb-1.5">ダウンロードリンク</h3>
+                <p class="text-xs text-gray-400 mb-4 leading-normal">
+                    クライアントにローカル保存を読み込ませるか、マグネットを介してダウンロードを開始します。
+                </p>
+
+                <div class="space-y-3">
+                    <!-- .torrent -->
+                    <button onclick="launchClientSimulator('torrent')" class="w-full bg-green-600 hover:bg-green-500 text-black font-extrabold py-3 px-4 rounded-lg flex items-center justify-between text-sm transition shadow-lg">
+                        <span class="flex items-center gap-2">
+                            <i class="fa-solid fa-file-arrow-down text-lg"></i>
+                            <strong>.torrent ファイルを取得</strong>
+                        </span>
+                        <span class="bg-black/20 text-black px-2 py-0.5 rounded text-[10px] font-mono font-bold">28.42 KB</span>
+                    </button>
+
+                    <!-- Magnet -->
+                    <button onclick="launchClientSimulator('magnet')" class="w-full bg-transparent hover:bg-[#202c30] text-green-400 border border-green-500/30 font-bold py-2.5 px-4 rounded-lg flex items-center justify-start gap-3 text-xs transition">
+                        <i class="fa-solid fa-magnet text-base text-red-500"></i>
+                        <span>マグネットURI (Magnet Link)</span>
+                    </button>
+
+                    <!-- Premium High-speed Mirror -->
+                    <button onclick="launchClientSimulator('webseed')" class="w-full bg-[#162124] hover:bg-[#202d31] text-gray-300 border border-gray-800 py-2.5 px-4 rounded-lg flex items-center justify-start gap-3 text-xs transition">
+                        <i class="fa-solid fa-circle-nodes text-blue-400"></i>
+                        <span>専用WebSeedキャッシュ経由</span>
+                    </button>
+                </div>
+
+                <div class="border-t border-gray-800/80 mt-4 pt-4 text-[11px] text-gray-500 space-y-1.5">
+                    <p><i class="fa-solid fa-circle-check text-green-500 mr-1.5"></i>ウイルスバスター 2009 スキャン済 (クリーン)</p>
+                    <p><i class="fa-solid fa-shield-virus text-green-500 mr-1.5"></i>Hash一致確認済、インデックス整合チェック完了</p>
+                </div>
+            </div>
+
+            <!-- Live Tracker Tracker Status -->
+            <div class="bg-[#12181b] border border-gray-800 rounded-xl p-5">
+                <div class="flex justify-between items-center border-b border-gray-800 pb-2 mb-4">
+                    <h3 class="text-sm font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-rss text-orange-400"></i>
+                        トラッカー接続ステータス
+                    </h3>
+                    <button onclick="forceReannounce()" class="text-xs text-green-400 hover:text-green-300 transition flex items-center gap-1" title="Trackerへの強制再問い合わせ">
+                        <i class="fa-solid fa-arrows-spin"></i>再更新
+                    </button>
+                </div>
+
+                <!-- Live seeds/leeches -->
+                <div class="grid grid-cols-2 gap-3 mb-4">
+                    <div class="bg-[#0a0e10] border border-gray-800 p-2.5 rounded text-center">
+                        <span class="text-[10px] text-gray-500 block mb-0.5">シード数 (Seeds)</span>
+                        <span id="labelSeeds" class="text-lg font-black text-green-400 font-mono">34</span>
+                    </div>
+                    <div class="bg-[#0a0e10] border border-gray-800 p-2.5 rounded text-center">
+                        <span class="text-[10px] text-gray-500 block mb-0.5">ピア数 (Peers)</span>
+                        <span id="labelLeeches" class="text-lg font-black text-red-400 font-mono">112</span>
+                    </div>
+                </div>
+
+                <!-- Peer ratio stats details -->
+                <div class="space-y-3 text-xs">
+                    <div>
+                        <div class="flex justify-between text-gray-400 mb-1 text-[11px]">
+                            <span>トレントヘルス:</span>
+                            <span id="healthLabel" class="text-yellow-500 font-bold">ピア集中 (初期ビルド)</span>
+                        </div>
+                        <div class="w-full bg-[#0d1012] h-2 rounded overflow-hidden">
+                            <div id="healthBar" class="bg-gradient-to-r from-yellow-500 to-green-500 h-full w-[45%] transition-all duration-700"></div>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-gray-800/80 pt-3 space-y-1.5 text-[11px]">
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">ピア比率 (Seeds/Leeches):</span>
+                            <span class="text-gray-300 font-mono" id="peerRatioVal">0.30</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">ダウンロード完了数:</span>
+                            <span class="text-gray-300 font-mono" id="labelCompleted">12 回</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">最終ハッシュ:</span>
+                            <span class="text-gray-400 font-mono select-all text-[10px]">a2e8812c37e2da12a39db4959cf1...</span>
+                        </div>
+                    </div>
+
+                    <!-- Fast Seedbox boost simulation button -->
+                    <button onclick="boostSwarmWithSeedbox()" class="w-full bg-gradient-to-r from-blue-900 to-blue-800 hover:from-blue-800 hover:to-blue-700 text-white font-semibold py-2 rounded text-[11px] transition shadow flex items-center justify-center gap-1.5">
+                        <i class="fa-solid fa-rocket"></i>
+                        <span>ギガビットシードボックスを増援</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Virtual uTorrent Client Panel Simulator -->
+            <div class="bg-[#0e1416] border-2 border-green-500 rounded-xl overflow-hidden shadow-2xl transition-all duration-500" id="utorrentBlock">
+                <!-- Client Header -->
+                <div class="bg-gradient-to-r from-green-950/70 to-emerald-950/40 p-3 flex justify-between items-center border-b border-green-500">
+                    <span class="text-xs font-bold text-white flex items-center gap-2">
+                        <span class="inline-block w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse"></span>
+                        uTorrent v1.8.3 - 仮想ローカルクライアント
+                    </span>
+                    <button onclick="minimizeClient()" class="text-gray-500 hover:text-white transition" title="最小化">
+                        <i class="fa-solid fa-minus text-xs"></i>
+                    </button>
+                </div>
+
+                <div class="p-4 space-y-4">
+                    <p class="text-[11px] text-gray-400 leading-normal">
+                        <strong>Disc 2 (22.30 GB)</strong> のBitTorrentダウンロードシミュレータが稼働中です。2009年の日本の最速光回線環境をシミュレーションします。
+                    </p>
+
+                    <!-- Realtime parameters monitor -->
+                    <div class="bg-[#070b0c] p-3 rounded border border-gray-800 space-y-2.5 font-mono">
+                        <div class="flex justify-between items-center">
+                            <span class="text-[10px] text-gray-500">ダウンロード状態:</span>
+                            <span id="simStateLabel" class="text-xs text-yellow-400 font-bold">初期接続確立中</span>
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <span class="text-[10px] text-gray-500">転送速度 (DL):</span>
+                            <span id="simSpeedLabel" class="text-xs text-green-400 font-bold">1.22 MB/s</span>
+                        </div>
+
+                        <div class="flex justify-between items-center">
+                            <span class="text-[10px] text-gray-500">経過 / 予想残り時間:</span>
+                            <span id="simTimeLabel" class="text-xs text-gray-300">01分05秒 / 04時間12分</span>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-[11px] text-gray-400 mb-1">
+                                <span>ダウンロード進捗率:</span>
+                                <span id="simPercentageLabel" class="text-green-400 font-bold">5.8%</span>
+                            </div>
+                            <!-- Bar tracker -->
+                            <div class="w-full bg-gray-900 h-3 rounded overflow-hidden relative border border-gray-800">
+                                <div id="simProgressBarEl" class="bg-gradient-to-r from-green-600 to-green-400 h-full w-[5.8%] transition-all duration-1000"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Client chunk-blocks simulator (128 visual chunks) -->
+                    <div>
+                        <span class="text-[10px] text-gray-500 font-mono block mb-1.5 uppercase">ダウンロード中ピース一覧 (128ピース):</span>
+                        <div id="simPieceGridContainer" class="grid grid-cols-16 gap-0.5 bg-[#06090a] p-1.5 rounded border border-gray-950 max-h-24 overflow-y-auto">
+                            <!-- Populated on boot via JS -->
+                        </div>
+                        <div class="flex justify-between text-[9px] text-gray-500 mt-1">
+                            <span>■ 未取得</span>
+                            <span class="text-green-500 font-bold">■ 完了</span>
+                            <span class="text-yellow-500 font-bold animate-pulse">■ 転送中</span>
+                        </div>
+                    </div>
+
+                    <!-- Control interface buttons -->
+                    <div class="grid grid-cols-2 gap-2 pt-1 border-t border-gray-800/60">
+                        <button onclick="toggleSimState()" id="simTriggerBtn" class="bg-green-600 hover:bg-green-500 text-black font-extrabold py-1.5 text-xs rounded transition flex items-center justify-center gap-1">
+                            <i id="simTriggerIcon" class="fa-solid fa-pause"></i><span id="simTriggerText">一時停止</span>
+                        </button>
+                        <button onclick="resetSimState()" class="bg-[#182023] hover:bg-[#202b2f] text-gray-300 font-bold py-1.5 text-xs rounded border border-gray-700 transition">
+                            リスタート
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Playback & Burn feasibility checklist -->
+            <div class="bg-[#12181b] border border-gray-800 rounded-xl p-5">
+                <h3 class="text-sm font-bold text-white border-b border-gray-800 pb-2 mb-3">
+                    <i class="fa-solid fa-circle-question mr-1.5 text-blue-400"></i>BD25 焼き込み & 再生チェッカー
+                </h3>
+                <p class="text-[11px] text-gray-400 mb-4 leading-normal">
+                    このディスクデータは25GB(1層無圧縮)です。ダンプした特典映像があなたの機器で再生できるか確認します。
+                </p>
+
+                <div class="space-y-3 text-xs">
+                    <div class="flex items-start gap-2.5">
+                        <input type="checkbox" id="chkSystem1" checked class="mt-0.5 rounded border-gray-700 bg-[#0a0e10] text-green-500 focus:ring-green-500">
+                        <label for="chkSystem1" class="text-gray-300 text-[11px]">
+                            家庭用Blu-rayプレーヤー、または <strong>PlayStation 3 (PS3)</strong> を持っている。
+                        </label>
+                    </div>
+                    <div class="flex items-start gap-2.5">
+                        <input type="checkbox" id="chkSystem2" checked class="mt-0.5 rounded border-gray-700 bg-[#0a0e10] text-green-500 focus:ring-green-500">
+                        <label for="chkSystem2" class="text-gray-300 text-[11px]">
+                            一般的なPC用BD-Rドライブおよび <strong>BD-R 1層片面（25GB）</strong>メディアを持っている。
+                        </label>
+                    </div>
+                    <div class="flex items-start gap-2.5">
+                        <input type="checkbox" id="chkSystem3" class="mt-0.5 rounded border-gray-700 bg-[#0a0e10] text-green-500 focus:ring-green-500">
+                        <label for="chkSystem3" class="text-gray-300 text-[11px]">
+                            ライティングソフト (<strong>ImgBurn 2.5</strong> や <strong>Nero 9</strong>) の操作方法を知っている。
+                        </label>
+                    </div>
+
+                    <button onclick="calculatePlayability()" class="w-full bg-[#182023] hover:bg-[#202b2f] text-white font-bold py-2 rounded border border-gray-700 mt-2 transition text-xs">
+                        再生・焼き込み可能か判定する
+                    </button>
+                    
+                    <div id="checkResultBlock" class="hidden p-3 bg-blue-950/40 border border-blue-500/30 rounded text-[11px] text-blue-200">
+                        <!-- Calculated output loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recommended trackers & Related files (2009 Era) -->
+            <div class="bg-[#12181b] border border-gray-800 rounded-xl p-5">
+                <h3 class="text-sm font-bold text-white border-b border-gray-800 pb-2 mb-3">
+                    📁 関連のおすすめTorrent (2009)
+                </h3>
+                <div class="space-y-2.5 text-xs">
+                    <a href="#" class="block hover:bg-[#161d20] p-2 rounded transition border border-transparent hover:border-gray-800">
+                        <div class="font-bold text-gray-200 truncate">X-Men_2_2003_1080p_BluRay_AVC_DTS-HD_MA_5.1_BD50_Disc1-CtrlHD</div>
+                        <div class="flex justify-between text-gray-500 mt-1 text-[11px]">
+                            <span>📦 43.53 GB (本編ディスク)</span>
+                            <span class="text-green-500">Seeds: 142</span>
+                        </div>
+                    </a>
+                    <a href="#" class="block hover:bg-[#161d20] p-2 rounded transition border border-transparent hover:border-gray-800">
+                        <div class="font-bold text-gray-200 truncate">X-Men_1_2000_1080p_BluRay_AVC_DTS-HD_MA_5.1_BD50-CtrlHD</div>
+                        <div class="flex justify-between text-gray-500 mt-1 text-[11px]">
+                            <span>📦 41.20 GB</span>
+                            <span class="text-green-500">Seeds: 75</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Interactive custom non-blocking toast alerts -->
+    <div id="retroNotificationToast" class="fixed bottom-6 right-6 bg-[#131d20] border-2 border-green-500 p-4 rounded-xl shadow-2xl text-xs text-gray-200 max-w-sm hidden z-50 transition-all duration-300">
+        <div class="flex items-center gap-3">
+            <span class="bg-green-600 text-black font-extrabold px-1.5 py-0.5 rounded text-[10px] tracking-wide">P2Pシステム</span>
+            <p id="retroToastMsg" class="font-semibold">操作が成功しました！</p>
+        </div>
+    </div>
+
+    <!-- Archive Footer -->
+    <footer class="max-w-6xl mx-auto mt-12 px-4 border-t border-gray-800 pt-6 text-center text-xs text-gray-500">
+        <p class="mb-1.5">© 2003-2009 Torrents.com (日本語P2Pコンテンツアーカイブ部)</p>
+        <p class="text-[10px]">免責：本ウェブページは2009年当時の映画ダウンロードポータルを再現したインタラクティブミラーシミュレーターです。ファイルの実ダウンロードは行われません。</p>
+    </footer>
+
+    <!-- LOGIC SCRIPTS -->
+    <script>
+        // Trackers & Swarm statistics variables
+        let seedsCount = 34;
+        let leechesCount = 112;
+        let totalCompletedTimes = 12;
+        let isBookmarkedState = false;
+
+        // Client Simulator settings
+        let isSimulatorRunning = true;
+        let simCurrentProgress = 5.8; // initial progress
+        let simDownloadRate = 1.22; // MB/s
+        let simulatorTicker = null;
+        let clientBlocks = [];
+        const totalSimPieces = 128; // block configuration
+
+        // App initialization
+        window.onload = function() {
+            buildPieceGridBlocks();
+            engageClientSimulationLoop();
+        };
+
+        // Bookmark toggle
+        function toggleBookmark() {
+            const btn = document.getElementById('bookmarkBtn');
+            const icon = document.getElementById('bookmarkIcon');
+            isBookmarkedState = !isBookmarkedState;
+
+            if (isBookmarkedState) {
+                btn.classList.add('text-yellow-400', 'bg-yellow-950/20', 'border-yellow-500/30');
+                icon.classList.remove('fa-regular');
+                icon.classList.add('fa-solid');
+                triggerNotificationToast("このTorrentをお気に入り登録しました。フォーラムマイページから追跡できます！");
+            } else {
+                btn.classList.remove('text-yellow-400', 'bg-yellow-950/20', 'border-yellow-500/30');
+                icon.classList.remove('fa-solid');
+                icon.classList.add('fa-regular');
+                triggerNotificationToast("お気に入り登録から除外しました。");
+            }
+        }
+
+        // Trigger notifications
+        function triggerNotificationToast(text) {
+            const toast = document.getElementById('retroNotificationToast');
+            const msg = document.getElementById('retroToastMsg');
+            msg.innerText = text;
+            toast.classList.remove('hidden');
+
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 4000);
+        }
+
+        // Subfolder trees browser toggle
+        function toggleSubFolder(id) {
+            const f = document.getElementById(id);
+            const icon = document.getElementById('chevron-' + id.replace('sub-', ''));
+
+            if (f.classList.contains('hidden')) {
+                f.classList.remove('hidden');
+                icon.classList.remove('fa-chevron-right');
+                icon.classList.add('fa-chevron-down');
+            } else {
+                f.classList.add('hidden');
+                icon.classList.remove('fa-chevron-down');
+                icon.classList.add('fa-chevron-right');
+            }
+        }
+
+        // Collapse all folder tree structures
+        let treeExpandedState = true;
+        function toggleFileTree() {
+            const bdmv = document.getElementById('sub-bdmv');
+            const iconBdmv = document.getElementById('chevron-bdmv');
+            const clipinf = document.getElementById('sub-clipinf');
+            const iconClipinf = document.getElementById('chevron-clipinf');
+            const stream = document.getElementById('sub-stream');
+            const iconStream = document.getElementById('chevron-stream');
+            const btn = document.getElementById('treeToggleBtn');
+
+            if (treeExpandedState) {
+                bdmv.classList.add('hidden');
+                iconBdmv.classList.remove('fa-chevron-down');
+                iconBdmv.classList.add('fa-chevron-right');
+
+                clipinf.classList.add('hidden');
+                iconClipinf.classList.remove('fa-chevron-down');
+                iconClipinf.classList.add('fa-chevron-right');
+
+                stream.classList.add('hidden');
+                iconStream.classList.remove('fa-chevron-down');
+                iconStream.classList.add('fa-chevron-right');
+
+                btn.innerText = "すべての階層を展開";
+                treeExpandedState = false;
+            } else {
+                bdmv.classList.remove('hidden');
+                iconBdmv.classList.remove('fa-chevron-right');
+                iconBdmv.classList.add('fa-chevron-down');
+
+                clipinf.classList.remove('hidden');
+                iconClipinf.classList.remove('fa-chevron-right');
+                iconClipinf.classList.add('fa-chevron-down');
+
+                stream.classList.remove('hidden');
+                iconStream.classList.remove('fa-chevron-right');
+                iconStream.classList.add('fa-chevron-down');
+
+                btn.innerText = "すべて折りたたむ";
+                treeExpandedState = true;
+            }
+        }
+
+        // Clipboard copy functionality
+        function copyNFOToClipboard() {
+            const rawTxt = document.getElementById('nfoBody').innerText;
+            const tempBox = document.createElement('textarea');
+            tempBox.value = rawTxt;
+            document.body.appendChild(tempBox);
+            tempBox.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempBox);
+
+            triggerNotificationToast("CtrlHDのNFOテキストをクリップボードにコピーしました！");
+        }
+
+        // Forum comment submission
+        function publishUserComment() {
+            const usernameInput = document.getElementById('postUsername');
+            const roleSelect = document.getElementById('postUserRole');
+            const commentBodyText = document.getElementById('postCommentBody');
+
+            let authorName = usernameInput.value.trim();
+            if (!authorName) {
+                authorName = "匿名ピア";
+            }
+
+            const rawCommentVal = commentBodyText.value.trim();
+            if (!rawCommentVal) {
+                triggerNotificationToast("⚠️ コメント欄に入力してください。");
+                return;
+            }
+
+            const listWrapper = document.getElementById('commentList');
+            const counterElement = document.getElementById('userCommentCounter');
+
+            // JST 2009 timeline date builder
+            const timestamp = new Date();
+            const year = timestamp.getFullYear();
+            const month = String(timestamp.getMonth() + 1).padStart(2, '0');
+            const date = String(timestamp.getDate()).padStart(2, '0');
+            const hours = String(timestamp.getHours()).padStart(2, '0');
+            const minutes = String(timestamp.getMinutes()).padStart(2, '0');
+            const timeString = `${year}-${month}-${date} ${hours}:${minutes}`;
+
+            // Create wrapper element
+            const element = document.createElement('div');
+            element.className = "bg-[#0e1315] border border-gray-800 p-4 rounded-lg";
+            element.innerHTML = `
+                <div class="flex justify-between items-center text-xs text-gray-500 mb-2">
+                    <span class="font-bold text-green-400 flex items-center gap-1.5">
+                        <i class="fa-solid fa-user text-gray-400"></i> ${authorName}
+                        <span class="bg-gray-800 text-[10px] text-gray-400 px-1.5 py-0.2 rounded font-normal">${roleSelect.value}</span>
+                    </span>
+                    <span>${timeString}</span>
+                </div>
+                <p class="text-sm text-gray-200 leading-relaxed">
+                    ${rawCommentVal.replace(/\n/g, '<br>')}
+                </p>
+            `;
+
+            listWrapper.appendChild(element);
+
+            // Increment count display
+            const targetCount = parseInt(counterElement.innerText);
+            counterElement.innerText = targetCount + 1;
+
+            // Clear input fields
+            commentBodyText.value = "";
+            usernameInput.value = "";
+
+            triggerNotificationToast("✅ フォーラムスレッドにコメントを書き込みました。");
+            element.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Simulated VPN speed acceleration helper
+        function simulateVPNAccel() {
+            triggerNotificationToast("⚡ VPNアクセラレーションを模擬的に起動しました！ピア接続が最適化されます。");
+            simDownloadRate = Math.min(6.5, simDownloadRate + 1.8);
+            document.getElementById('simSpeedLabel').innerText = simDownloadRate.toFixed(2) + " MB/s";
+        }
+
+        // Swarm seeds manual re-announce
+        function forceReannounce() {
+            triggerNotificationToast("📡 トラッカー(tracker.torrents.com)へ再問い合わせ(Announce)を行っています...");
+            
+            setTimeout(() => {
+                const shiftSeeds = Math.floor(Math.random() * 10) - 4; // shifts seeder counts
+                const shiftLeeches = Math.floor(Math.random() * 20) - 8;
+
+                seedsCount = Math.max(5, seedsCount + shiftSeeds);
+                leechesCount = Math.max(12, leechesCount + shiftLeeches);
+                totalCompletedTimes += Math.floor(Math.random() * 2) + 1;
+
+                document.getElementById('labelSeeds').innerText = seedsCount;
+                document.getElementById('labelLeeches').innerText = leechesCount;
+                document.getElementById('labelCompleted').innerText = totalCompletedTimes + " 回";
+
+                const newRatio = (seedsCount / leechesCount).toFixed(2);
+                document.getElementById('peerRatioVal').innerText = newRatio;
+
+                // Dynamically update health labels based on ratio
+                const ratioValue = parseFloat(newRatio);
+                const healthLabel = document.getElementById('healthLabel');
+                const healthBar = document.getElementById('healthBar');
+
+                if (ratioValue > 0.8) {
+                    healthLabel.innerText = "良好 (Good Swarm)";
+                    healthLabel.className = "text-green-400 font-bold";
+                    healthBar.className = "bg-gradient-to-r from-yellow-500 to-green-500 h-full w-[75%]";
+                } else if (ratioValue > 0.4) {
+                    healthLabel.innerText = "安定 (Stable)";
+                    healthLabel.className = "text-yellow-400 font-bold";
+                    healthBar.className = "bg-gradient-to-r from-yellow-500 to-green-500 h-full w-[60%]";
+                } else {
+                    healthLabel.innerText = "ピア集中 (Leecher Storm)";
+                    healthLabel.className = "text-orange-400 font-bold";
+                    healthBar.className = "bg-gradient-to-r from-red-500 to-yellow-500 h-full w-[35%]";
+                }
+
+                triggerNotificationToast(`📡 トラッカー更新成功: シーダー ${seedsCount} / ピア ${leechesCount}`);
+            }, 1000);
+        }
+
+        // Gigabit Seedbox boost trigger
+        function boostSwarmWithSeedbox() {
+            triggerNotificationToast("🚀 ギガビットシードボックスをトラッカーに登録しました！一時的にシーダーが劇的に増加します。");
+            
+            setTimeout(() => {
+                seedsCount += 45;
+                leechesCount = Math.max(10, leechesCount - 15); // seedbox drains leeches
+                
+                document.getElementById('labelSeeds').innerText = seedsCount;
+                document.getElementById('labelLeeches').innerText = leechesCount;
+                
+                const newRatio = (seedsCount / leechesCount).toFixed(2);
+                document.getElementById('peerRatioVal').innerText = newRatio;
+
+                document.getElementById('healthLabel').innerText = "爆速シードモード起動中";
+                document.getElementById('healthLabel').className = "text-blue-400 font-black animate-pulse";
+                document.getElementById('healthBar').className = "bg-gradient-to-r from-blue-500 to-green-500 h-full w-full";
+
+                // Boost simulator speed
+                simDownloadRate = Math.min(8.5, simDownloadRate + 2.5);
+
+                triggerNotificationToast(`🚀 シードボックス配置完了！高速転送が可能になりました。`);
+            }, 800);
+        }
+
+        // Initialize virtual piece visualizer blocks
+        function buildPieceGridBlocks() {
+            const grid = document.getElementById('simPieceGridContainer');
+            grid.innerHTML = '';
+            clientBlocks = [];
+
+            for (let i = 0; i < totalSimPieces; i++) {
+                const element = document.createElement('div');
+                element.className = "w-full h-2.5 bg-gray-900 border-[1px] border-black/50 rounded-[1px] transition-colors duration-200";
+
+                // Predetermine state based on initial progress
+                let status = 0; // 0: empty, 1: downloading, 2: completed
+                const targetPercentage = simCurrentProgress / 100;
+
+                if (Math.random() < targetPercentage * 0.85) {
+                    status = 2;
+                    element.className += " bg-green-500";
+                } else if (Math.random() < 0.1 && isSimulatorRunning) {
+                    status = 1;
+                    element.className += " bg-yellow-500 animate-pulse";
+                }
+
+                clientBlocks.push({ dom: element, status: status });
+                grid.appendChild(element);
+            }
+        }
+
+        // Client Simulator active logic loop
+        function engageClientSimulationLoop() {
+            if (simulatorTicker) clearInterval(simulatorTicker);
+
+            simulatorTicker = setInterval(() => {
+                if (!isSimulatorRunning) return;
+
+                // Download done scenario
+                if (simCurrentProgress >= 100) {
+                    simCurrentProgress = 100;
+                    document.getElementById('simPercentageLabel').innerText = "100.0% [シード中]";
+                    document.getElementById('simPercentageLabel').className = "text-green-400 font-bold";
+                    document.getElementById('simProgressBarEl').style.width = "100%";
+                    
+                    document.getElementById('simStateLabel').innerText = "シード転送中 (Seeding)";
+                    document.getElementById('simStateLabel').className = "text-xs text-blue-400 font-bold";
+                    document.getElementById('simSpeedLabel').innerText = "420 KB/s [UP]";
+                    document.getElementById('simSpeedLabel').className = "text-xs text-blue-400 font-bold";
+                    document.getElementById('simTimeLabel').innerText = "完了 / アップロード継続中";
+
+                    // Turn all remaining blocks to Completed green
+                    clientBlocks.forEach(block => {
+                        block.status = 2;
+                        block.dom.className = "w-full h-2.5 bg-green-500 border-[1px] border-black/50 rounded-[1px]";
+                    });
+                    return;
+                }
+
+                // Speed fluctuation calculation based on optical fibers of 2009 JST
+                const rateChange = (Math.random() * 0.3) - 0.15;
+                simDownloadRate = Math.max(0.6, Math.min(9.5, simDownloadRate + rateChange));
+                document.getElementById('simSpeedLabel').innerText = simDownloadRate.toFixed(2) + " MB/s";
+
+                // Dynamic progress increments (scaled for quick demo experience)
+                const rateStep = (simDownloadRate * 1.35); // simulated speed scale step
+                simCurrentProgress = Math.min(100, simCurrentProgress + rateStep);
+                document.getElementById('simPercentageLabel').innerText = simCurrentProgress.toFixed(1) + "%";
+                document.getElementById('simProgressBarEl').style.width = simCurrentProgress + "%";
+
+                // Time duration calculations
+                const remainingGB = (22.30 * (1 - (simCurrentProgress / 100)));
+                const remainingSecs = (remainingGB * 1024) / simDownloadRate;
+                const hours = Math.floor(remainingSecs / 3600);
+                const minutes = Math.floor((remainingSecs % 3600) / 60);
+                const seconds = Math.floor(remainingSecs % 60);
+
+                document.getElementById('simTimeLabel').innerText = `経過中 / 約 ${hours}時間${minutes}分${seconds}秒`;
+                document.getElementById('simStateLabel').innerText = "ダウンロード中";
+                document.getElementById('simStateLabel').className = "text-xs text-green-400 font-bold";
+
+                // Cycle piece statuses
+                cycleBlockElements();
+
+            }, 1000);
+        }
+
+        // Refresh blocks representation states
+        function cycleBlockElements() {
+            const targetRatio = simCurrentProgress / 100;
+
+            clientBlocks.forEach(piece => {
+                if (piece.status === 2) return; // Keep finished green blocks
+
+                const odds = Math.random();
+                if (odds < targetRatio) {
+                    piece.status = 2;
+                    piece.dom.className = "w-full h-2.5 bg-green-500 border-[1px] border-black/50 rounded-[1px]";
+                } else if (odds < targetRatio + 0.12 && isSimulatorRunning) {
+                    piece.status = 1;
+                    piece.dom.className = "w-full h-2.5 bg-yellow-500 border-[1px] border-black/50 rounded-[1px] animate-pulse";
+                } else {
+                    piece.status = 0;
+                    piece.dom.className = "w-full h-2.5 bg-gray-900 border-[1px] border-black/50 rounded-[1px]";
+                }
+            });
+        }
+
+        // Pause / Play Client Simulation
+        function toggleSimState() {
+            const btn = document.getElementById('simTriggerBtn');
+            const icon = document.getElementById('simTriggerIcon');
+            const text = document.getElementById('simTriggerText');
+            const label = document.getElementById('simStateLabel');
+            
+            isSimulatorRunning = !isSimulatorRunning;
+
+            if (isSimulatorRunning) {
+                icon.className = "fa-solid fa-pause";
+                text.innerText = "一時停止";
+                label.innerText = "ダウンロード中";
+                label.className = "text-xs text-green-400 font-bold";
+                triggerNotificationToast("ダウンロードを再開しました！クライアントがピアを再接続しています。");
+            } else {
+                icon.className = "fa-solid fa-play";
+                text.innerText = "再開";
+                label.innerText = "一時停止中";
+                label.className = "text-xs text-red-500 font-bold";
+                document.getElementById('simSpeedLabel').innerText = "0.00 KB/s";
+                triggerNotificationToast("ダウンロードを一時停止しました。");
+            }
+        }
+
+        // Restart client simulation progression
+        function resetSimState() {
+            simCurrentProgress = 0;
+            simDownloadRate = 1.15;
+            isSimulatorRunning = true;
+            
+            document.getElementById('simTriggerIcon').className = "fa-solid fa-pause";
+            document.getElementById('simTriggerText').innerText = "一時停止";
+            document.getElementById('simStateLabel').innerText = "初期接続中";
+            document.getElementById('simStateLabel').className = "text-xs text-yellow-500 font-bold";
+
+            buildPieceGridBlocks();
+            triggerNotificationToast("ダウンロード進捗を初期リセットしました。");
+        }
+
+        // Close/Minimize client panel animation
+        function minimizeClient() {
+            const client = document.getElementById('utorrentBlock');
+            client.classList.add('opacity-30', 'scale-95');
+            triggerNotificationToast("uTorrentクライアントをトレイに格納しました。バックグラウンドで処理されます。");
+            
+            setTimeout(() => {
+                client.classList.remove('opacity-30', 'scale-95');
+            }, 3000);
+        }
+
+        // Run client load trigger
+        function launchClientSimulator(type) {
+            let infoMsg = "";
+            if (type === 'torrent') {
+                infoMsg = "📥 「X-Men_2_Bonus_Disc.torrent」メタデータファイルの保存処理を開始しました。";
+            } else if (type === 'magnet') {
+                infoMsg = "🧲 マグネットURIを検出しました。仮想uTorrentに転送し接続を開始します。";
+            } else {
+                infoMsg = "⚡ 高速Webシードをトラッカーにプロキシ割り当てしました！速度限界突破中。";
+            }
+
+            triggerNotificationToast(infoMsg);
+
+            // Focus-scroll down to the uTorrent simulator block smoothly
+            const targetBlock = document.getElementById('utorrentBlock');
+            targetBlock.scrollIntoView({ behavior: 'smooth' });
+
+            // Trigger reset
+            resetSimState();
+        }
+
+        // Calculate Burning & Playback capability
+        function calculatePlayability() {
+            const chk1 = document.getElementById('chkSystem1').checked;
+            const chk2 = document.getElementById('chkSystem2').checked;
+            const chk3 = document.getElementById('chkSystem3').checked;
+            const resultBox = document.getElementById('checkResultBlock');
+
+            resultBox.classList.remove('hidden');
+
+            let score = 0;
+            if (chk1) score++;
+            if (chk2) score++;
+            if (chk3) score++;
+
+            if (score === 3) {
+                resultBox.innerHTML = `
+                    <div class="text-green-400 font-bold mb-1">🟢 パーフェクト互換判定 (3/3)</div>
+                    <p class="text-gray-300">ImgBurnなどのライティングソフトでBDMV構造のまま「BD-R 1層片面（25GB）」メディアに焼き込み、PS3または家庭用BDプレイヤーに入れることで、完全無圧縮の豪華ドキュメンタリーメニューがそのまま動きます！</p>
+                `;
+            } else if (score === 2) {
+                resultBox.innerHTML = `
+                    <div class="text-yellow-400 font-bold mb-1">🟡 中度互換判定 (2/3)</div>
+                    <p class="text-gray-300">ディスクメディアに焼かなくても、PC内に保存した「BDMV」フォルダを <strong>PowerDVD 9</strong> や <strong>VLC media player</strong> などのソフトから「フォルダを開く」で直接ディスクとしてマウント再生可能です。十分に楽しめます！</p>
+                `;
+            } else {
+                resultBox.innerHTML = `
+                    <div class="text-red-400 font-bold mb-1">🔴 環境再チェック推奨 (0-1/3)</div>
+                    <p class="text-gray-300">このデータはBD25（片面1層のディスク全体）規格です。通常のDVDメディアには焼き込めません。まずはPC用のBlu-rayマウント再生ソフト、もしくはPS3によるローカル再生環境のご用意をお勧めします。</p>
+                `;
+            }
+        }
+
+        // Trigger index mock searches
+        function triggerMockSearch() {
+            const query = document.getElementById('torrentSearch').value.trim();
+            if (!query) {
+                triggerNotificationToast("⚠️ 検索ワードを入力してください。");
+                return;
+            }
+            triggerNotificationToast(`🔍 「${query}」に関連する2009年の映画・字幕Torrentデータをネットワーク検索中...`);
+        }
+    </script>
+</body>
+</html>
