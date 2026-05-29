@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Люди Икс (X-Men) - 2-Disc Set Blu-ray | Двадцатый Век Фокс СНГ</title>
+    <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Helvetica, sans-serif;
+            background-color: #0a0f1d;
+            color: #ffffff;
+            background-image: radial-gradient(circle at top, #1a2636 0%, #0a0f1d 70%);
+            line-height: 1.5;
+        }
+
+        /* 2009 Fox Header */
+        header {
+            background: linear-gradient(to bottom, #111 0%, #000 100%);
+            border-bottom: 3px solid #0054a6;
+            padding: 15px 20px;
+        }
+        .header-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-weight: 900;
+            font-style: italic;
+            font-size: 24px;
+            letter-spacing: 1px;
+            color: #fff;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+        .logo span {
+            color: #0054a6;
+        }
+        nav a {
+            color: #ccc;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 14px;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+        nav a:hover, nav a.active {
+            color: #fff;
+            border-bottom: 2px solid #0054a6;
+            padding-bottom: 5px;
+        }
+
+        /* Main Layout */
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        /* Breadcrumbs */
+        .breadcrumbs {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 20px;
+        }
+        .breadcrumbs a {
+            color: #888;
+            text-decoration: none;
+        }
+        .breadcrumbs a:hover {
+            color: #fff;
+        }
+
+        /* Movie Section */
+        .movie-grid {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 40px;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 30px;
+            border-radius: 8px;
+            border: 1px solid #1c2d42;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+
+        /* Left Column: Cover & Badges */
+        .cover-art {
+            text-align: center;
+        }
+        .cover-art img {
+            width: 100%;
+            max-width: 260px;
+            border-radius: 4px;
+            box-shadow: 0 0 15px rgba(0,110,255,0.4);
+            border: 1px solid #3a587a;
+            transition: transform 0.3s ease;
+        }
+        .cover-art img:hover {
+            transform: scale(1.03);
+        }
+        .format-badge {
+            display: inline-block;
+            margin-top: 15px;
+            background: linear-gradient(135deg, #002f6c 0%, #0054a6 100%);
+            color: #fff;
+            padding: 6px 15px;
+            font-weight: bold;
+            font-size: 13px;
+            border-radius: 3px;
+            border: 1px solid #0076ff;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 2px #000;
+        }
+
+        /* Right Column: Details */
+        .movie-title h1 {
+            font-size: 32px;
+            margin-bottom: 5px;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+        }
+        .movie-title h2 {
+            font-size: 20px;
+            color: #8fa0b5;
+            font-weight: normal;
+            margin-bottom: 15px;
+        }
+        .release-date-alert {
+            background: rgba(0, 84, 166, 0.2);
+            border-left: 4px solid #0054a6;
+            padding: 10px 15px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid #1c2d42;
+            margin-top: 25px;
+        }
+        .tab-btn {
+            background: none;
+            border: none;
+            color: #888;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+        .tab-btn:hover {
+            color: #fff;
+        }
+        .tab-btn.active {
+            color: #fff;
+            border-bottom: 3px solid #0054a6;
+            margin-bottom: -2px;
+        }
+        .tab-content {
+            display: none;
+            padding: 20px 0;
+            font-size: 14px;
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Info Grid */
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        .info-table td {
+            padding: 8px 0;
+            border-bottom: 1px solid #152233;
+            vertical-align: top;
+        }
+        .info-table td.label {
+            color: #64748b;
+            width: 150px;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 60px;
+            background: #050810;
+            padding: 30px 20px;
+            text-align: center;
+            font-size: 12px;
+            color: #4a5568;
+            border-top: 1px solid #152233;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .movie-grid {
+                grid-template-columns: 1fr;
+            }
+            .cover-art {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <div class="logo">20th Century <span>Fox</span></div>
+            <nav>
+                <a href="#">Главная</a>
+                <a href="#" class="active">Blu-ray & DVD</a>
+                <a href="#">Кинорелизы</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="breadcrumbs">
+            <a href="#">Главная</a> &gt; <a href="#">Каталог Blu-ray</a> &gt; Люди Икс (2-Disc Special Edition)
+        </div>
+
+        <div class="movie-grid">
+            <div class="cover-art">
+                <img src="https://images.static-bluray.com/movies/covers/45461_front.jpg" alt="Люди Икс Blu-ray Обложка">
+                <div><span class="format-badge">BLU-RAY 2-DISC SET</span></div>
+            </div>
+
+            <div class="movie-details">
+                <div class="movie-title">
+                    <h1>Люди Икс</h1>
+                    <h2>X-Men (2000)</h2>
+                </div>
+
+                <div class="release-date-alert">
+                    <strong>Дата релиза:</strong> В продаже с 21 мая 2009 года
+                </div>
+
+                <div class="tabs">
+                    <button class="tab-btn active" onclick="switchTab(event, 'about')">О фильме</button>
+                    <button class="tab-btn" onclick="switchTab(event, 'specs')">Спецификации диска</button>
+                    <button class="tab-btn" onclick="switchTab(event, 'bonus')">Бонусные материалы</button>
+                </div>
+
+                <div id="about" class="tab-content active">
+                    <p>Они — дети атомного века, сверхлюди, новое звено в цепи эволюции. Каждый из них родился в результате уникальной генетической мутации, наделившей их с детства необычайными способностями. Под руководством профессора Чарльза Ксавье мутанты учатся контролировать свои силы ради защиты человечества, которое их боится и ненавидит.</p>
+                    <p style="margin-top: 15px;">Первый легендарный фильм культовой франшизы Брайана Сингера впервые выходит в потрясающем Full HD качестве высокого разрешения на двух дисках Blu-ray с колоссальным набором дополнительных материалов.</p>
+                </div>
+
+                <div id="specs" class="tab-content">
+                    <table class="info-table">
+                        <tr>
+                            <td class="label">Режиссер</td>
+                            <td>Брайан Сингер</td>
+                        </tr>
+                        <tr>
+                            <td class="label">В ролях</td>
+                            <td>Хью Джекман, Патрик Стюарт, Иэн Маккеллен, Фамке Янссен, Хэлли Берри, Анна Пэкуин</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Дистрибьютор</td>
+                            <td>«Двадцатый Век Фокс СНГ»</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Видео</td>
+                            <td>1080p High Definition / 2.35:1 / AVC</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Аудио</td>
+                            <td>Английский DTS-HD Master Audio 5.1<br>Русский DTS 5.1 (Дубляж)</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Субтитры</td>
+                            <td>Русские, Английские</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div id="bonus" class="tab-content">
+                    <p><strong>Диск 1:</strong></p>
+                    <ul style="margin-left: 20px; margin-bottom: 15px;">
+                        <li>Аудиокомментарии режиссера Брайана Сингера</li>
+                        <li>Режим просмотра фильма с расширенными и удаленными сценами</li>
+                    </ul>
+                    <p><strong>Диск 2:</strong></p>
+                    <ul style="margin-left: 20px;">
+                        <li>Эксклюзивный интерактивный режим «Evolution X»</li>
+                        <li>Документальный фильм о создании вселенной Людей Икс</li>
+                        <li>Архивные материалы: эскизы, костюмы, галерея спецэффектов</li>
+                        <li>Театральные ролики и ТВ-споты</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy;2009 Twentieth Century Fox Home Entertainment LLC. Все права защищены.</p>
+        <p style="margin-top: 5px; color: #334155;">Данная страница является архивной стилизацией под русскоязычный сегмент сайта FOX (ru-RU) по состоянию на май 2009 года.</p>
+    </footer>
+
+    <script>
+        function switchTab(evt, tabId) {
+            // Hide all tab contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            // Remove active class from all buttons
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            // Show selected tab and mark button active
+            document.getElementById(tabId).classList.add('active');
+            evt.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+</html>
