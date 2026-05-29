@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="el" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ραλφ: Η Επόμενη Πίστα - Βικιπαίδεια</title>
+    <style>
+        /* Wikipedia Classic Vector Skin Replica */
+        body {
+            font-family: sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #202122;
+            background-color: #f6f6f6;
+            margin: 0;
+            padding: 0;
+        }
+        a {
+            color: #3366cc;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: none;
+        }
+        a.new {
+            color: #dd3333;
+        }
+
+        /* Top Header Navigation */
+        header {
+            background-color: #ffffff;
+            border-bottom: 1px solid #a2a9b1;
+            padding: 5px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 40px;
+        }
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .wikipedia-logo {
+            font-family: 'Georgia', serif;
+            font-size: 20px;
+            font-weight: bold;
+            color: #000;
+        }
+        .search-box {
+            padding: 5px 10px;
+            border: 1px solid #a2a9b1;
+            border-radius: 2px;
+            width: 250px;
+        }
+
+        /* Main Layout */
+        .container {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+            background-color: #ffffff;
+        }
+
+        /* Sidebar navigation */
+        aside {
+            width: 160px;
+            padding: 15px;
+            background-color: #f6f6f6;
+            border-right: 1px solid #a2a9b1;
+            font-size: 12px;
+        }
+        aside ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 15px 0;
+        }
+        aside ul li {
+            margin-bottom: 6px;
+        }
+        aside h3 {
+            font-size: 12px;
+            color: #54595d;
+            margin: 10px 0 5px 0;
+            border-bottom: 1px solid #c8ccd1;
+            padding-bottom: 2px;
+        }
+
+        /* Main Content Area */
+        main {
+            flex: 1;
+            padding: 20px 40px;
+            background-color: #ffffff;
+            min-width: 0; /* Prevents flex items from bursting bounds */
+        }
+
+        h1 {
+            font-family: 'Linux Libertine', 'Georgia', 'Times', serif;
+            font-size: 28px;
+            font-weight: normal;
+            border-bottom: 1px solid #a2a9b1;
+            margin-top: 0;
+            padding-bottom: 5px;
+        }
+        .site-sub {
+            font-size: 12px;
+            color: #54595d;
+            margin-top: -10px;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        h2 {
+            font-family: 'Linux Libertine', 'Georgia', 'Times', serif;
+            font-size: 22px;
+            font-weight: normal;
+            border-bottom: 1px solid #a2a9b1;
+            margin-top: 30px;
+            padding-bottom: 5px;
+        }
+
+        /* Table of Contents */
+        .toc {
+            background-color: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            padding: 10px 15px;
+            display: inline-block;
+            margin-bottom: 20px;
+            font-size: 13px;
+            min-width: 200px;
+        }
+        .toc-title {
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+        .toc-toggle {
+            font-weight: normal;
+            font-size: 11px;
+            cursor: pointer;
+            color: #3366cc;
+            margin-left: 5px;
+        }
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+        .toc ul ul {
+            padding-left: 20px;
+        }
+        .toc-number {
+            color: #202122;
+            margin-right: 5px;
+        }
+
+        /* Infobox (Right Column Info Table) */
+        .infobox {
+            float: right;
+            width: 300px;
+            background-color: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            padding: 5px;
+            margin-left: 20px;
+            margin-bottom: 20px;
+            font-size: 12px;
+            border-collapse: collapse;
+        }
+        .infobox th.summary {
+            font-size: 14px;
+            background-color: #b0c4de;
+            text-align: center;
+            padding: 5px;
+        }
+        .infobox .image-container {
+            text-align: center;
+            padding: 10px;
+            background-color: #fff;
+        }
+        .infobox .poster-placeholder {
+            width: 220px;
+            height: 310px;
+            background-color: #e2e2e2;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #555;
+            border: 1px solid #ccc;
+        }
+        .infobox table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .infobox td, .infobox th {
+            padding: 4px;
+            vertical-align: top;
+            text-align: left;
+        }
+        .infobox th {
+            width: 35%;
+            font-weight: bold;
+        }
+
+        /* Footnotes & References */
+        .references {
+            font-size: 12px;
+            column-count: 2;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 40px;
+            padding: 20px;
+            border-top: 1px solid #a2a9b1;
+            background-color: #f6f6f6;
+            font-size: 12px;
+            color: #54595d;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-left">
+            <span class="wikipedia-logo">Βικιπαίδεια</span>
+            <span style="font-size: 12px; color:#54595d;">Η ελεύθερη εγκυκλοπαίδεια</span>
+        </div>
+        <div>
+            <input type="text" class="search-box" placeholder="Αναζήτηση στη Βικιπαίδεια">
+        </div>
+    </header>
+
+    <div class="container">
+        <aside>
+            <h3>Πλοήγηση</h3>
+            <ul>
+                <li><a href="#">Κύρια σελίδα</a></li>
+                <li><a href="#">Πύλη κοινότητας</a></li>
+                <li><a href="#">Τρέχοντα γεγονότα</a></li>
+                <li><a href="#">Πρόσφατες αλλαγές</a></li>
+                <li><a href="#">Τυχαία σελίδα</a></li>
+            </ul>
+            <h3>Συμμετοχή</h3>
+            <ul>
+                <li><a href="#">Βοήθεια</a></li>
+                <li><a href="#">Αγορά</a></li>
+                <li><a href="#">Δωρεές</a></li>
+            </ul>
+            <h3>Άλλες γλώσσες</h3>
+            <ul>
+                <li><a href="#">English</a></li>
+                <li><a href="#">Español</a></li>
+                <li><a href="#">Français</a></li>
+                <li><a href="#">Italiano</a></li>
+                <li><a href="#">日本語</a></li>
+            </ul>
+        </aside>
+
+        <main>
+            <h1 id="firstHeading">Ραλφ: Η Επόμενη Πίστα</h1>
+            <div class="site-sub">Από τη Βικιπαίδεια, την ελεύθερη εγκυκλοπαίδεια</div>
+
+            <table class="infobox summary">
+                <tr>
+                    <th colspan="2" class="summary">Ραλφ: Η Επόμενη Πίστα</th>
+                </tr>
+                <tr>
+                    <td colspan="2" class="image-container">
+                        <div class="poster-placeholder">
+                            Αφίσα της ταινίας<br>(Wreck-It Ralph)
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Σκηνοθεσία</th>
+                    <td>Ριτς Μουρ</td>
+                </tr>
+                <tr>
+                    <th>Παραγωγή</th>
+                    <td>Κλαρκ Σπένσερ</td>
+                </tr>
+                <tr>
+                    <th>Σενάριο</th>
+                    <td>Φιλ Τζόνστον<br>Τζένιφερ Λι</td>
+                </tr>
+                <tr>
+                    <th>Πρωταγωνιστές</th>
+                    <td>Τζον Σι Ράιλι<br>Σάρα Σίλβερμαν<br>Τζακ ΜακΜπράιερ<br>Τζέιν Λιντς</td>
+                </tr>
+                <tr>
+                    <th>Μουσική</th>
+                    <td>Χένρι Τζάκμαν</td>
+                </tr>
+                <tr>
+                    <th>Εταιρεία<br>παραγωγής</th>
+                    <td>Walt Disney Animation Studios<br>Walt Disney Pictures</td>
+                </tr>
+                <tr>
+                    <th>Πρώτη προβολή</th>
+                    <td>2 Νοεμβρίου 2012 (ΗΠΑ)</td>
+                </tr>
+                <tr>
+                    <th>Διάρκεια</th>
+                    <td>101 λεπτά</td>
+                </tr>
+                <tr>
+                    <th>Χώρα</th>
+                    <td>Ηνωμένες Πολιτείες Αμερικής</td>
+                </tr>
+                <tr>
+                    <th>Γλώσσα</th>
+                    <td>Αγγλικά</td>
+                </tr>
+                <tr>
+                    <th>Προϋπολογισμός</th>
+                    <td>$165 εκατομμύρια</td>
+                </tr>
+                <tr>
+                    <th>Εισπράξεις</th>
+                    <td>$471.2 εκατομμύρια</td>
+                </tr>
+            </table>
+
+            <p>Το <i><b>Ραλφ: Η Επόμενη Πίστα</b></i> (πρωτότυπος τίτλος: <i><b>Wreck-It Ralph</b></i>) είναι μια αμερικανική ταινία κινουμένων σχεδίων με υπολογιστή (3D) του 2012, σε παραγωγή των <b>Walt Disney Animation Studios</b> και διανομή της Walt Disney Pictures. Είναι η 52η ταινία κινουμένων σχεδίων μεγάλου μήκους της Disney. Τη σκηνοθεσία ανέλαβε ο Ριτς Μουρ, ενώ το σενάριο γράφτηκε από τους Φιλ Τζόνστον και Τζένιφερ Λι.</p>
+
+            <p>Η ταινία αφηγείται την ιστορία του Ραλφ, του “κακού” ενός κλασικού παιχνιδιού arcade, ο οποίος επαναστατεί ενάντια στον ρόλο του και ταξιδεύει σε διάφορα άλλα παιχνίδια μέσα στο ηλεκτρονικό σφαιριστήριο (arcade) για να αποδείξει ότι μπορεί να γίνει ήρωας. Η ταινία σημείωσε μεγάλη κριτική και εμπορική επιτυχία, κερδίζοντας μια υποψηφιότητα για <a href="#">Όσκαρ Καλύτερης Ταινίας Κινουμένων Σχεδίων</a>.</p>
+
+            <div class="toc" id="toc">
+                <div class="toc-title">
+                    Περιεχόμενα 
+                    <span class="toc-toggle" id="tocToggle" onclick="toggleTOC()">[απόκρυψη]</span>
+                </div>
+                <ul id="tocList">
+                    <li><a href="#plot"><span class="toc-number">1</span> Πλοκή</a></li>
+                    <li><a href="#voices"><span class="toc-number">2</span> Ηθοποιοί και Χαρακτήρες</a></li>
+                    <li><a href="#reception"><span class="toc-number">3</span> Υποδοχή</a></li>
+                    <li><a href="#sequel"><span class="toc-number">4</span> Συνέχεια</a></li>
+                    <li><a href="#references"><span class="toc-number">5</span> Παραπομπές</a></li>
+                </ul>
+            </div>
+
+            <h2 id="plot">Πλοκή</h2>
+            <p>Όταν το arcade κλείνει το βράδυ, οι χαρακτήρες των βιντεοπαιχνιδιών ζουν τις δικές τους ζωές μέσα από τα καλώδια ρεύματος. Ο Καταστροφέας Ραλφ είναι ο κακός του παιχνιδιού <i>Fix-It Felix, Jr.</i>, όπου ο ήρωας Φέλιξ επισκευάζει το κτίριο που ο Ραλφ καταστρέφει. Μετά από 30 χρόνια που ζει απομονωμένος στις λάσπες, ο Ραλφ αποφασίζει να αποδείξει στους άλλους χαρακτήρες ότι είναι καλός, προσπαθώντας να κερδίσει ένα χρυσό μετάλλιο.</p>
+            <p>Ο Ραλφ δραπετεύει στο φουτουριστικό παιχνίδι δράσης <i>Hero's Duty</i>, όπου καταφέρνει να κλέψει ένα μετάλλιο, αλλά κατά λάθος καταλήγει με ένα σκάφος στο πολύχρωμο, ζαχαρένιο παιχνίδι αγώνων ταχύτητας <i>Sugar Rush</i>. Εκεί γνωρίζει τη Βανέλοπε φον Σβιτς, ένα κορίτσι-σφάλμα (glitch) του παιχνιδιού, η οποία του κλέβει το μετάλλιο για να το χρησιμοποιήσει ως νόμισμα συμμετοχής στον μεγάλο αγώνα. Οι δυο τους αναγκάζονται να συνεργαστούν, ενώ παράλληλα μια απειλή από επικίνδυνα έντομα (Cy-Bugs) απειλεί να καταστρέψει ολόκληρο το arcade.</p>
+
+            <h2 id="voices">Ηθοποιοί και Χαρακτήρες</h2>
+            <ul>
+                <li><b>Τζον Σι Ράιλι</b> (στα ελληνικά: <b>Βασίλης Αξιώτης</b>) ως <i>Ραλφ</i>: Ένας γίγαντας με μεγάλη καρδιά που έχει βαρεθεί να κάνει τον κακό.</li>
+                <li><b>Σάρα Σίλβερμαν</b> (στα ελληνικά: <b>Κλεοπάτρα Ροντήρη</b>) ως <i>Βανέλοπε φον Σβιτς</i>: Μια νεαρή οδηγός αγώνων με δυσλειτουργικό κώδικα (glitch) στο Sugar Rush.</li>
+                <li><b>Τζακ ΜακΜπράιερ</b> (στα ελληνικά: <b>Όθωνας Μεταξάς</b>) ως <i>Μάστορας Φέλιξ ο Νεότερος</i>: Ο καλόκαρδος ήρωας του Fix-It Felix, Jr.</li>
+                <li><b>Τζέιν Λιντς</b> (στα ελληνικά: <b>Ιωάννα Τριφυλλίδου</b>) ως <i>Λοχαγός Κάλχουν</i>: Η σκληροτράχηλη διοικητής του Hero's Duty.</li>
+            </ul>
+
+            <h2 id="reception">Υποδοχή</h2>
+            <p>Η ταινία έλαβε εξαιρετικά θετικές κριτικές, με ιδιαίτερη έμφαση στη δημιουργικότητα του σεναρίου, τη νοσταλγία για τα κλασικά βιντεοπαιχνίδια (όπως οι εμφανίσεις των <a href="#" class="new">Pac-Man</a>, <a href="#" class="new">Sonic</a>, και χαρακτήρων από το <a href="#" class="new">Street Fighter</a>) και τις φωνητικές ερμηνείες. Στην ιστοσελίδα Rotten Tomatoes, η ταινία συγκεντρώνει ποσοστό αποδοχής 87%.</p>
+
+            <h2 id="sequel">Συνέχεια</h2>
+            <p>Μια συνέχεια με τίτλο <i><a href="#">Ραλφ εναντίον Ίντερνετ</a></i> (<i>Ralph Breaks the Internet</i>) κυκλοφόρησε στους κινηματογράφους τον Νοέμβριο του 2018, εξερευνώντας αυτή τη φορά τον κόσμο του παγκόσμιου ιστού.</p>
+
+            <h2 id="references">Παραπομπές</h2>
+            <ol class="references">
+                <li>Wreck-It Ralph (2012) - Box Office Mojo.</li>
+                <li>Disney's 'Wreck-It Ralph' Oscar nomination and review - Animation Magazine.</li>
+                <li>"Ραλφ: Η Επόμενη Πίστα" κριτική - Clickatlife.gr.</li>
+            </ol>
+        </main>
+    </div>
+
+    <footer>
+        <p>Η σελίδα αυτή τροποποιήθηκε τελευταία φορά στις 29 Μαΐου 2026.</p>
+        <p>Όλα τα κείμενα είναι διαθέσιμα υπό την άδεια Creative Commons Attribution-ShareAlike License· μπορεί να ισχύουν πρόσθετοι όροι. Βλέπε <a href="#">Όρους Χρήσης</a> για λεπτομέρειες.</p>
+    </footer>
+
+    <script>
+        function toggleTOC() {
+            var tocList = document.getElementById("tocList");
+            var tocToggle = document.getElementById("tocToggle");
+            
+            if (tocList.style.display === "none") {
+                tocList.style.display = "block";
+                tocToggle.textContent = "[απόκρυψη]";
+            } else {
+                tocList.style.display = "none";
+                tocToggle.textContent = "[εμφάνιση]";
+            }
+        }
+    </script>
+</body>
+</html>
