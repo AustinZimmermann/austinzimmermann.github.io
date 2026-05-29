@@ -1,0 +1,1623 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Torrents.com - Fantastic Four BD25 & retro client (Nov 14, 2006)</title>
+  <!-- Tailwind CSS CDN for utility grid and responsive frameworks -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts for retro/system feel -->
+  <style>
+    /* Custom 2006 Web 2.0 and Windows XP UI styles */
+    body {
+      font-family: Helvetica, sans-serif;
+      background-color: #f0f3f7;
+      color: #333;
+    }
+    .nfo-font {
+      font-family: 'Courier New', monospace;
+      font-size: 11px;
+      line-height: 1.2;
+    }
+    .winxp-border {
+      box-shadow: inset -1px -1px 0px #0a0a0a, inset 1px 1px 0px #fff, inset -2px -2px 0px #808080, inset 2px 2px 0px #dfdfdf;
+    }
+    .winxp-btn-active:active {
+      box-shadow: inset 1px 1px 0px #0a0a0a, inset -1px -1px 0px #fff, inset 2px 2px 0px #808080, inset -2px -2px 0px #dfdfdf;
+    }
+    .gradient-header {
+      background: linear-gradient(180deg, #428bca 0%, #2a6496 100%);
+    }
+    .utorrent-header {
+      background: linear-gradient(180deg, #7da56c 0%, #5d824d 100%);
+    }
+    .retro-input {
+      border: 2px inset #aaa;
+      background-color: #fff;
+    }
+    .blink-ad {
+      animation: blinker 1.2s linear infinite;
+    }
+    @keyframes blinker {
+      50% { opacity: 0.1; }
+    }
+    /* Custom scrollbars for retro feeling */
+    ::-webkit-scrollbar {
+      width: 12px;
+      height: 12px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border: 1px solid #ccc;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #c0c0c0;
+      border: 2px solid #f1f1f1;
+      box-shadow: inset -1px -1px 0px #555, inset 1px 1px 0px #fff;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #a8a8a8;
+    }
+  </style>
+</head>
+<body class="p-2 sm:p-4 bg-[#e9eef4]">
+
+  <!-- Top Announcement / Retro Advertisements (Pure Nostalgia) -->
+  <div class="max-w-7xl mx-auto mb-4 grid grid-cols-1 md:grid-cols-3 gap-2 text-xs">
+    <div class="bg-gradient-to-r from-red-600 to-yellow-500 text-white p-2 rounded flex items-center justify-between shadow border-2 border-red-700 winxp-border">
+      <div>
+        <span class="font-bold uppercase tracking-wider blink-ad text-yellow-200">🔥 HOT OFFER! 🔥</span><br/>
+        <span>Get Limewire PRO for 100% Free! No Spyware guaranteed.</span>
+      </div>
+      <button onclick="showRetroModal('limewire')" class="bg-white text-red-700 px-2 py-1 font-bold rounded winxp-border text-[10px]">GET PRO</button>
+    </div>
+    
+    <div class="bg-gradient-to-r from-blue-700 to-indigo-950 text-white p-2 rounded flex items-center justify-between shadow border-2 border-blue-800 winxp-border">
+      <div>
+        <span class="font-bold text-yellow-300">🚨 SPECIAL SYSTEM AD:</span><br/>
+        <span>"Play World of Warcraft: Burning Crusade Beta!"</span>
+      </div>
+      <button onclick="showRetroModal('wow')" class="bg-yellow-400 text-blue-900 px-2 py-1 font-bold rounded winxp-border text-[10px]">JOIN NOW</button>
+    </div>
+
+    <div class="bg-gradient-to-r from-green-600 to-emerald-800 text-white p-2 rounded flex items-center justify-between shadow border-2 border-green-800 winxp-border">
+      <div>
+        <span class="font-bold text-emerald-200">🎁 YOU WON! 🎁</span><br/>
+        <span>Claim your Free iPod Nano (Red Edition, 4GB) now!</span>
+      </div>
+      <button onclick="showRetroModal('ipod')" class="bg-white text-emerald-800 px-2 py-1 font-bold rounded winxp-border text-[10px]">CLAIM</button>
+    </div>
+  </div>
+
+  <!-- Primary Wrapper -->
+  <div class="max-w-7xl mx-auto bg-white rounded shadow-md border border-[#b2c8e3] overflow-hidden">
+    
+    <!-- Torrents.com Logo and Header -->
+    <header class="p-4 bg-[#1f4a75] text-white border-b border-[#123150] flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="bg-white text-[#1f4a75] font-black text-2xl sm:text-3xl px-3 py-1 rounded shadow-inner transform -rotate-1 tracking-tight border-2 border-yellow-400">
+          Torrents<span class="text-red-600">.com</span>
+        </div>
+        <div>
+          <h2 class="text-xs sm:text-sm italic text-blue-200 font-semibold tracking-wide">The Ultimate BitTorrent Meta-Search Engine</h2>
+          <p class="text-[10px] text-gray-300">November 14, 2006 - Serving 1,482,042 verified torrents worldwide</p>
+        </div>
+      </div>
+      <!-- Retro IRC Chat Link & Server Time -->
+      <div class="text-right text-xs">
+        <div class="bg-blue-950 px-2 py-1 rounded border border-blue-800 text-blue-200 inline-block font-mono mb-1">
+          Server: EFNet | Channel: #torrents
+        </div>
+        <div class="text-gray-300 text-[11px]" id="clock-display">
+          Local Time: Nov 14, 2006 - 07:17 PM (PST)
+        </div>
+      </div>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav class="bg-[#d0e0f0] border-b border-[#a9c9e8] text-xs font-semibold text-[#1f4a75] px-4 py-2 flex flex-wrap gap-2 items-center justify-between">
+      <div class="flex flex-wrap gap-1 sm:gap-2">
+        <a href="#" onclick="switchTorrent('ff_bd25')" class="hover:underline px-2 py-1 bg-white rounded border border-[#a9c9e8] shadow-sm">Home</a>
+        <span class="text-gray-400">|</span>
+        <a href="#" onclick="showRetroModal('browse')" class="hover:underline px-2 py-1">Browse Torrents</a>
+        <span class="text-gray-400">|</span>
+        <a href="#" onclick="showRetroModal('upload')" class="hover:underline px-2 py-1">Upload Torrent</a>
+        <span class="text-gray-400">|</span>
+        <a href="#" onclick="showRetroModal('forum')" class="hover:underline px-2 py-1 text-red-700">Forum (New Posts)</a>
+        <span class="text-gray-400">|</span>
+        <a href="#" onclick="showRetroModal('faq')" class="hover:underline px-2 py-1">FAQ / Rules</a>
+        <span class="text-gray-400">|</span>
+        <a href="#" onclick="toggleIRC()" class="hover:underline px-2 py-1 bg-[#1f4a75] text-white rounded">IRC Web-Chat</a>
+      </div>
+      <div class="text-[11px] text-gray-600">
+        Active Users: <strong class="text-green-700" id="active-user-count">48,294</strong>
+      </div>
+    </nav>
+
+    <!-- Search Bar Area -->
+    <div class="bg-[#f0f5fa] p-4 border-b border-[#d8e5f2] flex flex-col md:flex-row gap-3 items-center justify-between">
+      <div class="w-full md:w-2/3 flex items-center gap-2">
+        <label for="search-input" class="text-xs font-bold text-gray-700 whitespace-nowrap">Search Torrents:</label>
+        <div class="relative w-full">
+          <input type="text" id="search-input" value="Fantastic Four BD25" 
+                 class="w-full p-2 text-sm retro-input focus:outline-none focus:ring-1 focus:ring-blue-500 rounded" 
+                 placeholder="Search name, artist, uploader, NFO hash...">
+          <button onclick="clearSearch()" class="absolute right-2 top-2 text-gray-400 hover:text-gray-700 font-bold text-xs">✕</button>
+        </div>
+        <select id="search-category" class="p-2 text-xs retro-input rounded bg-white">
+          <option value="all">All Categories</option>
+          <option value="hd" selected>Movies - HD / BD25</option>
+          <option value="games">PC / Console Games</option>
+          <option value="tv">TV Shows / Episodes</option>
+          <option value="software">Software / OS</option>
+        </select>
+        <button onclick="performSearch()" class="px-5 py-2 text-xs font-bold bg-[#1f4a75] text-white rounded hover:bg-blue-800 shadow active:translate-y-[1px]">Search!</button>
+      </div>
+      <div class="text-xs text-gray-600 italic">
+        *Popular: <a href="#" onclick="quickSearch('Casino Royale')" class="underline text-blue-800">Casino Royale</a>, 
+        <a href="#" onclick="quickSearch('Gears of War')" class="underline text-blue-800">Gears of War</a>, 
+        <a href="#" onclick="quickSearch('Windows Vista')" class="underline text-blue-800">Vista RC2</a>, 
+        <a href="#" onclick="quickSearch('Heroes')" class="underline text-blue-800">Heroes S01</a>
+      </div>
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 p-4">
+      
+      <!-- LEFT COLUMN: Torrent Portal Index Card (8/12 layout) -->
+      <main class="lg:col-span-8 flex flex-col gap-6">
+        
+        <!-- Search Results Panel (Hidden by default, shown if search changes) -->
+        <div id="search-results-panel" class="hidden border border-yellow-500 bg-yellow-50 p-3 rounded">
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="text-xs font-bold text-yellow-800 uppercase tracking-wider">🔍 Search Results for "<span id="search-query-display"></span>"</h3>
+            <button onclick="closeSearchResults()" class="text-xs underline text-blue-800 font-semibold">Back to Details</button>
+          </div>
+          <div class="overflow-x-auto text-xs">
+            <table class="w-full text-left border-collapse border border-gray-300 bg-white">
+              <thead>
+                <tr class="bg-gray-100 border-b border-gray-300 font-bold text-gray-700">
+                  <th class="p-2 border-r border-gray-300">Torrent Title</th>
+                  <th class="p-2 border-r border-gray-300 w-24">Size</th>
+                  <th class="p-2 border-r border-gray-300 w-16">Seeds</th>
+                  <th class="p-2 border-r border-gray-300 w-16">Leaches</th>
+                  <th class="p-2 w-20">Action</th>
+                </tr>
+              </thead>
+              <tbody id="search-results-rows">
+                <!-- Programmatic insertion -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Torrent Details Section -->
+        <section class="bg-white border border-[#c3d5e8] rounded overflow-hidden shadow-sm">
+          
+          <!-- Banner Title -->
+          <div class="bg-[#2c5e8a] p-3 text-white flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+            <div>
+              <span class="text-[10px] uppercase font-bold tracking-widest text-blue-200">Torrent Details Page</span>
+              <h2 id="torrent-title-display" class="text-sm sm:text-base font-bold font-mono tracking-tight leading-tight">
+                Fantastic.Four.2005.BluRay.BD25.MPEG-2.DTS-HD.MA.5.1-CtrlHD
+              </h2>
+            </div>
+            <!-- Vintage Verified Stamp -->
+            <div class="bg-emerald-600 text-white font-bold text-[11px] px-2 py-1 rounded border border-emerald-400 shadow-sm flex items-center gap-1 shrink-0">
+              <span>✔ Verified Safe</span>
+            </div>
+          </div>
+
+          <!-- Metadata Grid Table -->
+          <div class="border-b border-gray-200 overflow-x-auto">
+            <table class="w-full text-xs text-left">
+              <tbody>
+                <tr class="border-b border-gray-100">
+                  <td class="p-3 bg-gray-50 font-bold text-gray-500 w-1/4">Category</td>
+                  <td id="meta-category" class="p-3 text-blue-900 font-semibold">Video > Movies > High-Definition (Blu-Ray / HD-DVD)</td>
+                </tr>
+                <tr class="border-b border-gray-100">
+                  <td class="p-3 bg-gray-50 font-bold text-gray-500">Date Added</td>
+                  <td id="meta-date" class="p-3">Tuesday, November 14, 2006 - 11:24:08 AM GMT</td>
+                </tr>
+                <tr class="border-b border-gray-100">
+                  <td class="p-3 bg-gray-50 font-bold text-gray-500">Total Size</td>
+                  <td id="meta-size" class="p-3 font-mono font-bold">23.42 GB (25,147,125,760 bytes)</td>
+                </tr>
+                <tr class="border-b border-gray-100">
+                  <td class="p-3 bg-gray-50 font-bold text-gray-500">Uploader</td>
+                  <td class="p-3">
+                    <span id="meta-uploader" class="text-red-700 font-bold">CtrlHD</span> 
+                    <span class="bg-red-100 text-red-800 text-[9px] px-1.5 py-0.5 rounded font-bold ml-1 uppercase">Trusted Uploader</span>
+                  </td>
+                </tr>
+                <tr class="border-b border-gray-100">
+                  <td class="p-3 bg-gray-50 font-bold text-gray-500">Info Hash</td>
+                  <td class="p-3"><code id="meta-hash" class="bg-gray-100 px-1 py-0.5 rounded text-gray-700 font-mono text-[11px]">a7fbc28d3e918bcde76a5b2839201f9d342008e3</code></td>
+                </tr>
+                <tr class="bg-emerald-50/70 border-b border-emerald-100">
+                  <td class="p-3 bg-emerald-50 font-bold text-emerald-800">Active Swarm</td>
+                  <td class="p-3 flex items-center flex-wrap gap-2">
+                    <span class="text-green-700 font-bold text-sm" id="meta-seeds">12 Seeders</span> 
+                    <span class="text-gray-400">|</span> 
+                    <span class="text-red-600 font-bold text-sm" id="meta-leechers">284 Leechers</span>
+                    <span class="text-xs text-gray-500 italic ml-2">(Current peer connection ratio is poor. Please seed after finishing!)</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Big Retro Download Action Bar -->
+          <div class="p-5 bg-gray-50 text-center flex flex-col items-center justify-center border-b border-gray-200">
+            <button onclick="startDownloadSimulation()" class="bg-[#2ea44f] hover:bg-green-700 text-white font-bold px-8 py-3 rounded text-base tracking-wide shadow-lg border-b-4 border-green-800 transition transform hover:-translate-y-0.5 active:translate-y-1 flex items-center gap-3">
+              <svg class="w-6 h-6 fill-white" viewBox="0 0 24 24"><path d="M5 20h14v-2H5v2zm7-18L5.33 11h4V16h5.34v-5h4L12 2z"/></svg>
+              <span>DOWNLOAD TORRENT (.torrent)</span>
+            </button>
+            <p class="text-[11px] text-gray-500 mt-2">
+              Note: You need a compatible BitTorrent client like <strong>uTorrent</strong> or <strong>Azureus</strong> installed. Click to send directly to your local client queue.
+            </p>
+          </div>
+
+          <!-- Torrent Contents Breakdown (Cover + Details) -->
+          <div class="p-4 grid grid-cols-1 md:grid-cols-12 gap-4">
+            
+            <!-- Cover Art Frame -->
+            <div class="md:col-span-4 flex flex-col items-center gap-2">
+              <h3 class="text-xs font-bold text-gray-700 self-start border-b border-gray-200 pb-1 w-full">📀 Retail Cover Art</h3>
+              <div class="bg-gray-200 p-2 rounded border border-gray-300 w-full flex justify-center">
+                <div id="cover-art-container" class="relative">
+                  <img id="torrent-cover-img" src="https://images.static-bluray.com/movies/covers/22_front.jpg" alt="Fantastic Four Cover Art" class="max-w-full h-auto rounded border border-gray-400 shadow shadow-gray-500 max-h-[280px]">
+                  <!-- Vintage "1080p HD" banner overlay -->
+                  <div class="absolute top-1 left-1 bg-blue-600 text-white text-[9px] font-black px-1 py-0.5 rounded shadow border border-blue-400 uppercase tracking-widest">
+                    1080p Blu-Ray
+                  </div>
+                </div>
+              </div>
+              <p class="text-[10px] text-gray-500 text-center italic">Official standard release dimensions. Fallback generated via SVG if external fails.</p>
+            </div>
+
+            <!-- NFO File Container -->
+            <div class="md:col-span-8 flex flex-col gap-2">
+              <div class="flex items-center justify-between border-b border-gray-200 pb-1">
+                <h3 class="text-xs font-bold text-gray-700">📄 Release NFO / Info File (<span id="nfo-filename">CtrlHD.nfo</span>)</h3>
+                <button onclick="copyNFO()" class="text-[10px] bg-gray-200 hover:bg-gray-300 px-2 py-0.5 rounded border border-gray-400 font-semibold text-gray-700">Copy raw text</button>
+              </div>
+              <!-- Textarea rendering raw ASCII artwork NFO -->
+              <div class="bg-[#111] text-green-400 p-3 rounded font-mono text-[10px] overflow-auto h-[260px] border border-gray-900 shadow-inner">
+                <pre id="nfo-text-area" class="nfo-font overflow-visible leading-[1.1]"></pre>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Files and Directories contained -->
+          <div class="p-4 border-t border-gray-200">
+            <h3 class="text-xs font-bold text-gray-700 mb-2 border-b border-gray-200 pb-1">📁 Files Contained in Archive (.torrent payload)</h3>
+            <div class="overflow-x-auto">
+              <table class="w-full text-xs text-left border border-gray-200 rounded">
+                <thead>
+                  <tr class="bg-gray-100 text-gray-600 font-bold border-b border-gray-200">
+                    <th class="p-2">File Name / Tree Node</th>
+                    <th class="p-2 w-32">File Size</th>
+                    <th class="p-2 w-24">Type</th>
+                  </tr>
+                </thead>
+                <tbody id="files-table-body">
+                  <!-- Programmatic Insertion -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Active Trackers -->
+          <div class="p-4 border-t border-gray-200 bg-gray-50/50">
+            <h3 class="text-xs font-bold text-gray-700 mb-1">🔗 Peer Exchange Trackers (Multihop Scrape List)</h3>
+            <p class="text-[11px] text-gray-500 mb-2">These central servers keep the peer registry aligned. Share ratio checks are active.</p>
+            <div class="bg-white p-2 rounded border border-gray-200 font-mono text-[11px] text-blue-700 flex flex-col gap-1" id="trackers-list-box">
+              <!-- Programmatic Trackers Insertion -->
+            </div>
+          </div>
+
+        </section>
+
+        <!-- Interactive Comments / Message Board Area -->
+        <section class="bg-white border border-[#c3d5e8] rounded overflow-hidden shadow-sm">
+          <div class="bg-gray-100 px-3 py-2 border-b border-[#c3d5e8] flex items-center justify-between">
+            <h3 class="text-xs font-bold text-gray-700">💬 Community Discussion & Peer Reviews (<span id="comments-count">14</span> Comments)</h3>
+            <span class="text-[10px] bg-[#1f4a75] text-white font-bold px-1.5 py-0.5 rounded">MODERATED</span>
+          </div>
+          
+          <!-- Comments Loop container -->
+          <div class="p-4 flex flex-col gap-4 max-h-[400px] overflow-y-auto" id="comments-list-container">
+            <!-- Comments inserted via Javascript -->
+          </div>
+
+          <!-- Post Comment Input Form -->
+          <div class="p-4 border-t border-gray-200 bg-[#f7fafd]">
+            <h4 class="text-xs font-bold text-blue-900 mb-2">Leave an Anonymous Review / Question:</h4>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-2">
+              <div>
+                <label class="block text-[10px] text-gray-600 font-bold">User Name/Handle:</label>
+                <input type="text" id="comment-user" class="w-full p-2 text-xs retro-input rounded" placeholder="BitSlayer_99">
+              </div>
+              <div>
+                <label class="block text-[10px] text-gray-600 font-bold">Selected Avatar / Affiliation:</label>
+                <select id="comment-avatar" class="w-full p-2 text-xs retro-input rounded bg-white">
+                  <option value="💡 Regular Member">💡 Regular Member</option>
+                  <option value="💿 HD Enthusiast">💿 HD Enthusiast</option>
+                  <option value="🚀 Seedbox God">🚀 Seedbox God</option>
+                  <option value="🛡️ System Moderator">🛡️ System Moderator</option>
+                </select>
+              </div>
+            </div>
+            <div class="mb-2">
+              <label class="block text-[10px] text-gray-600 font-bold">Message Content:</label>
+              <textarea id="comment-text" rows="3" class="w-full p-2 text-xs retro-input rounded" placeholder="Will seed for at least 3 weeks on my 100Mbit line..."></textarea>
+            </div>
+            <div class="flex justify-end">
+              <button onclick="postComment()" class="px-4 py-2 text-xs font-bold bg-green-600 text-white rounded hover:bg-green-700 shadow-sm">Submit Comment</button>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <!-- RIGHT COLUMN: Client Console Widget & Nostalgic Sidebars (4/12 layout) -->
+      <aside class="lg:col-span-4 flex flex-col gap-4">
+        
+        <!-- Live uTorrent client simulation window! -->
+        <section class="bg-[#f0f0f0] border-2 border-gray-400 rounded overflow-hidden shadow-md flex flex-col winxp-border">
+          
+          <!-- Windows Title bar (XP styled style) -->
+          <div class="utorrent-header text-white px-2 py-1.5 flex items-center justify-between font-bold text-xs select-none">
+            <div class="flex items-center gap-1.5">
+              <!-- Green microtorrent logo using SVG -->
+              <svg class="w-4 h-4 fill-white shrink-0" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14h-2v-6h2v6zm0-8h-2V7h2v1z"/></svg>
+              <span>µTorrent v1.6.0 (Stable) - [Active Queue]</span>
+            </div>
+            <div class="flex gap-1">
+              <button onclick="showRetroModal('ut_min')" class="bg-[#f0f0f0] border border-gray-400 text-black px-1.5 text-[9px] font-bold rounded shadow-sm hover:bg-gray-200">_</button>
+              <button onclick="showRetroModal('ut_max')" class="bg-[#f0f0f0] border border-gray-400 text-black px-1.5 text-[9px] font-bold rounded shadow-sm hover:bg-gray-200">▢</button>
+              <button onclick="toggleClientWindow()" class="bg-[#e04343] border border-red-700 text-white px-1.5 text-[9px] font-bold rounded shadow-sm hover:bg-red-500">X</button>
+            </div>
+          </div>
+
+          <!-- Micro Torrent Controls & Stats Strip -->
+          <div class="bg-gray-100 p-2 border-b border-gray-300 flex items-center justify-between gap-1 text-[11px] flex-wrap">
+            <div class="flex items-center gap-1.5">
+              <button id="btn-play" onclick="controlTorrent('play')" class="bg-white border border-gray-400 text-green-700 px-2 py-1 rounded shadow-sm font-bold active:bg-gray-200 text-[10px]">▶ Resume</button>
+              <button id="btn-pause" onclick="controlTorrent('pause')" class="bg-white border border-gray-400 text-yellow-600 px-2 py-1 rounded shadow-sm font-bold active:bg-gray-200 text-[10px]">⏸ Pause</button>
+              <button id="btn-stop" onclick="controlTorrent('stop')" class="bg-white border border-gray-400 text-red-600 px-2 py-1 rounded shadow-sm font-bold active:bg-gray-200 text-[10px]">■ Stop</button>
+            </div>
+            <!-- CHEAT MODE: Allows fast downloading -->
+            <button id="btn-boost" onclick="toggleCheatMode()" class="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white px-2 py-1 rounded shadow-sm font-bold text-[10px] uppercase border border-indigo-800 tracking-wider">
+              ⚡ Boost (Seedbox 10Gbps)
+            </button>
+          </div>
+
+          <!-- Active Download Box inside Client -->
+          <div class="bg-white p-2 border-b border-gray-300">
+            <div class="flex justify-between font-bold text-[11px] text-gray-700 mb-1">
+              <span class="truncate max-w-[200px]" id="client-torrent-name">No Torrent Queued</span>
+              <span id="client-percent">0.0%</span>
+            </div>
+            
+            <!-- XP Styled Progress Bar -->
+            <div class="w-full bg-gray-200 h-4 border border-gray-400 rounded overflow-hidden relative mb-2 shadow-inner">
+              <div id="client-progress-bar" class="bg-gradient-to-r from-green-500 to-emerald-600 h-full w-[0%] transition-all duration-500 shadow-inner"></div>
+              <!-- Simulated segmentation lines to look retro -->
+              <div class="absolute inset-0 flex justify-between pointer-events-none opacity-20">
+                <div class="w-[1px] bg-white h-full"></div>
+                <div class="w-[1px] bg-white h-full"></div>
+                <div class="w-[1px] bg-white h-full"></div>
+                <div class="w-[1px] bg-white h-full"></div>
+                <div class="w-[1px] bg-white h-full"></div>
+              </div>
+            </div>
+
+            <!-- Download Metrics grid -->
+            <div class="grid grid-cols-2 gap-x-2 gap-y-1 text-[11px] font-mono">
+              <div class="text-gray-500">Down Speed: <strong class="text-green-700 font-bold" id="client-down-speed">0.0 KB/s</strong></div>
+              <div class="text-gray-500">Up Speed: <strong class="text-red-600 font-bold" id="client-up-speed">0.0 KB/s</strong></div>
+              <div class="text-gray-500">Downloaded: <strong id="client-downloaded-size">0.00 GB</strong></div>
+              <div class="text-gray-500">Time Left: <strong class="text-amber-800 font-bold" id="client-eta">Infinite</strong></div>
+              <div class="text-gray-500">Seeds: <strong id="client-seeds-swar">0 / 0</strong></div>
+              <div class="text-gray-500">Peers: <strong id="client-peers-swar">0 / 0</strong></div>
+            </div>
+          </div>
+
+          <!-- Tabs Panel (General, Peers, Speed, Files, Logger) -->
+          <div class="bg-gray-100 text-xs">
+            
+            <!-- Tabs Headers -->
+            <div class="flex border-b border-gray-300 text-[10px] uppercase font-bold text-gray-600 bg-gray-200 select-none">
+              <button onclick="switchUTab('general')" id="tab-btn-general" class="p-2 border-r border-gray-300 bg-white border-b-2 border-green-600 text-black">General</button>
+              <button onclick="switchUTab('peers')" id="tab-btn-peers" class="p-2 border-r border-gray-300 hover:bg-gray-50">Peers</button>
+              <button onclick="switchUTab('speed')" id="tab-btn-speed" class="p-2 border-r border-gray-300 hover:bg-gray-50">Graph</button>
+              <button onclick="switchUTab('files')" id="tab-btn-files" class="p-2 border-r border-gray-300 hover:bg-gray-50">Files</button>
+              <button onclick="switchUTab('logger')" id="tab-btn-logger" class="p-2 hover:bg-gray-50">Logger</button>
+            </div>
+
+            <!-- Tab Body: General -->
+            <div id="ut-tab-general" class="p-2 bg-white h-48 overflow-y-auto border-b border-gray-300">
+              <table class="w-full text-[10px] text-left border-collapse font-mono">
+                <tbody>
+                  <tr><td class="text-gray-400 font-bold w-1/3">Save Path:</td><td class="text-gray-800">C:\Downloads\HighDef\</td></tr>
+                  <tr><td class="text-gray-400 font-bold">Total Pieces:</td><td class="text-gray-800">5,972 x 4.0 MB (Block aligned)</td></tr>
+                  <tr><td class="text-gray-400 font-bold">Encryption:</td><td class="text-gray-800 text-emerald-700">Encrypted (PEX Match)</td></tr>
+                  <tr><td class="text-gray-400 font-bold">Re-check state:</td><td class="text-gray-800">Finished OK on load</td></tr>
+                  <tr><td class="text-gray-400 font-bold">Hash check:</td><td class="text-gray-800 uppercase">SHA-1 Verified</td></tr>
+                  <tr><td class="text-gray-400 font-bold">Created on:</td><td class="text-gray-800">11/14/2006 by CtrlHD</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Tab Body: Peers -->
+            <div id="ut-tab-peers" class="p-1 bg-white h-48 overflow-y-auto border-b border-gray-300 hidden">
+              <table class="w-full text-[9px] font-mono text-left">
+                <thead>
+                  <tr class="bg-gray-100 border-b border-gray-200">
+                    <th class="p-1">IP Address</th>
+                    <th class="p-1">Client</th>
+                    <th class="p-1">Up Speed</th>
+                    <th class="p-1">Down Speed</th>
+                    <th class="p-1">% Done</th>
+                  </tr>
+                </thead>
+                <tbody id="ut-peers-tbody">
+                  <!-- Generated dynamically based on status -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Tab Body: Speed Graph (Canvas Draw Area) -->
+            <div id="ut-tab-speed" class="p-2 bg-[#111] h-48 border-b border-gray-300 relative flex flex-col justify-between hidden">
+              <canvas id="speedGraph" class="w-full h-full bg-[#111] absolute inset-0 z-0"></canvas>
+              <!-- Legend Overlay -->
+              <div class="relative z-10 flex justify-between text-[8px] font-mono p-1 pointer-events-none select-none">
+                <span class="text-green-400">Green: Down (<span id="graph-down-legend">0.0 KB/s</span>)</span>
+                <span class="text-red-400">Red: Up (<span id="graph-up-legend">0.0 KB/s</span>)</span>
+              </div>
+            </div>
+
+            <!-- Tab Body: Files -->
+            <div id="ut-tab-files" class="p-2 bg-white h-48 overflow-y-auto border-b border-gray-300 hidden text-[10px] font-mono">
+              <div class="flex flex-col gap-1" id="ut-files-list">
+                <!-- Programmatic content -->
+              </div>
+            </div>
+
+            <!-- Tab Body: Logger -->
+            <div id="ut-tab-logger" class="p-2 bg-black text-green-400 h-48 overflow-y-auto border-b border-gray-300 font-mono text-[9px] hidden">
+              <div class="flex flex-col gap-1" id="ut-logger-box">
+                <div>[19:17:10] Executable directory loaded successfully</div>
+                <div>[19:17:11] IPv6 connectivity disabled by default settings</div>
+                <div>[19:17:11] Port mapping successful via UPnP routing</div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Bottom micro status line -->
+          <div class="bg-gray-200 text-[10px] p-1 border-t border-gray-300 flex justify-between text-gray-600 font-mono">
+            <span>D: 0.0 KB/s (T: 0 KB)</span>
+            <span>U: 0.0 KB/s (T: 0 KB)</span>
+            <span class="text-emerald-700 font-bold">✔ DHT Status: 182 Nodes</span>
+          </div>
+
+        </section>
+
+        <!-- Dynamic IRC Webchat Interface (#torrents) -->
+        <section class="bg-white border border-[#c3d5e8] rounded overflow-hidden shadow-sm flex flex-col h-[320px]">
+          <div class="bg-indigo-900 text-white p-2 text-xs font-bold flex justify-between items-center">
+            <span>💬 Live Web Chat IRC (#torrents.com)</span>
+            <span class="bg-indigo-700 text-[9px] px-1.5 py-0.5 rounded animate-pulse">LIVE FEED</span>
+          </div>
+          <!-- Messages container -->
+          <div id="irc-chat-box" class="p-2 bg-[#f9f9f9] flex-1 overflow-y-auto text-xs font-mono flex flex-col gap-1.5 border-b border-gray-200">
+            <!-- Feed auto inserts simulated historical messages -->
+          </div>
+          <!-- IRC Input Box -->
+          <div class="p-2 bg-gray-50 flex gap-1">
+            <input type="text" id="irc-user-input" placeholder="Join chat and speak..." class="flex-1 retro-input p-1.5 text-xs rounded">
+            <button onclick="sendIRCMessage()" class="px-3 py-1 bg-indigo-900 text-white text-xs font-bold rounded">Send</button>
+          </div>
+        </section>
+
+        <!-- Smiley Central / Web 2.0 Vintage Flashing Side Banner Ad -->
+        <div class="bg-gradient-to-b from-[#ffefc0] to-[#ffd752] border-2 border-yellow-600 rounded p-3 text-center shadow-md winxp-border cursor-pointer select-none"
+             onclick="showRetroModal('smiley')">
+          <h4 class="text-red-700 font-black text-sm blink-ad tracking-tighter uppercase">🌟 GET FREE SMILEYS NOW! 🌟</h4>
+          <p class="text-[10px] text-gray-800 font-semibold mt-1">Make your MSN Messenger chats shine. Emoticons, Glitter Text, and Custom Winks!</p>
+          <div class="flex justify-center gap-2 my-2 text-xl">
+            <span>😀</span><span>😎</span><span>🔥</span><span>⚡</span><span>💩</span>
+          </div>
+          <button class="bg-gradient-to-r from-red-600 to-red-800 text-white font-bold text-[11px] px-3 py-1 rounded shadow winxp-border">Click to Install Smiley Central</button>
+        </div>
+
+      </aside>
+
+    </div>
+
+    <!-- Classic Footer elements -->
+    <footer class="p-6 bg-gray-100 text-xs text-center border-t border-gray-200 flex flex-col gap-2">
+      <div class="flex justify-center gap-4 text-blue-800 font-semibold mb-2">
+        <a href="#" class="hover:underline">DMCA Policy</a>
+        <span>•</span>
+        <a href="#" class="hover:underline">Privacy Policy</a>
+        <span>•</span>
+        <a href="#" class="hover:underline">Advertise with Us</a>
+        <span>•</span>
+        <a href="#" class="hover:underline">Contact System Ops</a>
+      </div>
+      <p class="text-gray-500 max-w-2xl mx-auto">
+        Torrents.com is an open peer-to-peer index network engine utilizing search bots across DHT, PEX, and private announce registries. We carry absolutely no files on our physical servers, rather compiling DHT maps and metadata.
+      </p>
+      <p class="text-gray-400 font-mono text-[10px] mt-4">
+        © 2003-2006 Torrents.com Inc. All rights reversed. Serving torrent nodes in 2.4 microseconds.
+      </p>
+    </footer>
+
+  </div>
+
+  <!-- Retro Windows XP Styled Popups / Modals -->
+  <div id="retro-popup-modal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-[#f0f0f0] border-2 border-blue-800 rounded shadow-2xl max-w-md w-full overflow-hidden winxp-border">
+      
+      <!-- Blue XP style header -->
+      <div class="gradient-header p-2 text-white font-bold text-xs flex justify-between items-center select-none">
+        <span id="modal-title-text">Microsoft Internet Explorer - Warning!</span>
+        <button onclick="closeRetroModal()" class="bg-[#e04343] border border-red-700 text-white px-2 py-0.5 rounded text-[10px] font-bold">X</button>
+      </div>
+
+      <!-- Content Area -->
+      <div class="p-5 text-xs text-gray-700" id="modal-content-area">
+        <!-- Injected via helper JS -->
+      </div>
+
+      <!-- Action Footer -->
+      <div class="p-3 bg-gray-100 border-t border-gray-300 flex justify-end gap-2">
+        <button onclick="closeRetroModal()" class="bg-white border border-gray-400 px-4 py-1 rounded text-xs shadow-sm font-semibold active:bg-gray-200 winxp-btn-active">OK, Back</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SCRIPT ENGINE -->
+  <script>
+    // System database of classic late 2006 release torrents
+    const torrentDatabase = {
+      "ff_bd25": {
+        id: "ff_bd25",
+        title: "Fantastic.Four.2005.BluRay.BD25.MPEG-2.DTS-HD.MA.5.1-CtrlHD",
+        category: "Video > Movies > High-Definition (Blu-Ray / HD-DVD)",
+        dateAdded: "Tuesday, November 14, 2006 - 11:24:08 AM GMT",
+        size: "23.42 GB (25,147,125,760 bytes)",
+        uploader: "CtrlHD",
+        infoHash: "a7fbc28d3e918bcde76a5b2839201f9d342008e3",
+        seeds: 12,
+        leechers: 284,
+        nfoFile: "CtrlHD.nfo",
+        coverArt: "https://images.static-bluray.com/movies/covers/22_front.jpg",
+        rawNFO: ` ▄▄▄▄·  ▄▄▌  ▄• ▄▌▄▄▄   ▄▄▄· ▄▄▄▄▄▄▄▄   ▄▄▄· ▄▄▄   ▄▄▄▄· 
+ ▐█ ▀█▪ ▪██▌ █▪██▌▀▄ █·▐█ ▀█ ▪██  ▀▄ █·▐█ ▀█ ▀▄ █·▐█ ▀█▪ 
+ ▐█ ▀█▄  ▐█▪ █▌▐█▌▐▀▀▄ ▄█▀▀█  ▐█.▪▐▀▀▄ ▄█▀▀█ ▐▀▀▄ ▐█ ▀█▄ 
+  ▐█▪·█▌ ██▌·▐█▄█▌▐█•█▌▐█ ▪▐▌ ▐█▌·▐█•█▌▐█ ▪▐▌▐█•█▌ ▐█▪·█▌
+  ·▀▀▀▀  ▀▀▀  ▀▀▀ .▀  ▀ ▀  ▀  ▀▀▀ .▀  ▀ ▀  ▀ .▀  ▀ ·▀▀▀▀ 
+                      PRESENTS TO YOU:
+
+Fantastic.Four.2005.BluRay.BD25.MPEG-2.DTS-HD.MA.5.1-CtrlHD
+
+RELEASE DATE....: 11/14/2006 (Same-day Retail Release!)
+THEATRE DATE....: 07/08/2005
+RATING..........: PG-13
+GENRE...........: Action / Sci-Fi / Adventure
+RUNTIME.........: 106 mins
+
+VIDEO...........: Untouched MPEG-2 1080p @ ~22.4 Mbps (2.40:1)
+AUDIO...........: English DTS-HD Master Audio 5.1 (1.5 Mbps DTS Core)
+                : Spanish Dolby Digital 5.1 (448 kbps)
+SUBTITLES.......: English, Spanish
+DISC FORMAT.....: BD-25 Single-Layer Disc (ISO Copy)
+SOURCE..........: US Retail Blu-ray (Thanks to our anonymous retail suppliers!)
+
+SPECIAL FEATURES:
+* Audio Commentary with Jessica Alba, Michael Chiklis, and Ioan Gruffudd
+* High-Definition Theatrical Trailer Gallery`,
+        files: [
+          { name: "Fantastic.Four.2005.BluRay.BD25.MPEG-2.DTS-HD.MA.5.1-CtrlHD.iso", size: "23.41 GB", type: "Raw Disc ISO" },
+          { name: "CtrlHD.nfo", size: "4.88 KB", type: "Release Notes NFO" },
+          { name: "Sample/fantastic.four.sample.1080p.mkv", size: "248.50 MB", type: "Matroska High Definition Sample" },
+          { name: "Screenshots/ff_screen1.png", size: "1.82 MB", type: "PNG Image screenshot" },
+          { name: "Screenshots/ff_screen2.png", size: "1.95 MB", type: "PNG Image screenshot" }
+        ],
+        trackers: [
+          "http://tracker.tntvillage.scenereleases.info:2710/announce",
+          "http://tracker.thepiratebay.org/announce",
+          "http://denis.stalker.h3q.com:6969/announce",
+          "udp://tracker.openbittorrent.com:80/announce"
+        ],
+        comments: [
+          { user: "HD_Pioneer_06", badge: "💿 HD Enthusiast", date: "Nov 14, 2006 - 11:45 AM", text: "Oh my goodness... 23.4 GIGABYTES?! Are you guys insane? My Comcast cable connection only gets 4 Mbps down and 384 Kbps up. This is going to take me a week to finish downloading! But thank you so much, I am dying to test out my new Sony BWU-100A Blu-ray burner. Will seed as much as my meager upload speed allows!" },
+          { user: "xX_NeoMatrix_Xx", badge: "💡 Regular Member", date: "Nov 14, 2006 - 12:12 PM", text: "Yes!! Fox finally launched their first Blu-ray wave today! Thank you CtrlHD! Quick question for anyone on the comments: Does anyone know if this is actually encoded in MPEG-2 or AVC? I heard that Fox was using AVC for X-Men: The Last Stand but switched to MPEG-2 for Fantastic Four. Can anyone confirm if the image has bad noise?" },
+          { user: "Mod_Dave", badge: "🛡️ System Moderator", date: "Nov 14, 2006 - 12:30 PM", text: "@xX_NeoMatrix_Xx - Yes, this transfer uses MPEG-2 compression because it's a BD-25 (single layer). There's some minor video noise in darker scenes if you look closely, but overall the 1080p resolution destroys the DVD release. The DTS-HD audio is incredibly punchy!" },
+          { user: "PS3_Hopeful_87", badge: "💡 Regular Member", date: "Nov 14, 2006 - 01:05 PM", text: "This is exactly what I was looking for! The PlayStation 3 launches here in North America this Friday (Nov 17th) and it's the cheapest Blu-ray player on the market ($499 for the 20GB!). I'm downloading this now so I can see if I can play the ISO directly from my external hard drive or if I'll need to burn it to a BD-R. Anyone else getting a PS3 just for the Blu-ray capability?" },
+          { user: "AudioNerd", badge: "💿 HD Enthusiast", date: "Nov 14, 2006 - 01:50 PM", text: "Warning for Windows PC users: If you are trying to play this using CyberLink PowerDVD 6.5 HD, make sure your graphics card is HDCP compliant (like the new Nvidia GeForce 7950 GT) and that you are using a DVI/HDMI connection! Otherwise, you will get a black screen or it will downscale to standard definition. Also, DTS-HD MA isn't fully decoded by PC software yet, so you will hear the DTS Core 1.5 Mbps track. Still sounds mind-blowing!" },
+          { user: "Leech_King", badge: "🚀 Seedbox God", date: "Nov 14, 2006 - 03:15 PM", text: "Only getting 15 KB/s... We need more seeders! I'm on a university fiber connection and can seed at 2 MB/s, please throw me some data and I will help spread the load! Seed seed seed!" }
+        ]
+      },
+      "gears_xbox360": {
+        id: "gears_xbox360",
+        title: "Gears.of.War.XBOX360-X360CLONE",
+        category: "Games > Console > Xbox 360",
+        dateAdded: "Wednesday, November 8, 2006 - 02:40:11 AM GMT",
+        size: "7.30 GB (7,838,310,400 bytes)",
+        uploader: "X360CLONE",
+        infoHash: "92bc938da8fcde76a5b2839201f9d342008e3fff",
+        seeds: 421,
+        leechers: 1890,
+        nfoFile: "X360CLONE.nfo",
+        coverArt: "https://images.static-bluray.com/movies/covers/22_front.jpg", // fallback placeholder used in JS
+        rawNFO: `
+ ██▀▀▀▀▀██  ▀████▀  ▀████▀     ▀████▀███▀▀▀▀▀██
+ ██  ██  ▀   ▄██      ▄██       ▄██  ██  ▀▀▀▀▀ 
+ ██  ██▄▄▄  ▄██      ▄██       ▄██   ██▄▄▄▄▄   
+ ██  ██  ▀ ▄██      ▄██       ▄██    ██  ▀▀▀▀▀ 
+ ██  ██   ▄██      ▄██▄▄▄▄▄  ▄██▄▄▄  ██▄▄▄▄▄▄▄█
+
+RELEASE DATE: 11/08/2006
+REGION: Region Free NTSC/PAL
+FORMAT: XGD2 (Xbox Game Disc 2)
+METHOD: Raw ISO Burn on Dual-Layer DVD+R (Verbatim highly recommended!)
+
+Notes: 
+This is the full cloned disc image of Gears of War. Incredible Unreal Engine 3 graphics! 
+Works flawlessly with Xtreme Firmware 4.0 or above. Set layerbreak to 1913760 before burning in ImgBurn!`,
+        files: [
+          { name: "gears_of_war_xbox360.iso", size: "7.29 GB", type: "Xbox Disc Image" },
+          { name: "gears_of_war.dvd", size: "128 Bytes", type: "Layerbreak Config" },
+          { name: "X360CLONE.nfo", size: "2.12 KB", type: "NFO info file" }
+        ],
+        trackers: [
+          "http://tracker.thepiratebay.org/announce",
+          "http://denis.stalker.h3q.com:6969/announce"
+        ],
+        comments: [
+          { user: "HaloMaster_06", badge: "💡 Regular Member", date: "Nov 14, 2006 - 09:12 AM", text: "This game is UNREAL! Best graphics on the 360 yet! Burned on Verbatim DVD+R DL at 2.4x and it works great." },
+          { user: "FirmwareHack", badge: "🚀 Seedbox God", date: "Nov 14, 2006 - 10:45 AM", text: "For anyone getting error messages on startup: make sure your drive is flashed to Samsung/BenQ iXtreme 4.2. Standard Xtreme firmware might flag this!" }
+        ]
+      },
+      "vista_rc2": {
+        id: "vista_rc2",
+        title: "Windows.Vista.RC2.Build.5744.x86.All_in_One-BIE",
+        category: "Software > Windows",
+        dateAdded: "October 12, 2006 - 08:33:45 PM GMT",
+        size: "2.62 GB (2,813,220,100 bytes)",
+        uploader: "BIE",
+        infoHash: "7bcf3228d3e918bcde76a5b2839201f9d342008e3",
+        seeds: 18,
+        leechers: 45,
+        nfoFile: "BIE_Vista_RC2.nfo",
+        coverArt: "https://images.static-bluray.com/movies/covers/22_front.jpg",
+        rawNFO: `
+  __      __ _             _             
+  \\ \\    / /(_)           | |            
+   \\ \\  / /  _  ___   ██  | |  ██   __ _ 
+    \\ \\/ /  | |/ __|  ██  | |  ██  / _\` |
+     \\  /   | |\\__ \\  ▀▀  | |  ▀▀ | (_| |
+      \\/    |_||___/      |_|      \\__,_|
+
+Windows Vista Release Candidate 2 (Build 5744) - Ultimate Edition Included!
+SUPPLIED BY: Team BIE
+CRACK TOOLKIT: Included in /BIE-Crack/
+
+INSTALLATION:
+1. Burn to a bootable DVD at 4x speed.
+2. Install using standard prompts.
+3. Apply Activation Bypass.exe from the DVD folder once logged into desktop!`,
+        files: [
+          { name: "vista_rc2_build_5744.iso", size: "2.61 GB", type: "Bootable ISO" },
+          { name: "BIE_Vista_RC2.nfo", size: "1.45 KB", type: "Release NFO" },
+          { name: "BIE-Crack/Activation_Bypass.exe", size: "8.50 MB", type: "EXE Application Utility" }
+        ],
+        trackers: [
+          "http://tracker.tntvillage.scenereleases.info:2710/announce",
+          "udp://tracker.openbittorrent.com:80/announce"
+        ],
+        comments: [
+          { user: "Aero_Fanboy", badge: "💡 Regular Member", date: "Nov 14, 2006 - 02:22 PM", text: "The Aero glass theme looks incredible on my Pentium D system, but wow this operating system takes 800MB of RAM just sitting idle! XP is still much faster for gaming." }
+        ]
+      },
+      "heroes_s01": {
+        id: "heroes_s01",
+        title: "Heroes.S01E08.HDTV.XviD-LOL",
+        category: "Video > TV Shows",
+        dateAdded: "Tuesday, November 14, 2006 - 04:10:11 AM GMT",
+        size: "350 MB (367,001,600 bytes)",
+        uploader: "LOL",
+        infoHash: "e3428d3e918bcde76a5b2839201f9d342008e3a2",
+        seeds: 1450,
+        leechers: 2800,
+        nfoFile: "heroes.s01e08-lol.nfo",
+        coverArt: "https://images.static-bluray.com/movies/covers/22_front.jpg",
+        rawNFO: `
+ _    _                                 
+| |  | |                                
+| |__| |  ___  _ __  ___    ___  ___    
+|  __  | / _ \\| '__|/ _ \\  / _ \\/ __|   
+| |  | ||  __/| |  | (_) ||  __/\\__ \\ _ 
+|_|  |_| \\___||_|   \\___/  \\___||___/(_)
+
+Heroes.S01E08.HDTV.XviD-LOL
+"Seven Minutes to Midnight"
+Aired Date: Nov 13, 2006
+
+VIDEO CODEC: XviD 1.1
+RESOLUTION: 624x352 (16:9 Aspect Ratio)
+AUDIO: MP3 VBR 128kbps Stereo
+ENCODED BY: Release Team LOL`,
+        files: [
+          { name: "heroes.s01e08.hdtv.xvid-lol.avi", size: "349.60 MB", type: "AVI Multimedia File" },
+          { name: "heroes.s01e08-lol.nfo", size: "1.10 KB", type: "NFO Log Text" }
+        ],
+        trackers: [
+          "http://tracker.thepiratebay.org/announce",
+          "udp://tracker.openbittorrent.com:80/announce"
+        ],
+        comments: [
+          { user: "Sylar_Was_Here", badge: "💡 Regular Member", date: "Nov 14, 2006 - 08:33 AM", text: "Save the Cheerleader, Save the World! This show is unbelievable. Thanks LOL team for the lightning-fast upload as always!" }
+        ]
+      }
+    };
+
+    // Client/Torrent state machine
+    let activeTorrentId = "ff_bd25";
+    let clientStatus = "idle"; // idle, downloading, paused, stopped, finished
+    let clientProgress = 0;
+    let cheatMode = false;
+    let downloadSpeed = 0; // KB/s
+    let uploadSpeed = 0; // KB/s
+    let speedHistory = []; // queue of previous download speeds for graph
+    let uploadHistory = []; // queue of previous upload speeds for graph
+    const maxGraphHistory = 60; // 60 data points on canvas
+    let currentUTab = "general";
+
+    // Dynamic Comments Array (stored in session memory)
+    let dynamicComments = JSON.parse(JSON.stringify(torrentDatabase[activeTorrentId].comments));
+
+    // Initialize Page on load
+    window.onload = function() {
+      // Set current date string to simulated retro time
+      document.getElementById('clock-display').innerHTML = `Local Server Time: Nov 14, 2006 - ${getSimulatedTime()}`;
+      
+      // Load current default (Fantastic Four) details
+      renderTorrentDetails();
+
+      // Start uTorrent tick engine
+      setInterval(clientTick, 1000);
+
+      // Initialize speed graph data arrays
+      for (let i = 0; i < maxGraphHistory; i++) {
+        speedHistory.push(0);
+        uploadHistory.push(0);
+      }
+
+      // Draw initial graph
+      renderSpeedGraph();
+
+      // Start Live IRC Chat Feed
+      initIRCChat();
+      setInterval(simulateIRCTraffic, 4500);
+
+      // Setup window resize hook for Canvas redraw
+      window.addEventListener('resize', function() {
+        renderSpeedGraph();
+      });
+    };
+
+    // Helper: Formats 2006 relative time
+    function getSimulatedTime() {
+      const now = new Date();
+      let hours = now.getHours();
+      let minutes = now.getMinutes();
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+      hours = hours % 12;
+      hours = hours ? hours : 12; // 12 instead of 0
+      minutes = minutes < 10 ? '0' + minutes : minutes;
+      return `${hours}:${minutes} ${ampm} (EST)`;
+    }
+
+    // Toggle showing uTorrent client window entirely (mock minimization/closing)
+    function toggleClientWindow() {
+      showRetroModal('ut_closed');
+    }
+
+    // Tab Switcher inside the Micro-Torrent app
+    function switchUTab(tabId) {
+      document.getElementById('ut-tab-general').classList.add('hidden');
+      document.getElementById('ut-tab-peers').classList.add('hidden');
+      document.getElementById('ut-tab-speed').classList.add('hidden');
+      document.getElementById('ut-tab-files').classList.add('hidden');
+      document.getElementById('ut-tab-logger').classList.add('hidden');
+
+      document.getElementById('tab-btn-general').className = "p-2 border-r border-gray-300 hover:bg-gray-50";
+      document.getElementById('tab-btn-peers').className = "p-2 border-r border-gray-300 hover:bg-gray-50";
+      document.getElementById('tab-btn-speed').className = "p-2 border-r border-gray-300 hover:bg-gray-50";
+      document.getElementById('tab-btn-files').className = "p-2 border-r border-gray-300 hover:bg-gray-50";
+      document.getElementById('tab-btn-logger').className = "p-2 hover:bg-gray-50";
+
+      document.getElementById(`ut-tab-${tabId}`).classList.remove('hidden');
+      document.getElementById(`tab-btn-${tabId}`).className = "p-2 border-r border-gray-300 bg-white border-b-2 border-green-600 text-black font-bold";
+
+      currentUTab = tabId;
+      if (tabId === 'speed') {
+        // Redraw canvas because element size changes
+        setTimeout(renderSpeedGraph, 20);
+      }
+    }
+
+    // Render detailed torrent parameters
+    function renderTorrentDetails() {
+      const db = torrentDatabase[activeTorrentId];
+      document.getElementById('torrent-title-display').innerText = db.title;
+      document.getElementById('meta-category').innerText = db.category;
+      document.getElementById('meta-date').innerText = db.dateAdded;
+      document.getElementById('meta-size').innerText = db.size;
+      document.getElementById('meta-uploader').innerText = db.uploader;
+      document.getElementById('meta-hash').innerText = db.infoHash;
+      document.getElementById('meta-seeds').innerText = `${db.seeds} Seeders`;
+      document.getElementById('meta-leechers').innerText = `${db.leechers} Leechers`;
+      
+      // Update Cover art and handle non-existent covers gracefully using SVG fallbacks
+      const coverImg = document.getElementById('torrent-cover-img');
+      coverImg.onerror = function() {
+        // Render a customized SVG cover art dynamically if static-bluray image dies
+        coverImg.src = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="400" viewBox="0 0 300 400"><rect width="100%" height="100%" fill="%231a202c"/><text x="50%" y="40%" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="sans-serif" font-size="20" font-weight="bold">Retro Torrents</text><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="%23718096" font-family="sans-serif" font-size="14">${db.id.toUpperCase()}</text><rect x="10%" y="80%" width="80%" height="10%" fill="%234a5568" rx="5"/></svg>`;
+      };
+      
+      if (db.id === "ff_bd25") {
+        coverImg.src = db.coverArt;
+      } else {
+        // Other torrents generate unique inline retro SVG covers representing CD/DVD Jewel Cases
+        let color = "#1a3b57";
+        if (db.id === "gears_xbox360") color = "#1b4a1b";
+        if (db.id === "vista_rc2") color = "#0078d7";
+        if (db.id === "heroes_s01") color = "#3b0042";
+
+        coverImg.src = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="400" viewBox="0 0 300 400"><rect width="100%" height="100%" fill="${encodeURIComponent(color)}"/><circle cx="150" cy="200" r="80" fill="none" stroke="white" stroke-width="4" stroke-dasharray="10,5"/><text x="50%" y="15%" dominant-baseline="middle" text-anchor="middle" fill="yellow" font-family="sans-serif" font-size="14" font-weight="bold">SCENE RELEASE</text><text x="50%" y="48%" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="sans-serif" font-size="12" font-weight="bold">${db.title.substring(0, 22)}...</text><rect x="5%" y="85%" width="90%" height="8%" fill="%23000" opacity="0.4" rx="2"/></svg>`;
+      }
+
+      // Render NFO Box
+      document.getElementById('nfo-filename').innerText = db.nfoFile;
+      document.getElementById('nfo-text-area').innerText = db.rawNFO;
+
+      // Render Files payload table
+      const filesBody = document.getElementById('files-table-body');
+      filesBody.innerHTML = '';
+      db.files.forEach(f => {
+        filesBody.innerHTML += `
+          <tr class="border-b border-gray-100 hover:bg-gray-50">
+            <td class="p-2 font-mono text-gray-700 font-semibold">${f.name}</td>
+            <td class="p-2 font-mono text-gray-600">${f.size}</td>
+            <td class="p-2 text-gray-500 italic">${f.type}</td>
+          </tr>
+        `;
+      });
+
+      // Render Trackers List Box
+      const trackersBox = document.getElementById('trackers-list-box');
+      trackersBox.innerHTML = '';
+      db.trackers.forEach(t => {
+        trackersBox.innerHTML += `
+          <div class="flex items-center gap-1">
+            <span class="text-green-600 font-bold">[ONLINE]</span>
+            <span class="truncate">${t}</span>
+          </div>
+        `;
+      });
+
+      // Reset dynamic comments pointer for the newly selected torrent
+      dynamicComments = JSON.parse(JSON.stringify(db.comments));
+      renderComments();
+    }
+
+    // Render comments list
+    function renderComments() {
+      const container = document.getElementById('comments-list-container');
+      container.innerHTML = '';
+      document.getElementById('comments-count').innerText = dynamicComments.length;
+
+      dynamicComments.forEach(c => {
+        // Escaping simple content
+        const cleanUser = c.user.replace(/</g, "&lt;");
+        const cleanText = c.text.replace(/</g, "&lt;");
+        const cleanBadge = c.badge.replace(/</g, "&lt;");
+
+        // Styling based on uploader role
+        let avatarBg = "bg-blue-100 border-blue-200 text-blue-800";
+        if (cleanBadge.includes("Moderator")) avatarBg = "bg-red-100 border-red-200 text-red-800 font-bold";
+        if (cleanBadge.includes("Seedbox")) avatarBg = "bg-purple-100 border-purple-200 text-purple-800";
+        if (cleanBadge.includes("HD")) avatarBg = "bg-amber-100 border-amber-200 text-amber-800";
+
+        container.innerHTML += `
+          <div class="bg-gray-50 border border-gray-200 p-3 rounded shadow-xs flex flex-col sm:flex-row gap-3 items-start">
+            <div class="w-full sm:w-1/4 shrink-0 border-b sm:border-b-0 sm:border-r border-gray-200 pb-2 sm:pb-0 sm:pr-3 text-left">
+              <strong class="text-blue-900 block font-semibold truncate">${cleanUser}</strong>
+              <span class="text-[9px] px-1.5 py-0.5 rounded border ${avatarBg} inline-block mt-1 font-bold uppercase tracking-wider">${cleanBadge}</span>
+              <span class="block text-[10px] text-gray-400 mt-2 font-mono">${c.date}</span>
+            </div>
+            <div class="flex-1 text-xs text-gray-700 leading-relaxed whitespace-pre-wrap">${cleanText}</div>
+          </div>
+        `;
+      });
+      // Scroll to bottom of comments
+      container.scrollTop = container.scrollHeight;
+    }
+
+    // Post a new comment dynamic action
+    function postComment() {
+      const user = document.getElementById('comment-user').value.trim() || "AnonymouS-06";
+      const badge = document.getElementById('comment-avatar').value;
+      const text = document.getElementById('comment-text').value.trim();
+
+      if (!text) {
+        showRetroModal('blank_comment');
+        return;
+      }
+
+      const newComment = {
+        user: user,
+        badge: badge,
+        date: `Nov 14, 2006 - ${getSimulatedTime().replace(" (EST)", "")}`,
+        text: text
+      };
+
+      dynamicComments.push(newComment);
+      renderComments();
+
+      // Clear form
+      document.getElementById('comment-text').value = '';
+      
+      // Post client log note representing comment action
+      logClient(`[Comment Engine] IP successfully routed message thread on post`);
+    }
+
+    // Perform Search Simulator
+    function performSearch() {
+      const q = document.getElementById('search-input').value.trim().toLowerCase();
+      const resultsPanel = document.getElementById('search-results-panel');
+      const resultsRows = document.getElementById('search-results-rows');
+      
+      document.getElementById('search-query-display').innerText = q;
+      resultsPanel.classList.remove('hidden');
+
+      // Filter matches
+      let matches = [];
+      Object.keys(torrentDatabase).forEach(k => {
+        const item = torrentDatabase[k];
+        if (item.title.toLowerCase().includes(q) || item.uploader.toLowerCase().includes(q)) {
+          matches.push(item);
+        }
+      });
+
+      resultsRows.innerHTML = '';
+      if (matches.length === 0) {
+        resultsRows.innerHTML = `
+          <tr>
+            <td colspan="5" class="p-4 text-center text-red-600 font-bold italic">
+              No matching torrents found on local DHT tables! Try searching "Fantastic Four", "Gears of War", "Vista" or "Heroes".
+            </td>
+          </tr>
+        `;
+      } else {
+        matches.forEach(m => {
+          resultsRows.innerHTML += `
+            <tr class="border-b border-gray-200 hover:bg-yellow-100 cursor-pointer" onclick="switchTorrent('${m.id}')">
+              <td class="p-2 font-mono font-bold text-blue-900 underline truncate max-w-sm">${m.title}</td>
+              <td class="p-2 font-mono">${m.size}</td>
+              <td class="p-2 text-green-700 font-bold">${m.seeds}</td>
+              <td class="p-2 text-red-600 font-bold">${m.leechers}</td>
+              <td class="p-2">
+                <button class="bg-blue-800 text-white font-bold px-2 py-0.5 rounded text-[10px]">Select</button>
+              </td>
+            </tr>
+          `;
+        });
+      }
+      
+      // Auto-scroll to top to see results
+      window.scrollTo({ top: 150, behavior: 'smooth' });
+    }
+
+    function clearSearch() {
+      document.getElementById('search-input').value = '';
+      closeSearchResults();
+    }
+
+    function closeSearchResults() {
+      document.getElementById('search-results-panel').classList.add('hidden');
+    }
+
+    function quickSearch(val) {
+      document.getElementById('search-input').value = val;
+      performSearch();
+    }
+
+    // Switch Torrent details focus
+    function switchTorrent(torrentId) {
+      activeTorrentId = torrentId;
+      renderTorrentDetails();
+      closeSearchResults();
+    }
+
+    // copy raw NFO action
+    function copyNFO() {
+      const textToCopy = torrentDatabase[activeTorrentId].rawNFO;
+      // Using document.execCommand('copy') as requested by guidelines
+      const dummy = document.createElement("textarea");
+      document.body.appendChild(dummy);
+      dummy.value = textToCopy;
+      dummy.select();
+      document.execCommand("copy");
+      document.body.removeChild(dummy);
+      
+      // Non-blocking dialog notice
+      logClient(`[UI Action] Copying NFO string of ${activeTorrentId}`);
+      showRetroModal('nfo_copied');
+    }
+
+    // START DOWNLOAD IN UTORRENT CLIENT
+    function startDownloadSimulation() {
+      const db = torrentDatabase[activeTorrentId];
+      
+      // Setup uTorrent visual state matching active torrent
+      document.getElementById('client-torrent-name').innerText = db.title;
+      document.getElementById('client-seeds-swar').innerText = `0 / ${db.seeds}`;
+      document.getElementById('client-peers-swar').innerText = `0 / ${db.leechers}`;
+      
+      clientProgress = 0;
+      clientStatus = "downloading";
+      
+      // Trigger Files lists in client Tab
+      const fileListDiv = document.getElementById('ut-files-list');
+      fileListDiv.innerHTML = '';
+      db.files.forEach(f => {
+        fileListDiv.innerHTML += `
+          <div class="flex justify-between border-b border-gray-100 py-1">
+            <span class="truncate max-w-[200px]">${f.name}</span>
+            <span class="text-[10px] text-gray-500 font-bold" id="utfile-${f.name.replace(/[^a-zA-Z0-9]/g, '')}">0.0% Done</span>
+          </div>
+        `;
+      });
+
+      // Clear logger & announce connection
+      const logBox = document.getElementById('ut-logger-box');
+      logBox.innerHTML = '';
+      logClient(`[System Queue] Initialized torrent download stack`);
+      logClient(`[DHT Registry] Announcing trackers...`);
+      db.trackers.forEach(t => {
+        logClient(`[Announce] Contacting tracker: ${t.substring(0, 30)}... OK`);
+      });
+      logClient(`[DHT Registry] Scraped swarm successfully. Handshaking peers...`);
+
+      // Fill client peer registry matching target database metadata
+      const peerListBody = document.getElementById('ut-peers-tbody');
+      peerListBody.innerHTML = '';
+      for (let i = 0; i < Math.min(db.seeds, 8); i++) {
+        const fakeIP = `192.168.${Math.floor(Math.random()*254)}.${Math.floor(Math.random()*254)}`;
+        const clientNames = ["uTorrent/1600", "Azureus/2.5.0", "BitComet/0.70", "Deluge/0.5", "uTorrent/1.5.0"];
+        const fakeClient = clientNames[Math.floor(Math.random() * clientNames.length)];
+        peerListBody.innerHTML += `
+          <tr class="border-b border-gray-100 hover:bg-gray-50">
+            <td class="p-1">${fakeIP}</td>
+            <td class="p-1">${fakeClient}</td>
+            <td class="p-1 text-red-500" id="peer-up-${i}">0.0 KB/s</td>
+            <td class="p-1 text-green-600" id="peer-down-${i}">12.5 KB/s</td>
+            <td class="p-1 font-bold text-gray-600">100.0%</td>
+          </tr>
+        `;
+      }
+      
+      // Toggle client active status color styling classes
+      document.getElementById('client-progress-bar').className = "bg-gradient-to-r from-blue-500 to-indigo-600 h-full w-[0%] transition-all duration-500 shadow-inner";
+
+      // Bounce user attention to client sidebar
+      logClient(`[UI] Download simulated in background client panel`);
+    }
+
+    // Logger util
+    function logClient(msg) {
+      const box = document.getElementById('ut-logger-box');
+      const time = new Date().toTimeString().split(' ')[0];
+      box.innerHTML += `<div>[${time}] ${msg}</div>`;
+      box.scrollTop = box.scrollHeight;
+    }
+
+    // uTorrent state update loop tick (every 1 sec)
+    function clientTick() {
+      if (clientStatus !== "downloading") {
+        // Flatline speeds if idle/paused
+        downloadSpeed = 0;
+        uploadSpeed = 0;
+        updateSpeedHistory(0, 0);
+        
+        if (clientStatus === "idle") {
+          document.getElementById('client-down-speed').innerText = "0.0 KB/s";
+          document.getElementById('client-up-speed').innerText = "0.0 KB/s";
+          document.getElementById('client-eta').innerText = "Infinite";
+          return;
+        }
+        if (clientStatus === "paused") {
+          document.getElementById('client-down-speed').innerText = "0.0 KB/s";
+          document.getElementById('client-up-speed').innerText = "0.0 KB/s";
+          document.getElementById('client-eta').innerText = "Paused";
+          return;
+        }
+        if (clientStatus === "stopped") {
+          document.getElementById('client-down-speed').innerText = "0.0 KB/s";
+          document.getElementById('client-up-speed').innerText = "0.0 KB/s";
+          document.getElementById('client-eta').innerText = "Stopped";
+          return;
+        }
+        return;
+      }
+
+      // We are active downloading! Determine targets
+      const db = torrentDatabase[activeTorrentId];
+      let targetDown = 125.4; // standard 2006 DSL download speed (~1 Mbps connection limit)
+      let targetUp = 32.1; // restricted upload ceiling
+
+      if (cheatMode) {
+        // Extreme Modern Seedbox speed cheat!
+        targetDown = 154200.5; // ~150 MB/s
+        targetUp = 45200.0;
+      }
+
+      // Add fluctuations
+      downloadSpeed = Math.max(1.2, targetDown + (Math.random() - 0.5) * (targetDown * 0.15));
+      uploadSpeed = Math.max(0.4, targetUp + (Math.random() - 0.5) * (targetUp * 0.1));
+
+      // Append logs occasionally to show activity
+      if (Math.random() > 0.8) {
+        logClient(`[Scrape] Dynamic swarm count: ${Math.floor(db.seeds * 0.95)} seeds connected`);
+      }
+
+      // Calculate progress steps based on current file sizes
+      let totalBytes = 25147125760; // default FF size
+      if (db.id === "gears_xbox360") totalBytes = 7838310400;
+      if (db.id === "vista_rc2") totalBytes = 2813220100;
+      if (db.id === "heroes_s01") totalBytes = 367001600;
+
+      // Progress formula increment
+      const downloadedBytesPerSec = downloadSpeed * 1024;
+      const progressIncrementPercent = (downloadedBytesPerSec / totalBytes) * 100;
+
+      clientProgress = Math.min(100, clientProgress + progressIncrementPercent);
+
+      // UI Update
+      document.getElementById('client-percent').innerText = `${clientProgress.toFixed(1)}%`;
+      document.getElementById('client-progress-bar').style.width = `${clientProgress}%`;
+      
+      // Speed indicators
+      document.getElementById('client-down-speed').innerText = `${formatSpeed(downloadSpeed)}`;
+      document.getElementById('client-up-speed').innerText = `${formatSpeed(uploadSpeed)}`;
+
+      // Download size absolute metrics
+      const absoluteDownloadedBytes = (clientProgress / 100) * totalBytes;
+      document.getElementById('client-downloaded-size').innerText = `${formatBytes(absoluteDownloadedBytes)} of ${formatBytes(totalBytes)}`;
+
+      // ETA Calculation
+      if (clientProgress >= 100) {
+        clientStatus = "finished";
+        downloadSpeed = 0;
+        uploadSpeed = 48.2; // Keep seeding!
+        document.getElementById('client-down-speed').innerText = "0.0 KB/s";
+        document.getElementById('client-up-speed').innerText = "48.2 KB/s (Seeding)";
+        document.getElementById('client-eta').innerText = "Seeding (Share Ratio: Infinity)";
+        document.getElementById('client-progress-bar').className = "bg-gradient-to-r from-green-500 to-emerald-600 h-full w-[100%] transition-all duration-500 shadow-inner";
+        
+        logClient(`[Engine] DOWNLOAD COMPLETED! Verifying file parity hash...`);
+        logClient(`[Engine] Share protocol locked: seeding enabled.`);
+        showRetroModal('download_complete');
+      } else {
+        const remainingBytes = totalBytes - absoluteDownloadedBytes;
+        const etaSecs = remainingBytes / downloadedBytesPerSec;
+        document.getElementById('client-eta').innerText = formatETA(etaSecs);
+      }
+
+      // Swarm dynamic count connection updates
+      const connectedSeeds = Math.min(db.seeds, Math.round(db.seeds * 0.75 + Math.random() * 3));
+      const connectedPeers = Math.min(db.leechers, Math.round(db.leechers * 0.45 + Math.random() * 10));
+      document.getElementById('client-seeds-swar').innerText = `${connectedSeeds} / ${db.seeds}`;
+      document.getElementById('client-peers-swar').innerText = `${connectedPeers} / ${db.leechers}`;
+
+      // Feed peer tab list speeds
+      for (let i = 0; i < 8; i++) {
+        const peerUpCell = document.getElementById(`peer-up-${i}`);
+        const peerDownCell = document.getElementById(`peer-down-${i}`);
+        if (peerUpCell && peerDownCell) {
+          const peerShare = downloadSpeed / 8;
+          peerDownCell.innerText = `${formatSpeed(peerShare + (Math.random() - 0.5) * (peerShare * 0.2))}`;
+          peerUpCell.innerText = `${formatSpeed((uploadSpeed / 8) + (Math.random() - 0.5) * 2)}`;
+        }
+      }
+
+      // Feed uTorrent files list sub-progress metrics
+      db.files.forEach(f => {
+        const cellId = `utfile-${f.name.replace(/[^a-zA-Z0-9]/g, '')}`;
+        const fileProgressCell = document.getElementById(cellId);
+        if (fileProgressCell) {
+          // small files (like NFO or screens) complete instantly at 5%, large ISO matches client percent
+          if (f.size.includes("KB") || f.size.includes("MB")) {
+            fileProgressCell.innerText = clientProgress > 5 ? "100.0% (Finished)" : "85.2% done";
+          } else {
+            fileProgressCell.innerText = `${clientProgress.toFixed(1)}% Done`;
+          }
+        }
+      });
+
+      // Update Live Canvas Speed Graph
+      updateSpeedHistory(downloadSpeed, uploadSpeed);
+    }
+
+    // Toggle pause / stop uTorrent client events
+    function controlTorrent(action) {
+      if (clientStatus === "idle") {
+        showRetroModal('no_torrent_loaded');
+        return;
+      }
+      if (action === 'play') {
+        if (clientStatus === "finished") {
+          showRetroModal('already_seeding');
+          return;
+        }
+        clientStatus = "downloading";
+        logClient(`[Queue Control] Resumed torrent thread`);
+      }
+      if (action === 'pause') {
+        clientStatus = "paused";
+        logClient(`[Queue Control] Paused torrent thread`);
+      }
+      if (action === 'stop') {
+        clientStatus = "stopped";
+        logClient(`[Queue Control] Stopped client network pipeline`);
+      }
+    }
+
+    // Boost Mode Toggle (Simulate modern super fast fiber seedbox speeds!)
+    function toggleCheatMode() {
+      if (clientStatus === "idle") {
+        showRetroModal('no_torrent_loaded');
+        return;
+      }
+      cheatMode = !cheatMode;
+      const boostBtn = document.getElementById('btn-boost');
+      if (cheatMode) {
+        boostBtn.innerText = "🛑 Standard Speed";
+        boostBtn.className = "bg-gradient-to-r from-red-600 to-orange-500 hover:from-red-700 hover:to-orange-600 text-white px-2 py-1 rounded shadow-sm font-bold text-[10px] uppercase border border-red-800 tracking-wider";
+        logClient(`[Engine Cheat] SEEDBOX PROTOCOL ACTIVED! Virtual speed cap overridden to 10Gbps`);
+      } else {
+        boostBtn.innerText = "⚡ Boost (Seedbox 10Gbps)";
+        boostBtn.className = "bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white px-2 py-1 rounded shadow-sm font-bold text-[10px] uppercase border border-indigo-800 tracking-wider";
+        logClient(`[Engine Cheat] Speed cap throttled to standard DSL limits`);
+      }
+    }
+
+    // Format speed strings beautifully
+    function formatSpeed(kbVal) {
+      if (kbVal >= 1024) {
+        return `${(kbVal / 1024).toFixed(2)} MB/s`;
+      }
+      return `${kbVal.toFixed(1)} KB/s`;
+    }
+
+    // Format absolute file sizes
+    function formatBytes(bytes) {
+      if (bytes >= 1073741824) return `${(bytes / 1073741824).toFixed(2)} GB`;
+      if (bytes >= 1048576) return `${(bytes / 1048576).toFixed(1)} MB`;
+      return `${(bytes / 1024).toFixed(1)} KB`;
+    }
+
+    // Format uTorrent client ETA
+    function formatETA(secs) {
+      if (secs === Infinity || isNaN(secs)) return "Infinite";
+      if (secs < 60) return `${Math.round(secs)}s`;
+      const mins = secs / 60;
+      if (mins < 60) return `${Math.round(mins)}m`;
+      const hrs = mins / 60;
+      if (hrs < 24) return `${Math.round(hrs)}h ${Math.round(mins % 60)}m`;
+      const days = hrs / 24;
+      return `${days.toFixed(1)} days`;
+    }
+
+    // SPEED HISTORY QUEUE FOR GRAPH
+    function updateSpeedHistory(down, up) {
+      speedHistory.shift();
+      speedHistory.push(down);
+
+      uploadHistory.shift();
+      uploadHistory.push(up);
+
+      document.getElementById('graph-down-legend').innerText = formatSpeed(down);
+      document.getElementById('graph-up-legend').innerText = formatSpeed(up);
+
+      renderSpeedGraph();
+    }
+
+    // CANVAS SPEED GRAPH DRAWER
+    function renderSpeedGraph() {
+      const canvas = document.getElementById('speedGraph');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      // Handle responsive resizing: Adjust size parameter based on containing div footprint
+      const container = canvas.parentElement;
+      canvas.width = container.clientWidth;
+      canvas.height = container.clientHeight;
+
+      const w = canvas.width;
+      const h = canvas.height;
+
+      // Draw dark grid backdrop
+      ctx.fillStyle = '#0f1710';
+      ctx.fillRect(0, 0, w, h);
+
+      ctx.strokeStyle = '#1e301d';
+      ctx.lineWidth = 1;
+      
+      // Vertical grid lines
+      const gridIntervalX = w / 10;
+      for (let x = 0; x < w; x += gridIntervalX) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, h);
+        ctx.stroke();
+      }
+
+      // Horizontal grid lines
+      const gridIntervalY = h / 5;
+      for (let y = 0; y < h; y += gridIntervalY) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(w, y);
+        ctx.stroke();
+      }
+
+      // Determine auto-scaled dynamic ceiling based on current metrics within arrays
+      const maxMetric = Math.max(...speedHistory, ...uploadHistory, 100); // Baseline max limit is 100KB/s
+
+      // Helper to map speed coordinate on canvas
+      function mapY(val) {
+        return h - (val / maxMetric) * (h - 10) - 5;
+      }
+
+      const stepX = w / (maxGraphHistory - 1);
+
+      // 1. Draw Download Speed Curve (Green)
+      ctx.beginPath();
+      ctx.moveTo(0, mapY(speedHistory[0]));
+      for (let i = 1; i < maxGraphHistory; i++) {
+        ctx.lineTo(i * stepX, mapY(speedHistory[i]));
+      }
+      ctx.strokeStyle = '#4ade80'; // Emerald Green
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      // Create translucent fill beneath green curve
+      ctx.lineTo(w, h);
+      ctx.lineTo(0, h);
+      ctx.closePath();
+      ctx.fillStyle = 'rgba(74, 222, 128, 0.15)';
+      ctx.fill();
+
+      // 2. Draw Upload Speed Curve (Red)
+      ctx.beginPath();
+      ctx.moveTo(0, mapY(uploadHistory[0]));
+      for (let i = 1; i < maxGraphHistory; i++) {
+        ctx.lineTo(i * stepX, mapY(uploadHistory[i]));
+      }
+      ctx.strokeStyle = '#f87171'; // Coral Red
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+
+      // Create translucent fill beneath red curve
+      ctx.lineTo(w, h);
+      ctx.lineTo(0, h);
+      ctx.closePath();
+      ctx.fillStyle = 'rgba(248, 113, 113, 0.1)';
+      ctx.fill();
+
+      // Draw dynamic scale labels inside canvas edge borders
+      ctx.fillStyle = '#829a84';
+      ctx.font = '8px monospace';
+      ctx.fillText(`Peak: ${formatSpeed(maxMetric)}`, 5, 12);
+    }
+
+    // RETRO IRC CHAT SIMULATION MACHINE
+    const chatLog = [
+      { u: "WarezMonkey", m: "Has anyone gotten Vista RC2 to boot correctly from DVD? My burner is failing verification..." },
+      { u: "T3h_K1ng", m: "Need DVD Decrypter. Set speed to 2.4x. Do not multitask while burning!" },
+      { u: "DivX_Ripper_99", m: "Is this Fantastic Four BD25 download legit? High Definition movies look insane. DVD is dead." },
+      { u: "l33t_haxor", m: "Yes, CtrlHD is premium tier. Pure uncompressed stream directly from the disc!" },
+      { u: "BluRay_Guy", m: "Honestly the PS3 is the ultimate player anyway. Nov 17 launch can't come fast enough!" },
+      { u: "XboxFanatic", m: "Who cares about movies? GEARS OF WAR is out! Play on Xbox Live now!" },
+      { u: "Comcast_Throttled", m: "Comcast has definitely capped my connection. Speed is dropped to 50KB/s on port 6881..." },
+      { u: "DHT_Stalker", m: "Enable protocol encryption in uTorrent! Bypass ISP shaping." }
+    ];
+
+    function initIRCChat() {
+      const box = document.getElementById('irc-chat-box');
+      box.innerHTML = '';
+      chatLog.forEach(c => {
+        box.innerHTML += `<div><span class="text-indigo-700 font-bold">&lt;${c.u}&gt;</span> ${c.m}</div>`;
+      });
+      box.scrollTop = box.scrollHeight;
+    }
+
+    // Periodic simulation of other nostalgic web users
+    function simulateIRCTraffic() {
+      const handles = ["BitSlayer", "VistaLover", "NostalgiaRider", "HD_God", "GearsPro", "AlbaFan_99", "DTS_HD_Dud"];
+      const messages = [
+        "What's your uTorrent speed on FF? I'm maxing out at 140 KB/s.",
+        "Can my GeForce 7600 render Vista transparent glass or do I need the 7950?",
+        "Don't download cam rips of Casino Royale! Wait for the high definition rip.",
+        "Is there a crack for Heroes S01? Oh wait, it's TV, just double-click AVI lol.",
+        "Don't forget to disable your antivirus before running Vista activation bypass, false positives are real.",
+        "Jessica Alba is absolutely perfect in Fantastic Four.",
+        "Fox did a fantastic job with DTS-HD. Best sound format currently.",
+        "Anyone here from the ISO-Zone boards? Tracker down?"
+      ];
+
+      const u = handles[Math.floor(Math.random() * handles.length)];
+      const m = messages[Math.floor(Math.random() * messages.length)];
+      
+      const box = document.getElementById('irc-chat-box');
+      box.innerHTML += `<div><span class="text-[#2c5e8a] font-bold">&lt;${u}&gt;</span> ${m}</div>`;
+      
+      // Cap log size inside panel to save memory
+      if (box.children.length > 25) {
+        box.removeChild(box.firstChild);
+      }
+      box.scrollTop = box.scrollHeight;
+    }
+
+    // User speaks in the mock IRC chat box
+    function sendIRCMessage() {
+      const input = document.getElementById('irc-user-input');
+      const text = input.value.trim();
+      if (!text) return;
+
+      const box = document.getElementById('irc-chat-box');
+      box.innerHTML += `<div><span class="text-green-700 font-bold">&lt;Guest_BitTorrent&gt;</span> ${text.replace(/</g, "&lt;")}</div>`;
+      input.value = '';
+      box.scrollTop = box.scrollHeight;
+
+      // Echo response simulation instantly
+      setTimeout(() => {
+        const bots = ["l33t_haxor", "T3h_K1ng", "HD_Pioneer_06"];
+        const answers = [
+          "Nice point Guest. Try downloading at high speed.",
+          "Indeed. Check the forums for more info on that.",
+          "Welcome to the portal. Make sure you stay on seed ratio!",
+          "Can you test the sample clip inside the folder?"
+        ];
+        box.innerHTML += `<div><span class="text-indigo-700 font-bold">&lt;${bots[Math.floor(Math.random()*3)]}&gt;</span> ${answers[Math.floor(Math.random()*answers.length)]}</div>`;
+        box.scrollTop = box.scrollHeight;
+      }, 1200);
+    }
+
+    // WINDOWS XP DIALOG POPUPS (Simulate nostalgia banners)
+    function showRetroModal(type) {
+      const modal = document.getElementById('retro-popup-modal');
+      const title = document.getElementById('modal-title-text');
+      const content = document.getElementById('modal-content-area');
+
+      modal.classList.remove('hidden');
+
+      if (type === 'limewire') {
+        title.innerText = "LimeWire PRO - Warning!";
+        content.innerHTML = `
+          <div class="flex items-start gap-3">
+            <span class="text-3xl">⚠️</span>
+            <div>
+              <p class="font-bold text-red-700 mb-2">CRITICAL WINDOWS WARNING:</p>
+              <p class="mb-2">Are you sure you want to download LimeWire PRO (Free Crack v4.12)?</p>
+              <p class="text-gray-500 italic">"Warning: Downloading could lead to virus/trojan infection or accidental Britney Spears MP3 downloads that are actually Trojan.EXE executables."</p>
+            </div>
+          </div>
+        `;
+      } else if (type === 'wow') {
+        title.innerText = "World of Warcraft Client Setup";
+        content.innerHTML = `
+          <div class="flex items-start gap-3">
+            <span class="text-3xl">🛡️</span>
+            <div>
+              <p class="font-bold text-blue-900 mb-1">Burning Crusade Beta Application:</p>
+              <p class="mb-2">This expansion launcher is invite-only. Please make sure you have successfully completed Level 60 raid runs in Molten Core before joining.</p>
+              <p class="text-amber-800 font-mono">Location: US-Illidan Server Host</p>
+            </div>
+          </div>
+        `;
+      } else if (type === 'ipod') {
+        title.innerText = "Congratulations Winner!";
+        content.innerHTML = `
+          <div class="flex items-start gap-3">
+            <span class="text-3xl">🎁</span>
+            <div>
+              <p class="font-bold text-green-700 mb-2">Verify Shipping Details:</p>
+              <p class="mb-2">Please fill out your billing zip code to claim your standard 4GB Red iPod Nano!</p>
+              <input type="text" class="p-1 border border-gray-400 w-full mb-1" placeholder="Zip code / Street...">
+              <p class="text-[10px] text-gray-400">Sponsored by ringtone-deals.com. Terms and conditions apply.</p>
+            </div>
+          </div>
+        `;
+      } else if (type === 'smiley') {
+        title.innerText = "Smiley Central v2.4 Setup Installer";
+        content.innerHTML = `
+          <div class="flex items-start gap-3">
+            <span class="text-3xl">😎</span>
+            <div>
+              <p class="font-bold text-yellow-600 mb-2">Installing Fun Tools Toolbar...</p>
+              <p class="mb-2">Smiley Central will install custom emoticons for Internet Explorer, Outlook, and AIM.</p>
+              <p class="text-red-600 font-bold">⚠️ Warning: Unchecking 'Install MyWebSearch Searchbar' is disabled.</p>
+            </div>
+          </div>
+        `;
+      } else if (type === 'browse' || type === 'upload' || type === 'forum' || type === 'faq') {
+        title.innerText = "Torrents.com Node Service Alert";
+        content.innerHTML = `
+          <div class="p-2">
+            <p class="font-bold text-gray-700 mb-2">Feature Temporarily Offline</p>
+            <p>Our server cluster is currently under maintenance due to high bandwidth traffic loads caused by the retail Blu-ray release of <strong>Fantastic Four</strong>.</p>
+            <p class="mt-2 text-blue-700">Please use search index tools or wait for tracker synchronization!</p>
+          </div>
+        `;
+      } else if (type === 'ut_min' || type === 'ut_max') {
+        title.innerText = "uTorrent Client Message";
+        content.innerHTML = `<p>Window state manipulation is handled by the OS. Double-click the Torrent Details page to browse database.</p>`;
+      } else if (type === 'ut_closed') {
+        title.innerText = "uTorrent Alert";
+        content.innerHTML = `
+          <p class="font-bold">uTorrent is still active in your system tray!</p>
+          <p class="mt-1 text-gray-500">The client continues downloading active chunks in background mode to protect share ratios.</p>
+        `;
+      } else if (type === 'nfo_copied') {
+        title.innerText = "NFO Copy Success";
+        content.innerHTML = `<p class="text-emerald-700 font-semibold">✔ Successfully copied release NFO plain-text ASCII contents into local clipboard registry!</p>`;
+      } else if (type === 'blank_comment') {
+        title.innerText = "Forum Posting Error";
+        content.innerHTML = `<p class="text-red-600 font-bold">Error: Your comment is blank. Please enter a valid question or seed review!</p>`;
+      } else if (type === 'no_torrent_loaded') {
+        title.innerText = "uTorrent Launcher Alert";
+        content.innerHTML = `<p>No torrent has been fed into the download queue yet! Please click the green <strong>DOWNLOAD TORRENT</strong> button on the detail page to launch.</p>`;
+      } else if (type === 'already_seeding') {
+        title.innerText = "uTorrent Manager Notice";
+        content.innerHTML = `<p>This torrent download is already completed and verified! It is currently seeding indefinitely to preserve your peer ratio.</p>`;
+      } else if (type === 'download_complete') {
+        title.innerText = "µTorrent - Download Finished!";
+        content.innerHTML = `
+          <div class="flex items-start gap-3">
+            <span class="text-4xl">🎉</span>
+            <div>
+              <p class="font-bold text-emerald-700 mb-1">FINISHED: ${torrentDatabase[activeTorrentId].title}</p>
+              <p class="mb-2">The ISO disc hash matches the master catalog checksum! Parity check passed.</p>
+              <p class="font-bold">What would you like to do now?</p>
+              <ul class="list-disc pl-4 mt-1 text-gray-600 space-y-0.5">
+                <li>Burn ISO to BD-R using ImgBurn at 2x.</li>
+                <li>Mount disk virtually with Daemon Tools Lite v4.</li>
+                <li>Play video using CyberLink PowerDVD 6.5.</li>
+              </ul>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    function closeRetroModal() {
+      document.getElementById('retro-popup-modal').classList.add('hidden');
+    }
+  </script>
+</body>
+</html>
