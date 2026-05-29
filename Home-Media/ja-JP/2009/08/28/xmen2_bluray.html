@@ -1,491 +1,441 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja-JP">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>X-MEN2（2枚組ブルーレイ）インタラクティブ・レポート</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>X-MEN2 [ブルーレイ] | 20世紀フォックス ホーム エンターテイメント</title>
     <style>
-        html {
-            scroll-behavior: smooth;
-        }
+        /* Reset & Base Styles matching 2009 web design trends */
         body {
-            font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
-            background-color: #fafaf9;
-            color: #292524;
+            margin: 0;
+            padding: 0;
+            background-color: #0b111e;
+            background-image: linear-gradient(to bottom, #050810, #131b2e);
+            font-family: "Hiragino Kaku Gothic Pro W3", sans-serif;
+            color: #e0e0e0;
+            font-size: 12px;
+            line-height: 1.5;
         }
-        .chart-container {
-            position: relative;
+
+        a {
+            color: #3fa9f5;
+            text-decoration: none;
+        }
+        a:hover {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /* Container */
+        #wrapper {
+            width: 950px;
+            margin: 0 auto;
+            background-color: #0d1627;
+            border-left: 1px solid #223355;
+            border-right: 1px solid #223355;
+            box-shadow: 0 0 15px rgba(0,0,0,0.8);
+        }
+
+        /* Global Header */
+        header {
+            background-color: #000;
+            padding: 15px 20px;
+            border-bottom: 2px solid #223355;
+            overflow: hidden;
+        }
+        .logo-area h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: #fff;
+            float: left;
+        }
+        .logo-area h1 span {
+            color: #f7931e;
+            font-size: 11px;
+            display: block;
+            font-weight: normal;
+            letter-spacing: 0;
+        }
+        .nav-global {
+            float: right;
+            margin-top: 10px;
+        }
+        .nav-global ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .nav-global li {
+            display: inline;
+            margin-left: 15px;
+            color: #888;
+        }
+
+        /* Breadcrumbs */
+        .breadcrumbs {
+            padding: 10px 20px;
+            background-color: #080d18;
+            border-bottom: 1px solid #1a263d;
+            color: #999;
+        }
+
+        /* Main Content Layout */
+        .container {
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        /* Sidebar Navigation */
+        aside {
+            width: 180px;
+            float: left;
+        }
+        .side-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+            background: #111d33;
+            border: 1px solid #22375e;
+        }
+        .side-menu li {
+            border-bottom: 1px solid #22375e;
+        }
+        .side-menu a {
+            display: block;
+            padding: 10px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .side-menu a:hover, .side-menu a.active {
+            background-color: #1c3055;
+            color: #f7931e;
+        }
+
+        /* Product Detail Main Area */
+        main {
+            width: 710px;
+            float: right;
+        }
+
+        /* Product Title Block */
+        .product-header {
+            border-bottom: 3px solid #f7931e;
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+        }
+        .release-date-badge {
+            background-color: #f7931e;
+            color: #000;
+            padding: 2px 6px;
+            font-weight: bold;
+            font-size: 11px;
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+        .product-header h2 {
+            margin: 0;
+            font-size: 22px;
+            color: #fff;
+            font-weight: bold;
+        }
+        .product-header p.sub-title {
+            margin: 5px 0 0 0;
+            font-size: 14px;
+            color: #a0b0cb;
+        }
+
+        /* Product Core Info Split */
+        .product-essential {
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+        .product-img-box {
+            width: 260px;
+            float: left;
+            text-align: center;
+        }
+        .product-img-box img {
+            width: 240px;
+            border: 1px solid #3a5380;
+            box-shadow: 0 0 10px rgba(0,0,0,0.7);
+        }
+        .zoom-notice {
+            margin-top: 8px;
+            font-size: 11px;
+            color: #8899b5;
+        }
+        
+        .product-shop-box {
+            width: 430px;
+            float: right;
+        }
+        
+        /* Pricing / Spec Table */
+        .spec-table {
             width: 100%;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 350px;
-            max-height: 400px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 1rem;
-            background: #ffffff;
-            border-radius: 0.75rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            border-collapse: collapse;
+            margin-bottom: 20px;
         }
-        @media (max-width: 640px) {
-            .chart-container {
-                height: 300px;
-                max-height: 350px;
-            }
+        .spec-table th, .spec-table td {
+            padding: 8px 10px;
+            border-bottom: 1px solid #1c3055;
+            text-align: left;
         }
-        ::-webkit-scrollbar {
-            width: 8px;
+        .spec-table th {
+            background-color: #121f38;
+            color: #a0b0cb;
+            width: 100px;
+            font-weight: normal;
         }
-        ::-webkit-scrollbar-track {
-            background: #f5f5f4; 
+        .spec-table td.price {
+            font-size: 16px;
+            color: #ff4545;
+            font-weight: bold;
         }
-        ::-webkit-scrollbar-thumb {
-            background: #d6d3d1; 
+
+        /* Cart Button (2009 E-commerce Style Glossy) */
+        .buy-button-container {
+            background: #121f38;
+            padding: 15px;
+            border: 1px solid #22375e;
+            text-align: center;
             border-radius: 4px;
         }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #a8a29e; 
+        .btn-buy {
+            display: inline-block;
+            background: linear-gradient(to bottom, #ffb347, #ffcc00);
+            border: 1px solid #cc9900;
+            color: #000;
+            padding: 10px 30px;
+            font-size: 14px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 3px;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
-        .tab-active {
-            background-color: #1e40af;
-            color: #ffffff;
-            border-color: #1e40af;
+        .btn-buy:hover {
+            background: linear-gradient(to bottom, #ffcc00, #ffb347);
+            color: #000;
         }
-        .tab-inactive {
-            background-color: #f5f5f4;
-            color: #57534e;
-            border-color: #d6d3d1;
+
+        /* Tabs / Detail Sections */
+        .section-title {
+            background-color: #162645;
+            border-left: 5px solid #3fa9f5;
+            padding: 6px 10px;
+            font-size: 13px;
+            font-weight: bold;
+            color: #fff;
+            margin: 25px 0 12px 0;
         }
-        .tab-inactive:hover {
-            background-color: #e7e5e4;
+        .story-text {
+            line-height: 1.7;
+            color: #ccd7e6;
+            text-align: justify;
         }
-        .fade-in {
-            animation: fadeIn 0.3s ease-in-out;
+
+        /* Bonus Features List */
+        .bonus-list {
+            padding-left: 20px;
+            margin: 0;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(5px); }
-            to { opacity: 1; transform: translateY(0); }
+        .bonus-list li {
+            margin-bottom: 5px;
+        }
+        .disc-marker {
+            font-weight: bold;
+            color: #3fa9f5;
+            margin-top: 10px;
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #050810;
+            padding: 20px;
+            border-top: 1px solid #1a263d;
+            text-align: center;
+            font-size: 11px;
+            color: #666;
+        }
+        .footer-links {
+            margin-bottom: 10px;
+        }
+        .footer-links a {
+            color: #888;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        /* JavaScript interactivity elements */
+        #lightbox {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        #lightbox img {
+            max-height: 90%;
+            border: 3px solid #fff;
+            box-shadow: 0 0 25px rgba(0,0,0,1);
         }
     </style>
 </head>
-<body class="antialiased">
+<body>
 
-    <!-- Chosen Palette: Warm Neutrals with Blu-ray Blue Accent (Stone-50 background, Stone-800 text, Blue-800/Blue-600 accents for interactions and highlights) -->
-    <!-- Application Structure Plan: The SPA is structured into four main thematic sections: 1. Hero/Overview (Immediate visual context with cover art and key specs via data cards), 2. Content Explorer (Interactive tabs separating Disc 1 and Disc 2 to prevent text fatigue), 3. Feature Analytics (A Chart.js visualization breaking down the types of bonus content to highlight the "豪華2枚組" value), and 4. Story & Features (Grid layout detailing narrative and technical selling points). This dashboard approach guides the user from basic facts to deep exploration smoothly. -->
-    <!-- Visualization & Content Choices: 
-         - Overview Specs -> Goal: Inform -> Method: CSS Grid Cards -> Justification: High scannability for price, date, and product code.
-         - Disc Contents -> Goal: Organize -> Method: Interactive Tabs & Lists -> Justification: Keeps the UI clean while handling dense lists of audio specs and making-of documentaries.
-         - Feature Analytics -> Goal: Analyze -> Method: Chart.js Doughnut Chart -> Justification: Quantifies the varied bonus features (Audio vs. VFX vs. Archives) to visually prove the product's expansive volume. Clickable for dynamic details.
-         - NO SVG or Mermaid used, relying exclusively on HTML/CSS, Tailwind, and Canvas (Chart.js). -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+<div id="wrapper">
 
-    <nav class="bg-stone-900 text-stone-100 shadow-md sticky top-0 z-50 border-b-4 border-blue-800">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <div class="flex items-center gap-3 font-bold text-xl tracking-wider">
-                    <span class="text-2xl text-blue-500">&#9673;</span> X-MEN2 BLU-RAY
-                </div>
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-2">
-                        <a href="#overview" class="hover:bg-blue-800 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">製品概要</a>
-                        <a href="#contents" class="hover:bg-blue-800 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">収録内容</a>
-                        <a href="#analytics" class="hover:bg-blue-800 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">特典分析</a>
-                        <a href="#features" class="hover:bg-blue-800 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">作品解説・特徴</a>
-                    </div>
-                </div>
-            </div>
+    <header>
+        <div class="logo-area">
+            <h1>20th CENTURY FOX <span>HOME ENTERTAINMENT JAPAN</span></h1>
         </div>
-    </nav>
-
-    <header class="bg-stone-800 py-16 px-4 relative overflow-hidden">
-        <div class="max-w-6xl mx-auto relative z-10 flex flex-col md:flex-row items-center gap-12">
-            <div class="w-full md:w-1/3 flex justify-center">
-                <img src="https://images.static-bluray.com/movies/covers/85557_slip.jpg" alt="X-MEN2 Blu-ray Cover" class="rounded-lg shadow-2xl max-h-96 object-contain border border-stone-600">
-            </div>
-            <div class="w-full md:w-2/3 text-center md:text-left text-stone-100">
-                <p class="text-blue-400 font-semibold tracking-widest mb-2 uppercase text-sm">20世紀フォックス ホーム エンターテイメント ジャパン</p>
-                <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight mb-4">
-                    X-MEN2 <span class="text-3xl font-light text-stone-300">（2枚組ブルーレイ）</span>
-                </h1>
-                <p class="text-lg text-stone-300 font-light mb-8 max-w-2xl leading-relaxed mx-auto md:mx-0">
-                    2003年に公開され、前作を上回るスケールと人間ドラマで高い評価を得たシリーズ第2作『X-MEN2』。2009年8月28日に発売された、特典ディスク付きの豪華2枚組仕様に関する詳細情報をまとめたインタラクティブレポートです。
-                </p>
-                <button onclick="document.getElementById('overview').scrollIntoView()" class="bg-blue-700 hover:bg-blue-600 text-white font-bold py-3 px-8 rounded-full transition-colors shadow-lg">
-                    詳細データを探索 &#8595;
-                </button>
-            </div>
-        </div>
+        <nav class="nav-global">
+            <ul>
+                <li><a href="#">ホーム</a></li>
+                <li><a href="#">ブルーレイ</a></li>
+                <li><a href="#">DVD</a></li>
+                <li><a href="#">近日発売予定</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-24">
+    <div class="breadcrumbs">
+        <a href="#">ホーム</a> &gt; <a href="#">ブルーレイ作品一覧</a> &gt; X2 (ブルーレイ、2003、2枚組)
+    </div>
 
-        <section id="overview" class="scroll-mt-24">
-            <div class="mb-8">
-                <h2 class="text-3xl font-bold text-stone-800 border-l-4 border-blue-700 pl-4">製品概要</h2>
-                <p class="text-stone-600 mt-4 leading-relaxed max-w-3xl">
-                    このセクションでは、本ブルーレイ製品の基本スペックを提示します。製品パッケージの顔となる品番、価格、発売日などの基本情報を一目で確認できるように整理しています。
-                </p>
+    <div class="container">
+        
+        <aside>
+            <ul class="side-menu">
+                <li><a href="#" class="active">ブルーレイ最新作</a></li>
+                <li><a href="#">SF / アクション</a></li>
+                <li><a href="#">ドラマ</a></li>
+                <li><a href="#">コメディ</a></li>
+                <li><a href="#">アニメーション</a></li>
+                <li><a href="#">名作シリーズ</a></li>
+            </ul>
+            <div style="text-align:center; margin-top:20px;">
+                <img src="https://via.placeholder.com/160x600/121f38/ffffff?text=AD+BANNER+2009" alt="広告スペース" style="border:1px solid #22375e;" />
+            </div>
+        </aside>
+
+        <main>
+            <div class="product-header">
+                <div class="release-date-badge">2009年8月28日発売</div>
+                <h2>X-MEN2 (2枚組)</h2>
+                <p class="sub-title">X-MEN2　待望の超高画質ブルーレイ・ディスク化！豪華2枚組仕様</p>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200 hover:border-blue-400 transition-colors">
-                    <div class="text-3xl text-blue-800 mb-3">&#128197;</div>
-                    <div class="text-xs text-stone-500 font-bold uppercase tracking-wider mb-1">発売日</div>
-                    <div class="text-xl font-bold text-stone-800">2009年8月28日</div>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200 hover:border-blue-400 transition-colors">
-                    <div class="text-3xl text-blue-800 mb-3">&#128180;</div>
-                    <div class="text-xs text-stone-500 font-bold uppercase tracking-wider mb-1">希望小売価格</div>
-                    <div class="text-xl font-bold text-stone-800">4,700円 <span class="text-sm font-normal text-stone-500">（税抜）</span></div>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200 hover:border-blue-400 transition-colors">
-                    <div class="text-3xl text-blue-800 mb-3">&#128191;</div>
-                    <div class="text-xs text-stone-500 font-bold uppercase tracking-wider mb-1">ディスク枚数</div>
-                    <div class="text-xl font-bold text-stone-800">2枚組</div>
-                    <div class="text-sm text-stone-600 mt-1">本編ディスク＋特典ディスク</div>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200 hover:border-blue-400 transition-colors">
-                    <div class="text-3xl text-blue-800 mb-3">&#128270;</div>
-                    <div class="text-xs text-stone-500 font-bold uppercase tracking-wider mb-1">製品品番</div>
-                    <div class="text-xl font-bold text-stone-800">FXXG-24224</div>
-                </div>
-            </div>
-        </section>
-
-        <section id="contents" class="scroll-mt-24">
-            <div class="mb-8">
-                <h2 class="text-3xl font-bold text-stone-800 border-l-4 border-blue-700 pl-4">ディスク収録内容</h2>
-                <p class="text-stone-600 mt-4 leading-relaxed max-w-3xl">
-                    本製品の最大の魅力である収録コンテンツを、ディスクごとに分類して表示します。タブを切り替えることで、本編の高度なオーディオ仕様や、特典ディスクの多岐にわたるメイキング映像のリストを探索できます。
-                </p>
-            </div>
-
-            <div class="bg-white rounded-2xl shadow-sm border border-stone-200 overflow-hidden">
-                <div class="flex flex-col sm:flex-row w-full border-b border-stone-200">
-                    <button id="tab-btn-1" onclick="switchTab(1)" class="tab-active flex-1 py-5 px-6 text-center font-bold text-lg transition-colors border-b-4 sm:border-b-0 sm:border-r border-blue-800">
-                        &#127916; 本編ディスク
-                    </button>
-                    <button id="tab-btn-2" onclick="switchTab(2)" class="tab-inactive flex-1 py-5 px-6 text-center font-bold text-lg transition-colors border-b-4 border-transparent">
-                        &#128194; 特典ディスク
-                    </button>
+            <div class="product-essential">
+                <div class="product-img-box">
+                    <a href="javascript:void(0);" id="cover-link">
+                        <img src="https://images.static-bluray.com/movies/covers/85557_slip.jpg" alt="X2 Blu-ray Cover" id="product-cover">
+                    </a>
+                    <p class="zoom-notice">画像をクリックすると拡大します</p>
                 </div>
 
-                <div id="tab-content-1" class="p-6 sm:p-10 fade-in block">
-                    <p class="text-stone-600 mb-8 border-b pb-4">本編および音声特典、一部の映像特典を収録しています。</p>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div>
-                            <h4 class="text-xl font-bold text-stone-800 mb-4 flex items-center gap-2">
-                                <span class="text-blue-700">&#128266;</span> 音声・字幕仕様
-                            </h4>
-                            <div class="bg-stone-50 p-5 rounded-lg border border-stone-200">
-                                <ul class="space-y-4 mb-4 text-stone-700">
-                                    <li class="flex items-start gap-3 border-b border-stone-200 pb-3">
-                                        <div class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-bold mt-0.5">音声</div>
-                                        <div>
-                                            <div class="font-bold text-stone-900">英語：5.1ch DTS-HD マスター・オーディオ</div>
-                                            <div class="font-bold text-stone-900 mt-1">英語：5.1ch ドルビーデジタル</div>
-                                            <div class="font-bold text-stone-900 mt-1">日本語：5.1ch DTS</div>
-                                        </div>
-                                    </li>
-                                    <li class="flex items-center gap-3">
-                                        <div class="bg-stone-200 text-stone-700 px-2 py-1 rounded text-xs font-bold">字幕</div>
-                                        <div class="font-bold text-stone-900">日本語、英語</div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+                <div class="product-shop-box">
+                    <table class="spec-table">
+                        <tr>
+                            <th>価格</th>
+                            <td class="price">￥4,935 <span style="font-size:11px; color:#888; font-weight:normal;">(税込)</span></td>
+                        </tr>
+                        <tr>
+                            <th>品番</th>
+                            <td>FXXG-24224</td>
+                        </tr>
+                        <tr>
+                            <th>枚数</th>
+                            <td>2枚組 (本編ディスク+特典ディスク)</td>
+                        </tr>
+                        <tr>
+                            <th>収録時間</th>
+                            <td>本編134分</td>
+                        </tr>
+                        <tr>
+                            <th>音声</th>
+                            <td>1. 英語 DTS-HD マスター・オーディオ 5.1ch<br>2. 英語 ドルビーデジタル 5.1ch<br>3. 日本語 DTS 5.1ch</td>
+                        </tr>
+                        <tr>
+                            <th>字幕</th>
+                            <td>日本語 / 英語</td>
+                        </tr>
+                        <tr>
+                            <th>画面サイズ</th>
+                            <td>1080p Hi-Def / シネマスコープ</td>
+                        </tr>
+                    </table>
 
-                        <div class="space-y-6">
-                            <div>
-                                <h4 class="text-xl font-bold text-stone-800 mb-4 flex items-center gap-2">
-                                    <span class="text-blue-700">&#127897;&#65039;</span> 音声解説・映像特典
-                                </h4>
-                                <ul class="space-y-3">
-                                    <li class="bg-blue-50 p-4 rounded-lg border border-blue-100 text-stone-800 text-sm leading-relaxed">
-                                        <strong class="block text-blue-900 mb-1">監督・撮影監督による音声解説</strong>
-                                        ブライアン・シンガー（監督）とトム・シーゲル（撮影監督）が担当。
-                                    </li>
-                                    <li class="bg-blue-50 p-4 rounded-lg border border-blue-100 text-stone-800 text-sm leading-relaxed">
-                                        <strong class="block text-blue-900 mb-1">製作・脚本チームによる音声解説</strong>
-                                        ローレン・シュラー・ドナー（製作）、ラルフ・ウィンター（製作）、マイケル・ドハティ（脚本）、ダン・ハリス（脚本）、デヴィッド・ハイター（脚本）が担当。
-                                    </li>
-                                    <li class="bg-stone-50 p-4 rounded-lg border border-stone-200 text-stone-800 text-sm leading-relaxed">
-                                        <strong class="block text-stone-900 mb-1">インタラクティブ映像特典</strong>
-                                        マーベル・ドット・コム（インデックス機能）、イン-ムービー・コンテキスト（ピクチャー・イン・ピクチャー機能）を収録。
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="tab-content-2" class="p-6 sm:p-10 fade-in hidden">
-                    <p class="text-stone-600 mb-8 border-b pb-4">製作の裏側に迫る膨大なメイキング映像やギャラリーを収録しています。</p>
-                    
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <div class="bg-stone-50 p-5 rounded-lg border-l-4 border-blue-800 shadow-sm hover:shadow-md transition-shadow">
-                            <h4 class="font-bold text-lg mb-1 text-stone-900">歴史の再構築</h4>
-                            <p class="text-xs text-stone-500 mb-3 tracking-wide">（メイキング）</p>
-                            <ul class="text-sm space-y-2 text-stone-700">
-                                <li class="flex items-center gap-2"><span class="text-blue-500">&#9656;</span> 製作への道のり</li>
-                                <li class="flex items-center gap-2"><span class="text-blue-500">&#9656;</span> キャラクターの進化</li>
-                                <li class="flex items-center gap-2"><span class="text-blue-500">&#9656;</span> アクション・シーンの舞台裏</li>
-                            </ul>
-                        </div>
-
-                        <div class="bg-stone-50 p-5 rounded-lg border-l-4 border-blue-600 shadow-sm hover:shadow-md transition-shadow">
-                            <h4 class="font-bold text-lg mb-1 text-stone-900">特殊能力の秘密</h4>
-                            <p class="text-xs text-stone-500 mb-3 tracking-wide">（ビジュアル・エフェクト）</p>
-                            <ul class="text-sm space-y-2 text-stone-700">
-                                <li class="flex items-center gap-2"><span class="text-blue-500">&#9656;</span> 視覚効果の分析</li>
-                                <li class="flex items-center gap-2"><span class="text-blue-500">&#9656;</span> ナイトクローラーのテレポート演出</li>
-                            </ul>
-                        </div>
-
-                        <div class="bg-stone-50 p-5 rounded-lg border-l-4 border-blue-400 shadow-sm hover:shadow-md transition-shadow">
-                            <h4 class="font-bold text-lg mb-1 text-stone-900">未公開シーン集</h4>
-                            <p class="text-sm text-stone-700 mt-2">監督による詳細な解説付きで、本編からカットされたシーンを収録。</p>
-                        </div>
-
-                        <div class="bg-stone-50 p-5 rounded-lg border-l-4 border-stone-400 shadow-sm hover:shadow-md transition-shadow">
-                            <h4 class="font-bold text-lg mb-1 text-stone-900">静止画ギャラリー</h4>
-                            <p class="text-sm text-stone-700 mt-2">コンセプト・アート、キャラクター・デザイン等、貴重なアートワークを網羅。</p>
-                        </div>
-
-                        <div class="bg-stone-50 p-5 rounded-lg border-l-4 border-stone-800 shadow-sm hover:shadow-md transition-shadow sm:col-span-2 lg:col-span-1">
-                            <h4 class="font-bold text-lg mb-1 text-stone-900">予告編集</h4>
-                            <p class="text-sm text-stone-700 mt-2">公開当時の特報映像および劇場予告編を収録。</p>
-                        </div>
+                    <div class="buy-button-container">
+                        <p style="margin:0 0 10px 0; font-weight:bold; color:#fff;">FOX公式ショップおよび全国のAVショップで予約受付中</p>
+                        <a href="javascript:alert('2009年のカート機能のモックです。');" class="btn-buy">FOXショップで購入する</a>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <section id="analytics" class="scroll-mt-24">
-            <div class="mb-8">
-                <h2 class="text-3xl font-bold text-stone-800 border-l-4 border-blue-700 pl-4">特典・機能の視覚的分析</h2>
-                <p class="text-stone-600 mt-4 leading-relaxed max-w-3xl">
-                    このセクションでは、本商品に含まれる多様なボーナスコンテンツの比率を視覚化しています。ドーナツチャートの各セグメントをクリックすると、該当するカテゴリーの具体的な内容が右側のパネルに表示され、パッケージの充実度をより深く理解できます。
-                </p>
-            </div>
+            <div class="section-title">作品解説・ストーリー</div>
+            <p class="story-text">
+                驚異のVFXと深みのあるドラマ性で世界的大ヒットを記録したSFアクション大作の第2弾！<br><br>
+                ミュータント登録法案を巡る人間とミュータントの対立が激化する中、謎の組織によるホワイトハウス襲撃事件が発生する。謎の指揮官ストライカーの陰謀により、X-MENの根拠地である「恵みのミュータント学校」が急襲されてしまう。かつてない危機を前に、プロフェッサーX率いるX-MENは、宿敵マグニートーとの共同戦線を張ることを決意するが……。
+            </p>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-200 flex flex-col justify-center">
-                    <h3 class="text-center font-bold text-stone-800 mb-2">収録コンテンツ・カテゴリー比率</h3>
-                    <p class="text-center text-xs text-stone-500 mb-4">※チャートの各部分をタップ/クリックして詳細情報を表示</p>
-                    <div class="chart-container">
-                        <canvas id="featuresChart"></canvas>
-                    </div>
-                </div>
+            <div class="section-title">特典映像・仕様</div>
+            <p class="story-text">ブルーレイならではの圧倒的な高画質・高音質に加え、映画の裏側に迫る膨大な映像特典をディスク2に完全収録！</p>
+            
+            <span class="disc-marker">【Disc-1: 本編・特典】</span>
+            <ul class="bonus-list">
+                <li>ブライアン・シンガー監督による音声解説</li>
+                <li>プロデューサー陣による音声解説</li>
+                <li>マーベル・ポップアップ・トリビア・トラック</li>
+            </ul>
 
-                <div class="bg-stone-800 text-stone-100 p-8 rounded-2xl shadow-md flex flex-col justify-center relative overflow-hidden">
-                    <div class="absolute top-0 right-0 p-4 text-6xl opacity-10 font-black pointer-events-none">&#9881;</div>
-                    <div id="chart-detail-panel" class="z-10 fade-in">
-                        <div class="text-5xl mb-4 text-blue-400" id="detail-icon">&#128072;</div>
-                        <h3 class="text-2xl font-bold mb-4 text-white" id="detail-title">データを選択してください</h3>
-                        <p class="text-stone-300 leading-relaxed text-lg border-t border-stone-600 pt-4" id="detail-desc">
-                            左側のグラフからカテゴリーを選ぶと、そのカテゴリーに含まれる具体的な収録コンテンツの解説がここに表示されます。
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
+            <span class="disc-marker">【Disc-2: 特典ディスク】</span>
+            <ul class="bonus-list">
+                <li>『X2』の軌跡：ドキュメンタリー集（再生・進化・変貌）</li>
+                <li>ミュータントの秘密：キャラクター・スタディ</li>
+                <li>視覚効果の舞台裏</li>
+                <li>未公開シーン集（監督解説付き）</li>
+                <li>スティル・ギャラリー / 劇場予告編集</li>
+            </ul>
 
-        <section id="features" class="scroll-mt-24 pb-16">
-            <div class="mb-8">
-                <h2 class="text-3xl font-bold text-stone-800 border-l-4 border-blue-700 pl-4">作品解説とブルーレイ版の特徴</h2>
-                <p class="text-stone-600 mt-4 leading-relaxed max-w-3xl">
-                    最後に、映画『X-MEN2』の物語の核心と、2009年に発売された本ブルーレイエディションならではの技術的・パッケージ的な優位性を解説します。
-                </p>
-            </div>
+        </main>
+    </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <div class="lg:col-span-2 bg-white p-8 rounded-2xl shadow-sm border border-stone-200">
-                    <h3 class="text-xl font-bold text-stone-900 mb-4 flex items-center gap-2 border-b pb-2">
-                        <span class="text-blue-700">&#127902;&#65039;</span> 物語と映像のハイライト
-                    </h3>
-                    <p class="text-stone-700 leading-relaxed mb-4">
-                        本作『X-MEN2』は、ブライアン・シンガー監督が続投し、ミュータント排斥を企むストライカー大佐の陰謀に、プロフェッサーX率いる「X-MEN」と、宿敵マグニートー率いる「ブラザーフッド」が共闘して立ち向かう物語です。
-                    </p>
-                    <p class="text-stone-700 leading-relaxed bg-blue-50 p-5 rounded-lg border border-blue-100 mt-6 relative overflow-hidden">
-                        <span class="absolute right-0 bottom-0 text-6xl opacity-5">&#128250;</span>
-                        <strong class="text-blue-900 block mb-2 text-lg">ブルーレイの視聴環境で真価を発揮</strong>
-                        ブルーレイ化にあたり、ハイビジョン画質による緻密な映像と、ロスレス音声（DTS-HD マスター・オーディオ）による迫力のサウンドが実現されました。特に<strong class="text-blue-800">オープニングのナイトクローラーによるホワイトハウス襲撃シーン</strong>は、次世代フォーマットの恩恵を最も感じられる必見のシークエンスです。
-                    </p>
-                </div>
-
-                <div class="flex flex-col gap-4">
-                    <div class="bg-white p-5 rounded-xl shadow-sm border border-stone-200 border-l-4 border-l-blue-800">
-                        <h4 class="font-bold text-stone-900 mb-2 flex items-center gap-2">
-                            <span>&#10024;</span> 高画質・高音質
-                        </h4>
-                        <p class="text-sm text-stone-600 leading-relaxed">DVD版に比べ、解像度と音響のダイナミックレンジが大幅に向上し、没入感が高まっています。</p>
-                    </div>
-                    
-                    <div class="bg-white p-5 rounded-xl shadow-sm border border-stone-200 border-l-4 border-l-blue-600">
-                        <h4 class="font-bold text-stone-900 mb-2 flex items-center gap-2">
-                            <span>&#127873;</span> 豪華特典の継承
-                        </h4>
-                        <p class="text-sm text-stone-600 leading-relaxed">過去のDVD「スペシャル・エディション」に収録されていた膨大な特典映像が、ほぼそのままブルーレイに移植されています。</p>
-                    </div>
-
-                    <div class="bg-white p-5 rounded-xl shadow-sm border border-stone-200 border-l-4 border-l-blue-400">
-                        <h4 class="font-bold text-stone-900 mb-2 flex items-center gap-2">
-                            <span>&#128188;</span> スマートなケース
-                        </h4>
-                        <p class="text-sm text-stone-600 leading-relaxed">従来のDVDケースよりも薄型のブルーレイ専用ケースを採用し、2枚組ながら収納性に優れています。</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <footer class="bg-stone-900 text-stone-400 py-10 text-center text-sm border-t-4 border-stone-800">
-        <div class="max-w-6xl mx-auto px-4">
-            <p>&copy; 2009 Twentieth Century Fox Home Entertainment LLC. All Rights Reserved.</p>
-            <p class="mt-2 text-stone-500 text-xs">Interactive Data Dashboard generated from X-MEN2 Blu-ray Specification Report.</p>
+    <footer>
+        <div class="footer-links">
+            <a href="#">お問い合わせ</a> | 
+            <a href="#">プライバシーポリシー</a> | 
+            <a href="#">利用規約</a> | 
+            <a href="#">企業情報</a>
         </div>
+        <p>©2009 Twentieth Century Fox Home Entertainment LLC. All Rights Reserved.</p>
     </footer>
 
-    <script>
-        function switchTab(tabIndex) {
-            const btn1 = document.getElementById('tab-btn-1');
-            const btn2 = document.getElementById('tab-btn-2');
-            const content1 = document.getElementById('tab-content-1');
-            const content2 = document.getElementById('tab-content-2');
+</div>
 
-            if (tabIndex === 1) {
-                btn1.className = 'tab-active flex-1 py-5 px-6 text-center font-bold text-lg transition-colors border-b-4 sm:border-b-0 sm:border-r border-blue-800';
-                btn2.className = 'tab-inactive flex-1 py-5 px-6 text-center font-bold text-lg transition-colors border-b-4 border-transparent';
-                content1.classList.remove('hidden');
-                content2.classList.add('hidden');
-            } else {
-                btn2.className = 'tab-active flex-1 py-5 px-6 text-center font-bold text-lg transition-colors border-b-4 border-blue-800';
-                btn1.className = 'tab-inactive flex-1 py-5 px-6 text-center font-bold text-lg transition-colors border-b-4 sm:border-b-0 sm:border-r border-transparent';
-                content2.classList.remove('hidden');
-                content1.classList.add('hidden');
-            }
-        }
+<div id="lightbox">
+    <img src="https://images.static-bluray.com/movies/covers/85557_slip.jpg" alt="Enlarged Cover">
+</div>
 
-        const chartDataModel = [
-            {
-                label: '音声仕様・字幕 (5種)',
-                value: 5,
-                color: '#1e3a8a',
-                icon: '&#128266;',
-                desc: '英語DTS-HD MA、英語DD、日本語DTSの3つの音声トラックと、日・英の2つの字幕トラックを収録。'
-            },
-            {
-                label: '音声解説 (2種)',
-                value: 2,
-                color: '#1d4ed8',
-                icon: '&#127897;&#65039;',
-                desc: '監督・撮影監督チームと、製作・脚本チームによる2種類のオーディオコメンタリー。'
-            },
-            {
-                label: '本編映像特典 (2種)',
-                value: 2,
-                color: '#3b82f6',
-                icon: '&#128187;',
-                desc: 'インデックス機能やピクチャー・イン・ピクチャー（PinP）など、ブルーレイ特有の連動機能。'
-            },
-            {
-                label: 'メイキング (3編)',
-                value: 3,
-                color: '#60a5fa',
-                icon: '&#127916;',
-                desc: '「歴史の再構築」として、製作の道のり、キャラクター進化、アクション舞台裏の3項目を収録。'
-            },
-            {
-                label: 'VFX解説 (2編)',
-                value: 2,
-                color: '#93c5fd',
-                icon: '&#10024;',
-                desc: '「特殊能力の秘密」として、視覚効果の分析とナイトクローラーの演出に特化した映像。'
-            },
-            {
-                label: 'アーカイブ (3種)',
-                value: 3,
-                color: '#475569',
-                icon: '&#128194;',
-                desc: '未公開シーン集、静止画ギャラリー、各種予告編集を網羅。'
-            }
-        ];
+<script>
+    // 2009 standard vintage interactive feature: basic overlay zoom
+    document.getElementById('cover-link').addEventListener('click', function() {
+        document.getElementById('lightbox').style.display = 'flex';
+    });
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const ctx = document.getElementById('featuresChart').getContext('2d');
-            
-            const config = {
-                type: 'doughnut',
-                data: {
-                    labels: chartDataModel.map(d => d.label),
-                    datasets: [{
-                        data: chartDataModel.map(d => d.value),
-                        backgroundColor: chartDataModel.map(d => d.color),
-                        borderWidth: 2,
-                        borderColor: '#ffffff',
-                        hoverOffset: 8
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            position: 'bottom',
-                            labels: {
-                                font: {
-                                    family: "'Helvetica Neue', 'Hiragino Kaku Gothic ProN', sans-serif",
-                                    size: 12
-                                },
-                                color: '#57534e',
-                                padding: 15
-                            }
-                        },
-                        tooltip: {
-                            backgroundColor: 'rgba(28, 25, 23, 0.9)',
-                            titleFont: { size: 14 },
-                            bodyFont: { size: 13 },
-                            padding: 12,
-                            displayColors: true,
-                            callbacks: {
-                                label: function(context) {
-                                    return ' ' + context.label.split(' ')[0] + ': ' + context.raw + ' 項目';
-                                }
-                            }
-                        }
-                    },
-                    cutout: '65%',
-                    onClick: (event, elements) => {
-                        if (elements.length > 0) {
-                            updateDetailPanel(elements[0].index);
-                        }
-                    }
-                }
-            };
+    document.getElementById('lightbox').addEventListener('click', function() {
+        document.getElementById('lightbox').style.display = 'none';
+    });
+</script>
 
-            const chartInstance = new Chart(ctx, config);
-
-            function updateDetailPanel(index) {
-                const data = chartDataModel[index];
-                const panel = document.getElementById('chart-detail-panel');
-                
-                panel.classList.remove('fade-in');
-                void panel.offsetWidth; 
-                
-                document.getElementById('detail-icon').innerHTML = data.icon;
-                document.getElementById('detail-title').innerText = data.label.split(' ')[0] + 'の詳細';
-                document.getElementById('detail-desc').innerText = data.desc;
-                
-                panel.classList.add('fade-in');
-            }
-        });
-    </script>
 </body>
 </html>
