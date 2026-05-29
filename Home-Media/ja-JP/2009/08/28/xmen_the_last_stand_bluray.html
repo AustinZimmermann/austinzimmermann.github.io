@@ -1,491 +1,419 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja-JP">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>X-MEN：ファイナル ディシジョン 2枚組ブルーレイ インタラクティブ・ガイド</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-tailwind.config = {
-  theme: {
-    extend: {
-      colors: {
-        'base-bg': '#fafaf9', /* stone-50 */
-        'base-text': '#292524', /* stone-800 */
-        'accent-color': '#0369a1', /* sky-700 */
-        'accent-light': '#e0f2fe', /* sky-100 */
-        'panel-bg': '#ffffff',
-      },
-      fontFamily: {
-        sans: ['"Hiragino Kaku Gothic ProN"', '"Hiragino Sans"', 'Meiryo', 'sans-serif'],
-      }
-    }
-  }
-}
-</script>
-<style>
-/* Chart Container Styling requirement */
-.chart-container {
-    position: relative;
-    width: 100%;
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-    height: 280px;
-    max-height: 350px;
-}
-@media (min-width: 768px) {
-    .chart-container {
-        height: 320px;
-    }
-}
-.tab-active {
-    border-bottom: 4px solid #0369a1;
-    color: #0369a1;
-    font-weight: bold;
-    background-color: #f0f9ff; /* sky-50 */
-}
-.fade-in {
-    animation: fadeIn 0.4s ease-in-out;
-}
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-</style>
-</head>
-<body class="bg-base-bg text-base-text font-sans leading-relaxed tracking-wide antialiased">
-
-<!-- Chosen Palette: Warm neutral background (stone-50) with crisp white panels and sophisticated deep sky blue (sky-700) accents. This palette ensures readability while giving a modern, cinematic feel suitable for a sci-fi action movie release. -->
-<!-- Application Structure Plan: A tab-based dashboard. The report is segmented into logical pillars: "Product Overview" (Basic Info & Story), "Technical Specs" (AV Details), and "Bonus Features" (Disc Contents). This prevents information overload, allowing the user to navigate specifically to what interests them, mimicking the experience of exploring physical media packaging and menus. -->
-<!-- Visualization & Content Choices: Report Info: Audio Specs -> Goal: Compare -> Viz: Interactive Bar Chart -> Interaction: Hover tooltips -> Justification: Clearly illustrates the channel advantage of the main English audio track (6.1ch) vs the alternatives. -> Library: Chart.js. Report Info: Disc Contents -> Goal: Organize -> Viz: Interactive Accordion Lists -> Interaction: Click to expand/collapse -> Justification: Manages the extensive list of bonus features effectively without cluttering the screen. -> Library/Method: Vanilla JS & Tailwind (NO SVG). -->
-<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
-
-<header class="bg-stone-900 text-stone-100 py-10 px-6 shadow-md border-b-4 border-accent-color">
-    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center md:items-start gap-8">
-        <div class="w-48 h-64 bg-stone-800 rounded shadow-2xl overflow-hidden flex-shrink-0 flex items-center justify-center relative border border-stone-600">
-            <img src="https://images.static-bluray.com/movies/covers/85555_slip.jpg" alt="X-Men: The Last Stand Blu-ray Cover" class="object-cover w-full h-full" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-            <div class="hidden text-center p-4">
-                <span class="text-5xl">💿</span><br>
-                <span class="text-sm font-bold text-stone-400 mt-2 block">NO IMAGE</span>
-            </div>
-            <div class="absolute top-0 right-0 bg-accent-color text-white text-xs font-bold px-3 py-1 rounded-bl-lg shadow">2-Disc Set</div>
-        </div>
-        <div class="text-center md:text-left flex-1 mt-4 md:mt-0">
-            <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-3 tracking-tight">X-MEN：ファイナル ディシジョン</h1>
-            <h2 class="text-xl md:text-2xl text-stone-400 font-light mb-5">2枚組ブルーレイ 商品概要ダッシュボード</h2>
-            <p class="text-stone-300 max-w-3xl text-sm md:text-base leading-relaxed bg-stone-800/50 p-4 rounded-lg border border-stone-700 inline-block text-left">
-                20世紀フォックス ホーム エンターテイメント ジャパンより2009年にリリースされた、『X-MEN』シリーズ第3作の特典ディスク付き2枚組ブルーレイ・エディションの記録である。本サイトでは、その詳細な仕様と膨大なコンテンツをインタラクティブに探索できる。
-            </p>
-        </div>
-    </div>
-</header>
-
-<nav class="bg-panel-bg shadow-sm sticky top-0 z-20 border-b border-stone-200">
-    <div class="max-w-6xl mx-auto px-6 flex justify-start overflow-x-auto hide-scrollbar">
-        <button class="tab-btn tab-active px-6 py-4 text-stone-600 hover:bg-stone-50 transition whitespace-nowrap focus:outline-none text-lg" data-target="section-overview">🎬 概要・基本情報</button>
-        <button class="tab-btn px-6 py-4 text-stone-600 hover:bg-stone-50 transition whitespace-nowrap focus:outline-none text-lg" data-target="section-specs">📊 技術仕様・データ</button>
-        <button class="tab-btn px-6 py-4 text-stone-600 hover:bg-stone-50 transition whitespace-nowrap focus:outline-none text-lg" data-target="section-contents">💽 ディスク収録内容</button>
-    </div>
-</nav>
-
-<main class="max-w-6xl mx-auto px-6 py-10 min-h-[60vh]">
-
-    <!-- SECTION: OVERVIEW -->
-    <section id="section-overview" class="tab-content fade-in block">
-        <div class="mb-8 border-l-4 border-accent-color pl-4 bg-white p-4 rounded shadow-sm">
-            <h3 class="font-bold text-accent-color mb-1">セクションの目的：</h3>
-            <p class="text-stone-600 text-sm md:text-base">
-                このセクションでは、本商品の基本的な販売データと、作品の物語的・歴史的背景を提示する。価格や品番などの定量情報と、物語のあらすじや当時のリリース背景などの定性情報を並置し、商品の全体像を素早く把握するための基盤を提供する。
-            </p>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <!-- Basic Info Card -->
-            <div class="bg-panel-bg p-6 md:p-8 rounded-xl shadow border border-stone-200">
-                <h3 class="text-2xl font-bold mb-6 text-stone-800 border-b-2 border-accent-color pb-2 inline-flex items-center gap-2">
-                    <span class="text-2xl">📝</span> 商品データ
-                </h3>
-                <div class="space-y-4 text-sm md:text-base">
-                    <div class="flex flex-col sm:flex-row sm:justify-between p-3 bg-stone-50 rounded border border-stone-100 hover:bg-stone-100 transition">
-                        <span class="text-stone-500 font-semibold mb-1 sm:mb-0">タイトル</span>
-                        <span class="font-medium text-right text-stone-800">X-MEN：ファイナル ディシジョン<br>（2枚組ブルーレイ）</span>
-                    </div>
-                    <div class="flex flex-col sm:flex-row sm:justify-between p-3 bg-stone-50 rounded border border-stone-100 hover:bg-stone-100 transition">
-                        <span class="text-stone-500 font-semibold mb-1 sm:mb-0">発売日</span>
-                        <span class="font-medium text-right text-stone-800">2009年8月28日</span>
-                    </div>
-                    <div class="flex flex-col sm:flex-row sm:justify-between p-3 bg-stone-50 rounded border border-stone-100 hover:bg-stone-100 transition">
-                        <span class="text-stone-500 font-semibold mb-1 sm:mb-0">発売・販売元</span>
-                        <span class="font-medium text-right text-stone-800">20世紀フォックス ホーム<br>エンターテイメント ジャパン</span>
-                    </div>
-                    <div class="flex flex-col sm:flex-row sm:justify-between p-3 bg-stone-50 rounded border border-stone-100 hover:bg-stone-100 transition">
-                        <span class="text-stone-500 font-semibold mb-1 sm:mb-0">規格品番</span>
-                        <span class="font-mono font-bold text-accent-color text-right">FXXG-29986</span>
-                    </div>
-                    <div class="flex flex-col sm:flex-row sm:justify-between p-3 bg-stone-50 rounded border border-stone-100 hover:bg-stone-100 transition">
-                        <span class="text-stone-500 font-semibold mb-1 sm:mb-0">希望小売価格</span>
-                        <span class="font-medium text-right text-stone-800">4,935円（税込） <span class="text-xs text-stone-400">※当時</span></span>
-                    </div>
-                    <div class="flex flex-col sm:flex-row sm:justify-between p-3 bg-accent-light rounded border border-blue-200">
-                        <span class="text-accent-color font-bold mb-1 sm:mb-0">ディスク構成</span>
-                        <span class="font-bold text-right text-accent-color">ブルーレイ 2枚組<br>（本編 + 特典）</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="flex flex-col gap-8">
-                <!-- Synopsis Card -->
-                <div class="bg-panel-bg p-6 md:p-8 rounded-xl shadow border border-stone-200">
-                    <h3 class="text-2xl font-bold mb-4 text-stone-800 border-b-2 border-accent-color pb-2 inline-flex items-center gap-2">
-                        <span class="text-2xl">📖</span> 作品解説
-                    </h3>
-                    <p class="text-stone-700 mb-4 leading-relaxed">
-                        シリーズ3作目となる本作は、ミュータントを人間に変える新薬<strong>「キュア」</strong>の出現により、人類との共存か、それとも拒絶かを巡ってミュータント界が二分される激動の物語を描く。
-                    </p>
-                    <div class="bg-stone-100 p-4 rounded-lg border-l-4 border-stone-400">
-                        <p class="text-sm text-stone-600">
-                            <strong>監督交代劇：</strong><br>前2作を手がけたブライアン・シンガーに代わり、ブレット・ラトナーが新たに監督を務め、シリーズの（当時の）最終章を見事にまとめ上げた。
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Significance Card -->
-                <div class="bg-stone-800 text-stone-100 p-6 md:p-8 rounded-xl shadow-lg border border-stone-700 relative overflow-hidden">
-                    <div class="absolute top-[-20px] right-[-20px] text-8xl opacity-10">✨</div>
-                    <h3 class="text-2xl font-bold mb-4 text-sky-300 border-b border-stone-600 pb-2 inline-flex items-center gap-2">
-                        <span class="text-2xl">📌</span> 本商品の歴史的特徴
-                    </h3>
-                    <ul class="space-y-3 text-stone-300 text-sm md:text-base">
-                        <li class="flex items-start gap-2">
-                            <span class="text-sky-400 mt-1">✔</span>
-                            <span>2009年8月に発売されたこのセットは、それまでの単品版やDVD版を補完する<strong>決定版</strong>的な内容であった。</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-sky-400 mt-1">✔</span>
-                            <span>高画質・高音質に加え、2枚目に追加された膨大なボーナス・コンテンツは、シリーズ完結編を深く知るための貴重な資料となっている。</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-sky-400 mt-1">✔</span>
-                            <span>同時期のスピンオフ<strong>『ウルヴァリン：X-MEN ZERO』</strong>劇場公開に合わせたキャンペーンも展開され、シリーズ再注目の絶好のタイミングでのリリースであった。</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION: SPECS -->
-    <section id="section-specs" class="tab-content fade-in hidden">
-        <div class="mb-8 border-l-4 border-accent-color pl-4 bg-white p-4 rounded shadow-sm">
-            <h3 class="font-bold text-accent-color mb-1">セクションの目的：</h3>
-            <p class="text-stone-600 text-sm md:text-base">
-                本セクションでは、本編映像と音声の技術的なスペックを視覚化して分析する。特に、英語本編音声とその他の音声トラックとの間にある「チャンネル数」の違いをインタラクティブなグラフで表現し、本商品のオーディオ面の品質的優位性（DTS-HD MA 6.1ch）を一目で理解できるように構成している。
-            </p>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            <!-- AV Specs -->
-            <div class="lg:col-span-5 bg-panel-bg p-6 md:p-8 rounded-xl shadow border border-stone-200">
-                <h3 class="text-2xl font-bold mb-6 text-stone-800 border-b-2 border-accent-color pb-2 inline-flex items-center gap-2">
-                    <span class="text-2xl">⚙️</span> 映像・字幕仕様
-                </h3>
-                
-                <div class="space-y-6">
-                    <div>
-                        <h4 class="text-lg font-bold text-stone-700 mb-3 flex items-center gap-2"><span class="text-xl">🎞️</span> 映像</h4>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="bg-stone-50 p-4 rounded-lg border border-stone-200 text-center">
-                                <span class="block text-stone-500 text-sm mb-1">収録時間</span>
-                                <span class="block text-2xl font-bold text-accent-color">約104分</span>
-                            </div>
-                            <div class="bg-stone-50 p-4 rounded-lg border border-stone-200 text-center flex flex-col justify-center gap-2">
-                                <span class="inline-block bg-stone-200 text-stone-800 text-xs font-bold px-2 py-1 rounded">1080p Hi-Def</span>
-                                <span class="inline-block bg-stone-200 text-stone-800 text-xs font-bold px-2 py-1 rounded">ビスタサイズ</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="pt-4 border-t border-stone-100">
-                        <h4 class="text-lg font-bold text-stone-700 mb-3 flex items-center gap-2"><span class="text-xl">🔤</span> 字幕</h4>
-                        <div class="flex gap-4">
-                            <div class="flex-1 bg-stone-50 p-3 rounded-lg border border-stone-200 text-center font-medium text-stone-700">日本語字幕</div>
-                            <div class="flex-1 bg-stone-50 p-3 rounded-lg border border-stone-200 text-center font-medium text-stone-700">英語字幕</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Audio Specs & Chart -->
-            <div class="lg:col-span-7 bg-panel-bg p-6 md:p-8 rounded-xl shadow border border-stone-200">
-                <h3 class="text-2xl font-bold mb-2 text-stone-800 border-b-2 border-accent-color pb-2 inline-flex items-center gap-2">
-                    <span class="text-2xl">🔊</span> 音声仕様比較
-                </h3>
-                <p class="text-sm text-stone-500 mb-6">収録されている3つの音声トラックのチャンネル数を比較。メインの英語音声が最高スペックを誇る。</p>
-                
-                <div class="chart-container">
-                    <canvas id="audioChart"></canvas>
-                </div>
-                
-                <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3">
-                    <div class="p-3 border border-blue-200 bg-blue-50 rounded text-center relative overflow-hidden">
-                        <div class="absolute top-0 left-0 w-full h-1 bg-blue-600"></div>
-                        <span class="block text-sm text-blue-800 font-bold mb-1">英語</span>
-                        <span class="block text-xs text-stone-600 mb-1">DTS-HD マスター・オーディオ</span>
-                        <span class="block text-xl font-black text-blue-900">6.1ch</span>
-                    </div>
-                    <div class="p-3 border border-stone-200 bg-stone-50 rounded text-center">
-                        <span class="block text-sm text-stone-700 font-bold mb-1">英語</span>
-                        <span class="block text-xs text-stone-500 mb-1">ドルビーデジタルEX</span>
-                        <span class="block text-xl font-bold text-stone-800">5.1ch</span>
-                    </div>
-                    <div class="p-3 border border-stone-200 bg-stone-50 rounded text-center">
-                        <span class="block text-sm text-stone-700 font-bold mb-1">日本語</span>
-                        <span class="block text-xs text-stone-500 mb-1">DTS</span>
-                        <span class="block text-xl font-bold text-stone-800">5.1ch</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION: CONTENTS -->
-    <section id="section-contents" class="tab-content fade-in hidden">
-        <div class="mb-8 border-l-4 border-accent-color pl-4 bg-white p-4 rounded shadow-sm">
-            <h3 class="font-bold text-accent-color mb-1">セクションの目的：</h3>
-            <p class="text-stone-600 text-sm md:text-base">
-                このセクションでは、2枚のディスクに分散して収録された多様な特典コンテンツを整理・階層化する。アコーディオンUIを用いて「本編ディスク（視聴時機能）」と「特典ディスク（メイキング資料）」を明確に区分し、ユーザーが目的の特典情報を探索・理解しやすいように構造化している。
-            </p>
-        </div>
-
-        <div class="space-y-6">
-            <!-- DISC 1 -->
-            <div class="bg-panel-bg rounded-xl shadow border border-stone-200 overflow-hidden">
-                <button class="w-full text-left p-6 md:p-8 bg-stone-50 hover:bg-stone-100 transition flex justify-between items-center focus:outline-none" onclick="toggleAccordion('disc1')">
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-full bg-accent-light text-accent-color flex items-center justify-center text-2xl shadow-inner">💿</div>
-                        <div>
-                            <h3 class="text-xl md:text-2xl font-bold text-stone-800">本編ディスク</h3>
-                            <p class="text-sm text-stone-500 mt-1">本編映像 ＋ コメンタリー＆インタラクティブ機能</p>
-                        </div>
-                    </div>
-                    <span id="disc1-icon" class="text-2xl text-stone-400 transform transition-transform duration-300">▼</span>
-                </button>
-                <div id="disc1-content" class="p-6 md:p-8 border-t border-stone-200 bg-white">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div class="flex items-start gap-4 p-4 rounded-lg border border-stone-100 bg-stone-50">
-                            <span class="text-2xl mt-1">🎙️</span>
-                            <div>
-                                <h4 class="font-bold text-stone-800">音声解説（監督・脚本家）</h4>
-                                <p class="text-sm text-stone-600 mt-1">ブレット・ラトナー監督と脚本家による作品の深い解説。</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4 p-4 rounded-lg border border-stone-100 bg-stone-50">
-                            <span class="text-2xl mt-1">🎙️</span>
-                            <div>
-                                <h4 class="font-bold text-stone-800">音声解説（製作スタッフ）</h4>
-                                <p class="text-sm text-stone-600 mt-1">プロデューサー陣など製作サイド視点からの裏話。</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4 p-4 rounded-lg border border-stone-100 bg-stone-50">
-                            <span class="text-2xl mt-1">✂️</span>
-                            <div>
-                                <h4 class="font-bold text-stone-800">未公開シーン集</h4>
-                                <p class="text-sm text-stone-600 mt-1">本編から惜しくもカットされたシーンを音声解説付きで収録。</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4 p-4 rounded-lg border border-blue-100 bg-blue-50">
-                            <span class="text-2xl mt-1">🎛️</span>
-                            <div>
-                                <h4 class="font-bold text-accent-color">イン-ムービー・コンテンツ</h4>
-                                <p class="text-sm text-blue-800 mt-1">ピクチャー・イン・ピクチャー機能を利用した、ブルーレイ特有の連動機能。</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- DISC 2 -->
-            <div class="bg-panel-bg rounded-xl shadow border border-stone-200 overflow-hidden">
-                <button class="w-full text-left p-6 md:p-8 bg-stone-800 hover:bg-stone-700 transition flex justify-between items-center focus:outline-none" onclick="toggleAccordion('disc2')">
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-full bg-stone-600 text-white flex items-center justify-center text-2xl shadow-inner border border-stone-500">💽</div>
-                        <div>
-                            <h3 class="text-xl md:text-2xl font-bold text-white">特典ディスク</h3>
-                            <p class="text-sm text-stone-300 mt-1">膨大なメイキング・ドキュメンタリー・ギャラリー資料</p>
-                        </div>
-                    </div>
-                    <span id="disc2-icon" class="text-2xl text-stone-400 transform transition-transform duration-300 rotate-180">▲</span>
-                </button>
-                <div id="disc2-content" class="p-6 md:p-8 border-t border-stone-200 bg-stone-50 hidden">
-                    <p class="text-stone-600 mb-6 bg-white p-4 rounded border border-stone-200 shadow-sm text-center md:text-left">
-                        この2枚組セットの最大の価値である、映画製作の裏側に迫る映像資料群。
-                    </p>
-                    <div class="space-y-3">
-                        <div class="flex flex-col sm:flex-row sm:items-center gap-4 p-4 rounded-lg border border-stone-200 bg-white hover:border-accent-color transition">
-                            <div class="bg-stone-100 p-3 rounded-full text-xl flex-shrink-0">🎥</div>
-                            <div>
-                                <h4 class="font-bold text-stone-800">進化の軌跡：メイキング・オブ・『X-MEN：ファイナル ディシジョン』</h4>
-                                <p class="text-sm text-stone-600 mt-1">本作の製作過程を網羅する長編ドキュメンタリー。</p>
-                            </div>
-                        </div>
-                        <div class="flex flex-col sm:flex-row sm:items-center gap-4 p-4 rounded-lg border border-stone-200 bg-white hover:border-accent-color transition">
-                            <div class="bg-stone-100 p-3 rounded-full text-xl flex-shrink-0">🗣️</div>
-                            <div>
-                                <h4 class="font-bold text-stone-800">インタビュー映像</h4>
-                                <p class="text-sm text-stone-600 mt-1">主要キャストおよびスタッフによる証言や裏話。</p>
-                            </div>
-                        </div>
-                        <div class="flex flex-col sm:flex-row sm:items-center gap-4 p-4 rounded-lg border border-stone-200 bg-white hover:border-accent-color transition">
-                            <div class="bg-stone-100 p-3 rounded-full text-xl flex-shrink-0">📅</div>
-                            <div>
-                                <h4 class="font-bold text-stone-800">プロダクション・ダイアリー</h4>
-                                <p class="text-sm text-stone-600 mt-1">撮影現場の日々の様子を追った詳細な製作記録。</p>
-                            </div>
-                        </div>
-                        <div class="flex flex-col sm:flex-row sm:items-center gap-4 p-4 rounded-lg border border-stone-200 bg-white hover:border-accent-color transition">
-                            <div class="bg-stone-100 p-3 rounded-full text-xl flex-shrink-0">🖼️</div>
-                            <div>
-                                <h4 class="font-bold text-stone-800">ギャラリー</h4>
-                                <p class="text-sm text-stone-600 mt-1">キャラクターデザインやコンセプトアートなどの高画質静止画集。</p>
-                            </div>
-                        </div>
-                        <div class="flex flex-col sm:flex-row sm:items-center gap-4 p-4 rounded-lg border border-stone-200 bg-white hover:border-accent-color transition">
-                            <div class="bg-stone-100 p-3 rounded-full text-xl flex-shrink-0">📺</div>
-                            <div>
-                                <h4 class="font-bold text-stone-800">予告編集</h4>
-                                <p class="text-sm text-stone-600 mt-1">劇場予告編やプロモーション用のTVスポット映像。</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-</main>
-
-<footer class="bg-stone-900 text-stone-500 py-8 text-center text-sm border-t border-stone-800 mt-12">
-    <p>Based on: X-Men: The Last Stand (2-Disc Blu-ray Set) JP Report</p>
-    <p class="mt-2 text-stone-600">This interactive dashboard was generated for informational analysis.</p>
-</footer>
-
-<script>
-    // Navigation Logic
-    const tabBtns = document.querySelectorAll('.tab-btn');
-    const tabContents = document.querySelectorAll('.tab-content');
-    let chartInstance = null;
-
-    tabBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            // Remove active state from all
-            tabBtns.forEach(b => {
-                b.classList.remove('tab-active');
-                b.classList.add('text-stone-600');
-            });
-            tabContents.forEach(c => c.classList.add('hidden'));
-
-            // Add active state to clicked
-            btn.classList.add('tab-active');
-            btn.classList.remove('text-stone-600');
-            const targetId = btn.getAttribute('data-target');
-            document.getElementById(targetId).classList.remove('hidden');
-
-            // Initialize chart only when the specs tab is opened for the first time
-            if(targetId === 'section-specs' && !chartInstance) {
-                initAudioChart();
-            }
-        });
-    });
-
-    // Chart.js Implementation
-    function initAudioChart() {
-        const ctx = document.getElementById('audioChart').getContext('2d');
-        
-        // Define data mapping from report
-        const labels = [
-            ['英語', '(DTS-HD MA)'], 
-            ['英語', '(Dolby EX)'], 
-            ['日本語', '(DTS)']
-        ];
-        const dataPoints = [6.1, 5.1, 5.1];
-        const bgColors = ['#0284c7', '#d6d3d1', '#d6d3d1']; // sky-600 and stone-300
-        const borderColors = ['#0369a1', '#a8a29e', '#a8a29e'];
-
-        chartInstance = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: '音声チャンネル数',
-                    data: dataPoints,
-                    backgroundColor: bgColors,
-                    borderColor: borderColors,
-                    borderWidth: 1,
-                    borderRadius: 4,
-                    barPercentage: 0.6
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false, // Crucial for container styling
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        max: 8,
-                        title: {
-                            display: true,
-                            text: 'チャンネル数 (ch)',
-                            color: '#57534e', // stone-600
-                            font: { weight: 'bold' }
-                        },
-                        ticks: { stepSize: 1 }
-                    },
-                    x: {
-                        grid: { display: false },
-                        ticks: { color: '#44403c' } // stone-700
-                    }
-                },
-                plugins: {
-                    legend: { display: false },
-                    tooltip: {
-                        backgroundColor: 'rgba(28, 25, 23, 0.9)', // stone-900
-                        titleFont: { size: 14 },
-                        bodyFont: { size: 14, weight: 'bold' },
-                        padding: 10,
-                        callbacks: {
-                            title: function(context) {
-                                // Join the array labels back together for the tooltip title
-                                return context[0].label.replace(/,/g, ' ');
-                            },
-                            label: function(context) {
-                                return ` チャンネル: ${context.raw}ch`;
-                            }
-                        }
-                    }
-                },
-                animation: {
-                    duration: 1000,
-                    easing: 'easeOutQuart'
-                }
-            }
-        });
-    }
-
-    // Accordion Logic
-    window.toggleAccordion = function(discId) {
-        const content = document.getElementById(discId + '-content');
-        const icon = document.getElementById(discId + '-icon');
-        
-        if (content.classList.contains('hidden')) {
-            content.classList.remove('hidden');
-            icon.classList.remove('rotate-180');
-        } else {
-            content.classList.add('hidden');
-            icon.classList.add('rotate-180');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X-MEN：ファイナル ディシジョン ＜2枚組＞ | 20世紀フォックス ホーム エンターテイメント</title>
+    <style>
+        /* 2009 Era Aesthetics: Fixed width, dark gradients, web-safe fonts */
+        body {
+            background-color: #0d1117;
+            background-image: linear-gradient(to bottom, #000000 0%, #111822 500px);
+            color: #e0e0e0;
+            font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, sans-serif;
+            font-size: 12px;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
         }
-    };
+
+        #wrapper {
+            width: 960px;
+            margin: 0 auto;
+            border-left: 1px solid #223344;
+            border-right: 1px solid #223344;
+            background-color: #080c11;
+        }
+
+        /* Global Header */
+        header {
+            background-color: #000000;
+            padding: 15px 20px;
+            border-bottom: 3px solid #1a365d;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-area img {
+            height: 45px;
+            vertical-align: middle;
+        }
+
+        .logo-text {
+            color: #fff;
+            font-size: 22px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            font-family: 'Georgia', serif;
+            text-shadow: 0 0 10px rgba(0,132,255,0.8);
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: #a0b0c0;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        nav ul li a:hover {
+            color: #ffffff;
+            text-shadow: 0 0 5px #0084ff;
+        }
+
+        /* Main Content */
+        .container {
+            padding: 25px;
+        }
+
+        /* Breadcrumbs */
+        .breadcrumbs {
+            font-size: 11px;
+            color: #708090;
+            margin-bottom: 20px;
+        }
+        .breadcrumbs a {
+            color: #a0b0c0;
+            text-decoration: none;
+        }
+        .breadcrumbs a:hover { text-decoration: underline; }
+
+        /* Product Layout */
+        .product-main {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .product-media {
+            width: 320px;
+            flex-shrink: 0;
+            text-align: center;
+        }
+
+        .cover-art {
+            width: 100%;
+            max-width: 300px;
+            border: 4px solid #1e293b;
+            box-shadow: 0 0 25px rgba(0,0,0,0.8), 0 0 15px rgba(0, 132, 255, 0.2);
+            border-radius: 4px;
+            transition: transform 0.3s ease;
+        }
+
+        .cover-art:hover {
+            transform: scale(1.02);
+        }
+
+        .format-badge {
+            background: linear-gradient(135deg, #0052d4, #4364f7, #6fb1fc);
+            color: white;
+            display: inline-block;
+            padding: 4px 15px;
+            font-weight: bold;
+            font-size: 11px;
+            border-radius: 3px;
+            margin-top: 15px;
+            letter-spacing: 1px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .product-details {
+            flex-grow: 1;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #ffffff;
+            margin: 0 0 5px 0;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px #000;
+        }
+
+        .english-title {
+            font-size: 14px;
+            color: #8a9cae;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .price-box {
+            background-color: #111a24;
+            border: 1px solid #1e2d3d;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 25px;
+        }
+
+        .release-date {
+            font-size: 12px;
+            color: #ff9900;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #fff;
+        }
+        .price span {
+            font-size: 22px;
+            color: #e53e3e;
+        }
+
+        /* Buy Button styling typical of late 2000s glossy look */
+        .btn-buy {
+            display: inline-block;
+            background: linear-gradient(to bottom, #ffb700 0%, #ff8800 100%);
+            color: #000;
+            padding: 10px 30px;
+            font-size: 14px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 4px;
+            border: 1px solid #d47a00;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        .btn-buy:hover {
+            background: linear-gradient(to bottom, #ffcc33 0%, #ff9900 100%);
+        }
+
+        /* Tabs/Sections */
+        .info-sections {
+            margin-top: 30px;
+        }
+
+        .tab-menu {
+            border-bottom: 2px solid #223344;
+            display: flex;
+            gap: 5px;
+        }
+
+        .tab {
+            background-color: #111a24;
+            padding: 8px 20px;
+            cursor: pointer;
+            border-radius: 5px 5px 0 0;
+            color: #a0b0c0;
+            font-weight: bold;
+            border: 1px solid #223344;
+            border-bottom: none;
+        }
+
+        .tab.active {
+            background-color: #1e2d3d;
+            color: #fff;
+            border-color: #3b4f66;
+            padding-bottom: 9px;
+            margin-bottom: -1px;
+        }
+
+        .tab-content {
+            background-color: #1e2d3d;
+            border: 1px solid #3b4f66;
+            border-top: none;
+            padding: 20px;
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Spec Table */
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .spec-table th, .spec-table td {
+            padding: 10px;
+            border-bottom: 1px solid #2d3d52;
+            text-align: left;
+        }
+
+        .spec-table th {
+            width: 25%;
+            color: #94a3b8;
+            font-weight: bold;
+            background-color: #16222f;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #000000;
+            padding: 30px 20px;
+            text-align: center;
+            font-size: 11px;
+            color: #64748b;
+            border-top: 1px solid #223344;
+        }
+
+        footer a {
+            color: #94a3b8;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover { text-decoration: none; }
+
+        .copyright {
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="wrapper">
+    <header>
+        <div class="logo-area">
+            <span class="logo-text">20th CENTURY FOX</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">劇場公開作品</a></li>
+                <li><a href="#">ブルーレイ／DVD</a></li>
+                <li><a href="#">デジタル配信</a></li>
+                <li><a href="#">公式ストア</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="breadcrumbs">
+            <a href="#">HOME</a> &gt; <a href="#">ブルーレイ＆DVD</a> &gt; X-MEN：ファイナル ディシジョン
+        </div>
+
+        <div class="product-main">
+            <div class="product-media">
+                <img src="https://images.static-bluray.com/movies/covers/85555_slip.jpg" alt="X-MEN：ファイナル ディシジョン Blu-ray" class="cover-art">
+                <div><span class="format-badge">BLU-RAY DISC</span></div>
+            </div>
+
+            <div class="product-details">
+                <h1>X-MEN：ファイナル ディシジョン ＜2枚組＞</h1>
+                <div class="english-title">X-Men: The Last Stand (2-Disc Blu-ray Set)</div>
+
+                <div class="price-box">
+                    <div class="release-date">発売日：2009/08/28（予約受付中）</div>
+                    <div class="price">希望小売価格：<span>¥4,980</span>（税込）</div>
+                    <p style="margin: 10px 0 0 0; color: #94a3b8; font-size: 11px;">※2009年8月28日現在の情報です。仕様・価格は変更になる場合がございます。</p>
+                    <button class="btn-buy" onclick="alert('FOX公式ストア（外部）へ移動します。')">FOXストアで購入する</button>
+                </div>
+
+                <p style="font-size: 13px; color: #cbd5e1;">
+                    全ての「X-MEN」シリーズのクライマックスを圧倒的なクオリティで描くSFアクション巨編！<br>
+                    究極の次世代ディスク・フォーマット「ブルーレイ」の圧倒的高画質・高音質、そして本編ディスク＋特典ディスクの豪華2枚組仕様で登場！
+                </p>
+            </div>
+        </div>
+
+        <div class="info-sections">
+            <div class="tab-menu">
+                <div class="tab active" onclick="switchTab(event, 'story')">ストーリー</div>
+                <div class="tab" onclick="switchTab(event, 'spec')">商品仕様</div>
+                <div class="tab" onclick="switchTab(event, 'bonus')">特典映像</div>
+            </div>
+
+            <div id="story" class="tab-content active">
+                <p>ミュータントの能力を消去し、普通の人間へと戻す新薬「キュア」が開発された。これによりミュータント社会は大きく揺れる。「人間として生きるべきか、ミュータントとして誇りを持って生きるべきか」。</p>
+                <p>プロフェッサーX率いるX-MENは平和的共存を模索するが、マグニートー率いるブラザーフッドは、人間を根絶やしにするため全面戦争を仕掛けてくる。さらに、前作で死んだと思われていたジーン・グレイが、内に秘めたもう一つの邪悪な人格「ダーク・フェニックス」として覚醒。人類とミュータントの運命を賭けた、最終決戦の火蓋が切って落とされる！</p>
+            </div>
+
+            <div id="spec" class="tab-content">
+                <table class="spec-table">
+                    <tr>
+                        <th>品番</th>
+                        <td>FXXG-29986</td>
+                    </tr>
+                    <tr>
+                        <th>製作年／製作国</th>
+                        <td>2006年／アメリカ</td>
+                    </tr>
+                    <tr>
+                        <th>ディスク枚数</th>
+                        <td>2枚（本編ディスク×1、特典ディスク×1）</td>
+                    </tr>
+                    <tr>
+                        <th>画面サイズ</th>
+                        <td>1080p High Definition 2.40:1（シネマスコープ）</td>
+                    </tr>
+                    <tr>
+                        <th>音声</th>
+                        <td>1. 英語 DTS-HD マスター・オーディオ 6.1ch<br>2. 英語 ドルビーデジタル 5.1ch EX<br>3. 日本語 DTS 5.1ch</td>
+                    </tr>
+                    <tr>
+                        <th>字幕</th>
+                        <td>1. 日本語字幕　2. 英語字幕</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="bonus" class="tab-content">
+                <p><strong>【本編ディスク収録特典】</strong></p>
+                <ul>
+                    <li>ブレット・ラトナー監督、サイモン・キンバーグ、ザック・ペンによる音声解説</li>
+                    <li>イン-ムービー・コンテンツ（画中画）機能</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>【特典ディスク（Disc 2）収録内容】</strong></p>
+                <ul>
+                    <li>未公開シーン集（音声解説付）</li>
+                    <li>もうひとつのエンディング（3種）</li>
+                    <li>メイキング・オブ・『X-MEN：ファイナル ディシジョン』</li>
+                    <li>キャラクター解説、進化の軌跡</li>
+                    <li>Webドキュメンタリー集、各種トレーラー</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <a href="#">お問い合わせ</a> | 
+            <a href="#">プライバシーポリシー</a> | 
+            <a href="#">利用規約</a> | 
+            <a href="#">会社概要</a>
+        </div>
+        <div class="copyright">
+            &copy;2009 Twentieth Century Fox Home Entertainment LLC. All Rights Reserved.
+        </div>
+    </footer>
+</div>
+
+<script>
+    // Tab switching mechanism popular in late 2000s dynamic pages
+    function switchTab(event, tabId) {
+        var i, tabcontent, tablinks;
+        
+        tabcontent = document.getElementsByClassName("tab-content");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].classList.remove("active");
+        }
+        
+        tablinks = document.getElementsByClassName("tab");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].classList.remove("active");
+        }
+        
+        document.getElementById(tabId).classList.add("active");
+        event.currentTarget.classList.add("active");
+    }
 </script>
 
 </body>
