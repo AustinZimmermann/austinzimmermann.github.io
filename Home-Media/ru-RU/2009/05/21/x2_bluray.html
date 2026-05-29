@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>«Люди Икс 2» на Blu-ray | Двадцатый Век Фокс СНГ</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Helvetica, sans-serif;
+            background-color: #0b0f14;
+            color: #ffffff;
+            background-image: radial-gradient(circle at top, #1a2636 0%, #0b0f14 70%);
+            line-height: 1.5;
+        }
+
+        /* 2009 Era Fox Header */
+        header {
+            background: linear-gradient(to bottom, #000000, #111111);
+            border-bottom: 3px solid #003366;
+            padding: 15px 20px;
+        }
+        .header-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-weight: bold;
+            font-size: 24px;
+            color: #fff;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+            text-decoration: none;
+        }
+        .logo span {
+            display: block;
+            font-size: 10px;
+            letter-spacing: 5px;
+            color: #0088ff;
+        }
+        nav a {
+            color: #ccc;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 13px;
+            text-transform: uppercase;
+        }
+        nav a:hover, nav a.active {
+            color: #0088ff;
+        }
+
+        /* Main Content Layout */
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        /* Breadcrumbs */
+        .breadcrumbs {
+            font-size: 11px;
+            color: #888;
+            margin-bottom: 20px;
+        }
+        .breadcrumbs a {
+            color: #888;
+            text-decoration: none;
+        }
+        .breadcrumbs a:hover {
+            color: #fff;
+        }
+
+        /* Product Section */
+        .product-grid {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 40px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid #223344;
+            padding: 30px;
+            border-radius: 5px;
+        }
+
+        /* Left Column: Cover & Quick Info */
+        .cover-art {
+            text-align: center;
+        }
+        .cover-art img {
+            max-width: 100%;
+            height: auto;
+            box-shadow: 0 0 25px rgba(0,136,255,0.3);
+            border-radius: 4px;
+            border: 1px solid #444;
+        }
+        .bluray-badge {
+            margin-top: 15px;
+            display: inline-block;
+            background: linear-gradient(to bottom, #0099ff, #0033aa);
+            color: white;
+            padding: 5px 15px;
+            font-weight: bold;
+            font-size: 12px;
+            border-radius: 3px;
+            letter-spacing: 1px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+        }
+
+        /* Right Column: Movie Details */
+        .movie-title {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+        }
+        .movie-original-title {
+            font-size: 18px;
+            color: #8aa0b5;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        .release-meta {
+            font-size: 13px;
+            color: #aaa;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #223344;
+        }
+
+        /* Tabs Interface */
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid #223344;
+            margin-top: 25px;
+        }
+        .tab-btn {
+            background: none;
+            border: none;
+            color: #8aa0b5;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+        .tab-btn:hover {
+            color: #fff;
+        }
+        .tab-btn.active {
+            color: #fff;
+            border-bottom: 3px solid #0088ff;
+            margin-bottom: -2px;
+        }
+        .tab-content {
+            display: none;
+            padding: 20px 0;
+            font-size: 14px;
+            color: #ccc;
+            line-height: 1.6;
+        }
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Spec Table */
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        .spec-table tr {
+            border-bottom: 1px solid #1a2636;
+        }
+        .spec-table td {
+            padding: 10px;
+            vertical-align: top;
+        }
+        .spec-table td.label {
+            font-weight: bold;
+            color: #8aa0b5;
+            width: 30%;
+        }
+
+        /* Features List */
+        .features-list {
+            list-style-type: square;
+            margin-left: 20px;
+        }
+        .features-list li {
+            margin-bottom: 8px;
+        }
+
+        /* 2009 Footer */
+        footer {
+            margin-top: 50px;
+            background-color: #05070a;
+            padding: 30px 20px;
+            border-top: 1px solid #111a24;
+            font-size: 11px;
+            color: #666;
+            text-align: center;
+        }
+        .footer-links {
+            margin-bottom: 15px;
+        }
+        .footer-links a {
+            color: #8aa0b5;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">
+                TWENTIETH CENTURY FOX
+                <span>ДОМАШНЕЕ ВИДЕО</span>
+            </a>
+            <nav>
+                <a href="#">Главная</a>
+                <a href="#" class="active">Blu-ray</a>
+                <a href="#">DVD</a>
+                <a href="#">Скоро в продаже</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <div class="breadcrumbs">
+            <a href="#">Главная</a> &gt; <a href="#">Каталог Blu-ray</a> &gt; X2: Люди Икс 2 (2-Disc Set)
+        </div>
+
+        <div class="product-grid">
+            
+            <div class="cover-art">
+                <img src="https://images.static-bluray.com/movies/covers/45460_front.jpg" alt="Люди Икс 2 Blu-ray Обложка">
+                <div><span class="bluray-badge">BLU-RAY™ ДВУХДИСКОВОЕ ИЗДАНИЕ</span></div>
+            </div>
+
+            <div>
+                <h1 class="movie-title">Люди Икс 2</h1>
+                <div class="movie-original-title">X2: X-Men United (2003)</div>
+                
+                <div class="release-meta">
+                    <strong>Дата релиза на Blu-ray в РФ:</strong> 21 мая 2009 г.<br>
+                    <strong>Студия:</strong> 20th Century Fox<br>
+                    <strong>Жанр:</strong> Фантастика, Экшн, Приключения
+                </div>
+
+                <div class="tabs">
+                    <button class="tab-btn active" onclick="openTab(event, 'description')">Описание</button>
+                    <button class="tab-btn" onclick="openTab(event, 'specs')">Спецификации</button>
+                    <button class="tab-btn" onclick="openTab(event, 'bonus')">Дополнительные материалы</button>
+                </div>
+
+                <div id="description" class="tab-content active">
+                    <p>Мутанты продолжают свою борьбу против общества, которое их боится и не доверяет им. Их положение становится еще более опасным после совершения шокирующего покушения на жизнь президента США неизвестным мутантом.</p>
+                    <br>
+                    <p>Это событие дает повод полковнику Уильяму Страйкеру, бывшему военному чиновнику, запустить агрессивную кампанию по полному уничтожению мутантов. Профессору Икс, Росомахе, Шторм и остальным членам команды Людей Икс приходится объединить усилия со своим заклятым врагом Магнето, чтобы остановить смертельную угрозу, которая может уничтожить их всех.</p>
+                </div>
+
+                <div id="specs" class="tab-content">
+                    <table class="spec-table">
+                        <tr>
+                            <td class="label">Дистрибьютор</td>
+                            <td>Двадцатый Век Фокс СНГ</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Количество дисков</td>
+                            <td>2 BD-50 (Двухслойный диск)</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Формат видео</td>
+                            <td>1080p High Definition 16:9 (2.40:1) / Кодек AVC</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Звуковые дорожки</td>
+                            <td>
+                                Английский: DTS-HD Master Audio 5.1<br>
+                                Русский: DTS 5.1 (Дубляж)<br>
+                                Украинский: Dolby Digital 5.1
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">Субтитры</td>
+                            <td>Русские, Английские, Украинские</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Региональный код</td>
+                            <td>A, B, C (Menti/Free)</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div id="bonus" class="tab-content">
+                    <p><strong>Диск 1:</strong></p>
+                    <ul class="features-list">
+                        <li>Аудиокомментарий режиссера Брайана Сингера и Тома Сигела</li>
+                        <li>Аудиокомментарий продюсеров Лорен Шулер Доннер, Ральфа Винтера и сценаристов</li>
+                    </ul>
+                    <br>
+                    <p><strong>Диск 2:</strong></p>
+                    <ul class="features-list">
+                        <li>Документальный цикл «История Людей Икс»</li>
+                        <li>Секретные материалы Страйкера</li>
+                        <li>Галереи визуальных эффектов и дизайна</li>
+                        <li>Удаленные сцены</li>
+                        <li>Трейлеры и рекламные ролики</li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <a href="#">О компании</a> | 
+            <a href="#">Условия использования</a> | 
+            <a href="#">Конфиденциальность</a> | 
+            <a href="#">Контакты</a>
+        </div>
+        <p>©2009 Двадцатый Век Фокс Домашнее Видео. Все права защищены.</p>
+        <p>Мнения и материалы, представленные на данном диске, принадлежат их авторам и могут не совпадать с позицией Twentieth Century Fox Home Entertainment.</p>
+    </footer>
+
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            
+            // Hide all tab contents
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+                tabcontent[i].classList.remove("active");
+            }
+            
+            // Remove "active" class from all tab buttons
+            tablinks = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+            
+            // Show current tab and mark button active
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+    </script>
+</body>
+</html>
