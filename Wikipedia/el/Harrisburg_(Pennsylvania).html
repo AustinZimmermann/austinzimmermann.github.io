@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Χάρισμπεργκ - Βικιπαίδεια</title>
+    <style>
+        /* Wikipedia Classic Styling */
+        body {
+            font-family: sans-serif;
+            background-color: #f6f6f6;
+            color: #202122;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #ffffff;
+            border-bottom: 1px solid #a2a9b1;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .wiki-logo {
+            font-size: 20px;
+            font-weight: bold;
+            font-variant: small-caps;
+            text-decoration: none;
+            color: #000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border: 1px solid #a2a9b1;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        main {
+            flex: 1;
+            min-width: 300px;
+            padding-right: 20px;
+        }
+
+        h1 {
+            font-family: 'Linux Libertine', 'Georgia', 'Times', serif;
+            font-size: 28px;
+            border-bottom: 1px solid #a2a9b1;
+            padding-bottom: 5px;
+            margin-top: 0;
+        }
+
+        h2 {
+            font-family: 'Linux Libertine', 'Georgia', 'Times', serif;
+            font-size: 22px;
+            border-bottom: 1px solid #a2a9b1;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+
+        /* Table of Contents */
+        .toc {
+            background-color: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            padding: 15px;
+            margin: 20px 0;
+            display: inline-block;
+            font-size: 14px;
+        }
+
+        .toc-title {
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .toc ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 0;
+        }
+
+        .toc li {
+            margin-bottom: 5px;
+        }
+
+        .toc a {
+            color: #0645ad;
+            text-decoration: none;
+        }
+
+        .toc a:hover {
+            text-decoration: underline;
+        }
+
+        /* Infobox Sidebar */
+        .infobox {
+            width: 300px;
+            background-color: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            padding: 10px;
+            font-size: 13px;
+            align-self: flex-start;
+            margin-left: 20px;
+        }
+
+        .infobox-title {
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            background-color: #cedff2;
+            padding: 5px;
+            margin:-10px -10px 10px -10px;
+        }
+
+        .infobox-image {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .infobox-image img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .infobox table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .infobox th {
+            text-align: left;
+            width: 40%;
+            padding: 4px;
+            vertical-align: top;
+            background-color: #f1f3f5;
+        }
+
+        .infobox td {
+            padding: 4px;
+            vertical-align: top;
+        }
+
+        /* Gallery Tabs Layout */
+        .tab-container {
+            margin-top: 15px;
+        }
+
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #a2a9b1;
+        }
+
+        .tab-button {
+            padding: 8px 16px;
+            background: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            border-bottom: none;
+            cursor: pointer;
+            margin-right: 4px;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+        }
+
+        .tab-button.active {
+            background: #fff;
+            font-weight: bold;
+            position: relative;
+            top: 1px;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 15px;
+            border: 1px solid #a2a9b1;
+            border-top: none;
+            background: #fff;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .placeholder-pic {
+            background: #e9ecef;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            font-style: italic;
+            border: 1px dashed #ced4da;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #ffffff;
+            border-top: 1px solid #a2a9b1;
+            padding: 20px;
+            text-align: center;
+            font-size: 12px;
+            color: #54595d;
+            margin-top: 40px;
+        }
+
+        /* Responsive styling */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                padding: 15px;
+            }
+            .infobox {
+                width: 100%;
+                margin-left: 0;
+                margin-top: 20px;
+                box-sizing: border-box;
+            }
+            main {
+                padding-right: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="wiki-logo">Βικιπαίδεια</a>
+        <div style="font-size: 13px; color: #54595d;">Η ελεύθερη εγκυκλοπαίδεια</div>
+    </header>
+
+    <div class="container">
+        <main>
+            <h1 id="title">Χάρισμπεργκ (Πενσυλβάνια)</h1>
+            
+            <p>Το <strong>Χάρισμπεργκ</strong> (αγγλικά: <i>Harrisburg</i>) είναι η πρωτεύουσα της αμερικανικής πολιτείας της Πενσυλβάνια και η διοικητική έδρα της κομητείας Ντοφίν. Με πληθυσμό περίπου 50.000 κατοίκους (σύμφωνα με εκτιμήσεις), είναι η 11η μεγαλύτερη πόλη της πολιτείας, αλλά αποτελεί τον πυρήνα μιας ευρύτερης μητροπολιτικής περιοχής με περισσότερους από 500.000 κατοίκους.</p>
+            
+            <p>Η πόλη είναι χτισμένη στην ανατολική όχθη του ποταμού Σασκουεχάνα (Susquehanna River) και βρίσκεται περίπου 170 χιλιόμετρα δυτικά της Φιλαδέλφειας και 320 χιλιόμετρα ανατολικά του Πίτσμπεργκ. Διαδραμάτισε καθοριστικό ρόλο στην αμερικανική ιστορία κατά τη διάρκεια της Δυτικής Μετανάστευσης, του Αμερικανικού Εμφυλίου Πολέμου και της Βιομηχανικής Επανάστασης.</p>
+
+            <div class="toc">
+                <div class="toc-title">Πίνακας περιεχομένων</div>
+                <ul>
+                    <li><a href="#history">1. Ιστορία</a></li>
+                    <li><a href="#geography">2. Γεωγραφία και Κλίμα</a></li>
+                    <li><a href="#economy">3. Οικονομία και Υποδομές</a></li>
+                    <li><a href="#gallery">4. Αξιοθέατα (Γκαλερί)</a></li>
+                </ul>
+            </div>
+
+            <h2 id="history">1. Ιστορία</h2>
+            <p>Πριν από την άφιξη των Ευρωπαίων αποίκων, η περιοχή κατοικούνταν από ιθαγενείς Αμερικανούς, όπως η φυλή Σασκουεχάνοκ (Susquehannock). Το 1719, ο Άγγλος έμπορος Τζον Χάρις (John Harris) εγκαταστάθηκε στην περιοχή και ίδρυσε ένα σημείο μεταφοράς (πορθμείο) κατά μήκος του ποταμού.</p>
+            <p>Ο γιος του, Τζον Χάρις ο νεότερος, σχεδίασε την πόλη το 1785 και την ονόμασε Χάρισμπεργκ προς τιμήν του πατέρα του. Το 1812, το Χάρισμπεργκ επιλέχθηκε ως η επίσημη πρωτεύουσα της Πενσυλβάνια λόγω της στρατηγικής και κεντρικής γεωγραφικής της θέσης.</p>
+
+            <h2 id="geography">2. Γεωγραφία και Κλίμα</h2>
+            <p>Το Χάρισμπεργκ βρίσκεται στην κοιλάδα Κάμπερλαντ (Cumberland Valley), μια περιοχή που χαρακτηρίζεται από εύφορο έδαφος και χαμηλούς λόφους. Ο ποταμός Σασκουεχάνα, ο οποίος κυλάει δίπλα από την πόλη, είναι ένας από τους μεγαλύτερους ποταμούς των ανατολικών ΗΠΑ.</p>
+            <p>Το κλίμα της πόλης είναι υγρό ηπειρωτικό (Dfa κατά την κλιματική ταξινόμηση Κέππεν). Τα καλοκαίρια είναι ζεστά και υγρά, ενώ οι χειμώνες είναι κρύοι με συχνές χιονοπτώσεις.</p>
+
+            <h2 id="economy">3. Οικονομία και Υποδομές</h2>
+            <p>Ως πρωτεύουσα της πολιτείας, η κυβέρνηση της Πενσυλβάνια είναι ο μεγαλύτερος εργοδότης στην πόλη. Άλλοι σημαντικοί τομείς της οικονομίας περιλαμβάνουν την υγειονομική περίθαλψη, την τεχνολογία και τις υπηρεσίες logistics, λόγω της εγγύτητας της πόλης σε μεγάλα οδικά και σιδηροδρομικά δίκτυα των ΗΠΑ.</p>
+            <p>Κοντά στην πόλη βρίσκεται επίσης το νησί Three Mile Island, γνωστό για το σοβαρό πυρηνικό ατύχημα που σημειώθηκε εκεί το 1979, το οποίο επηρέασε σημαντικά την παγκόσμια ιστορία της πυρηνικής ενέργειας.</p>
+
+            <h2 id="gallery">4. Αξιοθέατα (Γκαλερί)</h2>
+            <p>Κάντε κλικ στις καρτέλες για να δείτε τα κυριότερα σημεία ενδιαφέροντος της πόλης:</p>
+            
+            <div class="tab-container">
+                <div class="tabs">
+                    <button class="tab-button active" onclick="openTab(event, 'capitol')">Καπιτώλιο</button>
+                    <button class="tab-button" onclick="openTab(event, 'museum')">Κρατικό Μουσείο</button>
+                    <button class="tab-button" onclick="openTab(event, 'river')">Ποταμός Σασκουεχάνα</button>
+                </div>
+
+                <div id="capitol" class="tab-content active">
+                    <h3>Το Καπιτώλιο της Πενσυλβάνια (Pennsylvania State Capitol)</h3>
+                    <div class="placeholder-pic">[Εικόνα: Το επιβλητικό κτίριο του Καπιτωλίου]</div>
+                    <p style="margin-top:10px;">Ένα αρχιτεκτονικό αριστούργημα των αρχών του 20ού αιώνα με έναν εντυπωσιακό θόλο εμπνευσμένο από τη Βασιλική του Αγίου Πέτρου στη Ρώμη.</p>
+                </div>
+
+                <div id="museum" class="tab-content">
+                    <h3>Το Κρατικό Μουσείο της Πενσυλβάνια</h3>
+                    <div class="placeholder-pic">[Εικόνα: Το Κρατικό Μουσείο]</div>
+                    <p style="margin-top:10px;">Περιλαμβάνει εκθέματα για την ιστορία της πολιτείας από την εποχή των δεινοσαύρων και των ιθαγενών μέχρι τον αμερικανικό εμφύλιο και τη σύγχρονη εποχή.</p>
+                </div>
+
+                <div id="river" class="tab-content">
+                    <h3>City Island & Ποταμός</h3>
+                    <div class="placeholder-pic">[Εικόνα: Το νησάκι City Island στον ποταμό]</div>
+                    <p style="margin-top:10px;">Ένα νησί αναψυχής στη μέση του ποταμού που προσφέρει αθλητικές εγκαταστάσεις, βόλτες με ποταμόπλοιο και πανοραμική θέα στον ορίζοντα της πόλης.</p>
+                </div>
+            </div>
+
+        </main>
+
+        <aside class="infobox">
+            <div class="infobox-title">Χάρισμπεργκ<br><span style="font-size:12px; font-weight:normal; font-style:italic;">Harrisburg</span></div>
+            <div class="infobox-image">
+                <div style="background:#ddd; padding: 20px 0; font-weight:bold; font-size:11px; color:#555;">
+                    [Σφραγίδα / Σημαία της Πόλης]
+                </div>
+                <p style="font-size:11px; margin-top:5px; color:#555;">Πρωτεύουσα της Πενσυλβάνια</p>
+            </div>
+            <table>
+                <tr>
+                    <th>Χώρα</th>
+                    <td>Ηνωμένες Πολιτείες Αμερικής</td>
+                </tr>
+                <tr>
+                    <th>Πολιτεία</th>
+                    <td>Πενσυλβάνια</td>
+                </tr>
+                <tr>
+                    <th>Κομητεία</th>
+                    <td>Ντοφίν (Dauphin)</td>
+                </tr>
+                <tr>
+                    <th>Ίδρυση</th>
+                    <td>1715 (οικισμός)<br>1785 (ως πόλη)</td>
+                </tr>
+                <tr>
+                    <th>Δήμαρχος</th>
+                    <td>Γουάντα Γουίλιαμς (Wanda Williams)</td>
+                </tr>
+                <tr>
+                    <th colspan="2" style="background-color:#cedff2; text-align:center;">Πληθυσμός</th>
+                </tr>
+                <tr>
+                    <th>Πόλη</th>
+                    <td>~50.100 κάτοικοι</td>
+                </tr>
+                <tr>
+                    <th>Μητροπολιτική</th>
+                    <td>~590.000 κάτοικοι</td>
+                </tr>
+                <tr>
+                    <th colspan="2" style="background-color:#cedff2; text-align:center;">Γεωγραφία</th>
+                </tr>
+                <tr>
+                    <th>Έκταση</th>
+                    <td>30,7 km²</td>
+                </tr>
+                <tr>
+                    <th>Ζώνη Ώρας</th>
+                    <td>EST (UTC-5) / EDT (UTC-4)</td>
+                </tr>
+            </table>
+        </aside>
+    </div>
+
+    <footer>
+        <p>Το περιεχόμενο είναι διαθέσιμο υπό την άδεια CC BY-SA 4.0 εκτός αν αναφέρεται διαφορετικά.</p>
+        <p style="font-size:11px; color:#888;">Πολιτική ιδιωτικότητας • Σχετικά με τη Βικιπαίδεια • Κώδικας συμπεριφοράς</p>
+    </footer>
+
+    <script>
+        function openTab(evt, tabName) {
+            // Hide all tab contents
+            var tabContent = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < tabContent.length; i++) {
+                tabContent[i].style.display = "none";
+                tabContent[i].classList.remove("active");
+            }
+
+            // Remove the "active" class from all tab buttons
+            var tabButtons = document.getElementsByClassName("tab-button");
+            for (var i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove("active");
+            }
+
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            document.getElementById(tabName).style.display = "block";
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        // Smooth scroll implementation for the Table of Contents
+        document.querySelectorAll('.toc a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                document.querySelector(targetId).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
