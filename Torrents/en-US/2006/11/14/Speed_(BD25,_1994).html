@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>Torrents.com - Speed (1994) 1080p BluRay BD25 AVC DTS-HD MA 5.1-FGT</title>
+    <style>
+        /* 2006 Era Torrent Site Aesthetic */
+        body {
+            font-family: Helvetica, sans-serif;
+            background-color: #2F3136;
+            color: #E3E5E8;
+            margin: 0;
+            padding: 0;
+            font-size: 12px;
+        }
+
+        a {
+            color: #3498DB;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: #2980B9;
+        }
+
+        #header {
+            background-color: #1E1F22;
+            border-bottom: 3px solid #3498DB;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #FFFFFF;
+        }
+
+        #logo span {
+            color: #3498DB;
+        }
+
+        .search-bar {
+            display: flex;
+        }
+
+        .search-bar input[type="text"] {
+            width: 300px;
+            padding: 6px;
+            border: 1px solid #40444B;
+            background-color: #4B4F55;
+            color: #FFF;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .search-bar button {
+            padding: 6px 12px;
+            background-color: #3498DB;
+            border: none;
+            color: white;
+            cursor: pointer;
+            border-radius: 0 3px 3px 0;
+            font-weight: bold;
+        }
+
+        .search-bar button:hover {
+            background-color: #2980B9;
+        }
+
+        #nav {
+            background-color: #232428;
+            padding: 8px 20px;
+            border-bottom: 1px solid #40444B;
+        }
+
+        #nav a {
+            margin-right: 15px;
+            color: #B9BBBE;
+            font-weight: bold;
+        }
+
+        #nav a.active {
+            color: #3498DB;
+        }
+
+        #container {
+            max-width: 1100px;
+            margin: 20px auto;
+            padding: 0 15px;
+            display: flex;
+            gap: 20px;
+        }
+
+        #main-content {
+            flex: 3;
+            background-color: #2B2D31;
+            padding: 20px;
+            border-radius: 5px;
+            border: 1px solid #3F4248;
+        }
+
+        #sidebar {
+            flex: 1;
+            background-color: #2B2D31;
+            padding: 20px;
+            border-radius: 5px;
+            border: 1px solid #3F4248;
+            height: fit-content;
+        }
+
+        .torrent-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #FFFFFF;
+            margin-top: 0;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #40444B;
+            word-break: break-all;
+        }
+
+        .download-box {
+            background-color: #232428;
+            border: 1px dashed #3498DB;
+            padding: 15px;
+            text-align: center;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .btn-download {
+            display: inline-block;
+            background-color: #2ECC71;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 4px;
+            text-shadow: 1px 1px 0px #27AE60;
+            box-shadow: 0 3px 0 #27AE60;
+            margin-bottom: 10px;
+        }
+
+        .btn-download:hover {
+            background-color: #27AE60;
+            text-decoration: none;
+        }
+
+        .torrent-details {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .torrent-details td {
+            padding: 8px;
+            border-bottom: 1px solid #3F4248;
+        }
+
+        .torrent-details td.label {
+            font-weight: bold;
+            color: #B9BBBE;
+            width: 30%;
+        }
+
+        .status-seed { color: #2ECC71; font-weight: bold; }
+        .status-leech { color: #E74C3C; font-weight: bold; }
+
+        .movie-info {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .movie-poster {
+            width: 160px;
+            border: 3px solid #40444B;
+            border-radius: 3px;
+            object-fit: cover;
+        }
+
+        .movie-description {
+            flex: 1;
+            line-height: 1.6;
+        }
+
+        .nfo-container {
+            background-color: #111;
+            color: #00FF00;
+            font-family: "Courier New", Courier, monospace;
+            padding: 15px;
+            border-radius: 3px;
+            overflow-x: auto;
+            white-space: pre;
+            font-size: 11px;
+            margin-top: 10px;
+            border: 1px solid #333;
+        }
+
+        .section-heading {
+            font-size: 14px;
+            font-weight: bold;
+            color: #FFF;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #40444B;
+        }
+
+        .sidebar-box {
+            margin-bottom: 20px;
+        }
+
+        .sidebar-box h3 {
+            font-size: 13px;
+            color: #FFF;
+            margin-top: 0;
+            border-bottom: 1px solid #40444B;
+            padding-bottom: 5px;
+        }
+
+        .sidebar-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar-box li {
+            padding: 6px 0;
+            border-bottom: 1px solid #232428;
+        }
+
+        #footer {
+            text-align: center;
+            padding: 20px;
+            color: #72767D;
+            border-top: 1px solid #40444B;
+            margin-top: 40px;
+            background-color: #1E1F22;
+        }
+
+        /* Comments implementation */
+        .comment-block {
+            border-bottom: 1px solid #40444B;
+            padding: 10px 0;
+        }
+        .comment-meta {
+            font-size: 11px;
+            color: #72767D;
+            margin-bottom: 5px;
+        }
+        .comment-user {
+            font-weight: bold;
+            color: #3498DB;
+        }
+        
+        /* Interactive features via styling */
+        .tab-btn {
+            background: #232428;
+            border: 1px solid #40444B;
+            color: #B9BBBE;
+            padding: 5px 10px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        .tab-btn.active {
+            background: #3498DB;
+            color: white;
+            border-color: #3498DB;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="header">
+        <div id="logo"><a href="#">Torrents<span>.com</span></a></div>
+        <div class="search-bar">
+            <input type="text" value="Speed 1994 BluRay" id="searchInput">
+            <button onclick="alert('Searching features are simulated.')">Search</button>
+        </div>
+    </div>
+
+    <div id="nav">
+        <a href="#">Home</a>
+        <a href="#" class="active">Browse Torrents</a>
+        <a href="#">Recent</a>
+        <a href="#">TV Shows</a>
+        <a href="#">Movies</a>
+        <a href="#">Music</a>
+        <a href="#">Community</a>
+    </div>
+
+    <div id="container">
+        
+        <div id="main-content">
+            <h1 class="torrent-title">Speed.1994.1080p.BluRay.BD25.AVC.DTS-HD.MA.5.1-FGT</h1>
+            
+            <div class="download-box">
+                <a href="javascript:void(0);" class="btn-download" onclick="downloadTorrent()">📥 DOWNLOAD TORRENT</a>
+                <div style="font-size: 11px; color: #B9BBBE;">
+                    Magnet Link | <a href="javascript:void(0);" onclick="addBookmark()">Add to Favorites</a>
+                </div>
+            </div>
+
+            <table class="torrent-details">
+                <tr>
+                    <td class="label">Tracked Date:</td>
+                    <td>November 14, 2006</td>
+                    <td class="label">Category:</td>
+                    <td><a href="#">Movies</a> &gt; <a href="#">High-Res</a></td>
+                </tr>
+                <tr>
+                    <td class="label">Total Size:</td>
+                    <td>23.16 GB</td>
+                    <td class="label">Format:</td>
+                    <td>Blu-Ray / BD25</td>
+                </tr>
+                <tr>
+                    <td class="label">Seeders:</td>
+                    <td class="status-seed" id="seedCount">142</td>
+                    <td class="label">Leechers:</td>
+                    <td class="status-leech" id="leechCount">67</td>
+                </tr>
+                <tr>
+                    <td class="label">Hash:</td>
+                    <td colspan="3" style="font-family: monospace; font-size: 11px; color:#A3A6AA;">8f9a2b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a</td>
+                </tr>
+                <tr>
+                    <td class="label">Info Rating:</td>
+                    <td colspan="3">⭐⭐⭐⭐★ (4.2/5 based on 48 votes)</td>
+                </tr>
+            </table>
+
+            <div class="section-heading">Movie Metadata</div>
+            <div class="movie-info">
+                <img src="https://images.static-bluray.com/movies/covers/154_front.jpg" alt="Speed 1994 Blu-Ray Cover" class="movie-poster">
+                <div class="movie-description">
+                    <strong>Speed (1994)</strong><br>
+                    <span style="color: #72767D;">Action | Adventure | Thriller</span><br><br>
+                    Los Angeles SWAT cop Jack Traven must prevent a bomb from exploding aboard a city bus by keeping its speed above 50 mph.<br><br>
+                    <strong>Director:</strong> Jan de Bont<br>
+                    <strong>Stars:</strong> Keanu Reeves, Dennis Hopper, Sandra Bullock, Joe Morton
+                </div>
+            </div>
+
+            <div class="section-heading">
+                File NFO / Specifications 
+                <span style="float:right; font-size:11px; font-weight:normal;">
+                    <button class="tab-btn active">NFO Viewer</button>
+                </span>
+            </div>
+            <div class="nfo-container">████████████████████████████████████████████████████████████
+█  _______  _______  _______  _______  ______                  █
+█ (  ____ \(  ____ )(  ____ \(  ____ \(  __  \                 █
+█ | (    \/| (    )|| (    \/| (    \/| (  \  )                █
+█ | (_____ | (____)|| (__    | (__    | |   ) |                █
+█ (_____  )|  _____)|  __)   |  __)   | |   | |                █
+█       ) || (      | (      | (      | |   ) |                █
+█ /\____) || )      | (____/\| (____/\| (__/  )                █
+█ \_______)|/       (_______/(_______/(______/                 █
+█                                                              █
+████████████████████████████████████████████████████████████
+
+RELEASE NAME..: Speed.1994.1080p.BluRay.BD25.AVC.DTS-HD.MA.5.1-FGT
+RELEASE DATE..: 14/11/2006
+RERELEASE TYPE: BD25 Video Copy
+THEATRE DATE..: June 10, 1994
+RATING........: 7.2/10
+GENRE.........: Action / Thriller
+RUNTIME.......: 1h 56mn
+
+VIDEO CODEC...: AVC / MPEG-4 H.264
+FRAMERATE.....: 23.976 fps
+RESOLUTION....: 1920x1080p
+BITRATE.......: Direct Stream Untouched
+
+AUDIO CODEC...: DTS-HD Master Audio 5.1 (English)
+                Dolby Digital Surround 2.0 (French)
+SUBTITLES.....: English, Spanish
+
+SOURCE........: BluRay Region A BD25 Retail - FGT
+ENCODER.......: FGT Team</div>
+
+            <div class="section-heading">User Discussion (3)</div>
+            <div id="comments-section">
+                <div class="comment-block">
+                    <div class="comment-meta"><span class="comment-user">Neo_99</span> - November 14, 2006, 04:23 PM</div>
+                    <div>Amazing quality! Finally getting pristine 1080p direct BD25 structures. Blown away by the DTS-HD MA audio stream. Truly a reference disc. Thanks FGT!</div>
+                </div>
+                <div class="comment-block">
+                    <div class="comment-meta"><span class="comment-user">Bus50MPH</span> - November 14, 2006, 08:45 PM</div>
+                    <div>Speeds are super fast on this one, saturated my fiber completely. Popcorn time tonight! Keanu is a legend.</div>
+                </div>
+                <div class="comment-block">
+                    <div class="comment-meta"><span class="comment-user">X_Stream_X</span> - November 14, 2006, 11:12 PM</div>
+                    <div>Does this include the full menu features? Or is it a main movie strip? Reply if you completed download please.</div>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="sidebar">
+            <div class="sidebar-box">
+                <h3>Torrent Statistics</h3>
+                <table style="width: 100%; font-size: 11px;">
+                    <tr><td style="color:#72767D;">Verified:</td><td style="text-align:right; color:#2ECC71;">Yes (Trusted)</td></tr>
+                    <tr><td style="color:#72767D;">Health:</td><td style="text-align:right;"><span style="color:#2ECC71;">High</span></td></tr>
+                    <tr><td style="color:#72767D;">Completed:</td><td style="text-align:right;">1,104 times</td></tr>
+                </table>
+            </div>
+
+            <div class="sidebar-box">
+                <h3>Related Torrents</h3>
+                <ul>
+                    <li><a href="#">Speed 2 Cruise Control 1080p BluRay x264</a></li>
+                    <li><a href="#">Speed (1994) 720p BRRip x264 AC3</a></li>
+                    <li><a href="#">The Matrix Trilogy 1080p BluRay VC-1 DD5.1</a></li>
+                    <li><a href="#">Point Break 1991 1080p BluRay REMUX</a></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-box">
+                <h3>Latest Tags</h3>
+                <span style="display:inline-block; background:#232428; padding:3px 6px; margin:2px; border-radius:3px; font-size:10px;">FGT</span>
+                <span style="display:inline-block; background:#232428; padding:3px 6px; margin:2px; border-radius:3px; font-size:10px;">BluRay</span>
+                <span style="display:inline-block; background:#232428; padding:3px 6px; margin:2px; border-radius:3px; font-size:10px;">BD25</span>
+                <span style="display:inline-block; background:#232428; padding:3px 6px; margin:2px; border-radius:3px; font-size:10px;">Keanu Reeves</span>
+                <span style="display:inline-block; background:#232428; padding:3px 6px; margin:2px; border-radius:3px; font-size:10px;">1080p</span>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="footer">
+        &copy; 2003-2006 Torrents.com. All Rights Reserved. Torrent files are user-contributed metadata. Indexing server time: 0.041s.
+    </div>
+
+    <script>
+        function downloadTorrent() {
+            alert("Simulated Action:\nBeginning calculation handshake for file download: \n'Speed.1994.1080p.BluRay.BD25.AVC.DTS-HD.MA.5.1-FGT.torrent'");
+            
+            // Simulating tracker update variations
+            let seeds = document.getElementById('seedCount');
+            let leechers = document.getElementById('leechCount');
+            seeds.innerText = parseInt(seeds.innerText) + 1;
+            leechers.innerText = parseInt(leechers.innerText) + 2;
+        }
+
+        function addBookmark() {
+            alert("Added to your local browser/account Favorites collection!");
+        }
+    </script>
+</body>
+</html>
