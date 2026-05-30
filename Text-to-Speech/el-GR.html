@@ -3,18 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Greek SSML Text-to-Speech</title>
+    <title>Modern Greek SSML TTS Tester</title>
     <style>
         :root {
-            --primary-color: #005A9C; /* Greek Blue */
-            --secondary-color: #eef6fc;
+            --primary-color: #005bae;
+            --secondary-color: #ffffff;
+            --background-color: #f4f7f6;
             --text-color: #333;
+            --card-bg: #fff;
             --border-radius: 8px;
         }
 
         body {
             font-family: Helvetica, sans-serif;
-            background-color: #f7f9fa;
+            background-color: var(--background-color);
             color: var(--text-color);
             margin: 0;
             padding: 20px;
@@ -23,258 +25,234 @@
         }
 
         .container {
-            width: 100%;
             max-width: 800px;
-            background: #ffffff;
+            width: 100%;
+            background: var(--card-bg);
             padding: 30px;
             border-radius: var(--border-radius);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
         h1 {
             color: var(--primary-color);
-            margin-top: 0;
-            border-bottom: 2px solid var(--secondary-color);
-            padding-bottom: 10px;
+            text-align: center;
+            margin-bottom: 10px;
         }
 
-        .description {
-            font-size: 0.95rem;
+        p.subtitle {
+            text-align: center;
             color: #666;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
             margin-bottom: 20px;
         }
 
-        .toolbar {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
         }
 
-        .btn-template {
-            background-color: var(--secondary-color);
-            border: 1px solid #bce0fd;
-            color: var(--primary-color);
-            padding: 6px 12px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            transition: all 0.2s;
-        }
-
-        .btn-template:hover {
-            background-color: var(--primary-color);
-            color: white;
-        }
-
-        textarea {
+        select, textarea {
             width: 100%;
-            height: 250px;
             padding: 12px;
             border: 1px solid #ccc;
             border-radius: var(--border-radius);
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 1rem;
+            font-size: 16px;
             box-sizing: border-box;
+        }
+
+        textarea {
+            font-family: 'Courier New', Courier, monospace;
             resize: vertical;
+            height: 200px;
         }
 
-        textarea:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 5px rgba(0, 90, 156, 0.3);
+        .quick-tags {
+            margin-bottom: 20px;
         }
 
-        .controls {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-top: 20px;
-            flex-wrap: wrap;
-            gap: 15px;
+        .quick-tags p {
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 14px;
         }
 
-        .voice-selection {
-            flex-grow: 1;
-            min-width: 200px;
+        .tag-btn {
+            background-color: #e1ecf4;
+            color: #39739d;
+            border: 1px solid #7aa7c7;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            transition: all 0.2s;
         }
 
-        select {
-            width: 100%;
-            padding: 10px;
-            border-radius: var(--border-radius);
-            border: 1px solid #ccc;
-            background-color: white;
+        .tag-btn:hover {
+            background-color: #b3d3ea;
+            color: #2c5777;
         }
 
-        .action-btns {
-            display: flex;
-            gap: 10px;
-        }
-
-        button.main-btn {
+        .btn-submit {
             background-color: var(--primary-color);
             color: white;
             border: none;
-            padding: 12px 24px;
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            font-size: 1rem;
+            padding: 14px 20px;
+            font-size: 18px;
             font-weight: bold;
-            transition: background 0.2s;
-        }
-
-        button.main-btn:hover {
-            background-color: #004475;
-        }
-
-        button.secondary-btn {
-            background-color: #e0e0e0;
-            color: #333;
-            border: none;
-            padding: 12px 18px;
             border-radius: var(--border-radius);
             cursor: pointer;
-            font-size: 1rem;
+            width: 100%;
             transition: background 0.2s;
         }
 
-        button.secondary-btn:hover {
-            background-color: #d2d2d2;
+        .btn-submit:hover {
+            background-color: #004482;
         }
 
-        .footer-note {
-            margin-top: 25px;
-            font-size: 0.8rem;
-            color: #888;
-            text-align: center;
+        .warning-box {
+            background-color: #fff3cd;
+            color: #856404;
+            padding: 12px;
+            border-radius: var(--border-radius);
+            margin-top: 20px;
+            border: 1px solid #ffeeba;
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>Modern Greek SSML Text-to-Speech</h1>
-    <p class="description">
-        Δημιουργήστε και δοκιμάστε SSML (Speech Synthesis Markup Language) για την Ελληνική γλώσσα. 
-        Χρησιμοποιήστε τα παρακάτω πρότυπα για γρήγορη εισαγωγή.
-    </p>
+    <h1>Modern Greek SSML TTS</h1>
+    <p class="subtitle">Δοκιμή Κειμένου σε Ομιλία (SSML) για τη Νέα Ελληνική Γλώσσα</p>
 
-    <div class="toolbar">
-        <button class="btn-template" onclick="loadTemplate('welcome')">👋 Καλωσόρισμα</button>
-        <button class="btn-template" onclick="loadTemplate('break')">⏳ Παύση (Break)</button>
-        <button class="btn-template" onclick="loadTemplate('date')">📅 Ημερομηνία</button>
-        <button class="btn-template" onclick="loadTemplate('number')">🔢 Αριθμοί / Τηλέφωνο</button>
+    <div class="form-group">
+        <label for="voiceSelect">Επιλογή Φωνής (Greek Voices):</label>
+        <select id="voiceSelect">
+            <option value="">Φόρτωση φωνών...</option>
+        </select>
     </div>
 
-    <textarea id="ssmlInput" placeholder="Γράψτε το SSML κείμενό σας εδώ..."></textarea>
-
-    <div class="controls">
-        <div class="voice-selection">
-            <label for="voiceSelect" style="display:block; margin-bottom:5px; font-size:0.85rem; font-weight:bold;">Επιλογή Φωνής (Greek Voices):</label>
-            <select id="voiceSelect">
-                <option value="">Φόρτωση διαθέσιμων φωνών...</option>
-            </select>
-        </div>
-
-        <div class="action-btns">
-            <button class="secondary-btn" onclick="stopSpeech()">Διακοπή</button>
-            <button class="main-btn" onclick="speakSSML()">Αναπαραγωγή 🔊</button>
-        </div>
+    <div class="quick-tags">
+        <p>Προσθήκη SSML Tags:</p>
+        <button class="tag-btn" onclick="insertTag('break')">Break (Παύση)</button>
+        <button class="tag-btn" onclick="insertTag('emphasis')">Emphasis (Έμφαση)</button>
+        <button class="tag-btn" onclick="insertTag('prosody')">Prosody (Ταχύτητα/Τόνος)</button>
+        <button class="tag-btn" onclick="insertTag('whisper')">Whisper (Ψίθυρος)</button>
     </div>
 
-    <div class="footer-note">
-        Σημείωση: Η τοπική αναπαραγωγή του προγράμματος περιήγησης φιλτράρει τα tags και διαβάζει το κείμενο. <br>
-        Το παραγόμενο SSML είναι πλήρως συμβατό με Google Cloud TTS, Microsoft Azure και Amazon Polly.
+    <div class="form-group">
+        <label for="ssmlInput">SSML Κείμενο:</label>
+        <textarea id="ssmlInput"><speak>
+    Καλημέρα σας! <break time="500ms"/> Αυτό είναι ένα παράδειγμα <emphasis level="strong">πολύ ποιοτικής</emphasis> ελληνικής ομιλίας. 
+    <prosody rate="slow" pitch="+2st">Μπορούμε να αλλάξουμε την ταχύτητα και τον τόνο.</prosody>
+</speak></textarea>
+    </div>
+
+    <button class="btn-submit" onclick="speakText()">Αναπαραγωγή (Speak)</button>
+
+    <div class="warning-box">
+        <strong>Σημείωση:</strong> Το Web Speech API των προγραμμάτων περιήγησης έχει περιορισμένη υποστήριξη για <em>πλήρη</em> επεξεργασία SSML tags. Αυτή η σελίδα αφαιρεί αυτόματα τα tags αν το πρόγραμμα περιήγησής σας δεν τα υποστηρίζει εγγενώς, ώστε να ακουστεί καθαρά το ελληνικό κείμενο. Για πλήρη συμμόρφωση SSML, συνιστάται η χρήση Cloud APIs (Azure, Google Cloud, AWS).
     </div>
 </div>
 
 <script>
     const synth = window.speechSynthesis;
-    const ssmlInput = document.getElementById('ssmlInput');
     const voiceSelect = document.getElementById('voiceSelect');
-    
-    const templates = {
-        welcome: `<speak>\n  <span lang="el-GR">\n    Καλώς ορίσατε στην εφαρμογή <emphasis level="moderate">Μετατροπής Κειμένου σε Ομιλία</emphasis>.\n  </span>\n</speak>`,
-        break: `<speak>\n  <span lang="el-GR">\n    Αυτό είναι το πρώτο μέρος της πρότασης. <break time="1.5s"/> Και αυτό είναι το δεύτερο μέρος μετά από παύση ενάμισι δευτερολέπτου.\n  </span>\n</speak>`,
-        date: `<speak>\n  <span lang="el-GR">\n    Η σημερινή ημερομηνία είναι \n    <say-as interpret-as="date" format="dmy">25-12-2026</say-as>.\n  </span>\n</speak>`,
-        number: `<speak>\n  <span lang="el-GR">\n    Ο κωδικός σας είναι <say-as interpret-as="digits">1054</say-as> \n    και το τηλέφωνο υποστήριξης είναι <say-as interpret-as="telephone">2101234567</say-as>.\n  </span>\n</speak>`
-    };
+    const ssmlInput = document.getElementById('ssmlInput');
+    let voices = [];
 
-    // Load default template on start
-    window.addEventListener('DOMContentLoaded', () => {
-        loadTemplate('welcome');
-        populateVoiceList();
-        if (synth.onvoiceschanged !== undefined) {
-            synth.onvoiceschanged = populateVoiceList;
-        }
-    });
-
-    function loadTemplate(key) {
-        if(templates[key]) {
-            ssmlInput.value = templates[key];
-        }
-    }
-
+    // Populate browser's available Greek voices
     function populateVoiceList() {
-        if (typeof synth === 'undefined') return;
-        
-        const voices = synth.getVoices();
+        voices = synth.getVoices();
         voiceSelect.innerHTML = '';
         
-        // Filter for Greek voices primarily, but fallback to show all if none found
-        const greekVoices = voices.filter(voice => voice.lang.includes('el') || voice.lang.includes('GR'));
-        const displayVoices = greekVoices.length > 0 ? greekVoices : voices;
+        // Filter specifically for Greek (el-GR)
+        const greekVoices = voices.filter(voice => voice.lang.includes('el') || voice.lang.includes('EL'));
 
         if(greekVoices.length === 0) {
-            const opt = document.createElement('option');
-            opt.textContent = 'Δεν βρέθηκε ελληνική φωνή συστήματος. Γίνεται χρήση εναλλακτικής.';
-            opt.disabled = true;
-            voiceSelect.appendChild(opt);
+            const option = document.createElement('option');
+            option.textContent = 'Δεν βρέθηκαν ελληνικές φωνές στο σύστημα';
+            voiceSelect.appendChild(option);
+            return;
         }
 
-        displayVoices.forEach(voice => {
+        greekVoices.forEach(voice => {
             const option = document.createElement('option');
             option.textContent = `${voice.name} (${voice.lang})`;
-            option.value = voice.name;
+            option.setAttribute('data-lang', voice.lang);
+            option.setAttribute('data-name', voice.name);
             voiceSelect.appendChild(option);
         });
     }
 
-    function stripSSML(ssml) {
-        // Simple regex to clear XML/SSML tags so the browser's native API can speak the clean text.
-        return ssml.replace(/<\/?[^>]+(>|$)/g, "");
+    populateVoiceList();
+    if (speechSynthesis.onvoiceschanged !== undefined) {
+        speechSynthesis.onvoiceschanged = populateVoiceList;
     }
 
-    function speakSSML() {
-        if (synth.speaking) {
-            synth.cancel(); // Stop current speech if clicking play again
+    // Insert templates into the textarea
+    function insertTag(type) {
+        let textToInsert = '';
+        const start = ssmlInput.selectionStart;
+        const end = ssmlInput.selectionEnd;
+        const selectedText = ssmlInput.value.substring(start, end) || "εδώ";
+
+        switch(type) {
+            case 'break':
+                textToInsert = `<break time="1s"/>`;
+                break;
+            case 'emphasis':
+                textToInsert = `<emphasis level="strong">${selectedText}</emphasis>`;
+                break;
+            case 'prosody':
+                textToInsert = `<prosody rate="slow" pitch="+10%">${selectedText}</prosody>`;
+                break;
+            case 'whisper':
+                textToInsert = `<amazon:effect name="whispered">${selectedText}</amazon:effect>`;
+                break;
         }
 
-        const rawText = ssmlInput.value;
-        const cleanText = stripSSML(rawText);
+        const currentText = ssmlInput.value;
+        ssmlInput.value = currentText.substring(0, start) + textToInsert + currentText.substring(end);
+        ssmlInput.focus();
+    }
+
+    // Trigger TTS
+    function speakText() {
+        if (synth.speaking) {
+            synth.cancel(); // Stop current speech if clicking button again
+        }
+
+        let rawText = ssmlInput.value;
+
+        // Fallback clause: Web Speech API handles plain text best. 
+        // We strip XML/SSML tags so the engine doesn't read out loud the string "<speak>"
+        let cleanText = rawText.replace(/<\/?[^>]+(>|$)/g, ""); 
 
         if (cleanText.trim() === '') return;
 
         const utterThis = new SpeechSynthesisUtterance(cleanText);
-        const selectedVoiceName = voiceSelect.value;
-        const voices = synth.getVoices();
         
-        const selectedVoice = voices.find(voice => voice.name === selectedVoiceName);
-        if (selectedVoice) {
-            utterThis.voice = selectedVoice;
+        // Find selected voice object
+        const selectedOption = voiceSelect.selectedOptions[0]?.getAttribute('data-name');
+        const activeVoice = voices.find(voice => voice.name === selectedOption);
+        
+        if (activeVoice) {
+            utterThis.voice = activeVoice;
         }
         
-        // Ensure standard Greek text traits if using a default voice
-        utterThis.lang = 'el-GR';
-        
-        synth.speak(utterThis);
-    }
+        // Parse a few properties manually from text if present to mimic SSML behavior natively
+        if (rawText.includes('rate="slow"')) utterThis.rate = 0.7;
+        if (rawText.includes('rate="fast"')) utterThis.rate = 1.4;
 
-    function stopSpeech() {
-        if (synth.speaking) {
-            synth.cancel();
-        }
+        synth.speak(utterThis);
     }
 </script>
 
