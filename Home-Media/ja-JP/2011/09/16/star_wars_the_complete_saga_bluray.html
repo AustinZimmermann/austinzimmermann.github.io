@@ -1,200 +1,1413 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja-JP">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>スター・ウォーズ コンプリート・サーガ | 9枚組ブルーレイBOX</title>
+    <title>スター・ウォーズ コンプリート・サーガ ブルーレイBOX (9枚組) | 20世紀フォックス ホーム エンターテイメント</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts for sci-fi and Japanese aesthetics -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         body {
-            font-family: 'Hiragino Kaku Gothic Pro', sans-serif;
-            background-color: #050505;
-            color: #e5e5e5;
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #03040B;
+            background-image: 
+                radial-gradient(circle at 50% 10%, #0c102b 0%, #03040b 70%),
+                radial-gradient(circle at 10% 80%, #0d122e 0%, transparent 40%);
         }
-
-        .star-wars-bg {
-            background-image: radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
-                              radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
-                              radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px);
-            background-size: 550px 550px, 350px 350px, 250px 250px;
-            background-position: 0 0, 40px 60px, 130px 270px;
+        .orbitron {
+            font-family: 'Orbitron', sans-serif;
         }
-
-        .gold-text {
+        /* Custom Space/Star elements */
+        .stars {
+            background-image: radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px);
+            background-size: 550px 550px;
+        }
+        .stars-delayed {
+            background-image: radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px);
+            background-size: 350px 350px;
+            background-position: 100px 150px;
+        }
+        /* Glossy vintage buttons styling */
+        .glossy-btn {
+            background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 4px 6px -1px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255, 232, 31, 0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glossy-btn:hover {
+            border-color: #FFE81F;
+            box-shadow: 0 0 15px rgba(255, 232, 31, 0.4);
+            transform: translateY(-1px);
+        }
+        .sw-gold {
             color: #FFE81F;
         }
-
-        .glass-panel {
-            background: rgba(20, 20, 20, 0.8);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 232, 31, 0.2);
+        .border-sw-gold {
+            border-color: #FFE81F;
         }
-
-        .product-image {
-            box-shadow: 0 0 30px rgba(255, 232, 31, 0.3);
-            transition: transform 0.3s ease;
+        .bg-sw-gold {
+            background-color: #FFE81F;
         }
-
-        .product-image:hover {
-            transform: scale(1.02);
+        /* Interactive lightsaber glow effects */
+        .glow-blue {
+            box-shadow: 0 0 20px rgba(0, 168, 255, 0.6);
+        }
+        .glow-red {
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.6);
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #050714;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FFE81F;
         }
     </style>
-    
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org/",
-      "@type": "Product",
-      "name": "スター・ウォーズ コンプリート・サーガ ブルーレイBOX (9枚組)",
-      "image": "https://images.45cat.com/f/dv/star-wars-the-complete-saga-28-dv.jpg",
-      "description": "2011年9月16日発売。エピソードIからVIまでの全6作品と、40時間以上の特典映像を収録した9枚組究極のコレクション。",
-      "brand": {
-        "@type": "Brand",
-        "name": "20世紀フォックス ホーム エンターテイメント ジャパン"
-      },
-      "releaseDate": "2011-09-16",
-      "offers": {
-        "@type": "Offer",
-        "priceCurrency": "JPY",
-        "availability": "https://schema.org/InStock"
-      }
-    }
-    </script>
 </head>
-<body class="star-wars-bg min-h-screen">
+<body class="text-gray-100 overflow-x-hidden relative min-h-screen">
 
-    <!-- Header -->
-    <header class="py-8 text-center border-b border-yellow-500/30 glass-panel sticky top-0 z-50">
-        <h1 class="text-3xl md:text-5xl font-bold tracking-widest gold-text italic">STAR WARS</h1>
-        <p class="text-sm md:text-lg mt-2 tracking-widest uppercase">The Complete Saga</p>
+    <!-- Ambient background stars -->
+    <div class="absolute inset-0 stars opacity-40 pointer-events-none"></div>
+    <div class="absolute inset-0 stars-delayed opacity-30 pointer-events-none"></div>
+
+    <!-- Top Promo Banner of 2011 -->
+    <div class="bg-black text-center py-2 px-4 border-b border-gray-900 text-xs text-gray-400 tracking-wider">
+        <span>2011年9月16日、伝説が最上のスペックで甦る。ブルーレイボックス全世界同時発売！</span>
+    </div>
+
+    <!-- Navigation Header (2011 Fox.com JP Vintage Style) -->
+    <header class="bg-black/80 backdrop-blur-md sticky top-0 z-40 border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-8">
+                <!-- Fox Retro Logo Design -->
+                <div class="flex flex-col items-center justify-center border-r border-gray-800 pr-8">
+                    <span class="text-xs tracking-[0.25em] font-bold text-gray-400 leading-tight">20th CENTURY FOX</span>
+                    <span class="text-lg font-black tracking-widest text-white leading-none">FOX.COM <span class="text-xs text-blue-500">JP</span></span>
+                    <span class="text-[9px] text-gray-500 uppercase">Home Entertainment</span>
+                </div>
+                <!-- Main Nav (Hidden on Mobile) -->
+                <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-gray-300">
+                    <a href="#about" class="hover:text-sw-gold transition-colors">製品概要</a>
+                    <a href="#disc-explorer" class="hover:text-sw-gold transition-colors">ディスク紹介</a>
+                    <a href="#media" class="hover:text-sw-gold transition-colors">映像特典＆予告編</a>
+                    <a href="#campaign" class="hover:text-sw-gold transition-colors">キャンペーン</a>
+                </nav>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <!-- Retro Twitter/FB badges of 2011 -->
+                <div class="hidden sm:flex items-center gap-2">
+                    <span class="text-xs text-gray-500 mr-1">シェア</span>
+                    <button onclick="shareSimulation('Twitter')" class="bg-sky-600 hover:bg-sky-500 text-white p-1.5 rounded text-xs flex items-center gap-1">
+                        <i data-lucide="twitter" class="w-3.5 h-3.5"></i>
+                        <span>ツイート</span>
+                    </button>
+                    <button onclick="shareSimulation('Facebook')" class="bg-blue-800 hover:bg-blue-700 text-white p-1.5 rounded text-xs flex items-center gap-1">
+                        <i data-lucide="facebook" class="w-3.5 h-3.5"></i>
+                        <span>シェア</span>
+                    </button>
+                </div>
+                <!-- Call To Action -->
+                <a href="#retailers" class="bg-sw-gold text-black hover:bg-white transition-all duration-300 px-5 py-2 rounded-sm font-bold text-xs tracking-wider uppercase shadow-lg shadow-yellow-500/20">
+                    購入する
+                </a>
+            </div>
+        </div>
     </header>
 
-    <main class="max-w-6xl mx-auto px-4 py-12">
+    <main class="relative z-10">
         
-        <!-- Hero Section -->
-        <section class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-20">
-            <div class="flex justify-center">
-                <div class="relative">
-                    <img src="https://images.static-bluray.com/products/7/27806_1_original.jpg" 
-                         alt="スター・ウォーズ コンプリート・サーガ パッケージ" 
-                         class="rounded-lg product-image max-w-full h-auto">
+        <!-- Hero Section: Premium Presentation -->
+        <section id="about" class="relative pt-12 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <!-- Decorative Light FX background -->
+            <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-900/10 blur-[120px] rounded-full pointer-events-none"></div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative">
+                <!-- Left Column: The Legendary Pack Shot Image -->
+                <div class="lg:col-span-5 flex flex-col items-center">
+                    <div class="relative group">
+                        <!-- Twin Suns Glow Accent behind Box -->
+                        <div class="absolute -inset-1.5 bg-gradient-to-r from-amber-500 via-yellow-400 to-blue-600 rounded-lg blur-xl opacity-35 group-hover:opacity-50 transition duration-1000"></div>
+                        
+                        <!-- Main Product Image -->
+                        <div class="relative bg-slate-950 p-2.5 rounded-lg border border-gray-800 shadow-2xl">
+                            <img 
+                                src="https://images.static-bluray.com/products/7/27806_1_original.jpg" 
+                                alt="Star Wars The Complete Saga 9-Disc Box Set" 
+                                class="w-full max-w-[380px] sm:max-w-[420px] h-auto object-cover rounded shadow-inner"
+                                onerror="this.onerror=null; this.src='https://placehold.co/400x520/03040B/FFFFFF?text=STAR+WARS+9-DISC+SET';"
+                            />
+                            <!-- Overlay Specs Badge -->
+                            <div class="absolute bottom-4 right-4 bg-black/90 border border-sw-gold px-3 py-1.5 rounded text-[10px] tracking-widest orbitron text-sw-gold flex flex-col items-center">
+                                <span>9-DISC SET</span>
+                                <span class="text-white text-[9px] font-sans">ブルーレイBOX</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 2011 Interactive Easter Egg Panel: Force Engine -->
+                    <div class="mt-8 bg-slate-950/80 border border-gray-800 p-4 rounded-lg w-full max-w-[380px] sm:max-w-[420px]">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs text-gray-400 flex items-center gap-1">
+                                <i data-lucide="sparkles" class="w-3.5 h-3.5 text-sw-gold"></i>
+                                インタラクティブ・フォース・サウンド
+                            </span>
+                            <span id="force-status" class="text-[10px] bg-red-950 text-red-400 border border-red-900 px-1.5 py-0.5 rounded uppercase font-bold tracking-wider">OFF</span>
+                        </div>
+                        <p class="text-xs text-gray-500 mb-3">
+                            「フォース」を有効にして、マウスを動かすかタップしてライトセーバーのハミング音を体感せよ！
+                        </p>
+                        <button id="force-toggle-btn" onclick="toggleForceSound()" class="w-full py-2 bg-gradient-to-r from-red-600 to-blue-600 hover:from-red-500 hover:to-blue-500 text-white font-bold text-xs rounded tracking-widest uppercase transition-all shadow-md">
+                            フォースを呼び覚ます
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Column: Marketing Copy and Info -->
+                <div class="lg:col-span-7 space-y-8">
+                    <div class="space-y-4">
+                        <span class="text-xs uppercase tracking-[0.3em] text-sw-gold font-bold bg-yellow-950/50 border border-yellow-800/30 px-3 py-1.5 rounded-full inline-block">
+                            SF映画の金字塔、初の全編ブルーレイ化
+                        </span>
+                        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight text-white">
+                            スター・ウォーズ<br>
+                            <span class="text-2xl sm:text-3xl md:text-4xl font-normal text-gray-300">コンプリート・サーガ</span><br>
+                            <span class="text-sw-gold text-2xl sm:text-3xl md:text-4xl">ブルーレイBOX [9枚組]</span>
+                        </h1>
+                        <p class="text-sm text-gray-400 leading-relaxed font-light">
+                            エピソードIからVIまで、遥か彼方の銀河系をめぐるすべての伝説が、最新リマスター＆最高クオリティのフルHD映像と、未体験の音響表現を可能にするDTS-HDマスター・オーディオでついにひとつに。3枚のボーナスディスクを加え、40時間を超える圧倒的な特別映像を収録した究極のコレクターズBOX。
+                        </p>
+                    </div>
+
+                    <!-- Bullet Specs Grid -->
+                    <div class="grid grid-cols-2 gap-4 border-t border-b border-gray-800/80 py-6">
+                        <div>
+                            <span class="text-xs text-gray-500 block">発売日</span>
+                            <span class="text-sm font-bold text-white">2011年9月16日 (金)</span>
+                        </div>
+                        <div>
+                            <span class="text-xs text-gray-500 block">希望小売価格</span>
+                            <span class="text-sm font-bold text-sw-gold">18,900円 (税込)</span>
+                        </div>
+                        <div>
+                            <span class="text-xs text-gray-500 block">ディスク枚数</span>
+                            <span class="text-sm font-bold text-white">ブルーレイ 9枚組</span>
+                        </div>
+                        <div>
+                            <span class="text-xs text-gray-500 block">販売元</span>
+                            <span class="text-sm font-bold text-gray-300">20世紀フォックス ホーム ENT</span>
+                        </div>
+                    </div>
+
+                    <!-- Sound/Format badges of 2011 -->
+                    <div class="flex flex-wrap gap-3 items-center">
+                        <span class="text-[10px] orbitron font-bold tracking-widest bg-gray-900 text-gray-400 border border-gray-800 px-2.5 py-1 rounded">1080P HD</span>
+                        <span class="text-[10px] orbitron font-bold tracking-widest bg-gray-900 text-gray-400 border border-gray-800 px-2.5 py-1 rounded">DTS-HD MASTER AUDIO 6.1</span>
+                        <span class="text-[10px] orbitron font-bold tracking-widest bg-gray-900 text-gray-400 border border-gray-800 px-2.5 py-1 rounded">MPEG-4 AVC</span>
+                        <span class="text-[10px] orbitron font-bold tracking-widest bg-gray-900 text-gray-400 border border-gray-800 px-2.5 py-1 rounded">COLOR / 日本語吹替収録</span>
+                    </div>
+
+                    <!-- Promotional highlights -->
+                    <div class="bg-blue-950/20 border border-blue-900/30 p-5 rounded-lg space-y-3">
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-blue-400"></i>
+                            <h4 class="text-sm font-bold text-blue-300">3枚の超豪華ボーナス・ディスク内容：</h4>
+                        </div>
+                        <ul class="text-xs text-gray-400 space-y-2 list-disc pl-5">
+                            <li><strong>アーカイブ・デジパック1 & 2</strong>：エピソード I〜III、および IV〜VI の膨大なコンセプトアート、ミニチュア、未公開シーンをインタラクティブに閲覧。</li>
+                            <li><strong>新規ドキュメンタリー＆パロディ</strong>：30年以上に及ぶスター・ウォーズ史、熱狂的なファンカルチャーを追ったドキュメンタリーなど多数収録！</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-            
-            <div class="space-y-6">
-                <h2 class="text-3xl font-bold gold-text">伝説が今、完結する。</h2>
-                <p class="text-lg leading-relaxed">
-                    2011年9月16日、ついにブルーレイ化。エピソードIからVIまでを完全収録し、未公開シーンを含む膨大な特典映像を収めた9枚組の決定版。
+        </section>
+
+        <!-- Disc Interactive Explorer -->
+        <section id="disc-explorer" class="bg-slate-950/75 border-t border-b border-gray-900 py-20 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto space-y-12">
+                <div class="text-center space-y-4">
+                    <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-white">
+                        収録ディスク・エクスプローラー
+                    </h2>
+                    <p class="text-sm text-gray-400 max-w-2xl mx-auto">
+                        全9枚のブルーレイ・ディスクを選択して、それぞれの収録内容、特別特典、詳細スペックを確認しよう。
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                    <!-- Left: Interactive Disc Selector Grid -->
+                    <div class="lg:col-span-4 flex flex-col justify-between space-y-6">
+                        <div class="grid grid-cols-3 lg:grid-cols-3 gap-3">
+                            <!-- Loop for 9 Discs (Using JavaScript dynamic interaction, standard layout built-in) -->
+                            <button onclick="selectDisc(1)" id="disc-btn-1" class="aspect-square bg-slate-900 border-2 border-sw-gold/40 hover:border-sw-gold text-white rounded-lg flex flex-col items-center justify-center p-2 transition duration-200">
+                                <span class="text-[10px] text-gray-500 font-bold uppercase">DISC</span>
+                                <span class="text-2xl font-black orbitron sw-gold">1</span>
+                                <span class="text-[9px] text-gray-400 font-medium truncate w-full text-center">EP I</span>
+                            </button>
+                            <button onclick="selectDisc(2)" id="disc-btn-2" class="aspect-square bg-slate-900 border-2 border-transparent hover:border-sw-gold text-white rounded-lg flex flex-col items-center justify-center p-2 transition duration-200">
+                                <span class="text-[10px] text-gray-500 font-bold uppercase">DISC</span>
+                                <span class="text-2xl font-black orbitron text-gray-300">2</span>
+                                <span class="text-[9px] text-gray-400 font-medium truncate w-full text-center">EP II</span>
+                            </button>
+                            <button onclick="selectDisc(3)" id="disc-btn-3" class="aspect-square bg-slate-900 border-2 border-transparent hover:border-sw-gold text-white rounded-lg flex flex-col items-center justify-center p-2 transition duration-200">
+                                <span class="text-[10px] text-gray-500 font-bold uppercase">DISC</span>
+                                <span class="text-2xl font-black orbitron text-gray-300">3</span>
+                                <span class="text-[9px] text-gray-400 font-medium truncate w-full text-center">EP III</span>
+                            </button>
+                            <button onclick="selectDisc(4)" id="disc-btn-4" class="aspect-square bg-slate-900 border-2 border-transparent hover:border-sw-gold text-white rounded-lg flex flex-col items-center justify-center p-2 transition duration-200">
+                                <span class="text-[10px] text-gray-500 font-bold uppercase">DISC</span>
+                                <span class="text-2xl font-black orbitron text-gray-300">4</span>
+                                <span class="text-[9px] text-gray-400 font-medium truncate w-full text-center">EP IV</span>
+                            </button>
+                            <button onclick="selectDisc(5)" id="disc-btn-5" class="aspect-square bg-slate-900 border-2 border-transparent hover:border-sw-gold text-white rounded-lg flex flex-col items-center justify-center p-2 transition duration-200">
+                                <span class="text-[10px] text-gray-500 font-bold uppercase">DISC</span>
+                                <span class="text-2xl font-black orbitron text-gray-300">5</span>
+                                <span class="text-[9px] text-gray-400 font-medium truncate w-full text-center">EP V</span>
+                            </button>
+                            <button onclick="selectDisc(6)" id="disc-btn-6" class="aspect-square bg-slate-900 border-2 border-transparent hover:border-sw-gold text-white rounded-lg flex flex-col items-center justify-center p-2 transition duration-200">
+                                <span class="text-[10px] text-gray-500 font-bold uppercase">DISC</span>
+                                <span class="text-2xl font-black orbitron text-gray-300">6</span>
+                                <span class="text-[9px] text-gray-400 font-medium truncate w-full text-center">EP VI</span>
+                            </button>
+                            <button onclick="selectDisc(7)" id="disc-btn-7" class="aspect-square bg-slate-900 border-2 border-transparent hover:border-sw-gold text-white rounded-lg flex flex-col items-center justify-center p-2 transition duration-200">
+                                <span class="text-[10px] text-gray-500 font-bold uppercase">DISC</span>
+                                <span class="text-2xl font-black orbitron text-gray-300">7</span>
+                                <span class="text-[8px] text-blue-400 font-bold truncate w-full text-center">BONUS 1</span>
+                            </button>
+                            <button onclick="selectDisc(8)" id="disc-btn-8" class="aspect-square bg-slate-900 border-2 border-transparent hover:border-sw-gold text-white rounded-lg flex flex-col items-center justify-center p-2 transition duration-200">
+                                <span class="text-[10px] text-gray-500 font-bold uppercase">DISC</span>
+                                <span class="text-2xl font-black orbitron text-gray-300">8</span>
+                                <span class="text-[8px] text-blue-400 font-bold truncate w-full text-center">BONUS 2</span>
+                            </button>
+                            <button onclick="selectDisc(9)" id="disc-btn-9" class="aspect-square bg-slate-900 border-2 border-transparent hover:border-sw-gold text-white rounded-lg flex flex-col items-center justify-center p-2 transition duration-200">
+                                <span class="text-[10px] text-gray-500 font-bold uppercase">DISC</span>
+                                <span class="text-2xl font-black orbitron text-gray-300">9</span>
+                                <span class="text-[8px] text-rose-400 font-bold truncate w-full text-center">BONUS 3</span>
+                            </button>
+                        </div>
+                        
+                        <div class="bg-gray-950 p-4 rounded-lg border border-gray-800">
+                            <span class="text-[10px] text-gray-500 uppercase tracking-widest block mb-1">BOX仕様</span>
+                            <p class="text-xs text-gray-400 leading-relaxed">
+                                美しいアウターケースに包まれたスペシャル仕様パッケージ。ピクチャーレーベル仕様のディスク、各エピソードのキーアートが堪能できるファン感涙のアートワークです。
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Right: Dynamic Details Panel -->
+                    <div class="lg:col-span-8 bg-slate-900/60 border border-gray-800 p-6 sm:p-8 rounded-xl relative overflow-hidden flex flex-col justify-between min-h-[480px]">
+                        <!-- Subtle Background Glow -->
+                        <div class="absolute -top-12 -right-12 w-48 h-48 bg-blue-500/10 rounded-full blur-3xl"></div>
+                        
+                        <!-- Header of Detail -->
+                        <div class="space-y-4">
+                            <div class="flex flex-wrap items-center justify-between gap-4 border-b border-gray-800 pb-4">
+                                <div>
+                                    <span id="disc-meta" class="text-xs text-sw-gold tracking-widest uppercase font-bold orbitron">DISC 1: MOVIE DISC</span>
+                                    <h3 id="disc-title" class="text-xl sm:text-2xl font-black text-white mt-1">
+                                        エピソード1／ファントム・メナス
+                                    </h3>
+                                </div>
+                                <div class="bg-gray-950 px-3 py-1.5 rounded border border-gray-800 flex items-center gap-2">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-green-500"></span>
+                                    <span id="disc-runtime" class="text-xs font-mono text-gray-400">136分</span>
+                                </div>
+                            </div>
+
+                            <!-- Commentaries and audio details -->
+                            <div class="space-y-3">
+                                <h4 class="text-xs font-bold text-gray-300 uppercase tracking-wider">音声解説オーディオ・コメンタリー：</h4>
+                                <ul id="disc-commentaries" class="text-xs text-gray-400 space-y-1.5 list-disc pl-5">
+                                    <li>ジョージ・ルーカス監督、リック・マッカラム、ベン・バート、デニス・ミューレン、ジョン・ノール、ロブ・コールマンによるコメンタリー</li>
+                                    <li>キャスト＆スタッフによるアーカイブ音声解説（キャリー・フィッシャー他）</li>
+                                </ul>
+                            </div>
+
+                            <!-- Highlights/Features Details -->
+                            <div class="space-y-3 pt-2">
+                                <h4 id="disc-content-heading" class="text-xs font-bold text-gray-300 uppercase tracking-wider">主な収録シーン／ボーナス：</h4>
+                                <div id="disc-contents" class="text-xs text-gray-400 bg-black/40 p-4 rounded-lg border border-gray-950/50 space-y-2">
+                                    <p class="font-medium text-white mb-1">『エピソード1／ファントム・メナス』本編ディスク</p>
+                                    <p>圧倒的ハイビジョン画質にブラッシュアップされた本編。ジョージ・ルーカス率いるILMのデジタル特殊効果の極み、ポッドレース・シーンやクライマックスのライトセーバー対決を、劇的なサラウンドで完全再現。</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Technical Specs Bar -->
+                        <div class="border-t border-gray-800 pt-6 mt-6 grid grid-cols-2 sm:grid-cols-4 gap-4 text-[11px] text-gray-400">
+                            <div>
+                                <span class="block text-[9px] text-gray-500 uppercase">映像仕様</span>
+                                <span id="spec-video" class="font-bold text-gray-300">1080p Hi-Def 2.35:1</span>
+                            </div>
+                            <div>
+                                <span class="block text-[9px] text-gray-500 uppercase">メイン音声</span>
+                                <span id="spec-audio" class="font-bold text-gray-300">英語 DTS-HD M.A. 6.1</span>
+                            </div>
+                            <div>
+                                <span class="block text-[9px] text-gray-500 uppercase">日本語吹替</span>
+                                <span id="spec-dub" class="font-bold text-gray-300">DTS 5.1ch</span>
+                            </div>
+                            <div>
+                                <span class="block text-[9px] text-gray-500 uppercase">字幕</span>
+                                <span id="spec-subs" class="font-bold text-gray-300">日本語 / 英語</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Simulated Video / Trailer Center -->
+        <section id="media" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <!-- Left: Beautiful Simulated Video Player -->
+                <div class="lg:col-span-7 space-y-4">
+                    <span class="text-xs tracking-widest text-sw-gold font-bold uppercase">PREVIEW CENTER</span>
+                    <h2 class="text-2xl sm:text-3xl font-black text-white">日本版発売記念 プロモーション映像</h2>
+                    
+                    <!-- Customized Simulated Player Container -->
+                    <div class="relative bg-black rounded-xl overflow-hidden border border-gray-800 shadow-2xl group">
+                        <!-- Simulated Canvas / Video Screen -->
+                        <div id="video-screen" class="aspect-video relative flex items-center justify-center bg-cover bg-center transition-all duration-500" style="background-image: url('https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&q=80&w=1200');">
+                            <!-- Overlay tint -->
+                            <div class="absolute inset-0 bg-slate-950/60 group-hover:bg-slate-950/40 transition-colors"></div>
+                            
+                            <!-- Static overlay representation of Star Wars space theme -->
+                            <div class="absolute inset-x-0 bottom-4 text-center px-6 z-10">
+                                <span id="video-caption" class="text-xs tracking-wide text-sw-gold bg-black/80 px-4 py-1.5 rounded-full inline-block border border-sw-gold/30">
+                                    スター・ウォーズ サーガがついにブルーレイで覚醒
+                                </span>
+                            </div>
+
+                            <!-- Dynamic Simulated Playhead & Sparks -->
+                            <div id="video-particles" class="absolute inset-0 pointer-events-none overflow-hidden opacity-0 transition-opacity duration-300">
+                                <!-- Generated elements for cosmic look -->
+                                <div class="absolute top-1/4 left-1/3 w-2 h-2 bg-blue-400 rounded-full animate-ping"></div>
+                                <div class="absolute bottom-1/3 right-1/4 w-3.5 h-3.5 bg-yellow-400 rounded-full animate-pulse"></div>
+                            </div>
+
+                            <!-- Huge Central Play Button -->
+                            <button id="central-play-btn" onclick="toggleSimulatedVideo()" class="relative z-10 w-16 h-16 sm:w-20 sm:h-20 bg-sw-gold hover:bg-white text-black rounded-full flex items-center justify-center shadow-2xl transition-all transform hover:scale-110 active:scale-95">
+                                <i id="central-play-icon" data-lucide="play" class="w-8 h-8 sm:w-10 sm:h-10 ml-1"></i>
+                            </button>
+                        </div>
+
+                        <!-- Controller bar simulated -->
+                        <div class="bg-slate-950 px-4 py-3 flex items-center justify-between gap-4 border-t border-gray-900">
+                            <div class="flex items-center gap-3">
+                                <button onclick="toggleSimulatedVideo()" class="text-gray-400 hover:text-white transition">
+                                    <i id="play-icon" data-lucide="play" class="w-5 h-5"></i>
+                                </button>
+                                <button onclick="stopSimulatedVideo()" class="text-gray-400 hover:text-white transition">
+                                    <i data-lucide="square" class="w-4 h-4"></i>
+                                </button>
+                                <div class="text-[10px] font-mono text-gray-500">
+                                    <span id="video-time">0:00</span> / <span id="video-duration">2:15</span>
+                                </div>
+                            </div>
+
+                            <!-- Progress bar simulated -->
+                            <div onclick="seekSimulatedVideo(event)" id="seek-bar" class="flex-1 h-1.5 bg-gray-800 rounded-full overflow-hidden cursor-pointer relative">
+                                <div id="video-progress" class="h-full bg-sw-gold w-0 transition-all duration-300"></div>
+                            </div>
+
+                            <!-- Right sound control -->
+                            <div class="flex items-center gap-2">
+                                <button onclick="toggleVideoMute()" class="text-gray-400 hover:text-white transition">
+                                    <i id="volume-icon" data-lucide="volume-2" class="w-4 h-4"></i>
+                                </button>
+                                <div class="w-12 h-1 bg-gray-800 rounded-full overflow-hidden">
+                                    <div id="volume-level" class="h-full bg-blue-500 w-4/5"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Content Information -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="bg-gray-950/80 border border-gray-800 p-6 rounded-lg space-y-4">
+                        <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                            <i data-lucide="video" class="w-5 h-5 text-sw-gold"></i>
+                            プロモーション映像リスト
+                        </h3>
+                        <p class="text-xs text-gray-400">
+                            以下のトレーラーや映像特典プレビューを選択すると、シミュレータープレーヤーでの再生が開始されます。
+                        </p>
+                        
+                        <div class="space-y-3">
+                            <button onclick="playVideoClip(1)" class="w-full text-left bg-slate-900/50 hover:bg-slate-900 border border-gray-800/60 p-3 rounded flex items-center justify-between transition group">
+                                <div class="flex items-center gap-3">
+                                    <span class="text-xs text-sw-gold font-bold orbitron">01</span>
+                                    <div>
+                                        <p class="text-xs font-bold text-white group-hover:text-sw-gold transition-colors">日本版公式ローンチトレーラー</p>
+                                        <p class="text-[10px] text-gray-500">2分15秒</p>
+                                    </div>
+                                </div>
+                                <i data-lucide="play-circle" class="w-4 h-4 text-gray-500 group-hover:text-sw-gold"></i>
+                            </button>
+
+                            <button onclick="playVideoClip(2)" class="w-full text-left bg-slate-900/50 hover:bg-slate-900 border border-gray-800/60 p-3 rounded flex items-center justify-between transition group">
+                                <div class="flex items-center gap-3">
+                                    <span class="text-xs text-sw-gold font-bold orbitron">02</span>
+                                    <div>
+                                        <p class="text-xs font-bold text-white group-hover:text-sw-gold transition-colors">未公開シーン（削除シーン）予告</p>
+                                        <p class="text-[10px] text-gray-500">1分45秒</p>
+                                    </div>
+                                </div>
+                                <i data-lucide="play-circle" class="w-4 h-4 text-gray-500 group-hover:text-sw-gold"></i>
+                            </button>
+
+                            <button onclick="playVideoClip(3)" class="w-full text-left bg-slate-900/50 hover:bg-slate-900 border border-gray-800/60 p-3 rounded flex items-center justify-between transition group">
+                                <div class="flex items-center gap-3">
+                                    <span class="text-xs text-sw-gold font-bold orbitron">03</span>
+                                    <div>
+                                        <p class="text-xs font-bold text-white group-hover:text-sw-gold transition-colors">ジョージ・ルーカス独占インタビュー抜粋</p>
+                                        <p class="text-[10px] text-gray-500">3分10秒</p>
+                                    </div>
+                                </div>
+                                <i data-lucide="play-circle" class="w-4 h-4 text-gray-500 group-hover:text-sw-gold"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exclusive Promotional Campaign of 2011 -->
+        <section id="campaign" class="bg-slate-950 border-t border-b border-gray-900 py-20 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-6 space-y-6">
+                    <span class="text-xs text-sw-gold font-bold tracking-widest uppercase">SPECIAL CAMPAIGN (2011)</span>
+                    <h2 class="text-2xl sm:text-3xl font-black text-white">日本限定・購入者対象プレゼントキャンペーン！</h2>
+                    <p class="text-sm text-gray-400 leading-relaxed">
+                        「スター・ウォーズ コンプリート・サーガ ブルーレイBOX」に封入されているアンケートハガキ、または特設サイトからのシリアルコード応募で、限定非売品の激レア・オリジナルグッズが当たるチャンス。
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex gap-4 p-4 bg-slate-900/60 border border-gray-800 rounded">
+                            <div class="w-12 h-12 bg-amber-500/10 border border-amber-500/30 rounded flex items-center justify-center shrink-0">
+                                <span class="text-xs text-sw-gold font-bold orbitron">A賞</span>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-white">「ダース・ベイダー」等身大コレクターマスク （5名様）</h4>
+                                <p class="text-xs text-gray-500 mt-1">細部に至るまで劇中プロップ同様に完全再現された超精密レプリカ。</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 p-4 bg-slate-900/60 border border-gray-800 rounded">
+                            <div class="w-12 h-12 bg-slate-500/10 border border-slate-500/30 rounded flex items-center justify-center shrink-0">
+                                <span class="text-xs text-gray-300 font-bold orbitron">B賞</span>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-white">限定版アートポスターセット [6枚組] （100名様）</h4>
+                                <p class="text-xs text-gray-500 mt-1">ブルーレイ発売のために新規描き下ろしされた、幻のコンセプトイラストポスター。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Campaign form simulator of 2011 -->
+                <div class="lg:col-span-6 bg-slate-900 border border-gray-800 p-6 sm:p-8 rounded-xl shadow-xl">
+                    <h3 class="text-lg font-bold text-white mb-2">キャンペーン即時応募シミュレーター</h3>
+                    <p class="text-xs text-gray-400 mb-6">
+                        ボックスに封入された模擬応募券を使って、抽選結果のプレビューを楽しんでいただけます。
+                    </p>
+                    <div id="campaign-form" class="space-y-4">
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1.5 font-medium">希望賞品</label>
+                            <select id="campaign-prize" class="w-full bg-slate-950 border border-gray-800 rounded px-3 py-2 text-xs text-white focus:outline-none focus:border-sw-gold">
+                                <option value="A賞">A賞：ダース・ベイダー等身大マスク</option>
+                                <option value="B賞">B賞：限定版アートポスターセット</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1.5 font-medium">封入シリアルキー (12桁模擬)</label>
+                            <input id="campaign-serial" type="text" placeholder="SW-2011-XXXX-XXXX" class="w-full bg-slate-950 border border-gray-800 rounded px-3 py-2 text-xs text-white orbitron tracking-wider placeholder:font-sans focus:outline-none focus:border-sw-gold">
+                        </div>
+                        <div class="text-[10px] text-gray-500 leading-relaxed">
+                            ※本機能は2011年当時の発売キャンペーンを再現したウェブインタラクションであり、個人情報は送信されません。
+                        </div>
+                        <button onclick="submitCampaignSimulation()" class="w-full py-3 bg-sw-gold hover:bg-white text-black font-bold text-xs rounded tracking-widest uppercase transition-all shadow-md">
+                            応募ハガキを投函する（判定）
+                        </button>
+                    </div>
+
+                    <!-- Result Panel -->
+                    <div id="campaign-result" class="hidden space-y-4 text-center py-6">
+                        <div id="result-icon-container" class="mx-auto w-12 h-12 rounded-full flex items-center justify-center">
+                            <!-- SVG Dynamically injected -->
+                        </div>
+                        <h4 id="result-title" class="text-base font-bold"></h4>
+                        <p id="result-message" class="text-xs text-gray-400 max-w-sm mx-auto"></p>
+                        <button onclick="resetCampaignSimulation()" class="text-xs text-sw-gold hover:underline mt-4">
+                            別のシリアルで再挑戦
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Retailers Buy Area -->
+        <section id="retailers" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-12">
+            <div class="text-center space-y-4">
+                <span class="text-xs text-sw-gold font-bold tracking-widest uppercase">SHOPPING LINKS</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-white">取扱店リンク・ご購入</h2>
+                <p class="text-sm text-gray-400 max-w-xl mx-auto">
+                    2011年当時、日本最大級のメガストアおよびECショップ。店舗ごとの豪華なオリジナル予約特典を振り返ろう。
                 </p>
-                
-                <div class="glass-panel p-6 rounded-xl space-y-4">
-                    <div class="flex justify-between border-b border-gray-700 pb-2">
-                        <span class="text-gray-400">発売日</span>
-                        <span class="font-bold">2011年9月16日</span>
-                    </div>
-                    <div class="flex justify-between border-b border-gray-700 pb-2">
-                        <span class="text-gray-400">ディスク枚数</span>
-                        <span class="font-bold">9枚組 (本編6枚＋特典3枚)</span>
-                    </div>
-                    <div class="flex justify-between border-b border-gray-700 pb-2">
-                        <span class="text-gray-400">メーカー</span>
-                        <span class="font-bold">20世紀フォックス</span>
-                    </div>
-                </div>
-
-                <div class="flex flex-wrap gap-4">
-                    <span class="px-4 py-1 bg-yellow-500 text-black font-bold rounded-full text-sm">初BD化</span>
-                    <span class="px-4 py-1 bg-blue-600 text-white font-bold rounded-full text-sm">特典40時間以上</span>
-                    <span class="px-4 py-1 bg-red-600 text-white font-bold rounded-full text-sm">限定版</span>
-                </div>
             </div>
-        </section>
 
-        <!-- Disc Contents -->
-        <section class="mb-20">
-            <h3 class="text-2xl font-bold mb-8 flex items-center gap-3">
-                <i class="fas fa-compact-disc gold-text"></i> ディスク構成
-            </h3>
-            
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Main Feature -->
-                <div class="glass-panel p-6 rounded-lg border-l-4 border-yellow-500">
-                    <h4 class="text-xl font-bold mb-4 gold-text">本編ディスク (1-6)</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li>・エピソードI／ファントム・メナス</li>
-                        <li>・エピソードII／クローンの攻撃</li>
-                        <li>・エピソードIII／シスの復讐</li>
-                        <li>・エピソードIV／新たなる希望</li>
-                        <li>・エピソードV／帝国の逆襲</li>
-                        <li>・エピソードVI／ジェダイの帰還</li>
-                    </ul>
+                <!-- Amazon Retail Card -->
+                <div class="bg-slate-950 border border-gray-800 hover:border-sw-gold transition-all duration-300 p-6 rounded-lg flex flex-col justify-between space-y-6">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm font-bold tracking-tight text-white">Amazon.co.jp</span>
+                            <span class="text-[10px] bg-amber-500/15 text-amber-500 px-2 py-0.5 rounded font-medium">オリジナル特典付き</span>
+                        </div>
+                        <p class="text-xs text-gray-400 leading-relaxed">
+                            Amazon限定オリジナル『スター・ウォーズ 特製リバーシブル・ジャケットカード』封入モデル。
+                        </p>
+                    </div>
+                    <div>
+                        <div class="text-xs text-gray-500 mb-2">価格：<span class="text-sm font-bold text-white">14,900円</span> (割引適用価格)</div>
+                        <button onclick="simulateOrder('Amazon.co.jp')" class="w-full py-2 bg-gray-900 hover:bg-gray-800 text-gray-200 hover:text-white border border-gray-800 hover:border-gray-700 text-xs font-bold rounded transition">
+                            Amazonで購入
+                        </button>
+                    </div>
                 </div>
 
-                <!-- Bonus 1 -->
-                <div class="glass-panel p-6 rounded-lg border-l-4 border-blue-500">
-                    <h4 class="text-xl font-bold mb-4 text-blue-400">特典ディスク (7-8)</h4>
-                    <p class="text-sm mb-4">アーカイブ・コレクション</p>
-                    <ul class="space-y-2 text-sm italic text-gray-400">
-                        <li>・未公開シーン、別テイク</li>
-                        <li>・コスチューム、ビデオゲーム</li>
-                        <li>・コンセプト・アート、インタビュー</li>
-                        <li>・マット・ペインティング解説</li>
-                    </ul>
+                <!-- Tsutaya Retail Card -->
+                <div class="bg-slate-950 border border-gray-800 hover:border-sw-gold transition-all duration-300 p-6 rounded-lg flex flex-col justify-between space-y-6">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm font-bold tracking-tight text-white">TSUTAYA オンライン</span>
+                            <span class="text-[10px] bg-blue-500/15 text-blue-400 px-2 py-0.5 rounded font-medium">Tポイント5倍対象</span>
+                        </div>
+                        <p class="text-xs text-gray-400 leading-relaxed">
+                            TSUTAYA限定・予約特典『コレクターズ・特製クリアファイル（歴代ポスター仕様）』プレゼント。
+                        </p>
+                    </div>
+                    <div>
+                        <div class="text-xs text-gray-500 mb-2">価格：<span class="text-sm font-bold text-white">18,900円</span> (定価)</div>
+                        <button onclick="simulateOrder('TSUTAYA オンライン')" class="w-full py-2 bg-gray-900 hover:bg-gray-800 text-gray-200 hover:text-white border border-gray-800 hover:border-gray-700 text-xs font-bold rounded transition">
+                            TSUTAYAで予約・購入
+                        </button>
+                    </div>
                 </div>
 
-                <!-- Bonus 2 -->
-                <div class="glass-panel p-6 rounded-lg border-l-4 border-red-500">
-                    <h4 class="text-xl font-bold mb-4 text-red-400">特典ディスク (9)</h4>
-                    <p class="text-sm mb-4">スター・ウォーズ・ドキュメンタリー</p>
-                    <ul class="space-y-2 text-sm italic text-gray-400">
-                        <li>･ 『スター・ウォーズ』製作秘話</li>
-                        <li>･ 501軍団の行進</li>
-                        <li>･ パロディ・トリビュート映像</li>
-                        <li>･ ILMの特殊効果技術</li>
-                    </ul>
+                <!-- Tower Records Card -->
+                <div class="bg-slate-950 border border-gray-800 hover:border-sw-gold transition-all duration-300 p-6 rounded-lg flex flex-col justify-between space-y-6">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm font-bold tracking-tight text-white">タワーレコード</span>
+                            <span class="text-[10px] bg-red-500/15 text-red-500 px-2 py-0.5 rounded font-medium">特製ステッカー付</span>
+                        </div>
+                        <p class="text-xs text-gray-400 leading-relaxed">
+                            タワレコ店舗予約限定『NO MUSIC, NO LIFE.×STAR WARS コラボデザインステッカー』付属。
+                        </p>
+                    </div>
+                    <div>
+                        <div class="text-xs text-gray-500 mb-2">価格：<span class="text-sm font-bold text-white">16,065円</span> (タワレコ15%OFF)</div>
+                        <button onclick="simulateOrder('タワーレコード')" class="w-full py-2 bg-gray-900 hover:bg-gray-800 text-gray-200 hover:text-white border border-gray-800 hover:border-gray-700 text-xs font-bold rounded transition">
+                            TOWER.JPで購入
+                        </button>
+                    </div>
                 </div>
             </div>
-        </section>
-
-        <!-- Interactive Quote -->
-        <section class="text-center py-20 bg-gradient-to-b from-transparent via-gray-900 to-transparent">
-            <p id="quote" class="text-2xl italic font-serif text-gray-400 transition-opacity duration-1000">“May the Force be with you.”</p>
-            <button onclick="newQuote()" class="mt-8 px-6 py-2 border border-yellow-500 text-yellow-500 rounded-full hover:bg-yellow-500 hover:text-black transition-all">名言を見る</button>
         </section>
 
     </main>
 
-    <footer class="py-12 glass-panel border-t border-yellow-500/30 text-center">
-        <p class="text-sm text-gray-500">
-            &copy; 2011 Lucasfilm Ltd. & TM. All Rights Reserved. <br>
-            Distributed by 20th Century Fox Home Entertainment Japan.
-        </p>
-        <div class="mt-6 flex justify-center gap-8">
-            <i class="fab fa-facebook-f text-gray-600 hover:text-white cursor-pointer"></i>
-            <i class="fab fa-twitter text-gray-600 hover:text-white cursor-pointer"></i>
-            <i class="fab fa-instagram text-gray-600 hover:text-white cursor-pointer"></i>
+    <!-- Historic Interactive Purchase Modal (Order Simulator) -->
+    <div id="order-modal" class="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-slate-900 border border-sw-gold max-w-md w-full p-6 rounded-lg shadow-2xl relative space-y-6">
+            <button onclick="closeOrderModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white transition">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            
+            <div class="text-center space-y-2">
+                <div class="w-12 h-12 bg-green-500/10 text-green-400 border border-green-500/30 rounded-full flex items-center justify-center mx-auto">
+                    <i data-lucide="check" class="w-6 h-6"></i>
+                </div>
+                <h3 class="text-lg font-bold text-white">ご注文シミュレーション</h3>
+                <p class="text-xs text-gray-400">
+                    2011年当時における「<span id="target-retailer" class="text-sw-gold font-bold"></span>」へのご購入窓口がシミュレートされました！
+                </p>
+            </div>
+
+            <!-- Fake Invoice Style Details -->
+            <div class="bg-slate-950 p-4 rounded border border-gray-800 text-xs space-y-3 font-mono">
+                <div class="flex justify-between">
+                    <span class="text-gray-500">品名：</span>
+                    <span class="text-gray-300">SW Complete Saga (9-Disc Blu-ray)</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-gray-500">発送予定：</span>
+                    <span class="text-gray-300">2011年9月16日（発売日お届け）</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-gray-500">配送地域：</span>
+                    <span class="text-gray-300">日本全国一律配送料無料</span>
+                </div>
+                <hr class="border-gray-800">
+                <div class="flex justify-between font-bold text-sw-gold text-sm">
+                    <span>お支払い金額：</span>
+                    <span id="order-price">18,900円 (税込)</span>
+                </div>
+            </div>
+
+            <p class="text-[10px] text-gray-500 text-center leading-relaxed">
+                ※本ページはスター・ウォーズ伝説的BOXのリリースから15年を記念した、ファンメイドの歴史資料デジタル・アーカイブ・レプリカです。実質的な売買決済は発生しません。
+            </p>
+
+            <button onclick="closeOrderModal()" class="w-full py-2.5 bg-sw-gold hover:bg-white text-black text-xs font-bold rounded tracking-wider uppercase transition">
+                ウィンドウを閉じる
+            </button>
+        </div>
+    </div>
+
+    <!-- Alert Dialog Modal (Replaces unsafe window.alert) -->
+    <div id="alert-modal" class="fixed inset-0 bg-black/80 backdrop-blur-xs z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-slate-900 border border-gray-800 max-w-sm w-full p-6 rounded-lg text-center space-y-4">
+            <div class="w-10 h-10 bg-blue-500/10 text-blue-400 border border-blue-500/30 rounded-full flex items-center justify-center mx-auto">
+                <i data-lucide="info" class="w-5 h-5"></i>
+            </div>
+            <p id="alert-message" class="text-xs text-gray-300 leading-relaxed"></p>
+            <button onclick="closeAlertModal()" class="px-5 py-2 bg-gray-800 hover:bg-gray-700 text-white rounded text-xs font-medium transition">
+                了解しました
+            </button>
+        </div>
+    </div>
+
+    <!-- Retro Footer -->
+    <footer class="bg-black text-gray-500 text-xs py-12 px-4 border-t border-gray-900">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="space-y-2 text-center md:text-left">
+                <p>© 2011 Lucasfilm Ltd. & TM. All Rights Reserved. Twentieth Century Fox, Fox and associated logos are trademarks of Twentieth Century Fox Film Corporation and its related entities.</p>
+                <p>20世紀 フォックス ホーム エンターテイメント ジャパン株式会社 公式アーカイブ・シミュレーションページ</p>
+            </div>
+            <div class="flex items-center gap-6">
+                <a href="#about" class="hover:text-gray-300 transition">ページトップ</a>
+                <a href="#disc-explorer" class="hover:text-gray-300 transition">ディスク仕様</a>
+                <button onclick="showRetroFAQ()" class="hover:text-gray-300 transition">よくある質問 (2011)</button>
+            </div>
         </div>
     </footer>
 
+    <!-- Interactive Scripts -->
     <script>
-        const quotes = [
-            "May the Force be with you. (フォースと共にあらんことを)",
-            "I am your father. (お前の父は私だ)",
-            "Do. Or do not. There is no try. (やるか、やらぬかだ。ためしなどない)",
-            "The Force will be with you, always. (フォースがお前と共にありますように、いかなる時も)",
-            "I’ve got a bad feeling about this. (嫌な予感がする)"
-        ];
+        // Init Lucide Icons
+        lucide.createIcons();
 
-        function newQuote() {
-            const quoteEl = document.getElementById('quote');
-            quoteEl.style.opacity = 0;
-            setTimeout(() => {
-                const random = Math.floor(Math.random() * quotes.length);
-                quoteEl.textContent = `"${quotes[random]}"`;
-                quoteEl.style.opacity = 1;
-            }, 500);
+        // 9 Disc Information Store in Japanese
+        const discData = {
+            1: {
+                meta: "DISC 1: MOVIE DISC (EPISODE I)",
+                title: "エピソード1／ファントム・メナス",
+                runtime: "136分",
+                commentaries: [
+                    "ジョージ・ルーカス監督、リック・マッカラム、ベン・バート、デニス・ミューレン、ジョン・ノール、ロブ・コールマンによるコメンタリー",
+                    "キャスト＆スタッフによるアーカイブ音声解説（キャリー・フィッシャー他）"
+                ],
+                contentHeading: "主な収録シーン / ボーナス：",
+                contents: "『エピソード1／ファントム・メナス』本編ディスク。圧倒的ハイビジョン画質にリマスターされた本編。ジョージ・ルーカス率いるILMのデジタル特殊効果の極み、大迫力のポッドレース・シーンやクライマックスのダブル＝ブレード・ライトセーバー対決を劇的サラウンドで再現。",
+                video: "1080p Hi-Def 2.35:1 (MPEG-4 AVC)",
+                audio: "英語 DTS-HD M.A. 6.1ch",
+                dub: "日本語 DTS 5.1ch",
+                subs: "日本語 / 英語"
+            },
+            2: {
+                meta: "DISC 2: MOVIE DISC (EPISODE II)",
+                title: "エピソード2／クローンの攻撃",
+                runtime: "142分",
+                commentaries: [
+                    "ジョージ・ルーカス監督、リック・マッカラム、ベン・バート、ロブ・コールマン、パブロ・ヘルマン、ジョン・ノール、ベン・スノウによるコメンタリー",
+                    "キャスト＆スタッフによるアーカイブ音声解説"
+                ],
+                contentHeading: "主な収録シーン / ボーナス：",
+                contents: "『エピソード2／クローンの攻撃』本編ディスク。HD高画質。映画史を塗り替えた初の完全フルデジタル撮影映画。ジオノーシスの円形闘技場での数千におよぶクローン・トルーパーとバトル・ドロイドの大激突、ヨーダの歴史的な剣劇アクションを堪能。",
+                video: "1080p Hi-Def 2.35:1 (MPEG-4 AVC)",
+                audio: "英語 DTS-HD M.A. 6.1ch",
+                dub: "日本語 DTS 5.1ch",
+                subs: "日本語 / 英語"
+            },
+            3: {
+                meta: "DISC 3: MOVIE DISC (EPISODE III)",
+                title: "エピソード3／シスの復讐",
+                runtime: "140分",
+                commentaries: [
+                    "ジョージ・ルーカス監督、リック・マッカラム、ベン・バート、ジョン・ノール、ロブ・コールマンによるコメンタリー",
+                    "キャスト＆スタッフによるアーカイブ音声解説"
+                ],
+                contentHeading: "主な収録シーン / ボーナス：",
+                contents: "『エピソード3／シスの復讐』本編ディスク。映画史上もっとも壮大で哀しい師弟対決。暗黒面に墜ちたアナキン・スカイウォーカーとオビ＝ワン・ケノービのムスタファーでの超絶ライトセーバー戦。重厚なジョン・ウィリアムズの音楽が完璧なハイビジョン音響で響き渡る。",
+                video: "1080p Hi-Def 2.35:1 (MPEG-4 AVC)",
+                audio: "英語 DTS-HD M.A. 6.1ch",
+                dub: "日本語 DTS 5.1ch",
+                subs: "日本語 / 英語"
+            },
+            4: {
+                meta: "DISC 4: MOVIE DISC (EPISODE IV)",
+                title: "エピソード4／新たなる希望",
+                runtime: "125分",
+                commentaries: [
+                    "ジョージ・ルーカス、キャリー・フィッシャー、ベン・バート、デニス・ミューレンによるコメンタリー",
+                    "キャスト＆スタッフによるアーカイブ音声解説"
+                ],
+                contentHeading: "主な収録シーン / ボーナス：",
+                contents: "『エピソード4／新たなる希望』本編ディスク。すべてはここから始まった。1977年のマスターピースが究極のレストアを経て鮮やかに再生。タトゥイーンの夕陽、ミレニアム・ファルコンのデス・スター脱出劇、ヤヴィンの戦いにおける緊迫のドッグファイトを完全再現。",
+                video: "1080p Hi-Def 2.35:1 (MPEG-4 AVC)",
+                audio: "英語 DTS-HD M.A. 6.1ch",
+                dub: "日本語 DTS 5.1ch (劇場公開版吹替収録)",
+                subs: "日本語 / 英語"
+            },
+            5: {
+                meta: "DISC 5: MOVIE DISC (EPISODE V)",
+                title: "エピソード5／帝国の逆襲",
+                runtime: "127分",
+                commentaries: [
+                    "ジョージ・ルーカス、アービン・カーシュナー、キャリー・フィッシャー、ベン・バート、デニス・ミューレンによるコメンタリー",
+                    "キャスト＆スタッフによるアーカイブ音声解説"
+                ],
+                contentHeading: "主な収録シーン / ボーナス：",
+                contents: "『エピソード5／帝国の逆襲』本編ディスク。シリーズ最高傑作の呼び声高い名作。ホスの戦いにおけるAT-ATスノーウォーカーの侵攻、クラウド・シティでの『アイ・アム・ユア・ファーザー』の衝撃。最新音響技術で重低音が格段にパワーアップ。",
+                video: "1080p Hi-Def 2.35:1 (MPEG-4 AVC)",
+                audio: "英語 DTS-HD M.A. 6.1ch",
+                dub: "日本語 DTS 5.1ch",
+                subs: "日本語 / 英語"
+            },
+            6: {
+                meta: "DISC 6: MOVIE DISC (EPISODE VI)",
+                title: "エピソード6／ジェダイの帰還",
+                runtime: "135分",
+                commentaries: [
+                    "ジョージ・ルーカス、キャリー・フィッシャー、ベン・バート、デニス・ミューレンによるコメンタリー",
+                    "キャスト＆スタッフによるアーカイブ音声解説"
+                ],
+                contentHeading: "主な収録シーン / ボーナス：",
+                contents: "『エピソード6／ジェダイの帰還』本編ディスク。オリジナル三部作の感動の結末。ルーク、レイア、ハン・ソロたちの最後にして最大のミッション。第2デス・スター内部における、ルーク、ダース・ベイダー、そして皇帝パルパティーンの最終決戦。エボックたちの森の戦闘もダイナミックに描かれる。",
+                video: "1080p Hi-Def 2.35:1 (MPEG-4 AVC)",
+                audio: "英語 DTS-HD M.A. 6.1ch",
+                dub: "日本語 DTS 5.1ch",
+                subs: "日本語 / 英語"
+            },
+            7: {
+                meta: "DISC 7: BONUS DISC - ARCHIVES 1",
+                title: "スター・ウォーズ アーカイブ：エピソードI〜III",
+                runtime: "約540分",
+                commentaries: [
+                    "制作当時スタッフによる各アセット、特撮、コンセプトアートに関するオーディオ解説"
+                ],
+                contentHeading: "未公開シーン＆豊富なギャラリー：",
+                contents: "プリクエル・トリロジー（Ep I-III）の撮影背景に迫る膨大な映像コレクション。何十もの未公開シーン、初期のキャラクターデザイン案、宇宙船のコンセプトアート、3Dモデルモデル、マットペインティング、キャストのスクリーンテスト映像など。ディスクを取り出すことなく、メニュー画面からダイレクトにアクセスが可能。",
+                video: "1080p/i Hi-Def / 各種映像フォーマット",
+                audio: "英語 ドルビーデジタル 2.0ch",
+                dub: "なし",
+                subs: "日本語 / 英語 / 各国字幕"
+            },
+            8: {
+                meta: "DISC 8: BONUS DISC - ARCHIVES 2",
+                title: "スター・ウォーズ アーカイブ：エピソードIV〜VI",
+                runtime: "約480分",
+                commentaries: [
+                    "特撮スタッフ、ILMメンバーによる技術的変遷解説コメンタリー"
+                ],
+                contentHeading: "クラシック特撮の真髄：",
+                contents: "オリジナル三部作（Ep IV-VI）の伝説のアーカイブ、未公開シーンをインタラクティブ収録。名シーンの別アングルバージョン、幻のボバ・フェット初期試作品映像。何百もの設定資料やマットアート、ミニチュア、ロケーション・スナップなど、映画の魔法のすべてが明らかになる。歴史資料としての価値も高い超大作ディスク。",
+                video: "1080p/i Hi-Def",
+                audio: "英語 ドルビーデジタル 2.0ch",
+                dub: "なし",
+                subs: "日本語 / 英語"
+            },
+            9: {
+                meta: "DISC 9: BONUS DISC - DOCUMENTARIES & SPOOFS",
+                title: "ドキュメンタリー＆パロディ・コレクション",
+                runtime: "約360分",
+                commentaries: [
+                    "特典制作者・ドキュメンタリー監督陣によるガイダンス音声"
+                ],
+                contentHeading: "新規制作を含む多数の貴重ドキュメンタリー：",
+                contents: "・「スター・ウォーズ」の戦士たち（ファンの情熱に焦点を当てたドキュメンタリー）\n・「スター・ウォーズ」における音響（ベン・バートの音作り）\n・「スター・ウォーズ」パロディ傑作選（『ザ・シンプソンズ』『ロボット・チキン』等のおもしろパロディ集）\n・30年以上に及ぶ貴重なプロモーション、メイキングなどを集約した決定版ディスク。",
+                video: "1080p/i & SD映像混在",
+                audio: "英語 ドルビーデジタル 2.0ch/5.1ch",
+                dub: "一部日本語吹替あり",
+                subs: "日本語 / 英語"
+            }
+        };
+
+        // Disc Selection Logic
+        function selectDisc(discNumber) {
+            // Remove active style from all disc buttons
+            for (let i = 1; i <= 9; i++) {
+                const btn = document.getElementById(`disc-btn-${i}`);
+                if (btn) {
+                    btn.classList.remove('border-sw-gold', 'border-sw-gold/40');
+                    btn.classList.add('border-transparent');
+                    // Reset text states
+                    const numText = btn.querySelector('.text-2xl');
+                    if (numText) numText.className = "text-2xl font-black orbitron text-gray-300";
+                }
+            }
+
+            // Set current active button
+            const activeBtn = document.getElementById(`disc-btn-${discNumber}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('border-transparent');
+                activeBtn.classList.add('border-sw-gold');
+                const numText = activeBtn.querySelector('.text-2xl');
+                if (numText) numText.className = "text-2xl font-black orbitron sw-gold";
+            }
+
+            // Fetch Data and Update UI
+            const data = discData[discNumber];
+            if (data) {
+                document.getElementById('disc-meta').innerText = data.meta;
+                document.getElementById('disc-title').innerText = data.title;
+                document.getElementById('disc-runtime').innerText = data.runtime;
+                
+                // Clear and rebuild commentaries
+                const commList = document.getElementById('disc-commentaries');
+                commList.innerHTML = '';
+                data.commentaries.forEach(c => {
+                    const li = document.createElement('li');
+                    li.innerText = c;
+                    commList.appendChild(li);
+                });
+
+                document.getElementById('disc-content-heading').innerText = data.contentHeading;
+                
+                // Content paragraph formatted
+                const contentsDiv = document.getElementById('disc-contents');
+                contentsDiv.innerHTML = `<p class="font-medium text-white mb-1">『${data.title}』</p><p class="whitespace-pre-line">${data.contents}</p>`;
+
+                // Specs update
+                document.getElementById('spec-video').innerText = data.video;
+                document.getElementById('spec-audio').innerText = data.audio;
+                document.getElementById('spec-dub').innerText = data.dub;
+                document.getElementById('spec-subs').innerText = data.subs;
+            }
         }
+
+        // ==========================================
+        // WEB AUDIO API - FORCE SOUND GENERATOR
+        // ==========================================
+        let audioCtx = null;
+        let isForceActive = false;
+        let humOsc = null;
+        let humGain = null;
+        let filterNode = null;
+
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+
+        function toggleForceSound() {
+            initAudio();
+            
+            if (isForceActive) {
+                // Shutting down Lightsaber
+                isForceActive = false;
+                document.getElementById('force-status').className = "text-[10px] bg-red-950 text-red-400 border border-red-900 px-1.5 py-0.5 rounded uppercase font-bold tracking-wider";
+                document.getElementById('force-status').innerText = "OFF";
+                document.getElementById('force-toggle-btn').innerText = "フォースを呼び覚ます";
+                
+                // Play retraction sound and stop oscillator
+                playSaberPowerDown();
+            } else {
+                // Initializing Force Lightsaber Hum
+                isForceActive = true;
+                document.getElementById('force-status').className = "text-[10px] bg-emerald-950 text-emerald-400 border border-emerald-900 px-1.5 py-0.5 rounded uppercase font-bold tracking-wider";
+                document.getElementById('force-status').innerText = "ACTIVE";
+                document.getElementById('force-toggle-btn').innerText = "フォースを静める";
+                
+                // Resume audio if suspended
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+
+                // Play ignition sound
+                playSaberIgnition();
+            }
+        }
+
+        // Synthesize Lightsaber Ignition
+        function playSaberIgnition() {
+            const now = audioCtx.currentTime;
+            
+            // Generate a rapid pitch sweep and noise burst for ignition
+            const ignOsc = audioCtx.createOscillator();
+            const ignGain = audioCtx.createGain();
+            
+            ignOsc.type = 'sawtooth';
+            ignOsc.frequency.setValueAtTime(40, now);
+            ignOsc.frequency.exponentialRampToValueAtTime(140, now + 0.35);
+            
+            ignGain.gain.setValueAtTime(0, now);
+            ignGain.gain.linearRampToValueAtTime(0.35, now + 0.05);
+            ignGain.gain.exponentialRampToValueAtTime(0.01, now + 0.45);
+            
+            ignOsc.connect(ignGain);
+            ignGain.connect(audioCtx.destination);
+            ignOsc.start(now);
+            ignOsc.stop(now + 0.5);
+
+            // Start ambient hum immediately after ignition completes
+            setTimeout(() => {
+                if (isForceActive) startSaberHum();
+            }, 100);
+        }
+
+        function startSaberHum() {
+            const now = audioCtx.currentTime;
+            
+            // Hum Oscillator: Deep sawtooth with filtering
+            humOsc = audioCtx.createOscillator();
+            humGain = audioCtx.createGain();
+            filterNode = audioCtx.createBiquadFilter();
+
+            humOsc.type = 'sawtooth';
+            // Low base frequency for classic lightsaber hum
+            humOsc.frequency.setValueAtTime(85, now); 
+            
+            filterNode.type = 'lowpass';
+            filterNode.frequency.setValueAtTime(260, now);
+            filterNode.Q.setValueAtTime(8, now);
+
+            humGain.gain.setValueAtTime(0, now);
+            // Smooth fade-in
+            humGain.gain.linearRampToValueAtTime(0.2, now + 0.2); 
+
+            humOsc.connect(filterNode);
+            filterNode.connect(humGain);
+            humGain.connect(audioCtx.destination);
+
+            humOsc.start(now);
+        }
+
+        function playSaberPowerDown() {
+            if (!humOsc || !humGain) return;
+
+            const now = audioCtx.currentTime;
+            humGain.gain.cancelScheduledValues(now);
+            humGain.gain.setValueAtTime(humGain.gain.value, now);
+            humGain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+
+            humOsc.frequency.cancelScheduledValues(now);
+            humOsc.frequency.setValueAtTime(humOsc.frequency.value, now);
+            humOsc.frequency.linearRampToValueAtTime(20, now + 0.3);
+
+            const oldOsc = humOsc;
+            setTimeout(() => {
+                try { oldOsc.stop(); } catch(e) {}
+            }, 350);
+
+            humOsc = null;
+            humGain = null;
+            filterNode = null;
+        }
+
+        // Track mouse movement over the page to modulate lightsaber hum frequency (pitch and modulation)
+        window.addEventListener('mousemove', (e) => {
+            if (!isForceActive || !humOsc || !filterNode) return;
+
+            const now = audioCtx.currentTime;
+            // Modulate pitch based on vertical height
+            const ratioY = e.clientY / window.innerHeight;
+            const targetFreq = 85 + (ratioY * 40); // 85Hz to 125Hz
+            
+            // Modulate filter cutoff based on horizontal movement
+            const ratioX = e.clientX / window.innerWidth;
+            const targetFilter = 220 + (ratioX * 280); // 220Hz to 500Hz
+
+            humOsc.frequency.setTargetAtTime(targetFreq, now, 0.1);
+            filterNode.frequency.setTargetAtTime(targetFilter, now, 0.1);
+        });
+
+        // Supporting touch devices for modulation
+        window.addEventListener('touchmove', (e) => {
+            if (!isForceActive || !humOsc || !filterNode || e.touches.length === 0) return;
+            const touch = e.touches[0];
+            const now = audioCtx.currentTime;
+            const ratioY = touch.clientY / window.innerHeight;
+            const targetFreq = 85 + (ratioY * 40);
+            const ratioX = touch.clientX / window.innerWidth;
+            const targetFilter = 220 + (ratioX * 280);
+
+            humOsc.frequency.setTargetAtTime(targetFreq, now, 0.15);
+            filterNode.frequency.setTargetAtTime(targetFilter, now, 0.15);
+        });
+
+
+        // ==========================================
+        // CUSTOM SIMULATED TRAILER PLAYER LOGIC
+        // ==========================================
+        let isVideoPlaying = false;
+        let videoProgressInterval = null;
+        let videoCurrentTime = 0;
+        let videoTotalDuration = 135; // 2:15 in seconds
+        let activeVideoClip = 1;
+        let isVideoMuted = false;
+
+        const videoClipData = {
+            1: {
+                title: "スター・ウォーズ サーガがついにブルーレイで覚醒",
+                duration: 135, // 2:15
+                durationStr: "2:15",
+                bg: "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&q=80&w=1200"
+            },
+            2: {
+                title: "秘蔵の未公開映像 - 削除された幻のシーンの一部を初公開",
+                duration: 105, // 1:45
+                durationStr: "1:45",
+                bg: "https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?auto=format&fit=crop&q=80&w=1200"
+            },
+            3: {
+                title: "ジョージ・ルーカス独占ロングインタビュー - サーガ誕生30年を振り返る",
+                duration: 190, // 3:10
+                durationStr: "3:10",
+                bg: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1200"
+            }
+        };
+
+        function toggleSimulatedVideo() {
+            const playIcon = document.getElementById('play-icon');
+            const centralPlayIcon = document.getElementById('central-play-icon');
+            const centralPlayBtn = document.getElementById('central-play-btn');
+            const particles = document.getElementById('video-particles');
+
+            if (isVideoPlaying) {
+                // Pause simulated video
+                isVideoPlaying = false;
+                playIcon.setAttribute('data-lucide', 'play');
+                centralPlayIcon.setAttribute('data-lucide', 'play');
+                centralPlayBtn.classList.remove('opacity-0', 'pointer-events-none');
+                particles.classList.add('opacity-0');
+                clearInterval(videoProgressInterval);
+                
+                // Audio synthesis cues for video action pausing
+                playBeepSound(180, 0.08);
+            } else {
+                // Play simulated video
+                isVideoPlaying = true;
+                playIcon.setAttribute('data-lucide', 'pause');
+                centralPlayIcon.setAttribute('data-lucide', 'pause');
+                centralPlayBtn.classList.add('opacity-0', 'pointer-events-none');
+                particles.classList.remove('opacity-0');
+                
+                // Start tick timer
+                videoProgressInterval = setInterval(updateVideoTick, 1000);
+                
+                // Audio cue
+                playBeepSound(440, 0.1);
+            }
+            lucide.createIcons();
+        }
+
+        function stopSimulatedVideo() {
+            isVideoPlaying = false;
+            videoCurrentTime = 0;
+            clearInterval(videoProgressInterval);
+            
+            document.getElementById('video-progress').style.width = '0%';
+            document.getElementById('video-time').innerText = "0:00";
+            
+            const playIcon = document.getElementById('play-icon');
+            const centralPlayIcon = document.getElementById('central-play-icon');
+            const centralPlayBtn = document.getElementById('central-play-btn');
+            const particles = document.getElementById('video-particles');
+            
+            playIcon.setAttribute('data-lucide', 'play');
+            centralPlayIcon.setAttribute('data-lucide', 'play');
+            centralPlayBtn.classList.remove('opacity-0', 'pointer-events-none');
+            particles.classList.add('opacity-0');
+            
+            lucide.createIcons();
+            playBeepSound(150, 0.15);
+        }
+
+        function updateVideoTick() {
+            if (videoCurrentTime >= videoTotalDuration) {
+                stopSimulatedVideo();
+                return;
+            }
+            videoCurrentTime++;
+            
+            // Format time display
+            const mins = Math.floor(videoCurrentTime / 60);
+            const secs = videoCurrentTime % 60;
+            document.getElementById('video-time').innerText = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+            
+            // Update bar
+            const pct = (videoCurrentTime / videoTotalDuration) * 100;
+            document.getElementById('video-progress').style.width = `${pct}%`;
+
+            // Random synthesize cosmic sound effect synced to video ticks if unmuted
+            if (!isVideoMuted && videoCurrentTime % 8 === 0) {
+                playSpaceSweep();
+            }
+        }
+
+        function seekSimulatedVideo(e) {
+            const bar = document.getElementById('seek-bar');
+            const rect = bar.getBoundingClientRect();
+            const clickX = e.clientX - rect.left;
+            const ratio = clickX / rect.width;
+            
+            videoCurrentTime = Math.floor(ratio * videoTotalDuration);
+            
+            const mins = Math.floor(videoCurrentTime / 60);
+            const secs = videoCurrentTime % 60;
+            document.getElementById('video-time').innerText = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+            
+            const pct = ratio * 100;
+            document.getElementById('video-progress').style.width = `${pct}%`;
+
+            playBeepSound(300 + (ratio * 400), 0.05);
+        }
+
+        function toggleVideoMute() {
+            const volIcon = document.getElementById('volume-icon');
+            const volLevel = document.getElementById('volume-level');
+            
+            if (isVideoMuted) {
+                isVideoMuted = false;
+                volIcon.setAttribute('data-lucide', 'volume-2');
+                volLevel.style.width = '80%';
+                playBeepSound(500, 0.08);
+            } else {
+                isVideoMuted = true;
+                volIcon.setAttribute('data-lucide', 'volume-x');
+                volLevel.style.width = '0%';
+            }
+            lucide.createIcons();
+        }
+
+        function playVideoClip(clipNum) {
+            stopSimulatedVideo();
+            activeVideoClip = clipNum;
+            
+            const data = videoClipData[clipNum];
+            if (data) {
+                videoTotalDuration = data.duration;
+                document.getElementById('video-duration').innerText = data.durationStr;
+                document.getElementById('video-caption').innerText = data.title;
+                document.getElementById('video-screen').style.backgroundImage = `url('${data.bg}')`;
+                
+                // Trigger play immediately
+                toggleSimulatedVideo();
+            }
+        }
+
+        // ==========================================
+        // SYNTH SOUND EFFECTS UTILITIES (No External Assets)
+        // ==========================================
+        function playBeepSound(freq, duration) {
+            try {
+                initAudio();
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+                
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                
+                gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+                
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch(e) {}
+        }
+
+        function playSpaceSweep() {
+            try {
+                initAudio();
+                const now = audioCtx.currentTime;
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                const filter = audioCtx.createBiquadFilter();
+
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(40, now);
+                osc.frequency.exponentialRampToValueAtTime(1200, now + 1.2);
+
+                filter.type = 'bandpass';
+                filter.frequency.setValueAtTime(300, now);
+                filter.frequency.exponentialRampToValueAtTime(1000, now + 1.2);
+                filter.Q.setValueAtTime(4, now);
+
+                gain.gain.setValueAtTime(0.01, now);
+                gain.gain.linearRampToValueAtTime(0.05, now + 0.3);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 1.2);
+
+                osc.connect(filter);
+                filter.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start(now);
+                osc.stop(now + 1.3);
+            } catch(e) {}
+        }
+
+
+        // ==========================================
+        // CAMPAIGN SIMULATOR ACTION
+        // ==========================================
+        function submitCampaignSimulation() {
+            const prize = document.getElementById('campaign-prize').value;
+            const serial = document.getElementById('campaign-serial').value.trim();
+            
+            if (!serial) {
+                showCustomAlert("封入シリアルキーを入力してください！ 2011年当時に購入されたファンの気分で任意の文字を入力可能です（例: SW-2011-FREE）。");
+                return;
+            }
+
+            // Synthesize sweep up
+            playBeepSound(600, 0.4);
+
+            // Hide form, show progress circle first
+            const form = document.getElementById('campaign-form');
+            form.classList.add('hidden');
+            
+            const resultPanel = document.getElementById('campaign-result');
+            resultPanel.classList.remove('hidden');
+            
+            const iconContainer = document.getElementById('result-icon-container');
+            iconContainer.className = "mx-auto w-12 h-12 bg-sw-gold/15 text-sw-gold border border-sw-gold/30 rounded-full flex items-center justify-center animate-spin";
+            iconContainer.innerHTML = `<i data-lucide="loader-2" class="w-6 h-6"></i>`;
+            
+            document.getElementById('result-title').innerText = "抽選サーバーに接続中...";
+            document.getElementById('result-message').innerText = "フォースを分析し、ハガキの抽選状況を確認しています。";
+            
+            lucide.createIcons();
+
+            // After 2.5 seconds, output simulated result
+            setTimeout(() => {
+                const winChance = Math.random() > 0.75; // 25% simulated win chance in fan mode
+                
+                if (winChance) {
+                    // Win state
+                    iconContainer.className = "mx-auto w-12 h-12 bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 rounded-full flex items-center justify-center";
+                    iconContainer.innerHTML = `<i data-lucide="award" class="w-6 h-6"></i>`;
+                    document.getElementById('result-title').className = "text-lg font-black text-emerald-400";
+                    document.getElementById('result-title').innerText = "🎉 見事に【当選】しました！";
+                    document.getElementById('result-message').innerHTML = `おめでとうございます！ご応募いただいたシリアルコードで <strong>${prize}</strong> の引き換え権がシミュレート当選されました！<br><span class="text-[10px] text-gray-500 block mt-2">（※本機能は発売記念デモです。賞品の実際のお届けはございません）</span>`;
+                    
+                    // Sound of victory
+                    playVictorySound();
+                } else {
+                    // Loss state
+                    iconContainer.className = "mx-auto w-12 h-12 bg-red-500/10 text-red-400 border border-red-500/30 rounded-full flex items-center justify-center";
+                    iconContainer.innerHTML = `<i data-lucide="frown" class="w-6 h-6"></i>`;
+                    document.getElementById('result-title').className = "text-base font-bold text-gray-300";
+                    document.getElementById('result-title').innerText = "残念！抽選に漏れてしまいました";
+                    document.getElementById('result-message').innerHTML = `今回のハガキは選外となりました。諦めるな！「フォースは常にあなたと共にある。」別の模擬キーを入力して再挑戦できます。`;
+                    
+                    playBeepSound(120, 0.5);
+                }
+                lucide.createIcons();
+            }, 2000);
+        }
+
+        function resetCampaignSimulation() {
+            document.getElementById('campaign-result').classList.add('hidden');
+            document.getElementById('campaign-form').classList.remove('hidden');
+            document.getElementById('campaign-serial').value = '';
+            playBeepSound(300, 0.1);
+        }
+
+        function playVictorySound() {
+            try {
+                initAudio();
+                const now = audioCtx.currentTime;
+                // Arpeggio sound
+                const notes = [261.63, 329.63, 392.00, 523.25]; // C E G C
+                notes.forEach((freq, idx) => {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(freq, now + (idx * 0.12));
+                    gain.gain.setValueAtTime(0.08, now + (idx * 0.12));
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + (idx * 0.12) + 0.3);
+                    
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(now + (idx * 0.12));
+                    osc.stop(now + (idx * 0.12) + 0.35);
+                });
+            } catch(e) {}
+        }
+
+
+        // ==========================================
+        // RETAIL ORDER DIALOG SIMULATOR
+        // ==========================================
+        function simulateOrder(retailerName) {
+            let priceStr = "18,900円 (税込)";
+            if (retailerName.includes("Amazon")) {
+                priceStr = "14,900円 (税込)";
+            } else if (retailerName.includes("タワー")) {
+                priceStr = "16,065円 (税込)";
+            }
+
+            document.getElementById('target-retailer').innerText = retailerName;
+            document.getElementById('order-price').innerText = priceStr;
+            
+            document.getElementById('order-modal').classList.remove('hidden');
+            
+            // Audio sound effect
+            playVictorySound();
+        }
+
+        function closeOrderModal() {
+            document.getElementById('order-modal').classList.add('hidden');
+            playBeepSound(150, 0.1);
+        }
+
+
+        // ==========================================
+        // CUSTOM ALERT SYSTEM (Replaces unsafe alerts)
+        // ==========================================
+        function showCustomAlert(msg) {
+            document.getElementById('alert-message').innerText = msg;
+            document.getElementById('alert-modal').classList.remove('hidden');
+            playBeepSound(220, 0.2);
+        }
+
+        function closeAlertModal() {
+            document.getElementById('alert-modal').classList.add('hidden');
+            playBeepSound(300, 0.08);
+        }
+
+        function shareSimulation(platform) {
+            showCustomAlert(`${platform}へのシミュレート共有：\n「スター・ウォーズ コンプリート・サーガ ブルーレイBOXついに発売開始！40時間超の特典映像がヤバすぎる！ #STARWARS_BD_2011」`);
+        }
+
+        function showRetroFAQ() {
+            showCustomAlert("2011年当時FAQ：\nQ: 今回のディスクはデジタル上映バージョンですか？\nA: はい。1997年の特別篇および2004年DVD版を踏襲しつつ、ジョージ・ルーカス監督によりさらなる微修正が加えられた本編です。");
+        }
+
+        // Window onload default initialization
+        window.onload = function() {
+            // Default select Disc 1 on load
+            selectDisc(1);
+        };
     </script>
 </body>
 </html>
