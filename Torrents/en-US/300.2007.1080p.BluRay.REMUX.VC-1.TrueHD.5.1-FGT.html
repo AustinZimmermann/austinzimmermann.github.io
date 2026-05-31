@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>300 (2007) [Blu-ray Remux 1080p VC-1 Dolby TrueHD 5.1] - Torrents.com</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .code-font {
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
+</head>
+<body class="bg-[#0b0f19] text-[#e2e8f0] min-h-screen selection:bg-cyan-500 selection:text-black">
+
+    <!-- Top Navigation Bar -->
+    <header class="border-b border-[#1e293b] bg-[#0f172a] sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 gap-4">
+                <!-- Logo -->
+                <a href="#" onclick="resetToDefault(event)" class="flex items-center gap-2 group flex-shrink-0">
+                    <div class="bg-cyan-500 text-slate-900 p-2 rounded-lg font-black text-xl tracking-tight shadow-[0_0_15px_rgba(6,182,212,0.4)] transition-all group-hover:scale-105">
+                        T
+                    </div>
+                    <span class="text-xl font-bold tracking-tight text-white group-hover:text-cyan-400 transition-colors">
+                        Torrents<span class="text-cyan-500">.com</span>
+                    </span>
+                </a>
+
+                <!-- Search Input Bar -->
+                <div class="flex-1 max-w-2xl">
+                    <form onsubmit="handleSearch(event)" class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <!-- Search Icon -->
+                            <svg class="h-5 w-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </div>
+                        <input id="searchInput" type="text" placeholder="Search millions of verified torrents, movies, software..." 
+                               class="block w-full pl-10 pr-24 py-2 border border-slate-700 rounded-xl bg-slate-900/80 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition-all text-sm">
+                        <div class="absolute inset-y-0 right-0 pr-1.5 flex items-center">
+                            <button type="submit" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold px-4 py-1.5 rounded-lg text-xs transition-all active:scale-95 shadow-md">
+                                Search
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Navigation Links & Language -->
+                <div class="hidden md:flex items-center gap-6">
+                    <nav class="flex gap-4 text-sm font-medium text-slate-300">
+                        <a href="#" onclick="showCategory('movies', event)" class="hover:text-cyan-400 transition-colors">Movies</a>
+                        <a href="#" onclick="showCategory('tv', event)" class="hover:text-cyan-400 transition-colors">TV Shows</a>
+                        <a href="#" onclick="showCategory('music', event)" class="hover:text-cyan-400 transition-colors">Music</a>
+                        <a href="#" onclick="showCategory('games', event)" class="hover:text-cyan-400 transition-colors">Games</a>
+                    </nav>
+                    <span class="h-5 w-px bg-slate-800"></span>
+                    <div class="flex items-center gap-1.5 text-xs font-semibold text-slate-400 border border-slate-800 px-2.5 py-1 rounded-full bg-slate-900">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                        EN-US
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sub-navigation Stats -->
+    <div class="bg-slate-900/50 border-b border-[#1e293b] py-2 text-xs text-slate-400">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap gap-x-6 gap-y-1">
+            <div><span class="text-slate-200">Active Torrents:</span> 34,204,119</div>
+            <div><span class="text-slate-200">Tracked Peers:</span> 489,102,024</div>
+            <div><span class="text-slate-200">Updated:</span> <span class="text-cyan-400 font-medium">Just now</span></div>
+        </div>
+    </div>
+
+    <!-- MAIN APP WRAPPER -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <!-- Torrent Detail State -->
+        <div id="torrentDetailsState">
+            <!-- Breadcrumb Navigation -->
+            <nav class="flex items-center gap-2 text-xs text-slate-400 mb-6">
+                <a href="#" class="hover:text-cyan-400 transition-colors">Home</a>
+                <svg class="w-3 h-3 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                <a href="#" onclick="showCategory('movies', event)" class="hover:text-cyan-400 transition-colors">Movies</a>
+                <svg class="w-3 h-3 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                <a href="#" class="hover:text-cyan-400 transition-colors">1080p Remux</a>
+                <svg class="w-3 h-3 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                <span class="text-slate-300 font-medium truncate">300 (2007) [VC-1 Remux]</span>
+            </nav>
+
+            <!-- Main Torrent Card Header -->
+            <div class="bg-gradient-to-br from-[#0f172a] to-[#1e293b] rounded-2xl border border-slate-800 p-6 md:p-8 shadow-xl mb-8">
+                <div class="flex flex-col lg:flex-row gap-8">
+                    <!-- Movie Graphic / Cover Poster -->
+                    <div class="w-full lg:w-64 flex-shrink-0 flex justify-center">
+                        <div class="relative w-60 h-80 rounded-xl overflow-hidden shadow-2xl border border-red-900/30 group">
+                            <!-- Custom SVG Poster representing 300 -->
+                            <svg class="w-full h-full bg-gradient-to-b from-[#110101] via-[#330000] to-[#0d0101]" viewBox="0 0 240 320" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#b8860b"/>
+                                        <stop offset="50%" stop-color="#8b0000"/>
+                                        <stop offset="100%" stop-color="#3a0000"/>
+                                    </linearGradient>
+                                    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                        <stop offset="0%" stop-color="#ffe066" />
+                                        <stop offset="50%" stop-color="#f59e0b" />
+                                        <stop offset="100%" stop-color="#b45309" />
+                                    </linearGradient>
+                                </defs>
+                                <!-- Splatters / Textures -->
+                                <circle cx="40" cy="80" r="25" fill="#520c0c" opacity="0.4" filter="blur(5px)"/>
+                                <circle cx="190" cy="200" r="35" fill="#520c0c" opacity="0.3" filter="blur(6px)"/>
+                                <path d="M10,240 Q120,180 230,240 L240,320 L0,320 Z" fill="#140101" />
+                                
+                                <!-- Huge Greek Lambda Shape (Spartan Shield Emblem) in Background -->
+                                <path d="M 120 70 L 60 210 L 95 210 L 120 150 L 145 210 L 180 210 Z" fill="#d97706" opacity="0.08" />
+
+                                <!-- Main Spartan Helmet Profile -->
+                                <g transform="translate(45, 75)">
+                                    <!-- Helmet Back Crest -->
+                                    <path d="M 120 -10 C 150 15, 140 85, 110 110 L 115 115 C 155 85, 165 15, 120 -10 Z" fill="#b91c1c" />
+                                    <path d="M 125 15 C 145 35, 140 75, 120 95 L 123 99 C 148 75, 150 35, 125 15 Z" fill="#ef4444" opacity="0.5" />
+                                    <!-- Helmet Metal Body -->
+                                    <path d="M 30 70 C 25 35, 45 10, 85 10 C 120 10, 125 45, 120 80 C 110 95, 80 110, 50 100 C 35 90, 30 80, 30 70 Z" fill="url(#shieldGrad)" stroke="#1a0000" stroke-width="1.5" />
+                                    <!-- T-shaped Eye/Face Cutout -->
+                                    <path d="M 32 70 L 60 70 C 60 55, 75 50, 85 50 C 95 50, 110 55, 110 70 L 118 70 C 118 80, 110 88, 98 88 L 98 102 C 98 106, 90 108, 85 108 C 80 108, 72 106, 72 102 L 72 88 C 60 88, 32 80, 32 70 Z" fill="#000000" />
+                                    <!-- Metallic Highlights -->
+                                    <path d="M 45 25 C 65 18, 85 18, 105 25" stroke="#ffe066" stroke-width="2" fill="none" opacity="0.3" />
+                                    <!-- Spartan Red Eye Glow (Stylized) -->
+                                    <circle cx="85" cy="73" r="1.5" fill="#ef4444" />
+                                </g>
+
+                                <!-- Title Text: "300" -->
+                                <text x="120" y="275" font-family="'Inter', sans-serif" font-weight="900" font-size="34" fill="url(#goldGrad)" text-anchor="middle" letter-spacing="4">300</text>
+                                <text x="120" y="295" font-family="'Inter', sans-serif" font-weight="600" font-size="10" fill="#a1a1aa" text-anchor="middle" letter-spacing="3">BLU-RAY REMUX</text>
+                            </svg>
+                            <div class="absolute top-3 left-3 bg-red-600/90 text-white font-bold text-xs px-2.5 py-1 rounded-md tracking-wider uppercase">
+                                VC-1 Codec
+                            </div>
+                            <div class="absolute bottom-3 right-3 bg-black/80 backdrop-blur-md border border-slate-700/50 text-cyan-400 font-semibold text-xs px-2 py-0.5 rounded">
+                                2007 Movie
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Torrent Specific Title details -->
+                    <div class="flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex flex-wrap gap-2 items-center mb-3">
+                                <span class="bg-blue-500/10 text-blue-400 border border-blue-500/20 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">Blu-ray Remux</span>
+                                <span class="bg-purple-500/10 text-purple-400 border border-purple-500/20 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">1080p HD</span>
+                                <span class="bg-amber-500/10 text-amber-400 border border-amber-500/20 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">TrueHD 5.1</span>
+                                <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">Verified VIP</span>
+                            </div>
+                            
+                            <h1 class="text-xl sm:text-2xl md:text-3xl font-extrabold text-white tracking-tight leading-tight mb-3">
+                                300.2007.1080p.BluRay.REMUX.VC-1.TrueHD.5.1-FGT
+                            </h1>
+                            
+                            <p class="text-sm text-slate-400 mb-6 leading-relaxed">
+                                Experience Zack Snyder's visual masterpiece <strong class="text-slate-200">300</strong> in pristine original bit-rate quality. This features a direct 1:1 remux of the VC-1 video stream encoded directly from the original Warner Bros. Blu-ray, coupled with the magnificent, lossless Dolby TrueHD 5.1 audio track. 
+                            </p>
+
+                            <!-- Primary Metrics Panel -->
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 p-4 rounded-xl bg-slate-900/60 border border-slate-800">
+                                <div class="text-center sm:text-left">
+                                    <div class="text-xs text-slate-400 mb-1">Total Size</div>
+                                    <div class="text-lg font-bold text-slate-200">28.42 GB</div>
+                                </div>
+                                <div class="text-center sm:text-left border-l border-slate-800 pl-0 sm:pl-4">
+                                    <div class="text-xs text-slate-400 mb-1">Health</div>
+                                    <div class="flex items-center justify-center sm:justify-start gap-1">
+                                        <div class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></div>
+                                        <span class="text-sm font-bold text-emerald-400">Excellent</span>
+                                    </div>
+                                </div>
+                                <div class="text-center sm:text-left border-l border-slate-800 pl-0 sm:pl-4">
+                                    <div class="text-xs text-slate-400 mb-1">Seeders</div>
+                                    <div class="text-lg font-bold text-emerald-400 font-mono">142</div>
+                                </div>
+                                <div class="text-center sm:text-left border-l border-slate-800 pl-0 sm:pl-4">
+                                    <div class="text-xs text-slate-400 mb-1">Leechers</div>
+                                    <div class="text-lg font-bold text-amber-500 font-mono">18</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Main Action Buttons -->
+                        <div class="flex flex-col sm:flex-row gap-3 mt-8">
+                            <button onclick="triggerDownload()" class="flex-1 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-bold px-6 py-3.5 rounded-xl transition-all shadow-[0_4px_20px_rgba(6,182,212,0.3)] active:scale-95 flex items-center justify-center gap-2.5">
+                                <!-- Download Cloud Icon -->
+                                <svg class="w-5 h-5 stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                                <span>Get Torrent File</span>
+                            </button>
+                            
+                            <button onclick="copyMagnet()" class="flex-1 bg-slate-800 hover:bg-slate-700 text-slate-100 border border-slate-700 font-semibold px-6 py-3.5 rounded-xl transition-all active:scale-95 flex items-center justify-center gap-2.5">
+                                <!-- Magnet Icon -->
+                                <svg class="w-5 h-5 text-red-500 stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.933 12.8a1 1 0 000-1.6L6.6 6.333a3 3 0 00-4.243 4.243l3.182 3.182a3 3 0 004.242 0M12.067 11.2a1 1 0 000 1.6l5.333 4.867a3 3 0 004.243-4.242l-3.182-3.182a3 3 0 00-4.242 0"></path></svg>
+                                <span>Magnet Link</span>
+                            </button>
+
+                            <button onclick="toggleBookmark()" id="bookmarkBtn" class="bg-slate-800/60 hover:bg-slate-800 text-slate-300 border border-slate-700/60 px-4 py-3.5 rounded-xl transition-all active:scale-95 flex items-center justify-center" title="Save Torrent to Library">
+                                <svg id="bookmarkIcon" class="w-5 h-5 fill-none stroke-current stroke-[2]" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Double-column Info Section -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                
+                <!-- Left Details Panels (2/3 width) -->
+                <div class="lg:col-span-2 space-y-8">
+                    <!-- Tab Headers -->
+                    <div class="border-b border-slate-800 flex flex-wrap gap-1">
+                        <button onclick="switchTab('tabInfo')" id="btn-tabInfo" class="tab-btn px-5 py-3 border-b-2 text-sm font-semibold transition-all text-cyan-400 border-cyan-500">
+                            General Info
+                        </button>
+                        <button onclick="switchTab('tabFiles')" id="btn-tabFiles" class="tab-btn px-5 py-3 border-b-2 text-sm font-semibold transition-all text-slate-400 border-transparent hover:text-slate-200">
+                            Files List (4)
+                        </button>
+                        <button onclick="switchTab('tabTrackers')" id="btn-tabTrackers" class="tab-btn px-5 py-3 border-b-2 text-sm font-semibold transition-all text-slate-400 border-transparent hover:text-slate-200">
+                            Trackers
+                        </button>
+                        <button onclick="switchTab('tabTechnical')" id="btn-tabTechnical" class="tab-btn px-5 py-3 border-b-2 text-sm font-semibold transition-all text-slate-400 border-transparent hover:text-slate-200">
+                            Technical NFO
+                        </button>
+                        <button onclick="switchTab('tabComments')" id="btn-tabComments" class="tab-btn px-5 py-3 border-b-2 text-sm font-semibold transition-all text-slate-400 border-transparent hover:text-slate-200">
+                            Comments (5)
+                        </button>
+                    </div>
+
+                    <!-- TAB CONTENT: GENERAL INFO -->
+                    <div id="tabInfo" class="tab-pane space-y-6">
+                        <!-- Brief Movie Overview -->
+                        <div class="bg-slate-900/40 border border-slate-800 rounded-xl p-6">
+                            <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
+                                <span class="w-1.5 h-4 bg-cyan-500 rounded-full"></span> Movie Synopsis
+                            </h3>
+                            <p class="text-sm text-slate-300 leading-relaxed">
+                                In 480 B.C., state of war exists between Persia, led by King Xerxes, and Greece. At the Battle of Thermopylae, Leonidas, king of the Greek city-state of Sparta, leads his badly outnumbered warriors against the massive Persian army. Though certain death awaits the Spartans, their sacrifice inspires all of Greece to unite against their common enemy.
+                            </p>
+                        </div>
+
+                        <!-- Technical Snapshot Grid -->
+                        <div class="bg-slate-900/40 border border-slate-800 rounded-xl p-6">
+                            <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                                <span class="w-1.5 h-4 bg-cyan-500 rounded-full"></span> Release Specifications
+                            </h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8 text-sm">
+                                <div class="flex justify-between py-2 border-b border-slate-800/50">
+                                    <span class="text-slate-400">Video Codec</span>
+                                    <span class="font-semibold text-slate-200">VC-1 (Original Stream)</span>
+                                </div>
+                                <div class="flex justify-between py-2 border-b border-slate-800/50">
+                                    <span class="text-slate-400">Resolution</span>
+                                    <span class="font-semibold text-slate-200">1080p (1920x1080)</span>
+                                </div>
+                                <div class="flex justify-between py-2 border-b border-slate-800/50">
+                                    <span class="text-slate-400">Audio Format</span>
+                                    <span class="font-semibold text-slate-200">Dolby TrueHD 5.1 (48kHz/24-bit)</span>
+                                </div>
+                                <div class="flex justify-between py-2 border-b border-slate-800/50">
+                                    <span class="text-slate-400">Aspect Ratio</span>
+                                    <span class="font-semibold text-slate-200">2.40:1 Cinematic</span>
+                                </div>
+                                <div class="flex justify-between py-2 border-b border-slate-800/50">
+                                    <span class="text-slate-400">Source</span>
+                                    <span class="font-semibold text-slate-200">1080p Blu-ray EUR-AVC-VC1</span>
+                                </div>
+                                <div class="flex justify-between py-2 border-b border-slate-800/50">
+                                    <span class="text-slate-400">Uploader</span>
+                                    <span class="font-semibold text-cyan-400 flex items-center gap-1">
+                                        FGT <span class="bg-cyan-500/10 text-cyan-400 text-[10px] px-1.5 py-0.5 rounded">Elite</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB CONTENT: FILES LIST -->
+                    <div id="tabFiles" class="tab-pane space-y-4 hidden">
+                        <div class="bg-slate-900/40 border border-slate-800 rounded-xl p-4 overflow-hidden">
+                            <div class="flex items-center justify-between text-xs text-slate-400 pb-3 border-b border-slate-800">
+                                <span>File Name</span>
+                                <span>Size</span>
+                            </div>
+                            <div class="divide-y divide-slate-800/60">
+                                <!-- Main Movie File -->
+                                <div class="flex items-center justify-between py-3.5 text-sm">
+                                    <div class="flex items-start gap-2.5 truncate max-w-[80%]">
+                                        <!-- Video File Icon -->
+                                        <svg class="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                                        <span class="text-slate-200 font-mono truncate hover:text-cyan-400 cursor-pointer" title="300.2007.1080p.BluRay.REMUX.VC-1.TrueHD.5.1-FGT.mkv">
+                                            300.2007.1080p.BluRay.REMUX.VC-1.TrueHD.5.1-FGT.mkv
+                                        </span>
+                                    </div>
+                                    <span class="text-slate-300 font-mono text-xs flex-shrink-0">28.41 GB</span>
+                                </div>
+
+                                <!-- Torrent Description File -->
+                                <div class="flex items-center justify-between py-3.5 text-sm">
+                                    <div class="flex items-start gap-2.5 truncate max-w-[80%]">
+                                        <!-- Text Icon -->
+                                        <svg class="w-5 h-5 text-slate-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                                        <span class="text-slate-300 font-mono truncate">FGT.nfo</span>
+                                    </div>
+                                    <span class="text-slate-400 font-mono text-xs">5.32 KB</span>
+                                </div>
+
+                                <!-- Screen Sample Image -->
+                                <div class="flex items-center justify-between py-3.5 text-sm">
+                                    <div class="flex items-start gap-2.5 truncate max-w-[80%]">
+                                        <!-- Image Icon -->
+                                        <svg class="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                        <span class="text-slate-300 font-mono truncate">300.Cover-Sample.jpg</span>
+                                    </div>
+                                    <span class="text-slate-400 font-mono text-xs">480.12 KB</span>
+                                </div>
+
+                                <!-- Torrent Index Note -->
+                                <div class="flex items-center justify-between py-3.5 text-sm">
+                                    <div class="flex items-start gap-2.5 truncate max-w-[80%]">
+                                        <!-- Note Icon -->
+                                        <svg class="w-5 h-5 text-slate-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                        <span class="text-slate-400 font-mono truncate">Torrents.com.txt</span>
+                                    </div>
+                                    <span class="text-slate-400 font-mono text-xs">120 B</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB CONTENT: TRACKERS -->
+                    <div id="tabTrackers" class="tab-pane space-y-4 hidden">
+                        <div class="bg-slate-900/40 border border-slate-800 rounded-xl p-4 overflow-hidden">
+                            <div class="grid grid-cols-3 text-xs text-slate-400 pb-3 border-b border-slate-800">
+                                <span>Tracker URL</span>
+                                <span class="text-center">Status</span>
+                                <span class="text-right">Peers / Seeds</span>
+                            </div>
+                            <div class="divide-y divide-slate-800/60 font-mono text-xs">
+                                <!-- Tracker 1 -->
+                                <div class="grid grid-cols-3 py-3.5 items-center">
+                                    <span class="text-slate-300 truncate">udp://tracker.coppersurfer.tk:6969/announce</span>
+                                    <span class="text-center"><span class="bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded text-[10px] font-bold">WORKING</span></span>
+                                    <span class="text-right text-slate-400">S: 120 / L: 12</span>
+                                </div>
+                                <!-- Tracker 2 -->
+                                <div class="grid grid-cols-3 py-3.5 items-center">
+                                    <span class="text-slate-300 truncate">udp://tracker.leechers-paradise.org:6969/announce</span>
+                                    <span class="text-center"><span class="bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded text-[10px] font-bold">WORKING</span></span>
+                                    <span class="text-right text-slate-400">S: 98 / L: 9</span>
+                                </div>
+                                <!-- Tracker 3 -->
+                                <div class="grid grid-cols-3 py-3.5 items-center">
+                                    <span class="text-slate-300 truncate">udp://tracker.cyberia.is:6969/announce</span>
+                                    <span class="text-center"><span class="bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded text-[10px] font-bold">WORKING</span></span>
+                                    <span class="text-right text-slate-400">S: 84 / L: 6</span>
+                                </div>
+                                <!-- Tracker 4 -->
+                                <div class="grid grid-cols-3 py-3.5 items-center">
+                                    <span class="text-slate-300 truncate">udp://open.stealth.si:80/announce</span>
+                                    <span class="text-center"><span class="bg-slate-800 text-slate-400 px-2 py-0.5 rounded text-[10px] font-bold">TIMEOUT</span></span>
+                                    <span class="text-right text-slate-500">S: -- / L: --</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB CONTENT: TECHNICAL NFO -->
+                    <div id="tabTechnical" class="tab-pane space-y-4 hidden">
+                        <div class="relative bg-slate-950 border border-slate-800 rounded-xl p-5 overflow-x-auto code-font text-xs text-slate-300 leading-relaxed">
+                            <!-- Copy NFO Button -->
+                            <button onclick="copyNfoText()" class="absolute top-4 right-4 bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold px-2.5 py-1.5 rounded border border-slate-700 hover:text-white transition-all text-xs active:scale-95 flex items-center gap-1.5">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+                                <span>Copy Text</span>
+                            </button>
+                            <pre id="nfoContent" class="whitespace-pre-wrap leading-tight text-emerald-500/90 font-mono">
+************************************************************************
+  300 (2007) 1080p BluRay REMUX VC-1 TrueHD 5.1-FGT
+************************************************************************
+
+[Release Information]
+- Release Date.......: 2007-07-31
+- Genre..............: Action | Drama | War
+- Source.............: 1080p Blu-ray EUR-AVC-VC1 (Thanks!)
+- ViDEO CODEC........: VC-1 (Direct Stream Video Copy)
+- ViDEO BiTRATE......: 24.1 Mbps (Original Source Bitrate)
+- FRAME RATE.........: 23.976 fps
+- RESOLUTiON.........: 1920x1080
+- AUDiO CODEC........: English Dolby TrueHD 5.1 (Direct Lossless Stream)
+- AUDiO BiTRATE......: 3120 kbps (24-bit / 48kHz)
+- AUDiO 2............: Spanish AC3 5.1 @ 640 kbps
+- AUDiO 3............: French AC3 5.1 @ 640 kbps
+- SUBTiTLES..........: English SDH, French, Spanish, Portuguese, German.
+- FiLE SiZE..........: 28.41 GB
+
+[Movie Info]
+- IMDb Link..........: https://www.imdb.com/title/tt0448105/
+- IMDb Rating........: 7.6/10 (845,210 votes)
+- Director...........: Zack Snyder
+- Cast...............: Gerard Butler, Lena Headey, David Wenham, Dominic West
+
+[MediaInfo Analysis Data]
+Unique ID                  : 24729012781018920198081200213123
+Complete name              : 300.2007.1080p.BluRay.REMUX.VC-1.TrueHD.5.1-FGT.mkv
+Format                     : Matroska
+File size                  : 28.4 GiB
+Duration                   : 1 h 56 min
+Overall bit rate mode      : Variable
+Overall bit rate           : 34.2 Mb/s
+
+Video
+ID                         : 1
+Format                     : VC-1
+Format profile             : Advanced@L3
+Codec ID                   : WVC1
+Duration                   : 1 h 56 min
+Bit rate                   : 24.1 Mb/s
+Width                      : 1 920 pixels
+Height                     : 1 080 pixels
+Display aspect ratio       : 16:9
+Frame rate                 : 23.976 (24000/1001) FPS
+Color space                : YUV
+Chroma subsampling         : 4:2:0
+Bit depth                  : 8 bits
+Scan type                  : Progressive
+
+Audio
+ID                         : 2
+Format                     : TrueHD
+Codec ID                   : A_TRUEHD
+Duration                   : 1 h 56 min
+Bit rate mode              : Variable
+Bit rate                   : 3 120 kb/s
+Channel(s)                 : 6 channels
+Channel layout             : L R C LFE Ls Rs
+Sampling rate              : 48.0 kHz
+Bit depth                  : 24 bits
+Title                      : English Dolby TrueHD 5.1
+                            </pre>
+                        </div>
+                    </div>
+
+                    <!-- TAB CONTENT: COMMENTS -->
+                    <div id="tabComments" class="tab-pane space-y-6 hidden">
+                        <!-- Write Comment Form -->
+                        <div class="bg-slate-900/40 border border-slate-800 rounded-xl p-5">
+                            <h4 class="text-sm font-bold text-slate-200 mb-3">Leave a community comment</h4>
+                            <form onsubmit="postComment(event)" class="space-y-3">
+                                <textarea id="commentBox" placeholder="Write comment here. Be respectful. Seed after downloading!" rows="3" required
+                                          class="w-full bg-slate-950 border border-slate-800 rounded-lg p-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-cyan-500"></textarea>
+                                <div class="flex justify-between items-center">
+                                    <div class="text-[11px] text-slate-500">HTML is not supported. Use BBCode if needed.</div>
+                                    <button type="submit" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 text-xs font-bold px-4 py-2 rounded-lg transition-all active:scale-95 shadow-md">
+                                        Post Comment
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Comments Thread -->
+                        <div id="commentsList" class="space-y-4">
+                            <!-- Comment 1 -->
+                            <div class="bg-slate-900/40 border border-slate-800 rounded-xl p-5">
+                                <div class="flex items-center justify-between mb-2">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-8 h-8 rounded-full bg-emerald-500 text-slate-950 flex items-center justify-center font-bold text-xs uppercase">
+                                            SL
+                                        </div>
+                                        <div>
+                                            <span class="text-sm font-bold text-slate-200 hover:text-cyan-400 cursor-pointer">Snyders_Spartan</span>
+                                            <span class="bg-emerald-500/10 text-emerald-400 text-[9px] font-bold px-1.5 py-0.5 rounded ml-1.5">UPLOADER</span>
+                                        </div>
+                                    </div>
+                                    <span class="text-xs text-slate-500">2 days ago</span>
+                                </div>
+                                <p class="text-sm text-slate-300 pl-10 leading-relaxed">
+                                    Tested on my OLED + Denon AVR with Dolby Atmos virtualization. This VC-1 direct remux looks incredibly organic. Film grain is perfectly resolved unlike those standard modern stream rips that are plagued by compression artifacts. Keep seeding!
+                                </p>
+                            </div>
+
+                            <!-- Comment 2 -->
+                            <div class="bg-slate-900/40 border border-slate-800 rounded-xl p-5">
+                                <div class="flex items-center justify-between mb-2">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-8 h-8 rounded-full bg-cyan-500 text-slate-950 flex items-center justify-center font-bold text-xs uppercase">
+                                            KB
+                                        </div>
+                                        <div>
+                                            <span class="text-sm font-bold text-slate-200 hover:text-cyan-400 cursor-pointer">KryptonByte</span>
+                                            <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded ml-1.5">VIP</span>
+                                        </div>
+                                    </div>
+                                    <span class="text-xs text-slate-500">1 week ago</span>
+                                </div>
+                                <p class="text-sm text-slate-300 pl-10 leading-relaxed">
+                                    Superb seed speed! Remux size is totally worth it. The raw grit of Zack Snyder's colors on this Blu-ray format are unmatched. TrueHD audio packs serious chest punch. Thanks to FGT for packaging this!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Sidebar Details Panel (1/3 width) -->
+                <div class="space-y-6">
+                    <!-- Movie Metadata & Stats -->
+                    <div class="bg-slate-900/40 border border-slate-800 rounded-xl p-6 space-y-5">
+                        <h3 class="text-base font-bold text-white border-b border-slate-800 pb-3 flex items-center gap-2">
+                            <!-- Movie Icon -->
+                            <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"></path></svg>
+                            <span>Movie Metadata</span>
+                        </h3>
+                        
+                        <div class="space-y-4 text-sm">
+                            <div>
+                                <span class="text-slate-400 text-xs block mb-1">Director</span>
+                                <span class="font-semibold text-slate-200">Zack Snyder</span>
+                            </div>
+                            <div>
+                                <span class="text-slate-400 text-xs block mb-1">Cast Profiles</span>
+                                <span class="font-semibold text-slate-200 block">Gerard Butler (Leonidas)</span>
+                                <span class="font-semibold text-slate-200 block">Lena Headey (Gorgo)</span>
+                                <span class="font-semibold text-slate-200 block">David Wenham (Dilios)</span>
+                            </div>
+                            <div>
+                                <span class="text-slate-400 text-xs block mb-1">Genres</span>
+                                <span class="inline-block bg-slate-800 text-slate-300 text-xs px-2 py-0.5 rounded mr-1">Action</span>
+                                <span class="inline-block bg-slate-800 text-slate-300 text-xs px-2 py-0.5 rounded mr-1">War</span>
+                                <span class="inline-block bg-slate-800 text-slate-300 text-xs px-2 py-0.5 rounded">History</span>
+                            </div>
+                            <div>
+                                <span class="text-slate-400 text-xs block mb-1">IMDb Index Score</span>
+                                <div class="flex items-center gap-1.5">
+                                    <!-- Star icon -->
+                                    <svg class="w-4 h-4 text-amber-400 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                    <span class="font-bold text-slate-200">7.6 <span class="text-slate-500 font-normal text-xs">/ 10</span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hash and Security Details -->
+                    <div class="bg-slate-900/40 border border-slate-800 rounded-xl p-6 space-y-4">
+                        <h3 class="text-base font-bold text-white border-b border-slate-800 pb-3 flex items-center gap-2">
+                            <!-- Shield check icon -->
+                            <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                            <span>Security & Hash</span>
+                        </h3>
+                        <div class="space-y-3 text-xs">
+                            <div>
+                                <span class="text-slate-400 block mb-1">Torrent Hash Code</span>
+                                <span class="code-font text-slate-300 break-all bg-slate-950 p-2.5 rounded border border-slate-800 block text-[11px] leading-relaxed select-all">
+                                    3AA021F9F0E17BBCEE34A00284CD91EFE77BD2B0
+                                </span>
+                            </div>
+                            <div class="flex items-center gap-2 py-1">
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                                <span class="text-emerald-400 font-semibold">100% Malware Checked</span>
+                            </div>
+                            <div class="flex items-center gap-2 py-1">
+                                <span class="w-2.5 h-2.5 rounded-full bg-cyan-500"></span>
+                                <span class="text-cyan-400 font-semibold">Verified Original Bit-stream</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Side Advertising/Info Box Mock -->
+                    <div class="bg-gradient-to-br from-indigo-900/20 to-cyan-900/20 border border-cyan-800/30 rounded-xl p-5 text-center">
+                        <span class="text-[10px] text-cyan-400/80 uppercase tracking-widest font-bold">Recommended</span>
+                        <h4 class="text-sm font-bold text-white mt-1.5 mb-2">Always Protect Your Digital Identity</h4>
+                        <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                            Your internet provider can log your P2P traffic. Always hide your activity with a secure high-speed Tunnel VPN.
+                        </p>
+                        <a href="#" onclick="triggerVpnInstall()" class="inline-block bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs px-4 py-2.5 rounded-lg transition-all active:scale-95 shadow-md">
+                            Get Secured Today
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEARCH / FILTER STATE (Dynamically shown) -->
+        <div id="searchState" class="hidden">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+                <div>
+                    <h2 class="text-xl sm:text-2xl font-bold text-white">
+                        Search Results for "<span id="searchKeyword" class="text-cyan-400"></span>"
+                    </h2>
+                    <p class="text-xs text-slate-400 mt-1" id="searchResultsCount">Found 1 matching torrents</p>
+                </div>
+                <button onclick="resetToDefault(event)" class="text-xs font-semibold text-cyan-400 hover:text-cyan-300 flex items-center gap-1 bg-slate-900 border border-slate-800 px-3.5 py-2 rounded-xl transition-all hover:border-slate-700">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                    <span>Back to 300 (2007) details</span>
+                </button>
+            </div>
+
+            <!-- Search Results Index Table -->
+            <div class="bg-slate-900/40 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
+                <!-- Filter bar inside search state -->
+                <div class="p-4 bg-slate-900/60 border-b border-slate-800 flex flex-wrap justify-between items-center gap-4">
+                    <div class="flex gap-2">
+                        <button class="bg-cyan-500 text-slate-950 text-xs font-bold px-3 py-1.5 rounded-lg">All</button>
+                        <button class="text-slate-300 hover:text-white hover:bg-slate-800 text-xs font-bold px-3 py-1.5 rounded-lg transition-all">VIP Verified</button>
+                        <button class="text-slate-300 hover:text-white hover:bg-slate-800 text-xs font-bold px-3 py-1.5 rounded-lg transition-all">High Seeds</button>
+                    </div>
+                    <div class="text-xs text-slate-400 font-medium">
+                        Showing Torrents in US Database
+                    </div>
+                </div>
+
+                <!-- Table Content -->
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="border-b border-slate-800 text-slate-400 text-xs font-bold uppercase bg-slate-950/40">
+                                <th class="p-4">Name</th>
+                                <th class="p-4 text-right">Size</th>
+                                <th class="p-4 text-center">Health</th>
+                                <th class="p-4 text-right text-emerald-400">Seeds</th>
+                                <th class="p-4 text-right text-amber-500">Lech</th>
+                            </tr>
+                        </thead>
+                        <tbody id="searchResultsBody" class="divide-y divide-slate-800/60 text-sm">
+                            <!-- Populated dynamically through JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Global Toast Alert Container -->
+    <div id="toastContainer" class="fixed bottom-6 right-6 z-50 pointer-events-none space-y-3"></div>
+
+    <!-- UI Footer -->
+    <footer class="border-t border-[#1e293b] bg-[#070b13] py-12 mt-20 text-slate-500 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8 mb-8 border-b border-slate-900 pb-8">
+                <div class="flex items-center gap-2">
+                    <div class="bg-slate-800 text-slate-400 px-2.5 py-1 rounded font-black text-sm">T</div>
+                    <span class="text-base font-bold text-slate-300 tracking-tight">Torrents.com</span>
+                </div>
+                <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-slate-400">
+                    <a href="#" class="hover:text-cyan-400 transition-colors">DMCA Notice</a>
+                    <a href="#" class="hover:text-cyan-400 transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-cyan-400 transition-colors">Contact Support</a>
+                    <a href="#" class="hover:text-cyan-400 transition-colors">RSS Feed Archive</a>
+                </div>
+            </div>
+            <div class="text-center md:text-left space-y-2 leading-relaxed">
+                <p>Torrents.com (en-US) is a comprehensive metadata indexing and tracking search engine. All torrent database index structures are generated dynamically via distributed protocol DHT networks.</p>
+                <p>&copy; 2026 Torrents.com. All Rights Reserved. Delivered from US server points.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE SCRIPTS -->
+    <script>
+        // Set up mock torrent search database
+        const mockTorrentsDb = [
+            {
+                id: '300-vc1-remux',
+                name: '300.2007.1080p.BluRay.REMUX.VC-1.TrueHD.5.1-FGT',
+                category: 'Movies/1080p',
+                size: '28.42 GB',
+                seeds: 142,
+                leechers: 18,
+                health: 'Excellent',
+                hash: '3AA021F9F0E17BBCEE34A00284CD91EFE77BD2B0',
+                isDefault: true
+            },
+            {
+                id: '300-hevc-4k',
+                name: '300.2007.2160p.BluRay.REMUX.HEVC.DTS-HD.MA.5.1-FGT',
+                category: 'Movies/2160p',
+                size: '56.24 GB',
+                seeds: 212,
+                leechers: 34,
+                health: 'Excellent',
+                hash: 'A491A2E38A1D31CD781AB55E9F7AC81CE2A4181B'
+            },
+            {
+                id: '300-x264-rip',
+                name: '300.2007.1080p.BluRay.x264-ANARCHY',
+                category: 'Movies/1080p',
+                size: '8.82 GB',
+                seeds: 74,
+                leechers: 5,
+                health: 'Good',
+                hash: '66BA13FA56E9D21BE1A5F7E81CEB2983AE48B01F'
+            },
+            {
+                id: '300-spartans-classic',
+                name: 'The.300.Spartans.1962.1080p.BluRay.x264-SAD',
+                category: 'Movies/Classic',
+                size: '11.24 GB',
+                seeds: 23,
+                leechers: 2,
+                health: 'Good',
+                hash: 'B8C11AF6E0A12BC871A55ED3A1CE1D681B45F31C'
+            },
+            {
+                id: '300-rise-remux',
+                name: '300.Rise.of.an.Empire.2014.1080p.BluRay.REMUX.AVC.DTS-HD.MA.7.1-FGT',
+                category: 'Movies/1080p',
+                size: '31.12 GB',
+                seeds: 95,
+                leechers: 12,
+                health: 'Excellent',
+                hash: 'D8A21FA7E9E13BBCEEA21D47BD3A1CE85A4EBC13'
+            }
+        ];
+
+        let bookmarks = [];
+
+        // Global Alert Toast helper
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            
+            // Set styles based on toast type
+            const bgClass = type === 'success' ? 'bg-emerald-500 text-slate-950' : 
+                            type === 'error' ? 'bg-red-500 text-white' : 
+                            'bg-cyan-500 text-slate-950';
+
+            toast.className = `${bgClass} shadow-2xl p-4 rounded-xl flex items-center justify-between gap-4 text-sm font-semibold pointer-events-auto transform translate-y-2 opacity-0 transition-all duration-300 max-w-sm border border-black/10`;
+            
+            toast.innerHTML = `
+                <div class="flex items-center gap-2">
+                    <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <span>${message}</span>
+                </div>
+                <button onclick="this.parentElement.remove()" class="hover:opacity-75 transition-opacity">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            `;
+
+            container.appendChild(toast);
+            
+            // Trigger animation
+            setTimeout(() => {
+                toast.classList.remove('translate-y-2', 'opacity-0');
+            }, 10);
+
+            // Auto dismiss
+            setTimeout(() => {
+                toast.classList.add('translate-y-2', 'opacity-0');
+                setTimeout(() => toast.remove(), 300);
+            }, 4000);
+        }
+
+        // Bookmark Toggle
+        function toggleBookmark() {
+            const btn = document.getElementById('bookmarkBtn');
+            const icon = document.getElementById('bookmarkIcon');
+            
+            const isBookmarked = btn.classList.contains('bg-cyan-500/10');
+            
+            if (!isBookmarked) {
+                // Bookmarked
+                btn.classList.remove('bg-slate-800/60', 'hover:bg-slate-800', 'text-slate-300', 'border-slate-700/60');
+                btn.classList.add('bg-cyan-500/10', 'text-cyan-400', 'border-cyan-500/30', 'hover:bg-cyan-500/20');
+                icon.classList.remove('fill-none');
+                icon.classList.add('fill-current');
+                showToast("Added 300 VC-1 Remux to your local bookmarks!", "success");
+            } else {
+                // Removed
+                btn.classList.add('bg-slate-800/60', 'hover:bg-slate-800', 'text-slate-300', 'border-slate-700/60');
+                btn.classList.remove('bg-cyan-500/10', 'text-cyan-400', 'border-cyan-500/30', 'hover:bg-cyan-500/20');
+                icon.classList.add('fill-none');
+                icon.classList.remove('fill-current');
+                showToast("Removed from bookmarks.", "info");
+            }
+        }
+
+        // Magnet Link Clipboard Copy
+        function copyMagnet() {
+            // Simulated magnet URI for the movie
+            const mockMagnet = "magnet:?xt=urn:btih:3aa021f9f0e17bbcee34a00284cd91efe77bd2b0&dn=300.2007.1080p.BluRay.REMUX.VC-1.TrueHD.5.1-FGT&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969%2Fannounce";
+            
+            // Fallback copy implementation safely for IFrames
+            const dummy = document.createElement("textarea");
+            document.body.appendChild(dummy);
+            dummy.value = mockMagnet;
+            dummy.select();
+            document.execCommand("copy");
+            document.body.removeChild(dummy);
+
+            showToast("Magnet Link copied to your clipboard!", "success");
+        }
+
+        // Get Torrent Action
+        function triggerDownload() {
+            showToast("Connecting to trackers... Downloading .torrent metadata package.", "info");
+            setTimeout(() => {
+                showToast("Direct Torrent file fetched successfully!", "success");
+            }, 1200);
+        }
+
+        // Tab Switching Logic
+        function switchTab(tabId) {
+            // Hide all panes
+            const panes = document.querySelectorAll('.tab-pane');
+            panes.forEach(pane => pane.classList.add('hidden'));
+
+            // Show active pane
+            document.getElementById(tabId).classList.remove('hidden');
+
+            // Deactivate all tab button borders & styles
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('text-cyan-400', 'border-cyan-500');
+                btn.classList.add('text-slate-400', 'border-transparent', 'hover:text-slate-200');
+            });
+
+            // Activate current tab button
+            const activeBtn = document.getElementById(`btn-${tabId}`);
+            activeBtn.classList.add('text-cyan-400', 'border-cyan-500');
+            activeBtn.classList.remove('text-slate-400', 'border-transparent', 'hover:text-slate-200');
+        }
+
+        // Copy NFO text helper
+        function copyNfoText() {
+            const nfoText = document.getElementById('nfoContent').innerText;
+            const dummy = document.createElement("textarea");
+            document.body.appendChild(dummy);
+            dummy.value = nfoText;
+            dummy.select();
+            document.execCommand("copy");
+            document.body.removeChild(dummy);
+
+            showToast("MediaInfo/NFO logs copied to clipboard!", "success");
+        }
+
+        // Mock Post comment
+        function postComment(event) {
+            event.preventDefault();
+            const textarea = document.getElementById('commentBox');
+            const commentText = textarea.value.trim();
+            if (!commentText) return;
+
+            const list = document.getElementById('commentsList');
+            const newComment = document.createElement('div');
+            newComment.className = "bg-slate-900/40 border border-slate-800 rounded-xl p-5 transform translate-y-2 opacity-0 transition-all duration-300";
+            newComment.innerHTML = `
+                <div class="flex items-center justify-between mb-2">
+                    <div class="flex items-center gap-2">
+                        <div class="w-8 h-8 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center font-bold text-xs">
+                            ME
+                        </div>
+                        <div>
+                            <span class="text-sm font-bold text-slate-200">You (Anonymous)</span>
+                            <span class="bg-slate-800 text-slate-400 text-[9px] font-bold px-1.5 py-0.5 rounded ml-1.5">USER</span>
+                        </div>
+                    </div>
+                    <span class="text-xs text-slate-500">Just now</span>
+                </div>
+                <p class="text-sm text-slate-300 pl-10 leading-relaxed">
+                    ${commentText}
+                </p>
+            `;
+
+            list.insertBefore(newComment, list.firstChild);
+            textarea.value = '';
+
+            // Animate addition
+            setTimeout(() => {
+                newComment.classList.remove('translate-y-2', 'opacity-0');
+            }, 10);
+
+            showToast("Comment published locally!", "success");
+        }
+
+        // Mock Navigation to Specific Movies Category
+        function showCategory(category, event) {
+            if (event) event.preventDefault();
+            document.getElementById('searchInput').value = category;
+            handleSearch(null, category);
+        }
+
+        // Mock Search functionality
+        function handleSearch(event, forceQuery = null) {
+            if (event) event.preventDefault();
+            
+            const query = forceQuery || document.getElementById('searchInput').value.trim();
+            if (!query) {
+                showToast("Please enter a query or movie name", "error");
+                return;
+            }
+
+            // Perform simple keyword search matching
+            const results = mockTorrentsDb.filter(item => 
+                item.name.toLowerCase().includes(query.toLowerCase()) || 
+                item.category.toLowerCase().includes(query.toLowerCase())
+            );
+
+            // Populate the search results HTML
+            const resultsBody = document.getElementById('searchResultsBody');
+            resultsBody.innerHTML = '';
+
+            if (results.length === 0) {
+                resultsBody.innerHTML = `
+                    <tr>
+                        <td colspan="5" class="p-8 text-center text-slate-500">
+                            No torrents found in US database matching "${query}". Try searching "300".
+                        </td>
+                    </tr>
+                `;
+            } else {
+                results.forEach(torrent => {
+                    const tr = document.createElement('tr');
+                    tr.className = "hover:bg-slate-800/30 transition-colors group cursor-pointer";
+                    tr.onclick = (e) => {
+                        // If they clicked on magnet, copy instead of reloading details page
+                        if (e.target.closest('.magnet-click')) return;
+                        loadTorrentDetails(torrent.id);
+                    };
+
+                    const healthColor = torrent.health === 'Excellent' ? 'bg-emerald-500' : 'bg-amber-500';
+                    const healthText = torrent.health === 'Excellent' ? 'text-emerald-400' : 'text-amber-400';
+
+                    tr.innerHTML = `
+                        <td class="p-4 flex items-start gap-3">
+                            <!-- File Icon -->
+                            <svg class="w-5 h-5 text-slate-400 group-hover:text-cyan-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                            <div>
+                                <span class="font-semibold text-slate-200 group-hover:text-cyan-400 block transition-colors leading-snug break-all">
+                                    ${torrent.name}
+                                </span>
+                                <span class="text-[11px] text-slate-500 block mt-1">${torrent.category} &bull; Verified VIP</span>
+                            </div>
+                        </td>
+                        <td class="p-4 text-right font-mono text-xs text-slate-300 whitespace-nowrap">${torrent.size}</td>
+                        <td class="p-4 text-center whitespace-nowrap">
+                            <div class="inline-flex items-center gap-1.5">
+                                <span class="w-2 h-2 rounded-full ${healthColor}"></span>
+                                <span class="text-xs ${healthText}">${torrent.health}</span>
+                            </div>
+                        </td>
+                        <td class="p-4 text-right font-mono text-xs text-emerald-400 font-bold whitespace-nowrap">${torrent.seeds}</td>
+                        <td class="p-4 text-right font-mono text-xs text-amber-500 font-bold whitespace-nowrap">${torrent.leechers}</td>
+                    `;
+                    resultsBody.appendChild(tr);
+                });
+            }
+
+            // Switch layout states
+            document.getElementById('torrentDetailsState').classList.add('hidden');
+            document.getElementById('searchState').classList.remove('hidden');
+
+            document.getElementById('searchKeyword').innerText = query;
+            document.getElementById('searchResultsCount').innerText = `Found ${results.length} matching torrent(s) verified in 2026 database`;
+            
+            // Scroll back to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Go Back or Reload specific details
+        function loadTorrentDetails(id) {
+            // In a real application we would load metadata. For this mock, we only display details for the "300" VC-1 Remux.
+            if (id === '300-vc1-remux') {
+                resetToDefault();
+            } else {
+                showToast(`Loaded details page structure for: ${id}`, "info");
+                // For demonstration, keep them on the details state but update elements
+                resetToDefault();
+            }
+        }
+
+        function resetToDefault(event) {
+            if (event) event.preventDefault();
+            document.getElementById('searchState').classList.add('hidden');
+            document.getElementById('torrentDetailsState').classList.remove('hidden');
+            document.getElementById('searchInput').value = '';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function triggerVpnInstall() {
+            showToast("Routing encryption setup through private client tunnel...", "info");
+            setTimeout(() => {
+                showToast("Optimal server nodes set. Your secure protocol download is ready.", "success");
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
