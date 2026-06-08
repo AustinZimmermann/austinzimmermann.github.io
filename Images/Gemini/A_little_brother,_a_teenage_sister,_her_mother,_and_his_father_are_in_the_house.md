@@ -1,0 +1,2 @@
+<img width="1920" height="1047" alt="image" src="https://github.com/user-attachments/assets/8186c0a1-a960-4c69-a461-47a324546e47" />
+In the summer season, a little brother (short hair, red t-shirt, blue short jeans, white socks, black sneakers, white laces), a teenage sister (long hair, light blue sleeveless top, blue short skirt, white socks, black sneakers, white laces), her mother (ponytail), and his father are in the house (330 Pennington Dr, Mechanicsburg, PA 17055). (3D animation)
