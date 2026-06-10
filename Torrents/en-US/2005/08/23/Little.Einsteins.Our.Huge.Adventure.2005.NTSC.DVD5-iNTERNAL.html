@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShareZone :: Little.Einsteins.Our.Huge.Adventure.2005.NTSC.DVD5-iNTERNAL</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=VT323&display=swap');
+    
+    .font-mono-custom {
+      font-family: 'Courier Prime', 'Courier New', monospace;
+    }
+    .font-vt323 {
+      font-family: 'VT323', monospace;
+    }
+    .font-sans-custom {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    /* Custom scrollbars for retro aesthetics */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    .retro-scroll::-webkit-scrollbar-track {
+      background: #111827;
+    }
+    .retro-scroll::-webkit-scrollbar-thumb {
+      background: #374151;
+      border: 2px solid #111827;
+      border-radius: 4px;
+    }
+    .retro-scroll::-webkit-scrollbar-thumb:hover {
+      background: #4B5563;
+    }
+
+    /* CRT scanline effect for NFO and Retro views */
+    .crt-effect {
+      position: relative;
+      overflow: hidden;
+    }
+    .crt-effect::after {
+      content: " ";
+      display: block;
+      position: absolute;
+      top: 0; left: 0; bottom: 0; right: 0;
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+      aspect-ratio: auto;
+      background-size: 100% 3px, 3px 100%;
+      pointer-events: none;
+      z-index: 10;
+    }
+  </style>
+  <script>
+    // Tailwind Config Customization
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            retro: {
+              bg: '#0F172A',
+              surface: '#1E293B',
+              primary: '#0ea5e9',
+              primaryHover: '#0284c7',
+              success: '#10b981',
+              accent: '#f59e0b',
+              vintageTeal: '#0d9488'
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans-custom min-h-screen flex flex-col antialiased">
+
+  <!-- Core App Container -->
+  <div id="app" class="flex-grow flex flex-col">
+    
+    <!-- Top Nostalgic Status Bar -->
+    <div class="bg-slate-900 border-b border-slate-800 text-[11px] py-1 px-4 text-slate-400 flex flex-wrap justify-between items-center gap-2">
+      <div class="flex items-center gap-4">
+        <span><strong class="text-sky-400">SERVER TIME:</strong> Aug 23, 2005 - 19:42:01 UTC</span>
+        <span class="hidden md:inline">|</span>
+        <span class="hidden md:inline"><strong class="text-emerald-400">ONLINE USERS:</strong> 142,904</span>
+        <span class="hidden md:inline">|</span>
+        <span class="hidden md:inline"><strong class="text-amber-400">ACTIVE TORRENTS:</strong> 874,210</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <span>Welcome, <strong class="text-slate-200">Leecher_99</strong> (Ratio: <span class="text-emerald-400">1.84</span>)</span>
+        <button onclick="toggleTheme()" class="bg-slate-800 hover:bg-slate-700 text-[10px] text-slate-300 px-2 py-0.5 rounded border border-slate-700 transition flex items-center gap-1">
+          <svg class="w-3 h-3 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.46 5.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
+          <span id="theme-btn-text">Toggle Theme Style</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="bg-gradient-to-r from-slate-900 to-slate-950 border-b border-slate-800 px-4 md:px-8 py-5">
+      <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+        <!-- Logo and Brand -->
+        <div class="flex items-center gap-3">
+          <div class="bg-sky-500 text-slate-950 p-2 rounded-lg font-black text-xl shadow-lg shadow-sky-500/10 flex items-center justify-center">
+            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
+            </svg>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h1 class="text-2xl font-black tracking-tight text-white">SHARE<span class="text-sky-400">ZONE</span></h1>
+              <span class="bg-red-500/20 text-red-400 text-[10px] uppercase font-bold tracking-widest px-1.5 py-0.5 rounded border border-red-500/30">Beta 1.5</span>
+            </div>
+            <p class="text-[11px] text-slate-400">The premier BitTorrent indexer • Est. March 2005</p>
+          </div>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="w-full md:w-96 relative">
+          <div class="absolute inset-y-0 left-3 flex items-center pointer-events-none text-slate-400">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+          </div>
+          <input type="text" placeholder="Search 1,290,324 active torrents..." class="w-full pl-9 pr-24 py-2 rounded-lg bg-slate-900/90 border border-slate-700 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition">
+          <button class="absolute right-1.5 top-1.5 bottom-1.5 px-3 rounded bg-sky-500 hover:bg-sky-600 text-slate-950 text-xs font-bold transition">Search</button>
+        </div>
+
+        <!-- Navigation Links -->
+        <nav class="flex items-center gap-1 text-sm font-semibold">
+          <a href="#" class="px-3 py-1.5 text-slate-300 hover:text-sky-400 transition">Home</a>
+          <a href="#" class="px-3 py-1.5 text-sky-400 bg-sky-500/10 rounded-lg border border-sky-500/20 transition">Torrents</a>
+          <a href="#" class="px-3 py-1.5 text-slate-300 hover:text-sky-400 transition">Forums</a>
+          <a href="#" class="px-3 py-1.5 text-slate-300 hover:text-sky-400 transition">Upload</a>
+          <a href="#" class="px-3 py-1.5 text-slate-300 hover:text-sky-400 transition">FAQ</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow max-w-7xl w-full mx-auto p-4 md:p-6 grid grid-cols-1 lg:grid-cols-4 gap-6">
+      
+      <!-- LEFT SIDEBAR: Torrent Summary & Quick Downloader -->
+      <aside class="lg:col-span-1 flex flex-col gap-6">
+        
+        <!-- DVD Cover Art Widget -->
+        <div class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-lg p-4 flex flex-col items-center">
+          <div class="relative group cursor-zoom-in w-full flex justify-center bg-slate-950 rounded-lg overflow-hidden border border-slate-800 p-2">
+            <!-- Main Cover Render -->
+            <img 
+              id="cover-img"
+              src="https://d3c3ws7andfulm.cloudfront.net/covers/d7ef082b-e6c1-4e37-9448-8114ba0a1c50.jpg" 
+              alt="Little Einsteins: Our Huge Adventure DVD Cover" 
+              class="max-w-full h-auto rounded shadow-md transform group-hover:scale-105 transition duration-300"
+              onerror="this.src='https://images.unsplash.com/photo-1541963463532-d68292c34b19?w=400&auto=format&fit=crop&q=60'"
+            />
+            <div class="absolute bottom-4 right-4 bg-slate-950/80 backdrop-blur text-xs text-white px-2 py-1 rounded border border-slate-700 pointer-events-none opacity-0 group-hover:opacity-100 transition">
+              Click to Zoom
+            </div>
+          </div>
+          
+          <!-- DVD specifications label -->
+          <div class="mt-4 w-full grid grid-cols-2 gap-2 text-center text-xs">
+            <div class="bg-slate-950 p-2 rounded border border-slate-800">
+              <span class="text-slate-500 block">Format</span>
+              <strong class="text-sky-400 font-bold">DVD5 (Untouched)</strong>
+            </div>
+            <div class="bg-slate-950 p-2 rounded border border-slate-800">
+              <span class="text-slate-500 block">Region</span>
+              <strong class="text-emerald-400 font-bold">Region Free (0)</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Download Portal -->
+        <div class="bg-gradient-to-b from-slate-900 to-slate-950 border border-slate-800 rounded-xl p-5 shadow-lg flex flex-col gap-4">
+          <h3 class="text-sm font-bold uppercase tracking-wider text-slate-300 flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-sky-400"></span> Download Link
+          </h3>
+          
+          <button onclick="triggerSimulatedDownload()" class="w-full bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 text-slate-950 font-extrabold text-base py-3.5 rounded-lg shadow-lg hover:shadow-sky-500/10 active:scale-[0.98] transition flex items-center justify-center gap-2">
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path><path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path></svg>
+            ADD TO RETRO CLIENT
+          </button>
+
+          <button onclick="downloadTorrentFile()" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs py-2 rounded-lg transition flex items-center justify-center gap-1.5">
+            <svg class="w-4 h-4 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+            Download <span class="text-sky-400">.torrent</span> file <span class="text-[10px] text-slate-400">(43.7 KB)</span>
+          </button>
+
+          <!-- Peer statistics -->
+          <div class="bg-slate-950/80 border border-slate-800/80 rounded-lg p-3 space-y-2.5 text-xs">
+            <div class="flex justify-between items-center">
+              <span class="text-slate-400 flex items-center gap-1">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Seeds
+              </span>
+              <strong class="text-emerald-400 font-bold text-sm">184 <span class="text-[10px] text-slate-500">(Max: 320)</span></strong>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-slate-400 flex items-center gap-1">
+                <span class="w-2 h-2 rounded-full bg-amber-500"></span> Leechers
+              </span>
+              <strong class="text-amber-400 font-bold text-sm">31 <span class="text-[10px] text-slate-500">(Ratio: 5.9)</span></strong>
+            </div>
+            <div class="w-full bg-slate-900 h-1 rounded overflow-hidden">
+              <div class="bg-emerald-500 h-full" style="width: 85%;"></div>
+            </div>
+            <div class="flex justify-between text-[10px] text-slate-500">
+              <span>Health: Excellent</span>
+              <span>100% Verified</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Torrent Stats -->
+        <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-3 shadow-lg">
+          <h4 class="text-xs uppercase tracking-wider font-extrabold text-slate-400 border-b border-slate-800 pb-2">Torrent Metadata</h4>
+          
+          <div class="grid grid-cols-2 gap-y-2.5 text-slate-300">
+            <div class="text-slate-500">Added on:</div>
+            <div class="font-semibold text-right">Aug 23, 2005 15:10</div>
+            
+            <div class="text-slate-500">Total Size:</div>
+            <div class="font-semibold text-right">4.35 GB <br><span class="text-[9px] text-slate-500">(4,674,128,896 B)</span></div>
+            
+            <div class="text-slate-500">Info Hash:</div>
+            <div class="font-mono text-[9px] text-sky-400 break-all text-right leading-tight">8fbca087f9e8a7bc75f10204b78689ea582da087</div>
+
+            <div class="text-slate-500">Uploader:</div>
+            <div class="font-semibold text-emerald-400 text-right hover:underline cursor-pointer">SceneKing_05</div>
+
+            <div class="text-slate-500">Status:</div>
+            <div class="font-semibold text-right"><span class="bg-sky-500/10 text-sky-400 border border-sky-500/20 text-[9px] px-1.5 py-0.5 rounded uppercase">Verified Scene</span></div>
+          </div>
+        </div>
+
+      </aside>
+
+      <!-- RIGHT MAIN CONTENT: Info Tabs & Interactive Widgets -->
+      <section class="lg:col-span-3 flex flex-col gap-6">
+
+        <!-- Torrent Title Banner -->
+        <div class="bg-gradient-to-r from-slate-900 to-slate-950 border border-slate-800 p-6 rounded-xl shadow-lg relative overflow-hidden">
+          <div class="absolute -right-16 -top-16 w-36 h-36 bg-sky-500/10 rounded-full blur-2xl"></div>
+          
+          <div class="flex flex-wrap gap-2 mb-2.5">
+            <span class="bg-sky-500/10 text-sky-400 text-[10px] font-bold tracking-widest px-2.5 py-0.5 rounded border border-sky-500/20 uppercase">DVD-R / DVD5</span>
+            <span class="bg-emerald-500/10 text-emerald-400 text-[10px] font-bold tracking-widest px-2.5 py-0.5 rounded border border-emerald-500/20 uppercase">Release Day Rip</span>
+            <span class="bg-slate-800 text-slate-400 text-[10px] font-bold px-2.5 py-0.5 rounded">Kids / Educational</span>
+          </div>
+
+          <h2 class="text-xl md:text-2xl font-black text-white leading-snug tracking-tight">
+            Little.Einsteins.Our.Huge.Adventure.2005.DVD5.MULTi-iNTERNAL
+          </h2>
+          <p class="text-slate-400 text-sm mt-1.5 flex items-center gap-1.5">
+            <span>Direct DVD5 Untouched Rip released on the exact DVD debut date (August 23, 2005).</span>
+          </p>
+        </div>
+
+        <!-- Simulated Active BitTorrent Client Widget (HIGH-FIDELITY INTERACTIVENESS) -->
+        <div id="torrent-client" class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-2xl transition">
+          <div class="bg-slate-950 px-4 py-3 border-b border-slate-800 flex justify-between items-center flex-wrap gap-2">
+            <div class="flex items-center gap-2">
+              <span class="flex h-2 w-2 relative">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-sky-500"></span>
+              </span>
+              <h4 class="text-xs font-bold uppercase tracking-wider text-slate-200">ShareZone Local Torrent Engine (Built-In WebClient)</h4>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="text-[10px] text-slate-500">Client Compatibility: Azureus / uTorrent v1.1.7</span>
+            </div>
+          </div>
+
+          <div class="p-4 md:p-5">
+            <!-- Client Download progress indicator & actions -->
+            <div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 mb-4">
+              <div>
+                <div class="text-xs text-slate-400">Selected Torrent:</div>
+                <div class="text-sm font-bold text-slate-200 truncate max-w-md">Little.Einsteins.Our.Huge.Adventure.2005.NTSC.DVD5-iNTERNAL</div>
+              </div>
+
+              <!-- Controls -->
+              <div class="flex items-center gap-2">
+                <button id="btn-start" onclick="toggleDownloadProcess()" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold text-xs px-3.5 py-2 rounded transition flex items-center gap-1">
+                  <span id="start-btn-icon">▶</span> <span id="start-btn-text">Start Download</span>
+                </button>
+                <button onclick="resetDownloadProcess()" class="bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-xs px-3.5 py-2 rounded border border-slate-700 transition">
+                  Reset
+                </button>
+              </div>
+            </div>
+
+            <!-- Dashboard stats grid -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 bg-slate-950/70 p-4 rounded-lg border border-slate-800 text-xs mb-4">
+              <div>
+                <span class="text-slate-500 block">Download Speed</span>
+                <strong id="client-dl-speed" class="text-sky-400 text-sm font-bold">0.0 KB/s</strong>
+              </div>
+              <div>
+                <span class="text-slate-500 block">Upload Speed</span>
+                <strong id="client-ul-speed" class="text-emerald-400 text-sm font-bold">0.0 KB/s</strong>
+              </div>
+              <div>
+                <span class="text-slate-500 block">Time Remaining (ETA)</span>
+                <strong id="client-eta" class="text-amber-400 text-sm font-bold">--:--:--</strong>
+              </div>
+              <div>
+                <span class="text-slate-500 block">Progress</span>
+                <strong id="client-percent" class="text-slate-200 text-sm font-bold">0.00 %</strong>
+              </div>
+            </div>
+
+            <!-- Modern Fluid Retro Progress Bar -->
+            <div class="relative w-full bg-slate-950 border border-slate-800 h-6 rounded-lg overflow-hidden mb-5">
+              <div id="client-progress-bar" class="bg-gradient-to-r from-sky-600 via-sky-500 to-sky-400 h-full transition-all duration-300 flex items-center justify-end px-3" style="width: 0%;">
+                <span id="client-percent-float" class="text-[9px] font-black text-slate-950 select-none"></span>
+              </div>
+            </div>
+
+            <!-- Interactive Speed Limiter -->
+            <div class="bg-slate-950 p-4 rounded-lg border border-slate-800 mb-5">
+              <div class="flex justify-between items-center text-xs mb-1">
+                <span class="text-slate-400 font-medium">Simulated Connection Speed Throttle (2005 Broadband Limit):</span>
+                <span id="speed-indicator" class="text-sky-400 font-bold font-mono">450 KB/s (High Speed Cable)</span>
+              </div>
+              <input 
+                id="speed-slider" 
+                type="range" 
+                min="50" 
+                max="2000" 
+                value="450" 
+                oninput="adjustSpeed(this.value)" 
+                class="w-full accent-sky-400 h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer"
+              />
+              <div class="flex justify-between text-[10px] text-slate-600 mt-1">
+                <span>50 KB/s (DSL Standard)</span>
+                <span>500 KB/s (Mid T1)</span>
+                <span>1.0 MB/s (High T3)</span>
+                <span>2.0 MB/s (Future Fiber Core)</span>
+              </div>
+            </div>
+
+            <!-- Dynamic Piece Map Matrix -->
+            <div>
+              <div class="flex justify-between items-center text-xs mb-2">
+                <span class="text-slate-400 font-medium">Piece Map (Visual BitTorrent Distribution Block - 100 Sectors)</span>
+                <span class="text-[10px] text-slate-500 flex items-center gap-2">
+                  <span class="inline-block w-2.5 h-2.5 bg-slate-850 border border-slate-700"></span> Empty
+                  <span class="inline-block w-2.5 h-2.5 bg-sky-400/50"></span> Downloading
+                  <span class="inline-block w-2.5 h-2.5 bg-sky-500 shadow-sm"></span> Completed
+                </span>
+              </div>
+              <div id="piece-map" class="grid grid-cols-10 sm:grid-cols-20 gap-1 p-2 bg-slate-950 rounded-lg border border-slate-850">
+                <!-- Generating 100 piece blocks via JS loop -->
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Primary Tabs Navigation Card -->
+        <div class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-lg">
+          
+          <!-- Tab Headers -->
+          <div class="bg-slate-950 border-b border-slate-800 flex flex-wrap text-xs md:text-sm">
+            <button onclick="switchTab('details')" id="tab-btn-details" class="px-5 py-3.5 font-bold border-b-2 border-sky-500 text-sky-400 bg-slate-900/50 transition flex items-center gap-1.5">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              DVD & Show Info
+            </button>
+            <button onclick="switchTab('nfo')" id="tab-btn-nfo" class="px-5 py-3.5 font-bold border-b-2 border-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/30 transition flex items-center gap-1.5">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+              NFO File
+            </button>
+            <button onclick="switchTab('files')" id="tab-btn-files" class="px-5 py-3.5 font-bold border-b-2 border-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/30 transition flex items-center gap-1.5">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 19a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12zM9 9h6v2H9V9z"></path></svg>
+              Interactive File Tree <span class="bg-slate-800 text-slate-400 px-1.5 py-0.5 rounded text-[10px] ml-1">11 Files</span>
+            </button>
+            <button onclick="switchTab('trackers')" id="tab-btn-trackers" class="px-5 py-3.5 font-bold border-b-2 border-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/30 transition flex items-center gap-1.5">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+              Tracker List
+            </button>
+            <button onclick="switchTab('burn')" id="tab-btn-burn" class="px-5 py-3.5 font-bold border-b-2 border-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/30 transition flex items-center gap-1.5">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+              Burn Guide
+            </button>
+          </div>
+
+          <!-- Tab Contents -->
+          <div class="p-6">
+            
+            <!-- TAB 1: DETAILS & MOVIE INFO -->
+            <div id="tab-details" class="space-y-6">
+              <div>
+                <h3 class="text-lg font-bold text-white border-b border-slate-800 pb-2 mb-4">Movie Description</h3>
+                <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                  Welcome to the DVD debut of <strong>Little Einsteins: Our Huge Adventure</strong>! Set to release on exactly August 23, 2005, this feature-length pilot starts the globally renowned adventure of four young friends (Leo, June, Quincy, Annie) and their sentient red spaceship Rocket on a musical odyssey across the globe.
+                </p>
+                <p class="text-slate-300 text-sm leading-relaxed">
+                  Integrating classic music themes and exquisite fine art backgrounds into every single scene, this release provides pristine high-quality animation, multiple audio options, interactive games, and menu designs crafted specifically to educate and interact with young minds.
+                </p>
+              </div>
+
+              <!-- Musical & Art Integrations Grid -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-slate-950 p-4 rounded-xl border border-slate-850">
+                  <span class="text-xs text-sky-400 font-bold uppercase tracking-wider block mb-1">Theme Musical Work</span>
+                  <strong class="text-white text-sm block">Symphony No. 9 in D minor, Op. 125</strong>
+                  <span class="text-slate-400 text-xs mt-1 block">Composed by Ludwig van Beethoven • Features prominently throughout the entire adventure to spark analytical audial engagement.</span>
+                </div>
+                <div class="bg-slate-950 p-4 rounded-xl border border-slate-850">
+                  <span class="text-xs text-emerald-400 font-bold uppercase tracking-wider block mb-1">Visual Arts Showcased</span>
+                  <strong class="text-white text-sm block">The Great Wave off Kanagawa</strong>
+                  <span class="text-slate-400 text-xs mt-1 block">By Katsushika Hokusai, alongside other iconic global art works seamlessly interlaced to guide viewers through beautiful world cultures.</span>
+                </div>
+              </div>
+
+              <!-- Audio & Features specs -->
+              <div>
+                <h3 class="text-sm uppercase tracking-wider font-extrabold text-slate-400 mb-3">DVD Specifications</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                  <div class="bg-slate-950 p-3 rounded-lg border border-slate-850">
+                    <span class="text-slate-500 block mb-1">Audio Tracks</span>
+                    <ul class="space-y-1 text-slate-300 font-semibold">
+                      <li>• English DD 5.1 Surround</li>
+                      <li>• Spanish Dolby Surround 2.0</li>
+                      <li>• French Dolby Surround 2.0</li>
+                    </ul>
+                  </div>
+                  <div class="bg-slate-950 p-3 rounded-lg border border-slate-850">
+                    <span class="text-slate-500 block mb-1">Aspect Ratio & Style</span>
+                    <ul class="space-y-1 text-slate-300 font-semibold">
+                      <li>• Full Screen Format (1.33:1)</li>
+                      <li>• NTSC Color System</li>
+                      <li>• Interactive Animated Menus</li>
+                    </ul>
+                  </div>
+                  <div class="bg-slate-950 p-3 rounded-lg border border-slate-850">
+                    <span class="text-slate-500 block mb-1">Subtitles Included</span>
+                    <ul class="space-y-1 text-slate-300 font-semibold">
+                      <li>• English SDH Subtitles</li>
+                      <li>• French Captioning</li>
+                      <li>• Spanish Captions</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- TAB 2: NFO FILE (CLASSIC CONSOLE MODE) -->
+            <div id="tab-nfo" class="hidden">
+              <div class="bg-black rounded-lg border border-slate-800 p-4 crt-effect retro-scroll overflow-x-auto text-emerald-400 font-mono-custom text-xs leading-5">
+                <pre class="whitespace-pre">
+###############################################################################
+  _________  ___ ______________ ___________
+ /   _____/ /   |   \_   _    _\\_   _____/
+ \_____  \ /    ~    \   |    |  \    __)_ 
+ /        \\    Y    /   |    |  /        \
+/_______  / \___|_  /|___|____| /_______  /
+        \/        \/                    \/ 
+
+  SHAREZONE RELEASE :: ON THE DAY OF RELEASE August 23, 2005!
+###############################################################################
+
+* RELEASE NAME...: Little.Einsteins.Our.Huge.Adventure.2005.NTSC.DVD5-iNTERNAL
+* SIZE...........: 4.35 Gigabytes (1 Untouched Single Layer DVD5 ISO File)
+* SOURCE.........: Retail DVD (US Region 1)
+* FORMAT.........: Untouched DVD Video System (MPEG2)
+* RE-ENCODED.....: Absolutely NO! ZERO Compression Applied.
+* AUDIO..........: [x] English AC3 5.1 (Surround)
+                   [x] French Stereo DD 2.0
+                   [x] Spanish Stereo DD 2.0
+* SUBTITLES......: English, French, Spanish
+* THEMES.........: Beethoven (Symphony No. 9) & Hokusai (Artistry Wave)
+
+=======================[ RELEASE GROUP NOTES ]======================
+  Here is the untouched DVD5 of the official premiere movie that
+  launched the incredible Little Einsteins television series on DVD! 
+  It has been released globally today, and we present to you the 1:1
+  pristine copy. Dynamic responsive menus, interactive bonus games,
+  classical music setups are all completely functional on standalone players.
+
+=======================[ BURNING SPECS ]=============================
+  - ISO image can be directly burned onto standard cheap DVD-R.
+  - No need for DVD9 Dual Layer discs! Fits exactly on 1 DVD5.
+  - Recommended Software: Alcohol 120% or Nero Burning ROM.
+  - Slow burn speeds recommended (2.4x / 4x max) to reduce buffer
+    underruns and improve readability on cheap, old standalone units.
+
+  GREETINGS TO: SCENE RELEASERS, P2P ENTHUSIASTS, AND SEEDERS GLOBALLY!
+  "Share everything, hoard nothing!"
+###############################################################################</pre>
+              </div>
+            </div>
+
+            <!-- TAB 3: FILE TREE VISUALIZER (INTERACTIVE EXTRAS) -->
+            <div id="tab-files" class="hidden space-y-4">
+              <div class="bg-slate-950 p-4 rounded-xl border border-slate-850 flex flex-col md:flex-row justify-between gap-4 text-xs">
+                <div>
+                  <h4 class="font-bold text-white mb-1">DVD-Video Structure File Explorer</h4>
+                  <p class="text-slate-400">Click any individual file below to view technical metadata & content details.</p>
+                </div>
+                <div class="text-slate-400 flex items-center gap-1">
+                  <span>Directory: </span>
+                  <span class="bg-slate-900 border border-slate-800 text-sky-400 font-mono px-2 py-1 rounded">/Little_Einsteins_DVD5/</span>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+                <!-- Folders and File Navigation Tree -->
+                <div class="md:col-span-7 bg-slate-950 p-4 rounded-xl border border-slate-850 space-y-2 select-none">
+                  <!-- Root DVD Video directory -->
+                  <div class="flex items-center gap-2 text-sm font-semibold text-slate-200">
+                    <svg class="w-4 h-4 text-amber-500 fill-current" viewBox="0 0 20 20"><path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"></path></svg>
+                    <span>LE10NNM1</span>
+                  </div>
+
+                  <!-- VIDEO_TS sub-directory tree block -->
+                  <div class="ml-4 pl-4 border-l-2 border-slate-800 space-y-1.5">
+                    <div class="flex items-center gap-2 text-xs font-semibold text-amber-400">
+                      <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 20 20"><path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"></path></svg>
+                      <span>VIDEO_TS</span>
+                      <span class="text-[10px] text-slate-500 font-normal">(Folder containing raw streams)</span>
+                    </div>
+
+                    <!-- Files -->
+                    <div class="ml-4 pl-4 border-l-2 border-slate-800 space-y-1">
+                      <!-- VOB files, IFO files, BUP files with interactive selection handler -->
+                      <button onclick="inspectFile('VIDEO_TS.IFO', '12 KB', 'DVD Master Information file', 'Contains navigational data structure, region block checks, and chapter pointer headers for your hardware DVD player.')" class="w-full text-left py-1 px-2 hover:bg-slate-900 text-xs text-sky-300 font-mono flex items-center justify-between rounded transition">
+                        <span>📄 VIDEO_TS.IFO</span>
+                        <span class="text-[10px] text-slate-500">12 KB</span>
+                      </button>
+                      <button onclick="inspectFile('VIDEO_TS.BUP', '12 KB', 'BackUp Information file', 'Perfect exact replica duplicate of VIDEO_TS.IFO. Provides protection if the primary IFO block gets scratched.')" class="w-full text-left py-1 px-2 hover:bg-slate-900 text-xs text-slate-400 font-mono flex items-center justify-between rounded transition">
+                        <span>📄 VIDEO_TS.BUP</span>
+                        <span class="text-[10px] text-slate-500">12 KB</span>
+                      </button>
+                      <button onclick="inspectFile('VIDEO_TS.VOB', '240 KB', 'DVD Video Menu File Container', 'Contains the graphical intro animation loop and system main background music stream for the main root selector menu.')" class="w-full text-left py-1 px-2 hover:bg-slate-900 text-xs text-emerald-400 font-mono flex items-center justify-between rounded transition">
+                        <span>📄 VIDEO_TS.VOB</span>
+                        <span class="text-[10px] text-slate-500 font-bold">240 KB</span>
+                      </button>
+                      <button onclick="inspectFile('VTS_01_0.IFO', '84 KB', 'Video Title Set Primary Pointer', 'Directs the laser navigation to the primary film track, setting language selections for the soundtrack streams.')" class="w-full text-left py-1 px-2 hover:bg-slate-900 text-xs text-sky-300 font-mono flex items-center justify-between rounded transition">
+                        <span>📄 VTS_01_0.IFO</span>
+                        <span class="text-[10px] text-slate-500">84 KB</span>
+                      </button>
+                      <button onclick="inspectFile('VTS_01_0.VOB', '120.4 MB', 'Interactive Menus Video Container', 'Contains the secondary custom menus including the interactive classical music quiz game details and character previews.')" class="w-full text-left py-1 px-2 hover:bg-slate-900 text-xs text-emerald-400 font-mono flex items-center justify-between rounded transition">
+                        <span>📄 VTS_01_0.VOB</span>
+                        <span class="text-[10px] text-slate-500 font-bold">120.4 MB</span>
+                      </button>
+                      <button onclick="inspectFile('VTS_01_1.VOB', '1,024 MB', 'Main Movie Stream - Part 1', 'Holds the first 25 minutes of high-bitrate untouched MPEG-2 raw presentation, featuring the pilot adventure intro.')" class="w-full text-left py-1 px-2 hover:bg-slate-900 text-xs text-emerald-400 font-mono flex items-center justify-between rounded transition">
+                        <span>📄 VTS_01_1.VOB</span>
+                        <span class="text-[10px] text-slate-500 font-bold">1,024 MB</span>
+                      </button>
+                      <button onclick="inspectFile('VTS_01_2.VOB', '1,024 MB', 'Main Movie Stream - Part 2', 'Holds the middle 25 minutes of MPEG-2 footage. Employs Dolby Digital audio streams and Hokusai art integrations.')" class="w-full text-left py-1 px-2 hover:bg-slate-900 text-xs text-emerald-400 font-mono flex items-center justify-between rounded transition">
+                        <span>📄 VTS_01_2.VOB</span>
+                        <span class="text-[10px] text-slate-500 font-bold">1,024 MB</span>
+                      </button>
+                      <button onclick="inspectFile('VTS_01_3.VOB', '1,024 MB', 'Main Movie Stream - Part 3', 'Completes the final resolution of the pilot adventure and showcases original Disney credits and classical music specs.')" class="w-full text-left py-1 px-2 hover:bg-slate-900 text-xs text-emerald-400 font-mono flex items-center justify-between rounded transition">
+                        <span>📄 VTS_01_3.VOB</span>
+                        <span class="text-[10px] text-slate-500 font-bold">1,024 MB</span>
+                      </button>
+                      <button onclick="inspectFile('VTS_01_4.VOB', '840.6 MB', 'Special Bonus Features Container', 'Includes dedicated animated bonus shorts, interactive games (Rocket\'s Musical Expedition), and visual galleries.')" class="w-full text-left py-1 px-2 hover:bg-slate-900 text-xs text-emerald-400 font-mono flex items-center justify-between rounded transition">
+                        <span>📄 VTS_01_4.VOB</span>
+                        <span class="text-[10px] text-slate-500 font-bold">840.6 MB</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Inspection Panel -->
+                <div class="md:col-span-5 bg-slate-950 p-4 rounded-xl border border-slate-850 flex flex-col justify-between">
+                  <div>
+                    <h5 class="text-xs font-bold text-slate-400 uppercase tracking-widest border-b border-slate-800 pb-2 mb-3">File Inspector</h5>
+                    
+                    <div class="space-y-3">
+                      <div>
+                        <span class="text-[10px] text-slate-500 block">FILENAME</span>
+                        <strong id="inspect-name" class="text-sm font-mono text-sky-400 block break-all">VIDEO_TS.VOB</strong>
+                      </div>
+                      <div>
+                        <span class="text-[10px] text-slate-500 block">FILESIZE</span>
+                        <strong id="inspect-size" class="text-sm text-slate-200 block font-bold">240 KB</strong>
+                      </div>
+                      <div>
+                        <span class="text-[10px] text-slate-500 block">CATEGORY / ROLE</span>
+                        <strong id="inspect-role" class="text-xs text-amber-400 block font-semibold">DVD Video Menu File Container</strong>
+                      </div>
+                      <div>
+                        <span class="text-[10px] text-slate-500 block">DESCRIPTION</span>
+                        <p id="inspect-desc" class="text-xs text-slate-300 leading-relaxed mt-1">Contains the graphical intro animation loop and system main background music stream for the main root selector menu.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="mt-4 pt-4 border-t border-slate-900 text-[10px] text-slate-500 flex items-center gap-1.5">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <span>Click any file in the tree to examine its parameters.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- TAB 4: TRACKER LIST -->
+            <div id="tab-trackers" class="hidden space-y-4">
+              <div class="bg-slate-950 p-4 rounded-xl border border-slate-850 flex flex-col md:flex-row justify-between gap-4 text-xs">
+                <div>
+                  <h4 class="font-bold text-white mb-1">Active Tracker Servers (Circa 2005)</h4>
+                  <p class="text-slate-400">Main announcer endpoints used to discover peers and distribute pieces.</p>
+                </div>
+                <div class="text-emerald-400 flex items-center gap-1.5 font-bold">
+                  <span class="w-2 h-2 rounded-full bg-emerald-500"></span> All Systems Operational
+                </div>
+              </div>
+
+              <div class="overflow-x-auto">
+                <table class="w-full text-left text-xs bg-slate-950 border border-slate-850 rounded-lg overflow-hidden">
+                  <thead class="bg-slate-900 text-slate-400 uppercase font-bold border-b border-slate-850">
+                    <tr>
+                      <th class="p-3">Announce URL</th>
+                      <th class="p-3 text-center">Status</th>
+                      <th class="p-3 text-center">Ping</th>
+                      <th class="p-3 text-center">Seeds</th>
+                      <th class="p-3 text-center">Leechers</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-slate-900 text-slate-300 font-mono">
+                    <tr class="hover:bg-slate-900/50">
+                      <td class="p-3 text-sky-300 break-all">http://tracker.sharezone.org:6969/announce</td>
+                      <td class="p-3 text-center"><span class="text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded text-[10px]">Online</span></td>
+                      <td class="p-3 text-center">24 ms</td>
+                      <td class="p-3 text-center font-bold">142</td>
+                      <td class="p-3 text-center">21</td>
+                    </tr>
+                    <tr class="hover:bg-slate-900/50">
+                      <td class="p-3 text-sky-300 break-all">http://tracker.prq.to/announce</td>
+                      <td class="p-3 text-center"><span class="text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded text-[10px]">Online</span></td>
+                      <td class="p-3 text-center">45 ms</td>
+                      <td class="p-3 text-center font-bold">32</td>
+                      <td class="p-3 text-center">6</td>
+                    </tr>
+                    <tr class="hover:bg-slate-900/50">
+                      <td class="p-3 text-sky-300 break-all">udp://tracker.openbittorrent.com:80/announce</td>
+                      <td class="p-3 text-center"><span class="text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded text-[10px]">Online</span></td>
+                      <td class="p-3 text-center">18 ms</td>
+                      <td class="p-3 text-center font-bold">10</td>
+                      <td class="p-3 text-center">4</td>
+                    </tr>
+                    <tr class="hover:bg-slate-900/50">
+                      <td class="p-3 text-sky-300 break-all">http://open.demonii.com:1337/announce</td>
+                      <td class="p-3 text-center"><span class="text-amber-400 bg-amber-500/10 px-1.5 py-0.5 rounded text-[10px]">Backup</span></td>
+                      <td class="p-3 text-center">112 ms</td>
+                      <td class="p-3 text-center font-bold">0</td>
+                      <td class="p-3 text-center">0</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- TAB 5: BURN GUIDE -->
+            <div id="tab-burn" class="hidden space-y-6">
+              <div>
+                <h3 class="text-lg font-bold text-white border-b border-slate-800 pb-2 mb-4">Ultimate DVD5 Burning Guide (2005 Edition)</h3>
+                <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                  Because this release represents an <strong>untouched 1:1 DVD5 single-layer copy</strong> of the original retail disc, you do not need double-layer discs (DVD9) or compression tools like DVD Shrink! It fits precisely on standard single-layer blanks (DVD-R or DVD+R).
+                </p>
+              </div>
+
+              <!-- Software selectors and tutorials -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Method 1: Alcohol 120% -->
+                <div class="bg-slate-950 p-5 rounded-xl border border-slate-850 space-y-3">
+                  <div class="flex items-center gap-2 border-b border-slate-800 pb-2">
+                    <div class="bg-sky-500/15 text-sky-400 p-1.5 rounded text-xs font-bold font-mono">METHOD A</div>
+                    <h4 class="font-bold text-white text-sm">Burning with Alcohol 120%</h4>
+                  </div>
+                  <ol class="space-y-2 text-xs text-slate-300 list-decimal pl-4 leading-relaxed">
+                    <li>Launch <strong>Alcohol 120%</strong> on your PC.</li>
+                    <li>Click the <strong>"Image Burning Wizard"</strong> from the left sidebar panel.</li>
+                    <li>Browse and select the downloaded <code>Little.Einsteins.Our.Huge.Adventure.2005.NTSC.DVD5-iNTERNAL.iso</code> file.</li>
+                    <li>Set Write Speed to <strong>4x</strong> (highly recommended to prevent burning failures).</li>
+                    <li>Under Write Method, select <strong>"DAO / SAO"</strong> (Disc-At-Once).</li>
+                    <li>Press <strong>Start</strong> and wait ~12-15 minutes for execution.</li>
+                  </ol>
+                </div>
+
+                <!-- Method 2: Nero Burning ROM -->
+                <div class="bg-slate-950 p-5 rounded-xl border border-slate-850 space-y-3">
+                  <div class="flex items-center gap-2 border-b border-slate-800 pb-2">
+                    <div class="bg-emerald-500/15 text-emerald-400 p-1.5 rounded text-xs font-bold font-mono">METHOD B</div>
+                    <h4 class="font-bold text-white text-sm">Burning with Nero Express / Nero 6</h4>
+                  </div>
+                  <ol class="space-y-2 text-xs text-slate-300 list-decimal pl-4 leading-relaxed">
+                    <li>Launch <strong>Nero Burning ROM</strong> or Nero Express.</li>
+                    <li>Select <strong>"Disc Image or Saved Project"</strong> under the standard prompt.</li>
+                    <li>Select the downloaded DVD5 image file.</li>
+                    <li>Insert a high-quality blank DVD-R into your DVD writer tray.</li>
+                    <li>Check the <strong>“Verify data on disc after burning”</strong> box to ensure full laser readability.</li>
+                    <li>Set Write Speed to <strong>2.4x / 4x</strong>, and click <strong>Burn</strong>.</li>
+                  </ol>
+                </div>
+              </div>
+
+              <!-- Quick burning warnings -->
+              <div class="bg-amber-500/10 border border-amber-500/20 rounded-xl p-4 flex gap-3 text-xs text-amber-400">
+                <span class="text-xl">⚠️</span>
+                <div>
+                  <strong class="font-bold block mb-0.5">Critical 2005 Burning Best Practices:</strong>
+                  <p class="leading-relaxed text-slate-300">Avoid using your computer for heavy workloads (like playing World of Warcraft or rendering video clips) while burning. Buffer-underruns on older IDE writers can ruin the blank DVD, creating a "coaster"!</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Dynamic User Feedback & Interactive Forums Section -->
+        <div class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-lg">
+          <div class="bg-slate-950 px-5 py-4 border-b border-slate-800 flex justify-between items-center">
+            <h4 class="text-xs uppercase tracking-wider font-extrabold text-slate-300 flex items-center gap-1.5">
+              <svg class="w-4 h-4 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+              Community Comments & Reviews (<span id="comment-count">4</span>)
+            </h4>
+            <span class="text-[10px] text-slate-500">Sign in is not required to comment</span>
+          </div>
+
+          <div class="p-6 space-y-6">
+            
+            <!-- Comment Form -->
+            <form onsubmit="postNewComment(event)" class="space-y-3 bg-slate-950 p-4 rounded-xl border border-slate-850">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-[10px] text-slate-500 font-bold uppercase mb-1">Pseudonym / Username</label>
+                  <input id="form-name" type="text" required placeholder="e.g. NeroBurner_99" class="w-full px-3 py-2 text-xs rounded bg-slate-900 border border-slate-800 text-slate-200 focus:outline-none focus:border-sky-500 transition">
+                </div>
+                <div>
+                  <label class="block text-[10px] text-slate-500 font-bold uppercase mb-1">Broadband Provider (Optional)</label>
+                  <input id="form-isp" type="text" placeholder="e.g. Comcast Cable / AOL Dial-up" class="w-full px-3 py-2 text-xs rounded bg-slate-900 border border-slate-800 text-slate-200 focus:outline-none focus:border-sky-500 transition">
+                </div>
+              </div>
+              <div>
+                <label class="block text-[10px] text-slate-500 font-bold uppercase mb-1">Your Comment / Verification Report</label>
+                <textarea id="form-body" rows="3" required placeholder="Tell us if the image successfully burned, audio works, menus, or seed status..." class="w-full px-3 py-2 text-xs rounded bg-slate-900 border border-slate-800 text-slate-200 focus:outline-none focus:border-sky-500 transition"></textarea>
+              </div>
+              <div class="flex justify-between items-center flex-wrap gap-2 pt-1">
+                <span class="text-[10px] text-slate-500">Please remain civil and seed your completed downloads!</span>
+                <button type="submit" class="bg-sky-500 hover:bg-sky-600 text-slate-950 font-bold text-xs px-4 py-2 rounded transition">
+                  Submit Comment
+                </button>
+              </div>
+            </form>
+
+            <!-- Preloaded Comments List -->
+            <div id="comments-container" class="space-y-4">
+              
+              <!-- Comment 1 -->
+              <div class="bg-slate-955 p-4 rounded-xl border border-slate-850 space-y-2 text-xs">
+                <div class="flex justify-between items-start flex-wrap gap-2">
+                  <div class="flex items-center gap-2">
+                    <strong class="text-emerald-400 font-bold">NeroBurner_99</strong>
+                    <span class="text-[10px] bg-sky-500/10 text-sky-400 border border-sky-500/20 px-1 rounded">VIP Seeder</span>
+                    <span class="text-[10px] text-slate-500 font-mono">ISP: Comcast Cable</span>
+                  </div>
+                  <span class="text-[10px] text-slate-500 font-mono">Aug 23, 2005 - 15:45 UTC</span>
+                </div>
+                <p class="text-slate-300 leading-relaxed">
+                  Excellent untouched rip! Just completed the download at a fast speed of 380 KB/s on my cable connection. Burned onto a Verbatim DVD-R at 4x speed with Nero 6. Fits perfectly on the single-layer disc. Checked the show inside my standalone CyberHome player and the Dolby Surround sound works flawlessly. Menus and the classical quiz game load nicely. Thanks a lot!
+                </p>
+              </div>
+
+              <!-- Comment 2 -->
+              <div class="bg-slate-955 p-4 rounded-xl border border-slate-850 space-y-2 text-xs">
+                <div class="flex justify-between items-start flex-wrap gap-2">
+                  <div class="flex items-center gap-2">
+                    <strong class="text-slate-200 font-bold">M0v1eL0v3r_05</strong>
+                    <span class="text-[10px] bg-slate-800 text-slate-400 px-1 rounded">Member</span>
+                    <span class="text-[10px] text-slate-500 font-mono">ISP: Verizon DSL</span>
+                  </div>
+                  <span class="text-[10px] text-slate-500 font-mono">Aug 23, 2005 - 16:12 UTC</span>
+                </div>
+                <p class="text-slate-300 leading-relaxed">
+                  Is this compatible with PAL players? If I burn it on standard DVD-R, will a PAL multi-region player support the NTSC format playback? High seed count, thanks for this. I'm download-sharing with 120 KB/s upload set.
+                </p>
+              </div>
+
+              <!-- Comment 3 -->
+              <div class="bg-slate-955 p-4 rounded-xl border border-slate-850 space-y-2 text-xs">
+                <div class="flex justify-between items-start flex-wrap gap-2">
+                  <div class="flex items-center gap-2">
+                    <strong class="text-amber-400 font-bold">RatioPolice_05</strong>
+                    <span class="text-[10px] bg-amber-500/15 text-amber-400 border border-amber-500/20 px-1 rounded">Tracker Staff</span>
+                    <span class="text-[10px] text-slate-500 font-mono">ISP: RoadRunner HighSpeed</span>
+                  </div>
+                  <span class="text-[10px] text-slate-500 font-mono">Aug 23, 2005 - 16:18 UTC</span>
+                </div>
+                <p class="text-slate-300 leading-relaxed">
+                  @M0v1eL0v3r_05: Yes, most European multi-system PAL DVD players natively transcode NTSC formats with no problem. Just make sure your TV supports 60Hz mode, otherwise, burn it and set your standalone player output manually to PAL. 
+                  <br><br>
+                  Everyone: PLEASE SEED! Do not finish downloading and immediately turn off your torrent client. Keep your ratios above 1.0!
+                </p>
+              </div>
+
+              <!-- Comment 4 -->
+              <div class="bg-slate-955 p-4 rounded-xl border border-slate-850 space-y-2 text-xs">
+                <div class="flex justify-between items-start flex-wrap gap-2">
+                  <div class="flex items-center gap-2">
+                    <strong class="text-slate-200 font-bold">Kids_Parent</strong>
+                    <span class="text-[10px] bg-slate-800 text-slate-400 px-1 rounded">Member</span>
+                    <span class="text-[10px] text-slate-500 font-mono">ISP: Charter Broadband</span>
+                  </div>
+                  <span class="text-[10px] text-slate-500 font-mono">Aug 23, 2005 - 17:35 UTC</span>
+                </div>
+                <p class="text-slate-300 leading-relaxed">
+                  This release is amazing. The audio soundtrack is superb (Beethoven's 9th Symphony is standard for the entire duration). The interactive quiz game features the kids identifying the sound instruments which my children absolutely love. Perfect upload right on retail day!
+                </p>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+      </section>
+
+    </main>
+
+    <!-- Retro Page Footer -->
+    <footer class="bg-slate-950 border-t border-slate-900 mt-12 py-8 text-center text-xs text-slate-500 px-4">
+      <div class="max-w-7xl mx-auto space-y-3">
+        <p>ShareZone is an open BitTorrent indexing archive. We do not host copyrighted files on our server infrastructure.</p>
+        <p class="text-[10px] text-slate-600 font-mono">Powered by BitTorrent Core v1.4.1 • Developed in 2005 • Recreated with full client simulator integration</p>
+      </div>
+    </footer>
+
+    <!-- SUCCESS NOTIFICATION MODAL -->
+    <div id="custom-modal" class="hidden fixed inset-0 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+      <div class="bg-slate-900 border border-slate-800 rounded-xl max-w-sm w-full p-6 text-center space-y-4 shadow-2xl">
+        <div class="w-12 h-12 rounded-full bg-emerald-500/10 text-emerald-400 mx-auto flex items-center justify-center border border-emerald-500/20 text-xl font-bold">
+          ✓
+        </div>
+        <div>
+          <h4 id="modal-title" class="text-base font-bold text-white">Action Completed</h4>
+          <p id="modal-body" class="text-xs text-slate-400 mt-1">Details about your requested task.</p>
+        </div>
+        <button onclick="closeModal()" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs py-2 rounded-lg border border-slate-700 transition">
+          Dismiss
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // --- APP STATES & LOGIC ---
+
+    // Toggle Visual Themes (2005 Web 2.0 vs Modern Preservation Dark)
+    let currentTheme = 'classic';
+    function toggleTheme() {
+      const app = document.getElementById('app');
+      const body = document.body;
+      const themeBtnText = document.getElementById('theme-btn-text');
+
+      if (currentTheme === 'classic') {
+        currentTheme = 'modern';
+        body.classList.remove('bg-slate-955');
+        body.classList.add('bg-slate-900');
+        themeBtnText.innerText = "Switch to Classic style";
+        showToast("Switched Theme Style", "Display styling adapted to Modern Flat preservation archives.");
+      } else {
+        currentTheme = 'classic';
+        body.classList.remove('bg-slate-900');
+        body.classList.add('bg-slate-955');
+        themeBtnText.innerText = "Switch to Modern style";
+        showToast("Switched Theme Style", "Display styling adapted to 2005 Web 2.0 cyan/dark-gray layout.");
+      }
+    }
+
+    // Interactive Tab Controller
+    function switchTab(tabId) {
+      // Hide all tabs
+      const tabs = ['details', 'nfo', 'files', 'trackers', 'burn'];
+      tabs.forEach(t => {
+        document.getElementById(`tab-${t}`).classList.add('hidden');
+        
+        // Remove active state classes from buttons
+        const btn = document.getElementById(`tab-btn-${t}`);
+        btn.classList.remove('border-sky-500', 'text-sky-400', 'bg-slate-900/50');
+        btn.classList.add('border-transparent', 'text-slate-400');
+      });
+
+      // Show current tab
+      document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+      
+      // Add active state class to clicked button
+      const activeBtn = document.getElementById(`tab-btn-${tabId}`);
+      activeBtn.classList.remove('border-transparent', 'text-slate-400');
+      activeBtn.classList.add('border-sky-500', 'text-sky-400', 'bg-slate-900/50');
+    }
+
+    // File Tree Inspector Interaction
+    function inspectFile(name, size, role, description) {
+      document.getElementById('inspect-name').innerText = name;
+      document.getElementById('inspect-size').innerText = size;
+      document.getElementById('inspect-role').innerText = role;
+      document.getElementById('inspect-desc').innerText = description;
+    }
+
+    // Custom Modal display logic (Standard replacement for prohibited alert())
+    function showToast(title, body) {
+      document.getElementById('modal-title').innerText = title;
+      document.getElementById('modal-body').innerText = body;
+      document.getElementById('custom-modal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('custom-modal').classList.add('hidden');
+    }
+
+    // Mock Torrent File Download Experience
+    function downloadTorrentFile() {
+      showToast(
+        "Downloading .torrent metadata...", 
+        "Your browser has initiated the download of Little.Einsteins.Our.Huge.Adventure.2005.DVD5.MULTi-iNTERNAL.torrent (43.7 KB)."
+      );
+    }
+
+    // --- HIGH FIDELITY BIT_TORRENT CLIENT SIMULATION ---
+    let downloadActive = false;
+    let downloadProgress = 0.0;
+    let speedKb = 450; // default initial simulated download limit
+    let activeInterval = null;
+
+    // Build the piece map squares on startup
+    window.onload = function() {
+      const pieceMapContainer = document.getElementById('piece-map');
+      pieceMapContainer.innerHTML = '';
+      
+      for(let i = 0; i < 100; i++) {
+        const piece = document.createElement('div');
+        piece.id = `piece-${i}`;
+        piece.className = "aspect-square bg-slate-900 border border-slate-800 rounded-sm transition duration-300";
+        pieceMapContainer.appendChild(piece);
+      }
+    };
+
+    function triggerSimulatedDownload() {
+      // Auto scroll down to the client interface to see the action
+      document.getElementById('torrent-client').scrollIntoView({ behavior: 'smooth' });
+      
+      if (!downloadActive) {
+        toggleDownloadProcess();
+      } else {
+        showToast("WebClient Alert", "Download task is already running down below!");
+      }
+    }
+
+    function toggleDownloadProcess() {
+      const btnIcon = document.getElementById('start-btn-icon');
+      const btnText = document.getElementById('start-btn-text');
+      const startBtn = document.getElementById('btn-start');
+
+      if (downloadActive) {
+        // Pause execution
+        downloadActive = false;
+        clearInterval(activeInterval);
+        btnIcon.innerText = "▶";
+        btnText.innerText = "Resume Download";
+        startBtn.classList.remove('bg-amber-500', 'hover:bg-amber-600');
+        startBtn.classList.add('bg-emerald-500', 'hover:bg-emerald-600');
+        
+        document.getElementById('client-dl-speed').innerText = "0.0 KB/s";
+        document.getElementById('client-ul-speed').innerText = "0.0 KB/s";
+        document.getElementById('client-eta').innerText = "Paused";
+      } else {
+        // Start Execution
+        downloadActive = true;
+        btnIcon.innerText = "⏸";
+        btnText.innerText = "Pause Download";
+        startBtn.classList.remove('bg-emerald-500', 'hover:bg-emerald-600');
+        startBtn.classList.add('bg-amber-500', 'hover:bg-amber-600');
+        
+        // Main Loop
+        activeInterval = setInterval(() => {
+          if (downloadProgress < 100) {
+            // Speed fluctuating within range
+            let currentSpeed = Math.floor(speedKb * (0.9 + Math.random() * 0.2));
+            let uploadSpeed = Math.floor(currentSpeed * 0.15); // proportional upload
+
+            // Increment progress based on connection speed limits
+            // A DVD5 has ~4,460 MB, so speedKb/s tells us progress increment rate
+            let mbPerSec = currentSpeed / 1024;
+            let percentStep = (mbPerSec / 4460) * 100 * 20; // accelerated x20 so user doesn't wait hours
+            
+            downloadProgress += percentStep;
+            if (downloadProgress >= 100) {
+              downloadProgress = 100;
+              completeDownload();
+            }
+
+            // Update DOM progress values
+            document.getElementById('client-dl-speed').innerText = `${currentSpeed.toLocaleString()} KB/s`;
+            document.getElementById('client-ul-speed').innerText = `${uploadSpeed.toLocaleString()} KB/s`;
+            document.getElementById('client-percent').innerText = `${downloadProgress.toFixed(2)} %`;
+            document.getElementById('client-percent-float').innerText = `${downloadProgress.toFixed(1)}%`;
+            document.getElementById('client-progress-bar').style.width = `${downloadProgress}%`;
+
+            // Calculate ETA
+            let remainingMb = 4460 * (1 - (downloadProgress / 100));
+            let remainingSeconds = Math.floor((remainingMb / (currentSpeed / 1024)) / 20); // matching accelerated rate
+            
+            if (remainingSeconds > 0) {
+              let h = Math.floor(remainingSeconds / 3600);
+              let m = Math.floor((remainingSeconds % 3600) / 60);
+              let s = remainingSeconds % 60;
+              document.getElementById('client-eta').innerText = 
+                `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+            } else {
+              document.getElementById('client-eta').innerText = "00:00:00";
+            }
+
+            // Light up Visual Piece Map based on current ratio
+            let activePiecesCount = Math.floor(downloadProgress);
+            for(let p = 0; p < 100; p++) {
+              let pieceEl = document.getElementById(`piece-${p}`);
+              if (pieceEl) {
+                if (p < activePiecesCount) {
+                  pieceEl.className = "aspect-square bg-sky-500 border border-sky-400 rounded-sm shadow-sm transition duration-300";
+                } else if (p === activePiecesCount) {
+                  pieceEl.className = "aspect-square bg-sky-400/50 border border-sky-500 rounded-sm animate-pulse";
+                } else {
+                  pieceEl.className = "aspect-square bg-slate-900 border border-slate-800 rounded-sm";
+                }
+              }
+            }
+
+          }
+        }, 100);
+      }
+    }
+
+    function adjustSpeed(val) {
+      speedKb = parseInt(val);
+      const indicator = document.getElementById('speed-indicator');
+      
+      let label = "Standard Dial-up";
+      if (speedKb < 150) label = "Standard DSL";
+      else if (speedKb < 400) label = "Broadband Cable Basic";
+      else if (speedKb < 800) label = "High Speed Premium";
+      else if (speedKb < 1500) label = "Dedicated T3 Connection";
+      else label = "Institutional Gigabit Backbone";
+
+      indicator.innerText = `${speedKb} KB/s (${label})`;
+    }
+
+    function resetDownloadProcess() {
+      downloadProgress = 0.0;
+      if (downloadActive) {
+        toggleDownloadProcess();
+      }
+      document.getElementById('client-progress-bar').style.width = "0%";
+      document.getElementById('client-percent').innerText = "0.00 %";
+      document.getElementById('client-percent-float').innerText = "";
+      document.getElementById('client-dl-speed').innerText = "0.0 KB/s";
+      document.getElementById('client-ul-speed').innerText = "0.0 KB/s";
+      document.getElementById('client-eta').innerText = "--:--:--";
+
+      for(let p = 0; p < 100; p++) {
+        let pieceEl = document.getElementById(`piece-${p}`);
+        if(pieceEl) pieceEl.className = "aspect-square bg-slate-900 border border-slate-800 rounded-sm";
+      }
+    }
+
+    function completeDownload() {
+      downloadActive = false;
+      clearInterval(activeInterval);
+      
+      // Update UI elements to reflect complete status
+      document.getElementById('start-btn-icon').innerText = "▶";
+      document.getElementById('start-btn-text').innerText = "Finished";
+      document.getElementById('btn-start').className = "bg-slate-800 text-slate-400 font-bold text-xs px-3.5 py-2 rounded border border-slate-700 cursor-not-allowed";
+      
+      document.getElementById('client-dl-speed').innerText = "Finished";
+      document.getElementById('client-ul-speed').innerText = "Seeding at 30.5 KB/s";
+      document.getElementById('client-eta').innerText = "Complete";
+      document.getElementById('client-percent').innerText = "100.00 %";
+      document.getElementById('client-percent-float').innerText = "100%";
+      
+      // Force all pieces to be checked complete
+      for(let p = 0; p < 100; p++) {
+        let pieceEl = document.getElementById(`piece-${p}`);
+        if(pieceEl) pieceEl.className = "aspect-square bg-emerald-500 border border-emerald-400 rounded-sm shadow-sm transition duration-300";
+      }
+
+      showToast(
+        "Torrent Download Complete!", 
+        "Little.Einsteins.Our.Huge.Adventure.2005.DVD5 has successfully compiled in local storage memory! Check the Burning Guide tab above to learn how to write the untouched ISO directly onto standard physical blanks."
+      );
+    }
+
+    // Community Real-Time Interactive Comment Submission
+    let localCommentCount = 4;
+    function postNewComment(e) {
+      e.preventDefault();
+      
+      const nameVal = document.getElementById('form-name').value.trim();
+      const ispVal = document.getElementById('form-isp').value.trim() || "Unknown ISP";
+      const bodyVal = document.getElementById('form-body').value.trim();
+
+      if (!nameVal || !bodyVal) return;
+
+      // Create comment card layout
+      const container = document.getElementById('comments-container');
+      const commentDiv = document.createElement('div');
+      commentDiv.className = "bg-slate-955 p-4 rounded-xl border border-sky-500/30 shadow-md shadow-sky-500/5 space-y-2 text-xs transition animate-pulse";
+      
+      // Formatting time signature
+      const today = new Date();
+      const dateString = today.toLocaleString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
+      const timeString = today.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' });
+
+      commentDiv.innerHTML = `
+        <div class="flex justify-between items-start flex-wrap gap-2">
+          <div class="flex items-center gap-2">
+            <strong class="text-sky-400 font-bold">${nameVal}</strong>
+            <span class="text-[10px] bg-slate-800 text-slate-400 px-1 rounded">Seeder / New</span>
+            <span class="text-[10px] text-slate-500 font-mono">ISP: ${ispVal}</span>
+          </div>
+          <span class="text-[10px] text-slate-500 font-mono">${dateString} - ${timeString} UTC</span>
+        </div>
+        <p class="text-slate-300 leading-relaxed">${bodyVal}</p>
+      `;
+
+      // Prepend the new comment to top of comments list
+      container.insertBefore(commentDiv, container.firstChild);
+
+      // Increment counters
+      localCommentCount++;
+      document.getElementById('comment-count').innerText = localCommentCount;
+
+      // Reset form fields
+      document.getElementById('form-name').value = '';
+      document.getElementById('form-isp').value = '';
+      document.getElementById('form-body').value = '';
+
+      // Scroll smoothly to comments container top
+      container.scrollIntoView({ behavior: 'smooth' });
+
+      // Remove blinking animation pulse after 2 seconds
+      setTimeout(() => {
+        commentDiv.classList.remove('animate-pulse');
+      }, 2000);
+    }
+
+  </script>
+</body>
+</html>
