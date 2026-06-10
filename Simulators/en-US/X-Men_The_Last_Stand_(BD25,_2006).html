@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2006 Blu-ray Simulator: X-Men: The Last Stand</title>
+    <style>
+        :root {
+            --panel-bg: #0f1115;
+            --panel-border: #2c3540;
+            --led-blue: #00bfff;
+            --led-dim: #003344;
+            --fox-gold: #ffcc00;
+            --xmen-blue: #1a3c6d;
+            --brotherhood-red: #7a1111;
+        }
+
+        body {
+            background-color: #1c222b;
+            font-family: Helvetica, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            color: #e0e6ed;
+            user-select: none;
+        }
+
+        .system-date-badge {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--panel-border);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            color: #a0aec0;
+        }
+
+        .console-container {
+            width: 860px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            align-items: center;
+        }
+
+        /* 2006 1080p HDTV Screen Simulator */
+        .tv-chassis {
+            width: 100%;
+            height: 440px;
+            background-color: #000;
+            border: 24px solid #111;
+            border-bottom-width: 35px;
+            border-radius: 8px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            position: relative;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .tv-screen {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background: #000;
+        }
+
+        .screen-content {
+            width: 100%;
+            height: 100%;
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            box-sizing: border-box;
+        }
+
+        .screen-content.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Screen States styling */
+        .static-text {
+            color: #444;
+            font-family: monospace;
+            font-size: 20px;
+            letter-spacing: 2px;
+        }
+
+        /* BD-J Menu Theme States */
+        .menu-theme {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            padding-bottom: 40px;
+            box-sizing: border-box;
+            transition: background 0.5s ease;
+        }
+
+        .theme-prompt {
+            background: rgba(0,0,0,0.85);
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .faction-btn {
+            padding: 12px 30px;
+            margin: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            border: 2px solid white;
+            background: transparent;
+            color: white;
+            cursor: pointer;
+            letter-spacing: 1.5px;
+            transition: all 0.3s;
+        }
+        .faction-btn.x-btn:hover { background: var(--xmen-blue); border-color: var(--led-blue); }
+        .faction-btn.b-btn:hover { background: var(--brotherhood-red); border-color: #ff3333; }
+
+        /* Navigation Bar representing early Blu-ray pop-up menus */
+        .bd-nav-bar {
+            background: rgba(10, 15, 25, 0.9);
+            border-top: 2px solid var(--led-blue);
+            width: 90%;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+            border-radius: 4px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.6);
+            z-index: 5;
+        }
+
+        .bd-nav-item {
+            color: #8fa0b5;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            cursor: pointer;
+            padding: 5px 15px;
+            text-transform: uppercase;
+        }
+        .bd-nav-item:hover, .bd-nav-item.selected {
+            color: #fff;
+            text-shadow: 0 0 8px var(--led-blue);
+            background: rgba(255,255,255,0.05);
+            border-radius: 2px;
+        }
+
+        /* Sub-menu Selection Box */
+        .bd-sub-panel {
+            position: absolute;
+            bottom: 95px;
+            background: rgba(5, 8, 15, 0.95);
+            border: 1px solid #3a4759;
+            width: 75%;
+            padding: 15px;
+            border-radius: 4px;
+            display: none;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            z-index: 6;
+        }
+
+        .sub-item {
+            font-size: 12px;
+            padding: 6px;
+            cursor: pointer;
+            color: #cbd5e1;
+            border-left: 2px solid transparent;
+        }
+        .sub-item:hover {
+            background: rgba(255,255,255,0.08);
+            border-left-color: var(--led-blue);
+            color: #fff;
+        }
+
+        /* Video Playback Canvas layout */
+        .video-canvas {
+            width: 100%;
+            height: 100%;
+            background: #000;
+            position: relative;
+        }
+        .video-render {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            color: #fff;
+            background-size: cover;
+            background-position: center;
+            text-shadow: 0 3px 6px rgba(0,0,0,0.9);
+        }
+
+        /* Hardware Blu-ray Player Deck */
+        .player-deck {
+            width: 100%;
+            height: 90px;
+            background: linear-gradient(to bottom, #161a22 0%, #0b0d12 100%);
+            border: 1px solid var(--panel-border);
+            border-radius: 4px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6), inset 0 1px 1px rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            padding: 0 25px;
+            box-sizing: border-box;
+            justify-content: space-between;
+        }
+
+        .deck-left { display: flex; align-items: center; gap: 20px; }
+        
+        .hw-power-btn {
+            background: radial-gradient(circle, #334155, #1e293b);
+            border: 1px solid #475569;
+            color: #64748b;
+            border-radius: 50%;
+            width: 34px;
+            height: 34px;
+            cursor: pointer;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+        .hw-power-btn.on {
+            color: var(--led-blue);
+            text-shadow: 0 0 8px var(--led-blue);
+            border-color: #0088cc;
+            background: radial-gradient(circle, #1e293b, #0f172a);
+        }
+
+        .brand-zone {
+            font-family: 'Arial Black', Gadget, sans-serif;
+            font-size: 13px;
+            letter-spacing: 2px;
+            color: #4a5568;
+        }
+        .brand-zone span {
+            font-family: inherit;
+            color: #718096;
+            font-size: 10px;
+            border: 1px solid #4a5568;
+            padding: 1px 4px;
+            margin-left: 4px;
+            border-radius: 2px;
+        }
+
+        /* Tray Mechanism Components */
+        .tray-chassis {
+            position: relative;
+            width: 280px;
+            height: 40px;
+        }
+        .tray-door {
+            width: 100%;
+            height: 100%;
+            background: #090b0e;
+            border: 1px solid #222b35;
+            border-radius: 2px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9px;
+            color: #3b4756;
+            letter-spacing: 1px;
+            transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+        }
+        .tray-door.open {
+            transform: translateY(35px);
+            background: #11161d;
+        }
+
+        /* The physical BD25 disc graphics */
+        .physical-disc {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #222 10%, #4facfe 11%, #000 13%, #1e3c72 40%, #2a5298 70%);
+            position: absolute;
+            top: -55px;
+            left: 65px;
+            z-index: 2;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.8s ease;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .physical-disc.out { opacity: 1; transform: scale(1); z-index: 10; }
+        .physical-disc.inside { opacity: 0; transform: scale(0.85); z-index: 1; }
+        .physical-disc.spin { animation: spinDisc 1.5s infinite linear; }
+        
+        @keyframes spinDisc { 100% { transform: rotate(360deg) scale(0.85); } }
+
+        .disc-label {
+            font-size: 8px;
+            color: rgba(255,255,255,0.7);
+            font-weight: bold;
+            text-align: center;
+            pointer-events: none;
+            text-shadow: 0 1px 2px #000;
+        }
+
+        /* Dot-Matrix Vacuum Fluorescent Display (VFD) */
+        .vfd-display {
+            width: 180px;
+            height: 36px;
+            background: #040608;
+            border: 1px solid #1a222d;
+            border-radius: 3px;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            color: var(--led-dim);
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            letter-spacing: 1px;
+            box-shadow: inset 0 0 6px rgba(0,0,0,1);
+        }
+        .vfd-display.active {
+            color: var(--led-blue);
+            text-shadow: 0 0 6px rgba(0, 191, 255, 0.8);
+        }
+
+        .deck-right { display: flex; gap: 8px; }
+        .hw-control-btn {
+            background: linear-gradient(to bottom, #2d3748, #1a202c);
+            border: 1px solid #4a5568;
+            color: #a0aec0;
+            width: 32px;
+            height: 32px;
+            border-radius: 3px;
+            font-size: 11px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .hw-control-btn:active { background: #11141a; }
+
+        /* Realtime Info Box */
+        .guide-box {
+            width: 100%;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px dashed #334155;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            color: #94a3b8;
+            line-height: 1.5;
+        }
+        .guide-box strong { color: #f1f5f9; }
+    </style>
+</head>
+<body>
+
+<div class="system-date-badge">
+    SYSTEM TIME: <strong>November 14, 2006</strong> (en-US Launch Day)
+</div>
+
+<div class="console-container">
+
+    <div class="tv-chassis">
+        <div class="tv-screen" id="tvScreen">
+            
+            <div class="screen-content active" id="stateOff">
+                <div class="static-text">HDMI-1: NO SIGNAL</div>
+            </div>
+
+            <div class="screen-content" id="stateHome" style="background: linear-gradient(135deg, #0d1b2a, #1b263b);">
+                <div style="font-size: 36px; font-weight: bold; letter-spacing: 4px; color: #fff;">Blu-ray Disc™</div>
+                <div style="font-size: 14px; color: #64748b; margin-top: 10px;">Insert an optical high-density title.</div>
+            </div>
+
+            <div class="screen-content" id="stateLoading" style="background:#000;">
+                <div style="color: #fff; font-size: 14px; letter-spacing: 3px;">20th CENTURY FOX HOME ENTERTAINMENT</div>
+                <div style="width: 100px; height: 2px; background: var(--led-blue); margin-top:20px; animation: pulse 1s infinite alternate;"></div>
+            </div>
+
+            <div class="screen-content" id="stateMenu">
+                <div class="menu-theme" id="menuThemeContainer">
+                    
+                    <div class="theme-prompt" id="factionPrompt">
+                        <div style="font-size: 20px; font-weight: bold; margin-bottom: 5px; letter-spacing: 1px;">CHOOSE YOUR SIDE</div>
+                        <div style="font-size: 12px; color: #94a3b8; margin-bottom: 20px;">This will customize your high-definition interactive layer.</div>
+                        <div style="display:flex;">
+                            <button class="faction-btn x-btn" onclick="selectFaction('xmen')">Join the X-Men</button>
+                            <button class="faction-btn b-btn" onclick="selectFaction('brotherhood')">The Brotherhood</button>
+                        </div>
+                    </div>
+
+                    <div class="bd-sub-panel" id="scenesPanel">
+                        <div class="sub-item" onclick="jumpToChapter(1, 'Years Ago (Main Titles)')">01. Years Ago (Main Titles)</div>
+                        <div class="sub-item" onclick="jumpToChapter(2, 'The Danger Room Simulation')">02. The Simulation</div>
+                        <div class="sub-item" onclick="jumpToChapter(4, 'A Cure for Mutation')">04. A Cure for Mutation</div>
+                        <div class="sub-item" onclick="jumpToChapter(10, 'Out of Control')">10. Out of Control</div>
+                        <div class="sub-item" onclick="jumpToChapter(17, 'Final Stand on Alcatraz')">17. Final Stand</div>
+                        <div class="sub-item" onclick="jumpToChapter(24, 'Powerless (End Titles)')">24. Powerless (End Titles)</div>
+                    </div>
+
+                    <div class="bd-sub-panel" id="audioPanel">
+                        <div class="sub-item" onclick="setAudio('English 6.1 DTS-HD Master Audio')">● English 6.1 DTS-HD Master Audio (Lossless)</div>
+                        <div class="sub-item" onclick="setAudio('French 5.1 Dolby Digital')">○ French 5.1 Dolby Digita</div>
+                        <div class="sub-item" onclick="setAudio('Spanish 5.1 Dolby Digital')">○ Spanish 5.1 Dolby Digital</div>
+                    </div>
+
+                    <div class="bd-sub-panel" id="featuresPanel">
+                        <div class="sub-item" onclick="playFeature('Director & Writer Audio Commentary')">Audio Commentary by Brett Ratner & Crew</div>
+                        <div class="sub-item" onclick="playFeature('Deleted Scenes with optional Commentary')">Deleted/Alternate Scenes (11 mins)</div>
+                        <div class="sub-item" onclick="playFeature('The Simpsons Movie - First Glimpse Teaser')">A First Glimpse of The Simpsons Movie (HD)</div>
+                    </div>
+
+                    <div class="bd-nav-bar">
+                        <div class="bd-nav-item" onclick="playMovie()">Play Movie</div>
+                        <div class="bd-nav-item" onclick="toggleSubPanel('scenesPanel')">Scene Selection</div>
+                        <div class="bd-nav-item" onclick="toggleSubPanel('audioPanel')">Languages</div>
+                        <div class="bd-nav-item" onclick="toggleSubPanel('featuresPanel')">Special Features</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="screen-content" id="statePlay">
+                <div class="video-canvas">
+                    <div class="video-render" id="videoViewport">
+                        SCENE VIEWPORT
+                    </div>
+                    <div id="audioOverlay" style="position:absolute; top:20px; right:20px; background:rgba(0,0,0,0.8); padding:6px 12px; border-radius:3px; font-size:11px; color:var(--led-blue); display:none; border:1px solid #222;">
+                        DTS-HD MA 6.1
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="player-deck">
+        <div class="deck-left">
+            <button class="hw-power-btn" id="hwPower" onclick="pressPower()" title="Power On/Off">⏽</button>
+            <div class="brand-zone">BDP-S1<span>1080p</span></div>
+        </div>
+
+        <div class="tray-chassis">
+            <div class="tray-door" id="trayDoor">BD-ROM DRIVE CHASSIS</div>
+            <div class="physical-disc" id="laserDisc" onclick="clickDiscSurface()">
+                <div class="disc-label">
+                    X-MEN<br>THE LAST STAND<br><span style="font-size:6px;color:#4facfe;">BD25 • 2006 FOX</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="vfd-display" id="vfdScreen">----------</div>
+
+        <div class="deck-right">
+            <button class="hw-control-btn" onclick="pressEject()" title="Eject Tray">⏏</button>
+            <button class="hw-control-btn" onclick="pressPlay()" title="Play Media">▶</button>
+            <button class="hw-control-btn" onclick="pressStop()" title="Stop System">■</button>
+        </div>
+    </div>
+
+    <div class="guide-box" id="guideText">
+        <strong>Hardware Offline:</strong> Click the rounded <strong>Power Button (⏽)</strong> on the far left of the deck terminal to boot up the 1080p media player framework.
+    </div>
+</div>
+
+<script>
+    // Component State Matrix
+    let playerActive = false;
+    let trayEjected = false;
+    let discInserted = false;
+    let currentUiScreen = 'stateOff';
+    let selectedFaction = null;
+    let playbackInterval = null;
+    let playSeconds = 0;
+    let activeTrack = 'English 6.1 DTS-HD MA';
+    
+    // Chapter Index Data metadata
+    let currentChapter = 1;
+    let currentChapterTitle = "Years Ago (Main Titles)";
+
+    // Visual assets mapped using high-quality color gradients/unspalsh imagery tokens for the simulator layout
+    const visuals = {
+        xmenMenu: "linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1547483238-f400e65ccd56?auto=format&fit=crop&w=800&q=80')", // Tech metallic aesthetic
+        brotherhoodMenu: "linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80')", // Fire/wreckage aesthetic
+        scenes: {
+            1: { name: "Years Ago", color: "#1e293b", img: "linear-gradient(to right, #000, #111e38, #000)" },
+            2: { name: "The Danger Room", color: "#0f172a", img: "linear-gradient(to right, #111, #1e3a8a, #111)" },
+            4: { name: "A Cure for Mutation", color: "#111", img: "linear-gradient(to right, #1c1917, #44403c, #1c1917)" },
+            10: { name: "Out of Control", color: "#000", img: "linear-gradient(to right, #2d0606, #000, #2d0606)" },
+            17: { name: "Final Stand (Alcatraz)", color: "#172554", img: "linear-gradient(to right, #020617, #1e3a8a, #020617)" },
+            24: { name: "Powerless (End Titles)", color: "#000", img: "linear-gradient(#111, #000)" }
+        }
+    };
+
+    function pressPower() {
+        playerActive = !playerActive;
+        const vfd = document.getElementById('vfdScreen');
+        const powerBtn = document.getElementById('hwPower');
+
+        if (playerActive) {
+            powerBtn.classList.add('on');
+            vfd.classList.add('active');
+            vfd.textContent = "WELCOME";
+            setTvScreen('stateHome');
+            
+            setTimeout(() => {
+                if(!playerActive) return;
+                if(discInserted) {
+                    readOpticalDisc();
+                } else {
+                    vfd.textContent = "NO DISC";
+                }
+            }, 1200);
+        } else {
+            powerBtn.classList.remove('on');
+            vfd.classList.remove('active');
+            vfd.textContent = "BYE";
+            killPlaybackEngine();
+            setTimeout(() => {
+                vfd.textContent = "----------";
+                setTvScreen('stateOff');
+            }, 800);
+        }
+        syncGuideText();
+    }
+
+    function pressEject() {
+        if (!playerActive) return;
+        
+        trayEjected = !trayEjected;
+        const door = document.getElementById('trayDoor');
+        const discObj = document.getElementById('laserDisc');
+        const vfd = document.getElementById('vfdScreen');
+
+        if (trayEjected) {
+            killPlaybackEngine();
+            door.classList.add('open');
+            vfd.textContent = "OPEN";
+            
+            if (discInserted) {
+                discObj.className = "physical-disc out";
+            } else {
+                discObj.className = "physical-disc out";
+                discObj.style.opacity = "0.35"; // Ghost profile prompt to load it
+            }
+        } else {
+            door.classList.remove('open');
+            vfd.textContent = "LOAD";
+            
+            if (discInserted) {
+                discObj.className = "physical-disc inside";
+                setTimeout(() => {
+                    if(!trayEjected && playerActive) readOpticalDisc();
+                }, 1000);
+            } else {
+                discObj.className = "physical-disc";
+                setTimeout(() => {
+                    if(!trayEjected && playerActive) {
+                        vfd.textContent = "NO DISC";
+                        setTvScreen('stateHome');
+                    }
+                }, 1000);
+            }
+        }
+        syncGuideText();
+    }
+
+    function clickDiscSurface() {
+        if (!trayEjected) return;
+        
+        discInserted = !discInserted;
+        const discObj = document.getElementById('laserDisc');
+        
+        if (discInserted) {
+            discObj.style.opacity = "1";
+        } else {
+            discObj.style.opacity = "0.35";
+        }
+        syncGuideText();
+    }
+
+    function readOpticalDisc() {
+        const vfd = document.getElementById('vfdScreen');
+        vfd.textContent = "READING";
+        setTvScreen('stateLoading');
+        document.getElementById('laserDisc').classList.add('spin');
+
+        setTimeout(() => {
+            if (!playerActive || trayEjected || !discInserted) return;
+            vfd.textContent = "BD-J MENU";
+            setTvScreen('stateMenu');
+            document.getElementById('factionPrompt').style.display = "flex";
+            syncGuideText();
+        }, 2500);
+    }
+
+    function selectFaction(faction) {
+        selectedFaction = faction;
+        document.getElementById('factionPrompt').style.display = "none";
+        const themeBox = document.getElementById('menuThemeContainer');
+        
+        if (faction === 'xmen') {
+            themeBox.style.background = visuals.xmenMenu;
+            document.getElementById('vfdScreen').textContent = "X-MEN MENU";
+        } else {
+            themeBox.style.background = visuals.brotherhoodMenu;
+            document.getElementById('vfdScreen').textContent = "BRTHHD MENU";
+        }
+        syncGuideText();
+    }
+
+    function toggleSubPanel(panelId) {
+        const target = document.getElementById(panelId);
+        const states = ['scenesPanel', 'audioPanel', 'featuresPanel'];
+        
+        const currentDisplay = target.style.display;
+        states.forEach(id => document.getElementById(id).style.display = "none");
+        
+        if (currentDisplay !== 'grid' && currentDisplay !== 'block') {
+            target.style.display = (panelId === 'audioPanel' || panelId === 'featuresPanel') ? 'block' : 'grid';
+        }
+    }
+
+    function setAudio(trackName) {
+        activeTrack = trackName;
+        const overlay = document.getElementById('audioOverlay');
+        overlay.textContent = trackName.toUpperCase();
+        overlay.style.display = "block";
+        setTimeout(() => overlay.style.display = "none", 3000);
+        toggleSubPanel('audioPanel');
+    }
+
+    function playMovie() {
+        toggleSubPanel('scenesPanel'); // close submenus
+        setTvScreen('statePlay');
+        jumpToChapter(1, "Years Ago (Main Titles)");
+    }
+
+    function jumpToChapter(chNum, title) {
+        currentChapter = chNum;
+        currentChapterTitle = title;
+        setTvScreen('statePlay');
+        
+        // Match specific 2006 high bitrate color-blocking styles matching chapter choices
+        const viewport = document.getElementById('videoViewport');
+        const sceneData = visuals.scenes[chNum] || visuals.scenes[1];
+        viewport.style.background = sceneData.img;
+        viewport.innerHTML = `<div style='text-align:center;'><span style='font-size:14px;color:var(--led-blue); font-weight:normal; letter-spacing:1px;'>1080p AVC BD25 PLAYBACK</span><br>X-MEN 3: CH ${chNum}<br><span style='font-size:16px;color:#cbd5e1;'>${title}</span></div>`;
+        
+        playSeconds = (chNum - 1) * 300; // Offset timeline based on choice
+        startPlaybackClock();
+        syncGuideText();
+    }
+
+    function playFeature(featureName) {
+        toggleSubPanel('featuresPanel');
+        setTvScreen('statePlay');
+        killPlaybackEngine();
+        
+        const viewport = document.getElementById('videoViewport');
+        viewport.style.background = "linear-gradient(to right, #000, #334155, #000)";
+        viewport.innerHTML = `<div style='text-align:center;'><span style='font-size:12px;color:var(--fox-gold);'>BONUS FEATURE (MPEG-2 SD / AVC HD)</span><br>${featureName}</div>`;
+        document.getElementById('vfdScreen').textContent = "BONUS";
+    }
+
+    function pressPlay() {
+        if (currentUiScreen === 'stateMenu') {
+            playMovie();
+        } else if (currentUiScreen === 'statePlay' && playbackInterval === null) {
+            startPlaybackClock();
+        }
+    }
+
+    function pressStop() {
+        if (!playerActive || currentUiScreen === 'stateOff' || currentUiScreen === 'stateHome') return;
+        killPlaybackEngine();
+        setTvScreen('stateMenu');
+        if (selectedFaction) {
+            selectFaction(selectedFaction);
+        }
+        syncGuideText();
+    }
+
+    function startPlaybackClock() {
+        if (playbackInterval) clearInterval(playbackInterval);
+        
+        playbackInterval = setInterval(() => {
+            playSeconds++;
+            let mins = Math.floor(playSeconds / 60).toString().padStart(2, '0');
+            let secs = (playSeconds % 60).toString().padStart(2, '0');
+            document.getElementById('vfdScreen').textContent = `${mins}:${secs}`;
+        }, 1000);
+    }
+
+    function killPlaybackEngine() {
+        if (playbackInterval) {
+            clearInterval(playbackInterval);
+            playbackInterval = null;
+        }
+        document.getElementById('laserDisc').classList.remove('spin');
+    }
+
+    function setTvScreen(id) {
+        currentUiScreen = id;
+        document.getElementById('stateOff').classList.remove('active');
+        document.getElementById('stateHome').classList.remove('active');
+        document.getElementById('stateLoading').classList.remove('active');
+        document.getElementById('stateMenu').classList.remove('active');
+        document.getElementById('statePlay').classList.remove('active');
+        
+        document.getElementById(id).classList.add('active');
+    }
+
+    function syncGuideText() {
+        const guide = document.getElementById('guideText');
+        if (!playerActive) {
+            guide.innerHTML = "<strong>Hardware Offline:</strong> Click the rounded <strong>Power Button (⏽)</strong> on the far left of the deck terminal to boot up the 1080p media player framework.";
+            return;
+        }
+        if (trayEjected && !discInserted) {
+            guide.innerHTML = "<strong>Optical Tray Open:</strong> Click the deep-blue <strong>Physical Disc Surface</strong> sticking out of the tray slot to place the 2006 launch copy of <em>X-Men: The Last Stand</em> into the spindle.";
+            return;
+        }
+        if (trayEjected && discInserted) {
+            guide.innerHTML = "<strong>Disc Ready:</strong> Press the hardware <strong>Eject button (⏏)</strong> on the right to pull the BD25 single-layer media into the laser scanning array.";
+            return;
+        }
+        if (!discInserted) {
+            guide.innerHTML = "<strong>No Signal Media:</strong> The player is empty. Hit the hardware <strong>Eject button (⏏)</strong> to slide out the component tray mechanism.";
+            return;
+        }
+        if (currentUiScreen === 'stateMenu' && !selectedFaction) {
+            guide.innerHTML = "<strong>BD-Java Profile Setup:</strong> The early disc profile requires you to choose a faction on-screen. Select either <strong>Join the X-Men</strong> or <strong>The Brotherhood</strong> inside the TV display.";
+            return;
+        }
+        if (currentUiScreen === 'stateMenu' && selectedFaction) {
+            guide.innerHTML = "<strong>Interactive Interactive Pop-up:</strong> Use the interactive navigation bar inside the TV panel to manage high-fidelity lossless <strong>Languages</strong>, jump through **Scene Selection**, or launch full <strong>Play Movie</strong> video output.";
+            return;
+        }
+        if (currentUiScreen === 'statePlay') {
+            guide.innerHTML = "<strong>1080p AVC Playback Active:</strong> You are rendering native HD content on Launch Day (Nov 14, 2006). Use the physical hardware <strong>Stop button (■)</strong> on the player deck anytime to pull out to the BD-J master root overlay menu.";
+            return;
+        }
+    }
+</script>
+
+</body>
+</html>
