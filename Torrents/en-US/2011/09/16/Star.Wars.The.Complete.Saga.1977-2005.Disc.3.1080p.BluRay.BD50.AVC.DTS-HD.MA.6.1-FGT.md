@@ -17,7 +17,7 @@ Disc 3 contains ***Episode III - Revenge of the Sith* (2005)** in its complete, 
 
 ### 📂 Torrent Information
 
-* **Folder Name:** `Star.Wars.The.Complete.Saga.1977-2005,Disc3.1080p.BluRay.BD50.AVC.DTS-HD.MA.6.1-FGT`
+* **Folder Name:** `Star.Wars.The.Complete.Saga.1977-2005.Disc3.1080p.BluRay.BD50.AVC.DTS-HD.MA.6.1-FGT`
 * **Format:** Full BD (Blu-ray Disc ISO / Folder Structure)
 * **Size:** ~46.2 GB
 * **Source:** Retail Blu-ray (US/Region Free)
@@ -57,7 +57,7 @@ Three years after the onset of the Clone Wars, the Jedi Logan is spread across t
  * **[ Download .torrent ]**
  * **[ Magnet Link ]**
 ```text
-magnet:?xt=urn:btih:3f86e22c95b778a63116bc923a1a1532f17088d8&dn=Star.Wars.The.Complete.Saga.1977-2005,Disc3.1080p.BluRay.BD50.AVC.DTS-HD.MA.6.1-FGT&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce
+magnet:?xt=urn:btih:3f86e22c95b778a63116bc923a1a1532f17088d8&dn=Star.Wars.The.Complete.Saga.1977-2005.Disc3.1080p.BluRay.BD50.AVC.DTS-HD.MA.6.1-FGT&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce
 
 ```
 ### 💬 Peer Stats
