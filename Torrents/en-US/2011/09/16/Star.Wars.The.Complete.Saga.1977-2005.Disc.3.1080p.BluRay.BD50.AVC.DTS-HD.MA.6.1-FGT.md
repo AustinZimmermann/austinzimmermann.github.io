@@ -11,7 +11,7 @@
 
 Experience the ultimate space opera in the highest possible quality. Released today, September 16, 2011, this torrent contains **Disc 3** of the highly anticipated 9-disc box set, ***Star Wars: The Complete Saga***. 
 
-Disc 3 contains ***Episode III - Revenge of the Sith* (2005)** in its complete, untouched retail Blu-ray format (BD50), featuring a pristine AVC 1080p video transfer and an explosive English DTS-HD Master Audio 6.1 surround track.
+Disc 3 contains ***Episode III – Revenge of the Sith* (2005)** in its complete, untouched retail Blu-ray format (BD50), featuring a pristine AVC 1080p video transfer and an explosive English DTS-HD Master Audio 6.1 surround track.
 
 ---
 
@@ -34,9 +34,9 @@ Disc Size:      49,634,812,416 bytes
 Protection:     AACS
 
 VIDEO:
-Codec             Bitrate             Description     
------             -------             -----------     
-MPEG-4 AVC Video  23450 kbps          1080p / 23.976 fps / 16:9 / High Profile 4.1
+Codec                           Bitrate             Description     
+-----                           -------             -----------     
+MPEG-4 AVC Video                23450 kbps          1080p / 23.976 fps / 16:9 / High Profile 4.1
 
 AUDIO:
 Codec                           Language        Bitrate         Description     
