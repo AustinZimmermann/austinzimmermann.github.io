@@ -1,4 +1,4 @@
-## \[BD-Remux\] スター・ウォーズ エピソード3／シスの復讐 (2005) \[Star Wars: Episode III – Revenge of the Sith] (1080p AVC DTS-HD MA 6.1 JP-Dub)
+# \[BD-Remux\] スター・ウォーズ エピソード3／シスの復讐 (2005) \[Star Wars: Episode III – Revenge of the Sith] (1080p AVC DTS-HD MA 6.1 JP-Dub)
 
 ## 💾 トレント情報 / Torrent Metadata
 
