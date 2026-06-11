@@ -1,4 +1,4 @@
-# Folder name: Star.Wars.The.Complete.Saga.1977-2005.Disc.3.1080p.BluRay.BD50.AVC.DTS-HD.MA.6.1-FGT
+# Folder name: Star.Wars.The.Complete.Saga.1977-2005.Disc3.1080p.BluRay.BD50.AVC.DTS-HD.MA.6.1-FGT
 
 **Release Date on Tracker:** September 16, 2011  
 **Category:** Movies / Blu-Ray / Full BD  
