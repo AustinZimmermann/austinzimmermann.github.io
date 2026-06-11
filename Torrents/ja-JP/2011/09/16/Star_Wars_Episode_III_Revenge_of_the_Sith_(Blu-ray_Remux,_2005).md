@@ -16,7 +16,7 @@
 
 ## アートワーク
 
-<img src="https://images.static-bluray.com/movies/covers/14903_slip.jpg" width="350">
+<img src="https://images.static-bluray.com/products/7/27806_1_original.jpg" width="350">
 
 ---
 
