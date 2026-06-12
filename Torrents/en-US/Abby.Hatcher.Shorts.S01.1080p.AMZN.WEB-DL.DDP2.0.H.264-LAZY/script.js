@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const baseName = parts[0]; // Abby.Hatcher.Shorts.S01
         const techSpecs = parts[1]; // .AMZN.WEB-DL.DDP2.0.H.264-LAZY
 
-        const fullFileName = `${baseName}.${episode}.1080p${techSpecs}.mkv`;
+        const fullFileName = `${baseName}${episode}.1080p${techSpecs}.mkv`;
 
         listItem.innerHTML = `
             <span class="file-name">📄 ${fullFileName}</span>
