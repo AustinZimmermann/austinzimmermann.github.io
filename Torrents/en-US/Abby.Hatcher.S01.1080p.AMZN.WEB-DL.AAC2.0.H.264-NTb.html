@@ -3,187 +3,431 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abby.Hatcher.S01.1080p.AMZN.WEB-DL.AAC2.0.H.264-NTb | Torrent Details</title>
-    <style>
-        :root {
-            --bg-color: #1a1a1a;
-            --container-bg: #262626;
-            --border-color: #3d3d3d;
-            --accent-color: #00aa66;
-            --accent-hover: #00cd7c;
-            --text-main: #e0e0e0;
-            --text-muted: #8a8a8a;
-        }
+    <title>TorrentDetails - Abby.Hatcher.S01.1080p.AMZN.WEB-DL.AAC2.0.H.264-NTb</title>
+    <style type="text/css">
+:root {
+    --bg-main: #12141c;
+    --bg-card: #1a1d29;
+    --bg-border: #2b3044;
+    --text-main: #f3f4f6;
+    --text-muted: #9ca3af;
+    --primary: #3b82f6;
+    --primary-hover: #2563eb;
+    --success: #10b981;
+    --danger: #ef4444;
+    --folder-color: #f59e0b;
+}
 
-        body {
-            font-family: Helvetica, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            margin: 0;
-            padding: 20px;
-        }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-        .torrent-container {
-            max-width: 900px;
-            margin: 0 auto;
-            background-color: var(--container-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 20px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        }
+body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    font-family: Helvetica, sans-serif;
+    line-height: 1.5;
+}
 
-        h2 {
-            margin-top: 0;
-            font-size: 1.4rem;
-            color: #fff;
-            word-break: break-all;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--accent-color);
-        }
+/* Header UI */
+.site-header {
+    background-color: var(--bg-card);
+    border-bottom: 1px solid var(--bg-border);
+    padding: 1rem 2rem;
+}
 
-        .torrent-meta {
-            display: flex;
-            gap: 20px;
-            margin: 15px 0;
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+}
 
-        .btn-download {
-            background-color: var(--accent-color);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 1rem;
-            font-weight: bold;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+.logo .light { font-weight: 300; color: var(--text-muted); }
+.text-primary { color: var(--primary); }
 
-        .btn-download:hover {
-            background-color: var(--accent-hover);
-        }
+.search-bar {
+    flex-grow: 1;
+    max-width: 500px;
+    display: flex;
+}
 
-        .file-list-header {
-            margin-top: 25px;
-            font-weight: bold;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 5px;
-            display: flex;
-            justify-content: space-between;
-        }
+.search-bar input {
+    width: 100%;
+    background: var(--bg-main);
+    border: 1px solid var(--bg-border);
+    border-radius: 4px 0 0 4px;
+    padding: 0.5rem 1rem;
+    color: #fff;
+}
 
-        .file-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            max-height: 500px;
-            overflow-y: auto;
-            border: 1px solid var(--border-color);
-            border-top: none;
-            border-radius: 0 0 4px 4px;
-        }
+.search-bar button {
+    background: var(--primary);
+    border: none;
+    color: white;
+    padding: 0 1.25rem;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+}
 
-        .file-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px;
-            border-bottom: 1px solid var(--border-color);
-            font-family: monospace;
-            font-size: 0.9rem;
-            background-color: #212121;
-        }
+.main-nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    margin-left: 1.5rem;
+    font-weight: 500;
+}
+.main-nav a.active, .main-nav a:hover { color: var(--primary); }
 
-        .file-item:nth-child(even) {
-            background-color: #282828;
-        }
+/* Main layout blocks */
+.main-content {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
 
-        .file-item:last-child {
-            border-bottom: none;
-        }
+.torrent-title-card {
+    background: var(--bg-card);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--bg-border);
+    margin-bottom: 1.5rem;
+}
 
-        .file-name {
-            color: #4da6ff;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            overflow: hidden;
-            padding-right: 15px;
-        }
+.torrent-title-card h2 {
+    font-size: 1.4rem;
+    word-break: break-all;
+    margin-bottom: 0.5rem;
+}
 
-        .file-size {
-            color: var(--text-muted);
-            min-width: 80px;
-            text-align: right;
-        }
+.torrent-meta-quick {
+    display: flex;
+    gap: 1.5rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    align-items: center;
+}
+
+.badge {
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 0.75rem;
+}
+.tv-show { background-color: #8b5cf6; color: white; }
+
+.grid-layout {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .grid-layout { grid-template-columns: 1fr; }
+}
+
+/* Sidebar Styling */
+.torrent-poster {
+    width: 100%;
+    border-radius: 6px;
+    border: 1px solid var(--bg-border);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+
+.action-buttons {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.btn {
+    display: block;
+    text-align: center;
+    padding: 0.75rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.btn-magnet { background-color: var(--danger); color: white; }
+.btn-magnet:hover { background-color: #dc2626; }
+.btn-torrent { background-color: var(--primary); color: white; }
+.btn-torrent:hover { background-color: var(--primary-hover); }
+
+.torrent-stats {
+    background: var(--bg-card);
+    padding: 1rem;
+    border-radius: 6px;
+    border: 1px solid var(--bg-border);
+    margin-top: 1.5rem;
+}
+
+.torrent-stats h3 { font-size: 1rem; margin-bottom: 0.75rem; border-bottom: 1px solid var(--bg-border); padding-bottom: 0.25rem;}
+.stat-row { display: flex; justify-content: space-between; font-size: 0.95rem; margin-bottom: 0.4rem; }
+.text-success { color: var(--success); }
+.text-danger { color: var(--danger); }
+
+/* Content / Technical Area */
+.info-block {
+    background: var(--bg-card);
+    border: 1px solid var(--bg-border);
+    border-radius: 6px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.info-block h3 {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    color: var(--primary);
+}
+
+.specs-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.specs-table td {
+    padding: 0.5rem;
+    border-bottom: 1px solid var(--bg-border);
+    font-size: 0.9rem;
+    width: 50%;
+}
+
+/* File Tree Styling */
+.file-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--bg-border);
+    padding-bottom: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.btn-minimal {
+    background: transparent;
+    border: 1px solid var(--bg-border);
+    color: var(--text-muted);
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.btn-minimal:hover { color: #fff; border-color: var(--text-muted); }
+
+.folder-root {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+}
+.text-folder { color: var(--folder-color); margin-right: 0.35rem;}
+
+.file-tree-list {
+    list-style: none;
+    padding-left: 1.25rem;
+    border-left: 1px dashed var(--bg-border);
+    max-height: 450px;
+    overflow-y: auto;
+    transition: max-height 0.3s ease;
+}
+
+.file-tree-list.collapsed {
+    max-height: 120px;
+}
+
+.file-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.4rem 0.5rem;
+    font-size: 0.88rem;
+    border-bottom: 1px solid rgba(255,255,255,0.02);
+    font-family: monospace;
+}
+.file-item:hover { background: rgba(255,255,255,0.03); }
+.file-name { color: #cbd5e1; word-break: break-all; }
+.file-name i { color: #38bdf8; margin-right: 0.5rem; }
+.file-size { color: var(--text-muted); white-space: nowrap; padding-left: 1rem;}
+
+.site-footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--bg-border);
+    margin-top: 4rem;
+}
+
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-<div class="torrent-container">
-    <h2 id="torrent-title">Abby.Hatcher.S01.1080p.AMZN.WEB-DL.AAC2.0.H.264-NTb</h2>
-    
-    <div class="torrent-meta">
-        <span><strong>Category:</strong> TV / HD</span>
-        <span><strong>Total Files:</strong> 26</span>
-        <span><strong>Total Size:</strong> ~11.45 GB</span>
-    </div>
+    <header class="site-header">
+        <div class="header-container">
+            <h1 class="logo"><i class="fa-solid fa-magnet text-primary"></i> Torrent<span class="light">Vault</span></h1>
+            <div class="search-bar">
+                <input type="text" placeholder="Search verified torrents..." value="Abby Hatcher S01 1080p">
+                <button type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+            <nav class="main-nav">
+                <a href="#" class="active">Torrents</a>
+                <a href="#">Browse</a>
+                <a href="#">Community</a>
+            </nav>
+        </div>
+    </header>
 
-    <button class="btn-download" onclick="downloadTorrent()">🧲 Download Torrent (26 Files)</button>
+    <main class="main-content">
+        <div class="torrent-title-card">
+            <h2>Abby.Hatcher.S01.1080p.AMZN.WEB-DL.AAC2.0.H.264-NTb</h2>
+            <div class="torrent-meta-quick">
+                <span class="badge tv-show">TV Show</span>
+                <span><i class="fa-solid fa-calendar-days"></i> Added: 2019-12-25</span>
+                <span><i class="fa-solid fa-database"></i> Size: 18.42 GB</span>
+            </div>
+        </div>
 
-    <div class="file-list-header">
-        <span>File Name</span>
-        <span>Size</span>
-    </div>
-    <ul class="file-list" id="mkv-file-list">
-        </ul>
-</div>
+        <div class="grid-layout">
+            <section class="sidebar">
+                <div class="poster-container">
+                    <img src="https://image.tmdb.org/t/p/original/eaICMIigEShZEcpp1StYuRg1gdw.jpg" alt="Abby Hatcher Season 1 Poster" class="torrent-poster">
+                </div>
+                
+                <div class="action-buttons">
+                    <a href="magnet:?xt=urn:btih:3f8e23910b8a2c263dae27f4955ab3748de436df&dn=Abby.Hatcher.S01.1080p.AMZN.WEB-DL.AAC2.0.H.264-NTb" class="btn btn-magnet">
+                        <i class="fa-solid fa-magnet"></i> Magnet Download
+                    </a>
+                    <a href="#" class="btn btn-torrent">
+                        <i class="fa-solid fa-download"></i> Download .torrent
+                    </a>
+                </div>
 
-<script>
-    // Configuration pattern for the NTb scene release
-    const baseName = "Abby.Hatcher.S01E";
-    const extension = ".1080p.AMZN.WEB-DL.AAC2.0.H.264-NTb.mkv";
-    
-    // Exact file count requested
-    const totalEpisodes = 26; 
-    const fileListElement = document.getElementById('mkv-file-list');
+                <div class="torrent-stats">
+                    <h3>Swarm Stats</h3>
+                    <div class="stat-row text-success">
+                        <span><i class="fa-solid fa-arrow-up"></i> Seeders:</span>
+                        <strong>42</strong>
+                    </div>
+                    <div class="stat-row text-danger">
+                        <span><i class="fa-solid fa-arrow-down"></i> Leechers:</span>
+                        <strong>3</strong>
+                    </div>
+                    <div class="stat-row">
+                        <span><i class="fa-solid fa-check"></i> Completed:</span>
+                        <strong>184</strong>
+                    </div>
+                </div>
+            </section>
 
-    // Generate simulated file list
-    for (let i = 1; i <= totalEpisodes; i++) {
-        // Pads numbers with a leading zero (e.g., 01, 02, ... 26)
-        const episodeNumber = String(i).padStart(2, '0');
-        const fullFileName = `${baseName}${episodeNumber}${extension}`;
+            <section class="content-area">
+                <div class="info-block">
+                    <h3>Description & Technical Specs</h3>
+                    <table class="specs-table">
+                        <tr><td><strong>Format:</strong> Matroska (MKV)</td><td><strong>Codec:</strong> H.264 / AVC</td></tr>
+                        <tr><td><strong>Resolution:</strong> 1920x1080 (1080p)</td><td><strong>Source:</strong> Amazon WEB-DL</td></tr>
+                        <tr><td><strong>Audio:</strong> English AAC 2.0 @ 224 kbps</td><td><strong>Subtitles:</strong> English (SDH)</td></tr>
+                        <tr><td><strong>Release Group:</strong> NTb (Internal)</td><td><strong>Verified:</strong> Yes (Trusted Uploader)</td></tr>
+                    </table>
+                </div>
+
+                <div class="info-block file-list-section">
+                    <div class="file-list-header">
+                        <h3><i class="fa-regular fa-folder-open"></i> Torrent Contents (<span id="total-files-count">26</span> Files)</h3>
+                        <button id="toggle-files-btn" class="btn-minimal"><i class="fa-solid fa-chevron-down"></i> Expand All</button>
+                    </div>
+                    
+                    <div class="folder-root">
+                        <i class="fa-solid fa-folder text-folder"></i> <strong>Abby.Hatcher.S01.1080p.AMZN.WEB-DL.AAC2.0.H.264-NTb/</strong>
+                    </div>
+                    
+                    <ul id="mkv-file-container" class="file-tree-list">
+                        </ul>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 TorrentVault en-US. For educational testing purposes only.</p>
+    </footer>
+
+    <script type="text/javascript">
+// Array containing the true release mapping data for Abby Hatcher Season 1 (26 broadcast/retail files)
+const episodes = [
+    "Abby.Hatcher.S01E01.When.Abby.Met.Bozzly.Hair.Flair.Everywhere.1080p.AMZN.WEB-DL.AAC2.0.H.264-NTb.mkv",
+    "Abby.Hatcher.S01E02.Mo.and.Bo.in.the.Snow.Otis.Out.of.Order.1080p.AMZN.WEB-DL.AAC2.0.H.264-NTb.mkv",
+    "Abby.Hatcher.S01E03.Theres.Only.One.Bozzly.Cousin.Flugtilda.1080p.AMZN.WEB-DL.AAC2.0.H.264-NTb.mkv",
+    "Abby.Hatcher.S01E04.Princess.Flugs.Flower.Float.The.Fuzzlies.Talent.Show.1080p.AMZN.WEB-DL.AAC2.0.H.264-NTb.mkv",
+    "Abby.Hatcher.S01E05.Too.Tired.to.Tuba.Princess.Flug.Day.1080p.AMZN.WEB-DL.AAC2.0.H.264-NTb.mkv",
+    "Abby.Hatcher.S01E06.Hair.Flair.Fuzzly.The.Fuzzlies.in.the.Attic.1080p.AMZN.WEB-DL.AAC2.0.H.264-NTb.mkv",
+    "Abby.Hatcher.S01E07.Afraid.of.Cats.Chef.Curly.1080p.AMZN.WEB-DL.AAC2.0.H.264-NTb.mkv",
+    "Abby.Hatcher.S01E08.Curly.and.the.Sock.Doll.In.the.Park.1080p.AMZN.WEB-DL.AAC2.0.H.264-NTb.mkv",
+    "Abby.Hatcher.S01E09.Teeny.Terrys.Gift.Peeper.Time.Blues.1080p.AMZN.WEB-DL.AAC2.0.H.264-NTb.mkv",
+    "Abby.Hatcher.S01E10.Abbys.Squeaky.Peeper.Panic.Things.That.Go.Ding.in.the.Night.1080p.AMZN.WEB-DL.AAC2.0.H.264-NTb.mkv",
+    "Abby.Hatcher.S01E11.Hearts.and.Hugs.Day.Teeny.Terrys.Treehouse.1080p.AMZN.WEB-DL.AAC2.0.H.264-NTb.mkv",
+    "Abby.Hatcher.S01E12.Secret.Basement.Disco.Frazzled.Fuzzly.1080p.AMZN.WEB-DL.AAC2.0.H.264-NTb.mkv",
+    "Abby.Hatcher.S01E13.Fuzzly.Slumber.Party.Fix.It.Flug.1080p.AMZN.WEB-DL.AAC2.0.H.264-NTb.mkv",
+    "Abby.Hatcher.S01E14.Princess.Flugs.Flowery.Adventure.Fuzzliest.Dinner.1080p.AMZN.WEB-DL.AAC2.0.H.264-NTb.mkv",
+    "Abby.Hatcher.S01E15.Princess.Flugs.Pet.Slug.Fuzzly.Photo.Day.1080p.AMZN.WEB-DL.AAC2.0.H.264-NTb.mkv",
+    "Abby.Hatcher.S01E16.Fairy.Tale.Fuzzly.Super.Secret.Passageway.1080p.AMZN.WEB-DL.AAC2.0.H.264-NTb.mkv",
+    "Abby.Hatcher.S01E17.Teeny.Pelican.Terry.Tappin.Mo.and.Bo.1080p.AMZN.WEB-DL.AAC2.0.H.264-NTb.mkv",
+    "Abby.Hatcher.S01E18.Grumbles.First.Haircut.Fuzzly.Ball.1080p.AMZN.WEB-DL.AAC2.0.H.264-NTb.mkv",
+    "Abby.Hatcher.S01E19.The.Fuzzlies.Camping.Trip.1080p.AMZN.WEB-DL.AAC2.0.H.264-NTb.mkv",
+    "Abby.Hatcher.S01E20.Snug.Loving.Chipmunks.Abbys.Snug.1080p.AMZN.WEB-DL.AAC2.0.H.264-NTb.mkv",
+    "Abby.Hatcher.S01E21.Trick.or.Treat.Otis.Bedtime.for.Peepers.1080p.AMZN.WEB-DL.AAC2.0.H.264-NTb.mkv",
+    "Abby.Hatcher.S01E22.Otis.on.the.Go.Abbys.Afraid.1080p.AMZN.WEB-DL.AAC2.0.H.264-NTb.mkv",
+    "Abby.Hatcher.S01E23.Shape.of.Grumbles.Wai.Pois.Wild.Day.1080p.AMZN.WEB-DL.AAC2.0.H.264-NTb.mkv",
+    "Abby.Hatcher.S01E24.Abby.Loses.Elvin.The.Berry.Thief.1080p.AMZN.WEB-DL.AAC2.0.H.264-NTb.mkv",
+    "Abby.Hatcher.S01E25.Fuzzlies.New.Year.Dragon.Full.Moon.Fuzzly.1080p.AMZN.WEB-DL.AAC2.0.H.264-NTb.mkv",
+    "Abby.Hatcher.S01E26.Grumbles.Gets.Gone.Here.an.Abby.There.an.Abby.1080p.AMZN.WEB-DL.AAC2.0.H.264-NTb.mkv"
+];
+
+// Helper to simulate realistic, slightly variable WEB-DL file sizes around ~700MB per double segment block
+function generateMockSize(index) {
+    const baseline = 700.45;
+    const modifier = (index * 4.31) % 45;
+    return (baseline + modifier).toFixed(2) + " MB";
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const container = document.getElementById("mkv-file-container");
+    const toggleBtn = document.getElementById("toggle-files-btn");
+
+    // Loop and construct the 26 list items dynamically
+    episodes.forEach((filename, index) => {
+        const li = document.createElement("li");
+        li.className = "file-item";
         
-        // Simulates slightly varied file sizes around 430-460 MB typical for 1080p WEB-DL cartoons
-        const randomSize = (430 + (i % 7) * 4.3).toFixed(2); 
+        li.innerHTML = `
+            <span class="file-name">
+                <i class="fa-regular fa-file-video"></i>${filename}
+            </span>
+            <span class="file-size">${generateMockSize(index)}</span>
+        `;
+        
+        container.appendChild(li);
+    });
 
-        // Create the elements
-        const li = document.createElement('li');
-        li.className = 'file-item';
-
-        const nameSpan = document.createElement('span');
-        nameSpan.className = 'file-name';
-        nameSpan.textContent = fullFileName;
-
-        const sizeSpan = document.createElement('span');
-        sizeSpan.className = 'file-size';
-        sizeSpan.textContent = `${randomSize} MB`;
-
-        li.appendChild(nameSpan);
-        li.appendChild(sizeSpan);
-        fileListElement.appendChild(li);
-    }
-
-    // Torrent client trigger mock
-    function downloadTorrent() {
-        const torrentName = document.getElementById('torrent-title').textContent;
-        alert(`Opening magnet link for: \n${torrentName}\n\nAll 26 MKV files have been added to your download queue.`);
-    }
-</script>
-
+    // Simple Collapse / Expand Toggle functionality common on indexing sites
+    toggleBtn.addEventListener("click", () => {
+        const isCollapsed = container.classList.toggle("collapsed");
+        if (isCollapsed) {
+            toggleBtn.innerHTML = `<i class="fa-solid fa-chevron-down"></i> Expand All`;
+        } else {
+            toggleBtn.innerHTML = `<i class="fa-solid fa-chevron-up"></i> Collapse View`;
+        }
+    });
+    
+    // Default to collapsed for clean UI aesthetic on load
+    container.classList.add("collapsed");
+});
+    </script>
 </body>
 </html>
