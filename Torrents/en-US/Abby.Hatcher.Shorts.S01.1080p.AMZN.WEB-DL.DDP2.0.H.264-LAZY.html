@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Torrent Detail - Abby.Hatcher.Shorts.S01.1080p.AMZN.WEB-DL.DDP2.0.H.264-LAZY</title>
+    <style>
+        :root {
+            --bg-color: #121214;
+            --card-bg: #1a1a1e;
+            --accent-color: #ff4757;
+            --accent-hover: #e03d4b;
+            --text-main: #ffffff;
+            --text-muted: #a0a0a5;
+            --border-color: #2f2f35;
+        }
+
+        body {
+            font-family: Helvetica, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+        }
+
+        /* Torrent Header Section */
+        .torrent-header {
+            padding: 25px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .torrent-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin: 0 0 15px 0;
+            word-break: break-all;
+            color: var(--text-main);
+        }
+
+        .meta-badges {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background-color: var(--border-color);
+            color: var(--text-muted);
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .badge.seeds { color: #2ed573; background-color: rgba(46, 213, 115, 0.1); }
+        .badge.peers { color: #ffa502; background-color: rgba(255, 165, 2, 0.1); }
+
+        /* Main Content Layout */
+        .torrent-body {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 25px;
+            padding: 25px;
+        }
+
+        @media (max-width: 768px) {
+            .torrent-body {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Poster Styling */
+        .poster-container img {
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            aspect-ratio: 2/3;
+            object-fit: cover;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            margin-top: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.2s;
+            border: none;
+        }
+
+        .btn-magnet {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .btn-magnet:hover {
+            background-color: var(--accent-hover);
+        }
+
+        /* Accordion / File List Section */
+        .file-list-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .accordion-header {
+            background-color: var(--border-color);
+            padding: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        .accordion-header::after {
+            content: '▼';
+            font-size: 0.8rem;
+            transition: transform 0.2s;
+        }
+
+        .accordion-header.active::after {
+            transform: rotate(180deg);
+        }
+
+        .file-list-content {
+            display: none;
+            border: 1px solid var(--border-color);
+            border-top: none;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+            background-color: rgba(0,0,0,0.2);
+            padding: 10px;
+        }
+
+        .file-list-content.open {
+            display: block;
+        }
+
+        .file-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .file-table th, .file-table td {
+            text-align: left;
+            padding: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .file-table th {
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .file-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .file-name {
+            color: var(--text-main);
+            word-break: break-all;
+        }
+
+        .file-size {
+            color: var(--text-muted);
+            text-align: right;
+            white-space: nowrap;
+        }
+        
+        .file-table th:last-child {
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="torrent-header">
+        <h1 class="torrent-title">Abby.Hatcher.Shorts.S01.1080p.AMZN.WEB-DL.DDP2.0.H.264-LAZY</h1>
+        <div class="meta-badges">
+            <span class="badge seeds">▲ 142 Seeds</span>
+            <span class="badge peers">▼ 12 Peers</span>
+            <span class="badge">Size: 1.45 GB</span>
+            <span class="badge">Added: Today</span>
+            <span class="badge">Verified</span>
+        </div>
+    </div>
+
+    <div class="torrent-body">
+        <div class="poster-container">
+            <img src="https://image.tmdb.org/t/p/original/eaICMIigEShZEcpp1StYuRg1gdw.jpg" alt="Abby Hatcher Poster">
+            <div class="action-buttons">
+                <a href="#" class="btn btn-magnet">
+                    🧲 Magnet Download
+                </a>
+            </div>
+        </div>
+
+        <div class="file-list-container">
+            <div class="accordion-header" id="accordionToggle">
+                Files Included (10)
+            </div>
+            <div class="file-list-content" id="accordionContent">
+                <table class="file-table">
+                    <thead>
+                        <tr>
+                            <th>File Name</th>
+                            <th>Size</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="file-name">Abby.Hatcher.Shorts.S01E01.Abby.Gives.a.Tour.1080p.AMZN.WEB-DL.DDP2.0.H.264-LAZY.mkv</td>
+                            <td class="file-size">148.2 MB</td>
+                        </tr>
+                        <tr>
+                            <td class="file-name">Abby.Hatcher.Shorts.S01E02.The.Princess.Flug.Challenge.1080p.AMZN.WEB-DL.DDP2.0.H.264-LAZY.mkv</td>
+                            <td class="file-size">152.1 MB</td>
+                        </tr>
+                        <tr>
+                            <td class="file-name">Abby.Hatcher.Shorts.S01E03.Aced.It.1080p.AMZN.WEB-DL.DDP2.0.H.264-LAZY.mkv</td>
+                            <td class="file-size">145.7 MB</td>
+                        </tr>
+                        <tr>
+                            <td class="file-name">Abby.Hatcher.Shorts.S01E04.Awesome.Adventure.Race.1080p.AMZN.WEB-DL.DDP2.0.H.264-LAZY.mkv</td>
+                            <td class="file-size">150.3 MB</td>
+                        </tr>
+                        <tr>
+                            <td class="file-name">Abby.Hatcher.Shorts.S01E05.Whats.Squishy.in.the.Box.1080p.AMZN.WEB-DL.DDP2.0.H.264-LAZY.mkv</td>
+                            <td class="file-size">141.9 MB</td>
+                        </tr>
+                        <tr>
+                            <td class="file-name">Abby.Hatcher.Shorts.S01E06.Abbys.Splizzacular.Dance-Off.1080p.AMZN.WEB-DL.DDP2.0.H.264-LAZY.mkv</td>
+                            <td class="file-size">149.0 MB</td>
+                        </tr>
+                        <tr>
+                            <td class="file-name">Abby.Hatcher.Shorts.S01E07.Fuzzly.Treasure.Hunt.1080p.AMZN.WEB-DL.DDP2.0.H.264-LAZY.mkv</td>
+                            <td class="file-size">155.6 MB</td>
+                        </tr>
+                        <tr>
+                            <td class="file-name">Abby.Hatcher.Shorts.S01E08.Who.Knows.That.Smell.1080p.AMZN.WEB-DL.DDP2.0.H.264-LAZY.mkv</td>
+                            <td class="file-size">138.4 MB</td>
+                        </tr>
+                        <tr>
+                            <td class="file-name">Abby.Hatcher.Shorts.S01E09.Not.My.Fuzzly.Arms.1080p.AMZN.WEB-DL.DDP2.0.H.264-LAZY.mkv</td>
+                            <td class="file-size">143.2 MB</td>
+                        </tr>
+                        <tr>
+                            <td class="file-name">Abby.Hatcher.Shorts.S01E10.The.Great.Fuzzly.Challenge.1080p.AMZN.WEB-DL.DDP2.0.H.264-LAZY.mkv</td>
+                            <td class="file-size">160.1 MB</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('accordionToggle').addEventListener('click', function() {
+        this.classList.toggle('active');
+        const content = document.getElementById('accordionContent');
+        content.classList.toggle('open');
+    });
+
+    // Automatically expand the list on page load for a better presentation
+    document.getElementById('accordionToggle').click();
+</script>
+
+</body>
+</html>
