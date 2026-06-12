@@ -3,299 +3,262 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Torrent Details | PLANET OF THE APES／猿の惑星 (2001)</title>
+    <title>PLANET OF THE APES／猿の惑星 (2001) 1080p JPN BluRay REMUX MPEG-2 DTS-HD MA 5.1-FGT :: Nyaa</title>
     <style>
         :root {
-            --bg-primary: #121212;
-            --bg-secondary: #1a1a1a;
-            --bg-tertiary: #242424;
-            --accent-color: #4da6ff;
-            --accent-hover: #338bcc;
-            --text-main: #e0e0e0;
-            --text-muted: #a0a0a0;
-            --success: #2ea44f;
-            --border-color: #333333;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+            --bg-color: #f4f4f4;
+            --container-bg: #ffffff;
+            --text-color: #333333;
+            --primary-color: #0066c0;
+            --border-color: #dddddd;
+            --success-color: #28a745;
+            --info-color: #17a2b8;
+            --table-header-bg: #f2f2f2;
         }
 
         body {
             font-family: Hiragino Sans, sans-serif;
-            background-color: var(--bg-primary);
-            color: var(--text-main);
-            line-height: 1.6;
-            padding: 20px;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        header {
+            background-color: #222;
+            color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: bold;
+            color: #dfdfdf;
+        }
+
+        header h1 span {
+            color: #0088cc;
         }
 
         .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            background-color: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-        }
-
-        /* Header / Torrent Title */
-        .torrent-header {
-            background-color: var(--bg-tertiary);
+            max-width: 1140px;
+            margin: 20px auto;
+            background: var(--container-bg);
             padding: 20px;
-            border-bottom: 1px solid var(--border-color);
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
 
         .torrent-title {
-            font-size: 1.4rem;
-            font-weight: 600;
-            color: #ffffff;
-            word-break: break-all;
-            margin-bottom: 10px;
-        }
-
-        .tag-container {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .tag {
-            background-color: rgba(77, 166, 255, 0.1);
-            color: var(--accent-color);
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.8rem;
+            font-size: 18px;
             font-weight: bold;
-            border: 1px solid rgba(77, 166, 255, 0.2);
+            padding: 10px;
+            background-color: #e9ecef;
+            border-left: 5px solid var(--primary-color);
+            margin-bottom: 20px;
+            word-break: break-all;
         }
 
-        /* Main Content Layout */
-        .main-layout {
-            display: grid;
-            grid-template-columns: 300px 1fr;
-            gap: 20px;
-            padding: 20px;
-        }
-
-        @media (max-width: 768px) {
-            .main-layout {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Poster Sidebar */
-        .poster-sidebar {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .movie-poster {
+        .torrent-info-table {
             width: 100%;
-            border-radius: 6px;
-            border: 1px solid var(--border-color);
-            aspect-ratio: 2/3;
-            object-fit: cover;
-            background-color: #000;
+            border-collapse: collapse;
+            margin-bottom: 20px;
         }
 
-        /* Action Buttons */
+        .torrent-info-table td {
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            vertical-align: top;
+        }
+
+        .torrent-info-table td.label {
+            font-weight: bold;
+            background-color: var(--table-header-bg);
+            width: 18%;
+        }
+
+        .torrent-info-table td.value {
+            width: 32%;
+        }
+
+        .download-buttons {
+            margin: 20px 0;
+            display: flex;
+            gap: 10px;
+        }
+
         .btn {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
-            gap: 8px;
-            width: 100%;
-            padding: 12px;
-            border-radius: 6px;
+            padding: 8px 16px;
+            font-size: 14px;
             font-weight: bold;
-            cursor: pointer;
             text-decoration: none;
-            transition: background 0.2s;
+            border-radius: 4px;
+            color: #fff;
+            cursor: pointer;
             border: none;
-            font-size: 0.95rem;
         }
 
-        .btn-download {
-            background-color: var(--success);
-            color: white;
+        .btn-success { background-color: var(--success-color); }
+        .btn-info { background-color: var(--info-color); }
+        
+        .btn:hover {
+            opacity: 0.9;
         }
 
-        .btn-download:hover {
-            background-color: #2c974b;
-        }
-
-        .btn-magnet {
-            background-color: transparent;
-            color: var(--accent-color);
-            border: 1px solid var(--accent-color);
-        }
-
-        .btn-magnet:hover {
-            background-color: rgba(77, 166, 255, 0.1);
-        }
-
-        /* Details Panel */
-        .details-panel {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .stats-table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: var(--bg-tertiary);
-            border-radius: 6px;
-            overflow: hidden;
-        }
-
-        .stats-table td {
-            padding: 12px 15px;
-            border-bottom: 1px solid var(--border-color);
-            font-size: 0.9rem;
-        }
-
-        .stats-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .label {
-            color: var(--text-muted);
-            width: 30%;
-        }
-
-        .value {
-            color: var(--text-main);
-            font-weight: 500;
-        }
-
-        .seeders { color: #2ea44f; font-weight: bold; }
-        .leechers { color: #f85149; font-weight: bold; }
-
-        /* File List Container */
-        .file-list-section {
-            background-color: var(--bg-tertiary);
+        .description-panel {
             border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 15px;
+            border-radius: 4px;
+            margin-top: 20px;
         }
 
-        .section-title {
-            font-size: 1.1rem;
-            margin-bottom: 12px;
-            color: #ffffff;
+        .description-header {
+            background-color: var(--table-header-bg);
+            padding: 10px 15px;
+            font-weight: bold;
             border-bottom: 1px solid var(--border-color);
-            padding-bottom: 6px;
         }
 
-        .file-tree {
-            list-style: none;
+        .description-body {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .movie-poster {
+            max-width: 100%;
+            width: 400px;
+            height: auto;
+            border-radius: 4px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+        }
+
+        .technical-info {
+            text-align: left;
+            max-width: 600px;
+            margin: 0 auto;
+            background: #f8f9fa;
+            padding: 15px;
+            border-left: 3px solid #6c757d;
             font-family: monospace;
-            font-size: 0.9rem;
+            white-space: pre-wrap;
+            word-break: break-all;
         }
 
-        .file-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 6px 0;
-            border-bottom: 1px dashed rgba(255,255,255,0.05);
-        }
-
-        .file-item:last-child {
-            border-bottom: none;
-        }
-
-        .file-name {
-            color: #c9d1d9;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .file-size {
-            color: var(--text-muted);
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #777;
+            font-size: 12px;
+            margin-top: 40px;
+            border-top: 1px solid var(--border-color);
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <header class="torrent-header">
-        <h1 class="torrent-title">Planet.of.the.Apes.2001.1080p.JPN.BluRay.REMUX.MPEG-2.DTS-HD.MA.5.1-FGT</h1>
-        <div class="tag-container">
-            <span class="tag">映画 (Movies)</span>
-            <span class="tag">BluRay</span>
-            <span class="tag">REMUX</span>
-            <span class="tag">1080p</span>
-        </div>
+    <header>
+        <h1>Nyaa<span>.si</span></h1>
+        <div>ja-JP (日本語)</div>
     </header>
 
-    <div class="main-layout">
-        
-        <aside class="poster-sidebar">
-            <img class="movie-poster" src="https://image.tmdb.org/t/p/original/z2ZYlwu36DhRd6GR7dr1oc07M2.jpg" alt="『PLANET OF THE APES／猿の惑星』のポスター">
-            
-            <button class="btn btn-download" id="downloadBtn">
-                📥 .torrent をダウンロード
-            </button>
-            <button class="btn btn-magnet" id="magnetBtn">
-                🧲 マグネットリンク
-            </button>
-        </aside>
+    <div class="container">
+        <div class="torrent-title">
+            Planet.of.the.Apes.2001.1080p.JPN.BluRay.REMUX.MPEG-2.DTS-HD.MA.5.1-FGT
+        </div>
 
-        <main class="details-panel">
-            <table class="stats-table">
-                <tbody>
-                    <tr>
-                        <td class="label">追加日</td>
-                        <td class="value">2026-06-12 11:47</td>
-                    </tr>
-                    <tr>
-                        <td class="label">合計サイズ</td>
-                        <td class="value" id="totalSize">24.17 GB</td>
-                    </tr>
-                    <tr>
-                        <td class="label">シード (Seeders)</td>
-                        <td class="value seeders">42</td>
-                    </tr>
-                    <tr>
-                        <td class="label">ピア (Leechers)</td>
-                        <td class="value leechers">3</td>
-                    </tr>
-                    <tr>
-                        <td class="label">情報のハッシュ</td>
-                        <td class="value" style="font-family: monospace; font-size: 0.8rem;">A1B2C3D4E5F6A7B8C9D0E1F2A3B4C5D6E7F8A9B0</td>
-                    </tr>
-                </tbody>
-            </table>
+        <table class="torrent-info-table">
+            <tr>
+                <td class="label">カテゴリー (Category)</td>
+                <td class="value"><a href="#" style="color: var(--primary-color); text-decoration: none;">Anime - Non-English-translated</a></td>
+                <td class="label">日付 (Date)</td>
+                <td class="value" id="current-date">2026-06-12 12:00</td>
+            </tr>
+            <tr>
+                <td class="label">投稿者 (Submitter)</td>
+                <td class="value"><a href="#" style="color: var(--primary-color); text-decoration: none;">FGT</a></td>
+                <td class="label">シード数 (Seeders)</td>
+                <td class="value" style="color: green; font-weight: bold;">42</td>
+            </tr>
+            <tr>
+                <td class="label">サイズ (Size)</td>
+                <td class="value">24.8 GiB</td>
+                <td class="label">リーチ数 (Leechers)</td>
+                <td class="value" style="color: red; font-weight: bold;">2</td>
+            </tr>
+            <tr>
+                <td class="label">情報 (Information)</td>
+                <td class="value">—</td>
+                <td class="label">完了数 (Completed)</td>
+                <td class="value">188</td>
+            </tr>
+        </table>
 
-            <section class="file-list-section">
-                <h2 class="section-title">含まれるファイル (1)</h2>
-                <ul class="file-tree">
-                    <li class="file-item">
-                        <span class="file-name">🎬 Planet.of.the.Apes.2001.1080p.JPN.BluRay.REMUX.MPEG-2.DTS-HD.MA.5.1-FGT.mkv</span>
-                        <span class="file-size">24.17 GB</span>
-                    </li>
-                </ul>
-            </section>
-        </main>
+        <div class="download-buttons">
+            <a href="#" class="btn btn-success" id="download-btn">
+                <svg width="16" height="16" fill="currentColor" style="margin-right:5px;" viewBox="0 0 16 16">
+                    <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v2.5a.5.5 0 0 1 .5-.5z"/>
+                    <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+                </svg>
+                急流をダウンロード (Torrent Download)
+            </a>
+            <a href="#" class="btn btn-info" id="magnet-btn">
+                <svg width="16" height="16" fill="currentColor" style="margin-right:5px;" viewBox="0 0 16 16">
+                    <path d="M8 1a6.5 6.5 0 0 0-5.46 10.038l.07.105 1.186-.793-.07-.105A5.151 5.151 0 0 1 3.5 8c0-2.481 2.019-4.5 4.5-4.5s4.5 2.019 4.5 4.5c0 1.184-.457 2.296-1.286 3.134l-.071.071 1.06 1.06.071-.07A6.463 6.463 0 0 0 14.5 8 6.5 6.5 0 0 0 8 1z"/>
+                    <path d="M6 8a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
+                </svg>
+                マグネットリンク (Magnet Link)
+            </a>
+        </div>
+
+        <div class="description-panel">
+            <div class="description-header">説明 (Description)</div>
+            <div class="description-body">
+                <img src="https://image.tmdb.org/t/p/original/z2ZYlwu36DhRd6GR7dr1oc07M2.jpg" alt="Planet of the Apes (2001) Poster" class="movie-poster">
+                
+                <div class="technical-info">
+**PLANET OF THE APES／猿の惑星 (2001)**
+
+JPN BluRay REMUX Edition
+
+[Video Info]
+Codec: MPEG-2
+Resolution: 1080p (1920x1080)
+Frame Rate: 23.976 fps
+
+[Audio Info]
+Track 1: English DTS-HD Master Audio 5.1
+Track 2: Japanese (日本語) DTS 5.1
+
+[Subtitle Info]
+Track 1: Japanese (日本語)
+Track 2: English</div>
+            </div>
+        </div>
     </div>
-</div>
 
-<script>
-    // Simple interactions for the UI
-    document.getElementById('downloadBtn').addEventListener('click', () => {
-        alert('メタデータファイルのダウンロードを開始しました。');
-    });
+    <footer>
+        <p>© 2026 Nyaa.si Clone - For Demonstration Purposes Only.</p>
+    </footer>
 
-    document.getElementById('magnetBtn').addEventListener('click', () => {
-        alert('マグネットURIをクリップボードにコピー、またはクライアントを呼び出します。\n\nmagnet:?xt=urn:btih:a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0...');
-    });
-</script>
+    <script>
+        // Interactive feedback for buttons
+        document.getElementById('download-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('.torrent ファイルのダウンロードを開始しました。 (Mock Download Started)');
+        });
 
+        document.getElementById('magnet-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('マグネットリンクをクリップボード、または外部クライアントに転送しました。 (Mock Magnet Opened)');
+        });
+    </script>
 </body>
 </html>
