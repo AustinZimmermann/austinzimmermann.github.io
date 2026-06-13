@@ -1,1 +1,0 @@
-<img width="508" height="1351" alt="A 7-Year-Old Sister (3D animation)" src="https://github.com/user-attachments/assets/6303ea59-1b3b-48d7-902d-d6c1d5b3e8be" /> <br> An artwork of a 7-year-old sister (3D animation).
