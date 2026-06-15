@@ -1,0 +1,2 @@
+<img width="2752" height="1536" alt="Gemini_Generated_Image_tes8rutes8rutes8" src="https://github.com/user-attachments/assets/90f60a5e-5fcb-4f0e-b3c0-cbcb9e17f0ce" />\
+This image is a high-quality 3D digital render of **Dr. Stewart**, a prominent racing pilot from Nintendo’s futuristic racing game franchise, *F-Zero*. The composition places him prominently in the center against a bustling, high-tech racetrack environment that captures the signature aesthetic of the series.
