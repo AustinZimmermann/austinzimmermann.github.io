@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Terminator (Blu-ray, 1984) - Sony Pictures Release</title>
+    <style>
+        :root {
+            --bg-color: #0a0f18;
+            --card-bg: #121926;
+            --text-color: #e2e8f0;
+            --text-muted: #94a3b8;
+            --accent-color: #e50914;
+            --accent-blue: #00d2ff;
+            --border-color: #1e293b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #05070b 0%, #1e293b 100%);
+            padding: 30px;
+            border-bottom: 3px solid var(--accent-blue);
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
+            margin-bottom: 5px;
+        }
+
+        header p {
+            color: var(--accent-blue);
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        /* Main Content Layout */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            padding: 30px;
+        }
+
+        @media (min-width: 768px) {
+            .main-content {
+                grid-template-columns: 350px 1fr;
+            }
+        }
+
+        /* Artwork / Images Section */
+        .media-aside {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .cover-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 300px;
+            perspective: 1000px;
+        }
+
+        .cover-img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .cover-img:hover {
+            transform: scale(1.03);
+        }
+
+        .toggle-btn {
+            background: transparent;
+            color: var(--accent-blue);
+            border: 2px solid var(--accent-blue);
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            margin-top: 10px;
+        }
+
+        .toggle-btn:hover {
+            background: var(--accent-blue);
+            color: #000;
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.4);
+        }
+
+        /* Technical Details & Specs */
+        .details-panel h2 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #fff;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+
+        .synopsis {
+            color: var(--text-muted);
+            margin-bottom: 25px;
+            font-size: 1.05rem;
+            text-align: justify;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        @media (min-width: 480px) {
+            .specs-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .spec-item {
+            background: rgba(255,255,255,0.02);
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-blue);
+        }
+
+        .spec-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            font-weight: bold;
+        }
+
+        .spec-value {
+            font-size: 1rem;
+            color: #fff;
+            font-weight: 500;
+        }
+
+        /* Special Features List */
+        .features-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .features-list {
+            list-style: none;
+        }
+
+        .features-list li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 10px;
+            color: var(--text-muted);
+        }
+
+        .features-list li::before {
+            content: "➔";
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-color);
+            background: rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1 id="movie-title">Loading Title...</h1>
+        <p id="edition-info">BLU-RAY RE-RELEASE</p>
+    </header>
+
+    <div class="main-content">
+        <div class="media-aside">
+            <div class="cover-wrapper">
+                <img id="cover-image" src="" alt="The Terminator Blu-ray Cover" class="cover-img">
+            </div>
+            <button class="toggle-btn" id="view-toggle">Switch to Back Cover</button>
+        </div>
+
+        <div class="details-panel">
+            <h2>Synopsis</h2>
+            <p class="synopsis" id="synopsis">Loading synopsis...</p>
+
+            <h2>Specifications</h2>
+            <div class="specs-grid" id="specs-container">
+                </div>
+
+            <div class="features-section">
+                <h3>Special Features</h3>
+                <ul class="features-list" id="features-container">
+                    </ul>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; <span id="release-year">2006</span> Sony Pictures Home Entertainment. All Rights Reserved.</p>
+    </footer>
+</div>
+
+<script>
+    // Embedded data.json representation
+    const database = {
+        "title": "The Terminator",
+        "year": 1984,
+        "format": "Blu-ray",
+        "studio": "Sony Pictures Home Entertainment",
+        "releaseDate": "2006-06-20",
+        "coverFront": "https://images.static-bluray.com/movies/covers/117_front.jpg",
+        "coverBack": "https://images.static-bluray.com/movies/covers/117_back.jpg",
+        "synopsis": "A human-looking cyborg is sent from 2029 to 1984 to assassinate a waitress, whose unborn son will lead humanity in a war against the machines, while a soldier from that war is sent to protect her at all costs.",
+        "specs": {
+            "Video Resolution": "1080p High Definition",
+            "Aspect Ratio": "1.85:1",
+            "Audio": "English Uncompressed PCM 5.1, English Dolby Digital 5.1 EX, French Dolby Digital 5.1 EX",
+            "Subtitles": "English, English SDH, French, Spanish, Portuguese, Korean",
+            "Discs": "Single 25GB Blu-ray Disc",
+            "Run Time": "107 minutes"
+        },
+        "specialFeatures": [
+            "\"Creating The Terminator: Visual Effects and Music\" Featurette",
+            "\"Terminator: A Retrospective\" Documentary",
+            "Terminator " + "Deleted Scenes"
+        ]
+    };
+
+    // Application Logic
+    document.addEventListener("DOMContentLoaded", () => {
+        // UI Elements
+        const movieTitle = document.getElementById("movie-title");
+        const editionInfo = document.getElementById("edition-info");
+        const synopsis = document.getElementById("synopsis");
+        const coverImage = document.getElementById("cover-image");
+        const viewToggle = document.getElementById("view-toggle");
+        const specsContainer = document.getElementById("specs-container");
+        const featuresContainer = document.getElementById("features-container");
+
+        // Populate Static Data
+        movieTitle.textContent = `${database.title} (${database.year})`;
+        editionInfo.textContent = `${database.format} Edition • Released by ${database.studio} on ${database.releaseDate}`;
+        synopsis.textContent = database.synopsis;
+        
+        // Initialize Cover Image
+        coverImage.src = database.coverFront;
+        let showingFront = true;
+
+        // Cover Toggle Functionality
+        viewToggle.addEventListener("click", () => {
+            if (showingFront) {
+                coverImage.src = database.coverBack;
+                viewToggle.textContent = "Switch to Front Cover";
+            } else {
+                coverImage.src = database.coverFront;
+                viewToggle.textContent = "Switch to Back Cover";
+            }
+            showingFront = !showingFront;
+        });
+
+        // Populate Specifications
+        Object.entries(database.specs).forEach(([key, value]) => {
+            const specItem = document.createElement("div");
+            specItem.className = "spec-item";
+            specItem.innerHTML = `
+                <div class="spec-label">${key}</div>
+                <div class="spec-value">${value}</div>
+            `;
+            specsContainer.appendChild(specItem);
+        });
+
+        // Populate Special Features
+        database.specialFeatures.forEach(feature => {
+            const li = document.createElement("li");
+            li.textContent = feature;
+            featuresContainer.appendChild(li);
+        });
+    });
+</script>
+</body>
+</html>
