@@ -3,32 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>X-Men (Blu-ray, 2000, 2-Disc Set, Japanese) : 20th Century Fox Home Entertainment : Free Download, Borrow, and Streaming : Internet Archive</title>
-    <link rel="icon" href="https://archive.org/favicon.ico" type="image/x-icon">
+    <title>X-Men (Blu-ray, 2000, 2-Disc Set, Japanese) : 20th Century Fox Home Entertainment : Free Borrow & Streaming : Internet Archive</title>
+    <link rel="icon" type="image/x-icon" href="https://archive.org/favicon.ico">
     <style>
         :root {
-            --primary-color: #111;
-            --secondary-color: #333;
-            --accent-color: #4b6584;
-            --bg-color: #f9f9f9;
-            --card-bg: #ffffff;
-            --text-muted: #666;
-            --border-color: #e1e1e1;
+            --primary-bg: #111111;
+            --secondary-bg: #222222;
+            --text-main: #f5f5f5;
+            --text-muted: #aaaaaa;
+            --accent-blue: #326cb0;
+            --accent-hover: #4588d6;
+            --border-color: #333333;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
         }
 
         body {
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-color);
-            color: var(--primary-color);
+            background-color: var(--primary-bg);
+            color: var(--text-main);
             line-height: 1.5;
         }
 
-        /* Header Style imitating Archive.org */
+        /* Header Styles mimicking Archive.org */
         header {
-            background-color: var(--primary-color);
-            color: #fff;
+            background-color: #000000;
+            border-bottom: 2px solid var(--accent-blue);
             padding: 10px 20px;
             display: flex;
             align-items: center;
@@ -39,329 +43,334 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            text-decoration: none;
+            color: white;
             font-weight: bold;
             font-size: 1.2rem;
         }
 
         .logo-area img {
-            width: 32px;
-            height: 32px;
-            background: white;
-            padding: 2px;
-            border-radius: 4px;
+            width: 24px;
+            height: 24px;
         }
 
-        .nav-links {
-            display: flex;
-            gap: 15px;
+        .search-bar {
+            flex-grow: 1;
+            max-width: 500px;
+            margin: 0 20px;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 8px 12px;
+            background-color: #222;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            color: white;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-left: 15px;
             font-size: 0.9rem;
         }
 
-        .nav-links a {
-            color: #ccc;
-            text-decoration: none;
-        }
-
-        .nav-links a:hover {
-            color: #fff;
+        nav a:hover {
+            color: white;
         }
 
         /* Main Layout */
-        .container {
+        main {
             max-width: 1200px;
             margin: 30px auto;
             padding: 0 20px;
             display: grid;
-            grid-template-columns: 1fr 350px;
+            grid-template-columns: 1fr;
             gap: 30px;
         }
 
-        @media (max-width: 768px) {
-            .container {
-                grid-template-columns: 1fr;
+        @media (min-width: 768px) {
+            main {
+                grid-template-columns: 1.2fr 1fr;
             }
         }
 
-        /* Left Column: Media Player / Cover Placeholder & Metadata */
-        .main-content {
-            background: var(--card-bg);
-            padding: 25px;
+        /* Left Side: Media Viewer */
+        .media-viewer {
+            background-color: var(--secondary-bg);
+            border: 1px solid var(--border-color);
             border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        .item-title {
-            margin-top: 0;
+        .main-image-container {
+            width: 100%;
+            height: 450px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background-color: #050505;
+            border-radius: 4px;
+            border: 1px solid #111;
+        }
+
+        .main-image-container img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: opacity 0.2s ease-in-out;
+        }
+
+        .thumbnail-container {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border: 2px solid transparent;
+            border-radius: 4px;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: all 0.2s ease;
+        }
+
+        .thumbnail:hover, .thumbnail.active {
+            opacity: 1;
+            border-color: var(--accent-blue);
+        }
+
+        /* Right Side: Metadata & Downloads */
+        .details-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .item-header h1 {
             font-size: 1.8rem;
-            color: var(--secondary-color);
+            line-height: 1.3;
+            margin-bottom: 10px;
+            color: #fff;
         }
 
-        .meta-line {
+        .meta-inline {
             font-size: 0.9rem;
             color: var(--text-muted);
-            margin-bottom: 20px;
         }
 
-        .meta-line a {
-            color: var(--accent-color);
+        .meta-inline span {
+            margin-right: 15px;
+        }
+
+        .meta-inline a {
+            color: var(--accent-blue);
             text-decoration: none;
         }
 
-        /* Mock Media Player / Cover Box */
-        .media-viewer {
-            background: #000;
-            aspect-ratio: 16/9;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            border-radius: 4px;
-            margin-bottom: 25px;
-            position: relative;
-            overflow: hidden;
+        .meta-inline a:hover {
+            text-decoration: underline;
         }
 
-        .blu-ray-cover-placeholder {
-            text-align: center;
-            border: 2px dashed #444;
-            padding: 40px;
-            border-radius: 4px;
-        }
-
-        .blu-ray-cover-placeholder h3 {
-            margin: 0 0 10px 0;
-            color: #3867d6;
-        }
-
-        /* Tabs Navigation */
-        .tabs {
-            display: flex;
-            border-bottom: 2px solid var(--border-color);
-            margin-bottom: 20px;
-        }
-
-        .tab-btn {
-            background: none;
-            border: none;
-            padding: 10px 20px;
-            font-size: 1rem;
-            cursor: pointer;
-            color: var(--text-muted);
-            border-bottom: 2px solid transparent;
-            margin-bottom: -2px;
-        }
-
-        .tab-btn.active {
-            color: var(--primary-color);
-            border-bottom: 2px solid var(--primary-color);
-            font-weight: bold;
-        }
-
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        /* Metadata Tables */
-        .meta-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-        }
-
-        .meta-table th, .meta-table td {
-            text-align: left;
-            padding: 10px;
-            border-bottom: 1px solid var(--border-color);
-            font-size: 0.95rem;
-        }
-
-        .meta-table th {
-            width: 30%;
-            color: var(--text-muted);
-            font-weight: 500;
-        }
-
-        /* Right Column: Download Options Box */
-        .sidebar {
-            background: var(--card-bg);
-            padding: 20px;
+        .download-box {
+            background-color: var(--secondary-bg);
+            border: 1px solid var(--border-color);
             border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            height: fit-content;
+            padding: 20px;
         }
 
-        .sidebar-title {
+        .download-box h3 {
             font-size: 1.1rem;
-            margin-top: 0;
-            padding-bottom: 10px;
+            margin-bottom: 15px;
             border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
         }
 
-        .download-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+        .download-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
 
         .download-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px dotted var(--border-color);
+            padding: 8px 12px;
+            background: #2a2a2a;
+            border-radius: 4px;
+            text-decoration: none;
+            color: white;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+        }
+
+        .download-item:hover {
+            background: #3a3a3a;
+        }
+
+        .download-item .format {
+            font-weight: bold;
+            color: var(--accent-hover);
+        }
+
+        .metadata-section {
+            margin-top: 10px;
+        }
+
+        .metadata-table {
+            width: 100%;
+            border-collapse: collapse;
             font-size: 0.9rem;
         }
 
-        .download-item a {
-            color: var(--accent-color);
-            text-decoration: none;
-            font-weight: 500;
+        .metadata-table th, .metadata-table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
         }
 
-        .download-item .file-size {
+        .metadata-table th {
             color: var(--text-muted);
+            width: 30%;
+            font-weight: normal;
         }
 
+        /* Footer */
         footer {
-            text-align: center;
-            padding: 40px 20px;
-            color: var(--text-muted);
-            font-size: 0.85rem;
+            margin-top: 60px;
             border-top: 1px solid var(--border-color);
-            margin-top: 50px;
+            padding: 30px 20px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo-area">
+        <a href="https://archive.org" class="logo-area" target="_blank">
             <img src="https://archive.org/favicon.ico" alt="Internet Archive Logo">
             <span>INTERNET ARCHIVE</span>
+        </a>
+        <div class="search-bar">
+            <input type="text" placeholder="Search metadata, items, collection...">
         </div>
-        <nav class="nav-links">
+        <nav>
             <a href="#">Web</a>
             <a href="#">Books</a>
             <a href="#">Video</a>
             <a href="#">Audio</a>
-            <a href="#">Software</a>
         </nav>
     </header>
 
-    <div class="container">
-        
-        <main class="main-content">
-            <h1 class="item-title">X-Men (Blu-ray, 2000, 2-Disc Set, Japanese)</h1>
-            <div class="meta-line">
-                by <a href="#">20th Century Fox Home Entertainment</a>
+    <main>
+        <section class="media-viewer">
+            <div class="main-image-container">
+                <img id="main-display-img" src="https://st.cdjapan.co.jp/pictures/l/07/10/FXXG-19942.jpg" alt="X-Men Blu-ray Front Cover">
             </div>
+            <div class="thumbnail-container">
+                <img class="thumbnail active" src="https://st.cdjapan.co.jp/pictures/l/07/10/FXXG-19942.jpg" alt="Front Cover Thumbnail" onclick="switchImage(this)">
+                <img class="thumbnail" src="https://st.cdjapan.co.jp/pictures/l/07/10/FXXG-19942_2.jpg" alt="Back Cover Thumbnail" onclick="switchImage(this)">
+            </div>
+        </section>
 
-            <div class="media-viewer">
-                <div class="blu-ray-cover-placeholder">
-                    <h3>[ Blu-ray Disc Media ISO / Artwork ]</h3>
-                    <p style="color: #aaa; font-size: 0.85rem;">Preview stream not available for this preservation format.</p>
+        <section class="details-panel">
+            <div class="item-header">
+                <h1>X-Men (Blu-ray, 2000, 2-Disc Set, Japanese Edition)</h1>
+                <div class="meta-inline">
+                    <span>by <a href="#">20th Century Fox Home Entertainment</a></span>
+                    <span>Publication date: <strong>2009-08-28</strong></span>
                 </div>
             </div>
 
-            <div class="tabs">
-                <button class="tab-btn active" onclick="switchTab(event, 'details')">Publication Info</button>
-                <button class="tab-btn" onclick="switchTab(event, 'technical')">Technical Specs</button>
+            <div class="download-box">
+                <h3>Download Options</h3>
+                <div class="download-options">
+                    <a href="https://st.cdjapan.co.jp/pictures/l/07/10/FXXG-19942.jpg" download class="download-item" target="_blank">
+                        <span class="format">JPEG (Front Cover)</span>
+                        <span>49.8 KB</span>
+                    </a>
+                    <a href="https://st.cdjapan.co.jp/pictures/l/07/10/FXXG-19942_2.jpg" download class="download-item" target="_blank">
+                        <span class="format">JPEG (Back Cover)</span>
+                        <span>54.2 KB</span>
+                    </a>
+                    <a href="#" class="download-item">
+                        <span class="format">TORRENT</span>
+                        <span>1 file</span>
+                    </a>
+                </div>
             </div>
 
-            <div id="details" class="tab-content active">
-                <p>Preservation rip of the Japanese 2-Disc Blu-ray set of the original 2000 film <em>X-Men</em>, distributed by 20th Century Fox Home Entertainment.</p>
-                <table class="meta-table">
-                    <tr>
-                        <th>Publication date</th>
-                        <td>2009-08-28</td>
-                    </tr>
+            <div class="metadata-section">
+                <table class="metadata-table">
                     <tr>
                         <th>Publisher</th>
                         <td>20th Century Fox Home Entertainment</td>
                     </tr>
                     <tr>
-                        <th>Language</th>
+                        <th>Publication Date</th>
+                        <td>2009-08-28</td>
+                    </tr>
+                    <tr>
+                        <th>Media Format</th>
+                        <td>Blu-ray Disc (2-Disc Set)</td>
+                    </tr>
+                    <tr>
+                        <th>Audio</th>
+                        <td>English (DTS-HD Master Audio 5.1, Dolby Digital 5.1), Japanese (DTS 5.1)</td>
+                    </tr>
+                    <tr>
+                        <th>Subtitles</th>
                         <td>Japanese, English</td>
                     </tr>
                     <tr>
-                        <th>Director</th>
-                        <td>Bryan Singer</td>
-                    </tr>
-                </table>
-            </div>
-
-            <div id="technical" class="tab-content">
-                <table class="meta-table">
-                    <tr>
-                        <th>Format</th>
-                        <td>Blu-ray (BD-25 / BD-50)</td>
+                        <th>Original Release Year</th>
+                        <td>2000 (Movie)</td>
                     </tr>
                     <tr>
                         <th>Identifier</th>
-                        <td>x-men-2000-bluray-japanese-2disc</td>
-                    </tr>
-                    <tr>
-                        <th>Codec</th>
-                        <td>MPEG-4 AVC / AVC Video</td>
-                    </tr>
-                    <tr>
-                        <th>Audio Tracks</th>
-                        <td>English (DTS-HD Master Audio 5.1), English (Dolby Digital 5.1), Japanese (DTS 5.1)</td>
-                    </tr>
-                    <tr>
-                        <th>Added to Archive</th>
-                        <td>2026-06-17</td>
+                        <td>xmen-bluray-2000-2disc-jp</td>
                     </tr>
                 </table>
             </div>
-        </main>
-
-        <aside class="sidebar">
-            <h3 class="sidebar-title">Download Options</h3>
-            <ul class="download-list">
-                <li class="download-item">
-                    <a href="#">ISO IMAGE (Disc 1)</a>
-                    <span class="file-size">23.4 GB</span>
-                </li>
-                <li class="download-item">
-                    <a href="#">ISO IMAGE (Disc 2)</a>
-                    <span class="file-size">18.1 GB</span>
-                </li>
-                <li class="download-item">
-                    <a href="#">TORRENT</a>
-                    <span class="file-size">2 files</span>
-                </li>
-                <li class="download-item">
-                    <a href="#">METADATA</a>
-                    <span class="file-size">4.2 KB</span>
-                </li>
-            </ul>
-        </aside>
-
-    </div>
+        </section>
+    </main>
 
     <footer>
-        <p>Internet Archive Terms of Service &copy; 2026</p>
+        <p>Mockup page modeled after Internet Archive design principles. External cover imagery sourced via CDJapan.</p>
     </footer>
 
     <script>
-        function switchTab(event, tabId) {
-            // Hide all tab contents
-            const tabContents = document.querySelectorAll('.tab-content');
-            tabContents.forEach(content => content.classList.remove('active'));
+        function switchImage(thumbnailElement) {
+            // Update the main image src with the thumbnail src
+            const mainImg = document.getElementById('main-display-img');
+            
+            // Apply quick fade out/in transition effect via JS opacity
+            mainImg.style.opacity = 0;
+            
+            setTimeout(() => {
+                mainImg.src = thumbnailElement.src;
+                mainImg.alt = thumbnailElement.alt;
+                mainImg.style.opacity = 1;
+            }, 150);
 
-            // Remove active status from all buttons
-            const tabButtons = document.querySelectorAll('.tab-btn');
-            tabButtons.forEach(button => button.classList.remove('active'));
-
-            // Show current tab & highlight button
-            document.getElementById(tabId).classList.add('active');
-            event.currentTarget.classList.add('active');
+            // Manage active class states across thumbnails
+            document.querySelectorAll('.thumbnail').forEach(thumb => {
+                thumb.classList.remove('active');
+            });
+            thumbnailElement.classList.add('active');
         }
     </script>
 </body>
