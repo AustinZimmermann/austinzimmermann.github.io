@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIONICLE: The Legend Reborn (DVD-9, 2009) : LEGO, Universal Studios : Free Download, Borrow, and Streaming : Internet Archive</title>
+    <link rel="icon" href="https://archive.org/favicon.ico" type="image/x-icon">
+    <style>
+        :root {
+            --ia-blue: #2c3e50;
+            --ia-dark: #111111;
+            --ia-gray: #f5f5f5;
+            --text-color: #333333;
+            --accent-blue: #3498db;
+        }
+
+        body {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: var(--text-color);
+        }
+
+        /* Navbar Header */
+        header {
+            background-color: var(--ia-dark);
+            color: #ffffff;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-area img {
+            width: 32px;
+            height: 32px;
+            background: white;
+            border-radius: 4px;
+            padding: 2px;
+        }
+
+        .logo-area span {
+            font-size: 1.2rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 900px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Item Title Header */
+        .item-header {
+            grid-column: 1 / -1;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 15px;
+            margin-bottom: 10px;
+        }
+
+        .item-title {
+            font-size: 1.8rem;
+            margin: 0 0 10px 0;
+            color: #222;
+        }
+
+        .item-meta-top {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .item-meta-top a {
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+
+        /* Left Column: Player & Metadata */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Simulated Video Player */
+        .video-container {
+            position: relative;
+            width: 100%;
+            background: #000;
+            aspect-ratio: 16 / 9;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .video-placeholder {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            cursor: pointer;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), 
+                        url('https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=1200&q=80') center/cover;
+        }
+
+        .play-button {
+            width: 70px;
+            height: 70px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 3px solid #fff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .video-placeholder:hover .play-button {
+            transform: scale(1.1);
+            background: var(--accent-blue);
+        }
+
+        /* Tabs Interface */
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid #e0e0e0;
+            margin-top: 20px;
+        }
+
+        .tab-button {
+            padding: 10px 20px;
+            border: none;
+            background: none;
+            font-size: 1rem;
+            cursor: pointer;
+            color: #555;
+            font-weight: bold;
+        }
+
+        .tab-button.active {
+            color: var(--accent-blue);
+            border-bottom: 2px solid var(--accent-blue);
+            margin-bottom: -2px;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 20px 0;
+            line-height: 1.6;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .metadata-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .metadata-table td {
+            padding: 8px 12px;
+            border-bottom: 1px solid #eee;
+            font-size: 0.95rem;
+        }
+
+        .metadata-table td.label {
+            font-weight: bold;
+            color: #666;
+            width: 30%;
+        }
+
+        /* Right Column: Download Options Box */
+        .download-box {
+            background-color: var(--ia-gray);
+            border: 1px solid #dddddd;
+            border-radius: 4px;
+            padding: 20px;
+            height: fit-content;
+        }
+
+        .download-box h3 {
+            margin-top: 0;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 8px;
+            font-size: 1.1rem;
+            color: var(--ia-blue);
+        }
+
+        .download-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .download-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .download-item a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .download-item a:hover {
+            text-decoration: underline;
+        }
+
+        .file-size {
+            font-size: 0.85rem;
+            color: #666;
+            background: #e9e9e9;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--ia-dark);
+            color: #888;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-area">
+            <img src="https://archive.org/favicon.ico" alt="Internet Archive Logo">
+            <span>INTERNET ARCHIVE</span>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <div class="item-header">
+            <h1 class="item-title">BIONICLE: The Legend Reborn (DVD-9, 2009)</h1>
+            <div class="item-meta-top">
+                by <span><a href="#">LEGO</a></span>; <span><a href="#">Universal Studios Home Entertainment</a></span>
+            </div>
+        </div>
+
+        <div class="main-content">
+            
+            <div class="video-container" id="videoContainer">
+                <div class="video-placeholder" id="videoPlaceholder" onclick="startVideo()">
+                    <div class="play-button">▶</div>
+                    <p style="margin-top: 15px; font-weight: bold; text-shadow: 1px 1px 4px rgba(0,0,0,0.8);">Click to Stream ISO Feature Presentation</p>
+                </div>
+            </div>
+
+            <div class="tabs">
+                <button class="tab-button active" onclick="switchTab(event, 'about')">About</button>
+                <button class="tab-button" onclick="switchTab(event, 'metadata')">Metadata</button>
+                <button class="tab-button" onclick="switchTab(event, 'reviews')">Reviews</button>
+            </div>
+
+            <div id="about" class="tab-content active">
+                <p>An archival preservation of the original dual-layer <strong>DVD-9 retail release</strong> of <em>BIONICLE: The Legend Reborn</em>, released on September 15, 2009.</p>
+                <p>Once a powerful and larger-than-life ruler, Mata Nui finds himself stripped of his power and exiled to a desolate, scrap-metal planet called Bara Magna. After winning a dangerous arena gladiator match, he is recruited by local village elders to help defend them against their mortal enemies, the Skrall and Bone Hunters.</p>
+                <p><strong>Features:</strong> Full uncompressed DVD structure, original menus, interactive features, and multi-language audio/subtitle tracks.</p>
+            </div>
+
+            <div id="metadata" class="tab-content">
+                <table class="metadata-table">
+                    <tr>
+                        <td class="label">Publication date</td>
+                        <td>2009-09-15</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Publisher</td>
+                        <td>Universal Studios Home Entertainment / LEGO Group</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Format</td>
+                        <td>DVD-Video (DVD-9 Dual Layer)</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Language</td>
+                        <td>English, Spanish, French</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Aspect Ratio</td>
+                        <td>1.78:1 (Anamorphic Widescreen 16:9)</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Identifier</td>
+                        <td>bionicle-the-legend-reborn-dvd9-2009</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="reviews" class="tab-content">
+                <p style="color:#777; font-style: italic;">There are no reviews yet. Be the first one to write a review.</p>
+            </div>
+
+        </div>
+
+        <div class="download-box">
+            <h3>DOWNLOAD OPTIONS</h3>
+            <ul class="download-list">
+                <li class="download-item">
+                    <a href="#" download>TORRENT</a>
+                    <span class="file-size">124 KB</span>
+                </li>
+                <li class="download-item">
+                    <a href="#" id="isoDownload" download>ISO IMAGE (DVD-9)</a>
+                    <span class="file-size">7.4 GB</span>
+                </li>
+                <li class="download-item">
+                    <a href="#" download>H.264 (MPEG4 Rip)</a>
+                    <span class="file-size">1.2 GB</span>
+                </li>
+                <li class="download-item">
+                    <a href="#" download>LOG & CUE</a>
+                    <span class="file-size">14 KB</span>
+                </li>
+                <li class="download-item">
+                    <a href="#" download>SHOW ALL FILES</a>
+                    <span class="file-size">5 files</span>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>Internet Archive Mirror Page Demo — BIONICLE and all associated names/assets are trademarks of The LEGO Group.</p>
+    </footer>
+
+    <script>
+        // Simple tab switching logic
+        function switchTab(evt, tabName) {
+            const tabContents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove("active");
+            }
+
+            const tabButtons = document.getElementsByClassName("tab-button");
+            for (let i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove("active");
+            }
+
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        // Mock play function to simulate the Archive.org media experience
+        function startVideo() {
+            const container = document.getElementById("videoContainer");
+            container.innerHTML = `
+                <iframe width="100%" height="100%" 
+                    src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" 
+                    title="BIONICLE Video Preview" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen>
+                </iframe>`;
+        }
+    </script>
+</body>
+</html>
