@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEGO Hero Factory: Rise of the Rookies (DVD-5, 2010) : Free Download, Borrow, and Streaming : Internet Archive</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            background-color: #ffffff;
+            color: #333333;
+            font-size: 14px;
+            line-height: 1.42857143;
+        }
+        a {
+            color: #4b729f;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Navbar */
+        header {
+            background-color: #111111;
+            color: #ffffff;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .logo-icon {
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: -1px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            font-size: 13px;
+        }
+        .nav-links a {
+            color: #bbb;
+        }
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Item Header */
+        .item-header {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+        .item-title {
+            font-size: 24px;
+            font-weight: normal;
+            color: #2c2c2c;
+            margin-bottom: 5px;
+        }
+        .item-meta-top {
+            font-size: 12px;
+            color: #666;
+        }
+
+        /* Layout Grid */
+        .main-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Player Stage */
+        .player-stage {
+            background-color: #000000;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .player-poster {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+            filter: blur(4px);
+        }
+        .player-controls-mock {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+        .play-btn {
+            background: rgba(0, 0, 0, 0.7);
+            border: 3px solid #fff;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            margin: 0 auto 15px;
+            transition: transform 0.2s;
+        }
+        .play-btn:hover {
+            transform: scale(1.1);
+            background: rgba(255, 99, 71, 0.8);
+        }
+        .play-icon {
+            width: 0;
+            height: 0;
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+            border-left: 25px solid white;
+            margin-left: 8px;
+        }
+
+        /* Metadata & Description */
+        .metadata-box h3 {
+            font-size: 18px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            color: #444;
+        }
+        .description {
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: #444;
+        }
+        .meta-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+        .meta-table td {
+            padding: 8px 0;
+            vertical-align: top;
+        }
+        .meta-label {
+            font-weight: bold;
+            color: #666;
+            width: 150px;
+            font-size: 13px;
+        }
+        .meta-value {
+            color: #333;
+        }
+
+        /* Sidebar / Download Options */
+        .sidebar {
+            background: #f9f9f9;
+            border: 1px solid #e1e1e1;
+            border-radius: 4px;
+            padding: 20px;
+            height: fit-content;
+        }
+        .sidebar-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #333;
+            border-bottom: 2px solid #333;
+            padding-bottom: 5px;
+        }
+        .download-list {
+            list-style: none;
+        }
+        .download-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 13px;
+        }
+        .download-item:last-child {
+            border-bottom: none;
+        }
+        .download-format {
+            font-weight: bold;
+            color: #4b729f;
+            cursor: pointer;
+        }
+        .download-format:hover {
+            text-decoration: underline;
+        }
+        .download-size {
+            color: #666;
+        }
+
+        /* Review Section */
+        .reviews-section {
+            margin-top: 40px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+        .review {
+            background: #fcfcfc;
+            border: 1px solid #f0f0f0;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 15px;
+        }
+        .review-header {
+            font-size: 12px;
+            color: #777;
+            margin-bottom: 8px;
+        }
+        .stars {
+            color: #ffcc00;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-area">
+            <div class="logo-icon">🏛️ INTERNET ARCHIVE</div>
+        </div>
+        <div class="nav-links">
+            <a href="#">Web</a>
+            <a href="#">Books</a>
+            <a href="#">Video</a>
+            <a href="#">Audio</a>
+            <a href="#">Software</a>
+            <a href="#">Images</a>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <div class="item-header">
+            <h1 class="item-title">LEGO Hero Factory: Rise of the Rookies (DVD-5, 2010)</h1>
+            <div class="item-meta-top">
+                by <a href="#">LEGO</a> / Publication date <span style="font-weight: bold;">2010-11-16</span> / Topics <a href="#">Hero Factory</a>, <a href="#">LEGO</a>, <a href="#">BIONICLE successor</a>, <a href="#">Animation</a>
+            </div>
+        </div>
+
+        <div class="main-content">
+            
+            <div>
+                <div class="player-stage" id="playerStage">
+                    <div class="player-controls-mock" id="playPrompt">
+                        <div class="play-btn" onclick="startMockVideo()">
+                            <div class="play-icon"></div>
+                        </div>
+                        <h3>Click to Stream Movie</h3>
+                        <p style="font-size: 12px; color: #ccc; margin-top: 5px;">ISO/VOB Stream Interactive Preview</p>
+                    </div>
+                </div>
+
+                <div class="metadata-box">
+                    <h3>Description</h3>
+                    <div class="description">
+                        <p>Welcome to Makuhero City, home to the <strong>Hero Factory</strong>—the ultimate construct designed to build the most advanced, courageous galaxy-defending heroes universe has ever seen! </p>
+                        <br>
+                        <p>This is a full DVD-5 backup of the original 2010 physical release <em>Rise of the Rookies</em>. It documents the initial pilot episodes tracking Alpha Team Leader Preston Stormer and the raw, newly recruited rookies: William Furno, Mark Surge, and Natalie Breez, as they encounter rogue villain Von Nebula.</p>
+                    </div>
+
+                    <h3>Item Tile Metadata</h3>
+                    <table class="meta-table">
+                        <tr>
+                            <td class="meta-label">Publication date</td>
+                            <td class="meta-value">2010-11-16</td>
+                        </tr>
+                        <tr>
+                            <td class="meta-label">Format</td>
+                            <td class="meta-value">DVD-Video (DVD-5 ISO)</td>
+                        </tr>
+                        <tr>
+                            <td class="meta-label">Publisher</td>
+                            <td class="meta-value">The LEGO Group / Warner Home Video</td>
+                        </tr>
+                        <tr>
+                            <td class="meta-label">Language</td>
+                            <td class="meta-value">English, Spanish, French</td>
+                        </tr>
+                        <tr>
+                            <td class="meta-label">Identifier</td>
+                            <td class="meta-value">lego-hero-factory-rise-of-the-rookies-2010-dvd5</td>
+                        </tr>
+                        <tr>
+                            <td class="meta-label">Added to Archive</td>
+                            <td class="meta-value">2026-06-16</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="reviews-section">
+                    <h3>Reviews</h3>
+                    <div class="review">
+                        <div class="review-header">
+                            <span class="stars">★★★★★</span> Reviewer: <strong>AlphaTeam99</strong> - June 2026
+                        </div>
+                        <p>Absolute nostalgia trip. Finding a complete DVD-5 untouched rip of this means the world. Menus and sub-tracks work beautifully. Thank you for preserving this era of LEGO history!</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <div class="sidebar-title">DOWNLOAD OPTIONS</div>
+                <ul class="download-list">
+                    <li class="download-item">
+                        <span class="download-format" onclick="alert('Starting ISO Download (4.3 GB)...')">ISO IMAGE</span>
+                        <span class="download-size">4.3 GB</span>
+                    </li>
+                    <li class="download-item">
+                        <span class="download-format" onclick="alert('Starting H.264/MPEG-4 Download (842 MB)...')">H.264</span>
+                        <span class="download-size">842.1 MB</span>
+                    </li>
+                    <li class="download-item">
+                        <span class="download-format" onclick="alert('Starting Torrent Download...')">TORRENT</span>
+                        <span class="download-size">1 file</span>
+                    </li>
+                    <li class="download-item">
+                        <span class="download-format" onclick="alert('Viewing Metadata XML...')">METADATA XML</span>
+                        <span class="download-size">4.2 KB</span>
+                    </li>
+                </ul>
+                <div style="margin-top: 20px; font-size: 11px; color: #666; text-align: center;">
+                    Help preserve historical media. Internet Archive is a 501(c)(3) non-profit.
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function startMockVideo() {
+            const stage = document.getElementById('playerStage');
+            stage.innerHTML = `
+                <div style="width:100%; height:100%; display:flex; flex-direction:column; justify-content:center; align-items:center; background:#111;">
+                    <div style="font-size: 20px; font-weight: bold; color: #ffcc00; margin-bottom:10px;">★ HERO FACTORY: RISE OF THE ROOKIES ★</div>
+                    <div style="font-size: 14px; color: #aaa;">[Streaming Playback Simulation Started]</div>
+                    <div style="margin-top: 20px; width: 60%; background:#333; height: 6px; border-radius:3px; position:relative; overflow:hidden;">
+                        <div style="width: 35%; background:#ff4444; height:100%;"></div>
+                    </div>
+                    <div style="font-size:11px; color:#666; margin-top:10px;">00:14:22 / 00:45:00</div>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
