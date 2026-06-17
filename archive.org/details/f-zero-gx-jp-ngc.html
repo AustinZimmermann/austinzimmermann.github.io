@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F-Zero GX (Japan) : Amusement Vision : Free Download, Borrow, and Streaming : Internet Archive</title>
+    <style>
+        :root {
+            --ia-blue: #336699;
+            --ia-dark-blue: #2c5270;
+            --text-color: #333333;
+            --bg-gray: #f5f5f5;
+            --border-color: #e8e8e8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: var(--text-color);
+            background-color: #ffffff;
+        }
+
+        /* Navbar Styling */
+        header {
+            background-color: #000000;
+            color: #ffffff;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            width: 30px;
+            height: 30px;
+            background-color: #ffffff;
+            border-radius: 50%;
+            display: inline-block;
+            position: relative;
+        }
+        
+        .logo-icon::before {
+            content: "A";
+            color: #000;
+            font-weight: bold;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 18px;
+        }
+
+        .nav-links a {
+            color: #bbb;
+            text-decoration: none;
+            margin-right: 15px;
+            font-size: 13px;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Item Header */
+        .item-header {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .item-title {
+            font-size: 24px;
+            font-weight: normal;
+            margin-bottom: 5px;
+        }
+
+        .metadata-row {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .metadata-row a {
+            color: var(--ia-blue);
+            text-decoration: none;
+        }
+
+        .metadata-row a:hover {
+            text-decoration: underline;
+        }
+
+        .item-stats {
+            display: flex;
+            gap: 15px;
+            font-size: 12px;
+            color: #777;
+            margin-top: 10px;
+        }
+
+        /* Layout Columns */
+        .main-content {
+            display: flex;
+            gap: 30px;
+        }
+
+        .left-col {
+            flex: 2;
+        }
+
+        .right-col {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        /* Virtual Emulator/Player Box */
+        .emulator-box {
+            background-color: #000;
+            width: 100%;
+            aspect-ratio: 4/3;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+
+        .emulator-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+            filter: blur(4px);
+        }
+
+        .emulator-screen {
+            z-index: 1;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .power-button {
+            background-color: #e50914;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            transition: background 0.2s;
+        }
+
+        .power-button:hover {
+            background-color: #b80710;
+        }
+
+        /* Tabs and Description */
+        .tabs {
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            padding: 10px 5px;
+            cursor: pointer;
+            color: #555;
+            font-weight: bold;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab.active {
+            color: var(--ia-blue);
+            border-bottom-color: var(--ia-blue);
+        }
+
+        .description-content {
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .description-content h3 {
+            margin: 20px 0 10px 0;
+            font-size: 16px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 5px;
+        }
+
+        .metadata-table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        .metadata-table td {
+            padding: 6px 0;
+            vertical-align: top;
+        }
+
+        .metadata-table .label {
+            font-weight: bold;
+            color: #666;
+            width: 140px;
+        }
+
+        /* Download Options Panel (Right Column) */
+        .download-box {
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 15px;
+            background-color: var(--bg-gray);
+        }
+
+        .download-heading {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .download-format-list {
+            list-style: none;
+        }
+
+        .download-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px dashed #ddd;
+        }
+
+        .download-item:last-child {
+            border-bottom: none;
+        }
+
+        .download-link {
+            color: var(--ia-blue);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .download-link:hover {
+            text-decoration: underline;
+        }
+
+        .download-size {
+            color: #666;
+            font-size: 12px;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 60px;
+            background-color: var(--bg-gray);
+            border-top: 1px solid var(--border-color);
+            padding: 30px 20px;
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+            .right-col {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-area">
+            <div class="logo-icon"></div>
+            <span style="font-weight: bold; font-size: 18px; letter-spacing: 0.5px;">INTERNET ARCHIVE</span>
+        </div>
+        <nav class="nav-links">
+            <a href="#">Web</a>
+            <a href="#">Books</a>
+            <a href="#">Video</a>
+            <a href="#">Audio</a>
+            <a href="#">Software</a>
+            <a href="#">Images</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        
+        <div class="item-header">
+            <h1 class="item-title">F-Zero GX (Japan) (NGC)</h1>
+            <div class="metadata-row">
+                by <a href="#">Amusement Vision</a>; <a href="#">Nintendo</a>
+            </div>
+            <div class="item-stats">
+                <span><strong id="view-count">14,205</strong> Views</span>
+                <span><strong id="favorite-count">42</strong> Favorites</span>
+                <span><strong>12</strong> Reviews</span>
+            </div>
+        </div>
+
+        <div class="main-content">
+            
+            <div class="left-col">
+                
+                <div class="emulator-box" id="emulator-container">
+                    <svg class="emulator-bg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+                        <defs>
+                            <linearGradient id="sky" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="#020024" />
+                                <stop offset="70%" stop-color="#090979" />
+                                <stop offset="100%" stop-color="#00d4ff" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="800" height="600" fill="url(#sky)" />
+                        <path d="M 100 600 L 380 350 L 420 350 L 700 600 Z" fill="#1f1f2e" opacity="0.8" />
+                        <path d="M 400 350 L 400 600" stroke="#ff007f" stroke-width="4" stroke-dasharray="20,10" />
+                        <line x1="0" y1="350" x2="800" y2="350" stroke="#00ffff" stroke-width="2" />
+                    </svg>
+
+                    <div class="emulator-screen" id="emulator-screen">
+                        <h2 style="font-size: 22px; margin-bottom: 5px; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">F-Zero GX (Japan)</h2>
+                        <p style="font-size: 13px; color: #ccc; margin-bottom: 15px;">Nintendo GameCube ISO</p>
+                        <button class="power-button" id="start-btn" onclick="runSimulation()">START EMULATION</button>
+                    </div>
+                </div>
+
+                <div class="tabs">
+                    <div class="tab active">Description</div>
+                    <div class="tab">Reviews</div>
+                    <div class="tab">History</div>
+                </div>
+
+                <div class="description-content">
+                    <p>
+                        <em><strong>F-Zero GX</strong></em> is a high-speed futuristic racing game co-developed by Amusement Vision and Nintendo for the Nintendo GameCube console. 
+                        This is the pristine, untouched Japanese release dump (GZJJ01). It runs at an intense 60 frames per second, featuring high-fidelity custom tracks, 
+                        the Story Mode tracking Captain Falcon’s career, and custom vehicle customization configurations.
+                    </p>
+
+                    <h3>Technical Details & Metadata</h3>
+                    <table class="metadata-table">
+                        <tr>
+                            <td class="label">Publication date</td>
+                            <td>2003-07-25</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Publisher</td>
+                            <td><a href="#">Nintendo</a></td>
+                        </tr>
+                        <tr>
+                            <td class="label">Developer</td>
+                            <td><a href="#">Amusement Vision</a></td>
+                        </tr>
+                        <tr>
+                            <td class="label">Platform</td>
+                            <td><a href="#">Nintendo GameCube</a></td>
+                        </tr>
+                        <tr>
+                            <td class="label">Language</td>
+                            <td>Japanese</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Identifier</td>
+                            <td>f-zero-gx-jp-ngc</td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+
+            <div class="right-col">
+                <div class="download-box">
+                    <div class="download-heading">DOWNLOAD OPTIONS</div>
+                    <ul class="download-format-list">
+                        <li class="download-item">
+                            <a href="#" class="download-link" onclick="simulateDownload(event, 'GZJJ01.iso')">ISO IMAGE</a>
+                            <span class="download-size">1.35 GB</span>
+                        </li>
+                        <li class="download-item">
+                            <a href="#" class="download-link" onclick="simulateDownload(event, 'fzero_gx_jp.7z')">7-ZIP ARCHIVE</a>
+                            <span class="download-size">942.1 MB</span>
+                        </li>
+                        <li class="download-item">
+                            <a href="#" class="download-link" onclick="simulateDownload(event, 'fzero_meta.xml')">METADATA</a>
+                            <span class="download-size">2.4 KB</span>
+                        </li>
+                        <li class="download-item">
+                            <a href="#" class="download-link" onclick="simulateDownload(event, 'cover_art.jpg')">FRONT COVER (JPEG)</a>
+                            <span class="download-size">412 KB</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>Internet Archive Digital Library Page Reproduction &bull; Non-commercial reference representation.</p>
+    </footer>
+
+    <script>
+        // Interactive Scripting for dynamic UI elements
+        function runSimulation() {
+            const screen = document.getElementById('emulator-screen');
+            screen.innerHTML = `
+                <div style="font-family: monospace; text-align: left; background: rgba(0,0,0,0.85); padding: 15px; border-radius: 4px; max-width: 90%; margin: 0 auto; box-shadow: inset 0 0 10px #00ff00; border: 1px solid #333;">
+                    <p style="color: #00ff00;">&gt; Loading Dolphin-Core WASM v4.2...</p>
+                    <p style="color: #00ff00;">&gt; Mounting GZJJ01.iso (F-Zero GX Japanese Retail)...</p>
+                    <p style="color: #00ff00;">&gt; Parsing DOL boot headers... Success.</p>
+                    <p style="color: #00ff00;">&gt; Setting up virtual ARAM architecture (16MB)...</p>
+                    <div style="width: 100%; background: #222; border: 1px solid #444; height: 12px; margin-top: 10px; border-radius: 3px; overflow: hidden;">
+                        <div id="progress-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #ff007f, #00ffff); transition: width 0.1s;"></div>
+                    </div>
+                    <p id="status-text" style="color: #ffff00; font-size: 11px; margin-top: 5px; text-align: right;">Decrypting game partition... 0%</p>
+                </div>
+            `;
+
+            let progress = 0;
+            const bar = document.getElementById('progress-bar');
+            const txt = document.getElementById('status-text');
+            
+            const interval = setInterval(() => {
+                progress += 4;
+                if(bar) bar.style.width = progress + '%';
+                if(txt) txt.innerText = `Caching disc layers to memory... ${progress}%`;
+                
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    showTitleScreen();
+                }
+            }, 100);
+        }
+
+        function showTitleScreen() {
+            const screen = document.getElementById('emulator-screen');
+            screen.innerHTML = `
+                <div style="text-align: center; animation: pulse 1.5s infinite alternate;">
+                    <h1 style="font-size: 48px; color: #fff; font-style: italic; font-weight: 900; text-shadow: 0 0 10px #ff0055, 0 0 20px #00ffff; letter-spacing: -2px;">F-ZERO GX</h1>
+                    <p style="color: #ffcc00; font-weight: bold; letter-spacing: 2px; font-size: 14px; margin-top: 10px;">PRESS START BUTTON</p>
+                    <p style="font-size: 11px; color: #aaa; margin-top: 25px;">&copy; AMUSEMENT VISION / NINTENDO 2003</p>
+                    <button class="power-button" style="background: #333; font-size: 12px; padding: 6px 12px; margin-top: 15px;" onclick="resetEmulator()">Stop</button>
+                </div>
+            `;
+            
+            // Increment view counter dynamically on load/run action
+            const viewCount = document.getElementById('view-count');
+            let currentViews = parseInt(viewCount.innerText.replace(/,/g, ''));
+            viewCount.innerText = (currentViews + 1).toLocaleString();
+        }
+
+        function resetEmulator() {
+            location.reload();
+        }
+
+        function simulateDownload(event, fileName) {
+            event.preventDefault();
+            alert(`Simulated Action from Archive.org:\nYour download for "${fileName}" will initiate shortly via the nearest CDN mirror node.`);
+        }
+    </script>
+</body>
+</html>
