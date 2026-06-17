@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X-Men (Disc 2, BD-25, 2000, Japanese) : 20th Century Fox Home Entertainment : Free Download, Borrow, and Streaming : Internet Archive</title>
+    <link rel="icon" href="https://archive.org/favicon.ico" type="image/x-icon">
+    <style>
+        :root {
+            --ia-blue: #337ab7;
+            --ia-dark-blue: #286090;
+            --bg-color: #f7f7f7;
+            --text-color: #333333;
+            --border-color: #e1e1e1;
+        }
+
+        body {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #000000;
+            color: #ffffff;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        header img {
+            height: 30px;
+            margin-right: 15px;
+        }
+
+        header span {
+            font-size: 18px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 15px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .main-content {
+            background: #ffffff;
+            padding: 25px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .sidebar {
+            background: #ffffff;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            height: fit-content;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .meta-header {
+            color: #777;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+
+        .meta-header a {
+            color: var(--ia-blue);
+            text-decoration: none;
+        }
+
+        .meta-header a:hover {
+            text-decoration: underline;
+        }
+
+        .mock-player {
+            background-color: #111;
+            color: #fff;
+            aspect-ratio: 16/9;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 4px;
+            margin-bottom: 25px;
+            position: relative;
+            border: 1px solid #000;
+        }
+
+        .mock-player .iso-icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .mock-player .player-title {
+            font-size: 16px;
+            color: #ccc;
+        }
+
+        .download-box h3 {
+            margin-top: 0;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .download-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .download-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .download-item a {
+            color: var(--ia-blue);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .download-item .size {
+            color: #666;
+        }
+
+        .metadata-section {
+            margin-top: 30px;
+        }
+
+        .metadata-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .metadata-table th, .metadata-table td {
+            text-align: left;
+            padding: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .metadata-table th {
+            width: 30%;
+            color: #555;
+            font-weight: bold;
+            background-color: #fcfcfc;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #f0f0f0;
+            padding: 2px 8px;
+            margin: 2px;
+            border-radius: 3px;
+            font-size: 12px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="https://archive.org/favicon.ico" alt="Internet Archive Logo">
+        <span>INTERNET ARCHIVE</span>
+    </header>
+
+    <div class="container">
+        <main class="main-content">
+            <h1 id="item-title">Loading Title...</h1>
+            <div class="meta-header">
+                by <span id="item-creator">...</span> | Publication date <span id="item-date">...</span>
+            </div>
+
+            <div class="mock-player">
+                <div class="iso-icon">💿</div>
+                <div class="player-title">ISO IMAGE / BLU-RAY DISC FILE structure</div>
+                <small style="color: #888; margin-top: 5px;">Preview not available for raw BD-25 dumps</small>
+            </div>
+
+            <div class="metadata-section">
+                <h3>Description</h3>
+                <p id="item-description">Loading description...</p>
+            </div>
+
+            <div class="metadata-section">
+                <h3>Key Metadata</h3>
+                <table class="metadata-table">
+                    <tbody id="metadata-rows">
+                        </tbody>
+                </table>
+            </div>
+        </main>
+
+        <aside class="sidebar">
+            <div class="download-box">
+                <h3>Download Options</h3>
+                <ul class="download-list" id="download-files">
+                    </ul>
+            </div>
+        </aside>
+    </div>
+
+    <script>
+        // Embedded data.json representing the item metadata
+        const archiveData = {
+            "identifier": "x-men-disc-2-bd-25-2000-japanese",
+            "title": "X-Men (Disc 2, BD-25, 2000, Japanese)",
+            "creator": "20th Century Fox Home Entertainment",
+            "release_date": "2009-08-28",
+            "theatrical_year": "2000",
+            "disc_type": "BD-25 Single-Layer Blu-ray",
+            "region": "Region A (Japan)",
+            "description": "A high-definition BD-25 preservation clone of Disc 2 from the original Japanese Blu-ray release of X-Men (2000). Contains the extensive bonus featurettes, behind-the-scenes material, deleted scenes, localized promotional trailers, interactive galleries, and supplemental content optimized for the Japanese market.",
+            "language": "Japanese; English",
+            "mediatype": "data",
+            "licenseurl": "https://creativecommons.org/publicdomain/mark/1.0/",
+            "tags": ["X-Men", "Blu-ray", "BD-25", "20th Century Fox", "Marvel", "Movie Preservation", "ISO"],
+            "files": [
+                {
+                    "name": "XMEN_DISC2.iso",
+                    "format": "ISO Image",
+                    "size": "44.2 GB"
+                },
+                {
+                    "name": "x_men_2000_jpn_disc2_meta.xml",
+                    "format": "Metadata XML",
+                    "size": "12 KB"
+                },
+                {
+                    "name": "checksums.md5",
+                    "format": "MD5 Checksums",
+                    "size": "1.2 KB"
+                }
+            ]
+        };
+
+        // Render function to populate HTML elements with JSON data
+        function populateArchivePage(data) {
+            // Title & Core Metadata
+            document.getElementById('item-title').innerText = data.title;
+            document.getElementById('item-creator').innerHTML = `<a href="#">${data.creator}</a>`;
+            document.getElementById('item-date').innerText = data.release_date;
+            document.getElementById('item-description').innerText = data.description;
+
+            // Technical Metadata Table
+            const metadataRows = document.getElementById('metadata-rows');
+            const metaFields = {
+                "Publisher": data.creator,
+                "Release Date": data.release_date,
+                "Theatrical Release": data.theatrical_year,
+                "Disc Specs": data.disc_type,
+                "Region/Country": data.region,
+                "Languages": data.language,
+                "Media Type": data.mediatype,
+                "Keywords": data.tags.map(tag => `<span class="tag">${tag}</span>`).join('')
+            };
+
+            for (const [key, value] of Object.entries(metaFields)) {
+                const row = `<tr><th>${key}</th><td>${value}</td></tr>`;
+                metadataRows.innerHTML += row;
+            }
+
+            // Download Options Sidebar
+            const downloadList = document.getElementById('download-files');
+            data.files.forEach(file => {
+                const li = `
+                    <li class="download-item">
+                        <a href="#" title="Download ${file.name}">${file.format}</a>
+                        <span class="size">${file.size}</span>
+                    </li>
+                `;
+                downloadList.innerHTML += li;
+            });
+        }
+
+        // Initialize UI with data
+        document.addEventListener('DOMContentLoaded', () => {
+            populateArchivePage(archiveData);
+        });
+    </script>
+</body>
+</html>
