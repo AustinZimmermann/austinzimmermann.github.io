@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEGO Hero Factory: Savage Planet (DVD-5, 2011) : Free Download, Borrow, and Streaming : Internet Archive</title>
+    <link rel="shortcut icon" href="https://archive.org/favicon.ico" type="image/x-icon">
+    <style>
+        :root {
+            --ia-blue: #337ab7;
+            --ia-dark-blue: #286090;
+            --text-dark: #333333;
+            --text-muted: #666666;
+            --bg-light: #f5f5f5;
+            --border-color: #e1e1e1;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: var(--text-dark);
+            background-color: #ffffff;
+        }
+
+        /* Navbar Styling */
+        header {
+            background-color: #111111;
+            color: #ffffff;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .archive-logo {
+            height: 30px;
+            cursor: pointer;
+        }
+
+        .search-bar {
+            background: #222;
+            border: 1px solid #444;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            width: 300px;
+        }
+
+        /* Main Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 7fr 3fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 900px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Item Header */
+        .item-header {
+            grid-column: 1 / -1;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+            margin-bottom: 10px;
+        }
+
+        .item-title {
+            font-size: 24px;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .item-meta-top {
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+
+        .item-meta-top a {
+            color: var(--ia-blue);
+            text-decoration: none;
+        }
+
+        /* Left Column: Player & Description */
+        .media-player-box {
+            background: #000000;
+            aspect-ratio: 16 / 9;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            color: white;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        .video-placeholder {
+            text-align: center;
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #1c2833, #0b131a);
+        }
+
+        .play-button {
+            width: 70px;
+            height: 70px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 3px solid #fff;
+            border-radius: 50%;
+            position: relative;
+            margin-bottom: 15px;
+            transition: transform 0.2s;
+        }
+
+        .play-button::after {
+            content: '';
+            position: absolute;
+            top: 22px;
+            left: 28px;
+            border-width: 12px 0 12px 20px;
+            border-style: solid;
+            border-color: transparent transparent transparent #fff;
+        }
+
+        .video-placeholder:hover .play-button {
+            transform: scale(1.1);
+            background: var(--ia-blue);
+        }
+
+        .video-canvas {
+            display: none;
+            width: 100%;
+            height: 100%;
+            background: #000;
+        }
+
+        /* Action Bar */
+        .action-bar {
+            display: flex;
+            gap: 20px;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .action-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .action-item:hover {
+            color: var(--ia-blue);
+        }
+
+        /* Description Metadata */
+        .description-box {
+            margin-top: 20px;
+            line-height: 1.6;
+        }
+
+        .metadata-table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        .metadata-table td {
+            padding: 6px 0;
+            vertical-align: top;
+        }
+
+        .metadata-label {
+            font-weight: bold;
+            color: var(--text-muted);
+            width: 150px;
+        }
+
+        .tags-container {
+            margin-top: 15px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: var(--bg-light);
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            color: #555;
+            text-decoration: none;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            border: 1px solid var(--border-color);
+        }
+
+        /* Right Column: Download Options */
+        .download-sidebar {
+            background: #fafafa;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 15px;
+        }
+
+        .sidebar-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 12px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 5px;
+        }
+
+        .download-list {
+            list-style: none;
+        }
+
+        .download-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px dotted var(--border-color);
+        }
+
+        .download-format {
+            color: var(--ia-blue);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .download-format:hover {
+            text-decoration: underline;
+        }
+
+        .download-size {
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-light);
+            border-top: 1px solid var(--border-color);
+            padding: 3px 20px;
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-left">
+            <img src="https://archive.org/images/glogo.png" onerror="this.src='https://archive.org/favicon.ico'" alt="Internet Archive Logo" class="archive-logo">
+            <input type="text" class="search-bar" value="LEGO Hero Factory: Savage Planet" readonly>
+        </div>
+        <div>Web</div>
+    </header>
+
+    <div class="container">
+        
+        <div class="item-header">
+            <h1 class="item-title">LEGO Hero Factory: Savage Planet (DVD-5, 2011)</h1>
+            <div class="item-meta-top">
+                by <span><a href="https://archive.org/search.php?query=creator%3A%22LEGO%22">LEGO</a></span>; <span><a href="https://archive.org/search.php?query=creator%3A%22Warner+Home+Video%22">Warner Home Video</a></span> | 
+                Publication date <span>2011-10-04</span> | 
+                Topics <span class="topics"><a href="#">LEGO</a>, <a href="#">Hero Factory</a>, <a href="#">Savage Planet</a>, <a href="#">DVD-5</a></span>
+            </div>
+        </div>
+
+        <main>
+            <div class="media-player-box" id="playerContainer">
+                <div class="video-placeholder" id="videoPlaceholder" onclick="startVideoMock()">
+                    <div class="play-button"></div>
+                    <div style="font-weight: bold; font-size: 16px;">Click to Preview Video Content</div>
+                    <div style="font-size: 12px; color: #aaa; margin-top: 4px;">ISO / VOB Main Feature Extraction</div>
+                </div>
+                <div class="video-canvas" id="videoCanvas">
+                    <div id="videoTrack" style="width:100%; height:100%; display:flex; justify-content:center; align-items:center; background:#111; font-size:18px; color:#fff; position:relative;">
+                        <span id="videoFrameText">▶ Playing: LEGO Hero Factory – Savage Planet</span>
+                        <div style="position:absolute; bottom:10px; left:10px; right:10px; display:flex; align-items:center; gap:10px;">
+                            <span style="font-size:12px;" id="videoTime">0:01</span>
+                            <div style="flex-grow:1; height:4px; background:#444; border-radius:2px; position:relative;">
+                                <div id="videoProgress" style="position:absolute; left:0; top:0; bottom:0; width:1%; background:var(--ia-blue);"></div>
+                            </div>
+                            <span style="font-size:12px;">43:22</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-bar">
+                <div class="action-item" onclick="alert('Added to Favorites!')">★ <span>Favorite</span></div>
+                <div class="action-item">👁 <span>1,245 Views</span></div>
+                <div class="action-item">💬 <span>0 Reviews</span></div>
+            </div>
+
+            <div class="description-box">
+                <p>This is a full DVD-5 backup preservation of the 2011 home video release <strong><em>LEGO Hero Factory: Savage Planet</em></strong>.</p>
+                <br>
+                <p>The rookies and veterans of the Hero Factory are deployed to the jungle planet Quatros to track down the rogue hero Aldous Witch, who has transformed into the villainous Witch Doctor. He is mining the planet’s core for precious Quaza stones, threatening the stability of the entire world.</p>
+
+                <table class="metadata-table">
+                    <tr>
+                        <td class="metadata-label">Identifier</td>
+                        <td>lego-hero-factory-savage-planet-2011-dvd5</td>
+                    </tr>
+                    <tr>
+                        <td class="metadata-label">Scanner</td>
+                        <td>Internet Archive HTML5 Uploader 1.7.0</td>
+                    </tr>
+                    <tr>
+                        <td class="metadata-label">Year</td>
+                        <td>2011</td>
+                    </tr>
+                    <tr>
+                        <td class="metadata-label">Source</td>
+                        <td>Physical DVD-5 Retail Release</td>
+                    </tr>
+                </table>
+
+                <div class="tags-container">
+                    <strong>Tags:</strong> 
+                    <a href="#" class="tag">lego</a>
+                    <a href="#" class="tag">hero factory</a>
+                    <a href="#" class="tag">savage planet</a>
+                    <a href="#" class="tag">2011</a>
+                    <a href="#" class="tag">dvd-5</a>
+                    <a href="#" class="tag">bionicle generation</a>
+                </div>
+            </div>
+        </main>
+
+        <aside class="download-sidebar">
+            <h2 class="sidebar-title">Download Options</h2>
+            <ul class="download-list">
+                <li class="download-item">
+                    <a href="#" class="download-format" onclick="alert('Starting ISO Download (4.1 GB)')">ISO IMAGE</a>
+                    <span class="download-size">4.1 GB</span>
+                </li>
+                <li class="download-item">
+                    <a href="#" class="download-format" onclick="alert('Starting MPEG4 Download (642 MB)')">MPEG4</a>
+                    <span class="download-size">642.3 MB</span>
+                </li>
+                <li class="download-item">
+                    <a href="#" class="download-format" onclick="alert('Starting H.264 Download (812 MB)')">H.264</a>
+                    <span class="download-size">811.9 MB</span>
+                </li>
+                <li class="download-item">
+                    <a href="#" class="download-format" onclick="alert('Opening Metadata Torrent File')">TORRENT</a>
+                    <span class="download-size">1 File</span>
+                </li>
+                <li class="download-item">
+                    <a href="#" class="download-format" onclick="alert('Showing all individual component files')">SHOW ALL</a>
+                    <span class="download-size">8 Files</span>
+                </li>
+            </ul>
+        </aside>
+
+    </div>
+
+    <footer>
+        <p>Internet Archive Digital Preservation Collection — Mimicry Layout Concept</p>
+    </footer>
+
+    <script>
+        function startVideoMock() {
+            document.getElementById('videoPlaceholder').style.display = 'none';
+            document.getElementById('videoCanvas').style.display = 'block';
+            
+            let seconds = 1;
+            const progress = document.getElementById('videoProgress');
+            const timeDisplay = document.getElementById('videoTime');
+            
+            setInterval(() => {
+                seconds++;
+                if(seconds > 2602) seconds = 1; // loop before 43:22
+                
+                let mins = Math.floor(seconds / 60);
+                let secs = seconds % 60;
+                timeDisplay.textContent = `${mins}:${secs < 10 ? '0' + secs : secs}`;
+                
+                let percent = (seconds / 2602) * 100;
+                progress.style.width = percent + '%';
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
