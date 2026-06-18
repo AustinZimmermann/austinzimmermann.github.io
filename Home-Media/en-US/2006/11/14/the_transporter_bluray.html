@@ -3,148 +3,270 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Transporter - Blu-ray | 20th Century Fox Home Entertainment</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>The Transporter Blu-ray (2002) - 20th Century Fox</title>
     <style>
+        :root {
+            --bg-color: #0d1117;
+            --card-bg: #161b22;
+            --accent-amber: #ffaa00;
+            --accent-silver: #c9d1d9;
+            --text-main: #f0f6fc;
+            --text-muted: #8b949e;
+            --border-color: #30363d;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Helvetica, Arial, sans-serif;
+        }
+
         body {
-            background-color: #0a0a0c;
-            color: #e2e8f0;
-            font-family: Helvetica, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
-        .bluray-gradient {
-            background: linear-gradient(180deg, #1e3a8a 0%, #0a0a0c 100%);
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+            border: 1px solid var(--border-color);
+            display: grid;
+            grid-template-columns: 1fr;
         }
-        .product-card {
-            background: rgba(30, 41, 59, 0.5);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+
+        @media (min-width: 768px) {
+            .container {
+                grid-template-columns: 350px 1fr;
+            }
         }
-        .fox-logo {
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
+
+        /* Cover Art Section */
+        .cover-art-panel {
+            background: #070a0e;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            border-right: 1px solid var(--border-color);
+        }
+
+        .cover-art-panel img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.7);
+            transition: transform 0.3s ease;
+        }
+
+        .cover-art-panel img:hover {
+            transform: scale(1.02);
+        }
+
+        .bluray-badge {
+            margin-top: 20px;
+            background: linear-gradient(135deg, #0044ff, #00bcff);
+            color: white;
+            padding: 5px 18px;
+            border-radius: 4px;
+            font-size: 0.75rem;
             font-weight: 800;
-            color: #facc15;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
-        .btn-buy {
-            background: linear-gradient(to bottom, #3b82f6, #1d4ed8);
-            transition: all 0.3s ease;
+
+        /* Movie Details Section */
+        .details-panel {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
         }
-        .btn-buy:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.5);
+
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 5px;
+            letter-spacing: -0.5px;
         }
-        .spec-label {
-            color: #94a3b8;
+
+        .meta-line {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 25px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .meta-line span::after {
+            content: "•";
+            margin-left: 15px;
+            color: #484f58;
+        }
+
+        .meta-line span:last-child::after {
+            content: "";
+        }
+
+        .rules-box {
+            background: rgba(255, 170, 0, 0.05);
+            border: 1px dashed rgba(255, 170, 0, 0.3);
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 25px;
+        }
+
+        .rules-box h4 {
+            color: var(--accent-amber);
             font-size: 0.8rem;
             text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .rules-box ul {
+            list-style: none;
+            font-size: 0.85rem;
+            color: var(--accent-silver);
+        }
+
+        .section-title {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 4px;
+        }
+
+        .synopsis {
+            font-size: 0.95rem;
+            color: #c9d1d9;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .spec-item .label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .spec-item .value {
+            font-size: 0.95rem;
+            font-weight: 600;
         }
     </style>
 </head>
-<body class="min-h-screen">
+<body>
 
-    <!-- Header / Navigation -->
-    <header class="p-6 flex justify-between items-center border-b border-white/10">
-        <div class="fox-logo text-xl">20th Century Fox <span class="text-white/50 text-sm block font-light">Home Entertainment</span></div>
-        <nav class="hidden md:flex space-x-8 text-sm font-medium">
-            <a href="#" class="hover:text-blue-400">NEW RELEASES</a>
-            <a href="#" class="hover:text-blue-400">CATALOG</a>
-            <a href="#" class="hover:text-blue-400">BLU-RAY™ EXCLUSIVES</a>
-            <a href="#" class="hover:text-blue-400">SUPPORT</a>
-        </nav>
-    </header>
+    <div class="container" id="media-card">
+        </div>
 
-    <main class="max-w-6xl mx-auto p-6 md:pt-12">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+    <script>
+        // Emulated data.json structure
+        const dataJson = {
+            "title": "The Transporter",
+            "year": 2002,
+            "format": "Blu-ray",
+            "releaseDate": "2006-11-14",
+            "studio": "20th Century Fox Home Entertainment",
+            "imageUrl": "https://images.static-bluray.com/movies/covers/155_front.jpg",
+            "rating": "PG-13",
+            "runtime": "92 min",
+            "language": "en-US",
+            "synopsis": "Rules-breaking driver Frank Martin is a mercenary “transporter” who delivers goods with no questions asked. But his latest shipment—a beautiful woman kidnapped by international slave traders--brings deadly complications to his hyper-efficient operational delivery system.",
+            "rules": [
+                "1. Never change the deal.",
+                "2. No names.",
+                "3. Never look in the package."
+            ],
+            "specs": {
+                "videoCodec": "MPEG-2",
+                "resolution": "1080p (2.35:1)",
+                "audio": "English DTS-HD Master Audio 5.1, French Dolby Digital 5.1, Spanish Dolby Digital 5.1",
+                "subtitles": "English, Spanish"
+            }
+        };
+
+        // Render function mapping JSON values to HTML template
+        function renderPage(data) {
+            const container = document.getElementById('media-card');
             
-            <!-- Product Image Section -->
-            <div class="flex justify-center">
-                <div class="relative group">
-                    <div class="absolute -inset-1 bg-blue-500 rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
-                    <img 
-                        src="https://images.static-bluray.com/movies/covers/155_front.jpg" 
-                        alt="The Transporter Blu-ray Cover" 
-                        class="relative rounded shadow-2xl w-full max-w-md border border-white/20"
-                        onerror="this.src='https://via.placeholder.com/400x500?text=The+Transporter+Blu-ray'"
-                    >
-                    <div class="mt-4 flex justify-center space-x-4">
-                        <span class="bg-blue-600 text-white text-[10px] font-bold px-2 py-1 rounded">BLU-RAY DISC™</span>
-                        <span class="bg-gray-800 text-white text-[10px] font-bold px-2 py-1 rounded">1080P HD</span>
+            container.innerHTML = `
+                <div class="cover-art-panel">
+                    <img src="${data.imageUrl}" alt="${data.title} Blu-ray Cover">
+                    <div class="bluray-badge">${data.format}</div>
+                </div>
+                <div class="details-panel">
+                    <h1>${data.title}</h1>
+                    <div class="meta-line">
+                        <span>${data.year}</span>
+                        <span>${data.rating}</span>
+                        <span>${data.runtime}</span>
+                    </div>
+
+                    <div class="rules-box">
+                        <h4>The Transporter’s Rules</h4>
+                        <ul>
+                            ${data.rules.map(rule => `<li>${rule}</li>`).join('')}
+                        </ul>
+                    </div>
+                    
+                    <h3 class="section-title">Synopsis</h3>
+                    <p class="synopsis">${data.synopsis}</p>
+                    
+                    <h3 class="section-title">Technical Specs</h3>
+                    <div class="specs-grid">
+                        <div class="spec-item">
+                            <span class="label">Studio</span>
+                            <span class="value">${data.studio}</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="label">Release Date</span>
+                            <span class="value">${data.releaseDate}</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="label">Video Codec</span>
+                            <span class="value">${data.specs.videoCodec}</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="label">Resolution</span>
+                            <span class="value">${data.specs.resolution}</span>
+                        </div>
+                        <div class="spec-item" style="grid-column: span 2;">
+                            <span class="label">Audio</span>
+                            <span class="value">${data.specs.audio}</span>
+                        </div>
                     </div>
                 </div>
-            </div>
+            `;
+        }
 
-            <!-- Product Details Section -->
-            <div class="space-y-6">
-                <div>
-                    <h1 class="text-4xl md:text-6xl font-black italic tracking-tighter text-white">THE TRANSPORTER</h1>
-                    <p class="text-blue-400 font-bold mt-2 uppercase tracking-widest">Rules are made to be broken.</p>
-                </div>
-
-                <div class="flex items-center space-x-4 border-y border-white/10 py-4">
-                    <div class="text-3xl font-bold text-white">$29.98</div>
-                    <div class="text-sm text-gray-400">MSRP</div>
-                    <button class="btn-buy px-8 py-3 rounded-full font-bold text-white ml-auto">
-                        ADD TO CART
-                    </button>
-                </div>
-
-                <div class="space-y-4">
-                    <h3 class="text-lg font-bold border-l-4 border-blue-500 pl-3">SYNOPSIS</h3>
-                    <p class="text-gray-300 leading-relaxed">
-                        Ex-Special Forces operator Frank Martin (Jason Statham) lives what seems to be a quiet life along the French Mediterranean, hiring himself out as a “transporter” who delivers packages—no questions asked. He has three simple rules: 1) Never change the deal. 2) No names. 3) Never look in the package. But when he sees his package move, Frank breaks Rule #3 and finds a beautiful woman gagged inside.
-                    </p>
-                </div>
-
-                <!-- Technical Specs Grid -->
-                <div class="grid grid-cols-2 gap-4 pt-4">
-                    <div class="product-card p-4 rounded-xl">
-                        <div class="spec-label">Release Date</div>
-                        <div class="font-semibold">November 14, 2006</div>
-                    </div>
-                    <div class="product-card p-4 rounded-xl">
-                        <div class="spec-label">Original Year</div>
-                        <div class="font-semibold">2002</div>
-                    </div>
-                    <div class="product-card p-4 rounded-xl">
-                        <div class="spec-label">Video Codec</div>
-                        <div class="font-semibold">MPEG-2</div>
-                    </div>
-                    <div class="product-card p-4 rounded-xl">
-                        <div class="spec-label">Audio</div>
-                        <div class="font-semibold">DTS-HD Master Audio 5.1</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Special Features Section -->
-        <section class="mt-16 border-t border-white/10 pt-12">
-            <h2 class="text-2xl font-bold mb-8 text-center uppercase tracking-widest">Special Features</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="p-6 border border-white/5 rounded-lg hover:bg-white/5 transition-colors">
-                    <h4 class="font-bold text-blue-400 mb-2">Commentary</h4>
-                    <p class="text-sm text-gray-400">Feature-length audio commentary with Jason Statham and producer Steven Chasman.</p>
-                </div>
-                <div class="p-6 border border-white/5 rounded-lg hover:bg-white/5 transition-colors">
-                    <h4 class="font-bold text-blue-400 mb-2">Making Of</h4>
-                    <p class="text-sm text-gray-400">Behind-the-scenes featurette showcasing the intense stunt choreography.</p>
-                </div>
-                <div class="p-6 border border-white/5 rounded-lg hover:bg-white/5 transition-colors">
-                    <h4 class="font-bold text-blue-400 mb-2">Deleted Scenes</h4>
-                    <p class="text-sm text-gray-400">Extended action sequences and alternate takes with optional commentary.</p>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="mt-20 p-12 bg-black/50 text-center text-xs text-gray-500 space-y-4">
-        <p>&copy; 2006 Twentieth Century Fox Home Entertainment, Inc. All Rights Reserved.</p>
-        <p>“Twentieth Century Fox”, “Fox” and their associated logos are the property of Twentieth Century Fox Film Corporation.</p>
-        <div class="flex justify-center space-x-6 opacity-50">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/f/f3/Blu-ray_logo.svg" alt="Blu-ray logo" class="h-4 invert">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/DTS-HD_Master_Audio_logo.png" alt="DTS logo" class="h-4 grayscale invert">
-        </div>
-    </footer>
-
+        // Initialize display on content load
+        document.addEventListener('DOMContentLoaded', () => {
+            renderPage(dataJson);
+        });
+    </script>
 </body>
 </html>
