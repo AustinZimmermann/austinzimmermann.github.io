@@ -3,107 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>X-MEN [ブルーレイ] | 20世紀フォックス ホーム エンターテイメント</title>
+    <title>【Blu-ray】 X-MEN ＜2枚組＞ - 20世紀フォックス ホーム エンターテイメント</title>
     <style>
-        /* 2009 Era Aesthetics: Gradients, dark metallic tech theme, web-safe fonts */
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #0d1117;
-            background-image: radial-gradient(circle at top, #1a2332 0%, #05070a 70%);
-            color: #e2e8f0;
-            font-family: "ヒラギノ角ゴ Pro W3", sans-serif;
-            font-size: 13px;
-            line-height: 1.6;
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #161f33;
+            --accent-color: #00d2ff;
+            --text-main: #ffffff;
+            --text-muted: #8fa0c0;
+            --border-color: #233554;
         }
 
-        a {
-            color: #38bdf8;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-            color: #7dd3fc;
-        }
-
-        /* Fox Header Banner */
-        header {
-            background: linear-gradient(to bottom, #111827, #030712);
-            border-bottom: 2px solid #1e3a8a;
-            padding: 10px 20px;
-        }
-
-        .header-container {
-            max-width: 960px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo-placeholder {
-            font-size: 20px;
-            font-weight: bold;
-            color: #fff;
-            text-shadow: 0 0 8px #3b82f6;
-            letter-spacing: 1px;
-        }
-        .logo-placeholder span {
-            color: #f59e0b;
-        }
-
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            gap: 15px;
-        }
-
-        nav ul li a {
-            color: #94a3b8;
-            font-weight: bold;
-            font-size: 12px;
-        }
-
-        /* Main Container */
-        .wrapper {
-            max-width: 960px;
-            margin: 20px auto;
-            padding: 0 15px;
+        * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
-        /* Breadcrumb */
-        .breadcrumb {
-            font-size: 11px;
-            color: #64748b;
-            margin-bottom: 15px;
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            line-height: 1.6;
+            padding: 40px 20px;
         }
 
-        /* Product Layout */
-        .product-grid {
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
             display: grid;
-            grid-template-columns: 320px 1fr;
-            gap: 30px;
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid #1e293b;
-            border-radius: 8px;
-            padding: 25px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            grid-template-columns: 1fr;
         }
 
-        /* Left Column: Image */
-        .product-media {
-            text-align: center;
+        @media (min-width: 768px) {
+            .container {
+                grid-template-columns: 400px 1fr;
+            }
+        }
+
+        .media-aside {
+            background: #070a12;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-right: 1px solid var(--border-color);
         }
 
         .cover-art {
-            width: 100%;
-            max-width: 280px;
-            border-radius: 4px;
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
-            border: 1px solid rgba(255,255,255,0.1);
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.6);
             transition: transform 0.3s ease;
         }
 
@@ -112,258 +69,154 @@
         }
 
         .format-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, #0052d4, #4364f7, #6fb1fc);
-            color: white;
-            font-weight: bold;
-            padding: 4px 12px;
-            border-radius: 3px;
-            margin-top: 15px;
-            font-size: 11px;
-            letter-spacing: 1px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-        }
-
-        /* Right Column: Info */
-        .product-info h1 {
-            margin: 0 0 5px 0;
-            font-size: 24px;
+            margin-top: 20px;
+            background: linear-gradient(135deg, #0072ff, #00d2ff);
             color: #fff;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            padding: 6px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
-        .product-info .sub-title {
-            margin: 0 0 20px 0;
-            font-size: 14px;
-            color: #94a3b8;
-            font-weight: normal;
+        .content-main {
+            padding: 40px;
         }
 
-        .release-date-alert {
-            background: rgba(30, 41, 59, 0.7);
-            border-left: 4px solid #3b82f6;
-            padding: 10px 15px;
-            margin-bottom: 20px;
-            font-size: 12px;
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 5px;
+            color: var(--text-main);
+            font-weight: 700;
         }
 
-        /* Spec Table */
-        .spec-table {
+        .publisher {
+            color: var(--accent-color);
+            font-size: 1rem;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .info-table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
 
-        .spec-table th, .spec-table td {
-            padding: 8px 12px;
+        .info-table th, .info-table td {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
             text-align: left;
-            border-bottom: 1px solid #1e293b;
         }
 
-        .spec-table th {
+        .info-table th {
+            color: var(--text-muted);
+            font-weight: 500;
             width: 30%;
-            color: #94a3b8;
-            background-color: rgba(30, 41, 59, 0.3);
-            font-weight: normal;
+            font-size: 0.95rem;
         }
 
-        .spec-table td {
-            color: #f1f5f9;
+        .info-table td {
+            color: var(--text-main);
+            font-size: 0.95rem;
         }
 
-        /* Interactive Tabs Section */
-        .tabs-container {
-            margin-top: 30px;
-        }
-
-        .tabs {
-            display: flex;
-            border-bottom: 2px solid #1e293b;
-        }
-
-        .tab-btn {
-            background: #0f172a;
-            color: #94a3b8;
-            border: 1px solid #1e293b;
-            border-bottom: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 12px;
-            border-top-left-radius: 4px;
-            border-top-right-radius: 4px;
-            margin-right: 5px;
-        }
-
-        .tab-btn.active {
-            background: #1e293b;
-            color: #fff;
-            border-color: #3b82f6;
-            padding-bottom: 11px;
-            margin-bottom: -2px;
-        }
-
-        .tab-content {
-            background: rgba(30, 41, 59, 0.4);
-            border: 1px solid #1e293b;
-            border-top: none;
+        .synopsis {
+            background: rgba(255, 255, 255, 0.03);
             padding: 20px;
-            display: none;
+            border-left: 4px solid var(--accent-color);
+            border-radius: 0 8px 8px 0;
         }
 
-        .tab-content.active {
-            display: block;
+        .synopsis h3 {
+            margin-bottom: 10px;
+            color: var(--text-main);
+            font-size: 1.1rem;
         }
 
-        .tab-content ul {
-            padding-left: 20px;
-            margin: 0;
-        }
-
-        .tab-content li {
-            margin-bottom: 6px;
-        }
-
-        /* Footer */
-        footer {
-            margin-top: 50px;
-            background: #070a12;
-            border-top: 1px solid #111827;
-            padding: 20px;
-            text-align: center;
-            font-size: 11px;
-            color: #475569;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .product-grid {
-                grid-template-columns: 1fr;
-            }
-            .header-container {
-                flex-direction: column;
-                gap: 10px;
-            }
+        .synopsis p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            textAlign: left;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="header-container">
-            <div class="logo-placeholder">20th CENTURY <span>FOX</span></div>
-            <nav>
-                <ul>
-                    <li><a href="#">ホーム</a></li>
-                    <li><a href="#">映画公開情報</a></li>
-                    <li><a href="#">ブルーレイ＆DVD</a></li>
-                    <li><a href="#">オンデマンド</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <div class="wrapper">
-        
-        <div class="breadcrumb">
-            <a href="#">ホーム</a> &gt; <a href="#">ブルーレイ＆DVD</a> &gt; X-MEN（2枚組）［ブルーレイ］
-        </div>
-
-        <div class="product-grid">
-            
-            <div class="product-media">
-                <img src="https://images.static-bluray.com/movies/covers/85558_slip.jpg" alt="X-MEN Blu-ray Jacket" class="cover-art">
-                <div>
-                    <span class="format-badge">BLU-RAY DISC</span>
-                </div>
-            </div>
-
-            <div class="product-info">
-                <h1>X-MEN（2枚組）</h1>
-                <div class="sub-title">X-Men (2-Disc Set) - 2000年製作作品</div>
-
-                <div class="release-date-alert">
-                    <strong>【最新リリース情報】</strong> 2009年8月28日（金）より大好評発売中！
-                </div>
-
-                <table class="spec-table">
-                    <tr>
-                        <th>価格（税込）</th>
-                        <td>￥4,935</td>
-                    </tr>
-                    <tr>
-                        <th>品番</th>
-                        <td>FXXG-19942</td>
-                    </tr>
-                    <tr>
-                        <th>ディスク枚数</th>
-                        <td>2枚組（本編ディスク+特典ディスク）</td>
-                    </tr>
-                    <tr>
-                        <th>画面サイズ</th>
-                        <td>1080p High Definition 16:9 (シネマスコープ)</td>
-                    </tr>
-                    <tr>
-                        <th>音声</th>
-                        <td>1. 英語 DTS-HD マスター・オーディオ 5.1ch<br>2. 英語 ドルビーデジタル 5.1ch<br>3. 日本語 DTS 5.1ch</td>
-                    </tr>
-                    <tr>
-                        <th>字幕</th>
-                        <td>日本語 / 英語</td>
-                    </tr>
-                    <tr>
-                        <th>本編時間</th>
-                        <td>104分</td>
-                    </tr>
-                </table>
-
-                <div class="tabs-container">
-                    <div class="tabs">
-                        <button class="tab-btn active" onclick="switchTab(event, 'story')">ストーリー</button>
-                        <button class="tab-btn" onclick="switchTab(event, 'bonus')">特典映像</button>
-                    </div>
-                    
-                    <div id="story" class="tab-content active">
-                        <p>20世紀末、人類の進化は新たな局面を迎えていた。突然変異によって超人パワーを持つ進化した人類＜ミュータント＞が誕生し始めたのだ。彼らはその特殊な能力から、一般人類に恐れられ、迫害の対象となっていた。</p>
-                        <p>プロフェッサーXは私立学校を設立し、若きミュータントたちを保護、育成。人類とミュータントの平和的共存を目指すエリート集団「X-MEN」を結成する。一方、人類に絶望したマグニートーは凶悪なミュータント・テロ組織を組織し、人類滅亡を目論む。対立する2大勢力の壮絶な闘いが、今始まる——！</p>
-                    </div>
-                    
-                    <div id="bonus" class="tab-content">
-                        <p><strong>［Disc-2：特典ディスク内容］</strong></p>
-                        <ul>
-                            <li>ブライアン・シンガー監督による音声解説</li>
-                            <li>未公開シーン集（監督による音声解説付き）</li>
-                            <li>「X-MEN」インサイド・ルック（メイキング）</li>
-                            <li>キャラクター別バイオグラフィ＆ギャラリー</li>
-                            <li>隠しコマンド特典</li>
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
+<div class="container">
+    <div class="media-aside">
+        <img id="product-image" src="" alt="X-MEN Blu-ray Cover" class="cover-art">
+        <span id="product-discs" class="format-badge"></span>
     </div>
 
-    <footer>
-        <p>※2009年8月28日時点の掲載情報です。仕様、デザイン、価格等は予告なく変更になる場合があります。</p>
-        <p>&copy;2009 Twentieth Century Fox Home Entertainment LLC. All Rights Reserved.</p>
-    </footer>
+    <div class="content-main">
+        <h1 id="product-title"></h1>
+        <div id="product-publisher" class="publisher"></div>
 
-    <script>
-        function switchTab(event, tabId) {
-            // Hide all tab contents
-            const contents = document.querySelectorAll('.tab-content');
-            contents.forEach(content => content.classList.remove('active'));
+        <table class="info-table">
+            <tr>
+                <th>発売日</th>
+                <td id="product-release"></td>
+            </tr>
+            <tr>
+                <th>品番</th>
+                <td id="product-catalog"></td>
+            </tr>
+            <tr>
+                <th>画面サイズ</th>
+                <td id="product-aspect"></td>
+            </tr>
+            <tr>
+                <th>音声</th>
+                <td id="product-audio"></td>
+            </tr>
+            <tr>
+                <th>字幕</th>
+                <td id="product-subtitles"></td>
+            </tr>
+        </table>
 
-            // Remove active status from buttons
-            const buttons = document.querySelectorAll('.tab-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
+        <div class="synopsis">
+            <h3>ストーリー</h3>
+            <p id="product-synopsis"></p>
+        </div>
+    </div>
+</div>
 
-            // Show current target content and button state
-            document.getElementById(tabId).classList.add('active');
-            event.currentTarget.classList.add('active');
-        }
-    </script>
+<script>
+    // Embedded data.json simulated object
+    const jsonData = {
+        "title": "X-MEN ＜2枚組＞",
+        "format": "Blu-ray",
+        "discs": "2枚組 (2-Disc Set)",
+        "publisher": "20世紀フォックス ホーム エンターテイメント",
+        "release_date": "2009-08-28",
+        "catalog_number": "FXXG-19942",
+        "image_url": "https://images.static-bluray.com/movies/covers/85558_slip.jpg",
+        "specifications": {
+            "aspect_ratio": "1080p High Definition / 2.35:1 シネマスコープ",
+            "audio": "英語 DTS-HD マスター・オーディオ 5.1ch, 英語 ドルビーデジタル 5.1ch, 日本語 DTS 5.1ch",
+            "subtitles": "日本語, 英語"
+        },
+        "synopsis": "遺伝子の突然変異により、超人類的超能力を身につけたミュータント「X-MEN」。人類に忌み嫌われながらも、地球の平和を守るために果てしない闘いへと突入していく。圧倒的なビジュアルSFXで描く大ヒットSFアクションシリーズの第1作。"
+    };
+
+    // JavaScript to populate the elements dynamically using the JSON data
+    document.getElementById('product-title').textContent = jsonData.title;
+    document.getElementById('product-publisher').textContent = jsonData.publisher;
+    document.getElementById('product-discs').textContent = jsonData.discs;
+    document.getElementById('product-release').textContent = jsonData.release_date;
+    document.getElementById('product-catalog').textContent = jsonData.catalog_number;
+    document.getElementById('product-aspect').textContent = jsonData.specifications.aspect_ratio;
+    document.getElementById('product-audio').textContent = jsonData.specifications.audio;
+    document.getElementById('product-subtitles').textContent = jsonData.specifications.subtitles;
+    document.getElementById('product-synopsis').textContent = jsonData.synopsis;
+    
+    // Set the image src
+    const imgElement = document.getElementById('product-image');
+    imgElement.src = jsonData.image_url;
+</script>
+
 </body>
 </html>
