@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="el-GR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ερμής | Premium Greek TTS & SSML Studio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0b0f19;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.1) 0, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(20, 184, 166, 0.08) 0, transparent 50%);
+        }
+        .code-font {
+            font-family: 'Fira Code', monospace;
+        }
+        .fancy-serif {
+            font-family: 'Playfair Display', serif;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #334155;
+        }
+    </style>
+</head>
+<body class="text-slate-100 min-h-screen flex flex-col antialiased">
+
+    <!-- Header Section -->
+    <header class="border-b border-slate-800 bg-slate-900/60 backdrop-blur-md sticky top-0 z-50 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="h-10 w-10 rounded-xl bg-gradient-to-tr from-indigo-500 to-teal-400 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+                    <i class="fa-solid fa-microphone-lines text-white text-xl"></i>
+                </div>
+                <div>
+                    <div class="flex items-center space-x-2">
+                        <span class="text-lg font-bold tracking-tight bg-gradient-to-r from-white via-slate-100 to-indigo-300 bg-clip-text text-transparent">ΕΡΜΗΣ</span>
+                        <span class="text-xs font-semibold px-2 py-0.5 bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 rounded-full">TTS STUDIO</span>
+                    </div>
+                    <p class="text-[10px] text-slate-400 font-mono tracking-widest uppercase">Greek Speech Synthesis</p>
+                </div>
+            </div>
+
+            <!-- Global Actions & Status -->
+            <div class="flex items-center space-x-3">
+                <!-- API Status Indicators -->
+                <div id="apiStatusBadge" class="hidden sm:flex items-center space-x-2 px-3 py-1.5 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-lg text-xs">
+                    <span class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span>Gemini Connected</span>
+                </div>
+                
+                <!-- API Key Configuration Trigger -->
+                <button onclick="toggleApiKeyModal()" class="flex items-center space-x-2 px-3 py-1.5 bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white rounded-lg text-xs font-medium border border-slate-700 transition">
+                    <i class="fa-solid fa-key"></i>
+                    <span id="apiKeyBtnLabel">Configure API Key</span>
+                </button>
+
+                <!-- Help / Documentation Trigger -->
+                <button onclick="toggleDocPanel()" class="flex items-center justify-center h-8 w-8 bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white rounded-lg border border-slate-700 transition" title="Show Documentation">
+                    <i class="fa-regular fa-circle-question"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Workspace Dashboard -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
+        
+        <!-- Left Column: The Synthesizer Studio (7 Cols) -->
+        <section class="lg:col-span-7 flex flex-col space-y-6">
+            
+            <!-- Quick Configuration Panel -->
+            <div class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-5 backdrop-blur-sm shadow-xl space-y-4">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-sm font-semibold tracking-wider text-slate-400 uppercase flex items-center space-x-2">
+                        <i class="fa-solid fa-sliders text-indigo-400"></i>
+                        <span>Configuration</span>
+                    </h2>
+                    <span class="text-xs text-slate-500">Select Speaking Modes & Presets</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Preset Script Select -->
+                    <div>
+                        <label class="block text-xs font-medium text-slate-400 mb-1">Preset Showcase Templates</label>
+                        <select id="presetSelect" onchange="applyPreset()" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                            <option value="none">-- Select Template --</option>
+                            <option value="myth">The Flight of Icarus (Single Voice - Myth)</option>
+                            <option value="dialogue">Philosophers Chat (Dual Voice - Socrates & Glaucon)</option>
+                            <option value="travel">Santorini Summer Guide (Single Voice - Enthusiastic)</option>
+                            <option value="cafe">Greek Cafe Order (Dual Voice - Customer & Waitress)</option>
+                        </select>
+                    </div>
+
+                    <!-- Speaker Mode Option -->
+                    <div>
+                        <label class="block text-xs font-medium text-slate-400 mb-1">Speaker Setup</label>
+                        <div class="grid grid-cols-2 gap-2 bg-slate-950 p-1 rounded-lg border border-slate-800">
+                            <button id="modeSingleBtn" onclick="setSpeakerMode('single')" class="py-1 px-3 text-xs font-medium rounded-md transition bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+                                Single Narrator
+                            </button>
+                            <button id="modeDualBtn" onclick="setSpeakerMode('dual')" class="py-1 px-3 text-xs font-medium rounded-md transition text-slate-400 hover:text-white">
+                                Dual-Voice Dialogue
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Voice Selectors (Depends on Speaker Mode) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2 border-t border-slate-800/60">
+                    <!-- Primary Voice Selection -->
+                    <div id="voice1Container">
+                        <label id="voice1Label" class="block text-xs font-medium text-slate-400 mb-1">Narrator Voice</label>
+                        <select id="primaryVoice" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                            <!-- Populated dynamically with Gemini prebuilt voices -->
+                        </select>
+                    </div>
+
+                    <!-- Secondary Voice Selection (Shown in Dual mode) -->
+                    <div id="voice2Container" class="hidden opacity-0 transition-all duration-300">
+                        <label class="block text-xs font-medium text-slate-400 mb-1">Secondary Voice (Speaker B)</label>
+                        <select id="secondaryVoice" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                            <!-- Populated dynamically with Gemini prebuilt voices -->
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Advanced SSML & Performance Editor -->
+            <div class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-5 backdrop-blur-sm shadow-xl flex-grow flex flex-col space-y-3">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-sm font-semibold tracking-wider text-slate-400 uppercase flex items-center space-x-2">
+                        <i class="fa-solid fa-pen-nib text-teal-400"></i>
+                        <span>SSML & Speech Script</span>
+                    </h2>
+                    <span id="charCount" class="text-xs text-slate-500 font-mono">0 / 4,000 characters</span>
+                </div>
+
+                <!-- Performance Markup Toolbar -->
+                <div class="flex flex-wrap gap-1.5 p-1.5 bg-slate-950 rounded-xl border border-slate-800 text-xs">
+                    <span class="text-[10px] text-slate-500 uppercase tracking-widest px-2 self-center font-semibold">Emotions:</span>
+                    <button onclick="insertTag('[χαρούμενα] ')" class="px-2 py-1 bg-slate-900 hover:bg-slate-800 text-emerald-400 rounded-lg border border-slate-800 transition" title="Insert Cheerful performance marker">
+                        😊 χαρούμενα
+                    </button>
+                    <button onclick="insertTag('[ψιθυριστά] ')" class="px-2 py-1 bg-slate-900 hover:bg-slate-800 text-cyan-400 rounded-lg border border-slate-800 transition" title="Insert Whisper performance marker">
+                        🤫 ψιθυριστά
+                    </button>
+                    <button onclick="insertTag('[σοβαρά] ')" class="px-2 py-1 bg-slate-900 hover:bg-slate-800 text-indigo-400 rounded-lg border border-slate-800 transition" title="Insert Serious performance marker">
+                        🧐 σοβαρά
+                    </button>
+                    <button onclick="insertTag('[λυπημένα] ')" class="px-2 py-1 bg-slate-900 hover:bg-slate-800 text-amber-400 rounded-lg border border-slate-800 transition" title="Insert Sad performance marker">
+                        🥺 λυπημένα
+                    </button>
+                    <button onclick="insertTag('[θυμωμένα] ')" class="px-2 py-1 bg-slate-900 hover:bg-slate-800 text-rose-400 rounded-lg border border-slate-800 transition" title="Insert Angry performance marker">
+                        😡 θυμωμένα
+                    </button>
+                    <button onclick="insertTag('[ενθουσιασμένα] ')" class="px-2 py-1 bg-slate-900 hover:bg-slate-800 text-purple-400 rounded-lg border border-slate-800 transition" title="Insert Excited performance marker">
+                        ⚡ ενθουσιασμένα
+                    </button>
+
+                    <div class="w-full my-1 border-t border-slate-900"></div>
+
+                    <span class="text-[10px] text-slate-500 uppercase tracking-widest px-2 self-center font-semibold">SSML & Pauses:</span>
+                    <button onclick="insertTag('<break time=\x221s\x22/>')" class="px-2 py-1 bg-slate-900 hover:bg-slate-800 text-indigo-300 rounded-lg border border-slate-800 transition font-mono">
+                        &lt;break 1s/&gt;
+                    </button>
+                    <button onclick="insertTag('<break time=\x22500ms\x22/>')" class="px-2 py-1 bg-slate-900 hover:bg-slate-800 text-indigo-300 rounded-lg border border-slate-800 transition font-mono">
+                        &lt;break 500ms/&gt;
+                    </button>
+                    <button onclick="insertTag('<prosody pitch=\x22+15%\x22>', '</prosody>')" class="px-2 py-1 bg-slate-900 hover:bg-slate-800 text-teal-300 rounded-lg border border-slate-800 transition font-mono" title="Raise voice pitch">
+                        &lt;pitch +15%&gt;
+                    </button>
+                    <button onclick="insertTag('<prosody pitch=\x22-15%\x22>', '</prosody>')" class="px-2 py-1 bg-slate-900 hover:bg-slate-800 text-teal-300 rounded-lg border border-slate-800 transition font-mono" title="Lower voice pitch">
+                        &lt;pitch -15%&gt;
+                    </button>
+                    <button onclick="insertTag('<emphasis level=\x22strong\x22>', '</emphasis>')" class="px-2 py-1 bg-slate-900 hover:bg-slate-800 text-violet-300 rounded-lg border border-slate-800 transition font-mono" title="Insert emphasis wrapper">
+                        &lt;emphasis&gt;
+                    </button>
+                </div>
+
+                <!-- Textarea / Script input field -->
+                <div class="relative flex-grow">
+                    <textarea id="scriptInput" oninput="updateCharCount()" placeholder="Γράψτε το κείμενό σας εδώ στα Ελληνικά ή επιλέξτε ένα από τα έτοιμα Showcase Templates από το μενού Configuration...
+Μπορείτε να εισάγετε ετικέτες όπως [χαρούμενα], [ψιθυριστά], ή SSML διαλείμματα όπως <break time='1s'/> για να διαμορφώσετε την ομιλία." 
+                        class="w-full h-80 bg-slate-950 border border-slate-800 rounded-xl p-4 text-slate-100 focus:outline-none focus:ring-1 focus:ring-indigo-500 font-sans leading-relaxed text-sm resize-none"></textarea>
+                </div>
+
+                <!-- Custom Performance Guidelines Guide (Dynamic) -->
+                <div id="dialoguePromptGuideline" class="hidden p-3 bg-indigo-500/10 border border-indigo-500/20 rounded-xl text-xs text-indigo-300 space-y-1">
+                    <p class="font-semibold"><i class="fa-solid fa-circle-info"></i> Dialogue Mode Active:</p>
+                    <p>Structure your script with speaker names at the beginning of each paragraph. Example:</p>
+                    <p class="font-mono mt-1 bg-slate-950/60 p-2 rounded border border-indigo-950">
+                        Αλέξης: [χαρούμενα] Καλημέρα! Πώς είσαι σήμερα;<br>
+                        Μαρία: [ψιθυριστά] Όλα είναι ήσυχα. Ας μιλήσουμε σιγά...
+                    </p>
+                </div>
+
+                <!-- Generate Action Panel -->
+                <div class="flex items-center space-x-3 pt-2">
+                    <button id="generateBtn" onclick="synthesizeSpeech()" class="flex-grow bg-gradient-to-r from-indigo-600 to-teal-500 hover:from-indigo-500 hover:to-teal-400 text-white font-semibold py-3 px-6 rounded-xl transition shadow-lg shadow-indigo-500/10 flex items-center justify-center space-x-2">
+                        <i id="generateIcon" class="fa-solid fa-play"></i>
+                        <span id="generateText">Generate Greek Speech</span>
+                    </button>
+                    <button onclick="clearScript()" class="px-4 py-3 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl border border-slate-700/60 transition" title="Clear Text Area">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Right Column: Player, Audio Visualizer & History Logs (5 Cols) -->
+        <section class="lg:col-span-5 flex flex-col space-y-6">
+            
+            <!-- Real-time Playback Controller & Equalizer visualizer -->
+            <div class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-5 backdrop-blur-sm shadow-xl flex flex-col space-y-4">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-sm font-semibold tracking-wider text-slate-400 uppercase flex items-center space-x-2">
+                        <i class="fa-solid fa-headphones text-indigo-400"></i>
+                        <span>Live Monitor & Visualizer</span>
+                    </h2>
+                    <span id="playerStatus" class="text-xs text-slate-500">Idle</span>
+                </div>
+
+                <!-- Custom Visualizer Canvas Area -->
+                <div class="relative h-28 bg-slate-950 rounded-xl border border-slate-800/60 overflow-hidden flex items-center justify-center">
+                    <canvas id="visualizer" class="w-full h-full absolute inset-0"></canvas>
+                    <div id="visualizerPlaceholder" class="absolute z-10 flex flex-col items-center space-y-1 text-slate-500">
+                        <i class="fa-solid fa-wave-square text-xl animate-pulse text-slate-600"></i>
+                        <span class="text-xs font-mono text-[10px] uppercase tracking-wider">Awaiting playback</span>
+                    </div>
+                </div>
+
+                <!-- Custom Audio HTML Component -->
+                <div class="bg-slate-950 rounded-xl border border-slate-800 p-3.5 space-y-3">
+                    <audio id="audioElement" class="hidden"></audio>
+                    
+                    <div class="flex items-center justify-between space-x-4">
+                        <!-- Play/Pause Controls -->
+                        <button id="audioPlayBtn" disabled onclick="toggleAudioPlayback()" class="h-11 w-11 bg-indigo-500/10 text-indigo-400 hover:bg-indigo-500 hover:text-white rounded-full flex items-center justify-center border border-indigo-500/20 transition disabled:opacity-50 disabled:pointer-events-none">
+                            <i id="audioPlayIcon" class="fa-solid fa-play text-lg ml-0.5"></i>
+                        </button>
+                        
+                        <!-- Timeline Slider -->
+                        <div class="flex-grow">
+                            <div class="flex justify-between text-[10px] font-mono text-slate-400 mb-1">
+                                <span id="timeCurrent">00:00</span>
+                                <span id="timeDuration">00:00</span>
+                            </div>
+                            <input type="range" id="audioTimeline" min="0" value="0" step="0.1" class="w-full h-1 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-indigo-500" disabled>
+                        </div>
+                    </div>
+
+                    <!-- Audio Options -->
+                    <div class="flex items-center justify-between pt-2 border-t border-slate-900 text-xs text-slate-400">
+                        <div class="flex items-center space-x-1.5">
+                            <i class="fa-solid fa-volume-low"></i>
+                            <input type="range" id="audioVolume" min="0" max="1" step="0.1" value="0.8" class="w-20 h-1 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-indigo-400" oninput="setAudioVolume(this.value)">
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button id="downloadAudioBtn" disabled onclick="downloadCurrentAudio()" class="px-2.5 py-1.5 bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white rounded-md border border-slate-800 flex items-center space-x-1 transition disabled:opacity-50 disabled:pointer-events-none">
+                                <i class="fa-solid fa-download"></i>
+                                <span>Export WAV</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Speech History Log Panel -->
+            <div class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-5 backdrop-blur-sm shadow-xl flex-grow flex flex-col space-y-4">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-sm font-semibold tracking-wider text-slate-400 uppercase flex items-center space-x-2">
+                        <i class="fa-solid fa-clock-rotate-left text-teal-400"></i>
+                        <span>Studio Generation Log</span>
+                    </h2>
+                    <span id="logCount" class="text-xs text-slate-500 font-mono">0 Session(s)</span>
+                </div>
+
+                <!-- History list container -->
+                <div id="historyLogContainer" class="flex-grow space-y-3 overflow-y-auto max-h-[300px] pr-1">
+                    <!-- Blank Placeholder state -->
+                    <div id="emptyLogState" class="flex flex-col items-center justify-center py-12 text-slate-500 text-center space-y-2">
+                        <i class="fa-regular fa-folder-open text-3xl text-slate-700"></i>
+                        <p class="text-sm">No audio sessions generated in this session.</p>
+                        <p class="text-xs text-slate-600">Generated audios will appear here with transcription transcripts.</p>
+                    </div>
+                </div>
+
+                <!-- Cloud Synchronization Promotion Upgrade Offering -->
+                <div class="bg-slate-950 border border-slate-800 rounded-xl p-3.5 space-y-2.5">
+                    <div class="flex items-start justify-between">
+                        <div class="flex items-start space-x-2.5">
+                            <div class="p-1.5 bg-indigo-500/10 text-indigo-400 rounded-lg mt-0.5">
+                                <i class="fa-solid fa-cloud-arrow-up text-sm"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xs font-semibold text-slate-200">Sync Studio with Cloud</h3>
+                                <p class="text-[10px] text-slate-400 leading-normal">Save progress, audio history log, and custom Greek scripts across all your devices.</p>
+                            </div>
+                        </div>
+                        <div class="relative inline-block w-8 align-middle select-none transition duration-200 ease-in">
+                            <input type="checkbox" name="toggle" id="cloudSyncToggle" onchange="toggleCloudSync()" class="toggle-checkbox absolute block w-4 h-4 rounded-full bg-white border-4 border-slate-800 appearance-none cursor-pointer checked:right-0 checked:bg-indigo-500 right-4"/>
+                            <label for="cloudSyncToggle" class="toggle-label block overflow-hidden h-4 rounded-full bg-slate-800 cursor-pointer"></label>
+                        </div>
+                    </div>
+                    <!-- Sync State Notification -->
+                    <p id="syncStateText" class="text-[10px] text-slate-500 flex items-center space-x-1">
+                        <span class="inline-block h-1.5 w-1.5 rounded-full bg-slate-600"></span>
+                        <span>Cloud backup currently inactive. Sync disabled.</span>
+                    </p>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Footer Area -->
+    <footer class="border-t border-slate-900 bg-slate-950/80 py-4 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 text-center text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-2">
+            <p>&copy; 2026 Ερμής Greek Speech Synthesis Studio. Handcrafted for premium SSML typesetting.</p>
+            <div class="flex space-x-4">
+                <a href="#" onclick="toggleDocPanel(); return false;" class="hover:text-slate-300">Markup Documentation</a>
+                <span class="text-slate-800">|</span>
+                <a href="#" onclick="toggleApiKeyModal(); return false;" class="hover:text-slate-300">Configure Google API Connection</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Global API Configuration Modal -->
+    <div id="apiKeyModal" class="hidden fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-md p-6 shadow-2xl relative space-y-4">
+            <button onclick="toggleApiKeyModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white transition">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <div class="flex items-center space-x-3 mb-2">
+                <div class="h-10 w-10 bg-indigo-500/10 text-indigo-400 rounded-xl flex items-center justify-center">
+                    <i class="fa-solid fa-key text-lg"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-slate-100">Google AI Studio Connection</h3>
+                    <p class="text-xs text-slate-400">Connect to Gemini API Gateway</p>
+                </div>
+            </div>
+
+            <p class="text-xs text-slate-400 leading-normal">
+                By default, this workspace environment provides a secure connection to Gemini. If you are operating outside this secure workspace, please enter your personal Google AI Studio API Key below to enable speech synthesis.
+            </p>
+
+            <div class="space-y-1.5">
+                <label class="block text-xs font-semibold text-slate-300">Gemini Developer API Key</label>
+                <div class="relative">
+                    <input type="password" id="apiKeyInput" placeholder="AIzaSy..." class="w-full bg-slate-950 border border-slate-800 rounded-lg py-2 pl-3 pr-10 text-sm text-slate-200 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                    <button onclick="toggleApiKeyVisibility()" class="absolute right-3 top-2.5 text-slate-400 hover:text-white">
+                        <i id="keyVisibilityIcon" class="fa-regular fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="flex space-x-3 pt-2">
+                <button onclick="saveApiKey()" class="flex-grow bg-indigo-600 hover:bg-indigo-500 text-white font-medium py-2 px-4 rounded-lg transition text-sm">
+                    Save Key Connection
+                </button>
+                <button onclick="toggleApiKeyModal()" class="bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium py-2 px-4 rounded-lg transition text-sm border border-slate-700">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Side Help & Documentation Drawer Panel -->
+    <div id="docPanel" class="fixed inset-y-0 right-0 w-full max-w-md bg-slate-900 border-l border-slate-800 shadow-2xl z-50 transform translate-x-full transition-transform duration-300 p-6 flex flex-col space-y-6">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+            <div class="flex items-center space-x-2.5">
+                <i class="fa-regular fa-circle-question text-teal-400 text-lg"></i>
+                <h3 class="font-bold text-slate-100">Performance Guide & SSML</h3>
+            </div>
+            <button onclick="toggleDocPanel()" class="text-slate-400 hover:text-white transition">
+                <i class="fa-solid fa-arrow-right-long text-lg"></i>
+            </button>
+        </div>
+
+        <div class="flex-grow overflow-y-auto space-y-5 text-sm leading-relaxed pr-1">
+            
+            <div class="space-y-2">
+                <h4 class="font-semibold text-indigo-400 text-xs uppercase tracking-wider">🌟 1. Performance Emotion Brackets</h4>
+                <p class="text-xs text-slate-300">
+                    Gemini 2.5 TTS models feature direct emotional steering via natural bracket commands. Prepend any word or sentence with these instructions:
+                </p>
+                <ul class="space-y-1 bg-slate-950/60 p-2.5 border border-slate-800/80 rounded-xl font-mono text-[11px] text-slate-400">
+                    <li><strong class="text-slate-200">[χαρούμενα]</strong> - Cheerful pitch, fast pace</li>
+                    <li><strong class="text-slate-200">[ψιθυριστά]</strong> - Intimate, whispery quality</li>
+                    <li><strong class="text-slate-200">[σοβαρά]</strong> - Direct, steady, educational</li>
+                    <li><strong class="text-slate-200">[λυπημένα]</strong> - Melancholic inflection</li>
+                    <li><strong class="text-slate-200">[θυμωμένα]</strong> - Sharp, passionate accents</li>
+                    <li><strong class="text-slate-200">[ενθουσιασμένα]</strong> - High-energy, positive inflection</li>
+                </ul>
+            </div>
+
+            <div class="space-y-2">
+                <h4 class="font-semibold text-indigo-400 text-xs uppercase tracking-wider">⏳ 2. Structural Speech Pauses</h4>
+                <p class="text-xs text-slate-300">
+                    Inserting breaks lets you craft highly polished speeches. Combine these standard markers to space words appropriately:
+                </p>
+                <div class="bg-slate-950/60 p-3 border border-slate-800/80 rounded-xl space-y-2 font-mono text-[11px] text-indigo-300">
+                    <p>&lt;break time="1s"/&gt; <span class="text-slate-500">// 1-second silence</span></p>
+                    <p>&lt;break time="500ms"/&gt; <span class="text-slate-500">// half-second break</span></p>
+                </div>
+            </div>
+
+            <div class="space-y-2">
+                <h4 class="font-semibold text-indigo-400 text-xs uppercase tracking-wider">📢 3. Pitch & Tone (Prosody)</h4>
+                <p class="text-xs text-slate-300">
+                    Use wrapping tags to control the precise acoustic delivery of Greek pronunciation:
+                </p>
+                <div class="bg-slate-950/60 p-3 border border-slate-800/80 rounded-xl space-y-1.5 font-mono text-[11px] text-teal-300">
+                    <p>&lt;prosody pitch="+15%"&gt;Υψηλός τόνος&lt;/prosody&gt;</p>
+                    <p>&lt;prosody pitch="-10%"&gt;Χαμηλός τόνος&lt;/prosody&gt;</p>
+                    <p>&lt;emphasis level="strong"&gt;Έμφαση&lt;/emphasis&gt;</p>
+                </div>
+            </div>
+
+            <div class="space-y-2">
+                <h4 class="font-semibold text-indigo-400 text-xs uppercase tracking-wider">🗣️ 4. Dual-Voice Dialouges</h4>
+                <p class="text-xs text-slate-300">
+                    Toggle dialogue mode to enable interaction. Simply assign character lines to trigger automatic multi-speaker configurations:
+                </p>
+                <div class="bg-slate-950/60 p-3 border border-slate-800/80 rounded-xl font-mono text-[11px] text-purple-300 space-y-1">
+                    <p>Σωκράτης: Γεια σου Γλάυκων.</p>
+                    <p>Γλαύκων: Χαίρε, Σωκράτη!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="border-t border-slate-800 pt-4 text-center">
+            <button onclick="toggleDocPanel()" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-200 py-2 rounded-lg transition text-xs font-medium border border-slate-700">
+                Close Guide
+            </button>
+        </div>
+    </div>
+
+    <!-- Floating Global Toast Notifications -->
+    <div id="toastContainer" class="fixed bottom-6 left-6 z-50 space-y-2 max-w-sm w-full"></div>
+
+    <!-- Firebase App & Firestore SDK Modules -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, getDoc, collection, addDoc, updateDoc, deleteDoc, query, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Firebase Configuration fallback & safety wrapper (RULE 1 & 3 Compliance)
+        let db = null;
+        let auth = null;
+        let appId = "default-app-id";
+        let isCloudEnabled = false;
+
+        // Initialize Firebase safely if global config is defined in environment
+        try {
+            if (typeof __app_id !== 'undefined') {
+                appId = __app_id;
+            }
+            if (typeof __firebase_config !== 'undefined' && __firebase_config) {
+                const firebaseConfig = JSON.parse(__firebase_config);
+                const app = initializeApp(firebaseConfig);
+                auth = getAuth(app);
+                db = getFirestore(app);
+                
+                // Initialize Auth as early as possible following RULE 3
+                const initAuth = async () => {
+                    try {
+                        if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                            await signInWithCustomToken(auth, __initial_auth_token);
+                        } else {
+                            await signInAnonymously(auth);
+                        }
+                    } catch (err) {
+                        console.error("Firebase auth initialization failed", err);
+                    }
+                };
+                initAuth();
+
+                onAuthStateChanged(auth, (user) => {
+                    if (user) {
+                        updateSyncStateText(true);
+                    } else {
+                        updateSyncStateText(false);
+                    }
+                });
+            }
+        } catch (e) {
+            console.warn("Firebase not loaded/configured inside workspace, continuing in local mode.", e);
+        }
+
+        // Expose Firebase DB & Auth elements safely to global scopes
+        window.firebaseDb = db;
+        window.firebaseAuth = auth;
+        window.appId = appId;
+    </script>
+
+    <!-- App JavaScript Logic -->
+    <script>
+        // Global State variables
+        let customApiKey = localStorage.getItem('hermes_custom_api_key') || "";
+        let selectedSpeakerMode = 'single'; // 'single' or 'dual'
+        let generatedAudioHistory = [];
+        let activeAudioBlobUrl = null;
+        let activeAudioBlob = null;
+        
+        // Voice Data
+        const prebuiltVoices = [
+            { name: 'Kore', gender: 'Female', description: 'General Purpose, clean and articulate' },
+            { name: 'Puck', gender: 'Male', description: 'Conversational, highly engaging' },
+            { name: 'Charon', gender: 'Male', description: 'Authoritative, calm and standard' },
+            { name: 'Fenrir', gender: 'Male', description: 'Deep, rich dramatic range' },
+            { name: 'Aoede', gender: 'Female', description: 'Soft, delicate, melodic flow' },
+            { name: 'Zephyr', gender: 'Male', description: 'Educational, clear paced explanation' },
+            { name: 'Sulafat', gender: 'Female', description: 'Modern, crisp everyday speech' },
+            { name: 'Leda', gender: 'Female', description: 'Warm, highly conversational' },
+            { name: 'Orus', gender: 'Male', description: 'Fast, energetic dialogue' },
+            { name: 'Callirrhoe', gender: 'Female', description: 'Enthusiastic and cheerful storytelling' },
+            { name: 'Autonoe', gender: 'Female', description: 'Slow, gentle, comforting pacing' },
+            { name: 'Enceladus', gender: 'Male', description: 'Deep, resonance-oriented narrative style' },
+            { name: 'Iapetus', gender: 'Male', description: 'Classic neutral balanced narrator' },
+            { name: 'Sadachbia', gender: 'Female', description: 'Bright, energetic high pitch' }
+        ];
+
+        // Greek Preset showcase texts
+        const templates = {
+            myth: `[σοβαρά] Ο Δαίδαλος, ο ξακουστός τεχνίτης της Αρχαίας Ελλάδας, <break time="400ms"/> φυλακίστηκε στην Κρήτη από τον βασιλιά Μίνωα. <break time="1s"/> [λυπημένα] Συνειδητοποιώντας ότι η απόδραση από τη θάλασσα ήταν αδύνατη, αποφάσισε να κατασκευάσει φτερά από κερί και πούπουλα. <break time="1s"/> [χαρούμενα] "Ίκαρε!" <break time="400ms"/> φώναξε ο πατέρας, [ψιθυριστά] "μην πετάξεις πολύ κοντά στον ήλιο, γιατί το κερί θα λιώσει!"`,
+            dialogue: `Σωκράτης: Πες μου, Γλαύκων, είναι η δικαιοσύνη αρετή της ψυχής; <break time="400ms"/>\nΓλαύκων: [σοβαρά] Αναμφίβολα, Σωκράτη. Χωρίς αυτήν, η ανθρώπινη ψυχή στερείται αρμονίας. <break time="800ms"/>\nΣωκράτης: [χαρούμενα] Και μια ψυχή σε αρμονία, είναι ευτυχισμένη ή δυστυχισμένη;\nΓλαύκων: [ψιθυριστά] Είναι γεμάτη γαλήνη.`,
+            travel: `[ενθουσιασμένα] Καλώς ήρθατε στη Σαντορίνη! <break time="500ms"/> Έναν από τους πιο μαγικούς προορισμούς στον κόσμο. <break time="800ms"/> [χαρούμενα] Απολαύστε το μοναδικό ηλιοβασίλεμα από την Οία, περπατήστε στα γραφικά σοκάκια με τα ολόλευκα σπίτια <break time="400ms"/> και κολυμπήστε στα καταγάλανα νερά του Αιγαίου. <break time="1s"/> [ψιθυριστά] Σας περιμένει μια εμπειρία που θα θυμάστε για πάντα!`,
+            cafe: `Γιώργος: [ευγενικά] Καλησπέρα σας, θα ήθελα να παραγγείλω μία χωριάτικη σαλάτα και έναν παραδοσιακό μουσακά. <break time="600ms"/>\nΕλένη: [χαρούμενα] Καλησπέρα σας! Εξαιρετική επιλογή. <break time="400ms"/> Ο μουσακάς μας είναι ολόφρεσκος και φτιάχνεται με αγνές, ντόπιες πρώτες ύλες.`
+        };
+
+        // Initialize application on window load
+        window.addEventListener('DOMContentLoaded', () => {
+            populateVoicesDropdowns();
+            initAudioEngine();
+            loadLocalHistory();
+            updateCharCount();
+            
+            // Set dynamic active state if custom API Key is configured
+            updateApiKeyBadge();
+        });
+
+        // Populate Narrator list dropdowns
+        function populateVoicesDropdowns() {
+            const pVoice = document.getElementById('primaryVoice');
+            const sVoice = document.getElementById('secondaryVoice');
+            
+            pVoice.innerHTML = '';
+            sVoice.innerHTML = '';
+
+            prebuiltVoices.forEach(voice => {
+                const opt1 = document.createElement('option');
+                opt1.value = voice.name;
+                opt1.innerText = `${voice.name} (${voice.gender} - ${voice.description})`;
+                pVoice.appendChild(opt1);
+
+                const opt2 = document.createElement('option');
+                opt2.value = voice.name;
+                opt2.innerText = `${voice.name} (${voice.gender} - ${voice.description})`;
+                sVoice.appendChild(opt2);
+            });
+
+            // Set different defaults
+            pVoice.value = 'Kore';
+            sVoice.value = 'Charon';
+        }
+
+        // Change speaking modes single narrator vs dialogue
+        function setSpeakerMode(mode) {
+            selectedSpeakerMode = mode;
+            const singleBtn = document.getElementById('modeSingleBtn');
+            const dualBtn = document.getElementById('modeDualBtn');
+            const voice2Container = document.getElementById('voice2Container');
+            const voice1Label = document.getElementById('voice1Label');
+            const dialoguePromptGuideline = document.getElementById('dialoguePromptGuideline');
+
+            if (mode === 'single') {
+                singleBtn.className = "py-1 px-3 text-xs font-medium rounded-md transition bg-indigo-500/20 text-indigo-300 border border-indigo-500/30";
+                dualBtn.className = "py-1 px-3 text-xs font-medium rounded-md transition text-slate-400 hover:text-white";
+                voice2Container.classList.add('hidden', 'opacity-0');
+                voice1Label.innerText = "Narrator Voice";
+                dialoguePromptGuideline.classList.add('hidden');
+            } else {
+                dualBtn.className = "py-1 px-3 text-xs font-medium rounded-md transition bg-indigo-500/20 text-indigo-300 border border-indigo-500/30";
+                singleBtn.className = "py-1 px-3 text-xs font-medium rounded-md transition text-slate-400 hover:text-white";
+                voice2Container.classList.remove('hidden');
+                setTimeout(() => voice2Container.classList.remove('opacity-0'), 50);
+                voice1Label.innerText = "Primary Voice (Speaker A)";
+                dialoguePromptGuideline.classList.remove('hidden');
+            }
+        }
+
+        // Apply selected showcase template to writing editor
+        function applyPreset() {
+            const select = document.getElementById('presetSelect');
+            const scriptInput = document.getElementById('scriptInput');
+            
+            if (select.value === 'none') return;
+            
+            scriptInput.value = templates[select.value];
+            updateCharCount();
+            showToast(`Template applied successfully!`, 'success');
+
+            // Set appropriate Speaker Mode
+            if (select.value === 'dialogue' || select.value === 'cafe') {
+                setSpeakerMode('dual');
+            } else {
+                setSpeakerMode('single');
+            }
+        }
+
+        // Clean text input field
+        function clearScript() {
+            document.getElementById('scriptInput').value = '';
+            updateCharCount();
+        }
+
+        // Insert tags directly into Text Editor (selection awareness)
+        function insertTag(openTag, closeTag = "") {
+            const textarea = document.getElementById('scriptInput');
+            const start = textarea.selectionStart;
+            const end = textarea.selectionEnd;
+            const text = textarea.value;
+
+            if (start !== undefined) {
+                const selectedText = text.substring(start, end);
+                const replacement = openTag + selectedText + closeTag;
+                textarea.value = text.substring(0, start) + replacement + text.substring(end);
+                
+                // Keep cursor focused appropriately
+                textarea.focus();
+                textarea.selectionStart = start + openTag.length;
+                textarea.selectionEnd = start + openTag.length + selectedText.length;
+            } else {
+                textarea.value += openTag + closeTag;
+            }
+            updateCharCount();
+        }
+
+        // Character limit check helper
+        function updateCharCount() {
+            const length = document.getElementById('scriptInput').value.length;
+            const counter = document.getElementById('charCount');
+            counter.innerText = `${length.toLocaleString()} / 4,000 characters`;
+            if (length > 4000) {
+                counter.className = "text-xs font-mono text-rose-400 font-bold";
+            } else {
+                counter.className = "text-xs text-slate-500 font-mono";
+            }
+        }
+
+        // Base64 helper decoding & converting PCM16 output directly to WAV Blobs
+        function convertPCMToWav(base64Data, sampleRate = 24000) {
+            const raw = atob(base64Data);
+            const rawLength = raw.length;
+            const array = new Uint8Array(new ArrayBuffer(rawLength));
+            for (let i = 0; i < rawLength; i++) {
+                array[i] = raw.charCodeAt(i);
+            }
+            
+            const buffer = new ArrayBuffer(44 + rawLength);
+            const view = new DataView(buffer);
+            
+            // "RIFF" header identifier
+            writeString(view, 0, 'RIFF');
+            // Complete file size descriptor
+            view.setUint32(4, 36 + rawLength, true);
+            // "WAVE" type format
+            writeString(view, 8, 'WAVE');
+            // "fmt " chunk
+            writeString(view, 12, 'fmt ');
+            // format chunk length representation
+            view.setUint32(16, 16, true);
+            // audio format tag (LINEAR16 = 1)
+            view.setUint16(20, 1, true);
+            // mono single channel setup
+            view.setUint16(22, 1, true);
+            // 24000 Hz sample rate (Gemini standard)
+            view.setUint32(24, sampleRate, true);
+            // Byte rate calculated: sampleRate * channels * bytesPerSample
+            view.setUint32(28, sampleRate * 1 * 2, true);
+            // Block alignment
+            view.setUint16(32, 1 * 2, true);
+            // Signed 16 bits per sample representation
+            view.setUint16(34, 16, true);
+            // "data" chunk
+            writeString(view, 36, 'data');
+            // actual audio chunk data size length
+            view.setUint32(40, rawLength, true);
+            
+            // Copy PCM16 payload buffer directly
+            for (let i = 0; i < rawLength; i++) {
+                view.setUint8(44 + i, array[i]);
+            }
+            
+            return new Blob([buffer], { type: 'audio/wav' });
+        }
+
+        function writeString(view, offset, string) {
+            for (let i = 0; i < string.length; i++) {
+                view.setUint8(offset + i, string.charCodeAt(i));
+            }
+        }
+
+        // Standard fetch API wrapping containing exponential backoff retries (Mandatory)
+        async function fetchWithExponentialBackoff(url, options, maxRetries = 5) {
+            let delay = 1000; // 1s start
+            for (let i = 0; i < maxRetries; i++) {
+                try {
+                    const response = await fetch(url, options);
+                    if (response.ok) {
+                        return await response.json();
+                    }
+                    if (response.status === 429 || response.status >= 500) {
+                        await new Promise(resolve => setTimeout(resolve, delay));
+                        delay *= 2; // exponential step
+                        continue;
+                    }
+                    const errorMsg = await response.text();
+                    throw new Error(`Endpoint returned status ${response.status}: ${errorMsg}`);
+                } catch (error) {
+                    if (i === maxRetries - 1) throw error;
+                    await new Promise(resolve => setTimeout(resolve, delay));
+                    delay *= 2;
+                }
+            }
+        }
+
+        // Speech Generation Synthesizing Trigger
+        async function synthesizeSpeech() {
+            const script = document.getElementById('scriptInput').value.trim();
+            if (!script) {
+                showToast("Please enter a Greek speech script first.", "error");
+                return;
+            }
+
+            // Obtain credentials
+            let finalKey = customApiKey;
+            if (!finalKey) {
+                finalKey = ""; // Empty fallback string to comply with Workspace auth behavior 
+            }
+
+            // UI Feedback State Update
+            setGeneratingState(true);
+            showToast("Synthesizing Greek Speech Audio...", "info");
+
+            // Setup Payload structures
+            const activePrimaryVoice = document.getElementById('primaryVoice').value;
+            const activeSecondaryVoice = document.getElementById('secondaryVoice').value;
+            
+            let reqBody = {};
+
+            // Formulate standard single vs multi-speaker configs
+            if (selectedSpeakerMode === 'single') {
+                // Ensure natural Greek context rules are passed to the synthesizer
+                const detailedPrompt = `Say in clear Greek voice. Be extremely expressive, and respect pause indicators and tone tags like [χαρούμενα], [ψιθυριστά]. Context: ${script}`;
+                
+                reqBody = {
+                    contents: [{
+                        parts: [{ text: detailedPrompt }]
+                    }],
+                    generationConfig: {
+                        responseModalities: ["AUDIO"],
+                        speechConfig: {
+                            voiceConfig: {
+                                prebuiltVoiceConfig: {
+                                    voiceName: activePrimaryVoice
+                                }
+                            }
+                        }
+                    }
+                };
+            } else {
+                // Dialogue mode parsing. Parse all speaker scripts inside text
+                const dialogueParsedSpeakers = parseDialogueSpeakers(script);
+                const speakerConfigs = dialogueParsedSpeakers.map((speaker, index) => {
+                    const selectedVoice = (index === 0) ? activePrimaryVoice : activeSecondaryVoice;
+                    return {
+                        speaker: speaker,
+                        voiceConfig: {
+                            prebuiltVoiceConfig: {
+                                voiceName: selectedVoice
+                            }
+                        }
+                    };
+                });
+
+                // Standard fallback configuration if no distinct speakers are found in script
+                const finalConfigs = speakerConfigs.length > 0 ? speakerConfigs : [
+                    { speaker: "Σωκράτης", voiceConfig: { prebuiltVoiceConfig: { voiceName: activePrimaryVoice } } },
+                    { speaker: "Γλαύκων", voiceConfig: { prebuiltVoiceConfig: { voiceName: activeSecondaryVoice } } }
+                ];
+
+                const promptPrefix = `Perform this Greek Dialogue script. Maintain strict character voices. Respect emotions in brackets and pauses. Text:\n${script}`;
+
+                reqBody = {
+                    contents: [{
+                        parts: [{ text: promptPrefix }]
+                    }],
+                    generationConfig: {
+                        responseModalities: ["AUDIO"],
+                        speechConfig: {
+                            voiceConfig: {
+                                multiSpeakerVoiceConfig: {
+                                    speakerVoiceConfigs: finalConfigs
+                                }
+                            }
+                        }
+                    }
+                };
+            }
+
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${finalKey}`;
+
+            try {
+                const responseData = await fetchWithExponentialBackoff(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(reqBody)
+                });
+
+                // Extract PCM audio and metadata (Rule PCM16 format extraction)
+                const candidatePart = responseData.candidates?.[0]?.content?.parts?.[0];
+                const base64Audio = candidatePart?.inlineData?.data;
+
+                if (!base64Audio) {
+                    throw new Error("Speech synthesis succeeded, but returned empty audio content part.");
+                }
+
+                // Convert PCM to fully playable WAV Blob
+                const wavBlob = convertPCMToWav(base64Audio, 24000);
+                activeAudioBlob = wavBlob;
+                
+                if (activeAudioBlobUrl) {
+                    URL.revokeObjectURL(activeAudioBlobUrl);
+                }
+                activeAudioBlobUrl = URL.createObjectURL(wavBlob);
+
+                // Setup local audio player elements
+                const audioPlayer = document.getElementById('audioElement');
+                audioPlayer.src = activeAudioBlobUrl;
+                
+                // Enable audio control triggers
+                document.getElementById('audioPlayBtn').disabled = false;
+                document.getElementById('downloadAudioBtn').disabled = false;
+                document.getElementById('audioTimeline').disabled = false;
+
+                // Push inside history log
+                const sessionRecord = {
+                    id: Date.now().toString(),
+                    timestamp: new Date().toLocaleTimeString('el-GR', { hour: '2-digit', minute: '2-digit' }),
+                    transcript: script.substring(0, 90) + (script.length > 90 ? '...' : ''),
+                    fullText: script,
+                    speakers: selectedSpeakerMode === 'single' ? activePrimaryVoice : `${activePrimaryVoice} & ${activeSecondaryVoice}`,
+                    duration: 'Calculating...',
+                    blobUrl: activeAudioBlobUrl,
+                    blob: wavBlob
+                };
+
+                // Track and update Audio duration meta fields on payload ready
+                audioPlayer.onloadedmetadata = () => {
+                    const durationInSeconds = Math.round(audioPlayer.duration);
+                    const minutes = Math.floor(durationInSeconds / 60).toString().padStart(2, '0');
+                    const seconds = (durationInSeconds % 60).toString().padStart(2, '0');
+                    sessionRecord.duration = `${minutes}:${seconds}`;
+                    document.getElementById('timeDuration').innerText = `${minutes}:${seconds}`;
+                    
+                    // Prepend & Refresh Logs
+                    generatedAudioHistory.unshift(sessionRecord);
+                    saveHistoryLocal();
+                    renderHistoryLog();
+                };
+
+                showToast("Synthesized successfully!", "success");
+                
+                // Automatically play newly generated voice line
+                toggleAudioPlayback();
+
+            } catch (err) {
+                console.error("Speech Synthesis failure: ", err);
+                showToast(`Synthesis Error: ${err.message}. Please configure your API key correctly.`, "error");
+            } finally {
+                setGeneratingState(false);
+            }
+        }
+
+        // Regex Speaker parser helper
+        function parseDialogueSpeakers(scriptText) {
+            const uniqueSpeakers = new Set();
+            const lines = scriptText.split('\n');
+            lines.forEach(line => {
+                const match = line.match(/^([^:\n]+):/);
+                if (match) {
+                    uniqueSpeakers.add(match[1].trim());
+                }
+            });
+            return Array.from(uniqueSpeakers);
+        }
+
+        // Setting loader graphics dynamically
+        function setGeneratingState(isGenerating) {
+            const btn = document.getElementById('generateBtn');
+            const icon = document.getElementById('generateIcon');
+            const text = document.getElementById('generateText');
+
+            if (isGenerating) {
+                btn.disabled = true;
+                btn.classList.add('opacity-70', 'cursor-not-allowed');
+                icon.className = "fa-solid fa-circle-notch animate-spin text-white";
+                text.innerText = "Synthesizing...";
+            } else {
+                btn.disabled = false;
+                btn.classList.remove('opacity-70', 'cursor-not-allowed');
+                icon.className = "fa-solid fa-play";
+                text.innerText = "Generate Greek Speech";
+            }
+        }
+
+        /* --- Audio Playback & Visualizer Pipeline --- */
+        let audioCtx = null;
+        let analyser = null;
+        let sourceNode = null;
+        let drawId = null;
+
+        function initAudioEngine() {
+            const player = document.getElementById('audioElement');
+            const playBtn = document.getElementById('audioPlayBtn');
+            const playIcon = document.getElementById('audioPlayIcon');
+            const timeline = document.getElementById('audioTimeline');
+            const timeCurrent = document.getElementById('timeCurrent');
+
+            player.addEventListener('timeupdate', () => {
+                timeline.value = player.currentTime;
+                const curMins = Math.floor(player.currentTime / 60).toString().padStart(2, '0');
+                const curSecs = Math.floor(player.currentTime % 60).toString().padStart(2, '0');
+                timeCurrent.innerText = `${curMins}:${curSecs}`;
+            });
+
+            player.addEventListener('loadedmetadata', () => {
+                timeline.max = player.duration;
+            });
+
+            timeline.addEventListener('input', () => {
+                player.currentTime = timeline.value;
+            });
+
+            player.addEventListener('ended', () => {
+                playIcon.className = "fa-solid fa-play text-lg ml-0.5";
+                document.getElementById('playerStatus').innerText = "Finished playing";
+                if (drawId) cancelAnimationFrame(drawId);
+                clearVisualizerCanvas();
+            });
+        }
+
+        // Playback Action controller
+        function toggleAudioPlayback() {
+            const player = document.getElementById('audioElement');
+            const playIcon = document.getElementById('audioPlayIcon');
+            const visualizerPlaceholder = document.getElementById('visualizerPlaceholder');
+
+            if (player.paused) {
+                // Initialize Web Audio Analyzer standard pipelines
+                startVisualizerStream(player);
+                player.play();
+                playIcon.className = "fa-solid fa-pause text-lg";
+                document.getElementById('playerStatus').innerText = "Streaming Audio";
+                visualizerPlaceholder.classList.add('hidden');
+            } else {
+                player.pause();
+                playIcon.className = "fa-solid fa-play text-lg ml-0.5";
+                document.getElementById('playerStatus').innerText = "Paused";
+            }
+        }
+
+        function setAudioVolume(volume) {
+            document.getElementById('audioElement').volume = volume;
+        }
+
+        // Web Audio API Node Canvas Visualizer Drawing
+        function startVisualizerStream(element) {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+
+            if (!sourceNode) {
+                try {
+                    analyser = audioCtx.createAnalyser();
+                    analyser.fftSize = 128;
+                    sourceNode = audioCtx.createMediaElementSource(element);
+                    sourceNode.connect(analyser);
+                    analyser.connect(audioCtx.destination);
+                } catch (e) {
+                    console.warn("Media Source Context already routed.");
+                }
+            }
+
+            const canvas = document.getElementById('visualizer');
+            const ctx = canvas.getContext('2d');
+            
+            // Set dynamic responsive size
+            canvas.width = canvas.parentElement.clientWidth;
+            canvas.height = canvas.parentElement.clientHeight;
+
+            const bufferLength = analyser.frequencyBinCount;
+            const dataArray = new Uint8Array(bufferLength);
+
+            function render() {
+                drawId = requestAnimationFrame(render);
+                analyser.getByteFrequencyData(dataArray);
+
+                ctx.fillStyle = 'rgba(15, 23, 42, 0.4)'; // glass fade
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                const barWidth = (canvas.width / bufferLength) * 1.6;
+                let barHeight;
+                let x = 0;
+
+                for (let i = 0; i < bufferLength; i++) {
+                    barHeight = (dataArray[i] / 255) * canvas.height * 0.85;
+
+                    // Neon visualizer styling gradient
+                    const percent = i / bufferLength;
+                    const r = Math.round(99 + (106 * percent)); // indigo to teal transition
+                    const g = Math.round(102 + (82 * percent));
+                    const b = Math.round(241 - (115 * percent));
+
+                    ctx.fillStyle = `rgb(${r}, ${g}, ${b})`;
+                    
+                    // Draw rounded bar styling curves
+                    ctx.beginPath();
+                    ctx.roundRect(x, canvas.height - barHeight, barWidth - 2, barHeight, [4, 4, 0, 0]);
+                    ctx.fill();
+
+                    x += barWidth;
+                }
+            }
+            
+            if (drawId) cancelAnimationFrame(drawId);
+            render();
+        }
+
+        function clearVisualizerCanvas() {
+            const canvas = document.getElementById('visualizer');
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        // Export active WAV track
+        function downloadCurrentAudio() {
+            if (!activeAudioBlob) return;
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(activeAudioBlob);
+            link.download = `Hermes_Greek_TTS_${Date.now()}.wav`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            showToast("WAV audio exported successfully!", "success");
+        }
+
+        /* --- Local Storage & Rendering Pipeline --- */
+        function loadLocalHistory() {
+            try {
+                const stored = localStorage.getItem('hermes_tts_history');
+                if (stored) {
+                    const parsed = JSON.parse(stored);
+                    // Base64 to blob reconstitution needs attention when using local session
+                    generatedAudioHistory = parsed;
+                }
+            } catch (e) {
+                console.error("Could not fetch local historical logs", e);
+            }
+            renderHistoryLog();
+        }
+
+        function saveHistoryLocal() {
+            try {
+                // Strip out large active blob fields before local storage saving to prevent limits overflows
+                const cleanList = generatedAudioHistory.map(item => ({
+                    id: item.id,
+                    timestamp: item.timestamp,
+                    transcript: item.transcript,
+                    fullText: item.fullText,
+                    speakers: item.speakers,
+                    duration: item.duration
+                }));
+                localStorage.setItem('hermes_tts_history', JSON.stringify(cleanList));
+            } catch(e) {
+                console.warn("Storage limits overflow.", e);
+            }
+        }
+
+        function renderHistoryLog() {
+            const logContainer = document.getElementById('historyLogContainer');
+            const emptyLogState = document.getElementById('emptyLogState');
+            const logCountBadge = document.getElementById('logCount');
+
+            // Set dynamic counter
+            logCountBadge.innerText = `${generatedAudioHistory.length} Session(s)`;
+
+            if (generatedAudioHistory.length === 0) {
+                emptyLogState.classList.remove('hidden');
+                return;
+            }
+            emptyLogState.classList.add('hidden');
+
+            // Generate clean log markup list
+            let listMarkup = '';
+            generatedAudioHistory.forEach((item, index) => {
+                listMarkup += `
+                    <div class="bg-slate-950 border border-slate-800 rounded-xl p-3.5 space-y-2 hover:border-slate-700 transition">
+                        <div class="flex items-center justify-between">
+                            <span class="text-[10px] font-mono text-indigo-400 bg-indigo-500/10 border border-indigo-500/20 px-2 py-0.5 rounded-full uppercase">
+                                ${item.speakers}
+                            </span>
+                            <span class="text-[10px] text-slate-500 font-mono flex items-center space-x-1">
+                                <i class="fa-regular fa-clock"></i>
+                                <span>${item.timestamp}</span>
+                            </span>
+                        </div>
+                        <p class="text-xs text-slate-200 line-clamp-2 italic">"${item.transcript}"</p>
+                        
+                        <div class="flex items-center justify-between pt-2 border-t border-slate-900/60 text-xs">
+                            <span class="text-[10px] text-slate-500">Duration: ${item.duration}</span>
+                            <div class="flex space-x-2">
+                                <button onclick="loadHistoryToEditor(${index})" class="text-slate-400 hover:text-white flex items-center space-x-1 p-1 hover:bg-slate-900 rounded transition" title="Reload script to Editor">
+                                    <i class="fa-solid fa-rotate-left"></i>
+                                    <span class="text-[10px]">Reuse</span>
+                                </button>
+                                <button onclick="deleteHistoryItem(${index})" class="text-slate-500 hover:text-rose-400 p-1 hover:bg-rose-500/10 rounded transition" title="Delete record">
+                                    <i class="fa-regular fa-trash-can"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            // Replace log lists safely
+            const cachedPlaceholder = emptyLogState.outerHTML;
+            logContainer.innerHTML = cachedPlaceholder + listMarkup;
+            document.getElementById('emptyLogState').classList.add('hidden');
+        }
+
+        function loadHistoryToEditor(index) {
+            const item = generatedAudioHistory[index];
+            if (!item) return;
+            document.getElementById('scriptInput').value = item.fullText;
+            updateCharCount();
+            showToast("Script loaded back to Studio editor.", "success");
+        }
+
+        function deleteHistoryItem(index) {
+            generatedAudioHistory.splice(index, 1);
+            saveHistoryLocal();
+            renderHistoryLog();
+            showToast("Record cleared.", "info");
+        }
+
+        /* --- Dynamic Custom API Keys setup modals --- */
+        function toggleApiKeyModal() {
+            const modal = document.getElementById('apiKeyModal');
+            modal.classList.toggle('hidden');
+            if (!modal.classList.contains('hidden')) {
+                document.getElementById('apiKeyInput').value = customApiKey;
+            }
+        }
+
+        function toggleApiKeyVisibility() {
+            const input = document.getElementById('apiKeyInput');
+            const icon = document.getElementById('keyVisibilityIcon');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.className = "fa-regular fa-eye-slash";
+            } else {
+                input.type = 'password';
+                icon.className = "fa-regular fa-eye";
+            }
+        }
+
+        function saveApiKey() {
+            const keyVal = document.getElementById('apiKeyInput').value.trim();
+            customApiKey = keyVal;
+            localStorage.setItem('hermes_custom_api_key', keyVal);
+            toggleApiKeyModal();
+            updateApiKeyBadge();
+            showToast("API Connection Configured!", "success");
+        }
+
+        function updateApiKeyBadge() {
+            const btnLabel = document.getElementById('apiKeyBtnLabel');
+            const badge = document.getElementById('apiStatusBadge');
+            if (customApiKey) {
+                btnLabel.innerText = "Custom API Connection";
+                badge.classList.remove('hidden');
+            } else {
+                btnLabel.innerText = "Configure API Key";
+                badge.classList.add('hidden');
+            }
+        }
+
+        /* --- Cloud Storage Synchronization Upgrade Handler --- */
+        // Explicitly following Firestore Storage requirements RULE 1, 2, 3
+        async function toggleCloudSync() {
+            const isChecked = document.getElementById('cloudSyncToggle').checked;
+            const syncText = document.getElementById('syncStateText');
+
+            if (isChecked) {
+                // Safeguard check for workspace Firebase variables
+                if (typeof window.firebaseDb === 'undefined' || !window.firebaseDb) {
+                    showToast("Cloud synchronization is only available inside fully configured web spaces. Operating locally instead.", "info");
+                    document.getElementById('cloudSyncToggle').checked = false;
+                    return;
+                }
+
+                // Authenticate and perform secure query (RULE 3 compliance)
+                try {
+                    syncText.innerHTML = `
+                        <span class="inline-block h-1.5 w-1.5 rounded-full bg-amber-400 animate-pulse"></span>
+                        <span>Connecting to secure cloud server...</span>
+                    `;
+                    
+                    const auth = window.firebaseAuth;
+                    const db = window.firebaseDb;
+                    const appId = window.appId;
+                    
+                    if (!auth.currentUser) {
+                        // Resign dynamically
+                        if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                            await signInWithCustomToken(auth, __initial_auth_token);
+                        } else {
+                            await signInAnonymously(auth);
+                        }
+                    }
+
+                    const userId = auth.currentUser?.uid || "anon-guest";
+                    
+                    // Display visual user UID for discoverability as per workspace requirements
+                    showToast(`Cloud Authorized as: ${userId}`, "success");
+                    
+                    syncText.innerHTML = `
+                        <span class="inline-block h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+                        <span class="text-emerald-400">Cloud Sync Active (${userId.substring(0, 8)}...)</span>
+                    `;
+
+                    // Synchronize current local history back up to firestore (RULE 1 Strict Pathing)
+                    const cloudRecordRef = doc(db, 'artifacts', appId, 'users', userId, 'tts_studio_meta', 'saved_scripts');
+                    await setDoc(cloudRecordRef, {
+                        savedHistory: generatedAudioHistory.map(item => ({
+                            id: item.id,
+                            timestamp: item.timestamp,
+                            transcript: item.transcript,
+                            fullText: item.fullText,
+                            speakers: item.speakers,
+                            duration: item.duration
+                        }))
+                    });
+
+                    showToast("Database successfully synchronized with cloud storage!", "success");
+
+                } catch (e) {
+                    console.error("Cloud synchronization failure: ", e);
+                    showToast(`Cloud Sync Error: ${e.message}`, "error");
+                    document.getElementById('cloudSyncToggle').checked = false;
+                    updateSyncStateText(false);
+                }
+            } else {
+                updateSyncStateText(false);
+            }
+        }
+
+        function updateSyncStateText(isActive) {
+            const syncText = document.getElementById('syncStateText');
+            if (isActive) {
+                syncText.innerHTML = `
+                    <span class="inline-block h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+                    <span class="text-emerald-400">Connected</span>
+                `;
+            } else {
+                syncText.innerHTML = `
+                    <span class="inline-block h-1.5 w-1.5 rounded-full bg-slate-600"></span>
+                    <span>Cloud backup currently inactive. Sync disabled.</span>
+                `;
+            }
+        }
+
+        /* --- Help Draw UI Handlers --- */
+        function toggleDocPanel() {
+            const panel = document.getElementById('docPanel');
+            panel.classList.toggle('translate-x-full');
+        }
+
+        /* --- Custom Floating Toast Notification UI --- */
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            
+            // Set dynamic background styles depending on severity
+            let bgClass = 'bg-slate-900/95 text-slate-100 border-slate-800';
+            let iconClass = 'fa-solid fa-circle-info text-indigo-400';
+            
+            if (type === 'success') {
+                bgClass = 'bg-slate-900/95 text-slate-100 border-emerald-500/30';
+                iconClass = 'fa-solid fa-circle-check text-emerald-400';
+            } else if (type === 'error') {
+                bgClass = 'bg-slate-900/95 text-slate-100 border-rose-500/30';
+                iconClass = 'fa-solid fa-circle-exclamation text-rose-400';
+            }
+
+            toast.className = `p-3.5 rounded-xl border flex items-start space-x-3 shadow-xl backdrop-blur-md transition-all duration-300 transform translate-y-2 opacity-0 ${bgClass}`;
+            toast.innerHTML = `
+                <i class="${iconClass} text-base mt-0.5"></i>
+                <div class="flex-grow">
+                    <p class="text-xs leading-relaxed font-medium">${message}</p>
+                </div>
+            `;
+
+            container.appendChild(toast);
+            
+            // Reflow triggers
+            setTimeout(() => {
+                toast.classList.remove('translate-y-2', 'opacity-0');
+            }, 50);
+
+            // Dismiss automatic timer
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-2');
+                setTimeout(() => toast.remove(), 300);
+            }, 4000);
+        }
+    </script>
+</body>
+</html>
