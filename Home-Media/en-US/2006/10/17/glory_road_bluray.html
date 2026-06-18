@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glory Road Blu-ray (2006) - Walt Disney Home Entertainment</title>
+    <style>
+        :root {
+            --bg-dark: #0f141c;
+            --panel-bg: #182232;
+            --accent-gold: #f59e0b;
+            --accent-orange: #dd6b20;
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-subtle: #2d3748;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.5;
+            padding: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .product-container {
+            max-width: 950px;
+            width: 100%;
+            background: var(--panel-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border-subtle);
+            display: grid;
+            grid-template-columns: 1fr;
+        }
+
+        @media (min-width: 768px) {
+            .product-container {
+                grid-template-columns: 360px 1fr;
+            }
+        }
+
+        /* Left Side: Artwork Presentation */
+        .artwork-section {
+            background: #0b0f15;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 24px;
+            border-right: 1px solid var(--border-subtle);
+        }
+
+        .artwork-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 280px;
+        }
+
+        .artwork-section img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.7);
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .artwork-section img:hover {
+            transform: scale(1.02);
+        }
+
+        .format-badge {
+            margin-top: 24px;
+            background: linear-gradient(135deg, #0072ff, #00c6ff);
+            color: #ffffff;
+            padding: 6px 18px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            box-shadow: 0 4px 12px rgba(0, 114, 255, 0.3);
+        }
+
+        /* Right Side: Informational Content */
+        .info-section {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 6px;
+            color: var(--text-light);
+        }
+
+        .metadata-bar {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .metadata-bar span:not(:last-child)::after {
+            content: "•";
+            margin-left: 16px;
+            color: #4a5568;
+        }
+
+        .tagline {
+            font-style: italic;
+            color: var(--accent-gold);
+            margin-bottom: 24px;
+            font-size: 1.1rem;
+            border-left: 3px solid var(--accent-orange);
+            padding-left: 12px;
+        }
+
+        .group-title {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            border-bottom: 1px solid var(--border-subtle);
+            padding-bottom: 6px;
+        }
+
+        .synopsis-text {
+            font-size: 0.95rem;
+            color: #e2e8f0;
+            margin-bottom: 28px;
+            text-align: left;
+        }
+
+        .specs-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .spec-block .key {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            display: block;
+            margin-bottom: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        .spec-block .val {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #f1f5f9;
+        }
+
+        .wide-block {
+            grid-column: 1 / -1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="product-container" id="bluray-showcase">
+        </div>
+
+    <script>
+        // Embedded simulation of standard data.json
+        const databasePayload = {
+            "title": "Glory Road",
+            "year": 2006,
+            "format": "Blu-ray",
+            "releaseDate": "2006-10-17",
+            "studio": "Walt Disney Home Entertainment",
+            "imageUrl": "https://images.static-bluray.com/movies/covers/129_front.jpg",
+            "rating": "PG",
+            "runtime": "118 min",
+            "tagline": "The underdog story that changed the game forever.",
+            "synopsis": "In 1966, Texas Western coach Don Haskins leads the first all-black starting lineup in NCAA national championship history. Facing intense racial adversity, the underdogs unite to battle social barriers and challenge powerhouse opponents on their path to legendary sporting history.",
+            "specs": {
+                "videoCodec": "AVC MPEG-4",
+                "resolution": "1080p (2.40:1)",
+                "audio": "English Uncompressed PCM 5.1, English Dolby Digital 5.1, French Dolby Digital 5.1, Spanish Dolby Digital 5.1",
+                "subtitles": "English SDH, French, Spanish"
+            }
+        };
+
+        // Execution logic to map structural JSON elements safely to visual nodes
+        function constructPage(data) {
+            const container = document.getElementById('bluray-showcase');
+            
+            container.innerHTML = `
+                <div class="artwork-section">
+                    <div class="artwork-wrapper">
+                        <img src="${data.imageUrl}" alt="${data.title} Blu-ray Edition Front Cover Art">
+                    </div>
+                    <div class="format-badge">${data.format} Disc</div>
+                </div>
+                <div class="info-section">
+                    <h1>${data.title}</h1>
+                    <div class="metadata-bar">
+                        <span>${data.year}</span>
+                        <span>Rated ${data.rating}</span>
+                        <span>${data.runtime}</span>
+                    </div>
+                    
+                    <div class="tagline">“${data.tagline}”</div>
+                    
+                    <h2 class="group-title">Synopsis</h2>
+                    <p class="synopsis-text">${data.synopsis}</p>
+                    
+                    <h2 class="group-title">Technical Specifications</h2>
+                    <div class="specs-layout">
+                        <div class="spec-block">
+                            <span class="key">Studio / Distributor</span>
+                            <span class="val">${data.studio}</span>
+                        </div>
+                        <div class="spec-block">
+                            <span class="key">BD Release Date</span>
+                            <span class="val">${data.releaseDate}</span>
+                        </div>
+                        <div class="spec-block">
+                            <span class="key">Video Presentation</span>
+                            <span class="val">${data.specs.videoCodec}</span>
+                        </div>
+                        <div class="spec-block">
+                            <span class="key">Aspect Ratio</span>
+                            <span class="val">${data.specs.resolution}</span>
+                        </div>
+                        <div class="spec-block wide-block">
+                            <span class="key">Audio Tracks</span>
+                            <span class="val">${data.specs.audio}</span>
+                        </div>
+                        <div class="spec-block wide-block">
+                            <span class="key">Subtitles Available</span>
+                            <span class="val">${data.specs.subtitles}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Initialize presentation layout upon DOM completion
+        document.addEventListener('DOMContentLoaded', () => {
+            constructPage(databasePayload);
+        });
+    </script>
+</body>
+</html>
