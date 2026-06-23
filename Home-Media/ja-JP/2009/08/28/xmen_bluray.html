@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>【Blu-ray】 X-MEN ＜2枚組＞ - 20世紀フォックス ホーム エンターテイメント</title>
+    <title>X-MEN [Blu-ray] - 20世紀フォックス ホーム エンターテイメント</title>
     <style>
         :root {
-            --bg-color: #0b0f19;
-            --card-bg: #161f33;
-            --accent-color: #00d2ff;
+            --bg-color: #0a0f1d;
+            --panel-bg: #131a2e;
+            --accent-blue: #00d2ff;
             --text-main: #ffffff;
-            --text-muted: #8fa0c0;
-            --border-color: #233554;
+            --text-muted: #8a99ad;
+            --border-color: #222f47;
         }
 
         * {
@@ -25,77 +25,143 @@
             color: var(--text-main);
             font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
             line-height: 1.6;
-            padding: 40px 20px;
+            padding-bottom: 60px;
         }
 
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background: var(--card-bg);
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            border: 1px solid var(--border-color);
-            overflow: hidden;
+        header {
+            background: linear-gradient(180deg, #16223f 0%, var(--bg-color) 100%);
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .studio-logo {
+            font-size: 0.85rem;
+            letter-spacing: 0.3em;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .main-container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
             display: grid;
             grid-template-columns: 1fr;
+            gap: 40px;
         }
 
         @media (min-width: 768px) {
-            .container {
-                grid-template-columns: 400px 1fr;
+            .main-container {
+                grid-template-columns: 350px 1fr;
             }
         }
 
-        .media-aside {
-            background: #070a12;
-            padding: 40px;
+        /* Left Column: Product Art */
+        .product-media {
             display: flex;
             flex-direction: column;
             align-items: center;
+            gap: 20px;
+        }
+
+        .bluray-mock-cover {
+            width: 100%;
+            max-width: 300px;
+            aspect-ratio: 5 / 6;
+            background: linear-gradient(135deg, #1d2942 0%, #050811 100%);
+            border: 4px solid #1a1a1a;
+            border-radius: 8px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6), 0 0 15px rgba(0, 210, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .br-header {
+            background: linear-gradient(180deg, rgba(0,162,255,0.3) 0%, rgba(0,68,140,0.4) 100%);
+            height: 25px;
+            display: flex;
+            align-items: center;
             justify-content: center;
-            border-right: 1px solid var(--border-color);
-        }
-
-        .cover-art {
-            max-width: 100%;
-            height: auto;
-            border-radius: 6px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.6);
-            transition: transform 0.3s ease;
-        }
-
-        .cover-art:hover {
-            transform: scale(1.02);
-        }
-
-        .format-badge {
-            margin-top: 20px;
-            background: linear-gradient(135deg, #0072ff, #00d2ff);
-            color: #fff;
-            padding: 6px 20px;
-            border-radius: 20px;
+            font-size: 0.7rem;
             font-weight: bold;
+            letter-spacing: 0.1em;
+            color: #fff;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .cover-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .cover-title-x {
+            font-size: 5rem;
+            font-weight: 900;
+            background: linear-gradient(180deg, #ffffff 30%, #7ca1cc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+            font-family: 'Impact', sans-serif;
+            letter-spacing: -2px;
+        }
+
+        .cover-subtitle {
             font-size: 0.9rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--text-muted);
+            margin-top: -5px;
         }
 
-        .content-main {
-            padding: 40px;
+        .cover-footer {
+            padding: 10px;
+            background: rgba(0,0,0,0.4);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
         }
 
-        h1 {
-            font-size: 2rem;
+        .disc-badge {
+            background: #203556;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.65rem;
+            font-weight: bold;
+            border: 1px solid var(--accent-blue);
+        }
+
+        /* Right Column: Product Details */
+        .product-details h1 {
+            font-size: 2.2rem;
             margin-bottom: 5px;
-            color: var(--text-main);
             font-weight: 700;
         }
 
-        .publisher {
-            color: var(--accent-color);
-            font-size: 1rem;
-            margin-bottom: 25px;
-            font-weight: 600;
+        .product-details .eng-title {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .release-badge {
+            display: inline-block;
+            background-color: #8b0000;
+            color: white;
+            padding: 4px 10px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            border-radius: 3px;
+            margin-bottom: 20px;
         }
 
         .info-table {
@@ -105,118 +171,227 @@
         }
 
         .info-table th, .info-table td {
-            padding: 12px 0;
-            border-bottom: 1px solid var(--border-color);
+            padding: 12px;
             text-align: left;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .info-table th {
             color: var(--text-muted);
-            font-weight: 500;
             width: 30%;
-            font-size: 0.95rem;
+            font-weight: 500;
+            font-size: 0.9rem;
         }
 
         .info-table td {
-            color: var(--text-main);
             font-size: 0.95rem;
         }
 
-        .synopsis {
-            background: rgba(255, 255, 255, 0.03);
-            padding: 20px;
-            border-left: 4px solid var(--accent-color);
-            border-radius: 0 8px 8px 0;
+        /* Tabs Section */
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid var(--border-color);
+            margin-bottom: 20px;
         }
 
-        .synopsis h3 {
-            margin-bottom: 10px;
-            color: var(--text-main);
-            font-size: 1.1rem;
-        }
-
-        .synopsis p {
+        .tab-btn {
+            background: none;
+            border: none;
             color: var(--text-muted);
-            font-size: 0.9rem;
-            textAlign: left;
+            padding: 12px 24px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+
+        .tab-btn.active {
+            color: var(--accent-blue);
+            border-bottom: 2px solid var(--accent-blue);
+            margin-bottom: -2px;
+        }
+
+        .tab-content {
+            background-color: var(--panel-bg);
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .bonus-list {
+            list-style-type: none;
+        }
+
+        .bonus-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .bonus-list li::before {
+            content: "✦";
+            position: absolute;
+            left: 0;
+            color: var(--accent-blue);
+        }
+
+        .interactive-section {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .btn-action {
+            background: linear-gradient(135deg, #005c97 0%, #00d2ff 100%);
+            color: white;
+            border: none;
+            padding: 12px 35px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 210, 255, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-action:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 210, 255, 0.6);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 60px;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <div class="media-aside">
-        <img id="product-image" src="" alt="X-MEN Blu-ray Cover" class="cover-art">
-        <span id="product-discs" class="format-badge"></span>
-    </div>
+    <header>
+        <div class="studio-logo">20th Century Fox Home Entertainment</div>
+    </header>
 
-    <div class="content-main">
-        <h1 id="product-title"></h1>
-        <div id="product-publisher" class="publisher"></div>
+    <div class="main-container">
+        <div class="product-media">
+            <div class="bluray-mock-cover">
+                <div class="br-header">Blu-ray Disc</div>
+                <div class="cover-content">
+                    <div class="cover-title-x">X-MEN</div>
+                    <div class="cover-subtitle">エックスメン</div>
+                </div>
+                <div class="cover-footer">
+                    <span class="disc-badge">2-DISC SET</span>
+                    <span style="font-size:0.6rem; color:#8a99ad;">FOX</span>
+                </div>
+            </div>
+            <div class="interactive-section">
+                <button class="btn-action" id="specsBtn">ディスク構成を見る</button>
+            </div>
+        </div>
 
-        <table class="info-table">
-            <tr>
-                <th>発売日</th>
-                <td id="product-release"></td>
-            </tr>
-            <tr>
-                <th>品番</th>
-                <td id="product-catalog"></td>
-            </tr>
-            <tr>
-                <th>画面サイズ</th>
-                <td id="product-aspect"></td>
-            </tr>
-            <tr>
-                <th>音声</th>
-                <td id="product-audio"></td>
-            </tr>
-            <tr>
-                <th>字幕</th>
-                <td id="product-subtitles"></td>
-            </tr>
-        </table>
+        <div class="product-details">
+            <span class="release-badge">2009年8月28日発売</span>
+            <h1>X-MEN</h1>
+            <div class="eng-title">X-Men (Blu-ray, 2000, 2-Disc Set) [Japan Edition]</div>
 
-        <div class="synopsis">
-            <h3>ストーリー</h3>
-            <p id="product-synopsis"></p>
+            <table class="info-table">
+                <tr>
+                    <th>販売元</th>
+                    <td>20世紀フォックス ホーム エンターテイメント ジャパン</td>
+                </tr>
+                <tr>
+                    <th>品番</th>
+                    <td>FXXA-19942</td>
+                </tr>
+                <tr>
+                    <th>製作年／国</th>
+                    <td>2000年／アメリカ</td>
+                </tr>
+                <tr>
+                    <th>枚数</th>
+                    <td>2枚組（本編ディスク+特典ディスク）</td>
+                </tr>
+            </table>
+
+            <div class="tabs">
+                <button class="tab-btn active" onclick="switchTab(event, 'spec')">商品仕様</button>
+                <button class="tab-btn" onclick="switchTab(event, 'bonus')">映像特典</button>
+            </div>
+
+            <div id="spec" class="tab-content active">
+                <table class="info-table" style="margin-bottom: 0;">
+                    <tr>
+                        <th>画面サイズ</th>
+                        <td>1080p High Definition 2.35:1 (シネマスコープ)</td>
+                    </tr>
+                    <tr>
+                        <th>音声仕様</th>
+                        <td>
+                            1. 英語 DTS-HD マスター・オーディオ 5.1ch<br>
+                            2. 日本語 DTS 5.1ch (映画放送版吹替)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>字幕</th>
+                        <td>日本語字幕、英語字幕</td>
+                    </tr>
+                    <tr>
+                        <th>本編時間</th>
+                        <td>約104分</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="bonus" class="tab-content">
+                <h3 style="margin-bottom: 15px; color: var(--accent-blue);">Disc-2: 特典ディスク内容</h3>
+                <ul class="bonus-list">
+                    <li>ブライアン・シンガー監督による音声解説</li>
+                    <li>未公開シーン集（音声解説付き）</li>
+                    <li>特別映像：『X-MEN』の軌跡</li>
+                    <li>アニマティクス＆コンセプト・アート・ギャラリー</li>
+                    <li>オリジナル劇場予告編集＆TVスポット</li>
+                </ul>
+            </div>
+
         </div>
     </div>
-</div>
 
-<script>
-    // Embedded data.json simulated object
-    const jsonData = {
-        "title": "X-MEN ＜2枚組＞",
-        "format": "Blu-ray",
-        "discs": "2枚組 (2-Disc Set)",
-        "publisher": "20世紀フォックス ホーム エンターテイメント",
-        "release_date": "2009-08-28",
-        "catalog_number": "FXXG-19942",
-        "image_url": "https://images.static-bluray.com/movies/covers/85558_slip.jpg",
-        "specifications": {
-            "aspect_ratio": "1080p High Definition / 2.35:1 シネマスコープ",
-            "audio": "英語 DTS-HD マスター・オーディオ 5.1ch, 英語 ドルビーデジタル 5.1ch, 日本語 DTS 5.1ch",
-            "subtitles": "日本語, 英語"
-        },
-        "synopsis": "遺伝子の突然変異により、超人類的超能力を身につけたミュータント「X-MEN」。人類に忌み嫌われながらも、地球の平和を守るために果てしない闘いへと突入していく。圧倒的なビジュアルSFXで描く大ヒットSFアクションシリーズの第1作。"
-    };
+    <footer>
+        <p>© 2009 Twentieth Century Fox Home Entertainment LLC. All Rights Reserved.</p>
+    </footer>
 
-    // JavaScript to populate the elements dynamically using the JSON data
-    document.getElementById('product-title').textContent = jsonData.title;
-    document.getElementById('product-publisher').textContent = jsonData.publisher;
-    document.getElementById('product-discs').textContent = jsonData.discs;
-    document.getElementById('product-release').textContent = jsonData.release_date;
-    document.getElementById('product-catalog').textContent = jsonData.catalog_number;
-    document.getElementById('product-aspect').textContent = jsonData.specifications.aspect_ratio;
-    document.getElementById('product-audio').textContent = jsonData.specifications.audio;
-    document.getElementById('product-subtitles').textContent = jsonData.specifications.subtitles;
-    document.getElementById('product-synopsis').textContent = jsonData.synopsis;
-    
-    // Set the image src
-    const imgElement = document.getElementById('product-image');
-    imgElement.src = jsonData.image_url;
-</script>
+    <script>
+        // Tab switching function
+        function switchTab(evt, tabName) {
+            const tabcontents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabcontents.length; i++) {
+                tabcontents[i].style.display = "none";
+                tabcontents[i].classList.remove("active");
+            }
 
+            const tabbuttons = document.getElementsByClassName("tab-btn");
+            for (let i = 0; i < tabbuttons.length; i++) {
+                tabbuttons[i].classList.remove("active");
+            }
+
+            document.getElementById(tabName).style.display = "block";
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        // Vanilla JS Interactivity Alert for the Spec button
+        document.getElementById('specsBtn').addEventListener('click', function() {
+            alert('【ディスク構成】\nDisc 1: 本編 + コメンタリー映像\nDisc 2: 特典映像エディション\n\n2000年初代映画化作品のハイクオリティHDマスター版です。');
+        });
+    </script>
 </body>
 </html>
