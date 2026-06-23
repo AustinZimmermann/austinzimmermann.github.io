@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X2: X-Men United (Blu-ray, 2003, 2-Disc Set) - 20th Century Fox Home Entertainment</title>
+    <style>
+        :root {
+            --primary-bg: #070d19;
+            --secondary-bg: #111a2e;
+            --accent-blue: #00f0ff;
+            --accent-silver: #cbd5e1;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border-color: #1e293b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Helvetica, Arial, sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        header {
+            background-color: rgba(7, 13, 25, 0.95);
+            border-bottom: 2px solid var(--accent-blue);
+            padding: 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #fff;
+            text-shadow: 0 0 12px rgba(0, 240, 255, 0.6);
+        }
+
+        header span {
+            color: var(--accent-silver);
+            font-weight: 800;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                grid-template-columns: 400px 1fr;
+            }
+        }
+
+        /* Product Gallery */
+        .product-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .main-image {
+            background-color: var(--secondary-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.6);
+        }
+
+        .main-image::before {
+            content: 'X2';
+            position: absolute;
+            font-size: 18rem;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.015);
+            z-index: 0;
+            letter-spacing: -10px;
+        }
+
+        .main-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.7);
+            z-index: 1;
+            transition: transform 0.3s ease;
+        }
+
+        .main-image img:hover {
+            transform: scale(1.02);
+        }
+
+        .thumbnails {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .thumb {
+            width: 70px;
+            height: 90px;
+            background-color: var(--secondary-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px;
+            transition: all 0.2s ease;
+        }
+
+        .thumb.active, .thumb:hover {
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+        }
+
+        .thumb img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        /* Product Info */
+        .product-details {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .movie-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: #fff;
+        }
+
+        .meta-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .badge {
+            background-color: var(--secondary-bg);
+            border: 1px solid var(--border-color);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .badge.format {
+            background-color: #0b4f6c;
+            color: #fff;
+            border-color: var(--accent-blue);
+            font-weight: bold;
+        }
+
+        .price-section {
+            background-color: var(--secondary-bg);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-blue);
+            margin: 10px 0;
+        }
+
+        .price {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .availability {
+            font-size: 0.9rem;
+            color: #10b981;
+            margin-top: 5px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Tab System */
+        .tabs-container {
+            margin-top: 20px;
+        }
+
+        .tab-menu {
+            display: flex;
+            border-bottom: 1px solid var(--border-color);
+            gap: 10px;
+            overflow-x: auto;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            padding: 12px 20px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .tab-btn:hover {
+            color: #fff;
+        }
+
+        .tab-btn.active {
+            color: var(--accent-blue);
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--accent-blue);
+        }
+
+        .tab-content {
+            display: none;
+            padding: 25px 0;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Info Layouts */
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .spec-item {
+            background-color: var(--secondary-bg);
+            padding: 12px 15px;
+            border-radius: 6px;
+            border: 1px solid rgba(255,255,255,0.03);
+        }
+
+        .spec-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 2px;
+        }
+
+        .spec-value {
+            font-weight: 600;
+        }
+
+        .special-features-list {
+            list-style-type: none;
+        }
+
+        .special-features-list li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 12px;
+        }
+
+        .special-features-list li::before {
+            content: '🗲';
+            position: absolute;
+            left: 0;
+            color: var(--accent-blue);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1><span>X2</span>: X-Men United Blu-ray</h1>
+    </header>
+
+    <main class="container">
+        <section class="product-gallery">
+            <div class="main-image">
+                <img id="featured-img" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='400' viewBox='0 0 300 400'><rect width='100%=' height='100%' fill='%23111a2e'/><text x='50%' y='48%' font-family='sans-serif' font-weight='bold' font-size='26' fill='%2300f0ff' text-anchor='middle'>X2</text><text x='50%' y='56%' font-family='sans-serif' font-size='16' fill='%23cbd5e1' text-anchor='middle'>X-MEN UNITED</text><text x='50%' y='64%' font-family='sans-serif' font-size='12' fill='%2394a3b8' text-anchor='middle'>Front Cover Placeholder</text></svg>" alt="X2: X-Men United Blu-ray Front Cover">
+            </div>
+            <div class="thumbnails">
+                <div class="thumb active" onclick="changeImage(this, 'front')">
+                    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='60' height='80'><rect width='100%' height='100%' fill='%23111a2e'/><text x='50%' y='55%' font-size='10' fill='%23fff' text-anchor='middle'>Front</text></svg>" alt="Front Thumbnail">
+                </div>
+                <div class="thumb" onclick="changeImage(this, 'back')">
+                    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='60' height='80'><rect width='100%' height='100%' fill='%23111a2e'/><text x='50%' y='55%' font-size='10' fill='%23fff' text-anchor='middle'>Back</text></svg>" alt="Back Thumbnail">
+                </div>
+                <div class="thumb" onclick="changeImage(this, 'discs')">
+                    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='60' height='80'><rect width='100%' height='100%' fill='%23111a2e'/><text x='50%' y='55%' font-size='10' fill='%23fff' text-anchor='middle'>Discs</text></svg>" alt="Discs Thumbnail">
+                </div>
+            </div>
+        </section>
+
+        <section class="product-details">
+            <div>
+                <h2 class="movie-title">X2: X-Men United</h2>
+                <p style="color: var(--text-muted); margin-top: 5px;">2-Disc Set | Premium High-Definition Presentation</p>
+            </div>
+
+            <div class="meta-badges">
+                <span class="badge format">Blu-ray</span>
+                <span class="badge">PG-13</span>
+                <span class="badge">2003 Movie</span>
+                <span class="badge">Sci-Fi/Action</span>
+                <span class="badge">134 Mins</span>
+            </div>
+
+            <div class="price-section">
+                <div class="price">$14.99</div>
+                <div class="availability">
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg>
+                    In Stock & Ready to Ship
+                </div>
+            </div>
+
+            <div class="tabs-container">
+                <nav class="tab-menu">
+                    <button class="tab-btn active" onclick="switchTab(event, 'overview')">Overview</button>
+                    <button class="tab-btn" onclick="switchTab(event, 'specs')">Technical Specs</button>
+                    <button class="tab-btn" onclick="switchTab(event, 'features')">Special Features</button>
+                </nav>
+
+                <div id="overview" class="tab-content active">
+                    <p>Following a shocking assassination attempt on the President of the United States, the X-Men find themselves targeted by Colonel William Stryker, a rogue military scientist intent on destroying all mutants. Forced into an uneasy alliance with Magneto and his Brotherhood, Professor Xavier’s team must unite to stop Stryker’s ultimate weapon and protect the future of mutantkind.</p>
+                </div>
+
+                <div id="specs" class="tab-content">
+                    <div class="specs-grid">
+                        <div class="spec-item"><div class="spec-label">Studio</div><div class="spec-value">20th Century Fox Home Entertainment</div></div>
+                        <div class="spec-item"><div class="spec-label">Release Date</div><div class="spec-value">April 21, 2009</div></div>
+                        <div class="spec-item"><div class="spec-label">Video Resolution</div><div class="spec-value">1080p High Definition (2.40:1)</div></div>
+                        <div class="spec-item"><div class="spec-label">Audio</div><div class="spec-value">DTS-HD Master Audio 5.1 (English)</div></div>
+                        <div class="spec-item"><div class="spec-label">Subtitles</div><div class="spec-value">English SDH, Spanish, Korean, Portuguese, Cantonese, Mandarin</div></div>
+                        <div class="spec-item"><div class="spec-label">Region Coding</div><div class="spec-value">Region A</div></div>
+                        <div class="spec-item"><div class="spec-label">Discs</div><div class="spec-value">2-Disc Set (1 BD-50, 1 BD-25)</div></div>
+                    </div>
+                </div>
+
+                <div id="features" class="tab-content">
+                    <ul class="special-features-list">
+                        <li>Audio Commentary by Director Bryan Singer and Cinematographer Tom Sigel</li>
+                        <li>Audio Commentary by Producers Lauren Shuler Donner and Ralph Winter</li>
+                        <li><strong>In-Movie Features:</strong> Interactive “Generation X” Track via BonusView</li>
+                        <li>“The Secret Origin of X-Men” Featurette</li>
+                        <li>“Nightcrawler’s Attack” – Detailed Stunt Rehearsals</li>
+                        <li>Evolution of the X-Mansion and Danger Room Sequences</li>
+                        <li>Deleted and Extended Scenes</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Tab switching behavior
+        function switchTab(event, tabId) {
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            const buttons = document.querySelectorAll('.tab-menu .tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+
+        // Gallery switcher
+        function changeImage(element, view) {
+            const thumbs = document.querySelectorAll('.thumb');
+            thumbs.forEach(t => t.classList.remove('active'));
+            element.classList.add('active');
+
+            const featuredImg = document.getElementById('featured-img');
+            
+            if(view === 'front') {
+                featuredImg.src = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='400' viewBox='0 0 300 400'><rect width='100%=' height='100%' fill='%23111a2e'/><text x='50%' y='48%' font-family='sans-serif' font-weight='bold' font-size='26' fill='%2300f0ff' text-anchor='middle'>X2</text><text x='50%' y='56%' font-family='sans-serif' font-size='16' fill='%23cbd5e1' text-anchor='middle'>X-MEN UNITED</text><text x='50%' y='64%' font-family='sans-serif' font-size='12' fill='%2394a3b8' text-anchor='middle'>Front Cover Placeholder</text></svg>";
+            } else if(view === 'back') {
+                featuredImg.src = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='400' viewBox='0 0 300 400'><rect width='100%' height='100%' fill='%23111a2e'/><text x='50%' y='50%' font-family='sans-serif' font-size='24' fill='%23cbd5e1' text-anchor='middle'>BACK COVER</text><text x='50%' y='57%' font-family='sans-serif' font-size='14' fill='%2394a3b8' text-anchor='middle'>Specs, Barcode, & Legal Text</text></svg>";
+            } else if(view === 'discs') {
+                featuredImg.src = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='400' viewBox='0 0 300 400'><rect width='100%' height='100%' fill='%23111a2e'/><text x='50%' y='50%' font-family='sans-serif' font-size='24' fill='%23ffffff' text-anchor='middle'>2 DISCS INCLUDED</text><text x='50%' y='57%' font-family='sans-serif' font-size='14' fill='%2394a3b8' text-anchor='middle'>Disc 1: Movie | Disc 2: Features</text></svg>";
+            }
+        }
+    </script>
+</body>
+</html>
