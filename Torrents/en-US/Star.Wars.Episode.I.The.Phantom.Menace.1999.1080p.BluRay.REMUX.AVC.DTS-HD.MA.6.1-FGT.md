@@ -1,4 +1,4 @@
-# Star.Wars.Episode.I.The.Phantom.Menace.1999.1080p.BluRay.REMUX.AVC.DTS-HD MA 6.1-FGT
+# Star.Wars.Episode.I.The.Phantom.Menace.1999.1080p.BluRay.REMUX.AVC.DTS-HD.MA.6.1-FGT
 
 ## 🎬 Movie Info
 
