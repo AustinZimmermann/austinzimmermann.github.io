@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abby Hatcher S01 1080p AMZN WEB-DL DDP2.0 H.264-TVS | HydraTorrent</title>
+    <style>
+        :root {
+            --bg-primary: #12141c;
+            --bg-secondary: #1a1d29;
+            --bg-tertiary: #24293e;
+            --accent-blue: #3b82f6;
+            --accent-green: #10b981;
+            --accent-red: #ef4444;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border-color: #2d3142;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            line-height: 1.5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* Header / Navbar Navigation */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 25px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+
+        .search-bar {
+            flex-grow: 1;
+            max-width: 500px;
+            margin: 0 20px;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 10px 15px;
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: white;
+        }
+
+        /* Torrent Title Block */
+        .torrent-header {
+            background-color: var(--bg-secondary);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 20px;
+        }
+
+        .torrent-title {
+            font-size: 20px;
+            font-weight: 700;
+            word-break: break-all;
+            margin-bottom: 12px;
+        }
+
+        .tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background-color: var(--bg-tertiary);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .tag.resolution { color: #f59e0b; }
+        .tag.source { color: var(--accent-blue); }
+        .tag.team { color: #ec4899; }
+
+        /* Main Content Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .panel {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .panel-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        /* Action Buttons */
+        .download-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px;
+            border-radius: 6px;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: opacity 0.2s;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        .btn-magnet {
+            background-color: var(--accent-red);
+            color: white;
+        }
+
+        .btn-torrent {
+            background-color: var(--accent-blue);
+            color: white;
+        }
+
+        /* Swarm Stats Table */
+        .stats-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 14px;
+        }
+
+        .stats-row:last-child {
+            border-bottom: none;
+        }
+
+        .seeders { color: var(--accent-green); font-weight: bold; }
+        .leechers { color: var(--accent-red); font-weight: bold; }
+
+        /* Mediainfo / NFO container */
+        .nfo-box {
+            background-color: #0b0c10;
+            font-family: "Courier New", Courier, monospace;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            font-size: 13px;
+            color: #39ff14; /* Retro matrix green for NFO styling */
+            white-space: pre-wrap;
+        }
+
+        /* Files List */
+        .file-list {
+            list-style: none;
+            font-size: 14px;
+        }
+
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <a href="#" class="logo">HydraTorrent</a>
+        <div class="search-bar">
+            <input type="text" placeholder="Search torrents, movies, TV series...">
+        </div>
+        <div>
+            <span style="color: var(--text-muted); font-size: 14px;">Language: <strong>en-US</strong></span>
+        </div>
+    </header>
+
+    <div class="torrent-header">
+        <h1 class="torrent-title">Abby.Hatcher.S01.1080p.AMZN.WEB-DL.DDP2.0.H.264-TVS</h1>
+        <div class="tags">
+            <span class="tag">TV Series</span>
+            <span class="tag resolution">1080p</span>
+            <span class="tag source">WEB-DL</span>
+            <span class="tag">DDP2.0</span>
+            <span class="tag">H.264</span>
+            <span class="tag team">TVS</span>
+        </div>
+    </div>
+
+    <div class="grid">
+        
+        <main>
+            <div class="panel">
+                <h2 class="panel-title">Synopsis & Info</h2>
+                <p style="color: var(--text-muted); margin-bottom: 15px; font-size: 15px;">
+                    Abby Hatcher is an animated preschool series that follows a bright and energetic seven-year-old girl named Abby Hatcher, and her Fuzzly friends. Fuzzies are amazing creatures that live in her family's hotel. Together with her best Fuzzly friend Bozzly, Abby goes on wild adventures to fix Fuzzly mishaps and help them out.
+                </p>
+            </div>
+
+            <div class="panel">
+                <h2 class="panel-title">File List (Season 1 Complete)</h2>
+                <ul class="file-list" id="fileListContainer">
+                    </ul>
+            </div>
+
+            <div class="panel">
+                <h2 class="panel-title">Technical Specifications (NFO)</h2>
+                <pre class="nfo-box">
+RELEASE NAME..: Abby.Hatcher.S01.1080p.AMZN.WEB-DL.DDP2.0.H.264-TVS
+RELEASE DATE..: 2020
+RELEASE SIZE..: 24.1 GB
+RUNTIME.......: ~22mn per episode
+VIDEO CODEC...: AVC x264 High@L4
+FRAMERATE.....: 23.976 fps
+BITRATE.......: ~4500 kbps
+RESOLUTION....: 1920x1080
+AUDIO.........: English Dolby Digital Plus 2.0 @ 224 kbps
+SOURCE........: Amazon Prime Video (US)
+SUBTITLES.....: English [CC] (Embedded SRT)
+                </pre>
+            </div>
+        </main>
+
+        <aside>
+            <div class="download-actions">
+                <button class="btn btn-magnet" onclick="triggerDownload('magnet')">🧲 Magnet</button>
+                <button class="btn btn-torrent" onclick="triggerDownload('torrent')">💾 Torrent</button>
+            </div>
+
+            <div class="panel">
+                <h2 class="panel-title">Transfer Statistics</h2>
+                <div class="stats-row">
+                    <span>Seeders</span>
+                    <span class="seeders" id="seedCount">42</span>
+                </div>
+                <div class="stats-row">
+                    <span>Leechers</span>
+                    <span class="leechers" id="leechCount">5</span>
+                </div>
+                <div class="stats-row">
+                    <span>Completed</span>
+                    <span style="color: #fff;">184 times</span>
+                </div>
+                <div class="stats-row">
+                    <span>Status</span>
+                    <span style="color: var(--accent-green);">Healthy</span>
+                </div>
+            </div>
+
+            <div class="panel">
+                <h2 class="panel-title">Torrent Info</h2>
+                <div class="stats-row">
+                    <span>Total Size</span>
+                    <span>24.12 GB</span>
+                </div>
+                <div class="stats-row">
+                    <span>Added</span>
+                    <span>4 years ago</span>
+                </div>
+                <div class="stats-row">
+                    <span>Info Hash</span>
+                    <span style="font-family: monospace; font-size: 11px; color: var(--text-muted);">A8F3C7E92B104D6E8A...</span>
+                </div>
+                <div class="stats-row">
+                    <span>Verified By</span>
+                    <span style="color: var(--accent-blue); font-weight: bold;">TVS Team</span>
+                </div>
+            </div>
+        </aside>
+
+    </div>
+</div>
+
+<script>
+    // Sample dynamic file generator for the Season 1 file explorer
+    const totalEpisodes = 26; 
+    const fileListContainer = document.getElementById('fileListContainer');
+
+    function generateFileList() {
+        let htmlContent = '';
+        for (let i = 1; i <= totalEpisodes; i++) {
+            // Padding episode number
+            let epNum = i < 10 ? '0' + i : i;
+            htmlContent += `
+                <li class="file-item">
+                    <span>🎬 Abby.Hatcher.S01E${epNum}.1080p.AMZN.WEB-DL.DDP2.0.H.264-TVS.mkv</span>
+                    <span style="color: var(--text-muted);">950 MB</span>
+                </li>
+            `;
+        }
+        fileListContainer.innerHTML = htmlContent;
+    }
+
+    // Interactivity simulation for click downloads
+    function triggerDownload(type) {
+        if(type === 'magnet') {
+            alert("Simulating Magnet link sequence...\nURL scheme: magnet:?xt=urn:btih:a8f3c7e92b104d6e8a93a12b&dn=Abby.Hatcher.S01.1080p...");
+        } else {
+            alert("Downloading file container: Abby.Hatcher.S01.1080p.AMZN.WEB-DL.DDP2.0.H.264-TVS.torrent");
+        }
+    }
+
+    // Live Simulator component to fluctuate seeders slightly (emulating typical dynamic web scrapers)
+    setInterval(() => {
+        const seedElement = document.getElementById('seedCount');
+        const currentSeeds = parseInt(seedElement.innerText);
+        // Randomly swing seeds ±2 to simulate life
+        const fluctuation = Math.floor(Math.random() * 5) - 2;
+        const netSeeds = Math.max(35, currentSeeds + fluctuation);
+        seedElement.innerText = netSeeds;
+    }, 6000);
+
+    // Run layout functions on initialization
+    window.onload = () => {
+        generateFileList();
+    };
+</script>
+
+</body>
+</html>
