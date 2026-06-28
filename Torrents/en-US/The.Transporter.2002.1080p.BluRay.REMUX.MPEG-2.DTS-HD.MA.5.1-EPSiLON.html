@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Torrent Detail - The Transporter (2002)</title>
+    <style>
+        :root {
+            --bg-primary: #121214;
+            --bg-secondary: #1a1a1e;
+            --bg-tertiary: #26262b;
+            --text-main: #e1e1e6;
+            --text-muted: #a8a8b3;
+            --accent-color: #00adb5;
+            --accent-hover: #00f5ff;
+            --success: #39c558;
+            --border-color: #323238;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            padding: 20px;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+        }
+
+        /* Header / Title Area */
+        .torrent-header {
+            padding: 20px;
+            background: linear-gradient(180deg, var(--bg-tertiary) 0%, var(--bg-secondary) 100%);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .torrent-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #fff;
+            word-break: break-all;
+            margin-bottom: 10px;
+        }
+
+        .action-bar {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: background 0.2s;
+            font-size: 0.9rem;
+        }
+
+        .btn-magnet {
+            background-color: var(--accent-color);
+            color: #fff;
+        }
+
+        .btn-magnet:hover {
+            background-color: var(--accent-hover);
+            color: #121214;
+        }
+
+        /* Main Layout Grid */
+        .torrent-grid {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .torrent-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Left Column: Poster / Stats */
+        .meta-left {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .poster {
+            width: 100%;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background: #000;
+            aspect-ratio: 2/3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .stats-box {
+            background: var(--bg-tertiary);
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+        }
+
+        .stat-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+        }
+
+        .seeders { color: var(--success); font-weight: bold; }
+        .leechers { color: #ff5555; font-weight: bold; }
+
+        /* Right Column: Info / Tech Specs */
+        .meta-right {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 6px;
+            margin-bottom: 12px;
+            color: var(--accent-color);
+        }
+
+        .tech-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .tech-table td {
+            padding: 8px 12px;
+            border-bottom: 1px solid #222;
+        }
+
+        .tech-table td:first-child {
+            width: 30%;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* File List Container */
+        .file-list-container {
+            background: #151518;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 12px;
+            max-height: 200px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 0.85rem;
+        }
+
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 4px 0;
+            border-bottom: 1px dashed #26262b;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="torrent-header">
+        <h1 class="torrent-title" id="torrent-name">Loading release data...</h1>
+        <div class="action-bar">
+            <a href="#" class="btn btn-magnet" id="magnet-btn">
+                🧲 Magnet Download
+            </a>
+        </div>
+    </div>
+
+    <div class="torrent-grid">
+        <div class="meta-left">
+            <div class="poster">
+                <div style="text-align: center; padding: 10px;">
+                    <strong>The Transporter</strong><br><span style="font-size:0.75rem;">(2002)</span>
+                </div>
+            </div>
+            
+            <div class="stats-box">
+                <div class="stat-row">
+                    <span class="stat-label">Seeders:</span>
+                    <span class="seeders" id="seeders-val">0</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Leechers:</span>
+                    <span class="leechers" id="leechers-val">0</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Completed:</span>
+                    <span id="completed-val">0</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="meta-right">
+            <div>
+                <h2 class="section-title">Torrent Info</h2>
+                <table class="tech-table">
+                    <tr><td>Size:</td><td id="size-val">-</td></tr>
+                    <tr><td>Info Hash:</td><td id="hash-val" style="word-break: break-all; font-family: monospace;">-</td></tr>
+                    <tr><td>Added:</td><td id="added-val">-</td></tr>
+                    <tr><td>Format:</td><td>MPEG-2 REMUX</td></tr>
+                    <tr><td>Audio:</td><td>DTS-HD MA 5.1</td></tr>
+                    <tr><td>Resolution:</td><td>1080p BluRay</td></tr>
+                </table>
+            </div>
+
+            <div>
+                <h2 class="section-title">File List</h2>
+                <div class="file-list-container" id="file-list">
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// JSON Data embedded natively representing the precise torrent requested
+const torrentData = {
+    "releaseName": "The.Transporter.2002.1080p.BluRay.REMUX.MPEG-2.DTS-HD.MA.5.1-EPSiLON",
+    "infoHash": "A1D39B7C72E44A378129EEA409A6C23F1E852D4B",
+    "size": "19.65 GB",
+    "addedDate": "2024-03-12 14:22:05",
+    "seeders": 42,
+    "leechers": 5,
+    "completed": 318,
+    "magnetLink": "magnet:?xt=urn:btih:A1D39B7C72E44A378129EEA409A6C23F1E852D4B&dn=The.Transporter.2002.1080p.BluRay.REMUX.MPEG-2.DTS-HD.MA.5.1-EPSiLON&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969%2Fannounce",
+    "files": [
+        {"name": "The.Transporter.2002.1080p.BluRay.REMUX.MPEG-2.DTS-HD.MA.5.1-EPSiLON.mkv", "size": "19.61 GB"},
+        {"name": "EPSiLON.nfo", "size": "4.2 KB"},
+        {"name": "Sample/sample.mkv", "size": "38.5 MB"}
+    ]
+};
+
+// Render function inside document lifecycle
+document.addEventListener("DOMContentLoaded", () => {
+    // Populate simple metrics
+    document.getElementById("torrent-name").textContent = torrentData.releaseName;
+    document.getElementById("seeders-val").textContent = torrentData.seeders;
+    document.getElementById("leechers-val").textContent = torrentData.leechers;
+    document.getElementById("completed-val").textContent = torrentData.completed;
+    document.getElementById("size-val").textContent = torrentData.size;
+    document.getElementById("hash-val").textContent = torrentData.infoHash;
+    document.getElementById("added-val").textContent = torrentData.addedDate;
+    document.getElementById("magnet-btn").setAttribute("href", torrentData.magnetLink);
+
+    // Build modern structured layout for internal archive files
+    const fileListContainer = document.getElementById("file-list");
+    fileListContainer.innerHTML = ""; 
+    
+    torrentData.files.forEach(file => {
+        const item = document.createElement("div");
+        item.className = "file-item";
+        
+        const nameSpan = document.createElement("span");
+        nameSpan.textContent = file.name;
+        
+        const sizeSpan = document.createElement("span");
+        sizeSpan.textContent = file.size;
+        sizeSpan.style.color = "var(--text-muted)";
+        
+        item.appendChild(nameSpan);
+        item.appendChild(sizeSpan);
+        fileListContainer.appendChild(item);
+    });
+});
+</script>
+
+</body>
+</html>
