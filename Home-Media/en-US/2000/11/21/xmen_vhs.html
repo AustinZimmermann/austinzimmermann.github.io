@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fox.com - X-Men VHS (2000)</title>
+    <style>
+        /* Y2K Web Aesthetics: Heavy use of black, metallic blues, and table-like structural layouts */
+        body {
+            background-color: #050811;
+            color: #D1D5DB;
+            font-family: Helvetica, sans-serif;
+            font-size: 12px;
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            color: #4EA8DE;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: #56CFE1;
+        }
+
+        .header-table {
+            width: 100%;
+            background: linear-gradient(180deg, #101626 0%, #080C16 100%);
+            border-bottom: 3px solid #4EA8DE;
+        }
+
+        .logo-container {
+            padding: 15px 20px;
+        }
+
+        .logo-text {
+            font-family: 'Arial Black', Impact, sans-serif;
+            font-size: 32px;
+            color: #FFFFFF;
+            font-style: italic;
+            letter-spacing: -2px;
+            line-height: 1;
+        }
+
+        .logo-sub {
+            color: #4EA8DE;
+            font-size: 11px;
+            letter-spacing: 5px;
+            display: block;
+            font-style: normal;
+            font-weight: bold;
+            margin-top: 2px;
+        }
+
+        .nav-bar {
+            background-color: #0F172A;
+            padding: 8px;
+            text-align: center;
+            border-bottom: 1px solid #1E293B;
+        }
+
+        .nav-item {
+            color: #94A3B8;
+            font-weight: bold;
+            margin: 0 15px;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-item.active {
+            color: #4EA8DE;
+        }
+
+        .main-container {
+            width: 780px;
+            margin: 20px auto;
+            background-color: #0B0F19;
+            border: 1px solid #1E293B;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(78, 168, 222, 0.1);
+        }
+
+        .breadcrumb {
+            font-size: 11px;
+            color: #64748B;
+            margin-bottom: 20px;
+        }
+
+        .product-title {
+            color: #FFFFFF;
+            font-family: Impact, Arial, sans-serif;
+            font-size: 28px;
+            letter-spacing: 1px;
+            margin-bottom: 2px;
+            text-transform: uppercase;
+        }
+
+        .product-subtitle {
+            color: #4EA8DE;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .content-layout {
+            display: flex;
+            gap: 25px;
+        }
+
+        .column-left {
+            flex: 0 0 240px;
+            text-align: center;
+        }
+
+        .vhs-image {
+            border: 4px solid #1E293B;
+            width: 240px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.6);
+        }
+
+        .release-date-badge {
+            margin-top: 15px;
+            background-color: #1E3A8A;
+            color: #FFFFFF;
+            padding: 8px;
+            font-weight: bold;
+            font-size: 11px;
+            border: 1px solid #3B82F6;
+            letter-spacing: 1px;
+        }
+
+        .column-right {
+            flex: 1;
+        }
+
+        .specs-box {
+            background-color: #0F172A;
+            border: 1px solid #1E293B;
+            padding: 12px;
+            margin-bottom: 20px;
+        }
+
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .specs-table td {
+            padding: 6px;
+            vertical-align: top;
+            border-bottom: 1px solid #1E293B;
+        }
+
+        .specs-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .label {
+            font-weight: bold;
+            color: #64748B;
+            width: 110px;
+            text-transform: uppercase;
+            font-size: 11px;
+        }
+
+        .synopsis {
+            line-height: 1.6;
+            margin-bottom: 20px;
+            text-align: justify;
+            font-size: 13px;
+        }
+
+        .features-header {
+            color: #FFFFFF;
+            font-size: 14px;
+            font-weight: bold;
+            border-bottom: 1px solid #1E293B;
+            padding-bottom: 4px;
+            margin-top: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .features-list {
+            margin: 10px 0;
+            padding-left: 20px;
+            line-height: 1.5;
+        }
+
+        .features-list li {
+            margin-bottom: 6px;
+        }
+
+        .buy-box {
+            background: linear-gradient(180deg, #1E293B 0%, #0F172A 100%);
+            border: 2px solid #4EA8DE;
+            padding: 15px;
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .price {
+            font-size: 26px;
+            color: #10B981;
+            font-weight: bold;
+            font-family: Impact, Arial, sans-serif;
+            margin: 2px 0;
+        }
+
+        .btn-order {
+            background: linear-gradient(180deg, #4EA8DE 0%, #0077B6 100%);
+            color: #FFFFFF;
+            border: 1px solid #FFFFFF;
+            padding: 10px 24px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 8px;
+            font-size: 13px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .btn-order:hover {
+            background: linear-gradient(180deg, #56CFE1 0%, #0077B6 100%);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 25px;
+            font-size: 11px;
+            color: #475569;
+            border-top: 1px solid #1E293B;
+            margin-top: 40px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+    <table class="header-table" cellpadding="0" cellspacing="0">
+        <tr>
+            <td class="logo-container">
+                <div class="logo-text">
+                    FOX.COM
+                    <span class="logo-sub">HOME ENTERTAINMENT</span>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <div class="nav-bar">
+        <a href="#" class="nav-item">New Releases</a>
+        <a href="#" class="nav-item active">Video & DVD</a>
+        <a href="#" class="nav-item">Coming Soon</a>
+        <a href="#" class="nav-item">Fox Sci-Fi Zone</a>
+    </div>
+
+    <div class="main-container">
+        <div class="breadcrumb">
+            <a href="#">Home</a> &gt; <a href="#">Video Store</a> &gt; Action/Sci-Fi &gt; X-Men (2000)
+        </div>
+
+        <div class="product-title" id="webpage-title">Loading Title...</div>
+        <div class="product-subtitle">The Evolution Has Begun on Home Video</div>
+
+        <div class="content-layout">
+            <div class="column-left">
+                <img id="product-image" src="" alt="X-Men VHS Cover Artwork" class="vhs-image">
+                <div class="release-date-badge">
+                    IN STORES NOW!<br>
+                    <span id="release-date" style="font-size: 12px; font-weight: bold; color: #56CFE1;"></span>
+                </div>
+            </div>
+
+            <div class="column-right">
+                <div class="specs-box">
+                    <table class="specs-table">
+                        <tr>
+                            <td class="label">Format</td>
+                            <td id="fmt-format"></td>
+                        </tr>
+                        <tr>
+                            <td class="label">Aspect Ratio</td>
+                            <td id="fmt-aspect"></td>
+                        </tr>
+                        <tr>
+                            <td class="label">Audio</td>
+                            <td id="fmt-audio"></td>
+                        </tr>
+                        <tr>
+                            <td class="label">Running Time</td>
+                            <td id="fmt-runtime"></td>
+                        </tr>
+                        <tr>
+                            <td class="label">Rating</td>
+                            <td id="fmt-rating"></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="features-header">Synopsis</div>
+                <div class="synopsis" id="movie-synopsis"></div>
+
+                <div class="features-header">Special VHS Features</div>
+                <ul class="features-list" id="special-features"></ul>
+
+                <div class="buy-box">
+                    <div style="font-size: 10px; color: #94A3B8; text-transform: uppercase; letter-spacing: 1px;">Suggested List Price</div>
+                    <div class="price" id="product-price"></div>
+                    <button class="btn-order" onclick="alert('Added to your Fox E-Store shopping cart!')">Buy It Now</button>
+                    <div style="font-size: 9px; color: #64748B; margin-top: 6px;">Orders processed through certified secure network.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        TM & © 2000 Twentieth Century Fox Home Entertainment, Inc. All Rights Reserved.<br>
+        Marvel, X-Men and all prominent character names and likenesses: TM & © 2000 Marvel Characters, Inc. All Rights Reserved.<br>
+        Reproduction or duplication without explicit permission is strictly prohibited.
+    </div>
+
+    <script>
+        // Archival structural object mirroring November 21, 2000 data metrics
+        const catalogPayload = {
+            "title": "X-Men",
+            "streetDate": "November 21, 2000",
+            "coverUrl": "https://m.media-amazon.com/images/I/A1DLh1yA2YL._AC_UF1000,1000_QL80_.jpg",
+            "retailPrice": "$22.98",
+            "techSpecs": {
+                "format": "VHS Tape (Standard Edition)",
+                "aspectRatio": "Formatted to fit your TV screen (1.33:1 Full Screen)",
+                "sound": "Dolby Surround Sound / Hi-Fi Stereo",
+                "length": "Approx. 104 Minutes",
+                "classification": "PG-13 (For Sci-Fi Action and Violence)"
+            },
+            "summary": "They are children of the atom, individuals gifted with strange and fantastic abilities resulting from genetic mutations. Under the guidance of Professor Charles Xavier, the X-Men learn to harness their powers to protect a world that fears and hates them. When the sinister Magneto hatches a plan to forcefully accelerate human evolution, the X-Men stand as the final line of defense for mankind.",
+            "perks": [
+                "Includes an exclusive sneak-peek featurette on the making of the movie.",
+                "Special bonus interview segment with director Bryan Singer.",
+                "Holographic metallic print accentuation on select retail shipments."
+            ]
+        };
+
+        // Execution logic maps JSON variables directly to the vintage DOM structural targets
+        function renderVideoEntry(payload) {
+            document.getElementById('webpage-title').innerText = payload.title;
+            document.getElementById('release-date').innerText = payload.streetDate;
+            
+            const vhsGraphic = document.getElementById('product-image');
+            vhsGraphic.src = payload.coverUrl;
+            vhsGraphic.alt = payload.title + " VHS Format Cover art";
+
+            document.getElementById('fmt-format').innerText = payload.techSpecs.format;
+            document.getElementById('fmt-aspect').innerText = payload.techSpecs.aspectRatio;
+            document.getElementById('fmt-audio').innerText = payload.techSpecs.sound;
+            document.getElementById('fmt-runtime').innerText = payload.techSpecs.length;
+            document.getElementById('fmt-rating').innerText = payload.techSpecs.classification;
+
+            document.getElementById('movie-synopsis').innerText = payload.summary;
+            document.getElementById('product-price').innerText = payload.retailPrice;
+
+            const bulletsContainer = document.getElementById('special-features');
+            bulletsContainer.innerHTML = '';
+            payload.perks.forEach(bonusItem => {
+                const itemElement = document.createElement('li');
+                itemElement.innerText = bonusItem;
+                bulletsContainer.appendChild(itemElement);
+            });
+        }
+
+        // Initialize execution upon document structural parsing
+        window.onload = function() {
+            renderVideoEntry(catalogPayload);
+        };
+    </script>
+</body>
+</html>
