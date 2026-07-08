@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEGO.com BIONICLE - BIONICLE® 3: Web of Shadows DVD</title>
+    <style>
+        /* 2005 BIONICLE Aesthetic: Dark, metallic, industrial, and organic tones */
+        :root {
+            --bg-dark: #0a0c10;
+            --panel-bg: #141923;
+            --visorak-green: #2ecc71;
+            --hordika-red: #c0392b;
+            --text-light: #e0e6ed;
+            --text-muted: #8a9ba8;
+            --border-glow: #34495e;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: Helvetica, sans-serif;
+            background-image: radial-gradient(circle at center, #1a2333 0%, #0a0c10 100%);
+            overflow-x: hidden;
+        }
+
+        /* Top Navigation Bar Bar - 2005 Style */
+        header {
+            background: linear-gradient(to bottom, #111, #222);
+            border-bottom: 3px solid #444;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .lego-logo {
+            background-color: #ff0000;
+            color: #fff;
+            font-weight: bold;
+            padding: 5px 8px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 14px;
+            border: 2px solid #fff;
+        }
+
+        .bionicle-logo {
+            font-size: 18px;
+            font-weight: bold;
+            letter-spacing: 4px;
+            color: #fff;
+            text-shadow: 0 0 8px rgba(255,255,255,0.6);
+        }
+
+        .current-date {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* Main Layout */
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 20px;
+            background: rgba(20, 25, 35, 0.85);
+            border: 2px solid var(--border-glow);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+            border-radius: 4px;
+        }
+
+        .hero-section {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Poster and UI frame */
+        .poster-frame {
+            border: 4px solid #2c3e50;
+            background: #000;
+            padding: 5px;
+            box-shadow: 0 0 15px rgba(46, 204, 113, 0.3);
+            position: relative;
+        }
+
+        .poster-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Content info */
+        .movie-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .movie-title {
+            font-size: 28px;
+            color: #fff;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            border-bottom: 2px dashed var(--border-glow);
+            padding-bottom: 10px;
+        }
+
+        .tagline {
+            font-style: italic;
+            color: var(--visorak-green);
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .synopsis {
+            line-height: 1.6;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        /* Interactive Controls */
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #2c3e50, #1a252f);
+            color: #fff;
+            border: 2px solid #455a64;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: bold;
+            font-family: inherit;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            border-color: var(--visorak-green);
+            box-shadow: 0 0 10px rgba(46, 204, 113, 0.5);
+            background: #243342;
+        }
+
+        .btn.active {
+            background: linear-gradient(135deg, var(--hordika-red), #7f2c21);
+            border-color: #ff4d4d;
+        }
+
+        /* Dynamic Display Box */
+        .display-panel {
+            background: #0d1117;
+            border-left: 4px solid var(--hordika-red);
+            padding: 20px;
+            min-height: 180px;
+            font-size: 14px;
+        }
+
+        .data-item {
+            margin-bottom: 10px;
+        }
+
+        .data-label {
+            color: var(--visorak-green);
+            font-weight: bold;
+        }
+
+        /* Character Grid Section */
+        .section-heading {
+            font-size: 20px;
+            color: #fff;
+            margin: 40px 0 20px 0;
+            padding-left: 10px;
+            border-left: 4px solid var(--visorak-green);
+            text-transform: uppercase;
+        }
+
+        .character-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .character-card {
+            background: rgba(10, 12, 16, 0.8);
+            border: 1px solid var(--border-glow);
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .character-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--hordika-red);
+        }
+
+        .character-name {
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 5px;
+        }
+
+        .character-role {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 11px;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-glow);
+            margin-top: 50px;
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <div class="lego-logo">LEGO</div>
+            <div class="bionicle-logo">BIONICLE®</div>
+        </div>
+        <div class="current-date">October 11, 2005</div>
+    </header>
+
+    <main class="container">
+        <section class="hero-section">
+            <div class="poster-frame">
+                <img src="https://i.ebayimg.com/images/g/C84AAOSwkG9mvMjG/s-l1600.jpg" alt="BIONICLE 3: Web of Shadows DVD Cover" class="poster-image">
+            </div>
+
+            <div class="movie-info">
+                <div>
+                    <h1 class="movie-title">Web of Shadows</h1>
+                    <p class="tagline">The Web of Shadows is Spinning...</p>
+                    <p class="synopsis">
+                        Great Rescue, Great Trap! The Toa Metru return to Metru Nui to rescue the slumbering Matoran, only to find their beautiful home shrouded in toxic webs by the ruthless King Sidorak and Viceroy Roodaka. Mutated into monstrous beast-like Toa Hordika, they must learn to master their new primal natures and team up with the mysterious Rahaga before the Visorak swarms consume them forever!
+                    </p>
+                </div>
+
+                <div>
+                    <div class="button-group">
+                        <button class="btn active" onclick="loadContent('dvdInfo')">DVD Features</button>
+                        <button class="btn" onclick="loadContent('storyFacts')">Lore & Specs</button>
+                    </div>
+
+                    <div class="display-panel" id="dynamicDisplay">
+                        </div>
+                </div>
+            </div>
+        </section>
+
+        <h2 class="section-heading">Dramatis Personae</h2>
+        <div class="character-grid" id="characterGrid">
+            </div>
+    </main>
+
+    <footer>
+        <p>© 2005 The LEGO Group. All rights reserved. LEGO, the LEGO logo, and BIONICLE are trademarks of the LEGO Group.</p>
+        <p>BIONICLE® 3: Web of Shadows available everywhere on DVD October 11, 2005.</p>
+    </footer>
+
+    <script>
+        // Integrated JSON Database representing the 2005 site layout
+        const bionicleData = {
+            "dvdInfo": [
+                {"label": "Release Date", "value": "October 11, 2005"},
+                {"label": "Run Time", "value": "76 Minutes of Non-Stop Action"},
+                {"label": "Bonus Material", "value": "Exclusive 'Web of Shadows' Comic, Behind-the-Scenes Featurette, and Character Galleries."},
+                {"label": "Audio", "value": "English Dolby Digital 5.1 Surround Sound"}
+            ],
+            "storyFacts": [
+                {"label": "Location", "value": "Metru Nui (Under Visorak Occupation)"},
+                {"label": "The Enemy", "value": "The Visorak Horde – Six breeds of venomous, web-spinning arachnids."},
+                {"label": "The Curse", "value": "Hordika Venom – Rewrites bio-mechanical programming into primal, beastial configurations."},
+                {"label": "New Allies", "value": "The Rahaga – Six strange guardians who understand the nature of the beast."}
+            ],
+            "characters": [
+                {"name": "Vakama", "role": "Toa Hordika of Fire - Struggling against his inner beast."},
+                {"name": "Sidorak", "role": "King of the Visorak Horde - Power-hungry conqueror."},
+                {"name": "Roodaka", "role": "Viceroy of the Visorak - Deceptive, scheming mastermind."},
+                {"name": "Rahaga Norik", "role": "Leader of the Rahaga - Guide to the Toa Hordika."}
+            ]
+        };
+
+        // UI Controller logic
+        function loadContent(key) {
+            // Update Active Tabs
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            // Highlight clicked button based on target function call argument
+            const currentBtn = Array.from(buttons).find(btn => btn.getAttribute('onclick').includes(key));
+            if(currentBtn) currentBtn.classList.add('active');
+
+            const display = document.getElementById('dynamicDisplay');
+            display.innerHTML = ''; // Clear display
+
+            // Render JSON records dynamically
+            bionicleData[key].forEach(item => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'data-item';
+                itemDiv.innerHTML = `<span class="data-label">[${item.label}]</span> ${item.value}`;
+                display.appendChild(itemDiv);
+            });
+        }
+
+        function initSite() {
+            // Populate initial DVD Features Content
+            loadContent('dvdInfo');
+
+            // Populate Character Grid from internal data array
+            const grid = document.getElementById('characterGrid');
+            bionicleData.characters.forEach(char => {
+                const card = document.createElement('div');
+                card.className = 'character-card';
+                card.onclick = () => alert(`ACCESSING METRU NUI ARCHIVES...\n\nName: ${char.name}\nDesignation: ${char.role}`);
+                card.innerHTML = `
+                    <div class="character-name">${char.name}</div>
+                    <div class="character-role">${char.role}</div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Initialize on window mount
+        window.onload = initSite;
+    </script>
+</body>
+</html>
