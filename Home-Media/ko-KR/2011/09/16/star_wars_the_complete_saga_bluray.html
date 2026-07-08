@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스타워즈: 컴플리트 사가 (Blu-ray) | 20th Century Fox</title>
+    <style>
+        :root {
+            --fox-blue: #003366;
+            --fox-gold: #ffcc00;
+            --dark-bg: #111111;
+            --card-bg: #1a1a1a;
+            --text-color: #e0e0e0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(to bottom, #002244, var(--fox-blue));
+            padding: 20px;
+            border-bottom: 3px solid var(--fox-gold);
+            text-align: center;
+        }
+
+        header h1 {
+            color: #fff;
+            font-size: 1.8rem;
+            letter-spacing: -1px;
+        }
+
+        header span {
+            color: var(--fox-gold);
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .product-essential {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            margin-bottom: 40px;
+        }
+
+        .product-gallery {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+
+        .product-gallery img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.8);
+            border: 1px solid #333;
+        }
+
+        .product-info {
+            flex: 1.5;
+            min-width: 300px;
+        }
+
+        .product-info h2 {
+            font-size: 2rem;
+            color: #fff;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .product-info .en-title {
+            font-size: 1.1rem;
+            color: #888;
+            margin-bottom: 20px;
+        }
+
+        .meta-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 25px;
+        }
+
+        .meta-table td {
+            padding: 10px 0;
+            border-bottom: 1px solid #333;
+        }
+
+        .meta-table td.label {
+            font-weight: bold;
+            color: var(--fox-gold);
+            width: 30%;
+        }
+
+        .btn-buy {
+            display: inline-block;
+            background: linear-gradient(to bottom, #ffe066, var(--fox-gold));
+            color: #000;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.2s, opacity 0.2s;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .btn-buy:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        .product-details {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid #333;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            padding: 12px 25px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #888;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -2px;
+        }
+
+        .tab.active {
+            color: var(--fox-gold);
+            border-bottom: 2px solid var(--fox-gold);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .disc-list {
+            list-style: none;
+        }
+
+        .disc-item {
+            background: #222;
+            margin-bottom: 10px;
+            padding: 15px;
+            border-left: 4px solid var(--fox-blue);
+            border-radius: 0 4px 4px 0;
+        }
+
+        .disc-item h4 {
+            color: #fff;
+            margin-bottom: 5px;
+        }
+
+        .disc-item p {
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #666;
+            font-size: 0.85rem;
+            border-top: 1px solid #222;
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>20th Century Fox <span>Home Entertainment</span></h1>
+    </header>
+
+    <div class="container">
+        <div class="product-essential">
+            <div class="product-gallery">
+                <img id="product-img" src="" alt="Star Wars Complete Saga Blu-ray">
+            </div>
+            <div class="product-info">
+                <h2 id="title-ko"></h2>
+                <div class="en-title" id="title-en"></div>
+                
+                <table class="meta-table">
+                    <tr>
+                        <td class="label">출시일</td>
+                        <td id="release-date"></td>
+                    </tr>
+                    <tr>
+                        <td class="label">제작연도</td>
+                        <td id="production-years"></td>
+                    </tr>
+                    <tr>
+                        <td class="label">디스크 구성</td>
+                        <td id="disc-count"></td>
+                    </tr>
+                    <tr>
+                        <td class="label">상영 시간</td>
+                        <td id="running-time"></td>
+                    </tr>
+                    <tr>
+                        <td class="label">관람등급</td>
+                        <td id="rating"></td>
+                    </tr>
+                </table>
+
+                <button class="btn-buy" onclick="alert('2011년 출시 상품으로 현재 Fox.com에서 직접 구매가 불가능합니다.')">지금 구매하기</button>
+            </div>
+        </div>
+
+        <div class="product-details">
+            <div class="tabs">
+                <div class="tab active" onclick="switchTab(event, 'overview')">작품 소개</div>
+                <div class="tab" onclick="switchTab(event, 'discs')">디스크 구성 상세</div>
+            </div>
+
+            <div id="overview" class="tab-content active">
+                <p id="description" style="white-space: pre-line; color: #ccc;"></p>
+            </div>
+
+            <div id="discs" class="tab-content">
+                <ul id="disc-contents-list" class="disc-list">
+                    </ul>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2011 Twentieth Century Fox Home Entertainment LLC. All Rights Reserved.</p>
+        <p>본 페이지는 2011년 9월 16일 Fox.com (ko-KR) 아카이브 자료를 바탕으로 구현되었습니다.</p>
+    </footer>
+
+    <script>
+        // Inline Embedded JSON Data
+        const movieData = {
+            "titleKo": "스타워즈: 컴플리트 사가 (Blu-ray, 9디스크 세트)",
+            "titleEn": "Star Wars: The Complete Saga (1977-2005, 9-Disc Set)",
+            "releaseDate": "2011년 9월 16일",
+            "productionYears": "1977년 - 2005년",
+            "discCount": "9-Disc (이피소드 I~VI 6디스크 + 보너스 3디스크)",
+            "runningTime": "총 805분 (본편 기준)",
+            "rating": "12세 이상 관람가",
+            "imageUrl": "https://images.static-bluray.com/movies/covers/75673_front.jpg",
+            "description": "SF 영화의 역사를 바꾼 조지 루카스 감독의 거대한 우주 대서사시가 마침내 완전체 블루레이 세트로 상륙합니다!\n\n에피소드 I부터 VI까지 전 6개 에피소드가 담긴 고화질 본편 디스크와 함께, 이전에 공개되지 않았던 미공개 삭제 장면, 대체 에피소드, 그리고 스타워즈의 방대한 세계관을 다룬 다큐멘터리 등 40시간 이상의 풍부한 보너스 피처가 3장의 보너스 디스크에 수록되어 있습니다. 완벽한 디지털 리마스터링 사운드와 화질로 포스의 모든 것을 소장하십시오.",
+            "discs": [
+                {"name": "Disc 1", "content": "스타워즈 에피소드 I: 보이지 않는 위험 (본편 및 코멘터리)"},
+                {"name": "Disc 2", "content": "스타워즈 에피소드 II: 클론의 습격 (본편 및 코멘터리)"},
+                {"name": "Disc 3", "content": "스타워즈 에피소드 III: 시스의 복수 (본편 및 코멘터리)"},
+                {"name": "Disc 4", "content": "스타워즈 에피소드 IV: 새로운 희망 (본편 및 코멘터리)"},
+                {"name": "Disc 5", "content": "스타워즈 에피소드 V: 제국의 역습 (본편 및 코멘터리)"},
+                {"name": "Disc 6", "content": "스타워즈 에피소드 VI: 제다이의 귀환 (본편 및 코멘터리)"},
+                {"name": "Disc 7", "content": "보너스 디스크 1: 에피소드 I-III 아카이브 (삭제 장면, 콘셉트 아트 등)"},
+                {"name": "Disc 8", "content": "보너스 디스크 2: 에피소드 IV-VI 아카이브 (인터뷰, 미공개 영상 등)"},
+                {"name": "Disc 9", "content": "보너스 디스크 3: 스타워즈 다큐멘터리 컬렉션 (포스의 제작과정 수록)"}
+            ]
+        };
+
+        // DOM Populating via JavaScript
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("product-img").src = movieData.imageUrl;
+            document.getElementById("title-ko").innerText = movieData.titleKo;
+            document.getElementById("title-en").innerText = movieData.titleEn;
+            document.getElementById("release-date").innerText = movieData.releaseDate;
+            document.getElementById("production-years").innerText = movieData.productionYears;
+            document.getElementById("disc-count").innerText = movieData.discCount;
+            document.getElementById("running-time").innerText = movieData.runningTime;
+            document.getElementById("rating").innerText = movieData.rating;
+            document.getElementById("description").innerText = movieData.description;
+
+            const discList = document.getElementById("disc-contents-list");
+            movieData.discs.forEach(disc => {
+                const li = document.createElement("li");
+                li.className = "disc-item";
+                li.innerHTML = `<h4>${disc.name}</h4><p>${disc.content}</p>`;
+                discList.appendChild(li);
+            });
+        });
+
+        // Tab Switching Logic
+        function switchTab(event, tabId) {
+            const tabs = document.querySelectorAll('.tab');
+            const contents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach(tab => tab.classList.remove('active'));
+            contents.forEach(content => content.classList.remove('active'));
+
+            event.target.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+    </script>
+</body>
+</html>
