@@ -3,264 +3,473 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Glory Road Blu-ray (2006) - Walt Disney Home Entertainment</title>
+    <title>Internet Browser - Disney.com: Glory Road Blu-ray</title>
     <style>
-        :root {
-            --bg-dark: #0f141c;
-            --panel-bg: #182232;
-            --accent-gold: #f59e0b;
-            --accent-orange: #dd6b20;
-            --text-light: #f8fafc;
-            --text-muted: #94a3b8;
-            --border-subtle: #2d3748;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: Helvetica, Arial, sans-serif;
-        }
-
+        /* --- Reset & System Base Fonts --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            line-height: 1.5;
-            padding: 24px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
+            font-family: "Tahoma", "Segoe UI", Helvetica, sans-serif;
+            background-color: #5B7EDC; /* WinXP Blue desktop vibe */
+            padding: 10px;
+            overflow-x: hidden;
         }
 
-        .product-container {
-            max-width: 950px;
+        /* --- OS / Browser Chrome Style (Circa 2006) --- */
+        .browser-container {
             width: 100%;
-            background: var(--panel-bg);
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-            border: 1px solid var(--border-subtle);
-            display: grid;
-            grid-template-columns: 1fr;
+            max-width: 1100px;
+            margin: 0 auto;
+            background-color: #ECE9D8; /* Classic Luna silver/sand window bg */
+            border: 4px solid #004EAE;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
         }
 
-        @media (min-width: 768px) {
-            .product-container {
-                grid-template-columns: 360px 1fr;
-            }
-        }
-
-        /* Left Side: Artwork Presentation */
-        .artwork-section {
-            background: #0b0f15;
+        .title-bar {
+            background: linear-gradient(to right, #0058E6 0%, #3A93FF 100%);
+            color: white;
+            padding: 5px 10px;
+            font-weight: bold;
+            font-size: 13px;
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
-            padding: 40px 24px;
-            border-right: 1px solid var(--border-subtle);
         }
 
-        .artwork-wrapper {
+        .window-controls span {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background: #ECE9D8;
+            color: black;
+            text-align: center;
+            line-height: 18px;
+            border: 1px solid #777;
+            margin-left: 2px;
+            font-size: 11px;
+            cursor: pointer;
+            font-family: monospace;
+        }
+
+        /* Toolbar / Address Bar Area */
+        .toolbar {
+            background-color: #F1EFE2;
+            border-bottom: 2px solid #D6D2B6;
+            padding: 5px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding-bottom: 5px;
+        }
+
+        .btn-nav {
+            padding: 2px 8px;
+            font-size: 12px;
+            background-color: #FFF;
+            border: 1px solid #ABC;
+            cursor: pointer;
+        }
+
+        .address-bar-row {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background: #F1EFE2;
+        }
+
+        .address-label {
+            font-size: 12px;
+            color: #555;
+            padding-left: 5px;
+        }
+
+        .address-input {
+            flex-grow: 1;
+            padding: 3px 5px;
+            font-size: 13px;
+            font-family: monospace;
+            border: 1px solid #7F9DB9;
+        }
+
+        .go-button {
+            padding: 2px 10px;
+            font-size: 12px;
+            font-weight: bold;
+            background-color: #E2ECF5;
+            border: 1px solid #7F9DB9;
+            cursor: pointer;
+        }
+
+        /* --- Simulated Web Viewport --- */
+        .web-viewport {
+            background-color: #000000; /* Dark premium cinematic 2006 look */
+            height: 680px;
+            overflow-y: auto;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #FFFFFF;
             position: relative;
-            width: 100%;
-            max-width: 280px;
         }
 
-        .artwork-section img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.7);
-            display: block;
-            transition: transform 0.3s ease;
+        /* Disney.com Brand Top Navigation Header */
+        .disney-header {
+            background: linear-gradient(to bottom, #111 0%, #000 100%);
+            border-bottom: 3px solid #0063B1;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .artwork-section img:hover {
-            transform: scale(1.02);
+        .disney-logo {
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: -1px;
+            color: #FFF;
+            font-style: italic;
         }
+        .disney-logo span { color: #00A3FF; }
 
-        .format-badge {
-            margin-top: 24px;
-            background: linear-gradient(135deg, #0072ff, #00c6ff);
-            color: #ffffff;
-            padding: 6px 18px;
-            border-radius: 30px;
-            font-size: 0.8rem;
-            font-weight: 700;
+        .disney-nav-links {
+            display: flex;
+            gap: 15px;
+            font-size: 12px;
+            font-weight: bold;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            box-shadow: 0 4px 12px rgba(0, 114, 255, 0.3);
         }
 
-        /* Right Side: Informational Content */
-        .info-section {
-            padding: 40px;
+        .disney-nav-links a {
+            color: #CCC;
+            text-decoration: none;
+        }
+        .disney-nav-links a:hover { color: #FFF; text-decoration: underline; }
+
+        /* Main Marketing Landing Page Frame */
+        .promo-container {
+            max-width: 960px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+
+        /* Hero Banner Section Layout */
+        .hero-banner {
+            background: radial-gradient(circle, #1a2c5b 0%, #050b18 100%);
+            border: 1px solid #223b73;
+            border-radius: 8px;
+            padding: 30px;
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            box-shadow: 0 0 20px rgba(0, 99, 177, 0.3);
+        }
+
+        /* Pseudo-Artwork for Blu-ray/Movie Cover */
+        .cover-art-container {
+            flex-shrink: 0;
+            width: 220px;
+            height: 310px;
+            background-color: #0E1A35;
+            border: 4px solid #A0A0A0; /* Blu-ray Metallic look edge banner */
+            border-top: 22px solid #00A3FF; /* Blu-ray Standard Case Header color */
+            border-radius: 6px;
+            position: relative;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.7);
+            overflow: hidden;
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
         }
 
-        h1 {
-            font-size: 2.4rem;
-            font-weight: 800;
-            line-height: 1.15;
-            margin-bottom: 6px;
-            color: var(--text-light);
+        .bluray-case-tag {
+            position: absolute;
+            top: -20px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 10px;
+            font-weight: bold;
+            color: #FFF;
+            font-family: 'Arial Black', sans-serif;
+            letter-spacing: 1px;
         }
 
-        .metadata-bar {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-bottom: 24px;
+        .movie-title-block {
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            padding: 15px 10px;
+            text-align: center;
+        }
+
+        .movie-title-block h1 {
+            font-size: 20px;
+            color: #FFF;
+            text-shadow: 2px 2px 4px #000;
+            font-family: 'Impact', sans-serif;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .cover-graphic {
+            background: linear-gradient(135deg, #e25b00 0%, #111 70%);
+            height: 100%;
+            width: 100%;
             display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: rgba(255,255,255,0.15);
+            font-weight: bold;
         }
 
-        .metadata-bar span:not(:last-child)::after {
-            content: "•";
-            margin-left: 16px;
-            color: #4a5568;
+        /* Right Content Panel info */
+        .hero-details {
+            flex-grow: 1;
         }
 
-        .tagline {
-            font-style: italic;
-            color: var(--accent-gold);
-            margin-bottom: 24px;
-            font-size: 1.1rem;
-            border-left: 3px solid var(--accent-orange);
-            padding-left: 12px;
-        }
-
-        .group-title {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--text-muted);
+        .blu-ray-pill {
+            background-color: #0063B1;
+            color: #FFF;
+            padding: 4px 10px;
+            font-size: 11px;
+            font-weight: bold;
+            border-radius: 3px;
+            display: inline-block;
             margin-bottom: 10px;
-            border-bottom: 1px solid var(--border-subtle);
-            padding-bottom: 6px;
+            letter-spacing: 1px;
         }
 
-        .synopsis-text {
-            font-size: 0.95rem;
-            color: #e2e8f0;
-            margin-bottom: 28px;
-            text-align: left;
+        .release-date-tag {
+            color: #FFCC00;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 10px;
         }
 
-        .specs-layout {
+        .movie-synopsis {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #DDD;
+            margin-bottom: 20px;
+        }
+
+        /* Dynamic Specification Spec List Grid */
+        .specs-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            background-color: rgba(0,0,0,0.4);
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #222;
         }
 
-        .spec-block .key {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            display: block;
-            margin-bottom: 4px;
-            letter-spacing: 0.5px;
+        .spec-item {
+            font-size: 12px;
+        }
+        .spec-item strong {
+            color: #00A3FF;
         }
 
-        .spec-block .val {
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: #f1f5f9;
+        /* Interactive Navigation Tabs for 2006 Micro-site features */
+        .tab-menu {
+            display: flex;
+            margin-top: 30px;
+            border-bottom: 2px solid #222;
         }
 
-        .wide-block {
-            grid-column: 1 / -1;
+        .tab-item {
+            padding: 10px 20px;
+            background-color: #111;
+            border: 1px solid #222;
+            border-bottom: none;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: bold;
+            color: #AAA;
+        }
+
+        .tab-item.active {
+            background-color: #1a2c5b;
+            color: #FFF;
+            border-color: #223b73;
+        }
+
+        .tab-content-panel {
+            background-color: #0b111e;
+            border: 1px solid #223b73;
+            border-top: none;
+            padding: 20px;
+            min-height: 150px;
+        }
+
+        /* Interactive Feature Styles */
+        .video-placeholder {
+            width: 100%;
+            max-width: 480px;
+            height: 270px;
+            background-color: #000;
+            border: 2px solid #333;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 10px auto;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .play-icon {
+            width: 0;
+            height: 0;
+            border-top: 20px solid transparent;
+            border-left: 35px solid #00A3FF;
+            border-bottom: 20px solid transparent;
+        }
+
+        /* System Status Bar at bottom */
+        .status-bar {
+            background-color: #F1EFE2;
+            padding: 3px 10px;
+            font-size: 11px;
+            color: #444;
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #D6D2B6;
         }
     </style>
 </head>
 <body>
 
-    <div class="product-container" id="bluray-showcase">
+<div class="browser-container">
+    <div class="title-bar">
+        <div>🌐 Disney.com: Glory Road Blu-ray - Internet Browser</div>
+        <div class="window-controls">
+            <span>0</span>
+            <span>2</span>
+            <span style="background:#E12;color:white;">X</span>
         </div>
+    </div>
 
-    <script>
-        // Embedded simulation of standard data.json
-        const databasePayload = {
-            "title": "Glory Road",
-            "year": 2006,
-            "format": "Blu-ray",
-            "releaseDate": "2006-10-17",
-            "studio": "Walt Disney Home Entertainment",
-            "imageUrl": "https://images.static-bluray.com/movies/covers/129_front.jpg",
-            "rating": "PG",
-            "runtime": "118 min",
-            "tagline": "The underdog story that changed the game forever.",
-            "synopsis": "In 1966, Texas Western coach Don Haskins leads the first all-black starting lineup in NCAA national championship history. Facing intense racial adversity, the underdogs unite to battle social barriers and challenge powerhouse opponents on their path to legendary sporting history.",
-            "specs": {
-                "videoCodec": "AVC MPEG-4",
-                "resolution": "1080p (2.40:1)",
-                "audio": "English Uncompressed PCM 5.1, English Dolby Digital 5.1, French Dolby Digital 5.1, Spanish Dolby Digital 5.1",
-                "subtitles": "English SDH, French, Spanish"
-            }
-        };
+    <div class="toolbar">
+        <div class="nav-buttons">
+            <button class="btn-nav" onclick="alert('Simulated Back Action')">◀ Back</button>
+            <button class="btn-nav" onclick="alert('Simulated Forward Action')">Forward ▶</button>
+            <button class="btn-nav" onclick="location.reload()">🔄 Refresh</button>
+            <button class="btn-nav">🏠 Home</button>
+        </div>
+        <div class="address-bar-row">
+            <span class="address-label">Address</span>
+            <input type="text" class="address-input" value="http://disney.go.com/disneyvideos/bluray/gloryroad/index.html" readonly>
+            <button class="go-button">Go</button>
+        </div>
+    </div>
 
-        // Execution logic to map structural JSON elements safely to visual nodes
-        function constructPage(data) {
-            const container = document.getElementById('bluray-showcase');
+    <div class="web-viewport">
+        
+        <header class="disney-header">
+            <div class="disney-logo">Disney<span>.com</span></div>
+            <nav class="disney-nav-links">
+                <a href="#">Movies</a>
+                <a href="#">DVD & Blu-ray</a>
+                <a href="#">Games</a>
+                <a href="#">TV</a>
+                <a href="#">Music</a>
+                <a href="#">Shop</a>
+            </nav>
+        </header>
+
+        <main class="promo-container">
             
-            container.innerHTML = `
-                <div class="artwork-section">
-                    <div class="artwork-wrapper">
-                        <img src="${data.imageUrl}" alt="${data.title} Blu-ray Edition Front Cover Art">
+            <div class="hero-banner">
+                <div class="cover-art-container">
+                    <div class="bluray-case-tag">BLU-RAY DISC</div>
+                    <div class="cover-graphic">🏀</div>
+                    <div class="movie-title-block">
+                        <h1>Glory Road</h1>
                     </div>
-                    <div class="format-badge">${data.format} Disc</div>
                 </div>
-                <div class="info-section">
-                    <h1>${data.title}</h1>
-                    <div class="metadata-bar">
-                        <span>${data.year}</span>
-                        <span>Rated ${data.rating}</span>
-                        <span>${data.runtime}</span>
+
+                <div class="hero-details">
+                    <span class="blu-ray-pill">HIGH-DEFINITION DEBUT</span>
+                    <h2 style="font-size: 28px; margin-bottom: 5px;">Glory Road</h2>
+                    <div class="release-date-tag">Available On Blu-ray Disc October 17, 2006</div>
+                    
+                    <p class="movie-synopsis">
+                        From producer Jerry Bruckheimer comes the inspiring true story of the underdog Texas Western 
+                        basketball team. In 1966, coach Don Haskins bucked convention by starting history’s first 
+                        all-African American lineup, sending shock waves through the sport all the way to an epic 
+                        showdown for the National Championship.
+                    </p>
+
+                    <div class="specs-grid">
+                        <div class="spec-item"><strong>Format:</strong> Blu-ray Disc (Single-Disc)</div>
+                        <div class="spec-item"><strong>Video Codec:</strong> AVC / H.264</div>
+                        <div class="spec-item"><strong>Resolution:</strong> 1080p High-Definition</div>
+                        <div class="spec-item"><strong>Aspect Ratio:</strong> 2.35:1 Widescreen</div>
+                        <div class="spec-item"><strong>Audio Features:</strong> 5.1 Uncompressed PCM / Dolby Digital 5.1</div>
+                        <div class="spec-item"><strong>Studio:</strong> Walt Disney Home Entertainment</div>
                     </div>
-                    
-                    <div class="tagline">“${data.tagline}”</div>
-                    
-                    <h2 class="group-title">Synopsis</h2>
-                    <p class="synopsis-text">${data.synopsis}</p>
-                    
-                    <h2 class="group-title">Technical Specifications</h2>
-                    <div class="specs-layout">
-                        <div class="spec-block">
-                            <span class="key">Studio / Distributor</span>
-                            <span class="val">${data.studio}</span>
-                        </div>
-                        <div class="spec-block">
-                            <span class="key">BD Release Date</span>
-                            <span class="val">${data.releaseDate}</span>
-                        </div>
-                        <div class="spec-block">
-                            <span class="key">Video Presentation</span>
-                            <span class="val">${data.specs.videoCodec}</span>
-                        </div>
-                        <div class="spec-block">
-                            <span class="key">Aspect Ratio</span>
-                            <span class="val">${data.specs.resolution}</span>
-                        </div>
-                        <div class="spec-block wide-block">
-                            <span class="key">Audio Tracks</span>
-                            <span class="val">${data.specs.audio}</span>
-                        </div>
-                        <div class="spec-block wide-block">
-                            <span class="key">Subtitles Available</span>
-                            <span class="val">${data.specs.subtitles}</span>
-                        </div>
-                    </div>
+                </div>
+            </div>
+
+            <div class="tab-menu">
+                <div class="tab-item active" id="tab-features" onclick="switchTab('features')">Bonus Features</div>
+                <div class="tab-item" id="tab-trailer" onclick="switchTab('trailer')">HD Preview Trailer</div>
+            </div>
+
+            <div class="tab-content-panel" id="content-panel">
+                <h3 style="color: #00A3FF; margin-bottom: 10px;">Exclusive High-Definition Bonus Material:</h3>
+                <ul style="margin-left: 20px; line-height: 1.8; font-size: 14px; color: #DDD;">
+                    <li><strong>Legacy of the Bear:</strong> Highlights of Coach Don Haskins' illustrious career.</li>
+                    <li><strong>Surviving Practice:</strong> An inside structural dive into the team’s training rigors.</li>
+                    <li><strong>In Their Own Words:</strong> Extended retrospective documentary interviews with the original 1966 historic squad roster.</li>
+                    <li>Audio Commentaries from Director James Gartner and Producer Jerry Bruckheimer.</li>
+                </ul>
+            </div>
+
+        </main>
+    </div>
+
+    <div class="status-bar">
+        <div>Done</div>
+        <div style="font-weight: bold; color: #0063B1;">💻 Internet | Protected Mode: Off</div>
+    </div>
+</div>
+
+<script>
+    // Tab switching engine logic simulation for 2006 web portal UI
+    function switchTab(target) {
+        const tabFeatures = document.getElementById('tab-features');
+        const tabTrailer = document.getElementById('tab-trailer');
+        const contentPanel = document.getElementById('content-panel');
+
+        if (target === 'features') {
+            tabFeatures.classList.add('active');
+            tabTrailer.classList.remove('active');
+            contentPanel.innerHTML = `
+                <h3 style="color: #00A3FF; margin-bottom: 10px;">Exclusive High-Definition Bonus Material:</h3>
+                <ul style="margin-left: 20px; line-height: 1.8; font-size: 14px; color: #DDD;">
+                    <li><strong>Legacy of the Bear:</strong> Highlights of Coach Don Haskins' illustrious career.</li>
+                    <li><strong>Surviving Practice:</strong> An inside structural dive into the team’s training rigors.</li>
+                    <li><strong>In Their Own Words:</strong> Extended retrospective documentary interviews with the original 1966 historic squad roster.</li>
+                    <li>Audio Commentaries from Director James Gartner and Producer Jerry Bruckheimer.</li>
+                </ul>
+            `;
+        } else if (target === 'trailer') {
+            tabTrailer.classList.add('active');
+            tabFeatures.classList.remove('active');
+            contentPanel.innerHTML = `
+                <h3 style="color: #00A3FF; margin-bottom: 10px; text-align:center;">Experience True 1080p AVC Clarity</h3>
+                <div class="video-placeholder" onclick="alert('Simulating 2006 Progressive HD Stream Download Stream Engine...')">
+                    <div class="play-icon"></div>
+                    <div style="margin-top:15px; color:#AAA; font-size:12px;">Click to Play Trailer (Requires QuickTime or Flash Player)</div>
                 </div>
             `;
         }
+    }
+</script>
 
-        // Initialize presentation layout upon DOM completion
-        document.addEventListener('DOMContentLoaded', () => {
-            constructPage(databasePayload);
-        });
-    </script>
 </body>
 </html>
