@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Image Generator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #1e293b;
+            width: 100%;
+            max-width: 900px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .input-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #38bdf8;
+            margin-bottom: 5px;
+        }
+
+        p {
+            color: #94a3b8;
+            font-size: 0.95rem;
+        }
+
+        textarea {
+            width: 100%;
+            height: 120px;
+            background-color: #0f172a;
+            border: 2px solid #334155;
+            border-radius: 8px;
+            color: #f8fafc;
+            padding: 12px;
+            font-size: 1rem;
+            resize: none;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        textarea:focus {
+            border-color: #38bdf8;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+        }
+
+        .control-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        label {
+            font-size: 0.85rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        select {
+            background-color: #0f172a;
+            border: 2px solid #334155;
+            border-radius: 8px;
+            color: #f8fafc;
+            padding: 10px;
+            font-size: 0.95rem;
+            outline: none;
+            cursor: pointer;
+        }
+
+        select:focus {
+            border-color: #38bdf8;
+        }
+
+        button {
+            background: linear-gradient(135deg, #38bdf8, #2563eb);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 14px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.1s, opacity 0.2s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        button:disabled {
+            background: #475569;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .display-section {
+            background-color: #0f172a;
+            border: 2px dashed #334155;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 350px;
+        }
+
+        .placeholder-text {
+            color: #475569;
+            text-align: center;
+            padding: 20px;
+        }
+
+        #output-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: none;
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            display: none;
+            width: 50px;
+            height: 50px;
+            border: 5px solid #334155;
+            border-top: 5px solid #38bdf8;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 15px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            display: none;
+            color: #38bdf8;
+            font-weight: 500;
+        }
+
+        #download-btn {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            padding: 8px 14px;
+            font-size: 0.85rem;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid #334155;
+            backdrop-filter: blur(4px);
+            display: none;
+        }
+        
+        #download-btn:hover {
+            background: #38bdf8;
+            color: #0f172a;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="input-section">
+            <div>
+                <h1>AI Image Generator</h1>
+                <p>Enter a prompt to generate a completely unique image using AI.</p>
+            </div>
+            
+            <textarea id="prompt-input" placeholder="An astronaut riding a neon horse in cyberpunk city, highly detailed, 8k resolution..."></textarea>
+            
+            <div class="controls">
+                <div class="control-group">
+                    <label for="aspect-ratio">Aspect Ratio</label>
+                    <select id="aspect-ratio">
+                        <option value="1:1">1:1 (Square)</option>
+                        <option value="16:9">16:9 (Landscape)</option>
+                        <option value="9:16">9:16 (Portrait)</option>
+                    </select>
+                </div>
+            </div>
+
+            <button id="generate-btn">Generate Image</button>
+        </div>
+
+        <div class="display-section" id="display-container">
+            <div class="spinner" id="loading-spinner"></div>
+            <div class="loading-text" id="loading-text">Creating your masterpiece...</div>
+            
+            <div class="placeholder-text" id="placeholder">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                <p style="margin-top: 10px;">Your generated image will appear here</p>
+            </div>
+
+            <img id="output-image" alt="AI Generated Image Output">
+            <button id="download-btn">Download</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('generate-btn').addEventListener('click', async () => {
+            const promptInput = document.getElementById('prompt-input').value.trim();
+            const aspectRatio = document.getElementById('aspect-ratio').value;
+            
+            const generateBtn = document.getElementById('generate-btn');
+            const placeholder = document.getElementById('placeholder');
+            const spinner = document.getElementById('loading-spinner');
+            const loadingText = document.getElementById('loading-text');
+            const outputImage = document.getElementById('output-image');
+            const downloadBtn = document.getElementById('download-btn');
+
+            if (!promptInput) {
+                alert('Please enter a description or prompt first!');
+                return;
+            }
+
+            // UI Adjustments for Loading State
+            generateBtn.disabled = true;
+            generateBtn.textContent = 'Generating...';
+            placeholder.style.display = 'none';
+            outputImage.style.display = 'none';
+            downloadBtn.style.display = 'none';
+            spinner.style.display = 'block';
+            loadingText.style.display = 'block';
+
+            // Resolve dimension sizes from selected aspect ratio
+            let width = 1024;
+            let height = 1024;
+            if (aspectRatio === '16:9') {
+                width = 1344;
+                height = 768;
+            } else if (aspectRatio === '9:16') {
+                width = 768;
+                height = 1344;
+            }
+
+            try {
+                // Encode prompt text for safe URL transport
+                const encodedPrompt = encodeURIComponent(promptInput);
+                // We append a random seed query string parameter to force a brand new image every generation
+                const randomSeed = Math.floor(Math.random() * 1000000);
+                
+                const apiUrl = `https://image.pollinations.ai/p/${encodedPrompt}?width=${width}&height=${height}&seed=${randomSeed}&enhance=true`;
+
+                // Fetching the image object blob to bypass cache and handle safely
+                const response = await fetch(apiUrl);
+                if (!response.ok) throw new Error('Failed to generate image from the server.');
+                
+                const blob = await response.blob();
+                const imageObjectURL = URL.createObjectURL(blob);
+
+                // Load image URL dynamically into UI
+                outputImage.src = imageObjectURL;
+                
+                outputImage.onload = () => {
+                    spinner.style.display = 'none';
+                    loadingText.style.display = 'none';
+                    outputImage.style.display = 'block';
+                    downloadBtn.style.display = 'block';
+                    
+                    // Setup Download behavior
+                    downloadBtn.onclick = () => {
+                        const link = document.createElement('a');
+                        link.href = imageObjectURL;
+                        link.download = `ai-image-${randomSeed}.png`;
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                    };
+
+                    generateBtn.disabled = false;
+                    generateBtn.textContent = 'Generate Image';
+                };
+
+            } catch (error) {
+                console.error(error);
+                alert('Something went wrong. Please check your connection and try again.');
+                
+                // Revert state back on error
+                spinner.style.display = 'none';
+                loadingText.style.display = 'none';
+                placeholder.style.display = 'block';
+                generateBtn.disabled = false;
+                generateBtn.textContent = 'Generate Image';
+            }
+        });
+    </script>
+</body>
+</html>
