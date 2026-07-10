@@ -1,339 +1,1085 @@
 <!DOCTYPE html>
-<html lang="hu">
+<html lang="hu-HU">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Star Wars III. rész – A Sith-ek bosszúja (DVD Archívum)</title>
+    <title>Star Wars: Episode III - DVD Kiadás (2005) Promo Portal</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts: Orbitron for tech/LED, Inter for clean UI -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
     
-    <!-- Chosen Palette: Warm Neutrals with Sith Red Accents (Background: stone-100, Text: stone-800, Accent: red-800) -->
-    <!-- Application Structure Plan: A modern, dashboard-style interactive layout to explore the DVD release. The structure separates the thematic elements (story, release data) from the physical product contents (discs, features) and the granular technical specifications. The interactive tab system prevents information overload when browsing disc contents, while the visual chart synthesizes the scale of the extra materials compared to the film itself, enhancing user understanding. -->
-    <!-- Visualization & Content Choices: 
-         1. Summary Grid -> Goal: Inform -> Method: Styled CSS Grid stats -> Interaction: Hover states -> Justification: Rapid scanning of key release data. Library: Tailwind CSS.
-         2. Disc Content Explorer -> Goal: Organize -> Method: Vanilla JS Tabs -> Interaction: Click to toggle disc contents -> Justification: Logically separates Disc 1 and Disc 2, mirroring the physical product experience. Library: Vanilla JS.
-         3. Content Distribution -> Goal: Compare -> Method: Chart.js Doughnut Chart -> Interaction: Tooltips -> Justification: Visually demonstrates the massive volume of bonus features relative to the main film. Library: Chart.js (Canvas, NO SVG).
-         4. Technical Specs -> Goal: Inform -> Method: Interactive Table -> Interaction: Row highlight on click/hover -> Justification: Cleanest way to present structured technical data. Library: Tailwind CSS + Vanilla JS. -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
-
     <style>
         body {
-            font-family: Helvetica, sans-serif;
+            font-family: 'Inter', sans-serif;
+            background-color: #050508;
+            background-image: 
+                radial-gradient(at 20% 20%, rgba(220, 38, 38, 0.15) 0px, transparent 50%),
+                radial-gradient(at 80% 80%, rgba(6, 182, 212, 0.15) 0px, transparent 50%),
+                radial-gradient(ellipse at center, rgba(15, 23, 42, 0.8), #030305);
+            background-attachment: fixed;
         }
-        
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 300px;
-            max-height: 400px;
+
+        .font-tech {
+            font-family: 'Orbitron', sans-serif;
         }
+
+        /* Starry background effect */
+        .stars {
+            background-image: radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+                              radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+                              radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px);
+            background-size: 550px 550px, 350px 350px, 250px 250px;
+            background-position: 0 0, 40px 60px, 130px 270px;
+            animation: starScroll 120s linear infinite;
+        }
+
+        @keyframes starScroll {
+            from { background-position: 0 0, 40px 60px, 130px 270px; }
+            to { background-position: 550px 1100px, 390px 1110px, 630px 1370px; }
+        }
+
+        /* Scanlines overlay for DVD CRT look */
+        .scanlines {
+            background: linear-gradient(
+                rgba(18, 16, 16, 0) 50%, 
+                rgba(0, 0, 0, 0.25) 50%
+            ), linear-gradient(
+                90deg,
+                rgba(255, 0, 0, 0.06),
+                rgba(0, 255, 0, 0.02),
+                rgba(0, 0, 255, 0.06)
+            );
+            background-size: 100% 4px, 6px 100%;
+        }
+
+        /* Interactive screen transitions */
+        .screen-fade {
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Yoda Breakdance animations */
+        @keyframes yoda-bounce {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+        @keyframes arm-left-wave {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(-45deg); }
+        }
+        @keyframes arm-right-wave {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(45deg); }
+        }
+        @keyframes leg-dance {
+            0%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(0.7) translateY(10px); }
+        }
+        @keyframes spotlight-red {
+            0%, 100% { transform: rotate(-30deg); opacity: 0.2; }
+            50% { transform: rotate(30deg); opacity: 0.8; }
+        }
+        @keyframes spotlight-cyan {
+            0%, 100% { transform: rotate(30deg); opacity: 0.8; }
+            50% { transform: rotate(-30deg); opacity: 0.2; }
+        }
+
+        .yoda-body { animation: yoda-bounce 0.6s infinite ease-in-out; }
+        .yoda-arm-l { animation: arm-left-wave 0.6s infinite ease-in-out; transform-origin: 40px 55px; }
+        .yoda-arm-r { animation: arm-right-wave 0.6s infinite ease-in-out; transform-origin: 60px 55px; }
+        .yoda-legs { animation: leg-dance 0.3s infinite ease-in-out; transform-origin: 50px 85px; }
         
-        @media (min-width: 768px) {
-            .chart-container {
-                height: 350px;
-            }
+        .spot-r { animation: spotlight-red 4s infinite ease-in-out; transform-origin: top; }
+        .spot-c { animation: spotlight-cyan 4s infinite ease-in-out; transform-origin: top; }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #090d16;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ef4444;
         }
     </style>
 </head>
-<body class="bg-stone-100 text-stone-800 antialiased selection:bg-red-200 selection:text-red-900">
+<body class="text-slate-100 min-h-screen relative overflow-x-hidden pb-12">
+    <div class="stars absolute inset-0 pointer-events-none z-0"></div>
 
-    <nav class="sticky top-0 z-50 bg-stone-900 text-stone-100 py-4 shadow-md">
-        <div class="container mx-auto px-4 flex flex-col sm:flex-row justify-between items-center">
-            <div class="font-bold text-xl tracking-wider mb-2 sm:mb-0">
-                <span class="text-red-600">SW</span> ARCHÍVUM
-            </div>
-            <div class="flex space-x-6 text-sm font-semibold">
-                <a href="#attekintes" class="hover:text-red-500 transition-colors">Áttekintés</a>
-                <a href="#tartalom" class="hover:text-red-500 transition-colors">Lemezek Tartalma</a>
-                <a href="#technikai" class="hover:text-red-500 transition-colors">Technikai Adatok</a>
-            </div>
-        </div>
-    </nav>
-
-    <header class="bg-white border-b border-stone-200 py-16">
-        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-12 items-center">
-            <div class="md:col-span-2 space-y-6">
-                <div class="inline-block px-3 py-1 bg-red-100 text-red-800 font-bold rounded-full text-sm tracking-wide">
-                    2005-ös Házimozi Megjelenés
+    <!-- MAIN GRID CONTAINER -->
+    <main class="relative z-10 max-w-7xl mx-auto px-4 pt-6 md:pt-10">
+        
+        <!-- HEADER / ARCHIVE BADGE -->
+        <header class="mb-8 border-b border-slate-800/80 pb-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div>
+                <div class="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/30 text-amber-400 px-3 py-1 rounded-full text-xs font-semibold mb-3">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    WAYBACK MACHINE ARCHÍVUM: 2005. DECEMBER 1.
                 </div>
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-stone-900 leading-tight">
-                    Star Wars III. rész <br>
-                    <span class="text-red-800">A Sith-ek bosszúja</span>
+                <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-red-500 via-slate-100 to-cyan-400 font-tech">
+                    STAR WARS III. RÉSZ
                 </h1>
-                <p class="text-xl text-stone-600 leading-relaxed max-w-2xl">
-                    Három év telt el a klónháborúk kitörése óta. A klónok és a szeparatisták közötti harc az egész galaxisra kiterjedt. Anakin Skywalker válaszút elé kerül: hű marad a Jedi Rendhez, vagy enged a sötét oldal csábításának.
-                </p>
+                <p class="text-sm text-slate-400 mt-1">A Sith-ek bosszúja — Hivatalos Hazai DVD Promóciós Portál</p>
             </div>
-            <div class="flex justify-center md:justify-end">
-                <img src="https://images.static-bluray.com/movies/dvdcovers/292327_front.jpg" alt="A Sith-ek bosszúja DVD borító" class="rounded-xl shadow-2xl max-w-xs w-full object-cover transition-transform duration-500">
+            
+            <div class="flex items-center gap-4 bg-slate-900/60 p-3 rounded-lg border border-slate-800 backdrop-blur-sm">
+                <div class="text-right">
+                    <div class="text-xs text-slate-400 uppercase tracking-widest">Akciós Ár</div>
+                    <div class="text-2xl font-bold text-emerald-400 font-tech">3 990 Ft</div>
+                    <div class="text-xs text-slate-500 line-through">Eredeti ár: 4 990 Ft</div>
+                </div>
+                <button onclick="scrollToRegister()" class="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white font-bold py-2 px-4 rounded text-sm tracking-wider transition-all shadow-lg shadow-red-900/30 font-tech">
+                    MEGRENDELÉS
+                </button>
             </div>
-        </div>
-    </header>
+        </header>
 
-    <main class="container mx-auto px-4 py-16 space-y-24">
-
-        <section id="attekintes" class="scroll-mt-24">
-            <div class="mb-8">
-                <h2 class="text-3xl font-bold text-stone-900 flex items-center gap-3">
-                    <span class="text-3xl">📊</span> Kiadási Áttekintés
-                </h2>
-                <p class="text-stone-600 mt-3 max-w-3xl leading-relaxed text-lg">
-                    Ez a szekció a DVD kiadás legfontosabb adatait foglalja össze. A panelek gyors betekintést nyújtanak a megjelenés alapvető paramétereibe, míg a gyűjtői érdekesség kontextusba helyezi a kiadványt a teljes trilógia viszonylatában.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-200 hover:shadow-md transition-shadow">
-                    <div class="text-sm text-stone-400 font-bold uppercase tracking-wider mb-1">Megjelenés</div>
-                    <div class="text-xl font-bold text-stone-800">2005. dec. 1.</div>
+        <!-- TOP ROW: MOVIE HERO & DVD INFO -->
+        <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
+            
+            <!-- DVD BOX ART & CORE INFOS -->
+            <div class="lg:col-span-4 flex flex-col items-center bg-slate-900/40 p-6 rounded-2xl border border-slate-800/80 backdrop-blur-md">
+                <div class="relative group">
+                    <!-- Glowing backdrops -->
+                    <div class="absolute -inset-1.5 bg-gradient-to-r from-red-600 to-cyan-500 rounded-lg blur opacity-30 group-hover:opacity-60 transition duration-1000 group-hover:duration-200"></div>
+                    <img 
+                        id="dvd-cover" 
+                        src="https://images.static-bluray.com/movies/dvdcovers/292327_front.jpg" 
+                        alt="Star Wars Episode III DVD Magyar Borító" 
+                        class="relative rounded-lg shadow-2xl w-64 md:w-72 object-cover"
+                        onerror="this.src='https://via.placeholder.com/300x420/0f172a/ffffff?text=Star+Wars+III+DVD'"
+                    />
                 </div>
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-200 hover:shadow-md transition-shadow">
-                    <div class="text-sm text-stone-400 font-bold uppercase tracking-wider mb-1">Kiadó</div>
-                    <div class="text-xl font-bold text-stone-800">20th Century Fox</div>
-                </div>
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-200 hover:shadow-md transition-shadow">
-                    <div class="text-sm text-stone-400 font-bold uppercase tracking-wider mb-1">Forgalmazó</div>
-                    <div class="text-xl font-bold text-stone-800">InterCom</div>
-                </div>
-                <div class="bg-white p-6 rounded-2xl shadow-sm border-red-200 border-2 hover:shadow-md transition-shadow">
-                    <div class="text-sm text-red-600 font-bold uppercase tracking-wider mb-1">Formátum</div>
-                    <div class="text-xl font-bold text-red-900">2 Lemezes DVD</div>
+                <div class="mt-6 w-full space-y-3 text-sm border-t border-slate-800/80 pt-4">
+                    <div class="flex justify-between"><span class="text-slate-400">Magyar cím</span><span class="font-semibold">III. rész – A Sith-ek bosszúja</span></div>
+                    <div class="flex justify-between"><span class="text-slate-400">Eredeti cím</span><span class="font-semibold text-slate-300">Episode III – Revenge of the Sith</span></div>
+                    <div class="flex justify-between"><span class="text-slate-400">DVD Megjelenés</span><span class="font-semibold text-cyan-400 font-tech">2005. december 1.</span></div>
+                    <div class="flex justify-between"><span class="text-slate-400">Forgalmazó</span><span class="font-semibold text-red-400">InterCom Rt.</span></div>
+                    <div class="flex justify-between items-center"><span class="text-slate-400">Korhatár</span><span class="bg-yellow-500 text-slate-950 font-bold px-2 py-0.5 rounded-full text-xs font-tech">12</span></div>
                 </div>
             </div>
 
-            <div class="bg-stone-800 text-stone-100 p-8 rounded-2xl shadow-lg flex flex-col md:flex-row gap-6 items-start">
-                <div class="text-5xl">💡</div>
-                <div>
-                    <h3 class="text-xl font-bold mb-2 text-stone-50">Gyűjtői Érdekesség</h3>
-                    <p class="text-stone-300 leading-relaxed">
-                        A magyarországi kiadás a nemzetközi premierekhez igazodva, az InterCom gondozásában jelent meg. A rajongók számára különleges élményt jelentett, hogy a DVD-menürendszer is követte az előző két rész (Baljós árnyak, A klónok támadása) stílusát, így a teljes trilógia egységes polcképet alkotott a gyűjteményekben.
+            <!-- INTERACTIVE DVD SIMULATOR -->
+            <div class="lg:col-span-8 flex flex-col">
+                <div class="bg-gradient-to-r from-slate-900 via-slate-950 to-slate-900 p-4 rounded-t-2xl border-t border-l border-r border-slate-800 flex justify-between items-center">
+                    <div class="flex items-center gap-2">
+                        <span class="w-3 h-3 rounded-full bg-red-500 animate-pulse"></span>
+                        <h2 class="text-sm font-bold tracking-wider font-tech text-slate-300 uppercase">Interactive DVD Simulator v1.0</h2>
+                    </div>
+                    <div class="flex gap-2 text-xs">
+                        <button onclick="switchDisc(1)" id="btn-disc1" class="px-3 py-1 rounded bg-red-600 text-white font-bold transition">1. LEMEZ</button>
+                        <button onclick="switchDisc(2)" id="btn-disc2" class="px-3 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 transition">2. LEMEZ</button>
+                    </div>
+                </div>
+
+                <!-- MAIN TV SCREEN AND REMOTE CONTROL INTERACTION -->
+                <div class="grid grid-cols-1 md:grid-cols-12 bg-slate-950 border-b border-l border-r border-slate-800 rounded-b-2xl overflow-hidden shadow-2xl">
+                    
+                    <!-- VIRTUAL DISPLAY (CRT SCREEN SIMULATION) -->
+                    <div class="md:col-span-8 relative aspect-[4/3] bg-black flex flex-col justify-between overflow-hidden">
+                        <!-- Scanline Effect Overlays -->
+                        <div class="scanlines absolute inset-0 pointer-events-none z-30 opacity-45"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none z-20"></div>
+                        
+                        <!-- Screen Header Status -->
+                        <div class="z-20 p-4 flex justify-between items-start font-tech text-xs tracking-wider">
+                            <div class="text-amber-500/80 bg-black/60 px-2 py-1 rounded border border-amber-500/20" id="hud-disc-status">
+                                DISC 1 LOADED
+                            </div>
+                            <div class="text-cyan-400/80 bg-black/60 px-2 py-1 rounded border border-cyan-500/20" id="hud-track-time">
+                                CHAPTER: 01 / 50
+                            </div>
+                        </div>
+
+                        <!-- DYNAMIC SCREEN CONTENT -->
+                        <div class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center z-10" id="dvd-screen-content">
+                            <!-- Populated by JS -->
+                        </div>
+
+                        <!-- Interactive Guide / Hint Bar at bottom of screen -->
+                        <div class="z-20 p-3 bg-black/80 border-t border-slate-900 flex justify-between items-center text-[11px] text-slate-500">
+                            <span id="screen-hint">Súgó: Navigálj a távirányító nyilaival vagy számaival!</span>
+                            <span class="font-tech text-amber-500/60" id="easter-egg-clue">Easter Egg: 1138 a Hangmenüben?</span>
+                        </div>
+                    </div>
+
+                    <!-- DVD PLAYER REMOTE CONTROL -->
+                    <div class="md:col-span-4 bg-gradient-to-b from-slate-900 to-slate-950 p-6 flex flex-col items-center justify-between border-t md:border-t-0 md:border-l border-slate-800">
+                        <div class="text-center mb-4">
+                            <span class="text-[10px] uppercase tracking-widest text-slate-500 block font-tech">FOX-INTERCOM</span>
+                            <span class="text-xs text-slate-400 font-bold">VIRTUAL REMOTE</span>
+                        </div>
+
+                        <!-- Remote Control Keypad -->
+                        <div class="grid grid-cols-3 gap-2 w-full max-w-[200px]">
+                            <!-- Navigation Keys -->
+                            <div></div>
+                            <button onclick="handleRemoteAction('UP')" class="bg-slate-800 hover:bg-slate-700 active:bg-red-600 text-slate-300 p-3 rounded-full flex items-center justify-center transition focus:outline-none" title="Fel">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
+                            </button>
+                            <div></div>
+
+                            <button onclick="handleRemoteAction('LEFT')" class="bg-slate-800 hover:bg-slate-700 active:bg-red-600 text-slate-300 p-3 rounded-full flex items-center justify-center transition focus:outline-none" title="Bal">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                            </button>
+                            <button onclick="handleRemoteAction('ENTER')" class="bg-red-600 hover:bg-red-500 active:bg-red-700 text-white font-bold p-3 rounded-full flex items-center justify-center text-xs font-tech transition shadow-md shadow-red-900/40 focus:outline-none" title="Kiválaszt / Enter">
+                                OK
+                            </button>
+                            <button onclick="handleRemoteAction('RIGHT')" class="bg-slate-800 hover:bg-slate-700 active:bg-red-600 text-slate-300 p-3 rounded-full flex items-center justify-center transition focus:outline-none" title="Jobb">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                            </button>
+
+                            <div></div>
+                            <button onclick="handleRemoteAction('DOWN')" class="bg-slate-800 hover:bg-slate-700 active:bg-red-600 text-slate-300 p-3 rounded-full flex items-center justify-center transition focus:outline-none" title="Le">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </button>
+                            <div></div>
+                        </div>
+
+                        <!-- Number pad for code entries -->
+                        <div class="mt-6 pt-6 border-t border-slate-800 w-full">
+                            <div class="grid grid-cols-3 gap-2 w-full max-w-[180px] mx-auto text-xs">
+                                <button onclick="handleRemoteAction('NUM', 1)" class="bg-slate-800 hover:bg-slate-700 active:bg-cyan-500 active:text-slate-950 p-2 rounded text-slate-300 font-tech">1</button>
+                                <button onclick="handleRemoteAction('NUM', 2)" class="bg-slate-800 hover:bg-slate-700 active:bg-cyan-500 active:text-slate-950 p-2 rounded text-slate-300 font-tech">2</button>
+                                <button onclick="handleRemoteAction('NUM', 3)" class="bg-slate-800 hover:bg-slate-700 active:bg-cyan-500 active:text-slate-950 p-2 rounded text-slate-300 font-tech">3</button>
+                                <button onclick="handleRemoteAction('NUM', 4)" class="bg-slate-800 hover:bg-slate-700 active:bg-cyan-500 active:text-slate-950 p-2 rounded text-slate-300 font-tech">4</button>
+                                <button onclick="handleRemoteAction('NUM', 5)" class="bg-slate-800 hover:bg-slate-700 active:bg-cyan-500 active:text-slate-950 p-2 rounded text-slate-300 font-tech">5</button>
+                                <button onclick="handleRemoteAction('NUM', 6)" class="bg-slate-800 hover:bg-slate-700 active:bg-cyan-500 active:text-slate-950 p-2 rounded text-slate-300 font-tech">6</button>
+                                <button onclick="handleRemoteAction('NUM', 7)" class="bg-slate-800 hover:bg-slate-700 active:bg-cyan-500 active:text-slate-950 p-2 rounded text-slate-300 font-tech">7</button>
+                                <button onclick="handleRemoteAction('NUM', 8)" class="bg-slate-800 hover:bg-slate-700 active:bg-cyan-500 active:text-slate-950 p-2 rounded text-slate-300 font-tech">8</button>
+                                <button onclick="handleRemoteAction('NUM', 9)" class="bg-slate-800 hover:bg-slate-700 active:bg-cyan-500 active:text-slate-950 p-2 rounded text-slate-300 font-tech">9</button>
+                                <button onclick="handleRemoteAction('10PLUS')" class="bg-amber-600/30 border border-amber-500/30 hover:bg-amber-500 hover:text-slate-950 p-2 rounded text-amber-300 font-tech font-bold" title="Easter egg kód indító">10+</button>
+                                <button onclick="handleRemoteAction('NUM', 0)" class="bg-slate-800 hover:bg-slate-700 active:bg-cyan-500 active:text-slate-950 p-2 rounded text-slate-300 font-tech">0</button>
+                                <button onclick="handleRemoteAction('CLEAR')" class="bg-slate-900 border border-slate-800 hover:bg-slate-800 p-2 rounded text-slate-400 font-tech">CLR</button>
+                            </div>
+                        </div>
+
+                        <!-- System audio toggle -->
+                        <div class="mt-4 flex items-center gap-2">
+                            <span class="text-[10px] text-slate-500 font-tech uppercase">Hanghatások:</span>
+                            <button id="btn-audio-toggle" onclick="toggleAudio()" class="text-xs text-emerald-400 font-bold bg-emerald-500/10 border border-emerald-500/30 px-2 py-0.5 rounded">BE</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+
+        <!-- MIDDLE ROW: TECHNICAL SPECIFICATIONS CARD GRID -->
+        <section class="mb-12">
+            <h3 class="text-2xl font-bold mb-6 font-tech text-transparent bg-clip-text bg-gradient-to-r from-slate-100 to-slate-400 border-b border-slate-800/80 pb-2">
+                📀 Részletes Lemezspecifikációk (Disc 1)
+            </h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- AUDIO SPEC -->
+                <div class="bg-slate-900/30 p-5 rounded-xl border border-slate-800/80 backdrop-blur-md hover:border-red-600/40 transition duration-300">
+                    <div class="w-10 h-10 bg-red-600/10 rounded-lg flex items-center justify-center mb-4 text-red-500">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path></svg>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2">Hangsávok</h4>
+                    <ul class="space-y-2 text-sm text-slate-300">
+                        <li class="flex justify-between border-b border-slate-800/40 pb-1">
+                            <span>Magyar</span><strong class="text-red-400">Dolby Digital 5.1 EX (Szinkron)</strong>
+                        </li>
+                        <li class="flex justify-between border-b border-slate-800/40 pb-1">
+                            <span>Angol</span><strong>Dolby Digital 5.1 EX</strong>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Orosz</span><strong>Dolby Digital 5.1 EX</strong>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- VIDEO SPEC -->
+                <div class="bg-slate-900/30 p-5 rounded-xl border border-slate-800/80 backdrop-blur-md hover:border-cyan-500/40 transition duration-300">
+                    <div class="w-10 h-10 bg-cyan-500/10 rounded-lg flex items-center justify-center mb-4 text-cyan-400">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"></path></svg>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2">Kép & Képarány</h4>
+                    <ul class="space-y-2 text-sm text-slate-300">
+                        <li class="flex justify-between border-b border-slate-800/40 pb-1">
+                            <span>Képarány</span><strong>16:9 Anamorf (2.35:1)</strong>
+                        </li>
+                        <li class="flex justify-between border-b border-slate-800/40 pb-1">
+                            <span>Transzfer</span><strong>Közvetlen Digitális Forrás</strong>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Minősítés</span><strong class="text-amber-400 font-tech">THX CERTIFIED</strong>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- SUBTITLES SPEC -->
+                <div class="bg-slate-900/30 p-5 rounded-xl border border-slate-800/80 backdrop-blur-md hover:border-amber-500/40 transition duration-300">
+                    <div class="w-10 h-10 bg-amber-500/10 rounded-lg flex items-center justify-center mb-4 text-amber-500">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2">Feliratok & Egyebek</h4>
+                    <p class="text-sm text-slate-400 mb-3">Tökéletes lokalizáció az egész régió számára.</p>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="px-2 py-1 bg-slate-800 rounded text-xs text-slate-300 font-semibold border border-slate-700">Magyar</span>
+                        <span class="px-2 py-1 bg-slate-800 rounded text-xs text-slate-300 border border-slate-700">Angol</span>
+                        <span class="px-2 py-1 bg-slate-800 rounded text-xs text-slate-300 border border-slate-700">Orosz</span>
+                        <span class="px-2 py-1 bg-slate-800 rounded text-xs text-slate-300 border border-slate-700">Észt</span>
+                        <span class="px-2 py-1 bg-slate-800 rounded text-xs text-slate-300 border border-slate-700">Román</span>
+                        <span class="px-2 py-1 bg-slate-800 rounded text-xs text-slate-300 border border-slate-700">Litván</span>
+                        <span class="px-2 py-1 bg-slate-800 rounded text-xs text-slate-300 border border-slate-700">Lett</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DETAILED EXTRAS SECTION (DISC 2) -->
+        <section class="mb-12 grid grid-cols-1 lg:grid-cols-12 gap-8">
+            
+            <!-- LEFT PANEL: EXTRAS CONTENT -->
+            <div class="lg:col-span-8 space-y-6">
+                <h3 class="text-2xl font-bold font-tech text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-slate-200 border-b border-slate-800/80 pb-2">
+                    💿 Az Extrák Birodalma (Disc 2)
+                </h3>
+                
+                <!-- WERKFILMEK -->
+                <div class="bg-slate-900/20 rounded-xl p-6 border border-slate-800/80 backdrop-blur-sm">
+                    <h4 class="text-xl font-bold mb-4 text-cyan-400 font-tech flex items-center gap-2">
+                        <span class="w-1.5 h-6 bg-cyan-500 rounded-full"></span>
+                        Hivatalos Werkfilmek
+                    </h4>
+                    <div class="space-y-4">
+                        <div class="border-l-2 border-slate-700 pl-4 py-1">
+                            <strong class="text-slate-200 block text-base">„Egy percen belül: Így készült a III. Rész” <span class="text-xs text-slate-500 font-normal">(kb. 79 perc)</span></strong>
+                            <p class="text-sm text-slate-400 mt-1">Az egyik legrészletesebb és legőszintébb dokumentumfilm, mely végigköveti azt az elképesztő logisztikai munkát, amivel a stáb egyetlen percnyi befejezett filmet hoz létre.</p>
+                        </div>
+                        <div class="border-l-2 border-slate-700 pl-4 py-1">
+                            <strong class="text-slate-200 block text-base">„A Kiválasztott” <span class="text-xs text-slate-500 font-normal">(kb. 15 perc)</span></strong>
+                            <p class="text-sm text-slate-400 mt-1">George Lucas és a stábtagok mélyreható elemzése Anakin Skywalker bukásáról, lelki vívódásairól és a fekete maszk és páncélzat megszületéséről.</p>
+                        </div>
+                        <div class="border-l-2 border-slate-700 pl-4 py-1">
+                            <strong class="text-slate-200 block text-base">„A harcosok útja” <span class="text-xs text-slate-500 font-normal">(kb. 11 perc)</span></strong>
+                            <p class="text-sm text-slate-400 mt-1">Pillantson be Hayden Christensen és Ewan McGregor hónapokig tartó fizikai tréningjébe Nick Gillard kardmester vezetésével, mellyel a filmtörténet legösszetettebb fénykardpárbaját alkották meg.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- KIMARADT JELENETEK EXPLORER -->
+                <div class="bg-slate-900/20 rounded-xl p-6 border border-slate-800/80 backdrop-blur-sm">
+                    <h4 class="text-xl font-bold mb-4 text-red-500 font-tech flex items-center gap-2">
+                        <span class="w-1.5 h-6 bg-red-600 rounded-full"></span>
+                        Kimaradt Jelenetek (Magyarázattal)
+                    </h4>
+                    <p class="text-sm text-slate-400 mb-4">Mind a 6 kimaradt jelenet teljesen befejezett vizuális effektekkel, valamint George Lucas és Rick McCallum opcionális audiokommentárjával tekinthető meg.</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-slate-950/80 p-3 rounded border border-slate-800/80 flex items-start gap-3">
+                            <span class="text-red-500 font-tech font-bold text-sm bg-red-500/10 px-2 py-1 rounded">01</span>
+                            <div>
+                                <strong class="text-sm block text-slate-200">Grievous megöli Shaa-Gi-t</strong>
+                                <span class="text-xs text-slate-500">Exkluzív Jedi haláljelenet a folyosón.</span>
+                            </div>
+                        </div>
+                        <div class="bg-slate-950/80 p-3 rounded border border-slate-800/80 flex items-start gap-3">
+                            <span class="text-red-500 font-tech font-bold text-sm bg-red-500/10 px-2 py-1 rounded">02</span>
+                            <div>
+                                <strong class="text-sm block text-slate-200">A lázadás magjai</strong>
+                                <span class="text-xs text-slate-500">Padmé, Bail Organa és Mon Mothma titkos ülése.</span>
+                            </div>
+                        </div>
+                        <div class="bg-slate-950/80 p-3 rounded border border-slate-800/80 flex items-start gap-3">
+                            <span class="text-red-500 font-tech font-bold text-sm bg-red-500/10 px-2 py-1 rounded">03</span>
+                            <div>
+                                <strong class="text-sm block text-slate-200">Katasztrófa a híd felett</strong>
+                                <span class="text-xs text-slate-500">Szökés a szellőzőcsatornán át.</span>
+                            </div>
+                        </div>
+                        <div class="bg-slate-950/80 p-3 rounded border border-slate-800/80 flex items-start gap-3">
+                            <span class="text-red-500 font-tech font-bold text-sm bg-red-500/10 px-2 py-1 rounded">04</span>
+                            <div>
+                                <strong class="text-sm block text-slate-200">Yoda a Dagobah-ra utazik</strong>
+                                <span class="text-xs text-slate-500">Fontos híd a klasszikus trilógia felé.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- RIGHT PANEL: INTERACTIVE FORM & CAMPAIGN DETAILS -->
+            <div class="lg:col-span-4 space-y-6">
+                
+                <!-- PROMO CAMPAIGN INFO -->
+                <div class="bg-gradient-to-br from-slate-900 to-slate-950 rounded-xl p-6 border border-slate-800">
+                    <h4 class="text-lg font-bold font-tech text-amber-400 mb-3">2005-ös DVD Érdekesség</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        A lemez extra PC-ROM szekciója tartalmazza a kultikus <strong>Star Wars Galaxies</strong> online szerepjáték (MMORPG) exkluzív magyar nyelvű kipróbálható demó változatát, asztali háttérképeket és weblinkeket!
                     </p>
                 </div>
-            </div>
-        </section>
 
-        <section id="tartalom" class="scroll-mt-24">
-            <div class="mb-8">
-                <h2 class="text-3xl font-bold text-stone-900 flex items-center gap-3">
-                    <span class="text-3xl">💽</span> Interaktív Lemez-Felfedező
-                </h2>
-                <p class="text-stone-600 mt-3 max-w-3xl leading-relaxed text-lg">
-                    Fedezze fel a kétlemezes kiadvány gazdag tartalmát! A gombok segítségével válthat a főfilmet tartalmazó első lemez és a hatalmas mennyiségű extrát felvonultató második lemez tartalmi bontása között. A vizuális grafikon megmutatja, milyen arányban oszlanak meg a különböző típusú anyagok a teljes kiadásban.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-                <div class="bg-white rounded-2xl shadow-sm border border-stone-200 overflow-hidden">
-                    <div class="flex border-b border-stone-200 bg-stone-50">
-                        <button id="btn-disc1" class="flex-1 py-4 px-6 font-bold text-center border-b-4 border-red-800 text-red-800 transition-colors bg-white">
-                            📀 1. Lemez: A Film
+                <!-- FOX CLUB REGISTRATION FORM -->
+                <div id="register-section" class="bg-slate-900/50 rounded-xl p-6 border border-slate-800/80 backdrop-blur-md relative overflow-hidden">
+                    <div class="absolute -right-12 -bottom-12 w-32 h-32 bg-red-600/10 rounded-full blur-2xl"></div>
+                    
+                    <h4 class="text-lg font-bold font-tech text-slate-200 mb-2">📬 Csatlakozz a Fox Mozi Klubhoz!</h4>
+                    <p class="text-xs text-slate-400 mb-4">Szeretnél elsőként értesülni a legfrissebb kiadványokról és nyereményjátékokról? Regisztrálj!</p>
+                    
+                    <!-- Simulating the 2005 registration -->
+                    <form id="mozi-klub-form" onsubmit="handleFormSubmit(event)" class="space-y-3">
+                        <div>
+                            <label class="block text-[11px] uppercase tracking-wider text-slate-400 mb-1 font-tech">Teljes név</label>
+                            <input type="text" required placeholder="Pl. Skywalker Anakin" class="w-full bg-slate-950 border border-slate-800 rounded px-3 py-2 text-sm focus:outline-none focus:border-red-500 text-slate-100 transition">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] uppercase tracking-wider text-slate-400 mb-1 font-tech">E-mail cím</label>
+                            <input type="email" required placeholder="pl. ani@eroforras.hu" class="w-full bg-slate-950 border border-slate-800 rounded px-3 py-2 text-sm focus:outline-none focus:border-red-500 text-slate-100 transition">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] uppercase tracking-wider text-slate-400 mb-1 font-tech">Postacím (opcionális)</label>
+                            <input type="text" placeholder="Irányítószám, Város, Utca..." class="w-full bg-slate-950 border border-slate-800 rounded px-3 py-2 text-sm focus:outline-none focus:border-red-500 text-slate-100 transition">
+                        </div>
+                        <div class="flex items-center gap-2 pt-2">
+                            <input type="checkbox" required id="terms" class="rounded bg-slate-950 border-slate-800 text-red-600 focus:ring-0">
+                            <label for="terms" class="text-[10px] text-slate-400 leading-none">Elfogadom az InterCom adatkezelési szabályzatát.</label>
+                        </div>
+                        
+                        <button type="submit" class="w-full mt-2 bg-slate-800 hover:bg-slate-700 text-white font-bold py-2 px-4 rounded text-xs tracking-widest font-tech transition border border-slate-700">
+                            KÜLDÉS / REGISZTRÁCIÓ
                         </button>
-                        <button id="btn-disc2" class="flex-1 py-4 px-6 font-bold text-center border-b-4 border-transparent text-stone-500 hover:text-stone-800 transition-colors">
-                            🎁 2. Lemez: Extrák
-                        </button>
+                    </form>
+
+                    <!-- Success Modal (Hidden by default) -->
+                    <div id="form-success-box" class="hidden absolute inset-0 bg-slate-950/95 flex flex-col items-center justify-center text-center p-6 transition-all duration-300">
+                        <div class="w-12 h-12 bg-emerald-500/10 rounded-full flex items-center justify-center text-emerald-400 mb-3 border border-emerald-500/30">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                        <h5 class="font-tech text-base text-emerald-400 mb-2">Regisztráció Fogadva!</h5>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            Köszönjük! Adataidat rögzítettük a Fox Mozi Klub 2005-ös hazai adatbázisában. Hamarosan küldjük a hírlevelet!
+                        </p>
+                        <button onclick="resetForm()" class="mt-4 text-xs text-slate-500 underline hover:text-slate-300">Vissza</button>
                     </div>
 
-                    <div id="content-disc1" class="p-6 md:p-8 space-y-4">
-                        <div class="flex items-start gap-4 p-4 rounded-lg hover:bg-stone-50 transition-colors border border-transparent hover:border-stone-100">
-                            <div class="text-3xl">🎥</div>
-                            <div>
-                                <h4 class="font-bold text-stone-900 text-lg">A teljes mozifilm</h4>
-                                <p class="text-stone-600">Digitálisan felújított képpel és hanggal.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4 p-4 rounded-lg hover:bg-stone-50 transition-colors border border-transparent hover:border-stone-100">
-                            <div class="text-3xl">🎙️</div>
-                            <div>
-                                <h4 class="font-bold text-stone-900 text-lg">Audiokommentár</h4>
-                                <p class="text-stone-600">George Lucas, Rick McCallum, Rob Coleman, John Knoll és Roger Guyett közreműködésével.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="content-disc2" class="p-6 md:p-8 space-y-3 hidden h-96 overflow-y-auto">
-                        <div class="flex items-start gap-3 p-3 rounded-lg hover:bg-stone-50">
-                            <div class="text-2xl mt-1">⏱️</div>
-                            <div><strong class="text-stone-800">„Within a Minute”:</strong> <span class="text-stone-600">Egy nagyszabású dokumentumfilm a Mustafar-párbaj 1 percének elkészítéséről.</span></div>
-                        </div>
-                        <div class="flex items-start gap-3 p-3 rounded-lg hover:bg-stone-50">
-                            <div class="text-2xl mt-1">✂️</div>
-                            <div><strong class="text-stone-800">Kihagyott jelenetek:</strong> <span class="text-stone-600">Hat fontos jelenet, George Lucas és Rick McCallum bevezetőivel.</span></div>
-                        </div>
-                        <div class="flex items-start gap-3 p-3 rounded-lg hover:bg-stone-50">
-                            <div class="text-2xl mt-1">👤</div>
-                            <div><strong class="text-stone-800">„The Chosen One”:</strong> <span class="text-stone-600">Dokumentumfilm Anakin Skywalker Darth Vaderré válásáról.</span></div>
-                        </div>
-                        <div class="flex items-start gap-3 p-3 rounded-lg hover:bg-stone-50">
-                            <div class="text-2xl mt-1">⚔️</div>
-                            <div><strong class="text-stone-800">„It's All for Real”:</strong> <span class="text-stone-600">Betekintés a film hihetetlen kaszkadőrmutatványaiba és vívókoreográfiájába.</span></div>
-                        </div>
-                        <div class="flex items-start gap-3 p-3 rounded-lg hover:bg-stone-50">
-                            <div class="text-2xl mt-1">🌐</div>
-                            <div><strong class="text-stone-800">Web-dokumentumfilmek:</strong> <span class="text-stone-600">A hivatalos Star Wars weboldalon megjelent rövidfilmek.</span></div>
-                        </div>
-                        <div class="flex items-start gap-3 p-3 rounded-lg hover:bg-stone-50">
-                            <div class="text-2xl mt-1">🎵</div>
-                            <div><strong class="text-stone-800">Videoklip:</strong> <span class="text-stone-600">„A Hero Falls” – John Williams zenéjére.</span></div>
-                        </div>
-                        <div class="flex items-start gap-3 p-3 rounded-lg hover:bg-stone-50">
-                            <div class="text-2xl mt-1">🖼️</div>
-                            <div><strong class="text-stone-800">Galériák:</strong> <span class="text-stone-600">Produkciós fotók és plakáttervek gyűjteménye.</span></div>
-                        </div>
-                        <div class="flex items-start gap-3 p-3 rounded-lg hover:bg-stone-50">
-                            <div class="text-2xl mt-1">📺</div>
-                            <div><strong class="text-stone-800">Promóciók:</strong> <span class="text-stone-600">Előzetesek és tévéreklámok.</span></div>
-                        </div>
-                        <div class="flex items-start gap-3 p-3 rounded-lg hover:bg-stone-50">
-                            <div class="text-2xl mt-1">🎮</div>
-                            <div><strong class="text-stone-800">Demó és extra tartalom:</strong> <span class="text-stone-600">Battlefront II demó és Xbox-exkluzív tartalmak.</span></div>
-                        </div>
-                    </div>
                 </div>
 
-                <div class="bg-white rounded-2xl shadow-sm border border-stone-200 p-6 md:p-8 flex flex-col justify-center h-full">
-                    <h3 class="text-xl font-bold text-center text-stone-800 mb-6">A Kiadvány Tartalmi Megoszlása</h3>
-                    <div class="chart-container">
-                        <canvas id="contentDistributionChart"></canvas>
-                    </div>
-                    <p class="text-center text-sm text-stone-400 mt-4 font-semibold">Becsült arányok a teljes műsoridő és tartalom alapján</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="technikai" class="scroll-mt-24">
-            <div class="mb-8">
-                <h2 class="text-3xl font-bold text-stone-900 flex items-center gap-3">
-                    <span class="text-3xl">⚙️</span> Technikai és Gyűjtői Adatok
-                </h2>
-                <p class="text-stone-600 mt-3 max-w-3xl leading-relaxed text-lg">
-                    Tekintse át a lemezek technikai paramétereit az alábbi interaktív táblázatban. Ezek az adatok határozzák meg a kép- és hangminőséget, valamint a hozzáférhetőségi funkciókat a magyarországi kiadás esetén.
-                </p>
             </div>
 
-            <div class="bg-white rounded-2xl shadow-sm border border-stone-200 overflow-hidden">
-                <table class="w-full text-left border-collapse">
-                    <thead>
-                        <tr class="bg-stone-800 text-stone-100">
-                            <th class="p-5 font-bold uppercase tracking-wider text-sm w-1/3">Jellemző</th>
-                            <th class="p-5 font-bold uppercase tracking-wider text-sm">Részletek</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tech-specs-body">
-                    </tbody>
-                </table>
-            </div>
         </section>
+
+        <!-- FOOTER -->
+        <footer class="mt-12 pt-8 border-t border-slate-800 text-center text-xs text-slate-500 space-y-3">
+            <p>© 2005 Twentieth Century Fox Home Entertainment, Inc. és a Lucasfilm Ltd. Minden jog fenntartva.</p>
+            <p>Magyarországon forgalmazza az InterCom Rt. A weboldal az Internet Archive Wayback Machine 2005. december 1-jei állapotának rekonstrukciója.</p>
+            <div class="flex justify-center gap-4 text-slate-600">
+                <span>Eredeti URL: www.fox.hu/sith-dvd/</span>
+                <span>•</span>
+                <span>Szerver: Budapest, HU</span>
+            </div>
+        </footer>
 
     </main>
 
-    <footer class="bg-stone-900 text-stone-400 py-12 text-center">
-        <div class="container mx-auto px-4">
-            <p class="text-sm font-semibold tracking-wide">Épült a <i>Star Wars: A Sith-ek bosszúja</i> 2005-ös InterCom DVD adatlapja alapján.</p>
-        </div>
-    </footer>
-
+    <!-- INTERACTIVE SCRIPTS -->
     <script>
-        const btnDisc1 = document.getElementById('btn-disc1');
-        const btnDisc2 = document.getElementById('btn-disc2');
-        const contentDisc1 = document.getElementById('content-disc1');
-        const contentDisc2 = document.getElementById('content-disc2');
+        // Interactive DVD Simulator Logic
+        let activeDisc = 1;
+        let activeMenu = 'MAIN'; // MAIN, SCENES, LANGUAGES, EXTRAS
+        let selectedItemIndex = 0;
+        let menuItems = [];
+        let easterEggSequence = [];
+        let isYodaDancing = false;
+        let audioEffectsEnabled = true;
 
-        function switchTab(activeBtn, inactiveBtn, showContent, hideContent) {
-            activeBtn.classList.add('border-red-800', 'text-red-800', 'bg-white');
-            activeBtn.classList.remove('border-transparent', 'text-stone-500');
-            
-            inactiveBtn.classList.remove('border-red-800', 'text-red-800', 'bg-white');
-            inactiveBtn.classList.add('border-transparent', 'text-stone-500');
-            
-            showContent.classList.remove('hidden');
-            hideContent.classList.add('hidden');
+        // Web Audio API context for retro beeps & 2005 synth beat
+        let audioCtx = null;
+        let drumInterval = null;
+
+        // Sound effect generator
+        function playBeep(type) {
+            if (!audioEffectsEnabled) return;
+            try {
+                if (!audioCtx) {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                if (type === 'click') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(880, audioCtx.currentTime);
+                    gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.1);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.1);
+                } else if (type === 'unlock') {
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(440, audioCtx.currentTime);
+                    osc.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.3);
+                    gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.3);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.3);
+                } else if (type === 'error') {
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(150, audioCtx.currentTime);
+                    gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.2);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.2);
+                }
+            } catch (e) {
+                console.log('Audio Context Error:', e);
+            }
         }
 
-        btnDisc1.addEventListener('click', () => switchTab(btnDisc1, btnDisc2, contentDisc1, contentDisc2));
-        btnDisc2.addEventListener('click', () => switchTab(btnDisc2, btnDisc1, contentDisc2, contentDisc1));
+        // Retro Web Audio Beat Sequencer for Breakdancing Yoda
+        function startYodaBeat() {
+            if (!audioEffectsEnabled) return;
+            try {
+                if (!audioCtx) {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                
+                let step = 0;
+                const tempo = 125; // BPM
+                const stepTime = 60 / tempo / 2; // Eighth notes
 
-        const techData = [
-            { id: 'kep', icon: '📺', label: 'Képarány', value: '2.35:1 (16:9 anamorf)' },
-            { id: 'hang', icon: '🔊', label: 'Hangok', value: 'Magyar (DD 5.1 EX), Angol (DD 5.1 EX), Orosz (DD 5.1 EX)' },
-            { id: 'felirat', icon: '💬', label: 'Feliratok', value: 'magyar, angol, orosz, észt, lett, litván, román' },
-            { id: 'ido', icon: '⏳', label: 'Játékidő', value: 'kb. 134 perc' }
-        ];
+                // Simple synthesis loop for retro breakbeat
+                drumInterval = setInterval(() => {
+                    const time = audioCtx.currentTime;
 
-        const tbody = document.getElementById('tech-specs-body');
-        
-        techData.forEach((item, index) => {
-            const tr = document.createElement('tr');
-            tr.className = `border-b border-stone-100 transition duration-300 ease-in-out hover:bg-red-50 cursor-pointer ${index % 2 === 0 ? 'bg-white' : 'bg-stone-50'}`;
-            
-            tr.innerHTML = `
-                <td class="p-5 font-bold text-stone-700 flex items-center gap-3">
-                    <span class="text-xl">${item.icon}</span> ${item.label}
-                </td>
-                <td class="p-5 text-stone-600 font-medium">${item.value}</td>
-            `;
-            
-            tr.addEventListener('click', () => {
-                const rows = tbody.querySelectorAll('tr');
-                rows.forEach(r => r.classList.remove('bg-red-100'));
-                tr.classList.add('bg-red-100');
-            });
-            
-            tbody.appendChild(tr);
-        });
+                    // Kick Drum (Step 0, 4, 8, 12)
+                    if (step % 4 === 0) {
+                        const osc = audioCtx.createOscillator();
+                        const gain = audioCtx.createGain();
+                        osc.connect(gain);
+                        gain.connect(audioCtx.destination);
+                        osc.frequency.setValueAtTime(120, time);
+                        osc.frequency.exponentialRampToValueAtTime(0.01, time + 0.15);
+                        gain.gain.setValueAtTime(0.3, time);
+                        gain.gain.exponentialRampToValueAtTime(0.001, time + 0.15);
+                        osc.start(time);
+                        osc.stop(time + 0.15);
+                    }
 
-        const ctx = document.getElementById('contentDistributionChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: ['Főfilm (kb. 134p)', 'Hosszú Dokumentumfilmek', 'Audiokommentár', 'Rövid extrák / Képek / Promók'],
-                datasets: [{
-                    data: [45, 30, 15, 10], 
-                    backgroundColor: [
-                        '#991b1b', 
-                        '#292524', 
-                        '#57534e', 
-                        '#d6d3d1'  
-                    ],
-                    borderColor: '#ffffff',
-                    borderWidth: 3,
-                    hoverOffset: 6
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                cutout: '70%',
-                plugins: {
-                    legend: {
-                        position: 'bottom',
-                        labels: {
-                            padding: 20,
-                            font: {
-                                family: "'Inter', sans-serif",
-                                size: 13,
-                                weight: '600'
-                            },
-                            color: '#44403c'
+                    // Snare (Step 2, 6, 10, 14)
+                    if (step % 4 === 2) {
+                        // Noise snare approximation
+                        const bufferSize = audioCtx.sampleRate * 0.1;
+                        const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+                        const data = buffer.getChannelData(0);
+                        for (let i = 0; i < bufferSize; i++) {
+                            data[i] = Math.random() * 2 - 1;
                         }
-                    },
-                    tooltip: {
-                        backgroundColor: 'rgba(28, 25, 23, 0.9)',
-                        titleFont: { family: "'Inter', sans-serif", size: 14 },
-                        bodyFont: { family: "'Inter', sans-serif", size: 14 },
-                        padding: 12,
-                        cornerRadius: 8,
-                        callbacks: {
-                            label: function(context) {
-                                return ` ${context.label}: Becsült arány ${context.parsed}%`;
-                            }
+                        const noise = audioCtx.createBufferSource();
+                        noise.buffer = buffer;
+                        const noiseGain = audioCtx.createGain();
+                        noise.connect(noiseGain);
+                        noiseGain.connect(audioCtx.destination);
+                        noiseGain.gain.setValueAtTime(0.12, time);
+                        noiseGain.gain.exponentialRampToValueAtTime(0.01, time + 0.12);
+                        noise.start(time);
+                        noise.stop(time + 0.12);
+                    }
+
+                    // Bassline note on certain steps
+                    if (step % 3 === 0) {
+                        const notes = [55, 65.4, 73.4, 82.4];
+                        const noteFreq = notes[Math.floor(Math.random() * notes.length)];
+                        const osc = audioCtx.createOscillator();
+                        const gain = audioCtx.createGain();
+                        osc.type = 'sawtooth';
+                        osc.connect(gain);
+                        gain.connect(audioCtx.destination);
+                        osc.frequency.setValueAtTime(noteFreq, time);
+                        gain.gain.setValueAtTime(0.08, time);
+                        gain.gain.exponentialRampToValueAtTime(0.001, time + 0.2);
+                        osc.start(time);
+                        osc.stop(time + 0.2);
+                    }
+
+                    step = (step + 1) % 16;
+                }, stepTime * 1000);
+
+            } catch (e) {
+                console.log("Error playing Yoda theme beat:", e);
+            }
+        }
+
+        function stopYodaBeat() {
+            if (drumInterval) {
+                clearInterval(drumInterval);
+                drumInterval = null;
+            }
+        }
+
+        function toggleAudio() {
+            audioEffectsEnabled = !audioEffectsEnabled;
+            const btn = document.getElementById('btn-audio-toggle');
+            if (audioEffectsEnabled) {
+                btn.textContent = 'BE';
+                btn.className = 'text-xs text-emerald-400 font-bold bg-emerald-500/10 border border-emerald-500/30 px-2 py-0.5 rounded';
+                if (isYodaDancing) startYodaBeat();
+            } else {
+                btn.textContent = 'KI';
+                btn.className = 'text-xs text-rose-400 font-bold bg-rose-500/10 border border-rose-500/30 px-2 py-0.5 rounded';
+                stopYodaBeat();
+            }
+        }
+
+        // Disc Content Configurations
+        const Disc1Menus = {
+            'MAIN': {
+                title: '1. LEMEZ: SITH-EK BOSSZÚJA - FŐMENÜ',
+                hint: 'Válassz egy opciót és nyomj OK gombot.',
+                items: [
+                    { label: '🚀 JÁTÉK (FILM INDÍTÁSA)', action: 'PLAY_MOVIE' },
+                    { label: '🔊 AUDIO & HANG BEÁLLÍTÁSOK', action: 'GOTO_LANG' },
+                    { label: '🎞️ JELENETEK VÁLASZTÁSA', action: 'GOTO_SCENES' }
+                ]
+            },
+            'LANGUAGES': {
+                title: 'AUDIO / HANG BEÁLLÍTÁSOK',
+                hint: 'Hang kiválasztása. Próbáld ki a titkos kódot!',
+                items: [
+                    { label: '🇭🇺 MAGYAR DOLBY DIGITAL 5.1 EX', action: 'SET_LANG_HU' },
+                    { label: '🇬🇧 ANGOL DOLBY DIGITAL 5.1 EX', action: 'SET_LANG_EN' },
+                    { label: '🇷🇺 OROSZ DOLBY DIGITAL 5.1 EX', action: 'SET_LANG_RU' },
+                    { label: '↩️ VISSZA A FŐMENÜBE', action: 'GOTO_MAIN' }
+                ]
+            },
+            'SCENES': {
+                title: 'JELENETVÁLASZTÁS',
+                hint: 'Válassz fejezetet a lejátszáshoz.',
+                items: [
+                    { label: '1. Galaktikus Űrcsata Coruscant felett', action: 'PLAY_SCENE_1' },
+                    { label: '2. Grievous tábornok és a Jedi páros', action: 'PLAY_SCENE_2' },
+                    { label: '3. Mustafar: A fénykardok végzetes párbaja', action: 'PLAY_SCENE_3' },
+                    { label: '↩️ VISSZA A FŐMENÜBE', action: 'GOTO_MAIN' }
+                ]
+            }
+        };
+
+        const Disc2Menus = {
+            'MAIN': {
+                title: '2. LEMEZ: EXTRÁK FŐMENÜ',
+                hint: 'Lépj be az exkluzív galaktikus extrákba!',
+                items: [
+                    { label: '🎬 HIVATALOS WERKFILMEK', action: 'GOTO_WERK' },
+                    { label: '✂️ KIMARADT JELENETEK REPERTÓRIUMA', action: 'GOTO_DELETED' },
+                    { label: '🖥️ STAR WARS GALAXIES PC DEMO', action: 'GOTO_DEMO' }
+                ]
+            },
+            'WERK': {
+                title: 'WEREKFILMEK GYŰJTEMÉNYE',
+                hint: 'Részletes dokumentumfilmek George Lucas stábjával.',
+                items: [
+                    { label: '🎥 Egy percen belül: Így készült a III. rész', action: 'SHOW_INFO_WERK1' },
+                    { label: '👤 A Kiválasztott (Anakin átalakulása)', action: 'SHOW_INFO_WERK2' },
+                    { label: '⚔️ A harcosok útja (Kardvívás oktatás)', action: 'SHOW_INFO_WERK3' },
+                    { label: '↩️ VISSZA AZ EXTRÁK FŐMENÜBE', action: 'GOTO_MAIN' }
+                ]
+            },
+            'DELETED': {
+                title: 'KIMARADT JELENETEK LISTÁJA',
+                hint: 'Válassz ki egy kimaradt jelenetet a részletekért.',
+                items: [
+                    { label: '💔 Grievous tábornok megöli Shaa-Gi Jedit', action: 'SHOW_DELETED_1' },
+                    { label: '🌱 A lázadás magjai (Titkos politikai gyűlés)', action: 'SHOW_DELETED_2' },
+                    { label: '🪐 Yoda száműzetése a Dagobah bolygóra', action: 'SHOW_DELETED_3' },
+                    { label: '↩️ VISSZA AZ EXTRÁK FŐMENÜBE', action: 'GOTO_MAIN' }
+                ]
+            }
+        };
+
+        function switchDisc(discNum) {
+            playBeep('click');
+            activeDisc = discNum;
+            activeMenu = 'MAIN';
+            selectedItemIndex = 0;
+            isYodaDancing = false;
+            stopYodaBeat();
+            
+            // Toggle visual classes of loaded disc buttons
+            document.getElementById('btn-disc1').className = activeDisc === 1 ? 'px-3 py-1 rounded bg-red-600 text-white font-bold transition' : 'px-3 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 transition';
+            document.getElementById('btn-disc2').className = activeDisc === 2 ? 'px-3 py-1 rounded bg-red-600 text-white font-bold transition' : 'px-3 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 transition';
+
+            document.getElementById('hud-disc-status').textContent = `DISC ${activeDisc} LOADED`;
+            document.getElementById('hud-track-time').textContent = activeDisc === 1 ? 'CHAPTER: 01 / 50' : 'EXTRAS MASTER';
+            
+            renderScreen();
+        }
+
+        function getCurrentMenuData() {
+            return activeDisc === 1 ? Disc1Menus[activeMenu] : Disc2Menus[activeMenu];
+        }
+
+        // Core Renderer for the Virtual TV Screen
+        function renderScreen() {
+            const screen = document.getElementById('dvd-screen-content');
+            const hint = document.getElementById('screen-hint');
+            
+            if (isYodaDancing) {
+                renderYodaScreen();
+                return;
+            }
+
+            const menuData = getCurrentMenuData();
+            if (!menuData) return;
+
+            menuItems = menuData.items;
+            hint.textContent = `Súgó: ${menuData.hint}`;
+
+            // Build dynamic items list
+            let itemsHtml = menuItems.map((item, idx) => {
+                const isSelected = idx === selectedItemIndex;
+                return `
+                    <button onclick="selectMenuIndex(${idx}); executeSelectedAction();" class="w-full text-left py-2.5 px-4 rounded transition-all duration-150 flex items-center justify-between group ${
+                        isSelected 
+                        ? 'bg-gradient-to-r from-red-600 to-red-800 text-white font-bold shadow-lg shadow-red-900/40 border-l-4 border-red-400' 
+                        : 'bg-slate-900/60 hover:bg-slate-800/80 text-slate-300 border-l-4 border-transparent'
+                    }">
+                        <span class="flex items-center gap-2">
+                            ${isSelected ? '<span class="text-white">▶</span>' : '<span class="text-slate-600 group-hover:text-slate-400">○</span>'}
+                            ${item.label}
+                        </span>
+                        ${isSelected ? '<span class="text-xs font-tech text-red-200">ENTER</span>' : ''}
+                    </button>
+                `;
+            }).join('');
+
+            // Star Wars theme visual frame
+            screen.innerHTML = `
+                <div class="w-full h-full flex flex-col justify-between text-left p-2 screen-fade">
+                    <div class="mb-4">
+                        <span class="text-[10px] text-cyan-400 font-tech tracking-widest block uppercase">Lucasfilm Ltd. DVD Edition</span>
+                        <h3 class="text-lg font-bold font-tech text-white border-b border-slate-900 pb-1">${menuData.title}</h3>
+                    </div>
+                    <div class="space-y-2 flex-grow flex flex-col justify-center">
+                        ${itemsHtml}
+                    </div>
+                    <div class="mt-4 text-[9px] text-slate-500 text-right">
+                        © 2005 20th Century Fox & InterCom.
+                    </div>
+                </div>
+            `;
+        }
+
+        function selectMenuIndex(idx) {
+            playBeep('click');
+            selectedItemIndex = idx;
+            renderScreen();
+        }
+
+        function handleRemoteAction(type, value = null) {
+            if (isYodaDancing) {
+                // If Yoda is dancing, any remote press stops the easter egg
+                stopEasterEgg();
+                return;
+            }
+
+            if (type === 'UP') {
+                playBeep('click');
+                selectedItemIndex = selectedItemIndex > 0 ? selectedItemIndex - 1 : menuItems.length - 1;
+                renderScreen();
+            } else if (type === 'DOWN') {
+                playBeep('click');
+                selectedItemIndex = selectedItemIndex < menuItems.length - 1 ? selectedItemIndex + 1 : 0;
+                renderScreen();
+            } else if (type === 'ENTER') {
+                executeSelectedAction();
+            } else if (type === '10PLUS') {
+                // Initiates Easter Egg Sequence if in Languages Submenu
+                if (activeDisc === 1 && activeMenu === 'LANGUAGES') {
+                    playBeep('unlock');
+                    easterEggSequence = ['10+'];
+                    document.getElementById('hud-track-time').textContent = 'CODE SEQUENCE ACTIVE';
+                    document.getElementById('screen-hint').textContent = 'Súgó: Írd be a számsort a távirányítón!';
+                } else {
+                    playBeep('error');
+                }
+            } else if (type === 'NUM') {
+                playBeep('click');
+                if (easterEggSequence.length > 0) {
+                    easterEggSequence.push(value);
+                    document.getElementById('hud-track-time').textContent = 'CODE: ' + easterEggSequence.slice(1).join(' ');
+                    
+                    // Verify the correct sequence: '10+', 1, 1, 3, 8
+                    const targetSequence = ['10+', 1, 1, 3, 8];
+                    
+                    // Check progress
+                    let match = true;
+                    for (let i = 0; i < easterEggSequence.length; i++) {
+                        if (easterEggSequence[i] !== targetSequence[i]) {
+                            match = false;
+                            break;
                         }
                     }
+
+                    if (!match) {
+                        // Failed input sequence
+                        playBeep('error');
+                        easterEggSequence = [];
+                        document.getElementById('hud-track-time').textContent = 'AUDIO / SETUP';
+                    } else if (easterEggSequence.length === targetSequence.length) {
+                        // Success! Trigger Easter Egg
+                        triggerYodaEasterEgg();
+                    }
+                }
+            } else if (type === 'CLEAR') {
+                playBeep('click');
+                easterEggSequence = [];
+                if (activeDisc === 1 && activeMenu === 'LANGUAGES') {
+                    document.getElementById('hud-track-time').textContent = 'AUDIO / SETUP';
                 }
             }
+        }
+
+        // Simulated action dispatcher
+        function executeSelectedAction() {
+            const currentItem = menuItems[selectedItemIndex];
+            if (!currentItem) return;
+
+            playBeep('click');
+
+            switch (currentItem.action) {
+                // NAVIGATION
+                case 'GOTO_MAIN':
+                    activeMenu = 'MAIN';
+                    selectedItemIndex = 0;
+                    renderScreen();
+                    break;
+                case 'GOTO_LANG':
+                    activeMenu = 'LANGUAGES';
+                    selectedItemIndex = 0;
+                    renderScreen();
+                    break;
+                case 'GOTO_SCENES':
+                    activeMenu = 'SCENES';
+                    selectedItemIndex = 0;
+                    renderScreen();
+                    break;
+                case 'GOTO_WERK':
+                    activeMenu = 'WERK';
+                    selectedItemIndex = 0;
+                    renderScreen();
+                    break;
+                case 'GOTO_DELETED':
+                    activeMenu = 'DELETED';
+                    selectedItemIndex = 0;
+                    renderScreen();
+                    break;
+
+                // SPECIAL SIMULATIONS
+                case 'PLAY_MOVIE':
+                    renderSimulatedPlay("A Sith-ek bosszúja", "A film elindítása sikeresen szimulálva! Élvezd a THX minőségű digitális moziélményt.");
+                    break;
+                case 'SET_LANG_HU':
+                    renderSimulatedPlay("Magyar Szinkron EX", "Magyar Dolby Digital 5.1 EX beállítva alapértelmezettként. 'Úgy látszik, ez a harc eldőlt!'");
+                    break;
+                case 'SET_LANG_EN':
+                    renderSimulatedPlay("Angol DD 5.1 EX", "Angol eredeti hangsáv kiválasztva. “May the Force be with you.”");
+                    break;
+                case 'SET_LANG_RU':
+                    renderSimulatedPlay("Orosz DD 5.1 EX", "Orosz hangsáv beállítva.");
+                    break;
+                case 'PLAY_SCENE_1':
+                    renderSimulatedPlay("Fejezet 1", "A Coruscant feletti legendás csata és űrhajós mentőakció lejátszása folyamatban.");
+                    break;
+                case 'PLAY_SCENE_2':
+                    renderSimulatedPlay("Fejezet 2", "Infiltráció Grievous tábornok lázadó vezérhajójára.");
+                    break;
+                case 'PLAY_SCENE_3':
+                    renderSimulatedPlay("Fejezet 3", "Mustafar: Gigászi fénykardpárbaj Obi-Wan Kenobi és Anakin Skywalker között.");
+                    break;
+                case 'SHOW_INFO_WERK1':
+                    renderSimulatedPlay("Werkfilm részletei", "Az 'Egy percen belül: Így készült a III. Rész' werkfilm (79 perc) bemutatja az elképesztően precíz heti Lucasfilm koordinációs munkát.");
+                    break;
+                case 'SHOW_INFO_WERK2':
+                    renderSimulatedPlay("Anakin bukása", "Videóösszefoglaló Hayden Christensen fizikai és lelkivilágbeli transzformációjáról Darth Vader ikonikus páncélzatába.");
+                    break;
+                case 'SHOW_INFO_WERK3':
+                    renderSimulatedPlay("Kardvívás", "Ismerd meg Nick Gillard kardmester által tervezett gyors mozdulatsorokat és a színészek embert próbáló fizikai felkészülését.");
+                    break;
+                case 'SHOW_DELETED_1':
+                    renderSimulatedPlay("Kimaradt jelenet 1", "Shaa-Gi Jedi lovag tragikus megölése Grievous tábornok fogságában (Teljesen renderelt vizuális effektusokkal).");
+                    break;
+                case 'SHOW_DELETED_2':
+                    renderSimulatedPlay("Kimaradt jelenet 2", "A lázadás magjai: Padmé Amidala, Bail Organa és Mon Mothma titkos politikai tárgyalásai, melyek megalapozzák a jövőbeli Lázadó Szövetséget.");
+                    break;
+                case 'SHOW_DELETED_3':
+                    renderSimulatedPlay("Kimaradt jelenet 3", "Yoda mester megérkezése és önkéntes száműzetése a távoli, mocsaras Dagobah bolygóra.");
+                    break;
+                case 'GOTO_DEMO':
+                    renderSimulatedPlay("PC-ROM Galaxies Demo", "Helyezd ezt a lemezt a PC-dbe a Star Wars Galaxies online szerepjáték kipróbálható verziójának telepítéséhez!");
+                    break;
+            }
+        }
+
+        // Simulated screen loader
+        function renderSimulatedPlay(title, description) {
+            const screen = document.getElementById('dvd-screen-content');
+            screen.innerHTML = `
+                <div class="w-full h-full flex flex-col justify-between text-left p-4 screen-fade bg-black/90">
+                    <div>
+                        <div class="flex items-center justify-between border-b border-red-600 pb-2 mb-3">
+                            <h4 class="text-sm font-bold font-tech text-red-500 uppercase tracking-widest">▶ LEJÁTSZÁS SZIMULÁCIÓ</h4>
+                            <span class="animate-pulse text-xs text-red-500 font-tech">● LIVE</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">${title}</h3>
+                        <p class="text-xs text-slate-300 leading-relaxed">${description}</p>
+                    </div>
+                    <div class="flex justify-between items-center mt-4">
+                        <button onclick="renderScreen()" class="px-3 py-1 bg-slate-800 hover:bg-slate-700 text-white rounded text-[10px] font-tech transition">VISSZA A MENÜBE</button>
+                        <span class="text-[9px] text-slate-500 font-tech">00:04:12 / 02:14:00</span>
+                    </div>
+                </div>
+            `;
+        }
+
+        // TRIGGER THE LEGENDARY BREAKDANCE EASTER EGG!
+        function triggerYodaEasterEgg() {
+            playBeep('unlock');
+            isYodaDancing = true;
+            easterEggSequence = [];
+            document.getElementById('hud-track-time').textContent = 'EASTER EGG UNLOCKED!';
+            document.getElementById('hud-disc-status').textContent = 'YODA MODE ACTIVATED';
+            
+            // Trigger Synth Beat!
+            startYodaBeat();
+            renderScreen();
+        }
+
+        function stopEasterEgg() {
+            playBeep('click');
+            isYodaDancing = false;
+            stopYodaBeat();
+            document.getElementById('hud-track-time').textContent = 'AUDIO / SETUP';
+            document.getElementById('hud-disc-status').textContent = 'DISC 1 LOADED';
+            renderScreen();
+        }
+
+        // Custom animated Yoda SVG + disco elements
+        function renderYodaScreen() {
+            const screen = document.getElementById('dvd-screen-content');
+            screen.innerHTML = `
+                <div class="absolute inset-0 bg-slate-950 overflow-hidden flex flex-col items-center justify-between p-4 z-10">
+                    <!-- Spotlights -->
+                    <div class="absolute top-0 left-1/4 w-32 h-64 bg-red-600/20 spot-r blur-xl pointer-events-none"></div>
+                    <div class="absolute top-0 right-1/4 w-32 h-64 bg-cyan-500/20 spot-c blur-xl pointer-events-none"></div>
+
+                    <!-- Glowing neon border -->
+                    <div class="absolute inset-2 border border-dashed border-red-500/40 rounded animate-pulse"></div>
+
+                    <!-- Header -->
+                    <div class="z-10 text-center">
+                        <h4 class="text-xs font-tech text-cyan-400 tracking-widest uppercase animate-bounce">A SITH-EK BOSSZÚJA — TITKOS EXTRA</h4>
+                        <h3 class="text-sm font-bold text-slate-200">YODA BREAKDANCE CLIPS (1138)</h3>
+                    </div>
+
+                    <!-- Yoda Dance Animation container using vector inline SVG -->
+                    <div class="w-32 h-32 flex items-center justify-center relative">
+                        <svg viewBox="0 0 100 100" class="w-full h-full">
+                            <!-- Disco Lights / Floor -->
+                            <ellipse cx="50" cy="85" rx="35" ry="8" fill="#1e1b4b" opacity="0.6"/>
+                            <ellipse cx="50" cy="85" rx="20" ry="4" fill="#ef4444" opacity="0.4" class="animate-ping"/>
+                            
+                            <!-- Dancing Yoda Body Group -->
+                            <g class="yoda-body" transform="translate(0, 5)">
+                                <!-- Ears -->
+                                <path d="M 15 35 Q 35 42 40 45 L 35 48 Z" fill="#65a30d" />
+                                <path d="M 85 35 Q 65 42 60 45 L 65 48 Z" fill="#65a30d" />
+                                
+                                <!-- Head -->
+                                <ellipse cx="50" cy="45" rx="15" ry="12" fill="#65a30d" />
+                                <ellipse cx="50" cy="40" rx="11" ry="3" fill="#4d7c0f" />
+                                
+                                <!-- Big eyes -->
+                                <ellipse cx="44" cy="45" rx="3" ry="2" fill="#ffffff" />
+                                <circle cx="44" cy="45" r="1.5" fill="#000000" />
+                                <ellipse cx="56" cy="45" rx="3" ry="2" fill="#ffffff" />
+                                <circle cx="56" cy="45" r="1.5" fill="#000000" />
+                                
+                                <!-- Jedi Robe -->
+                                <path d="M 38 55 L 62 55 L 68 85 L 32 85 Z" fill="#78350f" />
+                                <path d="M 43 55 L 57 55 L 60 85 L 40 85 Z" fill="#f59e0b" />
+                                
+                                <!-- Left Arm waving -->
+                                <g class="yoda-arm-l">
+                                    <path d="M 38 58 L 22 52 L 20 58 L 38 64 Z" fill="#65a30d" />
+                                </g>
+                                
+                                <!-- Right Arm waving -->
+                                <g class="yoda-arm-r">
+                                    <path d="M 62 58 L 78 52 L 80 58 L 62 64 Z" fill="#65a30d" />
+                                </g>
+                                
+                                <!-- Feet/Legs -->
+                                <g class="yoda-legs">
+                                    <rect x="35" y="84" width="8" height="6" rx="2" fill="#65a30d" />
+                                    <rect x="57" y="84" width="8" height="6" rx="2" fill="#65a30d" />
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+
+                    <!-- Footer controls -->
+                    <div class="z-10 flex flex-col items-center gap-1">
+                        <button onclick="stopEasterEgg()" class="px-4 py-1.5 bg-red-600 hover:bg-red-500 text-white font-bold rounded text-[10px] font-tech tracking-wider uppercase transition shadow shadow-red-900/50">
+                            STOP DANCE
+                        </button>
+                        <span class="text-[9px] text-slate-500">Kattints a távirányító bármely gombjára a kilépéshez!</span>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Support keyboard interaction for power-user navigation
+        window.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowUp' || e.key === 'w') {
+                e.preventDefault();
+                handleRemoteAction('UP');
+            } else if (e.key === 'ArrowDown' || e.key === 's') {
+                e.preventDefault();
+                handleRemoteAction('DOWN');
+            } else if (e.key === 'ArrowLeft' || e.key === 'a') {
+                e.preventDefault();
+                handleRemoteAction('LEFT');
+            } else if (e.key === 'ArrowRight' || e.key === 'd') {
+                e.preventDefault();
+                handleRemoteAction('RIGHT');
+            } else if (e.key === 'Enter') {
+                e.preventDefault();
+                handleRemoteAction('ENTER');
+            }
         });
+
+        // 2005 Fan Club Form Handling
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            playBeep('unlock');
+            document.getElementById('form-success-box').classList.remove('hidden');
+        }
+
+        function resetForm() {
+            playBeep('click');
+            document.getElementById('mozi-klub-form').reset();
+            document.getElementById('form-success-box').classList.add('hidden');
+        }
+
+        function scrollToRegister() {
+            document.getElementById('register-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Initial setup on Window Load
+        window.onload = function() {
+            renderScreen();
+        };
     </script>
 </body>
 </html>
