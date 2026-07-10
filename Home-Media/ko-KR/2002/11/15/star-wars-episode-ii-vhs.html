@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스타워즈 에피소드 2: 클론의 습격 - VHS 출시</title>
+    <style>
+        :root {
+            --space-black: #050508;
+            --star-gold: #FFE81F;
+            --clon-blue: #4287f5;
+            --text-light: #F0F4F8;
+            --panel-bg: rgba(20, 24, 35, 0.85);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--space-black);
+            color: var(--text-light);
+            font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+                radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px);
+            background-size: 550px 550px, 350px 350px;
+            background-position: 0 0, 40px 60px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            border-bottom: 3px solid var(--star-gold);
+            background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(20,24,35,0.6) 100%);
+        }
+
+        .release-date {
+            color: var(--star-gold);
+            font-size: 1.2rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #fff;
+            text-shadow: 0 0 10px var(--clon-blue);
+            margin-bottom: 5px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--star-gold);
+            margin-bottom: 15px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .vhs-mockup {
+            background: #111;
+            border: 5px solid #222;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(66, 135, 245, 0.3);
+            text-align: center;
+            height: fit-content;
+        }
+
+        .vhs-spine {
+            background: linear-gradient(90deg, #151515 0%, #252525 50%, #151515 100%);
+            height: 380px;
+            border-radius: 4px;
+            position: relative;
+            border: 2px solid #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 20px 10px;
+            color: #fff;
+        }
+
+        .vhs-logo {
+            font-weight: bold;
+            font-size: 0.8rem;
+            border: 1px solid #fff;
+            padding: 2px;
+            letter-spacing: 1px;
+        }
+
+        .vhs-title {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            font-size: 1.4rem;
+            letter-spacing: 4px;
+            color: var(--star-gold);
+            margin: auto;
+        }
+
+        .details-panel {
+            background: var(--panel-bg);
+            border: 1px solid #334466;
+            border-radius: 8px;
+            padding: 30px;
+            backdrop-filter: blur(5px);
+        }
+
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .info-table th, .info-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #223355;
+        }
+
+        .info-table th {
+            color: var(--star-gold);
+            width: 35%;
+            font-weight: 600;
+        }
+
+        .distributor-tag {
+            margin-top: 30px;
+            padding: 15px;
+            background: rgba(255, 232, 31, 0.1);
+            border-left: 4px solid var(--star-gold);
+            font-size: 0.95rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            font-size: 0.85rem;
+            color: #666;
+            border-top: 1px solid #222;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="release-date" id="releaseDate">LOADING...</div>
+        <h1>스타워즈 에피소드 2: 클론의 습격</h1>
+        <h2>비디오카세트(VHS) 국내 출시 안내</h2>
+    </header>
+
+    <div class="container">
+        <div class="vhs-mockup">
+            <div class="vhs-spine">
+                <div class="vhs-logo">VHS Hi-Fi Stereo</div>
+                <div class="vhs-title">스타워즈: 클론의 습격</div>
+                <div style="font-size: 0.7rem; color: #aaa;">20th Century Fox</div>
+            </div>
+            <p style="margin-top: 15px; font-size: 0.85rem; color: #888;">[국내 정발 VHS 케이스 측면 디자인]</p>
+        </div>
+
+        <div class="details-panel">
+            <h3>발매 정보 (Release Metadata)</h3>
+            <table class="info-table" id="infoTable">
+                </table>
+
+            <div class="distributor-tag">
+                <strong>공식 출시 및 공급:</strong> 20세기 폭스 홈 엔터테인먼트 코리아 (20th Century Fox Home Entertainment Korea)
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2002 Lucasfilm Ltd. & TM. All Rights Reserved. Manufactured and Distributed by 20th Century Fox Home Entertainment.</p>
+    </footer>
+
+    <script>
+        // 2002년 11월 15일 기준의 한국어 데이터 구조 (JSON 데이터 모델)
+        const vhsReleaseData = {
+            "releaseDateStr": "2002년 11월 15일 (금)",
+            "titleKr": "스타워즈 에피소드 2: 클론의 습격",
+            "titleEn": "Star Wars: Episode II – Attack of the Clones",
+            "format": "비디오카세트 (VHS Tape)",
+            "distributor": "20세기 폭스 홈 엔터테인먼트",
+            "audio": "한국어 자막 / 영어 음성 (Hi-Fi Stereo)",
+            "videoRatio": "4:3 레터박스 (골드 시리즈 특선)",
+            "runningTime": "142분",
+            "rating": "전체 관람가",
+            "price": "22,000원"
+        };
+
+        // DOM 조작 및 데이터 바인딩
+        document.getElementById('releaseDate').innerText = `국내 출시일: ${vhsReleaseData.releaseDateStr}`;
+
+        const table = document.getElementById('infoTable');
+        const labels = {
+            "titleKr": "한국어 명칭",
+            "titleEn": "원제",
+            "format": "미디어 형식",
+            "audio": "오디오/자막",
+            "videoRatio": "화면비율",
+            "runningTime": "상영 시간",
+            "rating": "관람 등급",
+            "price": "권장 소비자 가격"
+        };
+
+        Object.keys(labels).forEach(key => {
+            const row = document.createElement('tr');
+            
+            const th = document.createElement('th');
+            th.innerText = labels[key];
+            
+            const td = document.createElement('td');
+            td.innerText = vhsReleaseData[key];
+            
+            row.appendChild(th);
+            row.appendChild(td);
+            table.appendChild(row);
+        });
+    </script>
+</body>
+</html>
