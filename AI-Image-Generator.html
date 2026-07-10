@@ -3,319 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Image Generator</title>
+    <title>AI Image-to-Image Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        :root {
-            --bg-color: #0f172a;
-            --container-bg: #1e293b;
-            --text-color: #f8fafc;
-            --accent-color: #6366f1;
-            --accent-hover: #4f46e5;
-            --border-color: #334155;
-            --input-bg: #0f172a;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
-
-        .container {
-            background-color: var(--container-bg);
-            width: 100%;
-            max-width: 600px;
-            padding: 30px;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--border-color);
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 25px;
-        }
-
-        header h1 {
-            font-size: 2rem;
-            margin-bottom: 8px;
-            background: linear-gradient(to right, #818cf8, #c084fc);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        header p {
-            color: #94a3b8;
-            font-size: 0.95rem;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            color: #cbd5e1;
-        }
-
-        textarea {
-            width: 100%;
-            height: 100px;
-            background-color: var(--input-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 12px;
-            color: var(--text-color);
-            font-size: 1rem;
-            resize: none;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        textarea:focus {
-            border-color: var(--accent-color);
-        }
-
-        .controls {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        select {
-            width: 100%;
-            background-color: var(--input-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 10px;
-            color: var(--text-color);
-            font-size: 0.95rem;
-            outline: none;
-            cursor: pointer;
-        }
-
-        .generate-btn {
-            width: 100%;
-            background-color: var(--accent-color);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            padding: 14px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.2s, transform 0.1s;
-        }
-
-        .generate-btn:hover {
-            background-color: var(--accent-hover);
-        }
-
-        .generate-btn:active {
-            transform: scale(0.98);
-        }
-
-        .result-container {
-            margin-top: 25px;
-            border-radius: 12px;
-            overflow: hidden;
-            background-color: var(--input-bg);
-            border: 1px dashed var(--border-color);
-            min-height: 300px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
-
-        .result-image {
-            width: 100%;
-            height: auto;
-            display: none;
-            max-height: 450px;
-            object-fit: contain;
-        }
-
-        .placeholder-text {
-            color: #64748b;
-            text-align: center;
-            padding: 20px;
-        }
-
-        /* Loading Spinner */
-        .spinner {
-            display: none;
-            width: 50px;
-            height: 50px;
-            border: 5px solid rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            border-top-color: var(--accent-color);
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        .action-buttons {
-            display: none;
-            grid-template-columns: 1fr;
-            margin-top: 15px;
-        }
-
-        .download-btn {
-            background-color: #334155;
-            color: var(--text-color);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 10px;
-            text-align: center;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-
-        .download-btn:hover {
-            background-color: #475569;
-        }
+        .loader { border-top-color: #3b82f6; animation: spinner 1.5s linear infinite; }
+        @keyframes spinner { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
-<body>
+<body class="bg-gray-50 min-h-screen p-4 md:p-8">
+    <div class="max-w-3xl mx-auto bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+        <h1 class="text-2xl font-bold text-gray-900 mb-2">AI Image Editor</h1>
+        <p class="text-gray-600 mb-6">Upload an image and tell the AI how to transform it.</p>
 
-    <div class="container">
-        <header>
-            <h1>AI Image Generator</h1>
-            <p>Bring your imagination into reality instantly</p>
-        </header>
-
-        <div class="form-group">
-            <label for="prompt">Prompt Description</label>
-            <textarea id="prompt" placeholder="A futuristic cyberpunk city with neon lights, raining, highly detailed, 8k resolution..."></textarea>
-        </div>
-
-        <div class="controls">
-            <div class="control-group">
-                <label for="aspect-ratio">Aspect Ratio</label>
-                <select id="aspect-ratio">
-                    <option value="1:1">1:1 (Square)</option>
-                    <option value="16:9">16:9 (Landscape)</option>
-                    <option value="9:16">9:16 (Portrait)</option>
-                    <option value="4:3">4:3 (Standard)</option>
-                </select>
+        <div class="space-y-4">
+            <div id="dropZone" class="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center cursor-pointer hover:border-blue-400 transition-colors">
+                <input type="file" id="imageInput" class="hidden" accept="image/*">
+                <p id="dropText" class="text-gray-500">Click to upload or drag & drop an image</p>
+                <img id="preview" class="hidden max-h-64 mx-auto mt-4 rounded-lg shadow-sm">
             </div>
-            <div class="control-group">
-                <label for="style-preset">Enhance Style</label>
-                <select id="style-preset">
-                    <option value="">None (Raw Prompt)</option>
-                    <option value=", cinematic lighting, ultra-realistic, photorealistic, 8k">Photorealistic</option>
-                    <option value=", digital art, anime style, vibrant colors, detailed art">Anime / Digital Art</option>
-                    <option value=", oil painting, textured, masterpiece, artistic expression">Oil Painting</option>
-                    <option value=", cyberpunk aesthetic, synthwave, futuristic, neon glows">Cyberpunk</option>
-                </select>
-            </div>
+
+            <textarea id="promptInput" class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none" rows="3" placeholder="e.g., 'Change the background to a sunset beach' or 'Add a fantasy hat to the person'"></textarea>
+
+            <button id="generateBtn" class="w-full bg-blue-600 text-white font-semibold py-3 rounded-xl hover:bg-blue-700 transition-colors disabled:bg-gray-400">
+                Generate Transformation
+            </button>
         </div>
 
-        <button class="generate-btn" id="generate-btn">Generate Image</button>
-
-        <div class="result-container" id="result-container">
-            <div class="spinner" id="spinner"></div>
-            <div class="placeholder-text" id="placeholder-text">Your generated masterpiece will appear here.</div>
-            <img src="" alt="AI Generated Output" class="result-image" id="result-image">
+        <div id="loading" class="hidden mt-8 text-center">
+            <div class="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12 mx-auto mb-4"></div>
+            <p class="text-gray-600 font-medium">Processing your image...</p>
         </div>
 
-        <div class="action-buttons" id="action-buttons">
-            <a href="#" class="download-btn" id="download-btn" target="_blank">Download Image</a>
+        <div id="resultContainer" class="hidden mt-8">
+            <h2 class="text-lg font-bold mb-4">Result:</h2>
+            <img id="resultImage" class="w-full rounded-xl shadow-md">
         </div>
     </div>
 
     <script>
-        document.getElementById('generate-btn').addEventListener('click', async () => {
-            const promptInput = document.getElementById('prompt').value.trim();
-            const aspectRatio = document.getElementById('aspect-ratio').value;
-            const stylePreset = document.getElementById('style-preset').value;
-            
-            const spinner = document.getElementById('spinner');
-            const placeholderText = document.getElementById('placeholder-text');
-            const resultImage = document.getElementById('result-image');
-            const actionButtons = document.getElementById('action-buttons');
-            const downloadBtn = document.getElementById('download-btn');
+        const imageInput = document.getElementById('imageInput');
+        const dropZone = document.getElementById('dropZone');
+        const preview = document.getElementById('preview');
+        const generateBtn = document.getElementById('generateBtn');
+        const promptInput = document.getElementById('promptInput');
+        const loading = document.getElementById('loading');
+        const resultContainer = document.getElementById('resultContainer');
+        const resultImage = document.getElementById('resultImage');
 
-            if (!promptInput) {
-                alert('Please enter a description prompt before generating!');
-                return;
-            }
+        let base64Image = '';
 
-            // Show loading states
-            spinner.style.display = 'block';
-            placeholderText.style.display = 'none';
-            resultImage.style.display = 'none';
-            actionButtons.style.display = 'none';
+        dropZone.onclick = () => imageInput.click();
 
-            // Parse aspect ratios into dimensions Pollinations accepts
-            let width = 1024;
-            let height = 1024;
+        imageInput.onchange = (e) => {
+            const file = e.target.files[0];
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                base64Image = e.target.result.split(',')[1];
+                preview.src = e.target.result;
+                preview.classList.remove('hidden');
+                document.getElementById('dropText').classList.add('hidden');
+            };
+            reader.readAsDataURL(file);
+        };
 
-            if (aspectRatio === '16:9') {
-                width = 1920; height = 1080;
-            } else if (aspectRatio === '9:16') {
-                width = 1080; height = 1920;
-            } else if (aspectRatio === '4:3') {
-                width = 1280; height = 960;
-            }
+        generateBtn.onclick = async () => {
+            if (!base64Image || !promptInput.value) return;
 
-            // Clean up the text for URL safety
-            const finalPrompt = encodeURIComponent(promptInput + stylePreset);
-            
-            // Generate a random seed dynamically to make sure identical prompts still fetch fresh updates
-            const seed = Math.floor(Math.random() * 1000000);
-            
-            // Formulate Pollinations AI URL endpoint
-            const imageUrl = `https://image.pollinations.ai/p/${finalPrompt}?width=${width}&height=${height}&seed=${seed}&nologo=true`;
+            loading.classList.remove('hidden');
+            resultContainer.classList.add('hidden');
+            generateBtn.disabled = true;
 
             try {
-                // Pre-fetching image cache to prevent sudden visual pops while rendering
-                const response = await fetch(imageUrl);
-                if (!response.ok) throw new Error("Network error occurred.");
-                
-                const blob = await response.blob();
-                const objectURL = URL.createObjectURL(blob);
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image-preview:generateContent?key=`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{
+                            parts: [
+                                { text: promptInput.value },
+                                { inlineData: { mimeType: "image/png", data: base64Image } }
+                            ]
+                        }],
+                        generationConfig: { responseModalities: ['TEXT', 'IMAGE'] }
+                    })
+                });
 
-                // Attach to DOM
-                resultImage.src = objectURL;
-                downloadBtn.href = objectURL;
-                downloadBtn.download = `ai-image-${seed}.png`;
-
-                // Render image after load completes safely
-                resultImage.onload = () => {
-                    spinner.style.display = 'none';
-                    resultImage.style.display = 'block';
-                    actionButtons.style.display = 'grid';
-                };
-
-            } catch (error) {
-                console.error(error);
-                spinner.style.display = 'none';
-                placeholderText.style.display = 'block';
-                placeholderText.innerText = "Failed to generate image. Please try again.";
+                const data = await response.json();
+                const part = data.candidates[0].content.parts.find(p => p.inlineData);
+                if (part) {
+                    resultImage.src = `data:image/png;base64,${part.inlineData.data}`;
+                    resultContainer.classList.remove('hidden');
+                }
+            } catch (err) {
+                console.error(err);
+            } finally {
+                loading.classList.add('hidden');
+                generateBtn.disabled = false;
             }
-        });
+        };
     </script>
 </body>
 </html>
