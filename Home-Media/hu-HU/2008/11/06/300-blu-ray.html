@@ -3,1304 +3,271 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>300 (2007) Blu-ray - WarnerVideo.com Magyarország</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        spartan: {
-                            gold: '#c5a059',
-                            goldLight: '#d4af37',
-                            crimson: '#9b1c1c',
-                            crimsonDark: '#5f1212',
-                            darkBg: '#0b0b0b',
-                            cardBg: '#161616',
-                            border: '#2c2c2c',
-                            textGray: '#a0a0a0'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    <title>300 Blu-ray (2007) - Warner Home Video</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
-        
+        :root {
+            --bg-color: #0f0f12;
+            --card-bg: #1a1a24;
+            --accent-color: #b32626;
+            --text-color: #e2e8f0;
+            --text-muted: #94a3b8;
+            --border-color: #2d2d3d;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Helvetica, sans-serif;
+        }
+
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #0b0b0b;
-        }
-        
-        .spartan-font {
-            font-family: 'Cinzel', serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding: 2rem 1rem;
+            line-height: 1.6;
         }
 
-        /* Ambient Ember / Ash Animation Keyframes */
-        @keyframes float-ember {
-            0% {
-                transform: translateY(100vh) translateX(0) scale(1) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.8;
-            }
-            90% {
-                opacity: 0.8;
-            }
-            100% {
-                transform: translateY(-10vh) translateX(100px) scale(0.2) rotate(360deg);
-                opacity: 0;
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 1rem;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .movie-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 1px solid var(--border-color);
+        }
+
+        @media (min-width: 768px) {
+            .movie-grid {
+                grid-template-columns: 350px 1fr;
             }
         }
 
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
+        .cover-art {
+            text-align: center;
         }
-        ::-webkit-scrollbar-track {
-            background: #0b0b0b;
+
+        .cover-art img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.6);
+            border: 1px solid var(--border-color);
         }
-        ::-webkit-scrollbar-thumb {
-            background: #2c2c2c;
+
+        .details h2 {
+            color: #fff;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .meta-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5rem;
+        }
+
+        .meta-table td {
+            padding: 0.6rem 0.4rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .meta-table td:first-child {
+            font-weight: bold;
+            color: var(--text-muted);
+            width: 35%;
+        }
+
+        .badge {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.2rem 0.6rem;
             border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #c5a059;
+            font-size: 0.85rem;
+            font-weight: bold;
+            display: inline-block;
         }
 
-        /* Stylized noise background */
-        .film-grain {
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+        .specs-section {
+            margin-top: 1.5rem;
+        }
+
+        .specs-section h3 {
+            color: #fff;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .specs-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .specs-list li {
+            margin-bottom: 0.4rem;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+
+        .specs-list li::before {
+            content: "•";
+            color: var(--accent-color);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
         }
     </style>
 </head>
-<body class="text-gray-100 min-h-screen overflow-x-hidden film-grain relative">
+<body>
 
-    <!-- Ambient Ember Background Layer -->
-    <div id="ember-container" class="absolute inset-0 pointer-events-none overflow-hidden z-0 opacity-40"></div>
+    <div class="container">
+        <header>
+            <h1 id="page-title">300 Blu-ray</h1>
+            <p>Magyarországi Kiadás Specifikációk</p>
+        </header>
 
-    <!-- Navigation Header -->
-    <header class="sticky top-0 z-40 bg-spartan-darkBg/90 backdrop-blur-md border-b border-spartan-border py-4 px-6 transition-all duration-300">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="flex items-center space-x-3">
-                <!-- Warner Video Logo -->
-                <div class="bg-gradient-to-br from-blue-700 to-blue-900 px-3 py-1.5 rounded text-white font-black text-sm tracking-widest uppercase border border-blue-500 shadow-md flex flex-col items-center leading-none">
-                    <span class="text-[10px] tracking-[0.2em] font-normal">WARNER</span>
-                    <span class="text-sm font-extrabold tracking-wider mt-0.5">VIDEO</span>
-                </div>
-                <div class="h-6 w-[1px] bg-spartan-border"></div>
-                <div class="text-xs uppercase tracking-widest text-spartan-gold font-bold">Magyarország</div>
-            </div>
-            
-            <div class="hidden md:flex space-x-6 text-sm tracking-wider uppercase font-semibold">
-                <a href="#overview" class="hover:text-spartan-gold transition-colors text-spartan-gold">Áttekintés</a>
-                <a href="#technical" class="hover:text-spartan-gold transition-colors">Specifikációk</a>
-                <a href="#extras" class="hover:text-spartan-gold transition-colors">Bónusz anyagok</a>
-                <span class="text-spartan-border">|</span>
-                <span class="text-gray-400 italic text-xs normal-case flex items-center">Archívum: 2008. november 6.</span>
+        <main class="movie-grid">
+            <div class="cover-art">
+                <img id="movie-cover" src="" alt="300 Blu-ray Cover">
             </div>
 
-            <!-- Cart Toggle Button & BD Live Status -->
-            <div class="flex items-center space-x-4">
-                <div class="hidden lg:flex items-center space-x-2 bg-spartan-cardBg/80 px-3 py-1.5 rounded-full border border-spartan-border text-xs">
-                    <span class="relative flex h-2 w-2">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-                    </span>
-                    <span class="text-gray-400 font-medium">BD-LIVE™ Aktív</span>
-                </div>
-
-                <button onclick="toggleCart()" class="relative p-2.5 rounded-full bg-spartan-cardBg border border-spartan-border hover:border-spartan-gold hover:text-spartan-gold transition-all duration-300 shadow-inner group">
-                    <svg class="w-5 h-5 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-                    </svg>
-                    <span id="cart-count" class="absolute -top-1.5 -right-1.5 bg-spartan-crimson text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full border border-spartan-darkBg">0</span>
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <!-- Main Content Grid -->
-    <main class="relative z-10 max-w-7xl mx-auto px-4 py-8 lg:py-12">
-        
-        <!-- Retro WarnerVideo Alert Ribbon -->
-        <div class="bg-gradient-to-r from-spartan-crimsonDark to-spartan-darkBg border-l-4 border-spartan-crimson p-4 rounded-r shadow-lg mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-3 sm:space-y-0">
-            <div class="flex items-start space-x-3">
-                <svg class="w-6 h-6 text-spartan-gold flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-                <div>
-                    <h3 class="font-bold text-sm text-gray-200">Exkluzív Nagyfelbontású Blu-ray Megjelenés!</h3>
-                    <p class="text-xs text-spartan-textGray">Ismerje meg Zack Snyder korszakalkotó, ultra-stilizált akciófilmjének prémium VC-1 kódolású hazai kiadását.</p>
-                </div>
-            </div>
-            <span class="text-xs font-mono bg-spartan-cardBg/90 px-3 py-1 rounded border border-spartan-border text-spartan-gold self-start sm:self-center">Dátum: 2008-11-06</span>
-        </div>
-
-        <!-- Hero Section & Product Summary -->
-        <section id="overview" class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 mb-16">
-            
-            <!-- Left Side: Cover Art and Interactive Media Center -->
-            <div class="lg:col-span-5 flex flex-col space-y-6">
-                <!-- Cover Frame -->
-                <div class="relative group self-center lg:self-stretch">
-                    <!-- Standard Blue Elite Case Mockup Header -->
-                    <div class="bg-gradient-to-r from-blue-700 via-blue-500 to-blue-800 text-center py-1 rounded-t-xl border-t border-x border-blue-400 shadow-md">
-                        <span class="text-[10px] tracking-[0.4em] font-extrabold text-blue-100 spartan-font drop-shadow-sm">Blu-ray Disc</span>
-                    </div>
-                    
-                    <div class="relative bg-spartan-cardBg p-3 rounded-b-xl border-b border-x border-spartan-border shadow-2xl transition-all duration-500 group-hover:border-spartan-gold/50 overflow-hidden">
-                        <!-- Hologram overlay effect -->
-                        <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent pointer-events-none transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-                        
-                        <img id="cover-image" 
-                             src="https://images.static-bluray.com/movies/covers/73921_front.jpg" 
-                             alt="300 Blu-ray Front Cover" 
-                             class="w-full h-auto rounded-md shadow-lg transition-transform duration-500 group-hover:scale-[1.01]"
-                             onerror="fallbackCover()">
-                        
-                        <!-- Invisible Fallback Cover rendered in case of loading error -->
-                        <div id="cover-fallback" class="hidden w-full aspect-[2/2.5] bg-gradient-to-b from-neutral-900 to-black rounded-md flex flex-col justify-between p-6 text-center border border-spartan-gold/30">
-                            <div class="border border-spartan-gold/40 p-2 rounded">
-                                <span class="spartan-font tracking-widest text-spartan-gold text-2xl font-bold">300</span>
-                            </div>
-                            <div class="flex flex-col items-center">
-                                <span class="spartan-font text-spartan-crimson text-6xl font-extrabold block tracking-tighter mb-2">300</span>
-                                <span class="text-xs tracking-wider text-spartan-textGray uppercase">Magyarországi Blu-ray Megjelenés</span>
-                            </div>
-                            <div class="text-[10px] text-spartan-gold tracking-[0.3em] uppercase">Warner Home Video</div>
-                        </div>
-                    </div>
-
-                    <!-- Visual Specs Indicator Badges -->
-                    <div class="grid grid-cols-3 gap-2 mt-4 text-center">
-                        <div class="bg-spartan-cardBg/90 border border-spartan-border rounded p-2 flex flex-col justify-center items-center">
-                            <span class="text-[10px] text-spartan-gold font-bold tracking-widest uppercase">KÓDEK</span>
-                            <span class="text-sm font-extrabold text-gray-200 mt-1">VC-1</span>
-                        </div>
-                        <div class="bg-spartan-cardBg/90 border border-spartan-border rounded p-2 flex flex-col justify-center items-center">
-                            <span class="text-[10px] text-spartan-gold font-bold tracking-widest uppercase">HORDOZÓ</span>
-                            <span class="text-sm font-extrabold text-gray-200 mt-1">BD-50</span>
-                        </div>
-                        <div class="bg-spartan-cardBg/90 border border-spartan-border rounded p-2 flex flex-col justify-center items-center">
-                            <span class="text-[10px] text-spartan-gold font-bold tracking-widest uppercase">RÉGIÓ</span>
-                            <span class="text-sm font-extrabold text-green-400 mt-1">Free</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Purchase Card -->
-                <div class="bg-gradient-to-b from-spartan-cardBg to-neutral-950 p-6 rounded-xl border border-spartan-border shadow-lg">
-                    <div class="flex justify-between items-center mb-4">
-                        <div>
-                            <span class="text-xs text-spartan-textGray uppercase tracking-widest block">Ajánlott fogyasztói ár:</span>
-                            <span class="text-2xl font-black text-white">5 990 Ft</span>
-                        </div>
-                        <span class="bg-spartan-crimson/20 text-spartan-crimson border border-spartan-crimson/50 px-2.5 py-1 rounded text-xs font-bold uppercase">Készleten</span>
-                    </div>
-
-                    <div class="flex space-x-3">
-                        <button onclick="addToCart()" class="flex-1 bg-gradient-to-r from-spartan-crimson to-spartan-crimsonDark hover:from-red-700 hover:to-spartan-crimson border-y border-red-500 py-3 rounded-lg font-bold text-sm uppercase tracking-wider text-white shadow-lg shadow-spartan-crimson/30 hover:shadow-red-600/40 hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center space-x-2">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-                            </svg>
-                            <span>Kosárba teszem</span>
-                        </button>
-                    </div>
-
-                    <div class="mt-4 flex items-center justify-center space-x-2 text-[11px] text-spartan-textGray border-t border-spartan-border/50 pt-3">
-                        <svg class="w-4 h-4 text-spartan-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                        <span>Eredeti Pro Video / Warner Home Video hazai kiadvány</span>
-                    </div>
-                </div>
-
-                <!-- Live Specs Quick comparison -->
-                <div class="bg-spartan-cardBg/40 border border-spartan-border p-4 rounded-xl text-xs space-y-2.5">
-                    <span class="font-bold text-spartan-gold uppercase tracking-wider block">Miért válassza a Blu-ray-t?</span>
-                    <div class="grid grid-cols-2 gap-2 text-center text-[10px]">
-                        <div class="p-2 bg-black/40 rounded border border-spartan-border/40">
-                            <span class="text-red-400 block font-bold">Standard DVD</span>
-                            <span class="text-gray-400 block mt-0.5">MPEG-2 (720x576i)</span>
-                            <span class="text-gray-400 block">Dolby Digital 5.1 (384 kbps)</span>
-                        </div>
-                        <div class="p-2 bg-spartan-gold/5 rounded border border-spartan-gold/20">
-                            <span class="text-spartan-gold block font-bold">Ez a Blu-ray</span>
-                            <span class="text-white block mt-0.5 font-semibold">VC-1 1080p Full HD</span>
-                            <span class="text-white block font-semibold">TrueHD Lossless 5.1</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Right Side: Cinematic Product Title, Synopsis & Interactive Tab Panel -->
-            <div class="lg:col-span-7 flex flex-col justify-between">
+            <div class="details">
+                <h2 id="movie-title">Betöltés...</h2>
                 
-                <!-- Main Header with Cinematic Flare -->
-                <div>
-                    <h1 class="spartan-font text-5xl md:text-6xl font-black text-white tracking-wider leading-tight drop-shadow-md">
-                        300
-                    </h1>
-                    <p class="text-spartan-gold tracking-[0.3em] uppercase text-sm md:text-md mt-2 font-bold spartan-font">
-                        „Készüljetek a dicsőségre!”
-                    </p>
+                <table class="meta-table">
+                    <tr>
+                        <td>Kiadó:</td>
+                        <td id="meta-publisher"></td>
+                    </tr>
+                    <tr>
+                        <td>Kiadási dátum:</td>
+                        <td id="meta-release-date"></td>
+                    </tr>
+                    <tr>
+                        <td>Formátum:</td>
+                        <td><span class="badge" id="meta-format"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Videó kodek:</td>
+                        <td id="meta-codec"></td>
+                    </tr>
+                    <tr>
+                        <td>Eredeti megjelenés:</td>
+                        <td id="meta-year"></td>
+                    </tr>
+                </table>
 
-                    <!-- Key Meta Badges -->
-                    <div class="flex flex-wrap gap-2.5 mt-4 items-center">
-                        <span class="bg-spartan-cardBg border border-spartan-border text-gray-300 px-3 py-1 rounded text-xs font-semibold">Akció / Dráma / Történelmi</span>
-                        <span class="bg-spartan-cardBg border border-spartan-border text-gray-300 px-3 py-1 rounded text-xs font-semibold">Stúdió: Warner Bros.</span>
-                        <span class="bg-spartan-crimson/20 border border-spartan-crimson/50 text-red-300 px-2.5 py-1 rounded text-xs font-bold uppercase tracking-wider">18+ Éveseknek</span>
-                    </div>
-
-                    <!-- Details Table List -->
-                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-6 py-4 border-y border-spartan-border/60 text-xs">
-                        <div>
-                            <span class="text-spartan-textGray block">Eredeti cím:</span>
-                            <span class="text-white font-bold block mt-0.5">300</span>
-                        </div>
-                        <div>
-                            <span class="text-spartan-textGray block">Hazai Forgalmazó:</span>
-                            <span class="text-white font-bold block mt-0.5">Pro Video / WHV</span>
-                        </div>
-                        <div>
-                            <span class="text-spartan-textGray block">Megjelenés:</span>
-                            <span class="text-spartan-gold font-bold block mt-0.5">2008. november 6.</span>
-                        </div>
-                        <div>
-                            <span class="text-spartan-textGray block">Mozipremier (USA):</span>
-                            <span class="text-white font-bold block mt-0.5">2007. március 9.</span>
-                        </div>
-                        <div>
-                            <span class="text-spartan-textGray block">Rendező:</span>
-                            <span class="text-white font-bold block mt-0.5">Zack Snyder</span>
-                        </div>
-                        <div>
-                            <span class="text-spartan-textGray block">Képregény eredeti:</span>
-                            <span class="text-white font-bold block mt-0.5">Frank Miller (Sin City)</span>
-                        </div>
-                    </div>
-
-                    <!-- Synopsis Block -->
-                    <div class="mt-6">
-                        <h2 class="text-lg font-bold text-white mb-2 flex items-center space-x-2">
-                            <span class="w-1 h-5 bg-spartan-crimson inline-block"></span>
-                            <span>Szinopszis</span>
-                        </h2>
-                        <p class="text-gray-300 text-sm leading-relaxed text-justify">
-                            Kr. e. 480-ban a perzsa világbirodalom hatalmas serege Xerxész, a magát istennek képzelő uralkodó vezetésével megindul, hogy igába hajtsa Görögországot. Spárta királya, a bátor és megalkuvást nem ismerő Leonidasz (Gerard Butler) nem hajlandó térdet hajtani a hódítók előtt. Mivel a spártai törvények és a politikai intrikák megbéklyózzák a hadsereget, a király sajátos megoldást választ: 300 elit harcosával a Thermopülai-szoroshoz vonul, hogy feltartóztassa a milliós perzsa áradatot.
-                        </p>
-                        <p class="text-gray-300 text-sm leading-relaxed text-justify mt-3">
-                            A maroknyi spártai csapat a halált megvető bátorság és a tökéletes katonai fegyelem mintaképeként olyan ellenállást tanúsít, amely nemcsak megrendíti a perzsák önbizalmát, de összefogásra kényszeríti és lángra lobbantja egész Görögországot a szabadság védelmében. Frank Miller (Sin City) kultikus képregényének lenyűgöző, vizuálisan forradalmi és hű adaptációja Zack Snyder rendezésében.
-                        </p>
-                    </div>
+                <div class="specs-section">
+                    <h3>Hangsávok</h3>
+                    <ul class="specs-list" id="audio-list"></ul>
                 </div>
 
-                <!-- Interactive Media Box / Video Simulation Widget -->
-                <div class="mt-8 bg-gradient-to-br from-neutral-900 to-spartan-cardBg p-5 rounded-xl border border-spartan-border shadow-lg">
-                    <div class="flex justify-between items-center mb-4">
-                        <span class="text-xs uppercase font-bold text-spartan-gold tracking-widest">PRO PRODUKCIÓS MOCK lejátszó</span>
-                        <span class="text-[10px] font-mono text-spartan-crimson uppercase tracking-widest font-extrabold flex items-center space-x-1">
-                            <span class="inline-block w-2.5 h-2.5 rounded-full bg-red-600 animate-pulse mr-1"></span> 
-                            1080p VC-1 Teszt
-                        </span>
-                    </div>
-                    
-                    <!-- Simulated Video Canvas Screen -->
-                    <div class="relative aspect-video w-full bg-black rounded-lg border border-spartan-border overflow-hidden group shadow-inner">
-                        <!-- Canvas for visual noise generator / Spartan shield dynamic aesthetic representation -->
-                        <canvas id="spartan-player-canvas" class="absolute inset-0 w-full h-full object-cover pointer-events-none opacity-85"></canvas>
-                        
-                        <!-- Overlay controls layer when paused -->
-                        <div id="player-overlay" class="absolute inset-0 flex flex-col justify-between p-4 bg-black/60 transition-all duration-300">
-                            <!-- Top bar -->
-                            <div class="flex justify-between items-center">
-                                <span class="bg-black/80 px-2 py-0.5 rounded text-[10px] tracking-wider text-spartan-gold font-mono uppercase">Helyszín: Thermopülai</span>
-                                <span class="bg-spartan-crimson/80 px-2 py-0.5 rounded text-[10px] font-bold text-white uppercase tracking-wider">Trailer</span>
-                            </div>
-                            
-                            <!-- Middle Play Button -->
-                            <button id="player-play-btn" onclick="startTrailer()" class="self-center bg-spartan-crimson hover:bg-red-700 text-white rounded-full p-4 hover:scale-110 shadow-lg shadow-spartan-crimson/50 hover:shadow-red-600/80 hover:border-red-400 transition-all duration-300 border border-transparent">
-                                <svg class="w-8 h-8 translate-x-0.5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M8 5v14l11-7z"></path>
-                                </svg>
-                            </button>
-                            
-                            <!-- Bottom control bar simulator -->
-                            <div class="flex items-center space-x-3 text-[10px] text-gray-300">
-                                <span class="font-mono">00:00 / 02:15</span>
-                                <div class="flex-1 h-1.5 bg-neutral-800 rounded-full overflow-hidden">
-                                    <div id="player-progress-bar" class="h-full bg-spartan-gold w-0 transition-all duration-100"></div>
-                                </div>
-                                <span class="text-spartan-gold font-bold">1080p VC-1</span>
-                            </div>
-                        </div>
-
-                        <!-- Active playing UI indicators -->
-                        <div id="player-active-controls" class="absolute top-2 right-2 hidden">
-                            <button onclick="pauseTrailer()" class="bg-black/80 hover:bg-black/90 p-1.5 rounded-full border border-spartan-border text-white transition-all">
-                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"></path>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <div class="flex justify-between items-center mt-3">
-                        <p class="text-[11px] text-spartan-textGray">Kattintson az indításhoz. A szimuláció a film ikonikus arany-fekete szemcsés csatajeleneteit jeleníti meg procedurálisan.</p>
-                        <button id="audio-sound-toggle" onclick="toggleSimulatedAudio()" class="text-xs text-spartan-gold hover:text-white transition-all flex items-center space-x-1">
-                            <span id="speaker-icon">🔈</span> <span id="speaker-text">Hang bekapcsolása</span>
-                        </button>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- Dynamic Tabs Navigation Area -->
-        <section class="mb-16 border-t border-spartan-border/60 pt-12">
-            <!-- Tab Headers -->
-            <div class="flex flex-wrap border-b border-spartan-border gap-2">
-                <button onclick="switchTab('tab-specs')" id="btn-tab-specs" class="tab-btn border-b-2 border-spartan-gold text-white px-5 py-3 text-sm tracking-wider uppercase font-extrabold flex items-center space-x-2 transition-all">
-                    <svg class="w-4 h-4 text-spartan-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
-                    <span>Technikai Specifikációk</span>
-                </button>
-                <button onclick="switchTab('tab-extras')" id="btn-tab-extras" class="tab-btn border-b-2 border-transparent text-gray-400 hover:text-white px-5 py-3 text-sm tracking-wider uppercase font-semibold flex items-center space-x-2 transition-all">
-                    <svg class="w-4 h-4 text-spartan-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
-                    <span>Extrák & Bónuszok</span>
-                </button>
-                <button onclick="switchTab('tab-bdlive')" id="btn-tab-bdlive" class="tab-btn border-b-2 border-transparent text-gray-400 hover:text-white px-5 py-3 text-sm tracking-wider uppercase font-semibold flex items-center space-x-2 transition-all">
-                    <svg class="w-4 h-4 text-spartan-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                    <span>BD-Live™ Hálózat</span>
-                </button>
-            </div>
-
-            <!-- Tab Content Wrapper -->
-            <div class="mt-8">
-                
-                <!-- Tab: Technical Specs (Active by default) -->
-                <div id="tab-specs" class="tab-content block animate-fadeIn">
-                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-                        <!-- Video Details -->
-                        <div class="lg:col-span-4 bg-spartan-cardBg p-6 rounded-xl border border-spartan-border space-y-4">
-                            <h3 class="text-md font-extrabold text-white uppercase tracking-wider flex items-center justify-between">
-                                <span>Kép & Kódolás</span>
-                                <span class="text-xs text-spartan-gold bg-spartan-gold/10 px-2 py-0.5 rounded border border-spartan-gold/30">1080p HD</span>
-                            </h3>
-                            <ul class="text-sm space-y-3">
-                                <li class="flex justify-between border-b border-spartan-border/40 pb-2">
-                                    <span class="text-spartan-textGray">Videó Kodek</span>
-                                    <span class="text-white font-bold">VC-1 (Advanced Profile)</span>
-                                </li>
-                                <li class="flex justify-between border-b border-spartan-border/40 pb-2">
-                                    <span class="text-spartan-textGray">Felbontás</span>
-                                    <span class="text-white font-bold">1080p High Definition</span>
-                                </li>
-                                <li class="flex justify-between border-b border-spartan-border/40 pb-2">
-                                    <span class="text-spartan-textGray">Képarány</span>
-                                    <span class="text-white font-bold">2.40:1 (Anamorf)</span>
-                                </li>
-                                <li class="flex justify-between border-b border-spartan-border/40 pb-2">
-                                    <span class="text-spartan-textGray">Lemezformátum</span>
-                                    <span class="text-white font-bold">BD-50 (50 Gigabájt)</span>
-                                </li>
-                            </ul>
-                            <div class="text-[11px] text-spartan-textGray leading-relaxed bg-black/40 p-3 rounded border border-spartan-border">
-                                <strong class="text-white block mb-1">Warner VC-1 Részletek</strong>
-                                A Warner Home Video kiváló transzferje hűen adja vissza a forradalmi digitális utómunka (Crush-technika) textúráját. A nagy kontrasztú, sötét, és rendkívül finom színátmenetes és szemcsés jeleneteket a VC-1 kodek kiválóan adja vissza anélkül, hogy tömörítési hibákat okozna.
-                            </div>
-                        </div>
-
-                        <!-- Interactive Audio & Subtitle Inspector -->
-                        <div class="lg:col-span-8 bg-spartan-cardBg p-6 rounded-xl border border-spartan-border">
-                            <h3 class="text-md font-extrabold text-white uppercase tracking-wider mb-4">Interaktív Sáv- & Nyelvvizsgáló</h3>
-                            <p class="text-xs text-spartan-textGray mb-6">Kattintson az alábbi hangsávokra vagy feliratokra, hogy megnézze azok részletes műszaki összetételét és csatornakiosztását!</p>
-                            
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <!-- Audio Track Selector -->
-                                <div>
-                                    <span class="text-xs font-bold text-spartan-gold uppercase tracking-wider block mb-3">Elérhető hangsávok (Audio)</span>
-                                    <div class="space-y-2">
-                                        <button onclick="selectTrack('audio', 'en-truehd')" class="track-btn-audio w-full text-left p-3 rounded-lg border border-spartan-gold bg-spartan-gold/10 text-white font-semibold text-xs flex justify-between items-center transition-all">
-                                            <span>Angol Dolby TrueHD 5.1</span>
-                                            <span class="bg-spartan-gold text-black px-1.5 py-0.5 rounded text-[10px] font-extrabold">REFERENCIA</span>
-                                        </button>
-                                        <button onclick="selectTrack('audio', 'en-dd')" class="track-btn-audio w-full text-left p-3 rounded-lg border border-spartan-border bg-black/30 hover:border-spartan-gold/50 text-gray-300 hover:text-white font-medium text-xs flex justify-between items-center transition-all">
-                                            <span>Angol Dolby Digital 5.1</span>
-                                            <span class="text-[10px] text-spartan-textGray font-mono">640 kbps</span>
-                                        </button>
-                                        <button onclick="selectTrack('audio', 'hu-dd')" class="track-btn-audio w-full text-left p-3 rounded-lg border border-spartan-border bg-black/30 hover:border-spartan-gold/50 text-gray-300 hover:text-white font-medium text-xs flex justify-between items-center transition-all">
-                                            <span>Magyar Dolby Digital 5.1</span>
-                                            <span class="text-[10px] text-spartan-gold font-bold">MAGYAR HANG</span>
-                                        </button>
-                                        <button onclick="selectTrack('audio', 'pl-dd')" class="track-btn-audio w-full text-left p-3 rounded-lg border border-spartan-border bg-black/30 hover:border-spartan-gold/50 text-gray-300 hover:text-white font-medium text-xs flex justify-between items-center transition-all">
-                                            <span>Lengyel Dolby Digital 5.1</span>
-                                            <span class="text-[10px] text-spartan-textGray">Lektor</span>
-                                        </button>
-                                        <button onclick="selectTrack('audio', 'cz-dd')" class="track-btn-audio w-full text-left p-3 rounded-lg border border-spartan-border bg-black/30 hover:border-spartan-gold/50 text-gray-300 hover:text-white font-medium text-xs flex justify-between items-center transition-all">
-                                            <span>Cseh Dolby Digital 5.1</span>
-                                            <span class="text-[10px] text-spartan-textGray">448 kbps</span>
-                                        </button>
-                                        <button onclick="selectTrack('audio', 'ru-dd')" class="track-btn-audio w-full text-left p-3 rounded-lg border border-spartan-border bg-black/30 hover:border-spartan-gold/50 text-gray-300 hover:text-white font-medium text-xs flex justify-between items-center transition-all">
-                                            <span>Orosz Dolby Digital 5.1</span>
-                                            <span class="text-[10px] text-spartan-textGray">448 kbps</span>
-                                        </button>
-                                    </div>
-                                </div>
-
-                                <!-- Dynamic Specs Visualizer Card -->
-                                <div class="bg-black/40 border border-spartan-border rounded-xl p-5 flex flex-col justify-between">
-                                    <div id="inspector-display">
-                                        <span class="text-[10px] text-spartan-gold font-bold uppercase tracking-widest block mb-1">Részletes Hangprofil</span>
-                                        <h4 id="inspector-title" class="text-md font-bold text-white mb-3">Angol Dolby TrueHD 5.1</h4>
-                                        
-                                        <ul class="text-xs space-y-2.5 mb-4 text-gray-300">
-                                            <li class="flex justify-between"><span class="text-spartan-textGray">Csatorna-eloszlás:</span> <span id="spec-channels" class="font-semibold">5.1 térhatású (bal, jobb, center, surround bal, surround jobb, LFE mélynyomó)</span></li>
-                                            <li class="flex justify-between"><span class="text-spartan-textGray">Bitmélység:</span> <span id="spec-bitdepth" class="font-semibold">16-bit</span></li>
-                                            <li class="flex justify-between"><span class="text-spartan-textGray">Mintavétel:</span> <span id="spec-samplerate" class="font-semibold">48 kHz</span></li>
-                                            <li class="flex justify-between"><span class="text-spartan-textGray">Bitráta típus:</span> <span id="spec-bitrate" class="font-semibold">Dinamikusan változó (Lossless / Veszteségmentes)</span></li>
-                                        </ul>
-
-                                        <!-- Visual 5.1 layout preview -->
-                                        <div class="mt-4 border-t border-spartan-border/40 pt-4">
-                                            <span class="text-[10px] text-spartan-textGray uppercase tracking-widest block mb-2 text-center">Megjelenített Térhangzás Elrendezés</span>
-                                            <div class="flex justify-center items-center space-x-6 text-center text-[10px] font-bold">
-                                                <div class="space-y-1">
-                                                    <div class="w-7 h-7 rounded-full bg-spartan-gold text-black flex items-center justify-center mx-auto">FL</div>
-                                                    <span>Bal</span>
-                                                </div>
-                                                <div class="space-y-1">
-                                                    <div class="w-7 h-7 rounded-full bg-spartan-gold text-black flex items-center justify-center mx-auto">C</div>
-                                                    <span>Közép</span>
-                                                </div>
-                                                <div class="space-y-1">
-                                                    <div class="w-7 h-7 rounded-full bg-spartan-gold text-black flex items-center justify-center mx-auto">FR</div>
-                                                    <span>Jobb</span>
-                                                </div>
-                                                <div class="space-y-1">
-                                                    <div class="w-7 h-7 rounded-full bg-spartan-crimson text-white flex items-center justify-center mx-auto">LFE</div>
-                                                    <span>Mély</span>
-                                                </div>
-                                                <div class="space-y-1">
-                                                    <div class="w-7 h-7 rounded-full bg-spartan-gold text-black flex items-center justify-center mx-auto">SL</div>
-                                                    <span>Surr. B</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Subtitles list -->
-                            <div class="mt-6 pt-5 border-t border-spartan-border/40">
-                                <span class="text-xs font-bold text-gray-200 uppercase tracking-wider block mb-2.5">Támogatott Feliratok</span>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="bg-spartan-crimson/10 border border-spartan-crimson/50 text-red-300 text-xs px-3 py-1 rounded font-bold">Magyar</span>
-                                    <span class="bg-black/50 border border-spartan-border text-gray-300 text-xs px-3 py-1 rounded">Angol (Hallássérülteknek)</span>
-                                    <span class="bg-black/50 border border-spartan-border text-gray-300 text-xs px-3 py-1 rounded">Cseh</span>
-                                    <span class="bg-black/50 border border-spartan-border text-gray-300 text-xs px-3 py-1 rounded">Lengyel</span>
-                                    <span class="bg-black/50 border border-spartan-border text-gray-300 text-xs px-3 py-1 rounded">Román</span>
-                                    <span class="bg-black/50 border border-spartan-border text-gray-300 text-xs px-3 py-1 rounded">Bolgár</span>
-                                    <span class="bg-black/50 border border-spartan-border text-gray-300 text-xs px-3 py-1 rounded">Török</span>
-                                    <span class="bg-black/50 border border-spartan-border text-gray-300 text-xs px-3 py-1 rounded">Orosz</span>
-                                    <span class="bg-black/50 border border-spartan-border text-gray-300 text-xs px-3 py-1 rounded">Horvát</span>
-                                    <span class="bg-black/50 border border-spartan-border text-gray-300 text-xs px-3 py-1 rounded">Szerb</span>
-                                    <span class="bg-black/50 border border-spartan-border text-gray-300 text-xs px-3 py-1 rounded">Szlovén</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tab: Bonus Material Explorer (Checklist) -->
-                <div id="tab-extras" class="tab-content hidden animate-fadeIn">
-                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-                        
-                        <!-- Interaktív Checklist -->
-                        <div class="lg:col-span-7 bg-spartan-cardBg p-6 rounded-xl border border-spartan-border">
-                            <div class="flex justify-between items-center mb-4">
-                                <h3 class="text-md font-extrabold text-white uppercase tracking-wider flex items-center space-x-2">
-                                    <span>Lemez-tartalom nyomkövető</span>
-                                </h3>
-                                <span class="text-xs bg-spartan-gold/10 text-spartan-gold border border-spartan-gold/30 px-2 py-0.5 rounded font-mono">BD-50 tartalom</span>
-                            </div>
-                            <p class="text-xs text-spartan-textGray mb-6">Pipálja ki a megtekintett bónuszanyagokat, hogy követhesse a lejátszási folyamatot!</p>
-                            
-                            <div class="space-y-3" id="extras-checklist-container">
-                                <!-- Extra item 1 -->
-                                <div class="p-3 bg-black/40 hover:bg-black/60 rounded-lg border border-spartan-border flex items-start justify-between transition-all cursor-pointer group" onclick="toggleExtraCheck(1)">
-                                    <div class="flex items-start space-x-3">
-                                        <input type="checkbox" id="chk-extra-1" class="mt-1 h-4.5 w-4.5 rounded border-spartan-border text-spartan-gold focus:ring-0 bg-transparent transition-colors" onclick="event.stopPropagation(); updateProgress();">
-                                        <div>
-                                            <span class="text-xs font-bold text-white group-hover:text-spartan-gold transition-colors block">1. Audio-kommentár</span>
-                                            <span class="text-[11px] text-spartan-textGray">Zack Snyder rendező, Kurt Johnstad és Larry Fong közreműködésével.</span>
-                                        </div>
-                                    </div>
-                                    <span class="text-[10px] bg-spartan-border/50 text-gray-300 px-2 py-0.5 rounded font-mono ml-2">Egész film</span>
-                                </div>
-                                <!-- Extra item 2 -->
-                                <div class="p-3 bg-black/40 hover:bg-black/60 rounded-lg border border-spartan-border flex items-start justify-between transition-all cursor-pointer group" onclick="toggleExtraCheck(2)">
-                                    <div class="flex items-start space-x-3">
-                                        <input type="checkbox" id="chk-extra-2" class="mt-1 h-4.5 w-4.5 rounded border-spartan-border text-spartan-gold focus:ring-0 bg-transparent" onclick="event.stopPropagation(); updateProgress();">
-                                        <div>
-                                            <span class="text-xs font-bold text-white group-hover:text-spartan-gold transition-colors block">2. Frank Miller látomása filmen</span>
-                                            <span class="text-[11px] text-spartan-textGray">A képregény-panelek életre keltése a legújabb filmtechnológiával.</span>
-                                        </div>
-                                    </div>
-                                    <span class="text-[10px] bg-spartan-gold/10 text-spartan-gold border border-spartan-gold/20 px-2 py-0.5 rounded font-mono ml-2">15 perc [HD]</span>
-                                </div>
-                                <!-- Extra item 3 -->
-                                <div class="p-3 bg-black/40 hover:bg-black/60 rounded-lg border border-spartan-border flex items-start justify-between transition-all cursor-pointer group" onclick="toggleExtraCheck(3)">
-                                    <div class="flex items-start space-x-3">
-                                        <input type="checkbox" id="chk-extra-3" class="mt-1 h-4.5 w-4.5 rounded border-spartan-border text-spartan-gold focus:ring-0 bg-transparent" onclick="event.stopPropagation(); updateProgress();">
-                                        <div>
-                                            <span class="text-xs font-bold text-white group-hover:text-spartan-gold transition-colors block">3. 300 spártai - Tény vagy fikció?</span>
-                                            <span class="text-[11px] text-spartan-textGray">Történészek elemzik a spártai valóságot és Herodotosz írásait.</span>
-                                        </div>
-                                    </div>
-                                    <span class="text-[10px] bg-spartan-gold/10 text-spartan-gold border border-spartan-gold/20 px-2 py-0.5 rounded font-mono ml-2">24 perc [HD]</span>
-                                </div>
-                                <!-- Extra item 4 -->
-                                <div class="p-3 bg-black/40 hover:bg-black/60 rounded-lg border border-spartan-border flex items-start justify-between transition-all cursor-pointer group" onclick="toggleExtraCheck(4)">
-                                    <div class="flex items-start space-x-3">
-                                        <input type="checkbox" id="chk-extra-4" class="mt-1 h-4.5 w-4.5 rounded border-spartan-border text-spartan-gold focus:ring-0 bg-transparent" onclick="event.stopPropagation(); updateProgress();">
-                                        <div>
-                                            <span class="text-xs font-bold text-white group-hover:text-spartan-gold transition-colors block">4. Ki voltak a spártaiak?</span>
-                                            <span class="text-[11px] text-spartan-textGray">Hogyan építették fel a spártai kultúrát a színészek a karakterekben.</span>
-                                        </div>
-                                    </div>
-                                    <span class="text-[10px] bg-spartan-gold/10 text-spartan-gold border border-spartan-gold/20 px-2 py-0.5 rounded font-mono ml-2">4 perc [HD]</span>
-                                </div>
-                                <!-- Extra item 5 -->
-                                <div class="p-3 bg-black/40 hover:bg-black/60 rounded-lg border border-spartan-border flex items-start justify-between transition-all cursor-pointer group" onclick="toggleExtraCheck(5)">
-                                    <div class="flex items-start space-x-3">
-                                        <input type="checkbox" id="chk-extra-5" class="mt-1 h-4.5 w-4.5 rounded border-spartan-border text-spartan-gold focus:ring-0 bg-transparent" onclick="event.stopPropagation(); updateProgress();">
-                                        <div>
-                                            <span class="text-xs font-bold text-white group-hover:text-spartan-gold transition-colors block">5. Kimaradt jelenetek</span>
-                                            <span class="text-[11px] text-spartan-textGray">Ephialtész és a perzsa óriások be nem mutatott harcai, rendezői magyarázattal.</span>
-                                        </div>
-                                    </div>
-                                    <span class="text-[10px] bg-spartan-gold/10 text-spartan-gold border border-spartan-gold/20 px-2 py-0.5 rounded font-mono ml-2">3 perc [HD]</span>
-                                </div>
-                                <!-- Extra item 6 -->
-                                <div class="p-3 bg-black/40 hover:bg-black/60 rounded-lg border border-spartan-border flex items-start justify-between transition-all cursor-pointer group" onclick="toggleExtraCheck(6)">
-                                    <div class="flex items-start space-x-3">
-                                        <input type="checkbox" id="chk-extra-6" class="mt-1 h-4.5 w-4.5 rounded border-spartan-border text-spartan-gold focus:ring-0 bg-transparent" onclick="event.stopPropagation(); updateProgress();">
-                                        <div>
-                                            <span class="text-xs font-bold text-white group-hover:text-spartan-gold transition-colors block">6. Kulisszák mögötti Webizódok</span>
-                                            <span class="text-[11px] text-spartan-textGray">Forgatási naplók: produkció dizájn, edzőtábor, kosztümök, maszkok, kaszkadőrmunka, zöld-háttér technika.</span>
-                                        </div>
-                                    </div>
-                                    <span class="text-[10px] bg-spartan-border/50 text-gray-300 px-2 py-0.5 rounded font-mono ml-2">Multimédia</span>
-                                </div>
-                                <!-- Extra item 7 -->
-                                <div class="p-3 bg-black/40 hover:bg-black/60 rounded-lg border border-spartan-border flex items-start justify-between transition-all cursor-pointer group" onclick="toggleExtraCheck(7)">
-                                    <div class="flex items-start space-x-3">
-                                        <input type="checkbox" id="chk-extra-7" class="mt-1 h-4.5 w-4.5 rounded border-spartan-border text-spartan-gold focus:ring-0 bg-transparent" onclick="event.stopPropagation(); updateProgress();">
-                                        <div>
-                                            <span class="text-xs font-bold text-white group-hover:text-spartan-gold transition-colors block">7. Interaktív Fényképgaléria</span>
-                                            <span class="text-[11px] text-spartan-textGray">Válogatott produkciós, koncepciós és forgatási exkluzív fotók.</span>
-                                        </div>
-                                    </div>
-                                    <span class="text-[10px] bg-spartan-border/50 text-gray-300 px-2 py-0.5 rounded font-mono ml-2">Interaktív</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Statisztika és Információs Kártya -->
-                        <div class="lg:col-span-5 flex flex-col space-y-6">
-                            
-                            <!-- Progress Stats Widget -->
-                            <div class="bg-gradient-to-br from-neutral-900 to-spartan-cardBg p-6 rounded-xl border border-spartan-border">
-                                <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-4">Megtekintési Állapot</h4>
-                                
-                                <div class="space-y-4">
-                                    <div>
-                                        <div class="flex justify-between text-xs mb-1">
-                                            <span class="text-spartan-textGray">Összesített bónusz tartalom:</span>
-                                            <span id="progress-percent" class="font-bold text-spartan-gold">0%</span>
-                                        </div>
-                                        <div class="w-full h-2.5 bg-neutral-800 rounded-full overflow-hidden border border-neutral-700">
-                                            <div id="progress-bar-fill" class="h-full bg-gradient-to-r from-spartan-gold to-spartan-goldLight w-0 transition-all duration-500"></div>
-                                        </div>
-                                    </div>
-
-                                    <div class="grid grid-cols-2 gap-4 text-center py-3 border-y border-spartan-border/50 text-xs">
-                                        <div>
-                                            <span class="text-spartan-textGray block">Megtekintve:</span>
-                                            <span id="stats-watched" class="text-lg font-bold text-white">0 / 7</span>
-                                        </div>
-                                        <div>
-                                            <span class="text-spartan-textGray block">Garantált bónuszidő:</span>
-                                            <span class="text-lg font-bold text-spartan-gold">~46 perc + ext.</span>
-                                        </div>
-                                    </div>
-
-                                    <div id="achievement-badge" class="bg-black/50 p-3 rounded-lg border border-spartan-border text-center transition-all duration-300">
-                                        <span class="text-xs font-bold text-gray-400 block mb-0.5">Rangom</span>
-                                        <span id="rank-text" class="text-sm font-black uppercase text-spartan-textGray">Újonc Spártai Katonák</span>
-                                        <p id="rank-desc" class="text-[10px] text-spartan-textGray mt-1">Tekintsen meg bónuszokat, hogy feljebb léphessen a ranglétrán és dicsőséget hozzon Spártának!</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Extras Technical specifications -->
-                            <div class="bg-spartan-cardBg p-5 rounded-xl border border-spartan-border text-xs space-y-3">
-                                <span class="font-bold text-spartan-gold uppercase tracking-wider block">Bónusz Formátum Specifikációk</span>
-                                <p class="text-gray-300 leading-relaxed">
-                                    A bónuszok többsége modern **MPEG-4 AVC 1080p** felbontásban kerül tálalásra, amely kivételes tisztaságot biztosít a díszletek és az arcmaszkok megtekintése során. A hanganyagok sztereóban és Dolby Digital 5.1-ben is elérhetőek, természetesen opcionális magyar nyelvű felirattal.
-                                </p>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tab: BD-Live™ (Simulated 2008 Web feature) -->
-                <div id="tab-bdlive" class="tab-content hidden animate-fadeIn">
-                    <div class="bg-gradient-to-r from-blue-950/20 via-spartan-cardBg to-neutral-950 p-8 rounded-xl border border-spartan-border text-center max-w-3xl mx-auto space-y-6">
-                        <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-800 rounded-full flex items-center justify-center mx-auto shadow-lg border border-blue-400">
-                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                            </svg>
-                        </div>
-
-                        <div>
-                            <span class="text-xs font-mono text-blue-400 uppercase tracking-widest font-bold">WARNER HOME VIDEO INTERAKTÍV HÁLÓZAT</span>
-                            <h3 class="text-2xl font-black text-white mt-1">BD-Live™ Hálózati Kapcsolat</h3>
-                            <p class="text-sm text-gray-300 mt-2 max-w-xl mx-auto leading-relaxed">
-                                Csatlakoztassa internetképes Blu-ray lejátszóját a hálózatra, és érje el a legfrissebb Warner Bros. előzeteseket, exkluzív rendezői interjúkat, vagy vegyen részt nemzetközi rajongói kvízekben közvetlenül a lemezmenüből!
-                            </p>
-                        </div>
-
-                        <!-- Interactive BD-Live Simulator Panel -->
-                        <div class="bg-black/50 p-5 rounded-lg border border-spartan-border text-left space-y-4 max-w-md mx-auto">
-                            <span class="text-[10px] text-spartan-gold font-bold uppercase tracking-widest block">Live Kapcsolat Állapota:</span>
-                            
-                            <div class="space-y-3">
-                                <div class="flex justify-between items-center text-xs">
-                                    <span class="text-gray-400">Kiszolgáló:</span>
-                                    <span class="text-white font-mono">bd-live.warnerbros.com</span>
-                                </div>
-                                <div class="flex justify-between items-center text-xs">
-                                    <span class="text-gray-400">Firmware státusz:</span>
-                                    <span class="text-green-400 font-bold">Kompatibilis Profile 2.0</span>
-                                </div>
-                                <div class="flex justify-between items-center text-xs">
-                                    <span class="text-gray-400">Hálózati letöltési sebesség:</span>
-                                    <span class="text-white font-mono">8.2 Mbps (Tesztelve)</span>
-                                </div>
-                            </div>
-
-                            <button onclick="simulateBDLiveSync()" class="w-full bg-blue-700 hover:bg-blue-600 border border-blue-500 py-2.5 rounded text-xs font-bold uppercase tracking-wider text-white transition-all flex items-center justify-center space-x-2">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 1121.21 8H12v9"></path>
-                                </svg>
-                                <span id="bd-sync-text">Frissítések letöltése a lemezre</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Shopping Cart Slide-out Sidebar -->
-    <div id="cart-sidebar" class="fixed inset-y-0 right-0 z-50 w-full max-w-md bg-spartan-darkBg border-l border-spartan-border shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col justify-between film-grain">
-        
-        <!-- Header -->
-        <div class="p-6 border-b border-spartan-border flex justify-between items-center bg-spartan-cardBg/80">
-            <h3 class="spartan-font text-lg font-bold text-white tracking-wider flex items-center space-x-2">
-                <svg class="w-5 h-5 text-spartan-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-                </svg>
-                <span>Saját Kosaram</span>
-            </h3>
-            <button onclick="toggleCart()" class="p-1 rounded-full hover:bg-spartan-border text-gray-400 hover:text-white transition-colors">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
-            </button>
-        </div>
-
-        <!-- Cart Items Area (Dynamic) -->
-        <div class="flex-1 overflow-y-auto p-6 space-y-4">
-            <div id="cart-empty-state" class="text-center py-12 space-y-3">
-                <svg class="w-12 h-12 text-neutral-700 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
-                </svg>
-                <p class="text-sm text-spartan-textGray">A kosara jelenleg üres.</p>
-            </div>
-
-            <!-- Single product entry inside cart -->
-            <div id="cart-item-row" class="hidden p-4 bg-spartan-cardBg rounded-lg border border-spartan-border flex items-center space-x-4">
-                <img src="https://images.static-bluray.com/movies/covers/73921_front.jpg" alt="Mini Cover" class="w-12 h-15 rounded object-cover border border-spartan-border" onerror="this.style.display='none'">
-                <div class="flex-1">
-                    <span class="text-xs font-bold text-white block">300 (Blu-ray VC-1)</span>
-                    <span class="text-[10px] text-spartan-textGray block">Forgalmazó: Pro Video (2008)</span>
-                    <div class="flex items-center space-x-2 mt-2">
-                        <button onclick="changeQuantity(-1)" class="px-2 py-0.5 rounded bg-black border border-spartan-border text-xs text-white">-</button>
-                        <span id="cart-quantity" class="text-xs font-bold text-white">1</span>
-                        <button onclick="changeQuantity(1)" class="px-2 py-0.5 rounded bg-black border border-spartan-border text-xs text-white">+</button>
-                    </div>
-                </div>
-                <div class="text-right">
-                    <span id="cart-item-price" class="text-sm font-black text-white block">5 990 Ft</span>
-                    <button onclick="removeProduct()" class="text-[10px] text-red-400 hover:underline mt-1">Eltávolítás</button>
+                <div class="specs-section">
+                    <h3>Feliratok</h3>
+                    <ul class="specs-list" id="subtitle-list"></ul>
                 </div>
             </div>
-        </div>
+        </main>
 
-        <!-- Footer / Checkout button -->
-        <div class="p-6 border-t border-spartan-border bg-spartan-cardBg/80 space-y-4">
-            <div class="flex justify-between items-center text-sm font-bold">
-                <span class="text-spartan-textGray">Összesen fizetendő:</span>
-                <span id="cart-total" class="text-lg text-spartan-gold">0 Ft</span>
-            </div>
-            
-            <button id="checkout-btn" disabled onclick="openCheckoutModal()" class="w-full py-3 rounded-lg font-bold text-xs uppercase tracking-wider text-white disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 flex items-center justify-center space-x-2 bg-gradient-to-r from-spartan-crimson to-spartan-crimsonDark border-y border-red-500 shadow-md">
-                <span>Rendelés elküldése</span>
-            </button>
-            <p class="text-[10px] text-spartan-textGray text-center">Garantált biztonságos kiszállítás Magyarország egész területén.</p>
-        </div>
+        <footer>
+            <p>&copy; 2026 Blu-ray Adatbázis. Warner Home Video / Legendary Pictures.</p>
+        </footer>
     </div>
 
-    <!-- Backdrop for Cart Sidebar -->
-    <div id="cart-backdrop" onclick="toggleCart()" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 hidden transition-all duration-300"></div>
-
-    <!-- Custom Checkout Success Modal -->
-    <div id="checkout-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden">
-        <div class="fixed inset-0 bg-black/80 backdrop-blur-md"></div>
-        <div class="relative bg-spartan-cardBg border border-spartan-border p-8 rounded-xl max-w-md w-full text-center space-y-6 animate-scaleIn shadow-2xl film-grain">
-            <div class="w-12 h-12 bg-green-500/10 text-green-400 border border-green-500/30 rounded-full flex items-center justify-center mx-auto">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                </svg>
-            </div>
-
-            <div>
-                <h3 class="spartan-font text-lg font-black text-white uppercase tracking-wider">Köszönjük a rendelést!</h3>
-                <p class="text-xs text-spartan-textGray mt-2 leading-relaxed">
-                    A WarnerVideo.com sikeresen regisztrálta a megrendelését. A Pro Video logisztikai partnerei 2-3 munkanapon belül házhoz szállítják Önnek a prémium minőségű Blu-ray kiadványt.
-                </p>
-            </div>
-
-            <div class="bg-black/40 p-4 rounded-lg border border-spartan-border text-left space-y-2 text-xs">
-                <div class="flex justify-between"><span class="text-spartan-textGray">Rendelt tétel:</span> <span class="text-white font-bold">300 (Blu-ray VC-1)</span></div>
-                <div class="flex justify-between"><span class="text-spartan-textGray">Mennyiség:</span> <span id="modal-qty" class="text-white font-bold">1 db</span></div>
-                <div class="flex justify-between"><span class="text-spartan-textGray">Fizetendő összeg:</span> <span id="modal-total" class="text-spartan-gold font-bold">5 990 Ft</span></div>
-            </div>
-
-            <button onclick="closeCheckoutModal()" class="w-full bg-spartan-gold hover:bg-spartan-goldLight text-black font-extrabold py-2.5 rounded text-xs uppercase tracking-wider transition-all">
-                Bezárás
-            </button>
-        </div>
-    </div>
-
-    <!-- Page Footer -->
-    <footer class="border-t border-spartan-border/60 py-12 bg-neutral-950 text-xs text-spartan-textGray relative z-10">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="space-y-4">
-                <div class="flex items-center space-x-2">
-                    <div class="bg-blue-800 px-2.5 py-1 rounded text-[11px] text-white font-black uppercase tracking-wider">WARNER VIDEO</div>
-                </div>
-                <p class="leading-relaxed">
-                    Hivatalos Warner Home Video kiadványok képviselete a magyar piacon. Nagyfelbontású házimozi élmény az Ön nappalijában.
-                </p>
-            </div>
-            
-            <div class="space-y-2">
-                <span class="font-bold text-white uppercase tracking-wider block">Hasznos Linkek</span>
-                <ul class="space-y-1">
-                    <li><a href="#" class="hover:text-spartan-gold transition-colors">Visszajelzés a kiadványról</a></li>
-                    <li><a href="#" class="hover:text-spartan-gold transition-colors">Támogatott asztali lejátszók</a></li>
-                    <li><a href="#" class="hover:text-spartan-gold transition-colors">Magyar Pro Video forgalmazói hálózat</a></li>
-                </ul>
-            </div>
-
-            <div class="space-y-4">
-                <p class="leading-relaxed">
-                    © 2008 Warner Bros. Entertainment Inc. Minden jog fenntartva. A WarnerVideo.com és a Blu-ray Disc logók a megfelelő jogtulajdonosok bejegyzett védjegyei.
-                </p>
-                <div class="text-[10px] text-spartan-gold font-bold tracking-widest uppercase">Készült a dicsőségért.</div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- JavaScript Control Code -->
     <script>
-        // Track states
-        let cartItems = 0;
-        const pricePerUnit = 5990;
-        
-        // Setup Simulated Canvas Movie Player
-        const canvas = document.getElementById('spartan-player-canvas');
-        const ctx = canvas.getContext('2d');
-        let animationFrameId;
-        let isTrailerPlaying = false;
-        let playProgress = 0;
-        let isAudioMuted = true;
-        let playSpeed = 0.15; // Speed multiplier for simulated progress
-        
-        // Canvas particle system for Zack Snyder-esque wind-blown ash and high-contrast styling
-        let particles = [];
-        function initParticles() {
-            particles = [];
-            for(let i=0; i < 40; i++) {
-                particles.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height,
-                    size: Math.random() * 2.5 + 0.5,
-                    speedX: Math.random() * 2 + 1, // wind blowing right
-                    speedY: (Math.random() * -1) - 0.2, // slightly rising
-                    alpha: Math.random() * 0.7 + 0.2
-                });
-            }
-        }
-
-        function drawPlayerFrame() {
-            // Adjust canvas size to match layout
-            if(canvas.width !== canvas.offsetWidth || canvas.height !== canvas.offsetHeight) {
-                canvas.width = canvas.offsetWidth;
-                canvas.height = canvas.offsetHeight;
-                initParticles();
-            }
-
-            // Draw dramatic deep brown/gold abstract battlefield background
-            const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-            gradient.addColorStop(0, '#100a05'); // deep dark clay
-            gradient.addColorStop(0.5, '#20160b'); // spartan bronze
-            gradient.addColorStop(1, '#050302'); // shadow black
-            ctx.fillStyle = gradient;
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            // Procedural stylized graphics representing Leonidas / Spatans in Snyder high-contrast silhouette
-            if (isTrailerPlaying) {
-                // Drawing dynamic abstract shield representation
-                ctx.save();
-                ctx.translate(canvas.width / 2, canvas.height / 2);
-                ctx.rotate(Date.now() * 0.0003);
-                
-                // Outer shield ring
-                ctx.beginPath();
-                ctx.arc(0, 0, 60, 0, Math.PI * 2);
-                ctx.strokeStyle = 'rgba(197, 160, 89, 0.4)';
-                ctx.lineWidth = 6;
-                ctx.stroke();
-
-                // Spartan Greek Lambda logo on shield "Λ"
-                ctx.beginPath();
-                ctx.moveTo(-15, 20);
-                ctx.lineTo(0, -25);
-                ctx.lineTo(15, 20);
-                ctx.strokeStyle = 'rgba(155, 28, 28, 0.8)'; // Crimson Red Lambda
-                ctx.lineWidth = 10;
-                ctx.stroke();
-                ctx.restore();
-
-                // Dynamic Flash light simulation (simulating thunder or steel clash)
-                if (Math.random() > 0.96) {
-                    ctx.fillStyle = 'rgba(255, 255, 255, 0.15)';
-                    ctx.fillRect(0, 0, canvas.width, canvas.height);
-                }
-            } else {
-                // Draw majestic static Spartan Helmet silhouette inside inactive player
-                ctx.save();
-                ctx.translate(canvas.width / 2, canvas.height / 2 - 10);
-                
-                // Draw simple iconic stylized spartan helmet
-                ctx.fillStyle = 'rgba(197, 160, 89, 0.25)'; // Muted gold
-                ctx.beginPath();
-                ctx.arc(0, 0, 35, Math.PI, 0); // dome
-                ctx.lineTo(35, 30);
-                ctx.lineTo(15, 30);
-                ctx.lineTo(15, 10);
-                ctx.lineTo(-15, 10);
-                ctx.lineTo(-15, 30);
-                ctx.lineTo(-35, 30);
-                ctx.closePath();
-                ctx.fill();
-
-                // Eye slot vertical nose guard
-                ctx.fillStyle = '#0b0b0b';
-                ctx.fillRect(-6, 5, 12, 25);
-                ctx.restore();
-
-                ctx.fillStyle = 'rgba(197, 160, 89, 0.6)';
-                ctx.font = 'bold 12px "Cinzel", Georgia, serif';
-                ctx.textAlign = 'center';
-                ctx.fillText('LEJÁTSZÁS ELŐKÉSZÍTÉSE', canvas.width / 2, canvas.height / 2 + 55);
-            }
-
-            // Animate flying dynamic warm ember ashes/sparks
-            particles.forEach(p => {
-                ctx.fillStyle = `rgba(212, 175, 55, ${p.alpha})`; // glowing gold-yellow embers
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                ctx.fill();
-
-                // move particles mimicking cross-wind blowing
-                p.x += p.speedX;
-                p.y += p.speedY;
-
-                // reset out of bounds particles
-                if(p.x > canvas.width || p.y < 0) {
-                    p.x = 0;
-                    p.y = Math.random() * canvas.height;
-                }
-            });
-
-            // Simulated Film Grain layer
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.03)';
-            for (let i = 0; i < 5; i++) {
-                const gx = Math.random() * canvas.width;
-                const gy = Math.random() * canvas.height;
-                ctx.fillRect(gx, gy, 2, 2);
-            }
-
-            // Progress tracking
-            if(isTrailerPlaying) {
-                playProgress += playSpeed;
-                document.getElementById('player-progress-bar').style.width = `${(playProgress / 135) * 100}%`;
-                
-                if(playProgress >= 135) { // Reset loop
-                    playProgress = 0;
-                    simulateImpactSound();
-                }
-            }
-
-            animationFrameId = requestAnimationFrame(drawPlayerFrame);
-        }
-
-        // Web Audio API Simulation for retro/cinematic vibe
-        let audioCtx;
-        function getAudioContext() {
-            if (!audioCtx) {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            }
-            return audioCtx;
-        }
-
-        function simulateImpactSound() {
-            if (isAudioMuted) return;
-            try {
-                const actx = getAudioContext();
-                // Synthesize a majestic low bronze-shield bass thump
-                const osc = actx.createOscillator();
-                const gain = actx.createGain();
-                
-                osc.type = 'sawtooth';
-                osc.frequency.setValueAtTime(65, actx.currentTime); // Low baritone rumbling
-                osc.frequency.exponentialRampToValueAtTime(15, actx.currentTime + 1.2);
-
-                gain.gain.setValueAtTime(0.4, actx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.01, actx.currentTime + 1.2);
-
-                osc.connect(gain);
-                gain.connect(actx.destination);
-                
-                osc.start();
-                osc.stop(actx.currentTime + 1.2);
-            } catch(e) {
-                // Audio context fallback safely handled
-            }
-        }
-
-        function toggleSimulatedAudio() {
-            isAudioMuted = !isAudioMuted;
-            const text = document.getElementById('speaker-text');
-            const icon = document.getElementById('speaker-icon');
-            if (isAudioMuted) {
-                text.innerText = "Hang bekapcsolása";
-                icon.innerText = "🔈";
-            } else {
-                text.innerText = "Némítás";
-                icon.innerText = "🔊";
-                simulateImpactSound();
-            }
-        }
-
-        function startTrailer() {
-            isTrailerPlaying = true;
-            document.getElementById('player-overlay').classList.add('hidden');
-            document.getElementById('player-active-controls').classList.remove('hidden');
-            simulateImpactSound();
-        }
-
-        function pauseTrailer() {
-            isTrailerPlaying = false;
-            document.getElementById('player-overlay').classList.remove('hidden');
-            document.getElementById('player-active-controls').classList.add('hidden');
-        }
-
-        // Start Ambient Background Embers in DOM
-        function generateAmbientEmbers() {
-            const container = document.getElementById('ember-container');
-            for(let i=0; i<15; i++) {
-                const ember = document.createElement('div');
-                ember.className = 'absolute bg-gradient-to-tr from-amber-500 to-red-600 rounded-full pointer-events-none opacity-50';
-                
-                const size = Math.random() * 4 + 2;
-                ember.style.width = `${size}px`;
-                ember.style.height = `${size}px`;
-                
-                ember.style.left = `${Math.random() * 100}vw`;
-                ember.style.bottom = `-10px`;
-                
-                const duration = Math.random() * 12 + 6;
-                ember.style.animation = `float-ember ${duration}s infinite linear`;
-                ember.style.animationDelay = `${Math.random() * 5}s`;
-                
-                container.appendChild(ember);
-            }
-        }
-
-        // Handle image loading fallback elegantly
-        function fallbackCover() {
-            document.getElementById('cover-image').style.display = 'none';
-            document.getElementById('cover-fallback').classList.remove('hidden');
-        }
-
-        // Tab selection logic
-        function switchTab(tabId) {
-            document.querySelectorAll('.tab-content').forEach(content => {
-                content.classList.add('hidden');
-                content.classList.remove('block');
-            });
-            
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('border-spartan-gold', 'text-white', 'font-extrabold');
-                btn.classList.add('border-transparent', 'text-gray-400', 'font-semibold');
-            });
-
-            document.getElementById(tabId).classList.remove('hidden');
-            document.getElementById(tabId).classList.add('block');
-            
-            const activeBtn = document.getElementById(`btn-${tabId}`);
-            activeBtn.classList.remove('border-transparent', 'text-gray-400', 'font-semibold');
-            activeBtn.classList.add('border-spartan-gold', 'text-white', 'font-extrabold');
-        }
-
-        // Technical tracks dictionary for the inspector
-        const audioTracks = {
-            'en-truehd': {
-                title: 'Angol Dolby TrueHD 5.1',
-                channels: '5.1 térhatású (bal, jobb, center, surround bal, surround jobb, LFE mélynyomó)',
-                bitdepth: '16-bit',
-                samplerate: '48 kHz',
-                bitrate: 'Dinamikusan változó (Lossless / Veszteségmentes minőség)'
-            },
-            'en-dd': {
-                title: 'Angol Dolby Digital 5.1',
-                channels: '5.1 veszteséges tömörítésű térhang',
-                bitdepth: '16-bit (forrás)',
-                samplerate: '48 kHz',
-                bitrate: '640 kbps (Maximális DVD-n túli sávszélesség)'
-            },
-            'hu-dd': {
-                title: 'Magyar Dolby Digital 5.1',
-                channels: '5.1 térhatású (Eredeti szinkron sáv)',
-                bitdepth: '16-bit (forrás)',
-                samplerate: '48 kHz',
-                bitrate: '448 kbps (Megbízható prémium minőség)'
-            },
-            'pl-dd': {
-                title: 'Lengyel Dolby Digital 5.1',
-                channels: '5.1 térhatású (Lektor hangsáv)',
-                bitdepth: '16-bit (forrás)',
-                samplerate: '48 kHz',
-                bitrate: '448 kbps'
-            },
-            'cz-dd': {
-                title: 'Cseh Dolby Digital 5.1',
-                channels: '5.1 térhatású',
-                bitdepth: '16-bit (forrás)',
-                samplerate: '48 kHz',
-                bitrate: '448 kbps'
-            },
-            'ru-dd': {
-                title: 'Orosz Dolby Digital 5.1',
-                channels: '5.1 térhatású',
-                bitdepth: '16-bit (forrás)',
-                samplerate: '48 kHz',
-                bitrate: '448 kbps'
-            }
+        // Beágyazott JSON struktúra a kért adatokkal
+        const bdReleaseData = {
+            "title": "300",
+            "originalYear": 2007,
+            "publisher": "Warner Home Video",
+            "regionCode": "hu-HU",
+            "releaseDate": "2008-11-06",
+            "format": "Blu-ray",
+            "videoCodec": "VC-1 (1080p)",
+            "coverUrl": "https://images.static-bluray.com/movies/covers/73921_front.jpg",
+            "audioTracks": [
+                "Angol Dolby TrueHD 5.1",
+                "Magyar Dolby Digital 5.1",
+                "Cseh Dolby Digital 5.1",
+                "Lengyel Dolby Digital 5.1",
+                "Orosz Dolby Digital 5.1",
+                "Török Dolby Digital 5.1"
+            ],
+            "subtitles": [
+                "Magyar",
+                "Angol",
+                "Cseh",
+                "Lengyel",
+                "Orosz",
+                "Török",
+                "Román"
+            ]
         };
 
-        function selectTrack(type, key) {
-            // Unselect previous
-            document.querySelectorAll(`.track-btn-${type}`).forEach(btn => {
-                btn.classList.remove('border-spartan-gold', 'bg-spartan-gold/10', 'text-white', 'font-semibold');
-                btn.classList.add('border-spartan-border', 'bg-black/30', 'text-gray-300', 'font-medium');
+        // DOM elemek feltöltése dinamikusan a JavaScript / JSON adatokból
+        document.addEventListener("DOMContentLoaded", () => {
+            // Címek és alapadatok
+            document.getElementById("movie-title").innerText = `${bdReleaseData.title} (${bdReleaseData.originalYear})`;
+            document.getElementById("movie-cover").src = bdReleaseData.coverUrl;
+            document.getElementById("movie-cover").alt = `${bdReleaseData.title} Blu-ray borító`;
+            
+            document.getElementById("meta-publisher").innerText = bdReleaseData.publisher;
+            document.getElementById("meta-release-date").innerText = bdReleaseData.releaseDate;
+            document.getElementById("meta-format").innerText = bdReleaseData.format;
+            document.getElementById("meta-codec").innerText = bdReleaseData.videoCodec;
+            document.getElementById("meta-year").innerText = bdReleaseData.originalYear;
+
+            // Hangsávok listázása
+            const audioList = document.getElementById("audio-list");
+            bdReleaseData.audioTracks.forEach(track => {
+                const li = document.createElement("li");
+                li.innerText = track;
+                audioList.appendChild(li);
             });
 
-            // Target selected button style updating
-            const currentBtn = window.event.currentTarget;
-            currentBtn.classList.remove('border-spartan-border', 'bg-black/30', 'text-gray-300', 'font-medium');
-            currentBtn.classList.add('border-spartan-gold', 'bg-spartan-gold/10', 'text-white', 'font-semibold');
-
-            // Render details
-            const track = audioTracks[key];
-            if (track) {
-                document.getElementById('inspector-title').innerText = track.title;
-                document.getElementById('spec-channels').innerText = track.channels;
-                document.getElementById('spec-bitdepth').innerText = track.bitdepth;
-                document.getElementById('spec-samplerate').innerText = track.samplerate;
-                document.getElementById('spec-bitrate').innerText = track.bitrate;
-            }
-            simulateImpactSound();
-        }
-
-        // Extras Checklist logic & Rank system
-        const totalExtras = 7;
-        function toggleExtraCheck(index) {
-            const checkbox = document.getElementById(`chk-extra-${index}`);
-            checkbox.checked = !checkbox.checked;
-            updateProgress();
-        }
-
-        function updateProgress() {
-            let checkedCount = 0;
-            for(let i=1; i<=totalExtras; i++) {
-                if(document.getElementById(`chk-extra-${i}`).checked) {
-                    checkedCount++;
-                }
-            }
-
-            const percent = Math.round((checkedCount / totalExtras) * 100);
-            document.getElementById('progress-percent').innerText = `${percent}%`;
-            document.getElementById('progress-bar-fill').style.width = `${percent}%`;
-            document.getElementById('stats-watched').innerText = `${checkedCount} / ${totalExtras}`;
-
-            // Rank progression calculations
-            const rankText = document.getElementById('rank-text');
-            const rankDesc = document.getElementById('rank-desc');
-            const badge = document.getElementById('achievement-badge');
-
-            if (percent === 0) {
-                rankText.innerText = "Újonc Spártai Katona";
-                rankText.className = "text-sm font-black uppercase text-spartan-textGray";
-                rankDesc.innerText = "Tekintsen meg bónuszokat, hogy feljebb léphessen a ranglétrán és dicsőséget hozzon Spártának!";
-                badge.className = "bg-black/50 p-3 rounded-lg border border-spartan-border text-center transition-all";
-            } else if (percent < 50) {
-                rankText.innerText = "Kiképzett Hoplita";
-                rankText.className = "text-sm font-black uppercase text-amber-500";
-                rankDesc.innerText = "Már ismeri a fegyverkezést és a harci formációkat. Folytassa a felkészülést!";
-                badge.className = "bg-amber-950/10 p-3 rounded-lg border border-amber-800/40 text-center transition-all";
-            } else if (percent < 100) {
-                rankText.innerText = "Leonidasz Testőre";
-                rankText.className = "text-sm font-black uppercase text-spartan-gold";
-                rankDesc.innerText = "Kiemelkedő tudás. Ön méltó arra, hogy a király mellett küzdjön a dicsőséges győzelemért!";
-                badge.className = "bg-spartan-gold/5 p-3 rounded-lg border border-spartan-gold/40 text-center transition-all";
-            } else {
-                rankText.innerText = "Igazi Spártai Hős (300)";
-                rankText.className = "text-sm font-black uppercase text-green-400";
-                rankDesc.innerText = "Gratulálunk! Felfedezte a lemez összes titkát, és felkészült a dicsőséges halhatatlanságra!";
-                badge.className = "bg-green-950/10 p-3 rounded-lg border border-green-500/40 text-center transition-all";
-            }
-        }
-
-        // Interactive BD-Live Connection Simulator
-        function simulateBDLiveSync() {
-            const btnText = document.getElementById('bd-sync-text');
-            btnText.innerText = "Csatlakozás a szerverhez...";
-            simulateImpactSound();
-
-            setTimeout(() => {
-                btnText.innerText = "Lemezadatok ellenőrzése...";
-                setTimeout(() => {
-                    btnText.innerText = "Sikeresen szinkronizálva! [2008-11-06]";
-                    setTimeout(() => {
-                        btnText.innerText = "Frissítések letöltése a lemezre";
-                    }, 3000);
-                }, 1500);
-            }, 1500);
-        }
-
-        // Cart Drawer actions
-        function toggleCart() {
-            const sidebar = document.getElementById('cart-sidebar');
-            const backdrop = document.getElementById('cart-backdrop');
-            
-            sidebar.classList.toggle('translate-x-full');
-            backdrop.classList.toggle('hidden');
-        }
-
-        function addToCart() {
-            if (cartItems === 0) {
-                cartItems = 1;
-            }
-            updateCartUI();
-            toggleCart();
-            simulateImpactSound();
-        }
-
-        function changeQuantity(val) {
-            cartItems = Math.max(1, cartItems + val);
-            updateCartUI();
-        }
-
-        function removeProduct() {
-            cartItems = 0;
-            updateCartUI();
-        }
-
-        function updateCartUI() {
-            const countBadge = document.getElementById('cart-count');
-            const emptyState = document.getElementById('cart-empty-state');
-            const itemRow = document.getElementById('cart-item-row');
-            const totalText = document.getElementById('cart-total');
-            const qtyText = document.getElementById('cart-quantity');
-            const priceText = document.getElementById('cart-item-price');
-            const checkoutBtn = document.getElementById('checkout-btn');
-
-            countBadge.innerText = cartItems;
-
-            if (cartItems > 0) {
-                emptyState.classList.add('hidden');
-                itemRow.classList.remove('hidden');
-                itemRow.classList.add('flex');
-                
-                const totalVal = cartItems * pricePerUnit;
-                qtyText.innerText = cartItems;
-                priceText.innerText = `${totalVal.toLocaleString('hu-HU')} Ft`;
-                totalText.innerText = `${totalVal.toLocaleString('hu-HU')} Ft`;
-                
-                checkoutBtn.removeAttribute('disabled');
-            } else {
-                emptyState.classList.remove('hidden');
-                itemRow.classList.add('hidden');
-                itemRow.classList.remove('flex');
-                totalText.innerText = "0 Ft";
-                checkoutBtn.setAttribute('disabled', 'true');
-            }
-        }
-
-        function openCheckoutModal() {
-            toggleCart();
-            
-            document.getElementById('modal-qty').innerText = `${cartItems} db`;
-            document.getElementById('modal-total').innerText = `${(cartItems * pricePerUnit).toLocaleString('hu-HU')} Ft`;
-            
-            document.getElementById('checkout-modal').classList.remove('hidden');
-        }
-
-        function closeCheckoutModal() {
-            document.getElementById('checkout-modal').classList.add('hidden');
-            cartItems = 0;
-            updateCartUI();
-        }
-
-        // Document Onload Start triggers
-        window.onload = function() {
-            generateAmbientEmbers();
-            drawPlayerFrame();
-        };
+            // Feliratok listázása
+            const subtitleList = document.getElementById("subtitle-list");
+            bdReleaseData.subtitles.forEach(sub => {
+                const li = document.createElement("li");
+                li.innerText = sub;
+                subtitleList.appendChild(li);
+            });
+        });
     </script>
 </body>
 </html>
