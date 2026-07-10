@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스타워즈: 에피소드 1 - 보이지 않는 위험 (DVD 출시 정보)</title>
+    <style>
+        :root {
+            --galaxy-black: #050505;
+            --republic-gold: #fade4b;
+            --jedi-blue: #0070f3;
+            --text-light: #f5f5f7;
+            --card-bg: #121214;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--galaxy-black);
+            color: var(--text-light);
+            font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            border: 1px solid #222;
+            padding: 30px;
+            background: linear-gradient(145deg, #0a0a0c, #121215);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 2px solid var(--republic-gold);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .release-date {
+            font-size: 0.9rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+
+        h1 {
+            color: var(--republic-gold);
+            font-size: 2rem;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            color: #aaa;
+            font-weight: 400;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .meta-panel {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: 4px;
+            border-left: 4px solid var(--jedi-blue);
+        }
+
+        .meta-item {
+            margin-bottom: 15px;
+        }
+
+        .meta-label {
+            font-size: 0.8rem;
+            color: #666;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .meta-value {
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        .disc-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .disc-card {
+            background-color: var(--card-bg);
+            border: 1px solid #222;
+            border-radius: 4px;
+            padding: 20px;
+        }
+
+        .disc-title {
+            color: var(--republic-gold);
+            font-size: 1.1rem;
+            border-bottom: 1px solid #333;
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-list li {
+            margin-bottom: 8px;
+            padding-left: 15px;
+            position: relative;
+            font-size: 0.95rem;
+        }
+
+        .feature-list li::before {
+            content: "•";
+            color: var(--jedi-blue);
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #444;
+            border-top: 1px solid #222;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="release-date" id="current-date-display"></div>
+        <h1 id="movie-title"></h1>
+        <h2 id="movie-subtitle"></h2>
+    </header>
+
+    <div class="main-content">
+        <aside class="meta-panel" id="meta-panel">
+            </aside>
+
+        <main class="disc-info" id="disc-info">
+            </main>
+    </div>
+
+    <footer>
+        <p>© 2001 Lucasfilm Ltd. & TM. All Rights Reserved. Manufactured and Distributed by 20th Century Fox Home Entertainment.</p>
+    </footer>
+</div>
+
+<script>
+    // JSON Data matching the specific context: Nov 8, 2001 / Korean DVD Release
+    const dvdData = {
+        "systemDate": "2001년 11px 8일 목요일",
+        "title": "스타워즈 에피소드 1: 보이지 않는 위험",
+        "originalTitle": "Star Wars: Episode I – The Phantom Menace",
+        "publisher": "20세기 폭스 홈 엔터테인먼트 (20th Century Fox Home Entertainment)",
+        "releaseSpecs": {
+            "format": "DVD (2-Disc Set)",
+            "aspectRatio": "2.35:1 아나모픽 와이드스크린 (Anamorphic Widescreen)",
+            "audio": "영어 Dolby Digital 5.1 EX, 영어 서라운드 2.0",
+            "subtitles": "한국어, 영어",
+            "regionCode": "지역코드 3 (Region 3)"
+        },
+        "discs": [
+            {
+                "name": "디스크 1: 본편 영화 (Feature Film)",
+                "features": [
+                    "조지 루카스 감독, 릭 매컬럼, 벤 버트 등 제작진의 음성 해설(Audio Commentary) 수록",
+                    "최상의 화질과 음질을 위한 디지털 마스터링",
+                    "극장 상영 시 제외되었던 미공개 삭제 장면 7가지 통합 수록"
+                ]
+            },
+            {
+                "name": "디스크 2: 보너스 피처 (Special Features)",
+                "features": [
+                    "독점 공개 - 삭제된 장면의 제작 과정 및 비하인드 스토리 다큐멘터리",
+                    "“The Beginning” - 에피소드 1 제작 과정을 담은 장편 다큐멘터리 (한글자막 지원)",
+                    "다원 각도(Multi-Angle) 시각 효과 분석 시퀀스 수록",
+                    "뮤직 비디오: 존 윌리엄스의 “Duel of the Fates”",
+                    "극장용 예고편 및 TV 광고 모음집",
+                    "미공개 스틸 갤러리 및 오리지널 포스터 아트워크"
+                ]
+            }
+        ]
+    };
+
+    // DOM Rendering
+    document.getElementById('current-date-display').textContent = dvdData.systemDate;
+    document.getElementById('movie-title').textContent = dvdData.title;
+    document.getElementById('movie-subtitle').textContent = dvdData.originalTitle;
+
+    // Render Meta Panel
+    const metaPanel = document.getElementById('meta-panel');
+    const metaLayout = [
+        { label: "출시사", value: dvdData.publisher },
+        { label: "디스크 구성", value: dvdData.releaseSpecs.format },
+        { label: "화면비", value: dvdData.releaseSpecs.aspectRatio },
+        { label: "오디오", value: dvdData.releaseSpecs.audio },
+        { label: "자막", value: dvdData.releaseSpecs.subtitles },
+        { label: "지역코드", value: dvdData.releaseSpecs.regionCode }
+    ];
+
+    metaLayout.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'meta-item';
+        div.innerHTML = `<span class="meta-label">${item.label}</span><span class="meta-value">${item.value}</span>`;
+        metaPanel.appendChild(div);
+    });
+
+    // Render Disc Info
+    const discContainer = document.getElementById('disc-info');
+    dvdData.discs.forEach(disc => {
+        const card = document.createElement('div');
+        card.className = 'disc-card';
+        
+        const title = document.createElement('div');
+        title.className = 'disc-title';
+        title.innerHTML = `<span>${disc.name}</span>`;
+        
+        const list = document.createElement('ul');
+        list.className = 'feature-list';
+        
+        disc.features.forEach(feat => {
+            const li = document.createElement('li');
+            li.textContent = feat;
+            list.appendChild(li);
+        });
+
+        card.appendChild(title);
+        card.appendChild(list);
+        discContainer.appendChild(card);
+    });
+</script>
+
+</body>
+</html>
