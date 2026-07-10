@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스타워즈 에피소드 2: 클론의 습격 DVD 출시</title>
+    <style>
+        :root {
+            --space-black: #050505;
+            --star-gold: #FFE81F;
+            --clone-blue: #00a2ff;
+            --text-gray: #e0e0e0;
+            --card-bg: #121212;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: var(--space-black);
+            color: var(--text-gray);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(5,5,5,1)), url('https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            padding: 60px 20px;
+            text-align: center;
+            border-bottom: 2px solid var(--star-gold);
+        }
+
+        .release-date {
+            color: var(--star-gold);
+            font-size: 1.2rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 2.5rem;
+            margin: 10px 0;
+            text-shadow: 0 0 10px rgba(255, 232, 31, 0.5);
+        }
+
+        h2 {
+            color: var(--clone-blue);
+            font-size: 1.5rem;
+            margin-top: 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .main-info {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+            border: 1px solid #222;
+        }
+
+        @media (max-width: 768px) {
+            .main-info {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .poster-placeholder {
+            background: #1f1f1f;
+            border: 2px dashed #333;
+            aspect-ratio: 2/3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #666;
+            border-radius: 4px;
+        }
+
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .specs-table th, .specs-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #222;
+        }
+
+        .specs-table th {
+            color: var(--star-gold);
+            width: 30%;
+        }
+
+        .disc-section {
+            margin-top: 50px;
+        }
+
+        .disc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .disc-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .disc-card {
+            background: var(--card-bg);
+            border: 1px solid #222;
+            border-top: 4px solid var(--star-gold);
+            padding: 25px;
+            border-radius: 4px;
+        }
+
+        .disc-card.disc-2 {
+            border-top-color: var(--clone-blue);
+        }
+
+        .disc-card h3 {
+            margin-top: 0;
+            color: #fff;
+            font-size: 1.3rem;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+
+        .features-list {
+            padding-left: 20px;
+            margin: 0;
+        }
+
+        .features-list li {
+            margin-bottom: 8px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #555;
+            font-size: 0.9rem;
+            border-top: 1px solid #111;
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="release-date">국내 공식 DVD 출시일: 2002년 11월 15일</div>
+        <h1 id="movie-title">스타워즈 에피소드 2: 클론의 습격</h1>
+        <h2 id="distributor">20세기 폭스 홈 엔터테인먼트 코리아</h2>
+    </header>
+
+    <div class="container">
+        <section class="main-info">
+            <div class="poster-placeholder">
+                <img src="https://images.45cat.com/f/dv/star-wars-episode-ii-attack-of-the-clones-33-dv.jpg">
+            </div>
+            <div>
+                <h3>작품 정보 (Movie Details)</h3>
+                <p id="synopsis">loading...</p>
+                
+                <table class="specs-table">
+                    <tr>
+                        <th>감독</th>
+                        <td id="director">조지 루카스</td>
+                    </tr>
+                    <tr>
+                        <th>상영 시간</th>
+                        <td id="runtime">142분</td>
+                    </tr>
+                    <tr>
+                        <th>화면 비율</th>
+                        <td id="aspect-ratio">2.35:1 아나모픽 와이드스크린</td>
+                    </tr>
+                    <tr>
+                        <th>오디오</th>
+                        <td id="audio">돌비 디지털 5.1 EX (영어), 서라운드 2.0 (영어)</td>
+                    </tr>
+                    <tr>
+                        <th>자막</th>
+                        <td id="subtitles">한국어, 영어</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <section class="disc-section">
+            <h2 style="text-align: center; color: #fff; margin-bottom: 30px;">2디스크 스페셜 에디션 구성</h2>
+            <div class="disc-grid" id="discs-container">
+                </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>© 2002 Lucasfilm Ltd. & TM. All Rights Reserved. Manufactured and Distributed by 20th Century Fox Home Entertainment Korea.</p>
+    </footer>
+
+    <script>
+        // 2002년 11월 15일 한국 출시 기준의 DVD 상세 JSON 데이터
+        const dvdData = {
+            "title": "스타워즈 에피소드 2: 클론의 습격",
+            "distributor": "20세기 폭스 홈 엔터테인먼트",
+            "releaseDate": "2002-11-15",
+            "synopsis": "공화국에 거대한 분열의 조짐이 나타나고, 수천 개의 태양계가 두쿠 백작의 주도하에 은하계 공화국 탈퇴를 선언한다. 은하계의 평화를 지키기 위해 오비완 케노비와 그의 제자 아나킨 스카이워커가 파드메 아미달라 의원의 암살 배후를 쫓는 가운데, 은하계를 뒤흔들 거대한 클론 군대의 비밀이 밝혀지는데…",
+            "discs": [
+                {
+                    "name": "DISC 1: 본편 오디오 코멘터리",
+                    "class": "disc-1",
+                    "features": [
+                        "디지털 마스터링을 거친 본편 영화 (142분)",
+                        "조지 루카스 감독, 감독 겸 시나리오 작가 조나단 헤일즈의 음성 코멘터리",
+                        "프로듀서 릭 맥컬럼, 사운드 디자이너 벤 버트, 애니메이션 감독 롭 콜맨 참여 코멘터리",
+                        "ILM 비주얼 이펙트 감독 패블로 헬만, 존 크놀, 벤 스노우 참여 코멘터리"
+                    ]
+                },
+                {
+                    "name": "DISC 2: 스페셜 피처 (보너스 디스크)",
+                    "class": "disc-2",
+                    "features": [
+                        "미공개 전면 삭제 장면 (조지 루카스, 릭 맥컬럼, 롭 콜맨의 소개 포함)",
+                        "구상에서 구현까지: 에피소드 2의 디지털 특수효과 다큐멘터리",
+                        "꼭두각시에서 연기자로: 디지털 캐릭터(요다, 자자 빙크스 등) 창조 과정",
+                        "최첨단 디지털 영화 제작 기술 소개 다큐멘터리",
+                        "웹 다큐멘터리 (에피소드 2 제작 전 과정을 담은 12부작 스페셜 영상)",
+                        "“Across the Stars” 뮤직비디오 (존 윌리엄스 음악)",
+                        "극장용 예고편 및 TV 광고 모음집",
+                        "독점 인쇄용 포스터 및 비하인드 사진 갤러리"
+                    ]
+                }
+            ]
+        };
+
+        // DOM 요소에 데이터 주입
+        document.getElementById('movie-title').innerText = dvdData.title;
+        document.getElementById('synopsis').innerText = dvdData.synopsis;
+
+        const discsContainer = document.getElementById('discs-container');
+        
+        dvdData.discs.forEach(disc => {
+            const discCard = document.createElement('div');
+            discCard.className = `disc-card ${disc.class}`;
+            
+            const title = document.createElement('h3');
+            title.innerText = disc.name;
+            discCard.appendChild(title);
+            
+            const ul = document.createElement('ul');
+            ul.className = 'features-list';
+            
+            disc.features.forEach(feature => {
+                const li = document.createElement('li');
+                li.innerText = feature;
+                ul.appendChild(li);
+            });
+            
+            discCard.appendChild(ul);
+            discsContainer.appendChild(discCard);
+        });
+    </script>
+</body>
+</html>
