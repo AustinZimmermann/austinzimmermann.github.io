@@ -5,16 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Image Generator</title>
     <style>
+        :root {
+            --bg-color: #0f172a;
+            --container-bg: #1e293b;
+            --text-color: #f8fafc;
+            --accent-color: #6366f1;
+            --accent-hover: #4f46e5;
+            --border-color: #334155;
+            --input-bg: #0f172a;
+        }
+
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background-color: #0f172a;
-            color: #f8fafc;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -23,50 +33,53 @@
         }
 
         .container {
-            background-color: #1e293b;
+            background-color: var(--container-bg);
             width: 100%;
-            max-width: 900px;
+            max-width: 600px;
+            padding: 30px;
             border-radius: 16px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-            padding: 30px;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 25px;
+            border: 1px solid var(--border-color);
         }
 
-        @media (min-width: 768px) {
-            .container {
-                grid-template-columns: 1fr 1fr;
-            }
+        header {
+            text-align: center;
+            margin-bottom: 25px;
         }
 
-        .input-section {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: 20px;
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 8px;
+            background: linear-gradient(to right, #818cf8, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        h1 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #38bdf8;
-            margin-bottom: 5px;
-        }
-
-        p {
+        header p {
             color: #94a3b8;
             font-size: 0.95rem;
         }
 
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #cbd5e1;
+        }
+
         textarea {
             width: 100%;
-            height: 120px;
-            background-color: #0f172a;
-            border: 2px solid #334155;
+            height: 100px;
+            background-color: var(--input-bg);
+            border: 1px solid var(--border-color);
             border-radius: 8px;
-            color: #f8fafc;
             padding: 12px;
+            color: var(--text-color);
             font-size: 1rem;
             resize: none;
             outline: none;
@@ -74,97 +87,74 @@
         }
 
         textarea:focus {
-            border-color: #38bdf8;
+            border-color: var(--accent-color);
         }
 
         .controls {
-            display: flex;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 15px;
-        }
-
-        .control-group {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        label {
-            font-size: 0.85rem;
-            color: #94a3b8;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            margin-bottom: 20px;
         }
 
         select {
-            background-color: #0f172a;
-            border: 2px solid #334155;
+            width: 100%;
+            background-color: var(--input-bg);
+            border: 1px solid var(--border-color);
             border-radius: 8px;
-            color: #f8fafc;
             padding: 10px;
+            color: var(--text-color);
             font-size: 0.95rem;
             outline: none;
             cursor: pointer;
         }
 
-        select:focus {
-            border-color: #38bdf8;
-        }
-
-        button {
-            background: linear-gradient(135deg, #38bdf8, #2563eb);
+        .generate-btn {
+            width: 100%;
+            background-color: var(--accent-color);
             color: white;
             border: none;
             border-radius: 8px;
             padding: 14px;
             font-size: 1rem;
-            font-weight: 600;
+            font-weight: bold;
             cursor: pointer;
-            transition: transform 0.1s, opacity 0.2s;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
+            transition: background-color 0.2s, transform 0.1s;
         }
 
-        button:hover {
-            opacity: 0.9;
+        .generate-btn:hover {
+            background-color: var(--accent-hover);
         }
 
-        button:active {
+        .generate-btn:active {
             transform: scale(0.98);
         }
 
-        button:disabled {
-            background: #475569;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .display-section {
-            background-color: #0f172a;
-            border: 2px dashed #334155;
+        .result-container {
+            margin-top: 25px;
             border-radius: 12px;
+            overflow: hidden;
+            background-color: var(--input-bg);
+            border: 1px dashed var(--border-color);
+            min-height: 300px;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             position: relative;
-            overflow: hidden;
-            min-height: 350px;
+        }
+
+        .result-image {
+            width: 100%;
+            height: auto;
+            display: none;
+            max-height: 450px;
+            object-fit: contain;
         }
 
         .placeholder-text {
-            color: #475569;
+            color: #64748b;
             text-align: center;
             padding: 20px;
-        }
-
-        #output-image {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            display: none;
         }
 
         /* Loading Spinner */
@@ -172,166 +162,158 @@
             display: none;
             width: 50px;
             height: 50px;
-            border: 5px solid #334155;
-            border-top: 5px solid #38bdf8;
+            border: 5px solid rgba(255, 255, 255, 0.1);
             border-radius: 50%;
+            border-top-color: var(--accent-color);
             animation: spin 1s linear infinite;
-            margin-bottom: 15px;
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            to { transform: rotate(360deg); }
         }
 
-        .loading-text {
+        .action-buttons {
             display: none;
-            color: #38bdf8;
-            font-weight: 500;
+            grid-template-columns: 1fr;
+            margin-top: 15px;
         }
 
-        #download-btn {
-            position: absolute;
-            bottom: 15px;
-            right: 15px;
-            padding: 8px 14px;
-            font-size: 0.85rem;
-            background: rgba(15, 23, 42, 0.8);
-            border: 1px solid #334155;
-            backdrop-filter: blur(4px);
-            display: none;
+        .download-btn {
+            background-color: #334155;
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
         }
-        
-        #download-btn:hover {
-            background: #38bdf8;
-            color: #0f172a;
+
+        .download-btn:hover {
+            background-color: #475569;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <div class="input-section">
-            <div>
-                <h1>AI Image Generator</h1>
-                <p>Enter a prompt to generate a completely unique image using AI.</p>
-            </div>
-            
-            <textarea id="prompt-input" placeholder="An astronaut riding a neon horse in cyberpunk city, highly detailed, 8k resolution..."></textarea>
-            
-            <div class="controls">
-                <div class="control-group">
-                    <label for="aspect-ratio">Aspect Ratio</label>
-                    <select id="aspect-ratio">
-                        <option value="1:1">1:1 (Square)</option>
-                        <option value="16:9">16:9 (Landscape)</option>
-                        <option value="9:16">9:16 (Portrait)</option>
-                    </select>
-                </div>
-            </div>
+        <header>
+            <h1>AI Image Generator</h1>
+            <p>Bring your imagination into reality instantly</p>
+        </header>
 
-            <button id="generate-btn">Generate Image</button>
+        <div class="form-group">
+            <label for="prompt">Prompt Description</label>
+            <textarea id="prompt" placeholder="A futuristic cyberpunk city with neon lights, raining, highly detailed, 8k resolution..."></textarea>
         </div>
 
-        <div class="display-section" id="display-container">
-            <div class="spinner" id="loading-spinner"></div>
-            <div class="loading-text" id="loading-text">Creating your masterpiece...</div>
-            
-            <div class="placeholder-text" id="placeholder">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
-                <p style="margin-top: 10px;">Your generated image will appear here</p>
+        <div class="controls">
+            <div class="control-group">
+                <label for="aspect-ratio">Aspect Ratio</label>
+                <select id="aspect-ratio">
+                    <option value="1:1">1:1 (Square)</option>
+                    <option value="16:9">16:9 (Landscape)</option>
+                    <option value="9:16">9:16 (Portrait)</option>
+                    <option value="4:3">4:3 (Standard)</option>
+                </select>
             </div>
+            <div class="control-group">
+                <label for="style-preset">Enhance Style</label>
+                <select id="style-preset">
+                    <option value="">None (Raw Prompt)</option>
+                    <option value=", cinematic lighting, ultra-realistic, photorealistic, 8k">Photorealistic</option>
+                    <option value=", digital art, anime style, vibrant colors, detailed art">Anime / Digital Art</option>
+                    <option value=", oil painting, textured, masterpiece, artistic expression">Oil Painting</option>
+                    <option value=", cyberpunk aesthetic, synthwave, futuristic, neon glows">Cyberpunk</option>
+                </select>
+            </div>
+        </div>
 
-            <img id="output-image" alt="AI Generated Image Output">
-            <button id="download-btn">Download</button>
+        <button class="generate-btn" id="generate-btn">Generate Image</button>
+
+        <div class="result-container" id="result-container">
+            <div class="spinner" id="spinner"></div>
+            <div class="placeholder-text" id="placeholder-text">Your generated masterpiece will appear here.</div>
+            <img src="" alt="AI Generated Output" class="result-image" id="result-image">
+        </div>
+
+        <div class="action-buttons" id="action-buttons">
+            <a href="#" class="download-btn" id="download-btn" target="_blank">Download Image</a>
         </div>
     </div>
 
     <script>
         document.getElementById('generate-btn').addEventListener('click', async () => {
-            const promptInput = document.getElementById('prompt-input').value.trim();
+            const promptInput = document.getElementById('prompt').value.trim();
             const aspectRatio = document.getElementById('aspect-ratio').value;
+            const stylePreset = document.getElementById('style-preset').value;
             
-            const generateBtn = document.getElementById('generate-btn');
-            const placeholder = document.getElementById('placeholder');
-            const spinner = document.getElementById('loading-spinner');
-            const loadingText = document.getElementById('loading-text');
-            const outputImage = document.getElementById('output-image');
+            const spinner = document.getElementById('spinner');
+            const placeholderText = document.getElementById('placeholder-text');
+            const resultImage = document.getElementById('result-image');
+            const actionButtons = document.getElementById('action-buttons');
             const downloadBtn = document.getElementById('download-btn');
 
             if (!promptInput) {
-                alert('Please enter a description or prompt first!');
+                alert('Please enter a description prompt before generating!');
                 return;
             }
 
-            // UI Adjustments for Loading State
-            generateBtn.disabled = true;
-            generateBtn.textContent = 'Generating...';
-            placeholder.style.display = 'none';
-            outputImage.style.display = 'none';
-            downloadBtn.style.display = 'none';
+            // Show loading states
             spinner.style.display = 'block';
-            loadingText.style.display = 'block';
+            placeholderText.style.display = 'none';
+            resultImage.style.display = 'none';
+            actionButtons.style.display = 'none';
 
-            // Resolve dimension sizes from selected aspect ratio
+            // Parse aspect ratios into dimensions Pollinations accepts
             let width = 1024;
             let height = 1024;
+
             if (aspectRatio === '16:9') {
-                width = 1344;
-                height = 768;
+                width = 1920; height = 1080;
             } else if (aspectRatio === '9:16') {
-                width = 768;
-                height = 1344;
+                width = 1080; height = 1920;
+            } else if (aspectRatio === '4:3') {
+                width = 1280; height = 960;
             }
 
-            try {
-                // Encode prompt text for safe URL transport
-                const encodedPrompt = encodeURIComponent(promptInput);
-                // We append a random seed query string parameter to force a brand new image every generation
-                const randomSeed = Math.floor(Math.random() * 1000000);
-                
-                const apiUrl = `https://image.pollinations.ai/p/${encodedPrompt}?width=${width}&height=${height}&seed=${randomSeed}&enhance=true`;
+            // Clean up the text for URL safety
+            const finalPrompt = encodeURIComponent(promptInput + stylePreset);
+            
+            // Generate a random seed dynamically to make sure identical prompts still fetch fresh updates
+            const seed = Math.floor(Math.random() * 1000000);
+            
+            // Formulate Pollinations AI URL endpoint
+            const imageUrl = `https://image.pollinations.ai/p/${finalPrompt}?width=${width}&height=${height}&seed=${seed}&nologo=true`;
 
-                // Fetching the image object blob to bypass cache and handle safely
-                const response = await fetch(apiUrl);
-                if (!response.ok) throw new Error('Failed to generate image from the server.');
+            try {
+                // Pre-fetching image cache to prevent sudden visual pops while rendering
+                const response = await fetch(imageUrl);
+                if (!response.ok) throw new Error("Network error occurred.");
                 
                 const blob = await response.blob();
-                const imageObjectURL = URL.createObjectURL(blob);
+                const objectURL = URL.createObjectURL(blob);
 
-                // Load image URL dynamically into UI
-                outputImage.src = imageObjectURL;
-                
-                outputImage.onload = () => {
+                // Attach to DOM
+                resultImage.src = objectURL;
+                downloadBtn.href = objectURL;
+                downloadBtn.download = `ai-image-${seed}.png`;
+
+                // Render image after load completes safely
+                resultImage.onload = () => {
                     spinner.style.display = 'none';
-                    loadingText.style.display = 'none';
-                    outputImage.style.display = 'block';
-                    downloadBtn.style.display = 'block';
-                    
-                    // Setup Download behavior
-                    downloadBtn.onclick = () => {
-                        const link = document.createElement('a');
-                        link.href = imageObjectURL;
-                        link.download = `ai-image-${randomSeed}.png`;
-                        document.body.appendChild(link);
-                        link.click();
-                        document.body.removeChild(link);
-                    };
-
-                    generateBtn.disabled = false;
-                    generateBtn.textContent = 'Generate Image';
+                    resultImage.style.display = 'block';
+                    actionButtons.style.display = 'grid';
                 };
 
             } catch (error) {
                 console.error(error);
-                alert('Something went wrong. Please check your connection and try again.');
-                
-                // Revert state back on error
                 spinner.style.display = 'none';
-                loadingText.style.display = 'none';
-                placeholder.style.display = 'block';
-                generateBtn.disabled = false;
-                generateBtn.textContent = 'Generate Image';
+                placeholderText.style.display = 'block';
+                placeholderText.innerText = "Failed to generate image. Please try again.";
             }
         });
     </script>
