@@ -3,271 +3,310 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>300 Blu-ray (2007) - Warner Home Video</title>
+    <title>300 (Blu-ray) - Pro Video Webshop (2008)</title>
     <style>
-        :root {
-            --bg-color: #0f0f12;
-            --card-bg: #1a1a24;
-            --accent-color: #b32626;
-            --text-color: #e2e8f0;
-            --text-muted: #94a3b8;
-            --border-color: #2d2d3d;
-        }
-
-        * {
-            box-sizing: border-box;
+        /* 2008 Glossy / Dark Aesthetic */
+        body {
+            background-color: #0b0b0b;
+            color: #e0e0e0;
+            font-family: Helvetica, sans-serif;
             margin: 0;
             padding: 0;
-            font-family: Helvetica, sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            padding: 2rem 1rem;
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
+            background-image: linear-gradient(to bottom, #1a1a1a 0%, #0b0b0b 300px);
         }
 
         header {
-            text-align: center;
-            margin-bottom: 3rem;
-            border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 1rem;
+            background: linear-gradient(to bottom, #222 0%, #111 100%);
+            border-bottom: 3px solid #b81d24;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
 
-        header h1 {
-            font-size: 2.5rem;
-            letter-spacing: 2px;
+        .logo-area h1 {
             color: #fff;
-            text-transform: uppercase;
+            margin: 0;
+            font-size: 24px;
+            letter-spacing: 1px;
         }
 
-        header p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
+        .logo-area span {
+            color: #b81d24;
+            font-weight: bold;
         }
 
-        .movie-grid {
+        .date-badge {
+            background-color: #333;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #aaa;
+            border: 1px solid #444;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #141414;
+            border: 1px solid #252525;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.8);
+        }
+
+        .movie-layout {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-            background: var(--card-bg);
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            border: 1px solid var(--border-color);
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
         }
 
-        @media (min-width: 768px) {
-            .movie-grid {
-                grid-template-columns: 350px 1fr;
-            }
+        /* Cover & Purchase Box */
+        .left-col {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
         .cover-art {
+            width: 100%;
+            height: 400px;
+            background: #222 linear-gradient(45deg, #222, #333);
+            border-radius: 6px;
+            border: 2px solid #444;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.6);
+        }
+
+        .bluray-banner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to bottom, #0088ff, #0044cc);
+            color: white;
+            font-weight: bold;
+            font-size: 11px;
+            letter-spacing: 2px;
+            padding: 4px 0;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        }
+
+        .cover-title {
+            font-size: 48px;
+            font-weight: 900;
+            color: #b81d24;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            margin: 0;
+        }
+
+        .cover-subtitle {
+            font-size: 12px;
+            letter-spacing: 4px;
+            color: #aaa;
+        }
+
+        .price-box {
+            background: linear-gradient(to bottom, #1f1f1f, #151515);
+            border: 1px solid #333;
+            padding: 20px;
+            border-radius: 6px;
             text-align: center;
         }
 
-        .cover-art img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.6);
-            border: 1px solid var(--border-color);
+        .price-tag {
+            font-size: 28px;
+            color: #f5b301;
+            font-weight: bold;
+            margin-bottom: 15px;
         }
 
-        .details h2 {
+        .btn-cart {
+            background: linear-gradient(to bottom, #ff9900, #d47a00);
+            border: none;
             color: #fff;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 0.5rem;
-            margin-bottom: 1rem;
-            font-size: 1.8rem;
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            transition: background 0.2s;
         }
 
-        .meta-table {
+        .btn-cart:hover {
+            background: linear-gradient(to bottom, #ffaa22, #e58b00);
+        }
+
+        /* Right Content Area */
+        .movie-title {
+            font-size: 32px;
+            color: #fff;
+            margin-top: 0;
+            margin-bottom: 5px;
+        }
+
+        .movie-meta-quick {
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            border-bottom: 1px solid #333;
+            padding-bottom: 5px;
+            color: #b81d24;
+            font-size: 18px;
+            margin-top: 25px;
+        }
+
+        p.synopsis {
+            line-height: 1.6;
+            color: #ccc;
+        }
+
+        /* Technical Grid */
+        .tech-table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 1.5rem;
+            margin-top: 10px;
+            font-size: 14px;
         }
 
-        .meta-table td {
-            padding: 0.6rem 0.4rem;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+        .tech-table td {
+            padding: 8px 10px;
+            border-bottom: 1px solid #222;
         }
 
-        .meta-table td:first-child {
+        .tech-table td.label {
+            color: #888;
+            width: 150px;
             font-weight: bold;
-            color: var(--text-muted);
-            width: 35%;
         }
 
-        .badge {
-            background-color: var(--accent-color);
+        /* Alert/Toast for Cart interaction */
+        #cart-toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #2e7d32;
             color: white;
-            padding: 0.2rem 0.6rem;
+            padding: 15px 25px;
             border-radius: 4px;
-            font-size: 0.85rem;
-            font-weight: bold;
-            display: inline-block;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            display: none;
+            animation: fadeIn 0.3s;
         }
 
-        .specs-section {
-            margin-top: 1.5rem;
-        }
-
-        .specs-section h3 {
-            color: #fff;
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .specs-list {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .specs-list li {
-            margin-bottom: 0.4rem;
-            padding-left: 1.2rem;
-            position: relative;
-        }
-
-        .specs-list li::before {
-            content: "•";
-            color: var(--accent-color);
-            font-weight: bold;
-            position: absolute;
-            left: 0;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 3rem;
-            color: var(--text-muted);
-            font-size: 0.9rem;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <header>
-            <h1 id="page-title">300 Blu-ray</h1>
-            <p>Magyarországi Kiadás Specifikációk</p>
-        </header>
+    <header>
+        <div class="logo-area">
+            <h1>PRO VIDEO &bull; <span>BLU-RAY</span></h1>
+        </div>
+        <div class="date-badge">
+            Megjelenés: 2008. november 6.
+        </div>
+    </header>
 
-        <main class="movie-grid">
-            <div class="cover-art">
-                <img id="movie-cover" src="" alt="300 Blu-ray Cover">
+    <div class="container">
+        <div class="movie-layout">
+            
+            <div class="left-col">
+                <div class="cover-art">
+                    <img src="https://images.static-bluray.com/movies/covers/73921_front.jpg" width="100%">
+                </div>
+                
+                <div class="price-box">
+                    <div class="price-tag" id="price">6 990 Ft</div>
+                    <button class="btn-cart" onclick="addToCart()">Kosárba teszem</button>
+                </div>
             </div>
 
-            <div class="details">
-                <h2 id="movie-title">Betöltés...</h2>
-                
-                <table class="meta-table">
+            <div class="right-col">
+                <h2 class="movie-title">300</h2>
+                <div class="movie-meta-quick">Akció / Történelmi / Dráma &bull; 2007 &bull; 117 perc</div>
+
+                <h3 class="section-title">Ismertető</h3>
+                <p class="synopsis">
+                    Kr. e. 480-ban a perzsa nagykirály, Xerxész hatalmas sereggel indul Görögország leigázására. Leonidász, Spárta királya mindössze 300 harcossal vonul a Thermopülai-szoroshoz, hogy feltartóztassa a százezres inváziós haderőt. Frank Miller kultikus képregényének lenyűgöző, vizuálisan forradalmi adaptációja a hűségről, áldozatról és a szabadságvágyról.
+                </p>
+
+                <h3 class="section-title">Technikai specifikációk</h3>
+                <table class="tech-table">
                     <tr>
-                        <td>Kiadó:</td>
-                        <td id="meta-publisher"></td>
+                        <td class="label">Kiadó</td>
+                        <td>Pro Video Film & Kifejezés Kft.</td>
                     </tr>
                     <tr>
-                        <td>Kiadási dátum:</td>
-                        <td id="meta-release-date"></td>
+                        <td class="label">Megjelenés dátuma</td>
+                        <td>2008. november 06.</td>
                     </tr>
                     <tr>
-                        <td>Formátum:</td>
-                        <td><span class="badge" id="meta-format"></span></td>
+                        <td class="label">Formátum</td>
+                        <td>BD-50 (Kétrétegű Blu-ray)</td>
                     </tr>
                     <tr>
-                        <td>Videó kodek:</td>
-                        <td id="meta-codec"></td>
+                        <td class="label">Videó kódolás</td>
+                        <td><strong>VC-1</strong> (1080p AVC/VC-1 hibrid master alapján)</td>
                     </tr>
                     <tr>
-                        <td>Eredeti megjelenés:</td>
-                        <td id="meta-year"></td>
+                        <td class="label">Képarány</td>
+                        <td>2.40:1 (16:9)</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Hangsávok</td>
+                        <td>Magyar (Dolby Digital 5.1), Angol (TrueHD 5.1 / PCM 5.1)</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Feliratok</td>
+                        <td>Magyar, Angol</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Korhatár</td>
+                        <td>Tizenhat éven aluliak számára nem ajánlott (16)</td>
                     </tr>
                 </table>
 
-                <div class="specs-section">
-                    <h3>Hangsávok</h3>
-                    <ul class="specs-list" id="audio-list"></ul>
-                </div>
-
-                <div class="specs-section">
-                    <h3>Feliratok</h3>
-                    <ul class="specs-list" id="subtitle-list"></ul>
-                </div>
+                <h3 class="section-title">Extra tartalom</h3>
+                <p class="synopsis" style="font-size: 14px;">
+                    &bull; Audiokommentár Zack Snyder rendező közreműködésével<br>
+                    &bull; A 300 spártai – Tény vagy fikció?<br>
+                    &bull; Így készült a <i>300</i> (Werkfilm)<br>
+                    &bull; Kimaradt jelenetek a rendező bevezetőjével
+                </p>
             </div>
-        </main>
 
-        <footer>
-            <p>&copy; 2026 Blu-ray Adatbázis. Warner Home Video / Legendary Pictures.</p>
-        </footer>
+        </div>
     </div>
 
+    <div id="cart-toast">A termék sikeresen a kosárba került!</div>
+
     <script>
-        // Beágyazott JSON struktúra a kért adatokkal
-        const bdReleaseData = {
-            "title": "300",
-            "originalYear": 2007,
-            "publisher": "Warner Home Video",
-            "regionCode": "hu-HU",
-            "releaseDate": "2008-11-06",
-            "format": "Blu-ray",
-            "videoCodec": "VC-1 (1080p)",
-            "coverUrl": "https://images.static-bluray.com/movies/covers/73921_front.jpg",
-            "audioTracks": [
-                "Angol Dolby TrueHD 5.1",
-                "Magyar Dolby Digital 5.1",
-                "Cseh Dolby Digital 5.1",
-                "Lengyel Dolby Digital 5.1",
-                "Orosz Dolby Digital 5.1",
-                "Török Dolby Digital 5.1"
-            ],
-            "subtitles": [
-                "Magyar",
-                "Angol",
-                "Cseh",
-                "Lengyel",
-                "Orosz",
-                "Török",
-                "Román"
-            ]
-        };
-
-        // DOM elemek feltöltése dinamikusan a JavaScript / JSON adatokból
-        document.addEventListener("DOMContentLoaded", () => {
-            // Címek és alapadatok
-            document.getElementById("movie-title").innerText = `${bdReleaseData.title} (${bdReleaseData.originalYear})`;
-            document.getElementById("movie-cover").src = bdReleaseData.coverUrl;
-            document.getElementById("movie-cover").alt = `${bdReleaseData.title} Blu-ray borító`;
+        function addToCart() {
+            const toast = document.getElementById('cart-toast');
+            toast.style.display = 'block';
             
-            document.getElementById("meta-publisher").innerText = bdReleaseData.publisher;
-            document.getElementById("meta-release-date").innerText = bdReleaseData.releaseDate;
-            document.getElementById("meta-format").innerText = bdReleaseData.format;
-            document.getElementById("meta-codec").innerText = bdReleaseData.videoCodec;
-            document.getElementById("meta-year").innerText = bdReleaseData.originalYear;
-
-            // Hangsávok listázása
-            const audioList = document.getElementById("audio-list");
-            bdReleaseData.audioTracks.forEach(track => {
-                const li = document.createElement("li");
-                li.innerText = track;
-                audioList.appendChild(li);
-            });
-
-            // Feliratok listázása
-            const subtitleList = document.getElementById("subtitle-list");
-            bdReleaseData.subtitles.forEach(sub => {
-                const li = document.createElement("li");
-                li.innerText = sub;
-                subtitleList.appendChild(li);
-            });
-        });
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 3000);
+        }
     </script>
 </body>
 </html>
