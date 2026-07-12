@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Terminator (1984) (2006 Blu-ray Remux) : MGM : Free Download, Borrow, and Streaming : Internet Archive</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        /* Navbar Styling */
+        header {
+            background-color: #111;
+            color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .archive-logo {
+            font-weight: bold;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .archive-logo span {
+            color: #ffcc00;
+        }
+
+        nav a {
+            color: #ccc;
+            text-decoration: none;
+            margin-left: 15px;
+            font-size: 0.9rem;
+        }
+
+        nav a:hover {
+            color: #fff;
+        }
+
+        /* Main Layout */
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Left Column: Media Player & Info */
+        .main-content h1 {
+            font-size: 1.6rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+            color: #222;
+        }
+
+        .meta-top {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .meta-top a {
+            color: #428bca;
+            text-decoration: none;
+        }
+
+        /* Video Player Simulator */
+        .player-container {
+            background-color: #000;
+            aspect-ratio: 16 / 9;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .video-placeholder {
+            text-align: center;
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=1000&q=80') center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .play-btn {
+            font-size: 4rem;
+            opacity: 0.8;
+            transition: transform 0.2s, opacity 0.2s;
+        }
+
+        .video-placeholder:hover .play-btn {
+            transform: scale(1.1);
+            opacity: 1;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            display: none;
+        }
+
+        /* Tabs & Description */
+        .info-tabs {
+            margin-top: 30px;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            gap: 20px;
+        }
+
+        .tab {
+            padding: 10px 5px;
+            font-size: 0.95rem;
+            color: #555;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            font-weight: bold;
+        }
+
+        .tab.active {
+            color: #000;
+            border-bottom-color: #428bca;
+        }
+
+        .description-box {
+            background: #fff;
+            padding: 20px;
+            border: 1px solid #e3e3e3;
+            border-top: none;
+            border-radius: 0 0 4px 4px;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .metadata-table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        .metadata-table td {
+            padding: 6px 10px;
+            font-size: 0.9rem;
+            vertical-align: top;
+        }
+
+        .metadata-table td.label {
+            font-weight: bold;
+            color: #666;
+            width: 150px;
+        }
+
+        /* Right Column: Download Options */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .download-card {
+            background: #fff;
+            border: 1px solid #dcdcdc;
+            border-top: 3px solid #428bca;
+            border-radius: 4px;
+            padding: 20px;
+        }
+
+        .download-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: #333;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+        }
+
+        .download-list {
+            list-style: none;
+        }
+
+        .download-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px dashed #eee;
+            font-size: 0.9rem;
+        }
+
+        .download-item:last-child {
+            border-bottom: none;
+        }
+
+        .download-item a {
+            color: #428bca;
+            text-decoration: none;
+        }
+
+        .download-item a:hover {
+            text-decoration: underline;
+        }
+
+        .download-item .size {
+            color: #777;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #222;
+            color: #aaa;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.8rem;
+            margin-top: 50px;
+            border-top: 3px solid #428bca;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="archive-logo">
+            🏛️ INTERNET ARCHIVE <span>||</span>
+        </div>
+        <nav>
+            <a href="#">Web</a>
+            <a href="#">Books</a>
+            <a href="#">Video</a>
+            <a href="#">Audio</a>
+            <a href="#">Software</a>
+            <a href="#">About</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        
+        <main class="main-content">
+            <h1>The Terminator (1984) (2006 Blu-ray Remux)</h1>
+            
+            <div class="meta-top">
+                by <a href="#">MGM</a> | 
+                Publication date <span>2006-06-20</span> | 
+                Topics <a href="#">The Terminator</a>, <a href="#">1984</a>, <a href="#">Blu-ray Remux</a>, <a href="#">Sci-Fi</a>, <a href="#">Action</a>
+            </div>
+
+            <div class="player-container" id="playerContainer">
+                <div class="video-placeholder" id="placeholder" onclick="startVideo()">
+                    <div class="play-btn">▶</div>
+                    <p>Click to Stream Sample / Preview</p>
+                </div>
+                <video id="mainVideo" controls>
+                    <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+
+            <div class="info-tabs">
+                <div class="tab active">Description</div>
+            </div>
+
+            <div class="description-box">
+                <p>A high-quality uncompressed 1080p Blu-ray Remux of the legendary 1984 science fiction action masterpiece, <b><i>The Terminator</i></b>, directed by James Cameron. This specific upload is archived from the initial 2006 MGM Blu-ray release pressing.</p>
+                
+                <table class="metadata-table">
+                    <tr>
+                        <td class="label">Publication date</td>
+                        <td>2006-06-20</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Publisher</td>
+                        <td>MGM Home Entertainment</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Language</td>
+                        <td>English</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Director</td>
+                        <td>James Cameron</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Starring</td>
+                        <td>Arnold Schwarzenegger, Linda Hamilton, Michael Biehn</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Codec/Format</td>
+                        <td>MPEG-2 / MKV (Remux)</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Identifier</td>
+                        <td>the-terminator-1984-2006-bluray-remux</td>
+                    </tr>
+                </table>
+            </div>
+        </main>
+
+        <aside class="sidebar">
+            <div class="download-card">
+                <h3>DOWNLOAD OPTIONS</h3>
+                <ul class="download-list">
+                    <li class="download-item">
+                        <a href="#" download>H.264 (MPEG-4)</a>
+                        <span class="size">2.1 GB</span>
+                    </li>
+                    <li class="download-item">
+                        <a href="#" download style="font-weight: bold;">MKV (Original Remux)</a>
+                        <span class="size">18.4 GB</span>
+                    </li>
+                    <li class="download-item">
+                        <a href="#" download>MPEG-2 (Raw Stream)</a>
+                        <span class="size">16.1 GB</span>
+                    </li>
+                    <li class="download-item">
+                        <a href="#" download>TORRENT</a>
+                        <span class="size">1 file</span>
+                    </li>
+                    <li class="download-item">
+                        <a href="#" download>METADATA (XML)</a>
+                        <span class="size">14.2 KB</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="download-card" style="border-top-color: #5cb85c; font-size: 0.85rem; color: #555;">
+                <strong>Archived Item Details</strong><br>
+                This item belongs to the community video repository. Anyone can contribute items to the collection.
+            </div>
+        </aside>
+
+    </div>
+
+    <footer>
+        <p>Internet Archive Terms of Service & Privacy Policy | Mockup created for educational representation.</p>
+    </footer>
+
+    <script>
+        function startVideo() {
+            const placeholder = document.getElementById('placeholder');
+            const video = document.getElementById('mainVideo');
+            
+            placeholder.style.display = 'none';
+            video.style.display = 'block';
+            video.play();
+        }
+    </script>
+</body>
+</html>
