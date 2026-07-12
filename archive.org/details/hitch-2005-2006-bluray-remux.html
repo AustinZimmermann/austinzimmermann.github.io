@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hitch (2005) (2006 Blu-ray Remux) : Sony Pictures : Free Download, Borrow, and Streaming : Internet Archive</title>
+    <style>
+        :root {
+            --primary-color: #111;
+            --secondary-color: #333;
+            --accent-color: #2c56dd;
+            --bg-color: #f7f7f7;
+            --card-bg: #ffffff;
+            --text-color: #222;
+            --text-muted: #666;
+            --border-color: #e0e0e0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.5;
+        }
+
+        /* Header Navigation */
+        header {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 15px;
+            font-size: 14px;
+        }
+
+        /* Main Layout Container */
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Left Column: Media Player & Info */
+        .main-content {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 24px;
+        }
+
+        .player-container {
+            position: relative;
+            background: #000;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            border-radius: 4px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .player-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=1000') center/cover;
+        }
+
+        .play-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid #fff;
+            color: #fff;
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            font-size: 28px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .play-btn:hover {
+            background: #fff;
+            color: #000;
+            transform: scale(1.05);
+        }
+
+        .item-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .meta-strip {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            font-size: 14px;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .meta-strip span strong {
+            color: var(--secondary-color);
+        }
+
+        .description-box {
+            font-size: 15px;
+            color: #444;
+        }
+
+        .description-content {
+            height: 100px;
+            overflow: hidden;
+            transition: height 0.3s ease;
+        }
+
+        .description-content.expanded {
+            height: auto;
+        }
+
+        .toggle-desc-btn {
+            background: none;
+            border: none;
+            color: var(--accent-color);
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 8px;
+            padding: 0;
+        }
+
+        /* Right Column: Download & Metadata Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .download-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 5px;
+        }
+
+        .download-list {
+            list-style: none;
+        }
+
+        .download-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 14px;
+        }
+
+        .download-item:last-child {
+            border-bottom: none;
+        }
+
+        .download-format {
+            font-weight: 500;
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .download-format:hover {
+            text-decoration: underline;
+        }
+
+        .download-size {
+            color: var(--text-muted);
+        }
+
+        .info-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 20px;
+        }
+
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        .info-table td {
+            padding: 8px 0;
+            vertical-align: top;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: var(--text-muted);
+            width: 40%;
+        }
+
+        .info-value {
+            color: var(--text-color);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary-color);
+            color: #ccc;
+            text-align: center;
+            padding: 20px;
+            font-size: 13px;
+            margin-top: 40px;
+            border-top: 4px solid var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-area">
+            <span class="logo-icon">🏛</span>
+            <strong>INTERNET ARCHIVE</strong>
+        </div>
+        <nav class="nav-links">
+            <a href="#">Web</a>
+            <a href="#">Books</a>
+            <a href="#">Video</a>
+            <a href="#">Audio</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        
+        <section class="main-content">
+            <h1 class="item-title">Hitch (2005) (2006 Blu-ray Remux)</h1>
+            
+            <div class="meta-strip">
+                <span>by <strong>Sony Pictures</strong></span>
+                <span>Publication date: <strong>2006-06-20</strong></span>
+                <span>Topics: <strong>Romantic Comedy, Will Smith, Remux, 1080p</strong></span>
+            </div>
+
+            <div class="player-container">
+                <div class="player-placeholder" id="videoPlayer">
+                    <button class="play-btn" onclick="startStream()">▶</button>
+                    <p style="margin-top: 15px; font-weight: 500; text-shadow: 1px 1px 4px rgba(0,0,0,0.8);">Stream Video Preview</p>
+                </div>
+            </div>
+
+            <div class="description-box">
+                <h3>Description</h3>
+                <div class="description-content" id="descContent">
+                    <p>A pristine 1080p high-definition Blu-ray Remux of the hit 2005 romantic comedy movie, <em>Hitch</em>, starring Will Smith, Eva Mendes, Kevin James, and Amber Valletta. Produced and published digitally on Blu-ray by Sony Pictures on June 20, 2006.</p>
+                    <br>
+                    <p><strong>Plot Summary:</strong> Alex “Hitch” Hitchens is a professional “date doctor” who coaches other men in the art of wooing the women of their dreams. While helping his latest client, Albert, win the heart of wealthy heiress Allegra Cole, Hitch finds himself falling for Sara Melas, a gossip columnist who is determined to unmask Manhattan’s famous, anonymous date doctor.</p>
+                    <br>
+                    <p><strong>Technical File Specs:</strong><br>
+                    - Video: MPEG-2 1080p High Profile<br>
+                    - Audio: Uncompressed PCM 5.1, Dolby Digital 5.1<br>
+                    - Aspect Ratio: 2.40:1 Original Aspect Ratio<br>
+                    - Source: Retail 2006 Blu-ray Disc Untouched Video Remux</p>
+                </div>
+                <button class="toggle-desc-btn" id="toggleBtn" onclick="toggleDescription()">Show More</button>
+            </div>
+        </section>
+
+        <aside class="sidebar">
+            
+            <div class="download-card">
+                <h2 class="card-title">Download Options</h2>
+                <ul class="download-list">
+                    <li class="download-item">
+                        <a href="#" class="download-format" onclick="alert('Starting H.264 MP4 Download...')">H.264 (MPEG-4)</a>
+                        <span class="download-size">2.4 GB</span>
+                    </li>
+                    <li class="download-item">
+                        <a href="#" class="download-format" onclick="alert('Starting Blu-ray MKV Remux Download... (Large File)')">MKV Remux (MPEG-2)</a>
+                        <span class="download-size">22.8 GB</span>
+                    </li>
+                    <li class="download-item">
+                        <a href="#" class="download-format" onclick="alert('Downloading Torrent file...')">TORRENT</a>
+                        <span class="download-size">148 KB</span>
+                    </li>
+                    <li class="download-item">
+                        <a href="#" class="download-format" onclick="alert('Fetching Metadata XML...')">Metadata XML</a>
+                        <span class="download-size">12 KB</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="info-card">
+                <h2 class="card-title">Item Tile Info</h2>
+                <table class="info-table">
+                    <tr>
+                        <td class="info-label">Identifier</td>
+                        <td class="info-value">hitch-2005-2006-bluray-remux</td>
+                    </tr>
+                    <tr>
+                        <td class="info-label">Publisher</td>
+                        <td class="info-value">Sony Pictures</td>
+                    </tr>
+                    <tr>
+                        <td class="info-label">Release Date</td>
+                        <td class="info-value">2006-06-20</td>
+                    </tr>
+                    <tr>
+                        <td class="info-label">Language</td>
+                        <td class="info-value">English</td>
+                    </tr>
+                    <tr>
+                        <td class="info-label">Run Time</td>
+                        <td class="info-value">1h 58m</td>
+                    </tr>
+                </table>
+            </div>
+
+        </aside>
+    </main>
+
+    <footer>
+        <p>This page is a localized user-interface simulation inspired by Archive.org digital library items.</p>
+    </footer>
+
+    <script>
+        function toggleDescription() {
+            const desc = document.getElementById('descContent');
+            const btn = document.getElementById('toggleBtn');
+            
+            if (desc.classList.contains('expanded')) {
+                desc.classList.remove('expanded');
+                desc.style.height = "100px";
+                btn.textContent = "Show More";
+            } else {
+                desc.classList.add('expanded');
+                desc.style.height = "auto";
+                btn.textContent = "Show Less";
+            }
+        }
+
+        function startStream() {
+            const player = document.getElementById('videoPlayer');
+            player.innerHTML = `
+                <div style="background: #000; width:100%; height:100%; display:flex; justify-content:center; align-items:center; color:#00ff00; font-family:monospace; font-size:14px; padding: 20px; box-sizing:border-box;">
+                    [SIMULATION] Connecting to item pipeline... <br>
+                    Buffering: Hitch (2005) 1080p Blu-ray Remux streams...<br>
+                    Status: Stream content dummy placeholder active.
+                </div>
+            `;
+            player.style.background = "#000";
+        }
+    </script>
+</body>
+</html>
