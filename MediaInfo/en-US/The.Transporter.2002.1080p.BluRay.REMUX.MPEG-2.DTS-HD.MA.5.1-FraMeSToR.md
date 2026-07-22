@@ -11,9 +11,10 @@ Codec........: MPEG Video Main@High
 Resolution...: 1920x1080
 AspectRatio..: 16:9
 BitRate......: 18.8 Mb/s
+FrameRate....: 23.976 FPS
 
 Audio
-Language.....: English (American)
+Language.....: English
 Channels.....: 6
 Format.......: DTS-HD Master Audio
 BitRate......: 4 122 kb/s
