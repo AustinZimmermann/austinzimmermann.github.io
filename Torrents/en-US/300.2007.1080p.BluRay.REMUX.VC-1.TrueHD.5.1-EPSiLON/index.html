@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>300.2007.1080p.BluRay.REMUX.VC-1.TrueHD.5.1-EPSiLON - TrackerDB</title>
+  <style>
+    :root {
+      --bg-dark: #0f1115;
+      --bg-card: #181b22;
+      --bg-card-hover: #212530;
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
+      --green: #10b981;
+      --red: #ef4444;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --border: #2d3342;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    /* Header Navigation */
+    header {
+      background-color: var(--bg-card);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 24px;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--text-main);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    nav {
+      display: flex;
+      gap: 16px;
+    }
+
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    nav a:hover, nav a.active {
+      color: var(--text-main);
+    }
+
+    .user-stats {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 0.85rem;
+      background-color: rgba(255, 255, 255, 0.04);
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+    }
+
+    .stat-up { color: var(--green); }
+    .stat-down { color: var(--red); }
+    .stat-ratio { color: #f59e0b; }
+
+    /* Main Container */
+    main {
+      max-width: 1200px;
+      margin: 24px auto;
+      padding: 0 16px;
+    }
+
+    .release-header {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .release-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      word-break: break-all;
+      margin-bottom: 12px;
+    }
+
+    .tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .tag {
+      background-color: rgba(59, 130, 246, 0.15);
+      color: var(--accent);
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+    }
+
+    /* Action Buttons */
+    .action-bar {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background-color: var(--accent);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-hover);
+    }
+
+    .btn-secondary {
+      background-color: rgba(255, 255, 255, 0.08);
+      color: var(--text-main);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .btn-thanks {
+      background-color: rgba(16, 185, 129, 0.15);
+      color: var(--green);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .btn-thanks:hover {
+      background-color: rgba(16, 185, 129, 0.25);
+    }
+
+    /* Details Layout */
+    .content-grid {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 850px) {
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .poster-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .poster-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .meta-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .meta-card h3 {
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+    }
+
+    .meta-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+    }
+
+    .meta-label {
+      color: var(--text-muted);
+    }
+
+    .meta-value {
+      font-weight: 500;
+      text-align: right;
+    }
+
+    /* Tabs Container */
+    .details-tabs {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .tab-nav {
+      display: flex;
+      background-color: rgba(0, 0, 0, 0.2);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .tab-btn {
+      padding: 14px 20px;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      border-bottom: 2px solid transparent;
+    }
+
+    .tab-btn:hover {
+      color: var(--text-main);
+    }
+
+    .tab-btn.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+      background-color: rgba(59, 130, 246, 0.05);
+    }
+
+    .tab-content {
+      padding: 20px;
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* Movie Summary */
+    .synopsis {
+      line-height: 1.7;
+      color: #d1d5db;
+      margin-bottom: 20px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .info-box {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 12px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+    }
+
+    .info-box-title {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .info-box-val {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-top: 4px;
+    }
+
+    /* NFO Terminal */
+    .nfo-viewer {
+      background-color: #050608;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 0.82rem;
+      color: #34d399;
+      white-space: pre-wrap;
+      overflow-x: auto;
+      line-height: 1.4;
+    }
+
+    /* File List Table */
+    .file-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    .file-table th, .file-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .file-table th {
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+    }
+
+    /* Comments Section */
+    .comments-section {
+      margin-top: 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+    }
+
+    .comments-header {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .comment-box {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .comment-box textarea {
+      width: 100%;
+      min-height: 80px;
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 12px;
+      color: var(--text-main);
+      resize: vertical;
+    }
+
+    .comment-box textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .comment-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .comment-item {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px;
+    }
+
+    .comment-author {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-size: 0.85rem;
+    }
+
+    .author-name {
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .comment-time {
+      color: var(--text-muted);
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background-color: var(--green);
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 6px;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      display: none;
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Navigation -->
+  <header>
+    <div class="header-container">
+      <a href="#" class="logo">
+        ⚡ <span>TrackerDB</span>
+      </a>
+      <nav>
+        <a href="#" class="active">Torrents</a>
+        <a href="#">Requests</a>
+        <a href="#">Subtitles</a>
+        <a href="#">Forums</a>
+        <a href="#">Top 10</a>
+      </nav>
+      <div class="user-stats">
+        <span>👤 SpartaUser</span>
+        <span>Ratio: <strong class="stat-ratio">3.42</strong></span>
+        <span>Up: <strong class="stat-up">2.14 TB</strong></span>
+        <span>Down: <strong class="stat-down">642 GB</strong></span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Torrent Header Card -->
+    <section class="release-header">
+      <h1 class="release-title">300.2007.1080p.BluRay.REMUX.VC-1.TrueHD.5.1-EPSiLON</h1>
+      <div class="tags">
+        <span class="tag">Movies</span>
+        <span class="tag">1080p</span>
+        <span class="tag">Blu-ray Remux</span>
+        <span class="tag">VC-1</span>
+        <span class="tag">Dolby TrueHD 5.1</span>
+        <span class="tag">EPSiLON</span>
+      </div>
+      <div class="action-bar">
+        <button class="btn btn-primary" id="btn-download">
+          ⬇️ Download .torrent
+        </button>
+        <button class="btn btn-secondary" id="btn-magnet">
+          🧲 Magnet Link
+        </button>
+        <button class="btn btn-thanks" id="btn-thanks">
+          ❤️ Say Thanks (<span id="thanks-count">84</span>)
+        </button>
+        <button class="btn btn-secondary" id="btn-bookmark">
+          ⭐ Bookmark
+        </button>
+      </div>
+    </section>
+
+    <!-- Main Content Layout -->
+    <div class="content-grid">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="poster-card">
+          <img src="https://images.static-bluray.com/movies/covers/451_front.jpg" alt="300 (2007) Blu-ray Cover" />
+        </div>
+
+        <div class="meta-card">
+          <h3>Torrent Information</h3>
+          <div class="meta-row">
+            <span class="meta-label">Uploaded</span>
+            <span class="meta-value">2008-04-12</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">Uploader</span>
+            <span class="meta-value" style="color: var(--accent);">EPSiLON</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">Size</span>
+            <span class="meta-value">24.81 GiB</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">Seeders</span>
+            <span class="meta-value stat-up">142</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">Leechers</span>
+            <span class="meta-value stat-down">8</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">Snatched</span>
+            <span class="meta-value">1,829 times</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">Info Hash</span>
+            <span class="meta-value" style="font-family: monospace; font-size: 0.75rem;">a3f82e...7b10</span>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Right Main Column -->
+      <section class="main-column">
+        <div class="details-tabs">
+          <div class="tab-nav">
+            <button class="tab-btn active" onclick="switchTab('tab-overview', this)">Overview</button>
+            <button class="tab-btn" onclick="switchTab('tab-mediainfo', this)">NFO / MediaInfo</button>
+            <button class="tab-btn" onclick="switchTab('tab-files', this)">File List (3)</button>
+          </div>
+
+          <!-- Overview Tab -->
+          <div id="tab-overview" class="tab-content active">
+            <h2 style="margin-bottom: 12px; font-size: 1.2rem;">300 (2007)</h2>
+            <p class="synopsis">
+              Based on Frank Miller’s graphic novel, ‘300’ is a ferocious retelling of the ancient Battle of Thermopylae in which King Leonidas and 300 Spartans fought to the death against Xerxes and his massive Persian army. Facing insurmountable odds, their valor and sacrifice inspire all of Greece to unite against their Persian enemy.
+            </p>
+
+            <div class="info-grid">
+              <div class="info-box">
+                <div class="info-box-title">Director</div>
+                <div class="info-box-val">Zack Snyder</div>
+              </div>
+              <div class="info-box">
+                <div class="info-box-title">IMDb Rating</div>
+                <div class="info-box-val">⭐ 7.6 / 10</div>
+              </div>
+              <div class="info-box">
+                <div class="info-box-title">Runtime</div>
+                <div class="info-box-val">117 minutes</div>
+              </div>
+              <div class="info-box">
+                <div class="info-box-title">Video Stream</div>
+                <div class="info-box-val">VC-1 @ 24.2 Mbps</div>
+              </div>
+              <div class="info-box">
+                <div class="info-box-title">Primary Audio</div>
+                <div class="info-box-val">TrueHD 5.1 @ 1536 kbps</div>
+              </div>
+              <div class="info-box">
+                <div class="info-box-title">Container</div>
+                <div class="info-box-val">MKV (Matroska)</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- MediaInfo / NFO Tab -->
+          <div id="tab-mediainfo" class="tab-content">
+            <div class="nfo-viewer">
+.--------------------------------------------------------------------------------.
+|                            EPSiLON REMUX GROUP PRESENTS                        |
+'--------------------------------------------------------------------------------'
+ Release Name ......: 300.2007.1080p.BluRay.REMUX.VC-1.TrueHD.5.1-EPSiLON
+ Release Date ......: 2008-04-12
+ Title .............: 300 (2007)
+ Source ............: 1080p Blu-ray US (VC-1 / TrueHD)
+ Size ..............: 24.81 GiB
+ Duration ..........: 01:57:07
+
+ [ VIDEO CODEC ]
+ Format/Info .......: VC-1 Advanced Profile Level 3
+ Bitrate ...........: 24.2 Mbps
+ Resolution ........: 1920 x 1080
+ Frame Rate ........: 23.976 fps
+ Aspect Ratio ......: 16:9 (2.40:1)
+
+ [ AUDIO TRACKS ]
+ Audio #1 ..........: English Dolby TrueHD 5.1 / 48 kHz / 1536 kbps / 16-bit
+ Audio #2 ..........: English Dolby Digital 5.1 / 48 kHz / 640 kbps
+ Audio #3 ..........: Director Commentary with Zack Snyder
+
+ [ SUBTITLES ]
+ Subtitles .........: English SDH, French, Spanish
+            </div>
+          </div>
+
+          <!-- Files Tab -->
+          <div id="tab-files" class="tab-content">
+            <table class="file-table">
+              <thead>
+                <tr>
+                  <th>File Name</th>
+                  <th>Size</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>300.2007.1080p.BluRay.REMUX.VC-1.TrueHD.5.1-EPSiLON.mkv</td>
+                  <td>24.79 GiB</td>
+                </tr>
+                <tr>
+                  <td>300.2007.REMUX-EPSiLON.nfo</td>
+                  <td>4.2 KB</td>
+                </tr>
+                <tr>
+                  <td>Sample/sample-300.2007.REMUX.mkv</td>
+                  <td>25.0 MB</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Comments Section -->
+        <div class="comments-section">
+          <div class="comments-header">User Comments (2)</div>
+          
+          <div class="comment-box">
+            <textarea id="comment-input" placeholder="Leave a comment or feedback about video/audio quality..."></textarea>
+            <button class="btn btn-primary" style="align-self: flex-end;" onclick="addComment()">Post Comment</button>
+          </div>
+
+          <div class="comment-list" id="comment-list">
+            <div class="comment-item">
+              <div class="comment-author">
+                <span class="author-name">CinemaFanatic</span>
+                <span class="comment-time">2 hours ago</span>
+              </div>
+              <div>Classic VC-1 encode, looks identical to the disc. The TrueHD track sounds incredible during the shield wall scene. Thanks EPSiLON!</div>
+            </div>
+
+            <div class="comment-item">
+              <div class="comment-author">
+                <span class="author-name">AudioPhile99</span>
+                <span class="comment-time">1 day ago</span>
+              </div>
+              <div>Seeding at 1 Gbps. Perfect Remux for archivers.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div class="toast" id="toast">Magnet link copied to clipboard!</div>
+
+  <script>
+    // Tab Switching Logic
+    function switchTab(tabId, element) {
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      
+      document.getElementById(tabId).classList.add('active');
+      element.classList.add('active');
+    }
+
+    // Magnet Link Copy Handler
+    document.getElementById('btn-magnet').addEventListener('click', () => {
+      const magnetURI = "magnet:?xt=urn:btih:a3f82e7b10294857d01823a238&dn=300.2007.1080p.BluRay.REMUX.VC-1.TrueHD.5.1-EPSiLON";
+      navigator.clipboard.writeText(magnetURI).then(() => {
+        showToast("Magnet link copied to clipboard!");
+      }).catch(() => {
+        showToast("Magnet link copied!");
+      });
+    });
+
+    // Download Handler
+    document.getElementById('btn-download').addEventListener('click', () => {
+      showToast("Starting torrent download...");
+    });
+
+    // Thanks Button Handler
+    let thanked = false;
+    document.getElementById('btn-thanks').addEventListener('click', function() {
+      const countEl = document.getElementById('thanks-count');
+      let currentCount = parseInt(countEl.textContent);
+      
+      if (!thanked) {
+        countEl.textContent = currentCount + 1;
+        this.style.backgroundColor = 'rgba(16, 185, 129, 0.4)';
+        showToast("You expressed thanks for this upload!");
+        thanked = true;
+      } else {
+        showToast("You already thanked the uploader!");
+      }
+    });
+
+    // Toast Notification Handler
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.style.display = 'block';
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 3000);
+    }
+
+    // Comment Addition Handler
+    function addComment() {
+      const textarea = document.getElementById('comment-input');
+      const text = textarea.value.trim();
+      
+      if (!text) return;
+
+      const commentList = document.getElementById('comment-list');
+      const newComment = document.createElement('div');
+      newComment.className = 'comment-item';
+      newComment.innerHTML = `
+        <div class="comment-author">
+          <span class="author-name">SpartaUser</span>
+          <span class="comment-time">Just now</span>
+        </div>
+        <div>${escapeHTML(text)}</div>
+      `;
+
+      commentList.prepend(newComment);
+      textarea.value = '';
+      showToast("Comment posted!");
+    }
+
+    function escapeHTML(str) {
+      return str.replace(/[&<>'"]/g, 
+        tag => ({
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          "'": '&#39;',
+          '"': '&quot;'
+        }[tag] || tag)
+      );
+    }
+  </script>
+</body>
+</html>
