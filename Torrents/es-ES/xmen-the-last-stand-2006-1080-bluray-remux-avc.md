@@ -16,7 +16,7 @@
 * **Fotografía:** Dante Spinotti
 * **Reparto:** Hugh Jackman, Halle Berry, Ian McKellen, Patrick Stewart, Famke Janssen, Kelsey Grammer, James Marsden, Rebecca Romijn, Shawn Ashmore, Elliot Page, Aaron Stanford, Vinnie Jones, Anna Paquin
 * **Productora:** 20th Century Fox, Marvel Enterprises, Dune Entertainment, Bad Hat Harry Productions
-* **Género:** Ciencia ficción | Acción | Superhéroes | Cómic (Marvel Comics)
+* **Género:** Ciencia ficción, Acción, Superhéroes, Cómic (Marvel Comics)
 
 ## 📖 SINOPSIS
 En *X-Men: La decisión final*, el último capítulo de la trilogía cinematográfica original de los X-Men, se descubre una “cura” para las mutaciones que amenaza con alterar el curso de la historia. Por primera vez, los mutantes pueden elegir: retener su condición sobrehumana, aunque esto los aísle y aliene, o renunciar a sus poderes y convertirse en humanos normales.
