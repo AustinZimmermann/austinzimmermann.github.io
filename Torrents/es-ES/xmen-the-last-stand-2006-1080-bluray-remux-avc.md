@@ -59,16 +59,6 @@ Subtítulo #8             : Noruego (Norwegian) [PGS]
 Subtítulo #9             : Sueco (Swedish) [PGS]
 ```
 
-## 🖼️ CAPTURAS DE PANTALLA
-<p align="center">
-<img src="https://picsum.photos/800/450?random=1" alt="Captura 1" width="400"/>
-<img src="https://picsum.photos/800/450?random=2" alt="Captura 2" width="400"/>
-</p>
-<p align="center">
-<img src="https://picsum.photos/800/450?random=3" alt="Captura 3" width="400"/>
-<img src="https://picsum.photos/800/450?random=4" alt="Captura 4" width="400"/>
-</p>
-
 ## 📝 NOTAS DEL RELEASE
 * Tipo de Edición: Blu-ray Remux en contenedor ⁠`.mkv⁠`. El flujo de vídeo AVC no ha sido modificado ni re-codificado, manteniendo el 100% de la calidad del disco de origen.
 * Audios e Idiomas: Incluye la pista original en DTS-HD Master Audio 6.1 en inglés y el doblaje en Castellano DTS 5.1, además de los audios en Alemán y Húngaro especificados.
