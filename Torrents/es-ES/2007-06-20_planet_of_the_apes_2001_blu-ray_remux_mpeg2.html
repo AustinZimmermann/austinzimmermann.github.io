@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrackerP2P :: El planeta de los simios (2001) [Blu-ray Remux 1080p MPEG-2]</title>
+    <style>
+        /* Estilos Retro Web 2.0 / P2P Tracker (circa 2007) */
+        * {
+            box-sizing: border-box;
+            font-family: Tahoma, Verdana, Arial, sans-serif;
+            font-size: 11px;
+        }
+
+        body {
+            background-color: #1a1e24;
+            color: #d1d5db;
+            margin: 0;
+            padding: 10px;
+        }
+
+        a {
+            color: #4ea3d8;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: #ffffff;
+        }
+
+        #container {
+            width: 950px;
+            margin: 0 auto;
+            background-color: #242931;
+            border: 1px solid #3b424e;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.8);
+        }
+
+        /* Header & Banner */
+        #header {
+            background: linear-gradient(to bottom, #2b577e 0%, #152b3f 100%);
+            border: 1px solid #4a779d;
+            padding: 12px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #header h1 {
+            font-size: 20px;
+            margin: 0;
+            color: #ffffff;
+            text-shadow: 1px 1px 2px #000;
+        }
+
+        .user-panel {
+            background: #171a1f;
+            border: 1px solid #343b47;
+            padding: 6px 10px;
+            border-radius: 3px;
+        }
+
+        /* Navigation Bar */
+        #navbar {
+            background-color: #2e3540;
+            border: 1px solid #454f5e;
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+
+        #navbar a {
+            font-weight: bold;
+            padding: 4px 10px;
+            color: #e0e0e0;
+            display: inline-block;
+        }
+
+        /* Main Content Table */
+        .torrent-box {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+        }
+
+        .torrent-box th {
+            background: linear-gradient(to bottom, #3a4454 0%, #282e39 100%);
+            color: #ffffff;
+            text-align: left;
+            padding: 6px 10px;
+            font-size: 12px;
+            border: 1px solid #4a5568;
+        }
+
+        .torrent-box td {
+            padding: 10px;
+            border: 1px solid #343b47;
+            vertical-align: top;
+        }
+
+        /* Columns Layout */
+        .poster-col {
+            width: 220px;
+            text-align: center;
+            background-color: #1d2127;
+        }
+
+        .poster-col img {
+            width: 200px;
+            border: 1px solid #4a5568;
+            padding: 2px;
+            background-color: #000;
+        }
+
+        .details-col {
+            background-color: #21262d;
+        }
+
+        /* NFO / Specs Block */
+        .info-title {
+            font-size: 14px;
+            font-weight: bold;
+            color: #6bb9f0;
+            border-bottom: 1px solid #3a4454;
+            padding-bottom: 4px;
+            margin-bottom: 10px;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            row-gap: 6px;
+            margin-bottom: 15px;
+        }
+
+        .specs-label {
+            font-weight: bold;
+            color: #a0aec0;
+        }
+
+        .tag {
+            background-color: #2d3748;
+            border: 1px solid #4a5568;
+            padding: 1px 5px;
+            border-radius: 2px;
+            font-size: 10px;
+            color: #e2e8f0;
+        }
+
+        /* Download Section */
+        .download-zone {
+            background: #1a232a;
+            border: 1px solid #2b4c6f;
+            padding: 12px;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .btn-download {
+            background: linear-gradient(to bottom, #28a745 0%, #1e7e34 100%);
+            border: 1px solid #28a745;
+            color: white;
+            font-weight: bold;
+            font-size: 13px;
+            padding: 8px 20px;
+            cursor: pointer;
+            text-shadow: 1px 1px 1px #000;
+            border-radius: 3px;
+        }
+
+        .btn-download:hover {
+            background: linear-gradient(to bottom, #34ce57 0%, #218838 100%);
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            background-color: #17191c;
+            border: 1px solid #2d323b;
+            padding: 8px;
+            display: flex;
+            justify-content: space-around;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .seeders { color: #38a169; }
+        .leechers { color: #e53e3e; }
+        .completed { color: #3182ce; }
+
+        /* Comments Section */
+        .comments-section {
+            margin-top: 20px;
+        }
+
+        .comment-item {
+            background-color: #1d2127;
+            border: 1px solid #343b47;
+            margin-bottom: 8px;
+            padding: 8px;
+        }
+
+        .comment-header {
+            border-bottom: 1px solid #2d323b;
+            padding-bottom: 4px;
+            margin-bottom: 6px;
+            color: #718096;
+        }
+
+        .comment-user {
+            font-weight: bold;
+            color: #e2e8f0;
+        }
+
+        /* Footer */
+        #footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            color: #718096;
+            font-size: 10px;
+            border-top: 1px solid #2d323b;
+        }
+    </style>
+</head>
+<body>
+
+<div id="container">
+
+    <!-- Header -->
+    <div id="header">
+        <h1>TRACKER-ES :: Red P2P España</h1>
+        <div class="user-panel">
+            Bienvenido, <strong>BitTorrent_Fan</strong> [ Ratio: <span class="seeders">2.41</span> ] | 
+            <a href="#">Perfil</a> | <a href="#">Mensajes (0)</a> | <a href="#">Salir</a>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div id="navbar">
+        <a href="#">Inicio</a> | 
+        <a href="#">Torrents</a> | 
+        <a href="#">Películas HD</a> | 
+        <a href="#">Foro</a> | 
+        <a href="#">Reglas</a> | 
+        <a href="#">Subir Torrent</a>
+    </div>
+
+    <!-- Torrent Main Card -->
+    <table class="torrent-box">
+        <tr>
+            <th colspan="2">
+                [BD-REMUX] El planeta de los simios (2001) [MPEG-2 / DTS-HD / DTS]
+            </th>
+        </tr>
+        <tr>
+            <!-- Poster -->
+            <td class="poster-col">
+                <img src="https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcTttNOvlWZxkwgkn9r0n1XepBmMQ8rs75dyxJ0Bwwg6r5c-cC-149X66RDuJLH4fYu4jpp6o8j93YRageY" alt="El planeta de los simios 2001">
+                <div style="margin-top: 8px; font-size: 10px; color: #a0aec0;">
+                    Añadido el: <strong>20 de Junio, 2007</strong><br>
+                    Publicado por: <strong>HD_Encoder_ES</strong>
+                </div>
+            </td>
+
+            <!-- Details -->
+            <td class="details-col">
+                <div class="info-title">Detalles de la Release</div>
+
+                <div class="specs-grid">
+                    <span class="specs-label">Título original:</span>
+                    <span>Planet of the Apes (2001)</span>
+
+                    <span class="specs-label">Año:</span>
+                    <span>2001</span>
+
+                    <span class="specs-label">Formato Contenedor:</span>
+                    <span><span class="tag">MKV</span> (Matroska)</span>
+
+                    <span class="specs-label">Códec de Vídeo:</span>
+                    <span>BD-Remux MPEG-2 (Sin re-codificar, stream original del disco)</span>
+
+                    <span class="specs-label">Resolución:</span>
+                    <span>1080p (1920x1080 / 23.976 fps)</span>
+
+                    <span class="specs-label">Idiomas / Audio:</span>
+                    <span>
+                        • Inglés 5.1 DTS-HD Master Audio<br>
+                        • Español (Castellano) 5.1 DTS<br>
+                        • Italiano 5.1 DTS
+                    </span>
+
+                    <span class="specs-label">Subtítulos:</span>
+                    <span>Español, Inglés, Italiano (SRT / PGS embebidos)</span>
+
+                    <span class="specs-label">Tamaño total:</span>
+                    <span>28.45 GB (Dividido en partes de 1GB con .sfv)</span>
+                </div>
+
+                <div class="info-title">Sinopsis</div>
+                <p style="line-height: 1.4; color: #cbd5e0;">
+                    Año 2029. En una misión de entrenamiento, el astronauta Leo Davidson (Mark Wahlberg) pierde el control de su nave y aterriza en un planeta desconocido gobernado por una raza de simios altamente desarrollados que tratan a los seres humanos como esclavos. Dirigida por Tim Burton.
+                </p>
+
+                <!-- Download Box -->
+                <div class="download-zone">
+                    <button class="btn-download" onclick="descargarTorrent()">
+                        💾 DESCARGAR FICHERO .TORRENT
+                    </button>
+                    <div style="margin-top: 6px; font-size: 10px; color: #a0aec0;">
+                        Info Hash: <code>a8f3b9201c107e3245d198110a39c9f012de903a</code>
+                    </div>
+                </div>
+
+                <!-- Stats -->
+                <div class="stats-bar">
+                    <span>Semillas (Seeders): <span class="seeders" id="seeds-count">142</span></span>
+                    <span>Leechers (Leechers): <span class="leechers" id="leech-count">89</span></span>
+                    <span>Completado: <span class="completed">512 veces</span></span>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <!-- Comments Section -->
+    <div class="comments-section">
+        <div class="info-title">Comentarios de los usuarios (2)</div>
+
+        <div class="comment-item">
+            <div class="comment-header">
+                #1 - <span class="comment-user">P2P_Rider</span> el 20/06/2007 a las 18:42
+            </div>
+            <div>¡Impresionante la calidad del Remux! El audio en español se oye de lujo. ¡Muchas gracias por el aporte! Bajando a 600 KB/s con Telefónica 6MB.</div>
+        </div>
+
+        <div class="comment-item">
+            <div class="comment-header">
+                #2 - <span class="comment-user">MPEG2_Lover</span> el 20/06/2007 a las 20:15
+            </div>
+            <div>Menuda barbaridad de bitrate de vídeo. Se nota que es remux directo del Blu-ray. Compartiendo en mi seedbox.</div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer">
+        TrackerP2P.es © 2007 - Portal de intercambio P2P en España.<br>
+        Esta página fue generada el 20/06/2007 a las 21:04:12 CEST.
+    </div>
+
+</div>
+
+<script>
+    // Simulación de interacción clásica
+    function descargarTorrent() {
+        alert("Iniciando descarga del archivo:\n[Tracker-ES]_El_Planeta_De_Los_Simios_2001_REMUX_MPEG2.torrent\n\n¡Por favor, mantén el cliente abierto para compartir (Seed)!");
+    }
+
+    // Variación ligera en vivo para los seeders/leechers (simulación)
+    setInterval(() => {
+        const seedElem = document.getElementById('seeds-count');
+        const leechElem = document.getElementById('leech-count');
+        
+        let currentSeeds = parseInt(seedElem.innerText);
+        let currentLeech = parseInt(leechElem.innerText);
+        
+        // Pequeñas fluctuaciones aleatorias
+        if (Math.random() > 0.5) {
+            seedElem.innerText = currentSeeds + (Math.random() > 0.5 ? 1 : -1);
+            leechElem.innerText = currentLeech + (Math.random() > 0.5 ? 1 : -1);
+        }
+    }, 5000);
+</script>
+
+</body>
+</html>
