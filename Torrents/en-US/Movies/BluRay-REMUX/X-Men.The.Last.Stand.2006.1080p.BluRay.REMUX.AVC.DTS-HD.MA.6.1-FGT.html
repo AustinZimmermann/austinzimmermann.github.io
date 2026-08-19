@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <title>X-Men: The Last Stand (2006) [1080p BluRay REMUX AVC DTS-HD MA 6.1] - BitsTracker</title>
+  <style>
+    /* =========================================================
+       2009 Tracker Era Visual Theme (Verdana / Web 2.0 / Skeuo)
+       ========================================================= */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #1a232f;
+      color: #2b2b2b;
+      font-family: Verdana, Tahoma, Arial, sans-serif;
+      font-size: 11px;
+      line-height: 1.4;
+      background-image: linear-gradient(180deg, #0d151e 0%, #1a232f 120px);
+    }
+
+    a {
+      color: #1b579d;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    a:hover {
+      color: #c93400;
+      text-decoration: underline;
+    }
+
+    #container {
+      width: 980px;
+      margin: 15px auto;
+      background: #ffffff;
+      border: 1px solid #000000;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Top Bar / Header */
+    #top-bar {
+      background: #111d2b;
+      color: #8fa0b5;
+      padding: 6px 12px;
+      font-size: 10px;
+      border-bottom: 1px solid #233446;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    #top-bar strong {
+      color: #ffffff;
+    }
+
+    #header {
+      background: linear-gradient(180deg, #1b385c 0%, #0d213a 100%);
+      padding: 16px 20px;
+      border-bottom: 2px solid #ff7b00;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 26px;
+      font-weight: bold;
+      color: #ffffff;
+      text-shadow: 1px 1px 2px #000;
+      letter-spacing: -0.5px;
+    }
+
+    .logo span {
+      color: #ff8c00;
+    }
+
+    .search-box {
+      background: #09131e;
+      padding: 6px;
+      border: 1px solid #254164;
+      border-radius: 3px;
+    }
+
+    .search-box input[type="text"] {
+      padding: 4px;
+      width: 220px;
+      font-size: 11px;
+      border: 1px solid #555;
+    }
+
+    .search-box select {
+      font-size: 11px;
+      padding: 3px;
+    }
+
+    .btn-search {
+      background: #ff8c00;
+      border: 1px solid #9e5700;
+      color: #fff;
+      font-weight: bold;
+      padding: 3px 8px;
+      font-size: 11px;
+      cursor: pointer;
+    }
+
+    /* Navigation */
+    #navbar {
+      background: #dde5ed;
+      border-bottom: 1px solid #b6c4d4;
+      display: flex;
+      list-style: none;
+    }
+
+    #navbar li {
+      border-right: 1px solid #b6c4d4;
+    }
+
+    #navbar a {
+      display: block;
+      padding: 7px 16px;
+      font-weight: bold;
+      color: #244464;
+      text-decoration: none;
+    }
+
+    #navbar a:hover, #navbar li.active a {
+      background: #c3d3e5;
+      color: #0b1f36;
+    }
+
+    /* Main Layout */
+    #main {
+      padding: 14px;
+    }
+
+    .torrent-title-block {
+      background: #eef3f8;
+      border: 1px solid #c2d1e0;
+      padding: 10px 14px;
+      margin-bottom: 12px;
+      border-radius: 2px;
+    }
+
+    .torrent-title-block h1 {
+      font-size: 14px;
+      color: #0d3866;
+      word-break: break-all;
+      margin-bottom: 4px;
+    }
+
+    .release-tag {
+      font-size: 10px;
+      color: #666;
+    }
+
+    /* Download Box */
+    .dl-actions {
+      display: flex;
+      gap: 12px;
+      margin: 14px 0;
+      background: #fdfbf1;
+      border: 1px solid #e7d8aa;
+      padding: 12px;
+      align-items: center;
+    }
+
+    .btn-download {
+      background: linear-gradient(180deg, #74b834 0%, #467e16 100%);
+      color: #ffffff !important;
+      font-size: 13px;
+      font-weight: bold;
+      padding: 9px 18px;
+      text-decoration: none !important;
+      border: 1px solid #366110;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.4);
+    }
+
+    .btn-download:hover {
+      background: linear-gradient(180deg, #81ca3a 0%, #51901a 100%);
+    }
+
+    .btn-secondary {
+      background: #f0f0f0;
+      border: 1px solid #bbb;
+      color: #333;
+      padding: 6px 12px;
+      font-size: 11px;
+      font-weight: bold;
+      border-radius: 3px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .btn-secondary:hover {
+      background: #e4e4e4;
+    }
+
+    /* Torrent Meta Table */
+    .details-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 16px;
+    }
+
+    .details-table th, .details-table td {
+      border: 1px solid #d2dce6;
+      padding: 6px 10px;
+      text-align: left;
+    }
+
+    .details-table th {
+      background: #e4edf5;
+      width: 18%;
+      color: #1f3b5c;
+      font-weight: bold;
+    }
+
+    .details-table td {
+      background: #fafcff;
+    }
+
+    .seed-stat {
+      font-weight: bold;
+      color: #1e7e04;
+    }
+
+    .leech-stat {
+      font-weight: bold;
+      color: #b71c1c;
+    }
+
+    /* Content Tabs */
+    .tab-header {
+      display: flex;
+      border-bottom: 2px solid #234f7c;
+      margin-top: 20px;
+    }
+
+    .tab-btn {
+      background: #e4edf5;
+      border: 1px solid #b7cadc;
+      border-bottom: none;
+      padding: 7px 16px;
+      font-weight: bold;
+      cursor: pointer;
+      color: #1f3b5c;
+      margin-right: 4px;
+      border-top-left-radius: 3px;
+      border-top-right-radius: 3px;
+    }
+
+    .tab-btn.active {
+      background: #234f7c;
+      color: #ffffff;
+      border-color: #234f7c;
+    }
+
+    .tab-panel {
+      display: none;
+      border: 1px solid #c2d1e0;
+      border-top: none;
+      padding: 14px;
+      background: #ffffff;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    /* NFO Viewer */
+    .nfo-viewer {
+      background: #000000;
+      color: #00ff66;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 11px;
+      line-height: 1.25;
+      padding: 14px;
+      overflow-x: auto;
+      white-space: pre;
+      border: 1px solid #333;
+      box-shadow: inset 0 0 10px rgba(0,255,100,0.1);
+    }
+
+    /* File List */
+    .file-tree {
+      list-style: none;
+      font-family: "Lucida Console", Monaco, monospace;
+      font-size: 11px;
+    }
+
+    .file-tree li {
+      padding: 4px 0;
+      border-bottom: 1px dotted #ccc;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Comments Section */
+    .comment-block {
+      border: 1px solid #c9d7e4;
+      margin-bottom: 12px;
+    }
+
+    .comment-meta {
+      background: #e7eff6;
+      padding: 6px 10px;
+      border-bottom: 1px solid #c9d7e4;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .comment-body {
+      padding: 10px;
+      display: flex;
+      gap: 12px;
+    }
+
+    .comment-avatar {
+      width: 55px;
+      height: 55px;
+      background: #ced9e5;
+      border: 1px solid #a3b8cd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: #617b99;
+    }
+
+    .comment-text {
+      flex: 1;
+    }
+
+    /* Footer */
+    #footer {
+      background: #111d2b;
+      color: #6f8297;
+      text-align: center;
+      padding: 14px;
+      font-size: 10px;
+      border-top: 2px solid #ff7b00;
+    }
+  </style>
+</head>
+<body>
+
+<div id="container">
+  
+  <!-- Status Strip -->
+  <div id="top-bar">
+    <div>Server Time: <strong>Tue, 21 Apr 2009 14:32:18 GMT</strong> | Ratio: <strong>1.84</strong> (UL: 2.14 TB / DL: 1.16 TB)</div>
+    <div>Welcome back, <strong>HD_Archivist</strong> [<a href="#" onclick="return false;">Logout</a>]</div>
+  </div>
+
+  <!-- Header -->
+  <div id="header">
+    <div class="logo">Bits<span>Tracker</span> <span style="font-size: 11px; font-weight: normal; color: #b7cadc;">[HD Edition]</span></div>
+    <div class="search-box">
+      <input type="text" value="X-Men Last Stand Remux">
+      <select>
+        <option>All Categories</option>
+        <option selected>Movies / 1080p BluRay</option>
+        <option>TV / HD</option>
+      </select>
+      <button class="btn-search">Search</button>
+    </div>
+  </div>
+
+  <!-- Navigation Bar -->
+  <ul id="navbar">
+    <li><a href="#">Browse</a></li>
+    <li class="active"><a href="#">Torrents</a></li>
+    <li><a href="#">Requests</a></li>
+    <li><a href="#">Forums</a></li>
+    <li><a href="#">IRC / Chat</a></li>
+    <li><a href="#">Rules / FAQ</a></li>
+    <li><a href="#">Upload</a></li>
+  </ul>
+
+  <!-- Main Content -->
+  <div id="main">
+    
+    <div class="torrent-title-block">
+      <h1>X-Men.The.Last.Stand.2006.2-Disc.Set.1080p.BluRay.REMUX.AVC.DTS-HD.MA.6.1-FGT</h1>
+      <div class="release-tag">Category: <strong>Movies / HD / 1080p Remux</strong> | Added: <strong>21-Apr-2009 11:15 GMT</strong> | Uploaded by: <strong>SceneMaster</strong> (VIP)</div>
+    </div>
+
+    <!-- Download Bar -->
+    <div class="dl-actions">
+      <a href="#" class="btn-download" id="dlBtn">💾 Download .torrent</a>
+      <a href="#" class="btn-secondary" id="magnetBtn">🧲 Magnet Link</a>
+      <button class="btn-secondary" id="thankBtn">❤️ Say Thanks (<span id="thankCount">42</span>)</button>
+      <span style="font-size: 10px; color: #777; margin-left: auto;">Passkey: <code style="background:#eee; padding: 2px;">9f8b7a6c5d4e3f21</code></span>
+    </div>
+
+    <!-- Metadata Table -->
+    <table class="details-table">
+      <tr>
+        <th>Total Size:</th>
+        <td><strong>34.82 GiB</strong> (37,390,214,144 bytes)</td>
+        <th>Type:</th>
+        <td>Blu-ray REMUX (MPEG-4 AVC / DTS-HD MA)</td>
+      </tr>
+      <tr>
+        <th>Seeds:</th>
+        <td><span class="seed-stat" id="seedCount">142</span> seeders</td>
+        <th>Leechers:</th>
+        <td><span class="leech-stat" id="leechCount">38</span> leechers</td>
+      </tr>
+      <tr>
+        <th>Completed:</th>
+        <td><strong>812</strong> times (100% Snatched)</td>
+        <th>Health:</th>
+        <td><span style="color:#1e7e04; font-weight:bold;">100% (High Speed Swarm)</span></td>
+      </tr>
+      <tr>
+        <th>IMDb Rating:</th>
+        <td><a href="http://www.imdb.com/title/tt0376994/" target="_blank"><strong>6.8/10</strong></a> (184,210 votes)</td>
+        <th>Info Hash:</th>
+        <td><code style="font-size: 10px;">c4b8e991204d3e8a719c2f6d0a8b94511234abcd</code></td>
+      </tr>
+    </table>
+
+    <!-- Interactive Tabs -->
+    <div class="tab-header">
+      <button class="tab-btn active" onclick="showTab('nfo')">NFO File</button>
+      <button class="tab-btn" onclick="showTab('files')">Files Included (2 Discs)</button>
+      <button class="tab-btn" onclick="showTab('specs')">Video / Audio Specs</button>
+      <button class="tab-btn" onclick="showTab('comments')">Comments (3)</button>
+    </div>
+
+    <!-- Tab 1: NFO -->
+    <div id="tab-nfo" class="tab-panel active">
+      <div style="margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center;">
+        <span><strong>Viewing NFO:</strong> <code>X-Men.The.Last.Stand.2006.2-Disc.Set.REMUX.nfo</code></span>
+        <button onclick="toggleNfoFont()" class="btn-secondary" style="font-size: 10px;">Toggle Font Color</button>
+      </div>
+      <div class="nfo-viewer" id="nfoBox">
+  ______  ______  _______
+ |  ____|/ _____\|__   __|
+ | |__  | |  __     | |   
+ |  __| | | |_ |    | |   
+ | |    | |__| |    | |   
+ |_|     \_____|    |_|   PROUDLY PRESENTS:
+
+ RELEASE NAME..: X-Men.The.Last.Stand.2006.2-Disc.Set.1080p.BluRay.REMUX.AVC.DTS-HD.MA.6.1-FGT
+ RELEASE DATE..: 2009-04-21
+ THEATRE DATE..: 2006-05-26
+ RUNTIME.......: 01:44:05 (Main Feature)
+ SIZE..........: 34.82 GiB total
+ VIDEO CODEC...: MPEG-4 AVC Remux @ 29.8 Mbps
+ RESOLUTION....: 1920x1080p (16:9 Aspect Ratio)
+ FRAME RATE....: 23.976 fps
+ AUDIO 1.......: English DTS-HD Master Audio 6.1 @ 4410 kbps (Discrete 6.1)
+ AUDIO 2.......: French DTS 5.1 @ 768 kbps
+ AUDIO 3.......: Spanish Dolby Digital 5.1 @ 448 kbps
+ AUDIO 4.......: Director & Producer Audio Commentary
+ SUBTITLES.....: English SDH, French, Spanish (VobSub / PGS)
+ SOURCE........: US Blu-ray 1080p AVC DTS-HD MA 6.1 (2-Disc Collector's Edition)
+
+ DISC 1 CONTENTS:
+ - Feature Film 1080p Uncompressed Remux
+ - Audio Commentaries (Brett Ratner, Simon Kinberg, Zak Penn)
+
+ DISC 2 CONTENTS (Bonus Material Remux / 1080i):
+ - Deleted Scenes with Optional Commentary
+ - Brett Ratner's Production Diary
+ - Featurettes: Evolution of a Trilogy, The Magneto Effect
+ - Trailers & TV Spots
+      </div>
+    </div>
+
+    <!-- Tab 2: Files -->
+    <div id="tab-files" class="tab-panel">
+      <ul class="file-tree">
+        <li><span>📁 <strong>Disc 1 - Feature Film/</strong></span> <span>[Directory]</span></li>
+        <li style="padding-left: 20px;"><span>📄 X-Men.The.Last.Stand.2006.1080p.BluRay.REMUX.mkv</span> <span>26.42 GiB</span></li>
+        <li style="padding-left: 20px;"><span>📄 X-Men.The.Last.Stand.2006.Sample.mkv</span> <span>104.20 MiB</span></li>
+        <li><span>📁 <strong>Disc 2 - Extras & Bonus Features/</strong></span> <span>[Directory]</span></li>
+        <li style="padding-left: 20px;"><span>📄 X-Men.The.Last.Stand.Bonus.Evolution.Trilogy.1080i.mkv</span> <span>4.18 GiB</span></li>
+        <li style="padding-left: 20px;"><span>📄 X-Men.The.Last.Stand.Bonus.Deleted.Scenes.1080i.mkv</span> <span>2.80 GiB</span></li>
+        <li style="padding-left: 20px;"><span>📄 X-Men.The.Last.Stand.Bonus.Production.Diary.1080i.mkv</span> <span>1.31 GiB</span></li>
+        <li><span>📄 X-Men.The.Last.Stand.2006.2-Disc.Set.REMUX.nfo</span> <span>4.22 KiB</span></li>
+      </ul>
+    </div>
+
+    <!-- Tab 3: Specs -->
+    <div id="tab-specs" class="tab-panel">
+      <table class="details-table" style="margin-bottom: 0;">
+        <tr><th style="width: 25%;">Video Stream:</th><td>AVC (Advanced Video Coding) High@L4.1, 1920x1080, 23.976 fps, Chroma 4:2:0</td></tr>
+        <tr><th>Primary Audio:</th><td>DTS-HD Master Audio 6.1 (English), 24-bit depth, 48.0 kHz sampling rate</td></tr>
+        <tr><th>Secondary Audio:</th><td>AC-3 (Dolby Digital) & DTS core fallbacks included</td></tr>
+        <tr><th>Container:</th><td>Matroska (.mkv) with complete original Blu-ray chapters mapped</td></tr>
+        <tr><th>Master Disc Info:</th><td>20th Century Fox Home Entertainment - Dual Layer BD-50 x2</td></tr>
+      </table>
+    </div>
+
+    <!-- Tab 4: Comments -->
+    <div id="tab-comments" class="tab-panel">
+      <div class="comment-block">
+        <div class="comment-meta">
+          <strong>HD_Collector_88</strong> (Power User) | Ratio: 2.45
+          <span>21-Apr-2009 12:02 GMT</span>
+        </div>
+        <div class="comment-body">
+          <div class="comment-avatar">AVATAR</div>
+          <div class="comment-text">
+            Awesome release! Been waiting for the proper 2-Disc complete Remux with the DTS-HD MA 6.1 track intact. Seeding at 100 Mbit/s!
+          </div>
+        </div>
+      </div>
+
+      <div class="comment-block">
+        <div class="comment-meta">
+          <strong>CinephileUK</strong> (Member) | Ratio: 1.12
+          <span>21-Apr-2009 13:45 GMT</span>
+        </div>
+        <div class="comment-body">
+          <div class="comment-avatar">AVATAR</div>
+          <div class="comment-text">
+            Can anyone confirm if the Golden Gate Bridge destruction scene has any audio clipping on the discrete 6.1 center-back channel?
+          </div>
+        </div>
+      </div>
+
+      <div class="comment-block">
+        <div class="comment-meta">
+          <strong>SceneMaster</strong> (VIP / Uploader) | Ratio: 5.80
+          <span>21-Apr-2009 14:10 GMT</span>
+        </div>
+        <div class="comment-body">
+          <div class="comment-avatar">AVATAR</div>
+          <div class="comment-text">
+            @CinephileUK: Clean 1:1 stream rip straight from Disc 1 BD-50, no transcoding or downmixing performed. Enjoy the lossless bass!
+          </div>
+        </div>
+      </div>
+
+      <!-- Add Comment Form -->
+      <div style="margin-top: 15px; background: #f4f7fa; padding: 10px; border: 1px solid #d2dce6;">
+        <strong>Leave a comment:</strong><br>
+        <textarea id="newCommentText" style="width: 100%; height: 60px; margin: 6px 0; font-family: Verdana; font-size: 11px;"></textarea><br>
+        <button class="btn-secondary" onclick="postComment()">Submit Comment</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div id="footer">
+    BitsTracker HD Community &copy; 2004-2009. All torrents are user-submitted. Page generated in 0.0423 seconds.
+  </div>
+
+</div>
+
+<!-- JavaScript Interactivity -->
+<script>
+  function showTab(tabName) {
+    // Hide all tabs
+    const panels = document.querySelectorAll('.tab-panel');
+    const buttons = document.querySelectorAll('.tab-btn');
+    
+    panels.forEach(p => p.classList.remove('active'));
+    buttons.forEach(b => b.classList.remove('active'));
+
+    // Show active tab
+    const targetPanel = document.getElementById('tab-' + tabName);
+    if (targetPanel) targetPanel.classList.add('active');
+
+    // Highlight button
+    event.target.classList.add('active');
+  }
+
+  function toggleNfoFont() {
+    const box = document.getElementById('nfoBox');
+    if (box.style.color === 'rgb(255, 255, 255)' || box.style.color === '#ffffff') {
+      box.style.color = '#00ff66';
+      box.style.background = '#000000';
+    } else {
+      box.style.color = '#ffffff';
+      box.style.background = '#111111';
+    }
+  }
+
+  // Thanks Counter
+  const thankBtn = document.getElementById('thankBtn');
+  let thanked = false;
+  thankBtn.addEventListener('click', function() {
+    if (!thanked) {
+      const countEl = document.getElementById('thankCount');
+      countEl.textContent = parseInt(countEl.textContent, 10) + 1;
+      thankBtn.style.background = '#e2f0d9';
+      thankBtn.innerHTML = '✔️ You thanked the uploader!';
+      thanked = true;
+    }
+  });
+
+  // Download trigger alert emulation
+  document.getElementById('dlBtn').addEventListener('click', function(e) {
+    e.preventDefault();
+    alert('Starting download: [BitsTracker]_X-Men.The.Last.Stand.2006.2-Disc.Set.1080p.BluRay.REMUX.AVC.DTS-HD.MA.6.1-FGT.torrent');
+  });
+
+  document.getElementById('magnetBtn').addEventListener('click', function(e) {
+    e.preventDefault();
+    alert('Magnet URI copied to clipboard.');
+  });
+
+  function postComment() {
+    const txt = document.getElementById('newCommentText');
+    if (!txt.value.trim()) {
+      alert('Please enter a comment before submitting.');
+      return;
+    }
+
+    const commentList = document.getElementById('tab-comments');
+    const newBlock = document.createElement('div');
+    newBlock.className = 'comment-block';
+    newBlock.innerHTML = `
+      <div class="comment-meta">
+        <strong>HD_Archivist</strong> (You) | Ratio: 1.84
+        <span>21-Apr-2009 14:33 GMT</span>
+      </div>
+      <div class="comment-body">
+        <div class="comment-avatar">YOU</div>
+        <div class="comment-text">${txt.value.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</div>
+      </div>
+    `;
+
+    commentList.insertBefore(newBlock, commentList.lastElementChild);
+    txt.value = '';
+    alert('Comment posted successfully!');
+  }
+</script>
+
+</body>
+</html>
