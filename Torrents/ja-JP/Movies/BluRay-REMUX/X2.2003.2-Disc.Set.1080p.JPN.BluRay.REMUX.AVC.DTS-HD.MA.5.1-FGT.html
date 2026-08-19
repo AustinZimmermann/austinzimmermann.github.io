@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>X2.2003.2-Disc.Set.1080p.JPN.BluRay.REMUX.AVC.DTS-HD.MA.5.1-FGT - Torrent Tracker JP</title>
+  <style>
+    :root {
+      --bg-main: #0e1117;
+      --bg-panel: #161b22;
+      --bg-header: #1f242d;
+      --bg-darker: #0d1117;
+      --border-color: #30363d;
+      --text-main: #c9d1d9;
+      --text-muted: #8b949e;
+      --accent-blue: #58a6ff;
+      --accent-green: #2ea043;
+      --accent-hover: #3fb950;
+      --accent-orange: #d29922;
+      --accent-red: #f85149;
+      --tag-bg: #21262d;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    a {
+      color: var(--accent-blue);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    header {
+      background-color: var(--bg-header);
+      border-bottom: 1px solid var(--border-color);
+      padding: 12px 24px;
+    }
+
+    .navbar {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 0.5px;
+    }
+
+    .logo span {
+      color: var(--accent-green);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-main);
+      font-weight: 500;
+    }
+
+    .user-stats {
+      display: flex;
+      gap: 14px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .user-stats .ratio {
+      color: var(--accent-green);
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 0 16px;
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 20px;
+    }
+
+    .torrent-title-card {
+      grid-column: 1 / -1;
+      background: var(--bg-panel);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 18px 24px;
+    }
+
+    .torrent-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #ffffff;
+      word-break: break-all;
+      margin-bottom: 8px;
+    }
+
+    .torrent-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      background: var(--tag-bg);
+      border: 1px solid var(--border-color);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .tag.highlight {
+      border-color: var(--accent-blue);
+      color: var(--accent-blue);
+    }
+
+    .main-content {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .panel {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .panel-header {
+      background: var(--bg-header);
+      padding: 10px 16px;
+      font-weight: 600;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .panel-body {
+      padding: 16px;
+    }
+
+    .actions-bar {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: background 0.2s;
+    }
+
+    .btn-green {
+      background-color: var(--accent-green);
+      color: #fff;
+    }
+
+    .btn-green:hover {
+      background-color: var(--accent-hover);
+      text-decoration: none;
+    }
+
+    .btn-secondary {
+      background-color: var(--tag-bg);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+    }
+
+    .btn-secondary:hover {
+      background-color: #30363d;
+      text-decoration: none;
+    }
+
+    .spec-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .spec-table th, .spec-table td {
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--border-color);
+      text-align: left;
+    }
+
+    .spec-table th {
+      width: 180px;
+      background: rgba(255, 255, 255, 0.02);
+      color: var(--text-muted);
+      font-weight: normal;
+    }
+
+    .mediainfo-box {
+      background: var(--bg-darker);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      padding: 14px;
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+      font-size: 12px;
+      color: #adbac7;
+      white-space: pre-wrap;
+      max-height: 380px;
+      overflow-y: auto;
+      line-height: 1.45;
+    }
+
+    .file-list {
+      list-style: none;
+      font-size: 13px;
+    }
+
+    .file-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+      border-bottom: 1px dotted var(--border-color);
+    }
+
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .stat-list {
+      list-style: none;
+    }
+
+    .stat-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .stat-item:last-child {
+      border-bottom: none;
+    }
+
+    .stat-val-seed {
+      color: var(--accent-green);
+      font-weight: bold;
+    }
+
+    .stat-val-leech {
+      color: var(--accent-red);
+      font-weight: bold;
+    }
+
+    .comments-section {
+      margin-top: 10px;
+    }
+
+    .comment-card {
+      border-bottom: 1px solid var(--border-color);
+      padding: 12px 0;
+    }
+
+    .comment-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--accent-green);
+      color: white;
+      padding: 10px 18px;
+      border-radius: 4px;
+      font-weight: 500;
+      display: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
+
+    @media (max-width: 860px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="navbar">
+      <div class="logo">TRACKER-<span>JP</span></div>
+      <ul class="nav-links">
+        <li><a href="#">トレント</a></li>
+        <li><a href="#">フォーラム</a></li>
+        <li><a href="#">Wiki / ガイド</a></li>
+        <li><a href="#">アップロード</a></li>
+      </ul>
+      <div class="user-stats">
+        <span>比率 (Ratio): <span class="ratio">2.41</span></span>
+        <span>UP: 1.48 TB</span>
+        <span>DL: 628 GB</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <!-- Main Title Card -->
+    <div class="torrent-title-card">
+      <h1 class="torrent-title">X2.2003.2-Disc.Set.1080p.JPN.BluRay.REMUX.AVC.DTS-HD.MA.5.1-FGT</h1>
+      <div class="torrent-tags">
+        <span class="tag highlight">映画 / Movie</span>
+        <span class="tag">BluRay REMUX</span>
+        <span class="tag">1080p</span>
+        <span class="tag">AVC</span>
+        <span class="tag">DTS-HD MA 5.1</span>
+        <span class="tag">日本語吹替・字幕収録</span>
+        <span class="tag">2-Disc Set</span>
+      </div>
+    </div>
+
+    <!-- Main Content Left Side -->
+    <div class="main-content">
+      <!-- Download / Action Box -->
+      <div class="panel">
+        <div class="panel-body">
+          <div class="actions-bar">
+            <button class="btn btn-green" onclick="simulateDownload()">
+              📥 トレントファイルをDL (.torrent)
+            </button>
+            <button class="btn btn-secondary" onclick="copyMagnet()">
+              🧲 マグネットリンクをコピー
+            </button>
+            <button class="btn btn-secondary" id="thanksBtn" onclick="sendThanks()">
+              👍 ありがとう (<span id="thanksCount">42</span>)
+            </button>
+          </div>
+
+          <table class="spec-table">
+            <tr>
+              <th>原題 / 邦題</th>
+              <td>X2 / X-MEN2 (2003)</td>
+            </tr>
+            <tr>
+              <th>登録日 (Release Date)</th>
+              <td>2009年8月28日 21:14:02 JST</td>
+            </tr>
+            <tr>
+              <th>ディスク構成</th>
+              <td>2枚組 (本編ディスク + 特典ディスク REMUX)</td>
+            </tr>
+            <tr>
+              <th>映像仕様</th>
+              <td>MPEG-4 AVC / 1080p / 23.976 fps / 16:9 (2.40:1)</td>
+            </tr>
+            <tr>
+              <th>音声トラック (Audio)</th>
+              <td>
+                1. 英語 (English): 5.1 DTS-HD Master Audio (~4120 kbps, 24-bit)<br>
+                2. 英語 (English): 5.1 Dolby Digital (AC-3 / 448 kbps)<br>
+                3. 日本語 (Japanese): 5.1 DTS (吹替版 / 768 kbps, 24-bit)
+              </td>
+            </tr>
+            <tr>
+              <th>字幕 (Subtitles)</th>
+              <td>
+                1. 日本語 (Japanese PGS)<br>
+                2. 英語 (English PGS / SDH)
+              </td>
+            </tr>
+            <tr>
+              <th>提供グループ</th>
+              <td>FGT</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- MediaInfo NFO Viewer -->
+      <div class="panel">
+        <div class="panel-header">
+          <span>📋 MediaInfo / NFO ログ</span>
+          <button class="btn btn-secondary" style="padding: 2px 8px; font-size: 11px;" onclick="copyMediaInfo()">ログをコピー</button>
+        </div>
+        <div class="panel-body">
+          <pre class="mediainfo-box" id="mediainfoText">General
+Unique ID                   : 2319481029381029381092381029381
+Complete name               : X2.2003.Disc1.Main.Feature.1080p.JPN.BluRay.REMUX.AVC.DTS-HD.MA.5.1-FGT.mkv
+Format                      : Matroska
+Format version              : Version 2
+File size                   : 34.8 GiB
+Duration                    : 2 h 13 min
+Overall bit rate mode       : Variable
+Overall bit rate            : 37.2 Mb/s
+Encoded date                : UTC 2009-08-28 11:45:00
+
+Video
+ID                          : 1
+Format                      : AVC
+Format/Info                 : Advanced Video Codec
+Format profile              : High@L4.1
+Width                       : 1 920 pixels
+Height                      : 1 080 pixels
+Display aspect ratio        : 16:9
+Frame rate mode             : Constant
+Frame rate                  : 23.976 (24000/1001) FPS
+Color space                 : YUV
+Chroma subsampling          : 4:2:0
+Bit depth                   : 8 bits
+
+Audio #1 (Default)
+ID                          : 2
+Format                      : DTS XLL
+Format/Info                 : Digital Theater Systems
+Commercial name             : DTS-HD Master Audio
+Channel(s)                  : 6 channels / 5.1
+Sampling rate               : 48.0 kHz
+Bit depth                   : 24 bits
+Language                    : English (en)
+
+Audio #2
+ID                          : 3
+Format                      : AC-3
+Format/Info                 : Audio Coding 3
+Commercial name             : Dolby Digital
+Channel(s)                  : 6 channels / 5.1
+Bit rate                    : 448 kb/s
+Language                    : English (en)
+
+Audio #3
+ID                          : 4
+Format                      : DTS
+Format/Info                 : Digital Theater Systems
+Channel(s)                  : 6 channels / 5.1
+Bit rate                    : 768 kb/s
+Language                    : Japanese (ja) - 日本語吹替
+
+Text #1
+Format                      : PGS
+Language                    : Japanese (ja) - 日本語字幕
+
+Text #2
+Format                      : PGS
+Language                    : English (en) - 英語字幕</pre>
+        </div>
+      </div>
+
+      <!-- File List -->
+      <div class="panel">
+        <div class="panel-header">
+          <span>📁 同梱ファイル一覧 (2 ファイル)</span>
+        </div>
+        <div class="panel-body">
+          <ul class="file-list">
+            <li class="file-item">
+              <span>📄 X2.2003.Disc1.Main.Feature.1080p.JPN.BluRay.REMUX.AVC.DTS-HD.MA.5.1-FGT.mkv</span>
+              <span>34.82 GB</span>
+            </li>
+            <li class="file-item">
+              <span>📄 X2.2003.Disc2.Bonus.Features.1080p.JPN.BluRay.REMUX.AVC-FGT.mkv</span>
+              <span>18.14 GB</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Comments Section -->
+      <div class="panel">
+        <div class="panel-header">
+          <span>💬 コメント (3件)</span>
+        </div>
+        <div class="panel-body comments-section">
+          <div class="comment-card">
+            <div class="comment-meta">
+              <strong>Muto_99 (Member)</strong>
+              <span>2009-08-28 22:40</span>
+            </div>
+            <p>日本盤Blu-rayのREMUXありがとうございます！DTS日本語吹替もしっかり同期確認できました。シード維持します。</p>
+          </div>
+          <div class="comment-card">
+            <div class="comment-meta">
+              <strong>TokyoSeeder (Power User)</strong>
+              <span>2009-08-29 01:15</span>
+            </div>
+            <p>2枚組の特典ディスク付きは貴重ですね。FGTクオリティで画質も申し分ないです。感謝！</p>
+          </div>
+          <div class="comment-card">
+            <div class="comment-meta">
+              <strong>K-AnimeHD (Uploader)</strong>
+              <span>2009-08-29 09:30</span>
+            </div>
+            <p>100Mbps回線にて24時間シード中です。DL完了後もご協力お願いします。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sidebar Right Side -->
+    <div class="sidebar">
+      <!-- Peer & Transfer Stats -->
+      <div class="panel">
+        <div class="panel-header">
+          <span>📊 ピアステータス</span>
+        </div>
+        <div class="panel-body">
+          <ul class="stat-list">
+            <li class="stat-item">
+              <span>シード (Seeders):</span>
+              <span class="stat-val-seed">38</span>
+            </li>
+            <li class="stat-item">
+              <span>リーチャー (Leechers):</span>
+              <span class="stat-val-leech">5</span>
+            </li>
+            <li class="stat-item">
+              <span>完了数 (Snatched):</span>
+              <span>142 回</span>
+            </li>
+            <li class="stat-item">
+              <span>総容量 (Size):</span>
+              <span>52.96 GB</span>
+            </li>
+            <li class="stat-item">
+              <span>状態 (Health):</span>
+              <span style="color: var(--accent-green);">良好 (100%)</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Torrent Meta Info -->
+      <div class="panel">
+        <div class="panel-header">
+          <span>ℹ️ トレント情報</span>
+        </div>
+        <div class="panel-body">
+          <ul class="stat-list">
+            <li class="stat-item">
+              <span>アップローダー:</span>
+              <span style="color: var(--accent-orange);">FGT_Releaser</span>
+            </li>
+            <li class="stat-item">
+              <span>公開日:</span>
+              <span>2009-08-28</span>
+            </li>
+            <li class="stat-item">
+              <span>タイプ:</span>
+              <span>Private / Freeleech</span>
+            </li>
+            <li class="stat-item">
+              <span>InfoHash:</span>
+              <span style="font-family: monospace; font-size: 11px;">e4d9b27f...a801</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">クリップボードにコピーしました</div>
+
+  <script>
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.style.display = 'block';
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 2500);
+    }
+
+    function simulateDownload() {
+      showToast('トレントファイルのダウンロードを開始しました (.torrent)');
+    }
+
+    function copyMagnet() {
+      const magnetURI = 'magnet:?xt=urn:btih:e4d9b27f9104c83fa9b328109d9382aa0081a801&dn=X2.2003.2-Disc.Set.1080p.JPN.BluRay.REMUX.AVC.DTS-HD.MA.5.1-FGT&tr=http://tracker.example.jp:8080/announce';
+      navigator.clipboard.writeText(magnetURI).then(() => {
+        showToast('マグネットリンクをクリップボードにコピーしました');
+      }).catch(() => {
+        showToast('コピーに失敗しました');
+      });
+    }
+
+    function copyMediaInfo() {
+      const mediaInfoText = document.getElementById('mediainfoText').innerText;
+      navigator.clipboard.writeText(mediaInfoText).then(() => {
+        showToast('MediaInfo ログをコピーしました');
+      });
+    }
+
+    let thanked = false;
+    function sendThanks() {
+      if (!thanked) {
+        const countSpan = document.getElementById('thanksCount');
+        countSpan.textContent = parseInt(countSpan.textContent) + 1;
+        thanked = true;
+        document.getElementById('thanksBtn').classList.remove('btn-secondary');
+        document.getElementById('thanksBtn').classList.add('btn-green');
+        showToast('アップローダーに感謝を送信しました！');
+      } else {
+        showToast('既に送信済みです');
+      }
+    }
+  </script>
+</body>
+</html>
