@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Torrent Details :: X-Men.2000.Disc1.1080p.BD50.AVC.DTS-HD.MA.5.1-MediaBD :: BitScene Tracker</title>
+    <style>
+        /* 2009 Era Classic Tracker Aesthetic (TBDev / Gazelle inspired) */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #1a1a1a;
+            font-family: Verdana, Arial, Helvetica, sans-serif;
+            font-size: 11px;
+            color: #d1d1d1;
+            line-height: 1.4;
+        }
+
+        a {
+            color: #55aaff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+            color: #88ccff;
+        }
+
+        #wrapper {
+            width: 980px;
+            margin: 15px auto;
+            background: #242424;
+            border: 1px solid #3d3d3d;
+            box-shadow: 0 0 10px rgba(0,0,0,0.8);
+        }
+
+        /* Top Header & User Bar */
+        #header {
+            background: #111 linear-gradient(to bottom, #2b2b2b, #151515);
+            padding: 12px 16px;
+            border-bottom: 1px solid #383838;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .site-logo {
+            font-size: 20px;
+            font-weight: bold;
+            color: #f5f5f5;
+            letter-spacing: -0.5px;
+        }
+        .site-logo span {
+            color: #3894e6;
+        }
+
+        .user-info-bar {
+            font-size: 10px;
+            color: #999;
+            text-align: right;
+        }
+        .user-info-bar strong {
+            color: #ddd;
+        }
+        .ratio-good { color: #55ff55; font-weight: bold; }
+
+        /* Nav menu */
+        #nav {
+            background: #2f2f2f;
+            border-bottom: 1px solid #444;
+            padding: 6px 12px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+        #nav a {
+            color: #ccc;
+            margin-right: 15px;
+        }
+        #nav a.active {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        /* Content Layout */
+        #main-content {
+            padding: 15px;
+        }
+
+        .torrent-title-box {
+            background: #1e1e1e;
+            border: 1px solid #333;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+        .torrent-title-box h1 {
+            font-size: 15px;
+            color: #e5e5e5;
+            font-weight: bold;
+            word-break: break-all;
+        }
+
+        .action-bar {
+            margin: 12px 0;
+            background: #2b2b2b;
+            padding: 10px;
+            border: 1px solid #3a3a3a;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .btn-download {
+            background: #205c90 linear-gradient(to bottom, #2b7bc0, #184872);
+            border: 1px solid #143755;
+            color: #fff;
+            padding: 6px 14px;
+            font-weight: bold;
+            font-size: 12px;
+            border-radius: 2px;
+            cursor: pointer;
+            display: inline-block;
+        }
+        .btn-download:hover {
+            background: #286fae;
+            text-decoration: none;
+        }
+
+        /* Meta Table */
+        .details-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+        }
+        .details-table td {
+            padding: 6px 10px;
+            border: 1px solid #333;
+            vertical-align: top;
+        }
+        .details-table td.heading {
+            width: 140px;
+            background-color: #1a1a1a;
+            font-weight: bold;
+            color: #aaa;
+            text-align: right;
+        }
+        .details-table td.data {
+            background-color: #222;
+        }
+
+        .tag {
+            background: #333;
+            padding: 2px 5px;
+            font-size: 9px;
+            border-radius: 2px;
+            border: 1px solid #444;
+            color: #bbb;
+        }
+
+        /* NFO / Description Box */
+        .panel-heading {
+            background: #1d1d1d;
+            border: 1px solid #383838;
+            border-bottom: none;
+            padding: 6px 10px;
+            font-weight: bold;
+            color: #88bbff;
+            font-size: 11px;
+        }
+        .nfo-viewer {
+            background: #0f0f0f;
+            border: 1px solid #383838;
+            padding: 12px;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 11px;
+            color: #b0c4de;
+            white-space: pre;
+            overflow-x: auto;
+            margin-bottom: 20px;
+            line-height: 1.25;
+        }
+
+        /* File List toggle */
+        .file-list-box {
+            background: #1b1b1b;
+            border: 1px solid #333;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .file-tree {
+            list-style: none;
+            margin-top: 8px;
+            font-family: monospace;
+            font-size: 11px;
+        }
+        .file-tree li {
+            padding: 2px 0;
+            color: #aaa;
+        }
+
+        /* Peer list table */
+        .stats-badge {
+            font-weight: bold;
+        }
+        .seeders { color: #50e050; }
+        .leechers { color: #e05050; }
+        .snatched { color: #d09030; }
+
+        /* Comments */
+        .comment-block {
+            background: #1e1e1e;
+            border: 1px solid #333;
+            margin-bottom: 10px;
+        }
+        .comment-header {
+            background: #282828;
+            padding: 4px 8px;
+            font-size: 10px;
+            color: #888;
+            border-bottom: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+        }
+        .comment-body {
+            padding: 8px 10px;
+            color: #ccc;
+        }
+
+        #footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 10px;
+            color: #666;
+            border-top: 1px solid #333;
+            background: #1a1a1a;
+        }
+    </style>
+</head>
+<body>
+
+<div id="wrapper">
+
+    <!-- Top User Bar -->
+    <div id="header">
+        <div class="site-logo">Bit<span>Scene</span> <small style="font-size: 10px; color: #777; font-weight: normal;">v2.4.1</small></div>
+        <div class="user-info-bar">
+            Logged in as: <strong>NeoUser09</strong> [Power User] &nbsp;|&nbsp;
+            Ratio: <span class="ratio-good">2.14</span> &nbsp;|&nbsp;
+            UL: <strong>1.42 TB</strong> &nbsp;|&nbsp;
+            DL: <strong>678.4 GB</strong> &nbsp;|&nbsp;
+            Slots: <strong>∞</strong>
+        </div>
+    </div>
+
+    <!-- Navigation Menu -->
+    <div id="nav">
+        <a href="#browse">Browse (Torrents)</a>
+        <a href="#details" class="active">Details</a>
+        <a href="#forums">Forums</a>
+        <a href="#irc">IRC Chat (#bitscene)</a>
+        <a href="#upload">Upload</a>
+        <a href="#rules">Rules / FAQ</a>
+    </div>
+
+    <div id="main-content">
+
+        <!-- Release Title Header -->
+        <div class="torrent-title-box">
+            <h1>X-Men.2000.Disc1.1080p.BD50.AVC.DTS-HD.MA.5.1-MediaBD</h1>
+        </div>
+
+        <!-- Download Action Area -->
+        <div class="action-bar">
+            <button class="btn-download" id="dlBtn" onclick="downloadNotice()">⯆ Download .torrent</button>
+            <span style="font-size: 10px; color: #999;">Passkey included in torrent file. Do not share raw file!</span>
+        </div>
+
+        <!-- Metadata Table -->
+        <table class="details-table">
+            <tr>
+                <td class="heading">Category:</td>
+                <td class="data"><a href="#cat">Movies / Full Blu-ray (BD50)</a></td>
+            </tr>
+            <tr>
+                <td class="heading">Date Added:</td>
+                <td class="data">Tuesday, <strong>April 21, 2009</strong> at 18:42:10 UTC</td>
+            </tr>
+            <tr>
+                <td class="heading">Total Size:</td>
+                <td class="data">44.18 GiB (47,440,328,192 bytes)</td>
+            </tr>
+            <tr>
+                <td class="heading">Uploader:</td>
+                <td class="data"><strong>SceneRipper99</strong> (Internal Uploader)</td>
+            </tr>
+            <tr>
+                <td class="heading">Traffic Stats:</td>
+                <td class="data">
+                    <span class="stats-badge seeders" id="seedCount">64 Seeders</span> &nbsp;|&nbsp;
+                    <span class="stats-badge leechers" id="leechCount">41 Leechers</span> &nbsp;|&nbsp;
+                    <span class="stats-badge snatched">128 Snatched</span>
+                </td>
+            </tr>
+            <tr>
+                <td class="heading">Tags & Specs:</td>
+                <td class="data">
+                    <span class="tag">1080p</span>
+                    <span class="tag">MPEG-4 AVC</span>
+                    <span class="tag">DTS-HD MA 5.1</span>
+                    <span class="tag">BD50</span>
+                    <span class="tag">Untouched</span>
+                    <span class="tag">Full Disc</span>
+                </td>
+            </tr>
+            <tr>
+                <td class="heading">Info Hash:</td>
+                <td class="data"><code style="color: #bbb;">d38fa9108b5f3a09c21142e88a3cf0193498bd2a</code></td>
+            </tr>
+        </table>
+
+        <!-- File List Panel -->
+        <div class="panel-heading">
+            Torrent Content [<a href="javascript:void(0)" onclick="toggleFileList()" id="fileToggleLink">Hide File List</a>]
+        </div>
+        <div class="file-list-box" id="fileListBox">
+            <div><strong>Folder:</strong> X-Men.2000.Disc1.1080p.BD50.AVC.DTS-HD.MA.5.1-MediaBD/ (BDMV Structure)</div>
+            <ul class="file-tree">
+                <li>📁 BDMV/
+                    <ul>
+                        <li>📁 PLAYLIST/ (00001.mpls, ...)</li>
+                        <li>📁 CLIPINF/ (00001.clpi, ...)</li>
+                        <li>📁 STREAM/
+                            <ul>
+                                <li>📄 00001.m2ts (41.2 GB - Main Feature 1080p AVC / DTS-HD MA)</li>
+                                <li>📄 00002.m2ts (1.8 GB - Special Featurette / Deleted Scenes)</li>
+                                <li>📄 00003.m2ts (450 MB - BD-Live Intro)</li>
+                            </ul>
+                        </li>
+                        <li>📁 BACKUP/</li>
+                        <li>📄 index.bdmv (5.2 KB)</li>
+                        <li>📄 MovieObject.bdmv (720 B)</li>
+                    </ul>
+                </li>
+                <li>📁 CERTIFICATE/ (id.bdmv, ...)</li>
+                <li>📄 MediaBD.nfo (8.4 KB)</li>
+            </ul>
+        </div>
+
+        <!-- Release NFO View -->
+        <div class="panel-heading">MediaBD Release Information (.NFO)</div>
+        <div class="nfo-viewer">
+  __  __          _ _       ____  _____  
+ |  \/  |        | (_)     |  _ \|  __ \ 
+ | \  / | ___  __| |_  __ _| |_) | |  | |
+ | |\/| |/ _ \/ _` | |/ _` |  _ <| |  | |
+ | |  | |  __/ (_| | | (_| | |_) | |__| |
+ |_|  |_|\___|\__,_|_|\__,_|____/|_____/ 
+                                         
+   P R E S E N T S   A N O T H E R   B L U - R A Y   R E L E A S E
+
+ Release Name ......: X-Men.2000.Disc1.1080p.BD50.AVC.DTS-HD.MA.5.1-MediaBD
+ Release Date ......: April 21, 2009
+ Disc Size .........: 50 GB Dual-Layer (BD50)
+ Movie Runtime .....: 01:44:17
+ Theater Year ......: 2000
+ IMDb Rating .......: 7.4/10
+ IMDb URL ..........: http://www.imdb.com/title/tt0120903/
+
+ [ VIDEO SPECS ]
+ Codec .............: MPEG-4 AVC Video
+ Resolution ........: 1080p (1920x1080)
+ Aspect Ratio ......: 2.35:1 (Widescreen)
+ Frame Rate ........: 23.976 fps
+ Bitrate ...........: Untouched Original Stream (~32.8 Mbps)
+
+ [ AUDIO TRACKS ]
+ Audio 1 ...........: English DTS-HD Master Audio 5.1 (48kHz / 24-bit)
+ Audio 2 ...........: French DTS 5.1 (768 kbps)
+ Audio 3 ...........: Spanish Dolby Digital 5.1 (448 kbps)
+ Audio 4 ...........: Audio Commentary by Director Bryan Singer
+
+ [ SUBTITLES ]
+ Subtitles .........: English SDH, Spanish, Korean, Portuguese, Dutch
+
+ [ DISC CONTENT & EXTRAS ]
+ * Disc 1 of Trilogy Box Set (Full Disc Untouched)
+ * Enhanced BD-Java Interactive Menus
+ * In-Movie Feature: Behind-the-Scenes Experience
+ * Theatrical Trailers & TV Spots
+ * BD-Live Enabled (Network access required)
+
+ [ GROUP NOTES ]
+ MediaBD is looking for:
+ - 100Mbit+ European/US Affil Dumps
+ - Early Blu-ray retail suppliers (US/UK/DE)
+ 
+ Greetz to: HDChina, CtrlHD, SiNNERS, WiKi, EuReKA
+ ------------------------------------------------------------------------</div>
+
+        <!-- Comments Section -->
+        <div class="panel-heading">Comments & Feedback (3)</div>
+        <div style="margin-top: 10px;">
+            
+            <div class="comment-block">
+                <div class="comment-header">
+                    <span>#1 by <strong>WolverineClaws</strong> (April 21, 2009 19:05)</span>
+                    <span>Rep: +42</span>
+                </div>
+                <div class="comment-body">
+                    Awesome release! Finally the first movie in full 1080p BD50 quality. Seeding at 100 Mbps from OVH seedbox!
+                </div>
+            </div>
+
+            <div class="comment-block">
+                <div class="comment-header">
+                    <span>#2 by <strong>Cyclops_Optic</strong> (April 21, 2009 20:12)</span>
+                    <span>Rep: +11</span>
+                </div>
+                <div class="comment-body">
+                    Can anyone confirm if the DTS-HD MA track bitstreams properly over HDMI with PowerDVD 9? 
+                </div>
+            </div>
+
+            <div class="comment-block">
+                <div class="comment-header">
+                    <span>#3 by <strong>SceneRipper99</strong> <span style="color:#f59e0b;">(Uploader)</span> (April 21, 2009 20:30)</span>
+                    <span>Rep: +890</span>
+                </div>
+                <div class="comment-body">
+                    @Cyclops_Optic Yes, verified working with Asus Xonar HDAV 1.3 and PDVD9 Ultra. Enjoy the lossless audio!
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div id="footer">
+        BitScene v2.4.1 &bull; Server Load: 0.42 &bull; Page generated in 0.0312s on 2009-04-21 21:04:12 EST<br>
+        Powered by TBDev codebase &bull; All times are UTC
+    </div>
+
+</div>
+
+<script>
+    function toggleFileList() {
+        const list = document.getElementById('fileListBox');
+        const link = document.getElementById('fileToggleLink');
+        if (list.style.display === 'none') {
+            list.style.display = 'block';
+            link.textContent = 'Hide File List';
+        } else {
+            list.style.display = 'none';
+            link.textContent = 'Show File List';
+        }
+    }
+
+    function downloadNotice() {
+        alert("Downloading: [BitScene]_X-Men.2000.Disc1.1080p.BD50.AVC.DTS-HD.MA.5.1-MediaBD.torrent\n\nRemember to seed back to a minimum 1.0 ratio or 72 hours seeding time!");
+    }
+</script>
+
+</body>
+</html>
