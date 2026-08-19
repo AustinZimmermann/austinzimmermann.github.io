@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X-Men Origins: Wolverine (2009) 1080p Blu-ray Remux AVC DTS-HD MA 5.1 - JPSub/EngSub | TorrentTracker-JP</title>
+    <style>
+        :root {
+            --bg-dark: #121417;
+            --card-bg: #1c2128;
+            --border-color: #30363d;
+            --accent-blue: #58a6ff;
+            --accent-green: #3fb950;
+            --accent-red: #f85149;
+            --text-main: #c9d1d9;
+            --text-muted: #8b949e;
+            --table-header: #21262d;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            padding: 20px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Header Navigation */
+        .header {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 12px 20px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-left: 15px;
+            font-size: 13px;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-blue);
+        }
+
+        /* Main Card */
+        .torrent-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .torrent-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border-color);
+            background: var(--table-header);
+        }
+
+        .badge-cat {
+            display: inline-block;
+            background: #1f6feb;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 11px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .torrent-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+            word-break: break-all;
+        }
+
+        /* Action bar */
+        .action-bar {
+            padding: 15px 20px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            background: rgba(0, 0, 0, 0.15);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: opacity 0.2s;
+        }
+
+        .btn:hover {
+            opacity: 0.85;
+        }
+
+        .btn-download {
+            background-color: var(--accent-green);
+            color: #fff;
+        }
+
+        .btn-magnet {
+            background-color: #238636;
+            color: #fff;
+        }
+
+        .btn-copy {
+            background-color: #30363d;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1px;
+            background: var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .stat-item {
+            background: var(--card-bg);
+            padding: 10px 16px;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .stat-value {
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 2px;
+        }
+
+        .seeders { color: var(--accent-green); }
+        .leechers { color: var(--accent-red); }
+
+        /* Content Sections */
+        .content-body {
+            padding: 20px;
+        }
+
+        .section-title {
+            font-size: 14px;
+            color: var(--accent-blue);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 6px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .nfo-box {
+            background: #0d1117;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 15px;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 12px;
+            color: #7ee787;
+            white-space: pre-wrap;
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+
+        /* File List Table */
+        .file-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        .file-table th, .file-table td {
+            padding: 8px 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .file-table th {
+            background: var(--table-header);
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #1f6feb;
+            color: #fff;
+            padding: 10px 18px;
+            border-radius: 4px;
+            font-size: 13px;
+            display: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Header -->
+    <header class="header">
+        <a href="#" class="logo">🇯🇵 TorrentTracker-JP</a>
+        <nav class="nav-links">
+            <a href="#">ホーム (Home)</a>
+            <a href="#">映画 (Movies)</a>
+            <a href="#">アニメ (Anime)</a>
+            <a href="#">ルール (Rules)</a>
+            <a href="#">アップロード (Upload)</a>
+        </nav>
+    </header>
+
+    <!-- Main Torrent Card -->
+    <main class="torrent-card">
+        <div class="torrent-header">
+            <span class="badge-cat">Movies / Blu-ray Remux</span>
+            <h1 class="torrent-title">X-Men Origins: Wolverine (2009) 1080p Blu-ray Remux AVC DTS-HD MA 5.1 - JPSub/EngSub</h1>
+        </div>
+
+        <!-- Action Download Buttons -->
+        <div class="action-bar">
+            <a href="#" class="btn btn-download" id="downloadTorrent">⬇ .torrent をダウンロード</a>
+            <a href="#" class="btn btn-magnet" id="magnetLink">🧲 マグネットリンク (Magnet)</a>
+            <button class="btn btn-copy" onclick="copyInfoHash()">InfoHashをコピー</button>
+        </div>
+
+        <!-- Metadata Stats -->
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-label">登録日時 (Uploaded)</div>
+                <div class="stat-value">2010-01-22 14:32 JST</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">ファイルサイズ (Size)</div>
+                <div class="stat-value">26.84 GB</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">シード (Seeders)</div>
+                <div class="stat-value seeders">128</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">ピア (Leechers)</div>
+                <div class="stat-value leechers">14</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">完了数 (Completed)</div>
+                <div class="stat-value">1,402 回</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">会員ステータス (Status)</div>
+                <div class="stat-value">公開 (Freeleech)</div>
+            </div>
+        </div>
+
+        <!-- Main Content Info -->
+        <div class="content-body">
+            <h2 class="section-title">作品概要 / Description</h2>
+            <div class="nfo-box">================================================================================
+タイトル       : ウルヴァリン: X-MEN ZERO (X-Men Origins: Wolverine)
+公開年         : 2009年
+リリース日     : 2010年01月22日
+メディアタイプ : Blu-ray Remux (AVC / 1080p)
+ファイル形式   : .mkv
+
+[映像仕様 (Video)]
+Codec          : MPEG-4 AVC Video / High Profile 4.1
+Resolution     : 1920x1080 (16:9)
+Frame Rate     : 23.976 fps
+Bitrate        : ~28.5 Mbps
+
+[音声仕様 (Audio)]
+Audio Track 1  : 英語 (English) - 5.1 DTS-HD Master Audio (48kHz, 24-bit)
+Audio Track 2  : 日本語 (Japanese) - 5.1 DTS (48kHz, 768 kbps)
+
+[字幕仕様 (Subtitles)]
+Subtitle 1     : 日本語 (Japanese PGS)
+Subtitle 2     : 日本語吹替用 (Japanese Forced PGS)
+Subtitle 3     : 英語 (English PGS / SDH)
+
+[チャプター (Chapters)]
+Included (Chapter 01 - 24)
+================================================================================</div>
+
+            <!-- File List -->
+            <h2 class="section-title">ファイル構成 / File List (1)</h2>
+            <table class="file-table">
+                <thead>
+                    <tr>
+                        <th>ファイル名 (Filename)</th>
+                        <th style="width: 140px; text-align: right;">サイズ (Size)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>📄 X-Men.Origins.Wolverine.2009.JPN.1080p.BluRay.REMUX.AVC.DTS-HD.MA.5.1-TRACKER.mkv</td>
+                        <td style="text-align: right;">26.84 GB</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Technical Hash Info -->
+            <h2 class="section-title">ハッシュ情報 / Torrent Metadata</h2>
+            <p style="font-size: 12px; color: var(--text-muted); word-break: break-all;">
+                <strong>Info Hash:</strong> <span id="infoHash">a3f9e83b129846b0d9124e4d5812903b41e9821a</span><br>
+                <strong>アナウンスURL (Tracker):</strong> http://tracker.jp-community.local:8080/announce
+            </p>
+        </div>
+    </main>
+</div>
+
+<!-- Notification Toast -->
+<div id="toast" class="toast">InfoHashをクリップボードにコピーしました</div>
+
+<script>
+    function copyInfoHash() {
+        const hash = document.getElementById('infoHash').innerText;
+        navigator.clipboard.writeText(hash).then(() => {
+            const toast = document.getElementById('toast');
+            toast.style.display = 'block';
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 2500);
+        });
+    }
+
+    document.getElementById('magnetLink').addEventListener('click', (e) => {
+        e.preventDefault();
+        const hash = document.getElementById('infoHash').innerText;
+        const name = encodeURIComponent("X-Men Origins: Wolverine (2009) 1080p Blu-ray Remux AVC DTS-HD MA 5.1");
+        const magnet = `magnet:?xt=urn:btih:${hash}&dn=${name}&tr=http%3A%2F%2Ftracker.jp-community.local%3A8080%2Fannounce`;
+        window.location.href = magnet;
+    });
+
+    document.getElementById('downloadTorrent').addEventListener('click', (e) => {
+        e.preventDefault();
+        alert(".torrent ファイルのダウンロードを開始します。");
+    });
+</script>
+
+</body>
+</html>
