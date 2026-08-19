@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Transporter (2002) 1080p BluRay REMUX MPEG-2 DTS-HD MA 5.1 - FraMeSToR | TorrentVault</title>
+  <style>
+    :root {
+      --bg-color: #0e1117;
+      --card-bg: #161b22;
+      --accent: #238636;
+      --accent-hover: #2ea043;
+      --border-color: #30363d;
+      --text-main: #c9d1d9;
+      --text-muted: #8b949e;
+      --text-heading: #f0f6fc;
+      --danger: #f85149;
+      --magnet-color: #a371f7;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      padding: 20px;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    /* Top Bar */
+    header {
+      background: var(--card-bg);
+      padding: 15px 20px;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .breadcrumb {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* Main Box */
+    .torrent-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+
+    .release-title {
+      color: var(--text-heading);
+      font-size: 1.4rem;
+      word-break: break-all;
+      margin-bottom: 12px;
+    }
+
+    .tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .tag {
+      font-size: 0.75rem;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+      background: #21262d;
+      border: 1px solid var(--border-color);
+      color: var(--text-heading);
+    }
+
+    .tag.remux {
+      background: #388bfd1a;
+      border-color: #388bfd;
+      color: #58a6ff;
+    }
+
+    /* Quick Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 12px;
+      background: #0d1117;
+      padding: 16px;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      margin-bottom: 24px;
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .stat-val {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-heading);
+    }
+
+    .seeders { color: #3fb950; }
+    .leechers { color: var(--danger); }
+
+    /* Action Buttons */
+    .action-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .btn {
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: none;
+      transition: background 0.2s ease;
+    }
+
+    .btn-download {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .btn-download:hover {
+      background: var(--accent-hover);
+    }
+
+    .btn-magnet {
+      background: #21262d;
+      border: 1px solid var(--magnet-color);
+      color: #d2a8ff;
+    }
+
+    .btn-magnet:hover {
+      background: #30363d;
+    }
+
+    /* Media Info & Specs */
+    .specs-title {
+      font-size: 1.1rem;
+      color: var(--text-heading);
+      margin: 20px 0 10px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 6px;
+    }
+
+    .specs-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+
+    .specs-table td {
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .specs-table td:first-child {
+      width: 25%;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    pre.mediainfo {
+      background: #0d1117;
+      padding: 16px;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      font-size: 0.8rem;
+      overflow-x: auto;
+      color: #79c0ff;
+      line-height: 1.4;
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+    }
+
+    /* Toast Notification */
+    #toast {
+      visibility: hidden;
+      min-width: 200px;
+      background-color: #238636;
+      color: #fff;
+      text-align: center;
+      border-radius: 4px;
+      padding: 12px;
+      position: fixed;
+      z-index: 10;
+      bottom: 30px;
+      right: 30px;
+      font-size: 0.9rem;
+    }
+
+    #toast.show {
+      visibility: visible;
+      animation: fadein 0.3s, fadeout 0.3s 2.5s;
+    }
+
+    @keyframes fadein {
+      from { bottom: 0; opacity: 0; }
+      to { bottom: 30px; opacity: 1; }
+    }
+
+    @keyframes fadeout {
+      from { bottom: 30px; opacity: 1; }
+      to { bottom: 0; opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <div class="logo">⚡ TorrentVault</div>
+    <div class="breadcrumb">Movies &gt; REMUX &gt; 1080p</div>
+  </header>
+
+  <main class="torrent-box">
+    <h1 class="release-title">The.Transporter.2002.1080p.BluRay.REMUX.MPEG-2.DTS-HD.MA.5.1-FraMeSToR</h1>
+
+    <div class="tags">
+      <span class="tag remux">REMUX</span>
+      <span class="tag">1080p</span>
+      <span class="tag">FraMeSToR</span>
+      <span class="tag">MPEG-2</span>
+      <span class="tag">DTS-HD MA 5.1</span>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-item">
+        <span class="stat-label">Size</span>
+        <span class="stat-val">18.42 GiB</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Seeders</span>
+        <span class="stat-val seeders" id="seeders">48</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Leechers</span>
+        <span class="stat-val leechers" id="leechers">3</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Completed</span>
+        <span class="stat-val">1,209</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Added</span>
+        <span class="stat-val">Oct 11, 2002</span>
+      </div>
+    </div>
+
+    <div class="action-group">
+      <button class="btn btn-download" onclick="triggerDownload()">
+        ⬇ Download .torrent
+      </button>
+      <button class="btn btn-magnet" onclick="copyMagnet()">
+        🧲 Copy Magnet URI
+      </button>
+    </div>
+
+    <h2 class="specs-title">General Information</h2>
+    <table class="specs-table">
+      <tr>
+        <td>Title</td>
+        <td>The Transporter (2002)</td>
+      </tr>
+      <tr>
+        <td>Format</td>
+        <td>Matroska (.mkv)</td>
+      </tr>
+      <tr>
+        <td>Video</td>
+        <td>1080p MPEG-2 @ 24.5 Mbps / 23.976 fps / 16:9</td>
+      </tr>
+      <tr>
+        <td>Audio #1</td>
+        <td>English DTS-HD Master Audio 5.1 @ 4210 kbps (48 kHz / 24-bit)</td>
+      </tr>
+      <tr>
+        <td>Audio #2</td>
+        <td>French DTS 5.1 @ 768 kbps</td>
+      </tr>
+      <tr>
+        <td>Subtitles</td>
+        <td>English (SDH), French, Spanish</td>
+      </tr>
+      <tr>
+        <td>Release Group</td>
+        <td>FraMeSToR</td>
+      </tr>
+    </table>
+
+    <h2 class="specs-title">MediaInfo Details</h2>
+    <pre class="mediainfo">
+Unique ID                                : 2314981729481729471928374918273918273
+Complete name                            : The.Transporter.2002.1080p.BluRay.REMUX.MPEG-2.DTS-HD.MA.5.1-FraMeSToR.mkv
+Format                                   : Matroska
+Format version                           : Version 4
+File size                                : 18.4 GiB
+Duration                                 : 1 h 32 min
+Overall bit rate mode                    : Variable
+Overall bit rate                         : 28.5 Mb/s
+
+Video
+ID                                       : 1
+Format                                   : MPEG Video
+Format version                           : Version 2
+Bit rate                                 : 24.5 Mb/s
+Width                                    : 1 920 pixels
+Height                                   : 1 080 pixels
+Display aspect ratio                     : 16:9
+Frame rate mode                          : Constant
+Frame rate                               : 23.976 (24000/1001) FPS
+Color space                              : YUV
+Chroma subsampling                       : 4:2:0
+Bit depth                                : 8 bits
+
+Audio #1
+ID                                       : 2
+Format                                   : DTS XLL
+Format/Info                              : DTS-HD Master Audio
+Bit rate mode                            : Variable
+Bit rate                                 : 4 210 kb/s
+Channel(s)                               : 6 channels
+Channel layout                           : C L R Ls Rs LFE
+Sampling rate                            : 48.0 kHz
+Bit depth                                : 24 bits
+Language                                 : English
+    </pre>
+  </main>
+</div>
+
+<div id="toast">Magnet URI copied to clipboard!</div>
+
+<script>
+  const magnetURI = "magnet:?xt=urn:btih:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855&dn=The.Transporter.2002.1080p.BluRay.REMUX.MPEG-2.DTS-HD.MA.5.1-FraMeSToR";
+
+  function copyMagnet() {
+    navigator.clipboard.writeText(magnetURI).then(() => {
+      showToast("Magnet URI copied to clipboard!");
+    }).catch(err => {
+      showToast("Failed to copy URI.");
+    });
+  }
+
+  function triggerDownload() {
+    showToast("Starting download...");
+  }
+
+  function showToast(message) {
+    const toast = document.getElementById("toast");
+    toast.textContent = message;
+    toast.className = "show";
+    setTimeout(() => {
+      toast.className = toast.className.replace("show", "");
+    }, 2800);
+  }
+</script>
+
+</body>
+</html>
