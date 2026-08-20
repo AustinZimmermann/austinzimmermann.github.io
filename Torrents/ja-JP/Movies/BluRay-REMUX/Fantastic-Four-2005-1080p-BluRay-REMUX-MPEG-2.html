@@ -1,367 +1,226 @@
 <!DOCTYPE html>
-<html lang="ja" class="dark">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ファンタスティック・フォー ［超能力ユニット］ (2005) [Blu-ray REMUX] - TokyoTorrents</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>ファンタスティック・フォー ［超能力ユニット］ (2005) [Blu-ray Remux MPEG-2 1080p DTS-HD MA 5.1]</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        tracker: {
-                            dark: '#0f172a',
-                            card: '#1e293b',
-                            accent: '#3b82f6',
-                            hover: '#2563eb',
-                            border: '#334155'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
 </head>
-<body class="bg-tracker-dark text-slate-100 font-sans min-h-screen flex flex-col antialiased">
+<body class="bg-slate-950 text-slate-100 min-h-screen font-sans selection:bg-indigo-500 selection:text-white">
 
-    <header class="bg-tracker-card border-b border-tracker-border sticky top-0 z-50 shadow-md">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <!-- ヘルパーメッセージモーダル -->
+    <div id="modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center hidden">
+        <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl max-w-md w-full mx-4 shadow-2xl">
+            <h3 id="modal-title" class="text-lg font-bold mb-2 text-indigo-400">通知</h3>
+            <p id="modal-message" class="text-slate-300 text-sm mb-6">メッセージ内容</p>
+            <button onclick="closeModal()" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-medium py-2 rounded-xl transition duration-200 cursor-pointer">閉じる</button>
+        </div>
+    </div>
+
+    <!-- ヘッダーナビゲーション -->
+    <header class="border-b border-slate-800 bg-slate-900/60 backdrop-blur sticky top-0 z-40">
+        <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
             <div class="flex items-center space-x-3">
-                <a href="#" class="flex items-center space-x-2">
-                    <div class="bg-blue-600 text-white p-2 rounded-xl font-black text-xl tracking-wider flex items-center justify-center shadow-lg shadow-blue-500/30">
-                        <i class="fa-solid fa-magnet"></i>
-                    </div>
-                    <span class="text-xl font-bold tracking-tight bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">TokyoTorrents <span class="text-xs uppercase px-1.5 py-0.5 bg-blue-900/60 text-blue-300 rounded border border-blue-700">JP Private</span></span>
-                </a>
+                <div class="bg-indigo-600 p-2 rounded-xl text-white">
+                    <i class="fa-solid fa-magnet"></i>
+                </div>
+                <span class="font-bold text-lg tracking-wide text-indigo-100">NIPPON-TRACKER <span class="text-xs px-2 py-0.5 bg-indigo-950 border border-indigo-800 text-indigo-300 rounded-full ml-1 font-normal">Public/HD</span></span>
             </div>
-            <nav class="hidden md:flex items-center space-x-6 text-sm font-medium text-slate-300">
-                <a href="#" class="hover:text-blue-400 transition">ホーム</a>
-                <a href="#" class="hover:text-blue-400 transition text-blue-400 font-semibold">トレント一覧</a>
-                <a href="#" class="hover:text-blue-400 transition">リクエスト</a>
-                <a href="#" class="hover:text-blue-400 transition">ルール</a>
-                <a href="#" class="hover:text-blue-400 transition">フォーラム</a>
-            </nav>
-            <div class="flex items-center space-x-3">
-                <div class="hidden sm:flex flex-col text-right text-xs">
-                    <span class="text-slate-400">ユーザー: <strong class="text-slate-200">CinephileJP</strong></span>
-                    <span class="text-emerald-400 font-mono">比率: 2.450 (UP: 142.8 GB)</span>
-                </div>
-                <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center font-bold text-sm shadow">
-                    C
-                </div>
+            <div class="flex items-center space-x-4 text-sm">
+                <span class="text-slate-400 hidden sm:inline"><i class="fa-solid fa-user-shield text-emerald-400 mr-1"></i> ユーザー: VIP Member</span>
+                <button onclick="showMessage('ヘルプ', 'トレントファイルおよびマグネットリンクは安全に検証されています。比率を守ってシェアしてください。')" class="text-slate-400 hover:text-slate-200 transition"><i class="fa-solid fa-circle-question mr-1"></i> ヘルプ</button>
             </div>
         </div>
     </header>
 
-    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- メインコンテンツ -->
+    <main class="max-w-6xl mx-auto px-4 py-8">
         
-        <!-- Breadcrumb -->
-        <nav class="flex text-sm text-slate-400 mb-6 space-x-2 items-center">
-            <a href="#" class="hover:text-blue-400">ホーム</a>
-            <i class="fa-solid fa-chevron-right text-xs text-slate-600"></i>
-            <a href="#" class="hover:text-blue-400">映画 (Movie)</a>
-            <i class="fa-solid fa-chevron-right text-xs text-slate-600"></i>
-            <a href="#" class="hover:text-blue-400">洋画 (Western)</a>
-            <i class="fa-solid fa-chevron-right text-xs text-slate-600"></i>
-            <span class="text-slate-200 truncate">ファンタスティック・フォー ［超能力ユニット］ (2005)</span>
+        <!-- パンくずリスト -->
+        <nav class="text-xs text-slate-400 mb-6 flex items-center space-x-2">
+            <a href="#" class="hover:text-indigo-400">ホーム</a>
+            <span>/</span>
+            <a href="#" class="hover:text-indigo-400">映画 (HD)</a>
+            <span>/</span>
+            <span class="text-slate-200">洋画</span>
         </nav>
 
-        <!-- Notification Banner -->
-        <div id="download-alert" class="hidden mb-6 bg-emerald-950/80 border border-emerald-700/60 text-emerald-300 px-4 py-3 rounded-xl shadow-lg flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <i class="fa-solid fa-circle-check text-emerald-400 text-lg"></i>
+        <!-- タイトルセクション -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 md:p-8 mb-6 shadow-xl relative overflow-hidden">
+            <div class="absolute -right-16 -top-16 w-64 h-64 bg-indigo-600/10 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
                 <div>
-                    <span class="font-bold">トレントファイル（またはマグネットリンク）のダウンロードを開始しました！</span>
-                    <p class="text-xs text-emerald-400/80">BitTorrentクライアントに追加してダウンロードをお楽しみください。</p>
+                    <div class="flex flex-wrap items-center gap-2 mb-3">
+                        <span class="px-2.5 py-1 bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 text-xs font-semibold rounded-md">Blu-ray Remux</span>
+                        <span class="px-2.5 py-1 bg-blue-500/20 text-blue-300 border border-blue-500/30 text-xs font-semibold rounded-md">MPEG-2 / 1080p</span>
+                        <span class="px-2.5 py-1 bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-semibold rounded-md">MKV</span>
+                        <span class="px-2.5 py-1 bg-amber-500/20 text-amber-300 border border-amber-500/30 text-xs font-semibold rounded-md">DTS-HD MA 5.1</span>
+                    </div>
+                    <h1 class="text-2xl md:text-3xl font-bold tracking-tight text-white mb-2">ファンタスティック・フォー ［超能力ユニット］ <span class="text-slate-400 font-normal text-lg">(2005)</span></h1>
+                    <p class="text-slate-400 text-sm">Fantastic Four (2005) Blu-ray Remux 1080p MPEG-2 DTS-HD MA 5.1 - JPN/ENG Subs</p>
+                </div>
+                
+                <div class="flex items-center gap-3 w-full md:w-auto">
+                    <button onclick="handleDownloadMagnet()" class="flex-1 md:flex-none bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-3 rounded-xl font-semibold flex items-center justify-center space-x-2 transition shadow-lg shadow-indigo-600/25 cursor-pointer">
+                        <i class="fa-solid fa-magnet text-lg"></i>
+                        <span>マグネットリンク</span>
+                    </button>
+                    <button onclick="handleDownloadTorrent()" class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-3 rounded-xl font-medium flex items-center justify-center transition border border-slate-700 cursor-pointer" title="Torrentファイルをダウンロード">
+                        <i class="fa-solid fa-download"></i>
+                    </button>
                 </div>
             </div>
-            <button onclick="dismissAlert()" class="text-emerald-400 hover:text-emerald-200"><i class="fa-solid fa-xmark"></i></button>
+
+            <!-- ステータスバー (シード・リーチ・サイズなど) -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-slate-800 text-sm">
+                <div class="bg-slate-950/40 p-3 rounded-xl border border-slate-800/60">
+                    <span class="text-slate-400 block text-xs mb-1">ファイルサイズ</span>
+                    <span class="font-bold text-slate-200 text-base">28.4 GB</span>
+                </div>
+                <div class="bg-slate-950/40 p-3 rounded-xl border border-slate-800/60">
+                    <span class="text-slate-400 block text-xs mb-1">シード / リーチ</span>
+                    <span class="font-bold text-emerald-400 text-base"><i class="fa-solid fa-arrow-up text-xs mr-1"></i> 142</span>
+                    <span class="text-slate-500 mx-1">/</span>
+                    <span class="font-bold text-amber-400 text-base"><i class="fa-solid fa-arrow-down text-xs mr-1"></i> 8</span>
+                </div>
+                <div class="bg-slate-950/40 p-3 rounded-xl border border-slate-800/60">
+                    <span class="text-slate-400 block text-xs mb-1">完了数 (Completed)</span>
+                    <span class="font-bold text-slate-200 text-base">1,894 回</span>
+                </div>
+                <div class="bg-slate-950/40 p-3 rounded-xl border border-slate-800/60">
+                    <span class="text-slate-400 block text-xs mb-1">投稿日 / uploader</span>
+                    <span class="font-medium text-slate-300 text-sm truncate block">2026-03-12 / <span class="text-indigo-400">RemuxMaster</span></span>
+                </div>
+            </div>
         </div>
 
-        <!-- Main Grid Layout -->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- グリッドレイアウト（詳細情報とポスター） -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
             
-            <!-- Left & Center Column: Detailed Info & Meta -->
+            <!-- 左側：詳細スペックとメディア情報 -->
             <div class="lg:col-span-2 space-y-6">
                 
-                <!-- Header Box -->
-                <div class="bg-tracker-card border border-tracker-border rounded-2xl p-6 shadow-xl">
-                    <div class="flex flex-wrap items-start justify-between gap-4 mb-4">
-                        <div>
-                            <div class="flex flex-wrap gap-2 mb-2">
-                                <span class="bg-blue-600/20 border border-blue-500/40 text-blue-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">Blu-ray REMUX</span>
-                                <span class="bg-purple-600/20 border border-purple-500/40 text-purple-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">MPEG-2</span>
-                                <span class="bg-amber-600/20 border border-amber-500/40 text-amber-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">DTS-HD MA 5.1</span>
-                                <span class="bg-emerald-600/20 border border-emerald-700/40 text-emerald-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">内部DL (Internal)</span>
-                            </div>
-                            <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-                                ファンタスティック・フォー ［超能力ユニット］ <span class="text-slate-400 font-normal text-xl">Fantastic Four (2005)</span>
-                            </h1>
-                        </div>
-                    </div>
-
-                    <!-- Poster & Quick Specs Grid -->
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 my-6 pt-4 border-t border-tracker-border">
-                        <div class="relative group overflow-hidden rounded-xl bg-slate-800 shadow-md aspect-[2/3] sm:aspect-auto">
-                            <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&q=80&w=600" alt="Fantastic Four Poster" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" onerror="this.src='https://placehold.co/400x600/1e293b/cbd5e1?text=Fantastic+Four'">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-3">
-                                <span class="text-xs text-slate-300 font-medium"><i class="fa-solid fa-calendar-days mr-1.5 text-blue-400"></i>公開日: 2005年9.21 (JP)</span>
-                            </div>
-                        </div>
-
-                        <div class="sm:col-span-2 space-y-4 text-sm">
-                            <div class="grid grid-cols-2 gap-y-3 gap-x-4 border-b border-tracker-border pb-4">
-                                <div>
-                                    <span class="text-slate-400 block text-xs">リリース日時</span>
-                                    <span class="font-medium text-slate-200">2006年11月10日 21:42:10</span>
-                                </div>
-                                <div>
-                                    <span class="text-slate-400 block text-xs">アップローダー</span>
-                                    <span class="font-medium text-blue-400 hover:underline cursor-pointer"><i class="fa-solid fa-shield-halved mr-1"></i>RemuxMaster_JP</span>
-                                </div>
-                                <div>
-                                    <span class="text-slate-400 block text-xs">ファイルサイズ</span>
-                                    <span class="font-medium text-slate-200">24.8 GB (26,632,192,840 bytes)</span>
-                                </div>
-                                <div>
-                                    <span class="text-slate-400 block text-xs">カテゴリ</span>
-                                    <span class="font-medium text-slate-200">映画 / 洋画 (Blu-ray)</span>
-                                </div>
-                            </div>
-
-                            <div class="space-y-2">
-                                <div class="flex justify-between text-xs text-slate-400">
-                                    <span>シード状況 (Seeders / Leechers)</span>
-                                    <span class="font-semibold text-emerald-400"><i class="fa-solid fa-signal mr-1"></i>健康度: 100% 健全</span>
-                                </div>
-                                <div class="flex items-center space-x-4">
-                                    <div class="flex items-center space-x-1.5 text-emerald-400 font-semibold bg-emerald-950/60 px-3 py-1.5 rounded-lg border border-emerald-800/50">
-                                        <i class="fa-solid fa-arrow-up"></i>
-                                        <span>シード: <strong>38</strong></span>
-                                    </div>
-                                    <div class="flex items-center space-x-1.5 text-amber-400 font-semibold bg-amber-950/60 px-3 py-1.5 rounded-lg border border-amber-800/50">
-                                        <i class="fa-solid fa-arrow-down"></i>
-                                        <span>リーチ: <strong>2</strong></span>
-                                    </div>
-                                    <div class="flex items-center space-x-1.5 text-blue-400 font-semibold bg-blue-950/60 px-3 py-1.5 rounded-lg border border-blue-800/50">
-                                        <i class="fa-solid fa-check"></i>
-                                        <span>完了数: <strong>412 回</strong></span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Action Buttons -->
-                            <div class="flex flex-wrap gap-3 pt-2">
-                                <button onclick="triggerDownload('torrent')" class="flex-1 bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-4 rounded-xl shadow-lg shadow-blue-600/30 transition flex items-center justify-center space-x-2">
-                                    <i class="fa-solid fa-download"></i>
-                                    <span>.torrent ダウンロード</span>
-                                </button>
-                                <button onclick="triggerDownload('magnet')" class="bg-slate-700 hover:bg-slate-600 text-slate-100 font-bold py-3 px-4 rounded-xl shadow transition flex items-center justify-center space-x-2">
-                                    <i class="fa-solid fa-magnet text-amber-400"></i>
-                                    <span>マグネットリンク</span>
-                                </button>
-                                <button onclick="bookmarkTorrent(this)" class="bg-slate-800 hover:bg-slate-700 text-slate-300 p-3 rounded-xl border border-tracker-border transition" title="ブックマーク">
-                                    <i class="fa-regular fa-bookmark text-lg"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Technical Media Info -->
-                <div class="bg-tracker-card border border-tracker-border rounded-2xl p-6 shadow-xl space-y-4">
-                    <h2 class="text-lg font-bold text-white flex items-center space-x-2 border-b border-tracker-border pb-3">
-                        <i class="fa-solid fa-sliders text-blue-400"></i>
-                        <span>メディア詳細スペック (MediaInfo)</span>
+                <!-- メディア詳細パネル -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+                    <h2 class="text-lg font-bold mb-4 flex items-center text-slate-200">
+                        <i class="fa-solid fa-circle-info text-indigo-500 mr-2"></i> メディア仕様詳細
                     </h2>
                     
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                        <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800 space-y-2">
-                            <span class="text-xs font-bold uppercase tracking-wider text-blue-400 block"><i class="fa-solid fa-video mr-1"></i> ビデオ仕様</span>
-                            <div class="flex justify-between py-1 border-b border-slate-800 text-xs">
-                                <span class="text-slate-400">フォーマット:</span>
-                                <span class="font-mono text-slate-200">MPEG-2 (Blu-ray REMUX)</span>
-                            </div>
-                            <div class="flex justify-between py-1 border-b border-slate-800 text-xs">
-                                <span class="text-slate-400">解像度 / アスペクト:</span>
-                                <span class="font-mono text-slate-200">1920 x 1080 (16:9)</span>
-                            </div>
-                            <div class="flex justify-between py-1 border-b border-slate-800 text-xs">
-                                <span class="text-slate-400">フレームレート:</span>
-                                <span class="font-mono text-slate-200">23.976 fps</span>
-                            </div>
-                            <div class="flex justify-between py-1 text-xs">
-                                <span class="text-slate-400">ビットレート:</span>
-                                <span class="font-mono text-slate-200">~29.5 Mbps</span>
-                            </div>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex flex-col sm:flex-row py-2 border-b border-slate-800/60">
+                            <span class="w-40 text-slate-400 font-medium mb-1 sm:mb-0">フォーマット</span>
+                            <span class="text-slate-200">MKV (Matroska)</span>
                         </div>
-
-                        <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800 space-y-2">
-                            <span class="text-xs font-bold uppercase tracking-wider text-emerald-400 block"><i class="fa-solid fa-volume-high mr-1"></i> オーディオ & 字幕</span>
-                            <div class="flex justify-between py-1 border-b border-slate-800 text-xs">
-                                <span class="text-slate-400">音声 1 (主音声):</span>
-                                <span class="font-mono text-slate-200">英語 5.1ch DTS-HD MA (1.5 Mbps)</span>
-                            </div>
-                            <div class="flex justify-between py-1 border-b border-slate-800 text-xs">
-                                <span class="text-slate-400">音声 2 (吹替):</span>
-                                <span class="font-mono text-slate-200">日本語 5.1ch DTS (755 Kbps)</span>
-                            </div>
-                            <div class="flex justify-between py-1 text-xs">
-                                <span class="text-slate-400">字幕:</span>
-                                <span class="font-mono text-slate-200">日本語字幕 / 英語字幕 (PGS)</span>
-                            </div>
+                        <div class="flex flex-col sm:flex-row py-2 border-b border-slate-800/60">
+                            <span class="w-40 text-slate-400 font-medium mb-1 sm:mb-0">ビデオコーデック</span>
+                            <span class="text-slate-200">MPEG-2 Video / 1920x1080 / 23.976 fps / 32.5 Mbps</span>
                         </div>
-                    </div>
-
-                    <div class="bg-slate-900/40 p-4 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-1 font-mono">
-                        <div class="text-slate-400 font-sans font-semibold mb-1"><i class="fa-solid fa-file-lines mr-1 text-slate-500"></i> ファイル構成:</div>
-                        <div>📁 Fantastic.Four.2005.1080p.JPN.Bluray.REMUX.MPEG-2.DTS-HD.MA.5.1-MASTER</div>
-                        <div class="pl-4 text-slate-400">├── 📄 FANTASTIC_FOUR.mkv (24.78 GB)</div>
-                        <div class="pl-4 text-slate-400">└── 📄 torrent_info.nfo (4.2 KB)</div>
+                        <div class="flex flex-col sm:flex-row py-2 border-b border-slate-800/60">
+                            <span class="w-40 text-slate-400 font-medium mb-1 sm:mb-0">音声トラック 1</span>
+                            <span class="text-slate-200">英語: 5.1ch DTS-HD Master Audio (Lossless, 48 kHz / 24-bit)</span>
+                        </div>
+                        <div class="flex flex-col sm:flex-row py-2 border-b border-slate-800/60">
+                            <span class="w-40 text-slate-400 font-medium mb-1 sm:mb-0">音声トラック 2</span>
+                            <span class="text-slate-200">日本語: 5.1ch DTS (吹き替え版)</span>
+                        </div>
+                        <div class="flex flex-col sm:flex-row py-2 border-b border-slate-800/60">
+                            <span class="w-40 text-slate-400 font-medium mb-1 sm:mb-0">字幕</span>
+                            <span class="text-slate-200">日本語字幕 (PGS), 英語字幕 (PGS)</span>
+                        </div>
+                        <div class="flex flex-col sm:flex-row py-2">
+                            <span class="w-40 text-slate-400 font-medium mb-1 sm:mb-0">収録内容</span>
+                            <span class="text-slate-200">本編ノーカット完全収録 (Blu-ray北米・日本共通マスターリマスター版ベース)</span>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Description / Synopsis -->
-                <div class="bg-tracker-card border border-tracker-border rounded-2xl p-6 shadow-xl space-y-4">
-                    <h2 class="text-lg font-bold text-white flex items-center space-x-2 border-b border-tracker-border pb-3">
-                        <i class="fa-solid fa-film text-blue-400"></i>
-                        <span>作品解説 & アップローダーノート</span>
+                <!-- 概要・ストーリー -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+                    <h2 class="text-lg font-bold mb-4 flex items-center text-slate-200">
+                        <i class="fa-solid fa-film text-indigo-500 mr-2"></i> 作品概要
                     </h2>
-                    
-                    <div class="text-sm text-slate-300 space-y-3 leading-relaxed">
-                        <p>
-                            マーベル・コミックの人気ヒーローチームを実写映画化したSFアクション大作<strong>『ファンタスティック・フォー ［超能力ユニット］』</strong>の日本国内向け高品質Blu-ray Remux（MPEG-2ソース）です。2006年11月10日リリースのコレクターズ・エディション盤より、映像・音声を無劣化（ロスレス）で抽出しました。
-                        </p>
-                        <p class="text-slate-400 italic">
-                            ※ 宇宙嵐に巻き込まれて特殊能力を手に入れたリード・リチャーズ（Mr.ファンタスティック）、スー・ストーム（インビジブル・ウーマン）、ジョニー・ストーム（ヒューマン・トーチ）、ベン・グリム（ザ・シング）の4人が、宿敵ドクター・ドゥームに立ち向かう初期の名作です。劇場公開時の日本語吹替音声を完全収録。
-                        </p>
+                    <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                        宇宙での実験中、謎の宇宙嵐（コズミック・ストーム）に巻き込まれた5人の宇宙飛行士・科学者たち。地球に戻った彼らは、自分たちの体に驚異的な超能力が宿っていることに気づく。体を自在に伸ばせるリーダー、透明化とバリアを操る女性、炎をまとう男、そして全身が岩と化した強力なパワーを持つ男。彼らは「ファンタスティック・フォー」を結成し、世界を救うために立ち上がる――。
+                    </p>
+                    <div class="bg-slate-950/60 border border-slate-800/80 p-4 rounded-xl text-xs text-slate-400">
+                        <span class="text-indigo-400 font-semibold">Remux Notes:</span> 無劣化リマックス（Blu-rayディスク構造からMPEG-2ビデオストリームおよびロスレス音声をそのまま抽出・多重化）により、画質・音質ともにオリジナルディスクのクオリティを完全に維持しています。
                     </div>
                 </div>
 
-                <!-- Comments Section -->
-                <div class="bg-tracker-card border border-tracker-border rounded-2xl p-6 shadow-xl space-y-6">
-                    <div class="flex items-center justify-between border-b border-tracker-border pb-3">
-                        <h2 class="text-lg font-bold text-white flex items-center space-x-2">
-                            <i class="fa-solid fa-comments text-blue-400"></i>
-                            <span>コメント (3件)</span>
-                        </h2>
-                        <span class="text-xs text-slate-400">ピア比率ボーナス対象</span>
-                    </div>
-
-                    <!-- Comment List -->
-                    <div class="space-y-4">
-                        <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800 space-y-2">
-                            <div class="flex items-center justify-between text-xs">
-                                <div class="flex items-center space-x-2">
-                                    <span class="font-bold text-blue-400">MarvelFan_2006</span>
-                                    <span class="bg-slate-800 text-slate-400 px-2 py-0.5 rounded text-[10px]">VIP会員</span>
-                                </div>
-                                <span class="text-slate-500">2006年11月12日 14:10</span>
-                            </div>
-                            <p class="text-sm text-slate-200">待っていました！当時のMPEG-2特有の質感がBlu-rayそのまま残っていて最高です。シード継続します！</p>
+                <!-- ファイルツリー / 内容物一覧 -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+                    <h2 class="text-lg font-bold mb-4 flex items-center text-slate-200">
+                        <i class="fa-solid fa-folder-tree text-indigo-500 mr-2"></i> ファイル構成
+                    </h2>
+                    <div class="bg-slate-950 border border-slate-800 rounded-xl p-4 font-mono text-xs text-slate-300 space-y-2 overflow-x-auto">
+                        <div class="flex items-center text-indigo-300">
+                            <i class="fa-solid fa-folder mr-2"></i> Fantastic.Four.2005.1080p.BluRay.Remux.MPEG-2.DTS-HD.MA.5.1-JPN/
                         </div>
-
-                        <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800 space-y-2">
-                            <div class="flex items-center justify-between text-xs">
-                                <div class="flex items-center space-x-2">
-                                    <span class="font-bold text-emerald-400">HD_Collector</span>
-                                    <span class="bg-slate-800 text-slate-400 px-2 py-0.5 rounded text-[10px]">メンバー</span>
-                                </div>
-                                <span class="text-slate-500">2006年11月15日 19:25</span>
-                            </div>
-                            <p class="text-sm text-slate-200">日本語5.1ch DTS音声と字幕の同期も完璧でした。素敵なリダックスありがとうございます。</p>
+                        <div class="flex items-center pl-4 text-slate-300">
+                            <i class="fa-solid fa-file-video mr-2 text-blue-400"></i> Fantastic.Four.2005.mkv <span class="text-slate-500 ml-2">(28.4 GB)</span>
+                        </div>
+                        <div class="flex items-center pl-4 text-slate-300">
+                            <i class="fa-solid fa-file-lines mr-2 text-amber-400"></i> Torrent_Downloaded_From_NipponTracker.txt <span class="text-slate-500 ml-2">(1.2 KB)</span>
                         </div>
                     </div>
-
-                    <!-- Add Comment Form -->
-                    <form onsubmit="postComment(event)" class="space-y-3 pt-2">
-                        <label for="comment-input" class="block text-xs font-medium text-slate-400">コメントを投稿する</label>
-                        <textarea id="comment-input" rows="3" placeholder="お礼やシード報告、感想はこちらに記述してください..." class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-sm text-slate-100 focus:outline-none focus:border-blue-500 transition resize-none"></textarea>
-                        <div class="flex justify-end">
-                            <button type="submit" class="bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm px-5 py-2.5 rounded-xl shadow transition flex items-center space-x-2">
-                                <i class="fa-solid fa-paper-plane"></i>
-                                <span>投稿する</span>
-                            </button>
-                        </div>
-                    </form>
                 </div>
 
             </div>
 
-            <!-- Right Column: Sidebar Specs & Peer List -->
+            <!-- 右側：ポスター・レビューステータス -->
             <div class="space-y-6">
                 
-                <!-- Tracker Status Box -->
-                <div class="bg-tracker-card border border-tracker-border rounded-2xl p-5 shadow-xl space-y-4">
-                    <h3 class="text-sm font-bold uppercase tracking-wider text-slate-400 flex items-center space-x-2">
-                        <i class="fa-solid fa-server text-emerald-400"></i>
-                        <span>トラッカー状態</span>
-                    </h3>
-                    <div class="space-y-2 text-xs font-mono">
-                        <div class="flex justify-between items-center bg-slate-900/60 p-2.5 rounded-lg border border-slate-800">
-                            <span class="text-slate-400">ステータス</span>
-                            <span class="text-emerald-400 font-bold flex items-center"><span class="w-2 h-2 rounded-full bg-emerald-500 inline-block mr-1.5 animate-pulse"></span>オンライン</span>
-                        </div>
-                        <div class="flex justify-between items-center bg-slate-900/60 p-2.5 rounded-lg border border-slate-800">
-                            <span class="text-slate-400">トラッカーURL</span>
-                            <span class="text-slate-300 truncate max-w-[150px]">tracker.tokyotorrents.jp/announce</span>
-                        </div>
-                        <div class="flex justify-between items-center bg-slate-900/60 p-2.5 rounded-lg border border-slate-800">
-                            <span class="text-slate-400">アナウンス間隔</span>
-                            <span class="text-slate-300">30 分</span>
+                <!-- ポスター・ビジュアルカード -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl text-center">
+                    <div class="relative aspect-[2/3] bg-slate-950 rounded-xl overflow-hidden mb-4 border border-slate-800 flex items-center justify-center">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80 z-10"></div>
+                        <!-- 代替SVGアート -->
+                        <div class="text-center p-6 z-0">
+                            <i class="fa-solid fa-users-viewfinder text-6xl text-indigo-500/60 mb-3"></i>
+                            <span class="block text-slate-400 text-sm font-semibold">[ファンタスティック・フォー 映画ポスター]</span>
+                            <span class="block text-slate-600 text-xs mt-1">2005 / MARVEL</span>
                         </div>
                     </div>
-                    <div class="pt-2">
-                        <button onclick="copyMagnetLink()" class="w-full bg-slate-800 hover:bg-slate-700 border border-tracker-border text-slate-200 text-xs font-medium py-2.5 px-3 rounded-xl transition flex items-center justify-center space-x-2">
-                            <i class="fa-solid fa-copy text-blue-400"></i>
-                            <span>マグネットリンクをコピー</span>
-                        </button>
+                    
+                    <div class="grid grid-cols-2 gap-3 text-left text-xs mb-4">
+                        <div class="bg-slate-950/50 p-2.5 rounded-lg border border-slate-800/60">
+                            <span class="text-slate-400 block">ジャンル</span>
+                            <span class="text-slate-200 font-medium">SF / アクション</span>
+                        </div>
+                        <div class="bg-slate-950/50 p-2.5 rounded-lg border border-slate-800/60">
+                            <span class="text-slate-400 block">公開年</span>
+                            <span class="text-slate-200 font-medium">2005年</span>
+                        </div>
+                    </div>
+
+                    <div class="text-xs text-slate-400 flex items-center justify-center space-x-1">
+                        <i class="fa-solid fa-shield-halved text-emerald-400"></i>
+                        <span>ウイルスチェック済み (安全なRemux)</span>
                     </div>
                 </div>
 
-                <!-- Peer Activity Chart / Active Peers -->
-                <div class="bg-tracker-card border border-tracker-border rounded-2xl p-5 shadow-xl space-y-4">
-                    <h3 class="text-sm font-bold uppercase tracking-wider text-slate-400 flex items-center space-x-2">
-                        <i class="fa-solid fa-users text-blue-400"></i>
-                        <span>最近接続したピア (一部)</span>
+                <!-- 参加ピア一覧（シード状況） -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+                    <h3 class="text-sm font-bold mb-3 text-slate-300 flex items-center justify-between">
+                        <span><i class="fa-solid fa-network-wired text-indigo-500 mr-2"></i> アクティブピア</span>
+                        <span class="text-xs text-emerald-400 bg-emerald-950/50 border border-emerald-800 px-2 py-0.5 rounded-full">安定</span>
                     </h3>
-                    <div class="space-y-2.5 text-xs">
-                        <div class="flex items-center justify-between p-2 bg-slate-900/50 rounded-lg border border-slate-800">
-                            <div class="flex items-center space-x-2">
-                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                <span class="font-mono text-slate-300">uTorrent 2.2.1 (JP)</span>
-                            </div>
-                            <span class="text-emerald-400 font-mono">100% [12.4 MB/s]</span>
+                    <div class="space-y-2 text-xs">
+                        <div class="flex justify-between items-center py-1.5 border-b border-slate-800/60 text-slate-400">
+                            <span>Seeders (接続数)</span>
+                            <span class="text-emerald-400 font-bold">142</span>
                         </div>
-                        <div class="flex items-center justify-between p-2 bg-slate-900/50 rounded-lg border border-slate-800">
-                            <div class="flex items-center space-x-2">
-                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                <span class="font-mono text-slate-300">Transmission 3.0</span>
-                            </div>
-                            <span class="text-emerald-400 font-mono">100% [8.1 MB/s]</span>
+                        <div class="flex justify-between items-center py-1.5 border-b border-slate-800/60 text-slate-400">
+                            <span>Leechers (ダウンロード中)</span>
+                            <span class="text-amber-400 font-bold">8</span>
                         </div>
-                        <div class="flex items-center justify-between p-2 bg-slate-900/50 rounded-lg border border-slate-800">
-                            <div class="flex items-center space-x-2">
-                                <span class="w-2 h-2 rounded-full bg-amber-500"></span>
-                                <span class="font-mono text-slate-300">qBittorrent 4.5</span>
-                            </div>
-                            <span class="text-amber-400 font-mono">64.2% [1.2 MB/s]</span>
+                        <div class="flex justify-between items-center py-1.5 text-slate-400">
+                            <span>トランスファースピード平均</span>
+                            <span class="text-slate-200 font-mono">14.8 MB/s</span>
                         </div>
                     </div>
-                </div>
-
-                <!-- Release Guidelines Tag -->
-                <div class="bg-gradient-to-br from-blue-950/40 to-slate-900/80 border border-blue-900/40 rounded-2xl p-5 shadow-xl space-y-3">
-                    <div class="flex items-center space-x-2 text-blue-400 font-bold text-sm">
-                        <i class="fa-solid fa-circle-info"></i>
-                        <span>ご利用上の注意</span>
-                    </div>
-                    <p class="text-xs text-slate-400 leading-relaxed">
-                        当サイトはプライベートトラッカーです。ダウンロード完了後も最低 <strong>72時間</strong> または比率 <strong>1.0</strong> に達するまでシードにご協力ください。
-                    </p>
                 </div>
 
             </div>
@@ -370,91 +229,48 @@
 
     </main>
 
-    <footer class="bg-tracker-card border-t border-tracker-border mt-12 py-8">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 space-y-4 sm:space-y-0">
-            <div>
-                &copy; 2006 TokyoTorrents Private Tracker. All rights reserved.
-            </div>
-            <div class="flex space-x-6">
-                <a href="#" class="hover:text-slate-300 transition">APIドキュメント</a>
-                <a href="#" class="hover:text-slate-300 transition">プライバシーポリシー</a>
-                <a href="#" class="hover:text-slate-300 transition">サポートデスク</a>
-            </div>
-        </div>
+    <!-- フッター -->
+    <footer class="border-t border-slate-800 bg-slate-900/40 mt-16 py-8 text-center text-xs text-slate-500">
+        <p>NIPPON-TRACKER Public Index &copy; 2026. All rights reserved.</p>
+        <p class="mt-1">当サイトはファイルの実体をホストしていません。P2Pネットワークによるメタデータ共有のみを行っています。</p>
     </footer>
 
+    <!-- スクリプト -->
     <script>
-        function triggerDownload(type) {
-            const alertBox = document.getElementById('download-alert');
-            alertBox.classList.remove('hidden');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-
-            // Simulate file download action or clipboard copy
-            if (type === 'magnet') {
-                const dummyMagnet = "magnet:?xt=urn:btih:4f5a89c3b8e712a490f23e811c82839210a4b3d2&dn=Fantastic.Four.2005.1080p.JPN.Bluray.REMUX.MPEG-2.DTS-HD.MA.5.1-MASTER";
-                copyTextToClipboard(dummyMagnet);
-            }
+        function showMessage(title, message) {
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-message').innerText = message;
+            document.getElementById('modal').classList.remove('hidden');
         }
 
-        function dismissAlert() {
-            document.getElementById('download-alert').classList.add('hidden');
+        function closeModal() {
+            document.getElementById('modal').classList.add('hidden');
         }
 
-        function bookmarkTorrent(btn) {
-            const icon = btn.querySelector('i');
-            if (icon.classList.contains('fa-regular')) {
-                icon.classList.remove('fa-regular');
-                icon.classList.add('fa-solid', 'text-amber-400');
-                showToast('ブックマークに追加しました');
+        function handleDownloadMagnet() {
+            const magnetLink = "magnet:?xt=urn:btih:EXAMPLEHASH_FANTASTIC_FOUR_2005_REMUX&dn=Fantastic.Four.2005.1080p.BluRay.Remux.MPEG-2.DTS-HD.MA.5.1";
+            
+            // クリップボードにコピー
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(magnetLink).then(() => {
+                    showMessage('マグネットリンク', 'マグネットリンクがクリップボードにコピーされました！お使いのBitTorrentクライアントに貼り付けてください。');
+                }).catch(() => {
+                    showMessage('マグネットリンク', 'リンク生成完了: ' + magnetLink);
+                });
             } else {
-                icon.classList.remove('fa-solid', 'text-amber-400');
-                icon.classList.add('fa-regular');
-                showToast('ブックマークを解除しました');
+                // フォールバック
+                const aux = document.createElement("input");
+                aux.setAttribute("value", magnetLink);
+                document.body.appendChild(aux);
+                aux.select();
+                document.execCommand("copy");
+                document.body.removeChild(aux);
+                showMessage('マグネットリンク', 'マグネットリンクをクリップボードにコピーしました！');
             }
         }
 
-        function copyMagnetLink() {
-            const dummyMagnet = "magnet:?xt=urn:btih:4f5a89c3b8e712a490f23e811c82839210a4b3d2&dn=Fantastic.Four.2005.1080p.JPN.Bluray.REMUX.MPEG-2.DTS-HD.MA.5.1-MASTER";
-            copyTextToClipboard(dummyMagnet);
-            showToast('マグネットリンクをクリップボードにコピーしました');
-        }
-
-        function copyTextToClipboard(text) {
-            const textarea = document.createElement('textarea');
-            textarea.value = text;
-            document.body.appendChild(textarea);
-            textarea.select();
-            try {
-                document.execCommand('copy');
-            } catch (err) {
-                console.error('Failed to copy text', err);
-            }
-            document.body.removeChild(textarea);
-        }
-
-        function postComment(event) {
-            event.preventDefault();
-            const input = document.getElementById('comment-input');
-            if (!input.value.trim()) return;
-            
-            showToast('コメントを投稿しました');
-            input.value = '';
-        }
-
-        function showToast(message) {
-            const toast = document.createElement('div');
-            toast.className = 'fixed bottom-5 right-5 bg-blue-600 text-white text-xs font-semibold px-4 py-3 rounded-xl shadow-2xl z-50 transition transform duration-300 translate-y-2 opacity-0 flex items-center space-x-2';
-            toast.innerHTML = `<i class="fa-solid fa-circle-check text-base"></i><span>${message}</span>`;
-            document.body.appendChild(toast);
-            
-            setTimeout(() => {
-                toast.classList.remove('translate-y-2', 'opacity-0');
-            }, 50);
-
-            setTimeout(() => {
-                toast.classList.add('translate-y-2', 'opacity-0');
-                setTimeout(() => toast.remove(), 300);
-            }, 3000);
+        function handleDownloadTorrent() {
+            showMessage('トレントファイル', 'Fantastic_Four_2005_Remux.torrent のダウンロードを開始しました。');
         }
     </script>
 </body>
