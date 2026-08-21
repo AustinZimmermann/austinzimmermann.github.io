@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>X-Men (2000) Bonus Disc BD-25 Disc 2 - トレント詳細</title>
+  <style>
+    :root {
+      --bg-dark: #0f1117;
+      --bg-card: #181b24;
+      --bg-card-header: #212634;
+      --border-color: #2b3245;
+      --accent-blue: #3b82f6;
+      --accent-green: #10b981;
+      --accent-yellow: #f59e0b;
+      --text-main: #e2e8f0;
+      --text-muted: #94a3b8;
+      --text-bright: #ffffff;
+      --badge-bg: #27314a;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Hiragino Kaku Gothic ProN", "BIZ UDPGothic", Meiryo, sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding: 24px 16px;
+    }
+
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    /* Header Bar */
+    .top-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 12px 20px;
+      margin-bottom: 20px;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--accent-blue);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .status-badge {
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--accent-green);
+      font-size: 0.8rem;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      font-weight: 600;
+    }
+
+    /* Main Content Layout */
+    .torrent-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    }
+
+    .card-header {
+      background: var(--bg-card-header);
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .release-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-bright);
+      word-break: break-all;
+    }
+
+    .meta-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .tag {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: var(--badge-bg);
+      color: #93c5fd;
+      border: 1px solid #3b82f640;
+    }
+
+    .tag.bonus {
+      background: #4c1d95;
+      color: #ddd6fe;
+      border-color: #7c3aed;
+    }
+
+    /* Grid layout: Poster + Meta Details */
+    .card-body {
+      padding: 24px;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 28px;
+    }
+
+    @media (max-width: 768px) {
+      .card-body {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .poster-section {
+      text-align: center;
+    }
+
+    .poster-img {
+      width: 100%;
+      max-width: 280px;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Actions */
+    .action-group {
+      margin-top: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: opacity 0.2s, transform 0.1s;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn-download {
+      background: var(--accent-green);
+      color: #052e16;
+    }
+
+    .btn-magnet {
+      background: var(--accent-blue);
+      color: #0f172a;
+    }
+
+    /* Details Table */
+    .info-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .info-table th, .info-table td {
+      padding: 10px 14px;
+      text-align: left;
+      font-size: 0.9rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .info-table th {
+      width: 140px;
+      color: var(--text-muted);
+      font-weight: 600;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .info-table td {
+      color: var(--text-main);
+    }
+
+    /* Stats Grid */
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 20px;
+      padding: 14px;
+      background: #131722;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      text-align: center;
+    }
+
+    .stat-box .stat-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .stat-box .stat-value {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-top: 2px;
+    }
+
+    .stat-seed { color: var(--accent-green); }
+    .stat-leech { color: #ef4444; }
+    .stat-complete { color: var(--accent-blue); }
+
+    /* Mediainfo & Filelist Tabs */
+    .tabs-section {
+      margin-top: 24px;
+      border-top: 1px solid var(--border-color);
+      padding-top: 20px;
+    }
+
+    .tabs-nav {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .tab-btn.active {
+      background: var(--accent-blue);
+      border-color: var(--accent-blue);
+      color: #fff;
+    }
+
+    .tab-pane {
+      display: none;
+      background: #11141c;
+      padding: 16px;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      font-family: ui-monospace, SFMono-Regular, "Courier New", monospace;
+      font-size: 0.85rem;
+      color: #cbd5e1;
+      white-space: pre-wrap;
+      overflow-x: auto;
+    }
+
+    .tab-pane.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Header Bar -->
+    <header class="top-nav">
+      <div class="logo">⚡ TORRENT TRACE (JP)</div>
+      <div class="status-badge">● ステータス: 稼働中 (Active)</div>
+    </header>
+
+    <!-- Main Card -->
+    <article class="torrent-card">
+      <header class="card-header">
+        <h1 class="release-title">X-Men (2000) BD-25 Disc 2 Bonus Features 1080i/480i AVC/MPEG-2-TEAM</h1>
+        <div class="meta-tags">
+          <span class="tag">Movies / Extra</span>
+          <span class="tag">Blu-ray (BD-25)</span>
+          <span class="tag bonus">特典ディスク (Disc 2)</span>
+          <span class="tag">メイキング・未公開シーン</span>
+        </div>
+      </header>
+
+      <div class="card-body">
+        <!-- Left: Poster + Action Buttons -->
+        <aside class="poster-section">
+          <img 
+            src="https://images.static-bluray.com/movies/covers/85558_slip.jpg" 
+            alt="X-Men Blu-ray Jacket Cover" 
+            class="poster-img"
+            loading="lazy"
+          />
+          <div class="action-group">
+            <button class="btn btn-download" id="downloadBtn">📥 トレントファイルを保存</button>
+            <button class="btn btn-magnet" id="magnetBtn">🧲 マグネットリンクをコピー</button>
+          </div>
+        </aside>
+
+        <!-- Right: Release Info Table & Transfer Stats -->
+        <section class="details-section">
+          <table class="info-table">
+            <tbody>
+              <tr>
+                <th>タイトル (邦題)</th>
+                <td><strong>X-MEN (2000) - 特典ディスク (Disc 2)</strong></td>
+              </tr>
+              <tr>
+                <th>ディスク規格</th>
+                <td>BD-25 (25GB 1層ブルーレイディスク / Disc 2)</td>
+              </tr>
+              <tr>
+                <th>本編公開年 / 製作国</th>
+                <td>2000年 / アメリカ (20th Century Fox)</td>
+              </tr>
+              <tr>
+                <th>登録日 (公開日)</th>
+                <td>2009-08-28 04:30:00 JST</td>
+              </tr>
+              <tr>
+                <th>ファイルサイズ</th>
+                <td>21.84 GB (23,450,112,890 Bytes)</td>
+              </tr>
+              <tr>
+                <th>収録コンテンツ</th>
+                <td>
+                  ・メイキング・ドキュメンタリー (The Making of X-Men)<br>
+                  ・未公開シーン集 (Deleted & Extended Scenes)<br>
+                  ・プロダクション・アート＆絵コンテ集 (Storyboards & Animatics)<br>
+                  ・劇場予告編・TVスポット集 (Trailers & TV Spots)
+                </td>
+              </tr>
+              <tr>
+                <th>音声 / 字幕仕様</th>
+                <td>
+                  音声: 英語 Dolby Digital 2.0 (224 kbps)<br>
+                  字幕: 日本語 (Japanese), 英語 (English), 他
+                </td>
+              </tr>
+              <tr>
+                <th>ハッシュ情報</th>
+                <td><code>f0e1d2c3b4a5968778695a4b3c2d1e0f98765432</code></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- Stats Grid -->
+          <div class="stats-bar">
+            <div class="stat-box">
+              <div class="stat-label">シード (Seeders)</div>
+              <div class="stat-value stat-seed">86</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-label">ピア (Leechers)</div>
+              <div class="stat-value stat-leech">8</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-label">完了数 (Completed)</div>
+              <div class="stat-value stat-complete">1,824</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-label">ヘルス</div>
+              <div class="stat-value" style="color: #38bdf8;">100%</div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Extended Tabs: MediaInfo & File Tree -->
+      <section class="tabs-section" style="padding: 0 24px 24px 24px;">
+        <nav class="tabs-nav">
+          <button class="tab-btn active" data-target="tab-mediainfo">MediaInfo (詳細解析)</button>
+          <button class="tab-btn" data-target="tab-files">ファイル一覧 (BDMV Tree)</button>
+        </nav>
+
+        <div id="tab-mediainfo" class="tab-pane active">
+DISC INFO:
+Disc Title:       XMEN_BONUS_DISC2
+Disc Size:        23,450,112,890 bytes (BD-25)
+Protection:       AACS
+BD-Java:          Yes
+
+BONUS CONTENT SUMMARY:
+- Enhanced for Modern Mutant (Interactive Featurettes)
+- Evolution of the X-Men: Behind the Scenes
+- Charlie Rose Interview with Bryan Singer
+- Still Galleries & Promotional Materials
+
+VIDEO:
+Codec             Bitrate             Description     
+-----             -------             -----------     
+MPEG-4 AVC Video  18500 kbps          1080i / 29.970 fps / 16:9 / High Profile 4.1
+MPEG-2 Video       6500 kbps          480i / 29.970 fps / 4:3
+
+AUDIO:
+Codec                             Language    Bitrate     Description     
+-----                             --------    -------     -----------     
+Dolby Digital Audio               English     224 kbps    2.0 / 48 kHz / 224 kbps / DN -4dB
+
+SUBTITLES:
+Codec                             Language    Description     
+-----                             --------    -----------     
+Presentation Graphics             Japanese    Interactive & Subtitles
+Presentation Graphics             English     SDH
+        </div>
+
+        <div id="tab-files" class="tab-pane">
+XMEN_BONUS_DISC2/
+├── BDMV/
+│   ├── AUXDATA/
+│   ├── BACKUP/
+│   ├── BDJO/
+│   ├── CLIPINF/
+│   │   ├── 00010.clpi  (820 KB)
+│   │   ├── 00011.clpi  (640 KB)
+│   │   └── ...
+│   ├── JAR/
+│   ├── META/
+│   ├── PLAYLIST/
+│   │   ├── 00010.mpls  (180 KB)
+│   │   └── ...
+│   ├── STREAM/
+│   │   ├── 00010.m2ts  (12.40 GB) - Behind the Scenes Documentary
+│   │   ├── 00011.m2ts  (5.21 GB)  - Deleted Scenes & Effects
+│   │   ├── 00012.m2ts  (3.60 GB)  - Interviews & Featurettes
+│   │   └── ...
+│   └── index.bdmv
+└── CERTIFICATE/
+    ├── BACKUP/
+    └── id.bdmv
+        </div>
+      </section>
+    </article>
+  </div>
+
+  <script>
+    // Tab Switching Logic
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tabPanes = document.querySelectorAll('.tab-pane');
+
+    tabButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.getAttribute('data-target');
+
+        tabButtons.forEach(b => b.classList.remove('active'));
+        tabPanes.forEach(pane => pane.classList.remove('active'));
+
+        btn.classList.add('active');
+        document.getElementById(targetId).classList.add('active');
+      });
+    });
+
+    // Magnet Link Copy Simulation
+    const magnetBtn = document.getElementById('magnetBtn');
+    const hash = 'f0e1d2c3b4a5968778695a4b3c2d1e0f98765432';
+    const releaseName = encodeURIComponent('X-Men.2000.Bonus.BD25.Disc2.1080i.AVC.DD2.0-TEAM');
+    const magnetUri = `magnet:?xt=urn:btih:${hash}&dn=${releaseName}&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80`;
+
+    magnetBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(magnetUri);
+        const originalText = magnetBtn.textContent;
+        magnetBtn.textContent = '✓ クリップボードにコピー完了!';
+        magnetBtn.style.backgroundColor = '#059669';
+        magnetBtn.style.color = '#fff';
+
+        setTimeout(() => {
+          magnetBtn.textContent = originalText;
+          magnetBtn.style.backgroundColor = '';
+          magnetBtn.style.color = '';
+        }, 2000);
+      } catch (err) {
+        alert('マグネットURI: ' + magnetUri);
+      }
+    });
+
+    // Download Button Interaction
+    document.getElementById('downloadBtn').addEventListener('click', () => {
+      alert('トレントファイル「X-Men.2000.Bonus.BD25.Disc2.torrent」のダウンロードを開始します。');
+    });
+  </script>
+</body>
+</html>
