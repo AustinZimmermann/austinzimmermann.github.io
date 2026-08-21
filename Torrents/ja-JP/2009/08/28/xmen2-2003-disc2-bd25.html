@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>X-MEN2 / X2 (2003) Bonus Disc (BD-25, Disc 2) - トレント詳細</title>
+  <style>
+    :root {
+      --bg-main: #0f1117;
+      --bg-card: #181c24;
+      --bg-header: #131720;
+      --border-color: #262c3a;
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
+      --text-main: #e2e8f0;
+      --text-muted: #94a3b8;
+      --success: #22c55e;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      padding: 24px 16px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 960px;
+    }
+
+    /* Torrent Header */
+    .torrent-header {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px 8px 0 0;
+      padding: 20px;
+      border-bottom: none;
+    }
+
+    .torrent-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+      line-height: 1.4;
+      word-break: break-all;
+    }
+
+    .meta-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .tag {
+      background: #1e293b;
+      color: #93c5fd;
+      font-size: 0.75rem;
+      padding: 3px 10px;
+      border-radius: 9999px;
+      border: 1px solid #334155;
+      font-weight: 500;
+    }
+
+    /* Action bar */
+    .action-bar {
+      background: #141a24;
+      border: 1px solid var(--border-color);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .dl-buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 9px 18px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+    }
+
+    .btn-secondary {
+      background: #334155;
+      color: #f1f5f9;
+    }
+
+    .btn-secondary:hover {
+      background: #475569;
+    }
+
+    .swarm-stats {
+      display: flex;
+      gap: 20px;
+      font-size: 0.85rem;
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .stat-label {
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+    }
+
+    .stat-val {
+      font-weight: bold;
+    }
+
+    .stat-seed { color: var(--success); }
+    .stat-peer { color: var(--warning); }
+    .stat-comp { color: var(--accent); }
+
+    /* Content Area */
+    .content-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 0 0 8px 8px;
+      padding: 24px;
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 24px;
+    }
+
+    @media (max-width: 768px) {
+      .content-card {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .poster-col img {
+      width: 100%;
+      height: auto;
+      border-radius: 6px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+      display: block;
+    }
+
+    /* Specifications Table */
+    .specs-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+
+    .specs-table th, 
+    .specs-table td {
+      padding: 10px 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .specs-table th {
+      width: 28%;
+      color: var(--text-muted);
+      font-weight: 500;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .specs-table td {
+      color: var(--text-main);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      margin: 2px 4px 2px 0;
+      background: #283040;
+      color: #cbd5e1;
+    }
+
+    .badge-hl {
+      background: #1e3a8a;
+      color: #bfdbfe;
+    }
+
+    .badge-bonus {
+      background: #4c1d95;
+      color: #ddd6fe;
+    }
+
+    /* File Tree & Mediainfo */
+    .info-section {
+      margin-top: 24px;
+    }
+
+    .section-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #f1f5f9;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .code-box {
+      background: #0d1017;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 14px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.8rem;
+      color: #a5b4fc;
+      line-height: 1.6;
+      overflow-x: auto;
+      white-space: pre;
+    }
+
+    /* Toast Notification */
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #1e293b;
+      border: 1px solid var(--accent);
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+      pointer-events: none;
+    }
+
+    #toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Title & Torrent Identifier -->
+  <div class="torrent-header">
+    <h1 class="torrent-title">X2 / X-MEN 2 (2003) Bonus Features [BD-25] Disc 2 1080i/480i AVC/MPEG-2 DD 2.0</h1>
+    <div class="meta-tags">
+      <span class="tag">特典ディスク / メイキング</span>
+      <span class="tag">BD-25 (ISO)</span>
+      <span class="tag">1080i / SD</span>
+      <span class="tag">AVC / MPEG-2</span>
+      <span class="tag">日本語字幕</span>
+    </div>
+  </div>
+
+  <!-- Download & Swarm Controls -->
+  <div class="action-bar">
+    <div class="dl-buttons">
+      <button class="btn btn-primary" onclick="downloadTorrent()">
+        📥 .torrent をダウンロード
+      </button>
+      <button class="btn btn-secondary" onclick="copyMagnet()">
+        🧲 マグネットリンク
+      </button>
+    </div>
+    <div class="swarm-stats">
+      <div class="stat-item">
+        <span class="stat-label">シード</span>
+        <span class="stat-val stat-seed">28</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">ピア</span>
+        <span class="stat-val stat-peer">3</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">完了数</span>
+        <span class="stat-val stat-comp">512</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Details Content -->
+  <div class="content-card">
+    <!-- Left Column: Poster -->
+    <div class="poster-col">
+      <img src="https://images.static-bluray.com/movies/covers/85557_slip.jpg" alt="X-MEN2 Blu-ray Cover">
+    </div>
+
+    <!-- Right Column: Specs & Description -->
+    <div class="info-col">
+      <table class="specs-table">
+        <tbody>
+          <tr>
+            <th>タイトル</th>
+            <td><strong>X2 (X-MEN2) - 特典ディスク (Bonus Disc)</strong> (2003)</td>
+          </tr>
+          <tr>
+            <th>ディスク仕様</th>
+            <td>Blu-ray Disc (BD-25 / Disc 2・特典映像)</td>
+          </tr>
+          <tr>
+            <th>登録日 (公開日)</th>
+            <td>2009年08月28日 (2009-08-28)</td>
+          </tr>
+          <tr>
+            <th>ファイルサイズ</th>
+            <td>22.45 GB (24,105,488,384 bytes)</td>
+          </tr>
+          <tr>
+            <th>主な収録特典</th>
+            <td>
+              <div><span class="badge badge-bonus">ドキュメンタリー</span> 映画製作の舞台裏ドキュメンタリー集</div>
+              <div><span class="badge badge-bonus">未公開シーン</span> 未公開シーン集 (監督解説付き)</div>
+              <div><span class="badge badge-bonus">ギャラリー</span> アート・ギャラリー / スチル写真集</div>
+              <div><span class="badge">プロモ</span> 劇場予告編集 & TVスポット集</div>
+            </td>
+          </tr>
+          <tr>
+            <th>音声仕様</th>
+            <td>
+              <div><span class="badge badge-hl">英語</span> Dolby Digital 2.0 (192 kbps / 48 kHz)</div>
+            </td>
+          </tr>
+          <tr>
+            <th>収録字幕</th>
+            <td>
+              <span class="badge badge-hl">日本語字幕</span>
+              <span class="badge">英語字幕 (English)</span>
+            </td>
+          </tr>
+          <tr>
+            <th>ハッシュ値 (SHA-1)</th>
+            <td style="font-family: monospace; font-size: 0.8rem; color: var(--text-muted);">
+              9b4c2e17f0a8d6b5e3c1148e29a5fa48301d2c94
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Disc Structure Box -->
+      <div class="info-section">
+        <div class="section-title">📄 ディスク構成・ファイル一覧</div>
+        <div class="code-box">BDMV/
+├── BDMV/index.bdmv
+├── BDMV/MovieObject.bdmv
+├── BDMV/PLAYLIST/
+│   ├── 00010.mpls (Documentary: Evolution Begins - 01:15:20)
+│   ├── 00020.mpls (Deleted Scenes - 00:18:42)
+│   └── 00030.mpls (Visual Effects Breakdown - 00:24:10)
+├── BDMV/CLIPINF/
+└── BDMV/STREAM/
+    ├── 00010.m2ts (1080i / MPEG-4 AVC / DD 2.0)
+    ├── 00020.m2ts (480i / MPEG-2 / DD 2.0)
+    └── 00030.m2ts (1080i / MPEG-4 AVC / DD 2.0)</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Toast for Actions -->
+<div id="toast">マグネットリンクをクリップボードにコピーしました</div>
+
+<script>
+  function showToast(message) {
+    const toast = document.getElementById('toast');
+    toast.textContent = message;
+    toast.classList.add('show');
+    setTimeout(() => {
+      toast.classList.remove('show');
+    }, 2500);
+  }
+
+  function downloadTorrent() {
+    showToast('[X2_2003_BD25_Disc2_Bonus.torrent] のダウンロードを開始しました');
+  }
+
+  function copyMagnet() {
+    const magnetURI = "magnet:?xt=urn:btih:9b4c2e17f0a8d6b5e3c1148e29a5fa48301d2c94&dn=X2.2003.Disc2.Bonus.BD25.1080i.AVC.DD2.0";
+    navigator.clipboard.writeText(magnetURI).then(() => {
+      showToast('マグネットリンクをクリップボードにコピーしました');
+    }).catch(() => {
+      showToast('コピーに失敗しました');
+    });
+  }
+</script>
+
+</body>
+</html>
