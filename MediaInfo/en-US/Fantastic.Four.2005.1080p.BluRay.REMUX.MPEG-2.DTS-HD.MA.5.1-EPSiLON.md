@@ -3,7 +3,7 @@
 ```text
 General
 Unique ID                   : 22849102847102948192048291048102948
-Complete name               : Fantastic.Four.2005.1080p.Bluray.MPEG-2.DTS-HD.MA.5.1-EPSiLON.mkv
+Complete name               : Fantastic.Four.2005.1080p.BluRay.REMUX.MPEG-2.DTS-HD.MA.5.1-EPSiLON.mkv
 Format                      : Matroska
 Format version              : Version 4
 File size                   : 19.8 GiB
