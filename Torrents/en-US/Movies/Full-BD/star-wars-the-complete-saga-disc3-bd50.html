@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Wars: The Complete Saga (1977-2005) [BD-50] Disc 3: Revenge of the Sith - BitTorrent Index</title>
+    <style>
+        :root {
+            --bg-primary: #121417;
+            --bg-secondary: #1c2026;
+            --bg-tertiary: #252b33;
+            --border-color: #333a45;
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --text-muted: #57606a;
+            --accent-blue: #388bfd;
+            --accent-green: #238636;
+            --accent-green-hover: #2ea043;
+            --accent-red: #da3633;
+            --tag-bg: #2d333b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.5;
+            padding-bottom: 50px;
+        }
+
+        header {
+            background-color: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.25rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--accent-blue);
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            margin-left: 18px;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 24px auto;
+            padding: 0 16px;
+        }
+
+        .torrent-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 24px;
+        }
+
+        .torrent-title {
+            font-size: 1.35rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            word-break: break-all;
+        }
+
+        .tags-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            background-color: var(--tag-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 2px 8px;
+            font-size: 0.75rem;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .action-bar {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 12px;
+            background-color: var(--bg-tertiary);
+            padding: 14px 18px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 24px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 6px;
+            text-decoration: none;
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: 0.2s ease-in-out;
+        }
+
+        .btn-success {
+            background-color: var(--accent-green);
+            color: #ffffff;
+        }
+
+        .btn-success:hover {
+            background-color: var(--accent-green-hover);
+        }
+
+        .btn-secondary {
+            background-color: var(--tag-bg);
+            border-color: var(--border-color);
+            color: var(--text-primary);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--border-color);
+        }
+
+        .stats-strip {
+            display: flex;
+            gap: 20px;
+            margin-left: auto;
+            font-size: 0.9rem;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .stat-seeders { color: #3fb950; font-weight: 600; }
+        .stat-leechers { color: var(--accent-red); font-weight: 600; }
+        .stat-completed { color: var(--accent-blue); }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        @media (max-width: 768px) {
+            .meta-grid {
+                grid-template-columns: 1fr;
+            }
+            .stats-strip {
+                margin-left: 0;
+                width: 100%;
+                justify-content: space-between;
+            }
+        }
+
+        .cover-art-wrapper {
+            text-align: center;
+        }
+
+        .cover-art {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        }
+
+        .details-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+        }
+
+        .details-table th, .details-table td {
+            padding: 8px 12px;
+            border-bottom: 1px solid var(--border-color);
+            text-align: left;
+        }
+
+        .details-table th {
+            color: var(--text-secondary);
+            width: 30%;
+            font-weight: 500;
+        }
+
+        .details-table td {
+            color: var(--text-primary);
+        }
+
+        .hash-code {
+            font-family: monospace;
+            background: var(--bg-primary);
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            font-size: 0.8rem;
+        }
+
+        .tab-section {
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+        }
+
+        .tab-headers {
+            display: flex;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 16px;
+            gap: 4px;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 8px 16px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            font-weight: 500;
+        }
+
+        .tab-btn.active {
+            color: var(--text-primary);
+            border-bottom-color: var(--accent-blue);
+        }
+
+        .tab-pane {
+            display: none;
+        }
+
+        .tab-pane.active {
+            display: block;
+        }
+
+        .nfo-viewer {
+            background-color: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 16px;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 0.8rem;
+            color: #c9d1d9;
+            overflow-x: auto;
+            white-space: pre;
+            line-height: 1.4;
+        }
+
+        .file-tree {
+            list-style: none;
+            font-size: 0.875rem;
+        }
+
+        .file-tree li {
+            padding: 6px 0;
+            border-bottom: 1px solid #21262d;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .file-size {
+            color: var(--text-secondary);
+            font-family: monospace;
+        }
+
+        .toast {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: var(--accent-blue);
+            color: #fff;
+            text-align: center;
+            border-radius: 4px;
+            padding: 12px;
+            position: fixed;
+            z-index: 1000;
+            right: 20px;
+            bottom: 20px;
+            font-size: 0.875rem;
+            opacity: 0;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+
+        .toast.show {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            <span>Bit</span>Portal
+        </a>
+        <div class="nav-links">
+            <a href="#">Browse</a>
+            <a href="#">High Definition</a>
+            <a href="#">Remux / Full BD</a>
+            <a href="#">Top 100</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="torrent-card">
+            
+            <h1 class="torrent-title">Star Wars: The Complete Saga (1977-2005) - Disc 3: Episode III – Revenge of the Sith (2005) 1080p BD50 AVC DTS-HD MA 6.1</h1>
+            
+            <div class="tags-row">
+                <span class="tag">Movies</span>
+                <span class="tag">Full Disc / ISO</span>
+                <span class="tag">BD-50</span>
+                <span class="tag">1080p AVC</span>
+                <span class="tag">DTS-HD MA 6.1</span>
+                <span class="tag">English</span>
+            </div>
+
+            <div class="action-bar">
+                <a href="magnet:?xt=urn:btih:9a8b7c6d5e4f3a2b1c0d9e8f7a6b5c4d3e2f1a0b&dn=Star.Wars.Episode.III.Revenge.of.the.Sith.2005.Complete.BluRay.BD50" class="btn btn-success" id="magnet-btn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3v7a6 6 0 0 0 12 0V3"></path><line x1="4" y1="3" x2="8" y2="3"></line><line x1="16" y1="3" x2="20" y2="3"></line></svg>
+                    Magnet Download
+                </a>
+                <button class="btn btn-secondary" onclick="copyInfoHash('9a8b7c6d5e4f3a2b1c0d9e8f7a6b5c4d3e2f1a0b')">
+                    Copy Hash
+                </button>
+
+                <div class="stats-strip">
+                    <div class="stat-item">
+                        <span>Seeders:</span>
+                        <span class="stat-seeders">92</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>Leechers:</span>
+                        <span class="stat-leechers">14</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>Completed:</span>
+                        <span class="stat-completed">4,890</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="meta-grid">
+                <div class="cover-art-wrapper">
+                    <img src="https://images.static-bluray.com/movies/covers/14903_slip.jpg" alt="Star Wars: The Complete Saga Blu-ray Cover" class="cover-art" loading="lazy">
+                </div>
+
+                <div class="meta-content">
+                    <table class="details-table">
+                        <tr>
+                            <th>Category</th>
+                            <td>Video / Full BD (Disc Image)</td>
+                        </tr>
+                        <tr>
+                            <th>Franchise / Era</th>
+                            <td>Star Wars: The Complete Saga (1977-2005)</td>
+                        </tr>
+                        <tr>
+                            <th>Disc Focus</th>
+                            <td>Disc 3: Star Wars: Episode III – Revenge of the Sith (2005)</td>
+                        </tr>
+                        <tr>
+                            <th>Total Size</th>
+                            <td>46.74 GiB (50,187,422,720 bytes)</td>
+                        </tr>
+                        <tr>
+                            <th>Publication Date</th>
+                            <td>2011-09-16 08:37:10 UTC</td>
+                        </tr>
+                        <tr>
+                            <th>Media Type</th>
+                            <td>BD-50 (Dual Layer Blu-ray Disc)</td>
+                        </tr>
+                        <tr>
+                            <th>Info Hash</th>
+                            <td><span class="hash-code">9a8b7c6d5e4f3a2b1c0d9e8f7a6b5c4d3e2f1a0b</span></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="tab-section">
+                <div class="tab-headers">
+                    <button class="tab-btn active" onclick="switchTab(event, 'description')">Description / MediaInfo</button>
+                    <button class="tab-btn" onclick="switchTab(event, 'filelist')">File Directory (1)</button>
+                    <button class="tab-btn" onclick="switchTab(event, 'comments')">Comments (4)</button>
+                </div>
+
+                <div id="description" class="tab-pane active">
+                    <div class="nfo-viewer">================================================================================
+RELEASE INFORMATION: Star Wars: The Complete Saga - Disc 3 (Revenge of the Sith)
+================================================================================
+Release Date ...: 2011-09-16
+Retail Date ....: September 16, 2011 (North America)
+Disc Type ......: BD-50
+Structure ......: Complete BDMV untouched
+
+DISC INFO:
+Disc Title .....: REVENGE_OF_THE_SITH
+Disc Size ......: 46,742,884,352 bytes (46.74 GiB)
+
+PLAYLIST DETAILS:
+Length .........: 2:20:06.398 (h:m:s.ms)
+Video Format ...: MPEG-4 AVC Video / 1080p / 23.976 fps / 16:9 / High Profile 4.1
+Resolution .....: 1920x1080
+
+AUDIO:
+- English DTS-HD Master Audio 6.1 / 48 kHz / 24-bit (DTS Core: 5.1 / 48 kHz / 1509 kbps)
+- French Dolby Digital 5.1 / 48 kHz / 448 kbps
+- Spanish Dolby Digital 5.1 / 48 kHz / 448 kbps
+- Commentary: Archival Audio Commentary with George Lucas, Rick McCallum, Rob Coleman, and Crew (Stereo)
+- Commentary: Cast and Crew Audio Commentary (Stereo)
+
+SUBTITLES:
+- English SDH, French, Spanish, Portuguese, German, Dutch
+
+NOTES:
+Direct 1:1 backup of Disc 3 from the 2011 9-Disc “Star Wars: The Complete Saga” Boxset.
+Contains full interactive Java menus, chapter selections, and multi-channel uncompressed DTS-HD MA tracks.</div>
+                </div>
+
+                <div id="filelist" class="tab-pane">
+                    <ul class="file-tree">
+                        <li>
+                            <span>Star.Wars.Episode.III.Revenge.of.the.Sith.2005.1080p.Complete.BluRay.iso</span>
+                            <span class="file-size">46.74 GiB</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div id="comments" class="tab-pane">
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 12px;">Showing recent feedback from verified downloaders:</p>
+                    <div style="background: var(--bg-primary); padding: 12px; border-radius: 4px; margin-bottom: 8px;">
+                        <strong style="color: var(--accent-blue);">SithLord_Vader</strong> <span style="color: var(--text-muted); font-size: 0.8rem;">(2011-09-17)</span>
+                        <p style="font-size: 0.85rem; margin-top: 4px;">Pristine digital master. The Battle of Coruscant in DTS-HD 6.1 sounds thunderous. Fully verified 1:1 copy.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="toast" class="toast">Info Hash copied to clipboard!</div>
+
+    <script>
+        function switchTab(event, tabId) {
+            const tabs = document.querySelectorAll('.tab-pane');
+            const buttons = document.querySelectorAll('.tab-btn');
+
+            tabs.forEach(tab => tab.classList.remove('active'));
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+
+        function copyInfoHash(hash) {
+            navigator.clipboard.writeText(hash).then(() => {
+                showToast("Info Hash copied to clipboard!");
+            }).catch(err => {
+                console.error('Could not copy text: ', err);
+            });
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById("toast");
+            toast.textContent = message;
+            toast.className = "toast show";
+            setTimeout(() => { 
+                toast.className = toast.className.replace("show", ""); 
+            }, 2500);
+        }
+    </script>
+</body>
+</html>
