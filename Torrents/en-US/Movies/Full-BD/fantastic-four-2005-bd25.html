@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fantastic Four (2005) [BD-25 / 1080p / MPEG-2 / DTS-HD MA 5.1] - Tracker</title>
+    <style>
+        :root {
+            --bg-dark: #121417;
+            --panel-bg: #1b1e24;
+            --panel-border: #2a2f38;
+            --accent-green: #2ecc71;
+            --accent-red: #e74c3c;
+            --accent-blue: #3498db;
+            --text-main: #d1d5db;
+            --text-muted: #8b949e;
+            --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+            --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            font-size: 13px;
+            line-height: 1.5;
+            padding: 24px 12px;
+        }
+
+        .container {
+            max-width: 980px;
+            margin: 0 auto;
+            background: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        /* Header / Title */
+        .torrent-header {
+            padding: 16px 20px;
+            background: #16191f;
+            border-bottom: 1px solid var(--panel-border);
+        }
+
+        .torrent-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+
+        .badges {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: #252a34;
+            color: var(--text-muted);
+            border: 1px solid #363d4a;
+            font-size: 11px;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .badge.highlight {
+            background: rgba(52, 152, 219, 0.15);
+            color: var(--accent-blue);
+            border-color: var(--accent-blue);
+        }
+
+        /* Action Bar */
+        .action-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 20px;
+            background: #1f232b;
+            border-bottom: 1px solid var(--panel-border);
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 7px 14px;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 4px;
+            text-decoration: none;
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: opacity 0.15s ease;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        .btn-download {
+            background-color: var(--accent-green);
+            color: #121417;
+        }
+
+        .btn-magnet {
+            background-color: transparent;
+            color: var(--accent-blue);
+            border-color: #363d4a;
+        }
+
+        .stats-strip {
+            display: flex;
+            gap: 16px;
+            font-size: 12px;
+        }
+
+        .seeders { color: var(--accent-green); font-weight: bold; }
+        .leechers { color: var(--accent-red); font-weight: bold; }
+
+        /* Main Content Grid */
+        .details-layout {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        @media (max-width: 680px) {
+            .details-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .cover-pane {
+            text-align: center;
+        }
+
+        .cover-pane img {
+            width: 100%;
+            max-width: 240px;
+            border-radius: 4px;
+            border: 1px solid var(--panel-border);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+        }
+
+        /* Metadata Tables */
+        .meta-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+        }
+
+        .meta-table th, .meta-table td {
+            padding: 8px 10px;
+            text-align: left;
+            border-bottom: 1px solid var(--panel-border);
+        }
+
+        .meta-table th {
+            width: 140px;
+            color: var(--text-muted);
+            font-weight: normal;
+        }
+
+        .meta-table td {
+            color: #ffffff;
+        }
+
+        /* Collapsible NFO Section */
+        .nfo-section {
+            padding: 0 20px 20px;
+        }
+
+        .nfo-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #16191f;
+            border: 1px solid var(--panel-border);
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 4px 4px 0 0;
+            font-weight: 600;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .nfo-content {
+            background: #0d0e11;
+            border: 1px solid var(--panel-border);
+            border-top: none;
+            padding: 14px;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: #a0aec0;
+            white-space: pre-wrap;
+            border-radius: 0 0 4px 4px;
+            overflow-x: auto;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Torrent Title Header -->
+    <header class="torrent-header">
+        <h1 class="torrent-title">Fantastic.Four.2005.1080p.BluRay.BD25.MPEG-2.DTS-HD.MA.5.1-RETRO</h1>
+        <div class="badges">
+            <span class="badge highlight">Blu-ray Disc</span>
+            <span class="badge">BD-25</span>
+            <span class="badge">1080p</span>
+            <span class="badge">MPEG-2</span>
+            <span class="badge">DTS-HD MA 5.1</span>
+            <span class="badge">Freeleech</span>
+        </div>
+    </header>
+
+    <!-- Quick Stats & Actions -->
+    <div class="action-bar">
+        <div class="btn-group">
+            <button class="btn btn-download" id="dlTorrent">Download .torrent</button>
+            <button class="btn btn-magnet" id="copyMagnet">Copy Magnet Link</button>
+        </div>
+        <div class="stats-strip">
+            <span>Size: <strong>23.14 GiB</strong></span>
+            <span>Seeders: <span class="seeders" id="seederCount">84</span></span>
+            <span>Leechers: <span class="leechers" id="leecherCount">6</span></span>
+            <span>Completed: <strong>1,429</strong></span>
+        </div>
+    </div>
+
+    <!-- Media Details Layout -->
+    <div class="details-layout">
+        <aside class="cover-pane">
+            <img src="https://images.static-bluray.com/movies/covers/22_front.jpg" alt="Fantastic Four Blu-ray Cover">
+        </aside>
+
+        <section class="info-pane">
+            <table class="meta-table">
+                <tbody>
+                    <tr>
+                        <th>Publication Date</th>
+                        <td>2006-11-14</td>
+                    </tr>
+                    <tr>
+                        <th>Release Year</th>
+                        <td>2005</td>
+                    </tr>
+                    <tr>
+                        <th>Disc Type / Format</th>
+                        <td>BD-25 (Single Layer) / ISO / BDMV</td>
+                    </tr>
+                    <tr>
+                        <th>Video Codec</th>
+                        <td>MPEG-2 @ ~24 Mbps (1080p / 23.976 fps / 16:9)</td>
+                    </tr>
+                    <tr>
+                        <th>Audio Tracks</th>
+                        <td>
+                            • English 5.1 DTS-HD Master Audio (Lossless)<br>
+                            • Spanish 5.1 Dolby Digital (AC3 @ 448 kbps)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Subtitles</th>
+                        <td>English SDH, Spanish (PGS)</td>
+                    </tr>
+                    <tr>
+                        <th>Uploader</th>
+                        <td><span style="color: var(--accent-blue);">RetroRip</span> (VIP)</td>
+                    </tr>
+                    <tr>
+                        <th>Info Hash</th>
+                        <td style="font-family: var(--font-mono); font-size: 11px;">4d7b29a1e0c841fa968b5a04e578c71b023f81e9</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <!-- NFO / Technical Log Section -->
+    <div class="nfo-section">
+        <div class="nfo-header" id="nfoToggle">
+            <span>TECHNICAL LOG (BDInfo / MediaInfo)</span>
+            <span id="toggleIcon">▼ [Hide]</span>
+        </div>
+        <pre class="nfo-content" id="nfoBody">
+DISC INFO:
+Disc Title:       Fantastic Four (2005)
+Disc Size:        24,845,920,256 bytes (23.14 GiB)
+Protection:       AACS
+BD-Java:          No
+Disc Spec:        BD-25
+
+PLAYLIST REPORT:
+Name:             00001.MPLS
+Length:           1:45:57 (h:m:s)
+Total Bitrate:    28.14 Mbps
+
+VIDEO:
+Codec             Resolution                Bitrate         Description
+-----             ----------                -------         -----------
+MPEG-2 Video      1080p / 23.976 fps        21.50 Mbps      Main Profile / High Level
+
+AUDIO:
+Codec             Language                  Channels        Bitrate / Sample
+-----             --------                  --------        ----------------
+DTS-HD MA         English                   5.1             ~3.2 Mbps / 48 kHz / 24-bit
+Dolby Digital     Spanish                   5.1             448 kbps / 48 kHz
+
+SUBTITLES:
+Codec             Language
+-----             --------
+Presentation      English
+Presentation      Spanish
+        </pre>
+    </div>
+</div>
+
+<script>
+    // Magnet link interaction
+    document.getElementById('copyMagnet').addEventListener('click', () => {
+        const dummyMagnet = "magnet:?xt=urn:btih:4d7b29a1e0c841fa968b5a04e578c71b023f81e9&dn=Fantastic.Four.2005.1080p.BluRay.BD25.MPEG-2.DTS-HD.MA.5.1-RETRO";
+        navigator.clipboard.writeText(dummyMagnet).then(() => {
+            const btn = document.getElementById('copyMagnet');
+            const originalText = btn.textContent;
+            btn.textContent = "Magnet Copied!";
+            btn.style.color = "var(--accent-green)";
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.style.color = "var(--accent-blue)";
+            }, 2000);
+        });
+    });
+
+    // Torrent download trigger placeholder
+    document.getElementById('dlTorrent').addEventListener('click', () => {
+        alert("Downloading torrent file: Fantastic.Four.2005.BD25.torrent");
+    });
+
+    // NFO Toggle logic
+    const nfoToggle = document.getElementById('nfoToggle');
+    const nfoBody = document.getElementById('nfoBody');
+    const toggleIcon = document.getElementById('toggleIcon');
+
+    nfoToggle.addEventListener('click', () => {
+        const isHidden = nfoBody.classList.toggle('hidden');
+        toggleIcon.textContent = isHidden ? "▲ [Show]" : "▼ [Hide]";
+    });
+</script>
+
+</body>
+</html>
