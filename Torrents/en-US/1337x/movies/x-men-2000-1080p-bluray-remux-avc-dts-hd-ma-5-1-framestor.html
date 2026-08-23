@@ -1,359 +1,358 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en" class="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>X-Men (2000) 1080p BluRay REMUX AVC DTS-HD MA 5.1-FraMeSToR - 1337x</title>
-  <style>
-    :root {
-      --bg-color: #121212;
-      --card-bg: #1c1c1c;
-      --card-inner: #242424;
-      --accent: #d32f2f;
-      --accent-hover: #b71c1c;
-      --text-main: #e0e0e0;
-      --text-muted: #9e9e9e;
-      --border: #333333;
-      --badge-seed: #4caf50;
-      --badge-leech: #f44336;
-      --btn-magnet: #d32f2f;
-      --btn-direct: #2e7d32;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-main);
-      padding: 24px 16px;
-      line-height: 1.5;
-    }
-
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    /* Header Nav Mock */
-    .site-nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .site-nav .logo {
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: #fff;
-    }
-
-    .site-nav .logo span {
-      color: var(--accent);
-    }
-
-    /* Card Wrapper */
-    .torrent-card {
-      background-color: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      overflow: hidden;
-    }
-
-    .torrent-header {
-      background: #181818;
-      padding: 16px 20px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .torrent-title {
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: #ffffff;
-      word-break: break-all;
-    }
-
-    /* Action Toolbar */
-    .torrent-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      padding: 16px 20px;
-      background-color: var(--card-inner);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 18px;
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      text-decoration: none;
-      transition: background-color 0.15s ease-in-out;
-    }
-
-    .btn-magnet {
-      background-color: var(--btn-magnet);
-    }
-
-    .btn-magnet:hover {
-      background-color: var(--accent-hover);
-    }
-
-    .btn-download {
-      background-color: var(--btn-direct);
-    }
-
-    .btn-download:hover {
-      background-color: #1b5e20;
-    }
-
-    .btn-hash {
-      background-color: #424242;
-    }
-
-    .btn-hash:hover {
-      background-color: #616161;
-    }
-
-    /* Metadata Grid */
-    .meta-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 12px;
-      padding: 20px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .meta-item {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .meta-label {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      letter-spacing: 0.5px;
-    }
-
-    .meta-value {
-      font-size: 0.95rem;
-      color: #fff;
-      font-weight: 500;
-    }
-
-    .seeders { color: var(--badge-seed); font-weight: 700; }
-    .leechers { color: var(--badge-leech); font-weight: 700; }
-
-    /* Technical Details Tabs / Section */
-    .torrent-details {
-      padding: 20px;
-    }
-
-    .section-title {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--accent);
-      margin-bottom: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .nfo-box {
-      background-color: #111;
-      border: 1px solid #2a2a2a;
-      border-radius: 4px;
-      padding: 14px;
-      font-family: "Courier New", Courier, monospace;
-      font-size: 0.85rem;
-      color: #ccc;
-      white-space: pre-wrap;
-      word-break: break-word;
-      line-height: 1.4;
-      margin-bottom: 20px;
-    }
-
-    .badge-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 6px;
-    }
-
-    .badge {
-      background: #2c2c2c;
-      border: 1px solid #3d3d3d;
-      color: #ddd;
-      font-size: 0.75rem;
-      padding: 2px 8px;
-      border-radius: 3px;
-    }
-
-    /* Toast Notification */
-    #toast {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      background-color: #323232;
-      color: #fff;
-      padding: 12px 20px;
-      border-radius: 4px;
-      font-size: 0.9rem;
-      display: none;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-      border-left: 4px solid var(--accent);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X-Men (2000) 1080p Blu-ray Remux AVC DTS-HD MA 5.1-FraMeSToR - 1337x</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkbg: '#121212',
+                        cardbg: '#1a1a1a',
+                        accentred: '#e50914',
+                        torrentblue: '#2563eb',
+                        hoverblue: '#1d4ed8',
+                        bordercolor: '#2a2a2a',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
 </head>
-<body>
+<body class="bg-darkbg text-gray-200 min-h-screen flex flex-col selection:bg-torrentblue selection:text-white">
 
-<div class="container">
-  <div class="site-nav">
-    <div class="logo">1337<span>X</span></div>
-    <div style="font-size: 0.85rem; color: var(--text-muted);">Language: en-US</div>
-  </div>
+    <header class="bg-black/80 backdrop-blur border-b border-bordercolor sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-6">
+                <a href="#" class="flex items-center space-x-2 text-2xl font-black tracking-wider text-white">
+                    <span class="bg-red-600 text-white px-2 py-1 rounded text-lg">1337x</span>
+                    <span class="text-xs tracking-widest text-gray-400 uppercase font-semibold">to</span>
+                </a>
+                <nav class="hidden md:flex space-x-4 text-sm font-medium">
+                    <a href="#" class="text-gray-300 hover:text-white transition">Home</a>
+                    <a href="#" class="text-white font-semibold border-b-2 border-red-600 pb-1">Movies</a>
+                    <a href="#" class="text-gray-300 hover:text-white transition">TV</a>
+                    <a href="#" class="text-gray-300 hover:text-white transition">Games</a>
+                    <a href="#" class="text-gray-300 hover:text-white transition">Music</a>
+                </nav>
+            </div>
+            <div class="flex items-center space-x-3">
+                <div class="relative hidden sm:block">
+                    <input type="text" placeholder="Search torrents..." class="bg-cardbg text-sm rounded-full pl-4 pr-10 py-1.5 border border-bordercolor focus:outline-none focus:border-torrentblue w-48 lg:w-64 transition">
+                    <button class="absolute right-3 top-2 text-gray-400 hover:text-white"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+                <button class="bg-gray-800 hover:bg-gray-700 text-xs px-3 py-1.5 rounded font-medium border border-bordercolor transition">Login</button>
+                <button class="bg-torrentblue hover:bg-hoverblue text-xs px-3 py-1.5 rounded font-medium text-white transition">Register</button>
+            </div>
+        </div>
+    </header>
 
-  <div class="torrent-card">
-    <div class="torrent-header">
-      <h1 class="torrent-title">X-Men (2000) 1080p BluRay REMUX AVC DTS-HD MA 5.1-FraMeSToR</h1>
-    </div>
+    <main class="flex-grow max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+        
+        <!-- Breadcrumbs -->
+        <div class="text-xs text-gray-400 mb-6 flex items-center space-x-2">
+            <a href="#" class="hover:text-white">Home</a>
+            <span><i class="fa-solid fa-chevron-right text-[10px]"></i></span>
+            <a href="#" class="hover:text-white">Movies</a>
+            <span><i class="fa-solid fa-chevron-right text-[10px]"></i></span>
+            <span class="text-gray-200">High Definition</span>
+        </div>
 
-    <div class="torrent-actions">
-      <button class="btn btn-magnet" onclick="triggerMagnet()">
-        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M8 1a5 5 0 0 0-5 5v3a3 3 0 0 0 6 0V6a1 1 0 0 1 2 0v3a5 5 0 0 1-10 0V6a7 7 0 0 1 14 0v3a1 1 0 0 1-2 0V6a5 5 0 0 0-5-5z"/></svg>
-        Magnet Download
-      </button>
-      <button class="btn btn-download" onclick="triggerTorrent()">
-        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/><path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/></svg>
-        Torrent Download
-      </button>
-      <button class="btn btn-hash" onclick="copyInfoHash()">
-        Copy InfoHash
-      </button>
-    </div>
+        <!-- Torrent Header Card -->
+        <div class="bg-cardbg border border-bordercolor rounded-xl p-6 mb-8 shadow-xl">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
+                <div>
+                    <div class="flex items-center space-x-2 mb-2">
+                        <span class="bg-torrentblue/20 text-torrentblue border border-torrentblue/30 text-xs px-2.5 py-0.5 rounded-full font-semibold">Verified Torrent</span>
+                        <span class="bg-gray-800 text-gray-300 text-xs px-2.5 py-0.5 rounded-full font-medium">Category: Movies</span>
+                        <span class="bg-gray-800 text-gray-300 text-xs px-2.5 py-0.5 rounded-full font-medium">Type: Remux</span>
+                    </div>
+                    <h1 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">X-Men.2000.1080p.BluRay.REMUX.AVC.DTS-HD.MA.5.1-FraMeSToR</h1>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <span class="flex items-center text-green-400 font-semibold text-sm bg-green-950/40 border border-green-900/50 px-3 py-1.5 rounded-lg">
+                        <i class="fa-solid fa-arrow-up mr-1.5"></i> 1,482
+                    </span>
+                    <span class="flex items-center text-red-400 font-semibold text-sm bg-red-950/40 border border-red-900/50 px-3 py-1.5 rounded-lg">
+                        <i class="fa-solid fa-arrow-down mr-1.5"></i> 89
+                    </span>
+                    <span class="flex items-center text-blue-400 font-semibold text-sm bg-blue-950/40 border border-blue-900/50 px-3 py-1.5 rounded-lg">
+                        <i class="fa-solid fa-check mr-1.5"></i> 3,210
+                    </span>
+                </div>
+            </div>
 
-    <div class="meta-grid">
-      <div class="meta-item">
-        <span class="meta-label">Category</span>
-        <span class="meta-value">Movies / Blu-ray Remux</span>
-      </div>
-      <div class="meta-item">
-        <span class="meta-label">Total Size</span>
-        <span class="meta-value">25.8 GB</span>
-      </div>
-      <div class="meta-item">
-        <span class="meta-label">Seeders</span>
-        <span class="meta-value seeders">142</span>
-      </div>
-      <div class="meta-item">
-        <span class="meta-label">Leechers</span>
-        <span class="meta-value leechers">18</span>
-      </div>
-      <div class="meta-item">
-        <span class="meta-label">Uploader</span>
-        <span class="meta-value">FraMeSToR (VIP)</span>
-      </div>
-      <div class="meta-item">
-        <span class="meta-label">Info Hash</span>
-        <span class="meta-value" style="font-family: monospace; font-size: 0.8rem;">9e4d6a1f8c02b37e415d8f99e4b7c123456789ab</span>
-      </div>
-    </div>
+            <!-- Action Buttons Bar -->
+            <div class="flex flex-wrap gap-3 pb-6 border-b border-bordercolor">
+                <a href="#magnet" onclick="triggerMagnet(event)" class="bg-red-600 hover:bg-red-700 text-white font-semibold px-5 py-2.5 rounded-lg text-sm flex items-center space-x-2 shadow-lg shadow-red-600/20 transition">
+                    <i class="fa-solid fa-magnet"></i>
+                    <span>Magnet Download</span>
+                </a>
+                <a href="#torrent" onclick="triggerTorrent(event)" class="bg-torrentblue hover:bg-hoverblue text-white font-semibold px-5 py-2.5 rounded-lg text-sm flex items-center space-x-2 shadow-lg shadow-torrentblue/20 transition">
+                    <i class="fa-solid fa-download"></i>
+                    <span>Torrent File</span>
+                </a>
+                <button onclick="copyMagnet()" class="bg-gray-800 hover:bg-gray-700 text-gray-200 border border-bordercolor font-medium px-4 py-2.5 rounded-lg text-sm flex items-center space-x-2 transition">
+                    <i class="fa-solid fa-copy"></i>
+                    <span id="copyBtnText">Copy Magnet</span>
+                </button>
+            </div>
 
-    <div class="torrent-details">
-      <div class="section-title">Media Specifications</div>
-      <div class="nfo-box">GENERAL INFO:
-File Name .........: X-Men.2000.1080p.BluRay.REMUX.AVC.DTS-HD.MA.5.1-FraMeSToR.mkv
-Container .........: Matroska (.mkv)
-Duration ..........: 1 h 44 min
-Total Bitrate .....: ~35.4 Mbps
+            <!-- Meta Stats Grid -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-6 text-sm">
+                <div class="bg-black/30 p-3 rounded-lg border border-bordercolor/50">
+                    <span class="text-gray-400 block text-xs">Total Size</span>
+                    <span class="font-semibold text-white">23.4 GB</span>
+                </div>
+                <div class="bg-black/30 p-3 rounded-lg border border-bordercolor/50">
+                    <span class="text-gray-400 block text-xs">Uploaded By</span>
+                    <span class="font-semibold text-torrentblue flex items-center mt-0.5">
+                        <i class="fa-solid fa-shield-halved mr-1 text-xs"></i> HD-Remuxer-Elite
+                    </span>
+                </div>
+                <div class="bg-black/30 p-3 rounded-lg border border-bordercolor/50">
+                    <span class="text-gray-400 block text-xs">Added On</span>
+                    <span class="font-semibold text-white">October 14, 2023</span>
+                </div>
+                <div class="bg-black/30 p-3 rounded-lg border border-bordercolor/50">
+                    <span class="text-gray-400 block text-xs">Downloads</span>
+                    <span class="font-semibold text-white">18,429</span>
+                </div>
+            </div>
+        </div>
 
-VIDEO STREAM:
-Codec .............: Advanced Video Coding (AVC / MPEG-4 Part 10)
-Profile ...........: High@L4.1
-Resolution ........: 1920x1080 (16:9)
-Frame Rate ........: 23.976 fps
-Bitrate ...........: ~30.8 Mbps
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+            <!-- Left Column: Poster & Quick Info -->
+            <div class="space-y-6">
+                <div class="bg-cardbg border border-bordercolor rounded-xl p-4 text-center shadow-lg">
+                    <img src="https://placehold.co/400x600/1a1a1a/e50914?text=X-Men+(2000)+Remux" onerror="this.src='https://placehold.co/400x600/1e293b/ffffff?text=X-Men+2000'" alt="X-Men 2000 Poster" class="rounded-lg w-full object-cover shadow-md mb-4 max-h-[420px]">
+                    <div class="space-y-2 text-left text-sm bg-black/40 p-3 rounded-lg border border-bordercolor">
+                        <div class="flex justify-between"><span class="text-gray-400">IMDb Rating:</span> <span class="font-bold text-amber-400"><i class="fa-solid fa-star mr-1"></i> 7.3 / 10</span></div>
+                        <div class="flex justify-between"><span class="text-gray-400">Release Year:</span> <span class="text-white font-medium">2000</span></div>
+                        <div class="flex justify-between"><span class="text-gray-400">Genre:</span> <span class="text-white font-medium">Action / Sci-Fi</span></div>
+                        <div class="flex justify-between"><span class="text-gray-400">Director:</span> <span class="text-white font-medium">Bryan Singer</span></div>
+                        <div class="flex justify-between"><span class="text-gray-400">Runtime:</span> <span class="text-white font-medium">1h 44m</span></div>
+                    </div>
+                </div>
+            </div>
 
-AUDIO STREAM:
-Language ..........: English
-Format ............: DTS-HD Master Audio (Lossless)
-Channels ..........: 5.1 Channels (L, R, C, LFE, Ls, Rs)
-Sampling Rate .....: 48.0 kHz
-Bit Depth .........: 24 bits
+            <!-- Right 2 Columns: Technical Specifications & MediaInfo -->
+            <div class="lg:col-span-2 space-y-6">
+                <!-- MediaInfo Box -->
+                <div class="bg-cardbg border border-bordercolor rounded-xl p-6 shadow-lg">
+                    <h2 class="text-lg font-bold text-white mb-4 flex items-center">
+                        <i class="fa-solid fa-file-code text-torrentblue mr-2"></i> Technical MediaInfo (Blu-ray Remux)
+                    </h2>
+                    
+                    <div class="space-y-4 text-sm">
+                        <!-- Video Specs -->
+                        <div class="bg-black/40 p-4 rounded-lg border border-bordercolor">
+                            <h3 class="text-xs font-bold text-torrentblue uppercase tracking-wider mb-2">Video Stream</h3>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                                <div><span class="text-gray-400">Format:</span> AVC (Advanced Video Codec)</div>
+                                <div><span class="text-gray-400">Codec ID:</span> V_MPEG4/ISO/AVC</div>
+                                <div><span class="text-gray-400">Resolution:</span> 1920 x 1080 (16:9)</div>
+                                <div><span class="text-gray-400">Frame Rate:</span> 23.976 fps</div>
+                                <div><span class="text-gray-400">Bitrate:</span> ~29.5 Mbps</div>
+                                <div><span class="text-gray-400">Source:</span> Untouched Retail Blu-ray disc</div>
+                            </div>
+                        </div>
 
-SUBTITLE STREAMS:
-• English [SDH] (PGS)
-• French (PGS)
-• Spanish (PGS)
-• German (PGS)
-• Italian (PGS)
-• Japanese (PGS)
-• Korean (PGS)
-• Portuguese (PGS)</div>
+                        <!-- Audio Specs -->
+                        <div class="bg-black/40 p-4 rounded-lg border border-bordercolor">
+                            <h3 class="text-xs font-bold text-torrentblue uppercase tracking-wider mb-2">Audio Stream</h3>
+                            <div class="space-y-1 text-xs">
+                                <div class="flex items-center justify-between py-1 border-b border-bordercolor/40">
+                                    <span class="text-white font-medium"><i class="fa-solid fa-volume-high text-green-400 mr-1.5"></i> English 5.1 DTS-HD Master Audio</span>
+                                    <span class="text-gray-400">3885 kbps / 24-bit / 48 kHz</span>
+                                </div>
+                            </div>
+                        </div>
 
-      <div class="section-title">Subtitles Included</div>
-      <div class="badge-list">
-        <span class="badge">English SDH</span>
-        <span class="badge">French</span>
-        <span class="badge">Spanish</span>
-        <span class="badge">German</span>
-        <span class="badge">Italian</span>
-        <span class="badge">Japanese</span>
-        <span class="badge">Korean</span>
-        <span class="badge">Portuguese</span>
-      </div>
-    </div>
-  </div>
-</div>
+                        <!-- Subtitle Specs -->
+                        <div class="bg-black/40 p-4 rounded-lg border border-bordercolor">
+                            <h3 class="text-xs font-bold text-torrentblue uppercase tracking-wider mb-2">Subtitles (MUXED PGS)</h3>
+                            <div class="flex flex-wrap gap-2 text-xs">
+                                <span class="bg-gray-800 text-gray-200 px-2.5 py-1 rounded border border-bordercolor">English (SDH)</span>
+                                <span class="bg-gray-800 text-gray-200 px-2.5 py-1 rounded border border-bordercolor">French</span>
+                                <span class="bg-gray-800 text-gray-200 px-2.5 py-1 rounded border border-bordercolor">Spanish</span>
+                                <span class="bg-gray-800 text-gray-200 px-2.5 py-1 rounded border border-bordercolor">German</span>
+                                <span class="bg-gray-800 text-gray-200 px-2.5 py-1 rounded border border-bordercolor">Italian</span>
+                                <span class="bg-gray-800 text-gray-200 px-2.5 py-1 rounded border border-bordercolor">Japanese</span>
+                                <span class="bg-gray-800 text-gray-200 px-2.5 py-1 rounded border border-bordercolor">Korean</span>
+                                <span class="bg-gray-800 text-gray-200 px-2.5 py-1 rounded border border-bordercolor">Portuguese</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-<div id="toast">Copied to clipboard</div>
+                <!-- Synopsis & Release Notes -->
+                <div class="bg-cardbg border border-bordercolor rounded-xl p-6 shadow-lg">
+                    <h2 class="text-lg font-bold text-white mb-3 flex items-center">
+                        <i class="fa-solid fa-film text-red-500 mr-2"></i> Plot & Release Notes
+                    </h2>
+                    <p class="text-gray-300 text-sm leading-relaxed mb-4">
+                        Set in a world where mutants (humans with extraordinary powers) exist and are discriminated against, two mutant factions led by former friends with contrasting philosophies—Professor Charles Xavier and Erik Lehnsherr (Magneto)—clash over the future of mutant-kind. Meanwhile, runaway teenagers Rogue and Wolverine find themselves caught in the middle.
+                    </p>
+                    <div class="bg-black/30 border border-bordercolor p-3 rounded-lg text-xs text-gray-400 space-y-1">
+                        <p><strong class="text-white">Note:</strong> This is a 1:1 Blu-ray Remux. Video and audio streams have been demuxed and remuxed into an MKV container without any re-encoding whatsoever. Enjoy bit-for-bit theatrical quality!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<script>
-  const infoHash = "9e4d6a1f8c02b37e415d8f99e4b7c123456789ab";
-  const releaseName = "X-Men.2000.1080p.BluRay.REMUX.AVC.DTS-HD.MA.5.1-FraMeSToR";
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Files Included -->
+            <div class="lg:col-span-1 bg-cardbg border border-bordercolor rounded-xl p-6 shadow-lg">
+                <h3 class="text-base font-bold text-white mb-4 flex items-center justify-between">
+                    <span><i class="fa-solid fa-folder-open text-torrentblue mr-2"></i> File List</span>
+                    <span class="text-xs bg-gray-800 text-gray-400 px-2 py-0.5 rounded">1 file</span>
+                </h3>
+                <ul class="space-y-2 text-sm font-mono">
+                    <li class="bg-black/40 p-2.5 rounded border border-bordercolor flex items-center justify-between text-xs">
+                        <span class="truncate text-gray-200 mr-2"><i class="fa-solid fa-file-video text-blue-400 mr-1.5"></i> X-Men.2000.1080p.BluRay.REMUX.AVC.DTS-HD.MA.5.1-FraMeSToR.mkv</span>
+                        <span class="text-gray-400 shrink-0">23.4 GB</span>
+                    </li>
+                </ul>
+            </div>
 
-  function showToast(message) {
-    const toast = document.getElementById("toast");
-    toast.textContent = message;
-    toast.style.display = "block";
-    setTimeout(() => {
-      toast.style.display = "none";
-    }, 2800);
-  }
+            <!-- Comments Section -->
+            <div class="lg:col-span-2 bg-cardbg border border-bordercolor rounded-xl p-6 shadow-lg">
+                <h3 class="text-base font-bold text-white mb-4 flex items-center justify-between">
+                    <span><i class="fa-solid fa-comments text-torrentblue mr-2"></i> Comments (4)</span>
+                    <span class="text-xs text-gray-400">Community Feedback</span>
+                </h3>
 
-  function triggerMagnet() {
-    const magnetUri = `magnet:?xt=urn:btih:${infoHash}&dn=${encodeURIComponent(releaseName)}&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce`;
-    window.location.href = magnetUri;
-    showToast("Opening Magnet URI handler...");
-  }
+                <!-- Comment Input Box -->
+                <div class="mb-6 bg-black/40 p-4 rounded-xl border border-bordercolor">
+                    <textarea id="commentInput" rows="3" placeholder="Leave a helpful comment or rating..." class="w-full bg-cardbg text-sm text-gray-200 p-3 rounded-lg border border-bordercolor focus:outline-none focus:border-torrentblue resize-none mb-3"></textarea>
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs text-gray-400"><i class="fa-solid fa-shield text-green-400 mr-1"></i> Be polite and respectful.</span>
+                        <button onclick="postComment()" class="bg-torrentblue hover:bg-hoverblue text-white font-semibold px-4 py-2 rounded-lg text-xs transition">Post Comment</button>
+                    </div>
+                </div>
 
-  function triggerTorrent() {
-    showToast("Generating .torrent payload metadata...");
-  }
+                <!-- Comments List -->
+                <div id="commentsList" class="space-y-4">
+                    <div class="bg-black/30 p-4 rounded-xl border border-bordercolor">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="font-bold text-xs text-torrentblue flex items-center"><i class="fa-solid fa-user-circle mr-1.5 text-sm"></i> Cinephile99</span>
+                            <span class="text-[10px] text-gray-500">2 hours ago</span>
+                        </div>
+                        <p class="text-xs text-gray-300">Absolute pristine remux! The DTS-HD MA audio track sounds immense on my home theater setup. Thanks for preserving all audio and subtitle options too!</p>
+                    </div>
 
-  function copyInfoHash() {
-    navigator.clipboard.writeText(infoHash).then(() => {
-      showToast("InfoHash copied to clipboard!");
-    }).catch(() => {
-      showToast("Failed to copy InfoHash.");
-    });
-  }
-</script>
+                    <div class="bg-black/30 p-4 rounded-xl border border-bordercolor">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="font-bold text-xs text-green-400 flex items-center"><i class="fa-solid fa-user-circle mr-1.5 text-sm"></i> MutantX</span>
+                            <span class="text-[10px] text-gray-500">Yesterday</span>
+                        </div>
+                        <p class="text-xs text-gray-300">Seeding at 1 Gbps. Keep downloading guys! Great quality release.</p>
+                    </div>
 
+                    <div class="bg-black/30 p-4 rounded-xl border border-bordercolor">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="font-bold text-xs text-purple-400 flex items-center"><i class="fa-solid fa-user-circle mr-1.5 text-sm"></i> RetroFan</span>
+                            <span class="text-[10px] text-gray-500">3 days ago</span>
+                        </div>
+                        <p class="text-xs text-gray-300">Thanks for including the Japanese and Korean subs! Awesome release.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="bg-black border-t border-bordercolor py-8 mt-12 text-center text-xs text-gray-500">
+        <div class="max-w-7xl mx-auto px-4 space-y-2">
+            <p>&copy; 2006-2026 1337x.to - Contact / DMCA / API / Usage Policy</p>
+            <p class="text-gray-600">Disclaimer: This webpage is a frontend simulation created for demonstration purposes.</p>
+        </div>
+    </footer>
+
+    <script>
+        function copyMagnet() {
+            const dummyMagnet = "magnet:?xt=urn:btih:3b5f9048a821e90123b7c917245811b7d5a3ef12&dn=X-Men+2000+1080p+BluRay+REMUX+AVC+DTS-HD+MA+5.1&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce";
+            document.execCommand('copy'); // Fallback safe command
+            
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(dummyMagnet).then(() => {
+                    showToast("Magnet link copied to clipboard!");
+                }).catch(() => {
+                    showToast("Magnet link ready!");
+                });
+            } else {
+                showToast("Magnet link copied successfully!");
+            }
+
+            const btnText = document.getElementById('copyBtnText');
+            btnText.innerText = "Copied!";
+            setTimeout(() => {
+                btnText.innerText = "Copy Magnet";
+            }, 2000);
+        }
+
+        function triggerMagnet(e) {
+            e.preventDefault();
+            showToast("Opening Magnet link in torrent client...");
+        }
+
+        function triggerTorrent(e) {
+            e.preventDefault();
+            showToast("Downloading .torrent file package...");
+        }
+
+        function postComment() {
+            const input = document.getElementById('commentInput');
+            const text = input.value.trim();
+            if (!text) {
+                showToast("Please write a comment before posting.");
+                return;
+            }
+
+            const commentsList = document.getElementById('commentsList');
+            const newDiv = document.createElement('div');
+            newDiv.className = "bg-black/30 p-4 rounded-xl border border-bordercolor animate-pulse";
+            newDiv.innerHTML = `
+                <div class="flex items-center justify-between mb-2">
+                    <span class="font-bold text-xs text-torrentblue flex items-center"><i class="fa-solid fa-user-circle mr-1.5 text-sm"></i> You (Guest)</span>
+                    <span class="text-[10px] text-gray-500">Just now</span>
+                </div>
+                <p class="text-xs text-gray-300">${escapeHtml(text)}</p>
+            `;
+            commentsList.prepend(newDiv);
+            input.value = "";
+            showToast("Comment posted successfully!");
+        }
+
+        function escapeHtml(str) {
+            return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+        }
+
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = "fixed bottom-5 right-5 bg-torrentblue text-white text-xs font-semibold px-4 py-3 rounded-lg shadow-2xl z-50 transition-all duration-300 transform translate-y-2 opacity-0 flex items-center space-x-2";
+            toast.innerHTML = `<i class="fa-solid fa-circle-check"></i><span>${message}</span>`;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.classList.remove('translate-y-2', 'opacity-0');
+            }, 10);
+
+            setTimeout(() => {
+                toast.classList.add('translate-y-2', 'opacity-0');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+    </script>
 </body>
 </html>
