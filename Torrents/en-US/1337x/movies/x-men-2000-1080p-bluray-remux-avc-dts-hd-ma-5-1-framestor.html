@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>X-Men (2000) 1080p BluRay REMUX AVC DTS-HD MA 5.1-FraMeSToR - 1337x</title>
+  <style>
+    :root {
+      --bg-color: #121212;
+      --card-bg: #1c1c1c;
+      --card-inner: #242424;
+      --accent: #d32f2f;
+      --accent-hover: #b71c1c;
+      --text-main: #e0e0e0;
+      --text-muted: #9e9e9e;
+      --border: #333333;
+      --badge-seed: #4caf50;
+      --badge-leech: #f44336;
+      --btn-magnet: #d32f2f;
+      --btn-direct: #2e7d32;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      padding: 24px 16px;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* Header Nav Mock */
+    .site-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .site-nav .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .site-nav .logo span {
+      color: var(--accent);
+    }
+
+    /* Card Wrapper */
+    .torrent-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .torrent-header {
+      background: #181818;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .torrent-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #ffffff;
+      word-break: break-all;
+    }
+
+    /* Action Toolbar */
+    .torrent-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 16px 20px;
+      background-color: var(--card-inner);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.15s ease-in-out;
+    }
+
+    .btn-magnet {
+      background-color: var(--btn-magnet);
+    }
+
+    .btn-magnet:hover {
+      background-color: var(--accent-hover);
+    }
+
+    .btn-download {
+      background-color: var(--btn-direct);
+    }
+
+    .btn-download:hover {
+      background-color: #1b5e20;
+    }
+
+    .btn-hash {
+      background-color: #424242;
+    }
+
+    .btn-hash:hover {
+      background-color: #616161;
+    }
+
+    /* Metadata Grid */
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      padding: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .meta-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+    }
+
+    .meta-value {
+      font-size: 0.95rem;
+      color: #fff;
+      font-weight: 500;
+    }
+
+    .seeders { color: var(--badge-seed); font-weight: 700; }
+    .leechers { color: var(--badge-leech); font-weight: 700; }
+
+    /* Technical Details Tabs / Section */
+    .torrent-details {
+      padding: 20px;
+    }
+
+    .section-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .nfo-box {
+      background-color: #111;
+      border: 1px solid #2a2a2a;
+      border-radius: 4px;
+      padding: 14px;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 0.85rem;
+      color: #ccc;
+      white-space: pre-wrap;
+      word-break: break-word;
+      line-height: 1.4;
+      margin-bottom: 20px;
+    }
+
+    .badge-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .badge {
+      background: #2c2c2c;
+      border: 1px solid #3d3d3d;
+      color: #ddd;
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 3px;
+    }
+
+    /* Toast Notification */
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background-color: #323232;
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      display: none;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      border-left: 4px solid var(--accent);
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="site-nav">
+    <div class="logo">1337<span>X</span></div>
+    <div style="font-size: 0.85rem; color: var(--text-muted);">Language: en-US</div>
+  </div>
+
+  <div class="torrent-card">
+    <div class="torrent-header">
+      <h1 class="torrent-title">X-Men (2000) 1080p BluRay REMUX AVC DTS-HD MA 5.1-FraMeSToR</h1>
+    </div>
+
+    <div class="torrent-actions">
+      <button class="btn btn-magnet" onclick="triggerMagnet()">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M8 1a5 5 0 0 0-5 5v3a3 3 0 0 0 6 0V6a1 1 0 0 1 2 0v3a5 5 0 0 1-10 0V6a7 7 0 0 1 14 0v3a1 1 0 0 1-2 0V6a5 5 0 0 0-5-5z"/></svg>
+        Magnet Download
+      </button>
+      <button class="btn btn-download" onclick="triggerTorrent()">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/><path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/></svg>
+        Torrent Download
+      </button>
+      <button class="btn btn-hash" onclick="copyInfoHash()">
+        Copy InfoHash
+      </button>
+    </div>
+
+    <div class="meta-grid">
+      <div class="meta-item">
+        <span class="meta-label">Category</span>
+        <span class="meta-value">Movies / Blu-ray Remux</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Total Size</span>
+        <span class="meta-value">25.8 GB</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Seeders</span>
+        <span class="meta-value seeders">142</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Leechers</span>
+        <span class="meta-value leechers">18</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Uploader</span>
+        <span class="meta-value">FraMeSToR (VIP)</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Info Hash</span>
+        <span class="meta-value" style="font-family: monospace; font-size: 0.8rem;">9e4d6a1f8c02b37e415d8f99e4b7c123456789ab</span>
+      </div>
+    </div>
+
+    <div class="torrent-details">
+      <div class="section-title">Media Specifications</div>
+      <div class="nfo-box">GENERAL INFO:
+File Name .........: X-Men.2000.1080p.BluRay.REMUX.AVC.DTS-HD.MA.5.1-FraMeSToR.mkv
+Container .........: Matroska (.mkv)
+Duration ..........: 1 h 44 min
+Total Bitrate .....: ~35.4 Mbps
+
+VIDEO STREAM:
+Codec .............: Advanced Video Coding (AVC / MPEG-4 Part 10)
+Profile ...........: High@L4.1
+Resolution ........: 1920x1080 (16:9)
+Frame Rate ........: 23.976 fps
+Bitrate ...........: ~30.8 Mbps
+
+AUDIO STREAM:
+Language ..........: English
+Format ............: DTS-HD Master Audio (Lossless)
+Channels ..........: 5.1 Channels (L, R, C, LFE, Ls, Rs)
+Sampling Rate .....: 48.0 kHz
+Bit Depth .........: 24 bits
+
+SUBTITLE STREAMS:
+• English [SDH] (PGS)
+• French (PGS)
+• Spanish (PGS)
+• German (PGS)
+• Italian (PGS)
+• Japanese (PGS)
+• Korean (PGS)
+• Portuguese (PGS)</div>
+
+      <div class="section-title">Subtitles Included</div>
+      <div class="badge-list">
+        <span class="badge">English SDH</span>
+        <span class="badge">French</span>
+        <span class="badge">Spanish</span>
+        <span class="badge">German</span>
+        <span class="badge">Italian</span>
+        <span class="badge">Japanese</span>
+        <span class="badge">Korean</span>
+        <span class="badge">Portuguese</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="toast">Copied to clipboard</div>
+
+<script>
+  const infoHash = "9e4d6a1f8c02b37e415d8f99e4b7c123456789ab";
+  const releaseName = "X-Men.2000.1080p.BluRay.REMUX.AVC.DTS-HD.MA.5.1-FraMeSToR";
+
+  function showToast(message) {
+    const toast = document.getElementById("toast");
+    toast.textContent = message;
+    toast.style.display = "block";
+    setTimeout(() => {
+      toast.style.display = "none";
+    }, 2800);
+  }
+
+  function triggerMagnet() {
+    const magnetUri = `magnet:?xt=urn:btih:${infoHash}&dn=${encodeURIComponent(releaseName)}&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce`;
+    window.location.href = magnetUri;
+    showToast("Opening Magnet URI handler...");
+  }
+
+  function triggerTorrent() {
+    showToast("Generating .torrent payload metadata...");
+  }
+
+  function copyInfoHash() {
+    navigator.clipboard.writeText(infoHash).then(() => {
+      showToast("InfoHash copied to clipboard!");
+    }).catch(() => {
+      showToast("Failed to copy InfoHash.");
+    });
+  }
+</script>
+
+</body>
+</html>
