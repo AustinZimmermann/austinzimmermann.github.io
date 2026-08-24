@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="fr" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Torrent9 - X-Men (2000) MULTI 1080p Blu-ray REMUX AVC DTS-HD</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        t9yellow: '#f59e0b',
+                        t9blue: '#1e293b',
+                        t9dark: '#0f172a',
+                        t9card: '#1e293b',
+                        t9green: '#10b981',
+                        t9red: '#ef4444'
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .bg-pattern {
+            background-color: #0b0f19;
+            background-image: radial-gradient(#1e293b 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+    </style>
+</head>
+<body class="bg-pattern text-slate-200 min-h-screen flex flex-col justify-between">
+
+    <!-- TOP HEADER / NAVBAR -->
+    <header class="bg-slate-900 border-b border-slate-800 sticky top-0 z-50 shadow-xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                
+                <!-- Logo & Brand -->
+                <div class="flex items-center space-x-3">
+                    <a href="#" class="flex items-center space-x-2 text-2xl font-black tracking-wider text-white hover:opacity-90 transition">
+                        <span class="bg-amber-500 text-slate-950 px-2.5 py-1 rounded-lg font-extrabold shadow-lg shadow-amber-500/20">T9</span>
+                        <span class="text-amber-500">TORRENT<span class="text-white">9</span></span>
+                    </a>
+                    <span class="hidden md:inline-block text-xs font-semibold px-2 py-0.5 bg-amber-500/10 text-amber-400 border border-amber-500/30 rounded-full">fr-FR</span>
+                </div>
+
+                <!-- Search Bar -->
+                <div class="hidden md:flex flex-1 max-w-lg mx-8">
+                    <div class="relative w-full">
+                        <input type="text" id="searchInput" placeholder="Rechercher un torrent (film, série, musique...)" 
+                            class="w-full bg-slate-800 border border-slate-700 text-sm text-white placeholder-slate-400 rounded-lg pl-10 pr-24 py-2 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
+                        <button onclick="handleSearch()" class="absolute right-1 top-1 bottom-1 px-4 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs rounded-md transition flex items-center gap-1">
+                            <span>Chercher</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Navigation Links / User Tools -->
+                <div class="flex items-center space-x-3">
+                    <button id="mobileMenuBtn" class="md:hidden p-2 text-slate-300 hover:text-white focus:outline-none">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                    <a href="#downloadSection" class="hidden sm:inline-flex items-center space-x-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition">
+                        <i class="fa-solid fa-bolt text-amber-400"></i>
+                        <span>Accès Rapide</span>
+                    </a>
+                    <button onclick="showToast('Connexion désactivée en mode consultation public.')" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-4 py-1.5 rounded-lg text-xs transition shadow-md shadow-amber-500/20 flex items-center gap-1.5">
+                        <i class="fa-solid fa-user"></i>
+                        <span>Connexion</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- CATEGORY NAVIGATION BAR -->
+        <nav class="bg-slate-950/80 border-t border-slate-800/80 backdrop-blur-sm">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center space-x-1 sm:space-x-4 overflow-x-auto py-2 text-xs font-medium no-scrollbar">
+                    <a href="#" class="px-3 py-1.5 rounded-md bg-amber-500/10 text-amber-400 border border-amber-500/30 flex items-center gap-1.5 whitespace-nowrap">
+                        <i class="fa-solid fa-film"></i> Films
+                    </a>
+                    <a href="#" class="px-3 py-1.5 rounded-md text-slate-400 hover:text-white hover:bg-slate-800 transition flex items-center gap-1.5 whitespace-nowrap">
+                        <i class="fa-solid fa-tv"></i> Séries
+                    </a>
+                    <a href="#" class="px-3 py-1.5 rounded-md text-slate-400 hover:text-white hover:bg-slate-800 transition flex items-center gap-1.5 whitespace-nowrap">
+                        <i class="fa-solid fa-music"></i> Musiques
+                    </a>
+                    <a href="#" class="px-3 py-1.5 rounded-md text-slate-400 hover:text-white hover:bg-slate-800 transition flex items-center gap-1.5 whitespace-nowrap">
+                        <i class="fa-solid fa-gamepad"></i> Jeux
+                    </a>
+                    <a href="#" class="px-3 py-1.5 rounded-md text-slate-400 hover:text-white hover:bg-slate-800 transition flex items-center gap-1.5 whitespace-nowrap">
+                        <i class="fa-solid fa-box-archive"></i> Logiciels
+                    </a>
+                    <a href="#" class="px-3 py-1.5 rounded-md text-slate-400 hover:text-white hover:bg-slate-800 transition flex items-center gap-1.5 whitespace-nowrap">
+                        <i class="fa-solid fa-book"></i> Ebooks
+                    </a>
+                    <span class="text-slate-700">|</span>
+                    <a href="#" class="px-3 py-1.5 rounded-md text-emerald-400 hover:bg-emerald-500/10 transition flex items-center gap-1.5 whitespace-nowrap">
+                        <i class="fa-solid fa-fire"></i> Top 100
+                    </a>
+                    <a href="#" class="px-3 py-1.5 rounded-md text-sky-400 hover:bg-sky-500/10 transition flex items-center gap-1.5 whitespace-nowrap">
+                        <i class="fa-solid fa-clock-rotate-left"></i> Derniers Ajouts
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full">
+
+        <!-- VPN SECURITY ALERT BANNER -->
+        <div class="mb-6 bg-gradient-to-r from-amber-950/60 via-slate-900 to-amber-950/60 border border-amber-500/40 rounded-xl p-4 shadow-lg flex flex-col md:flex-row items-center justify-between gap-4 relative overflow-hidden">
+            <div class="absolute -right-8 -bottom-8 text-amber-500/5 text-9xl pointer-events-none">
+                <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <div class="flex items-center space-x-4 z-10">
+                <div class="w-12 h-12 rounded-full bg-amber-500/20 border border-amber-500/40 flex items-center justify-center shrink-0 text-amber-400 text-xl animate-pulse">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                </div>
+                <div>
+                    <h3 class="text-sm font-bold text-amber-400 flex items-center gap-2">
+                        <span>ATTENTION : Votre adresse IP actuelle est exposée !</span>
+                        <span class="text-[10px] bg-red-500/20 text-red-400 border border-red-500/30 px-2 py-0.5 rounded uppercase tracking-wider font-extrabold">Non Protégé</span>
+                    </h3>
+                    <p class="text-xs text-slate-300 mt-0.5">
+                        Votre fournisseur d'accès internet peut suivre vos téléchargements BitTorrent. Utilisez un VPN sécurisé pour télécharger anonymement.
+                    </p>
+                </div>
+            </div>
+            <div class="z-10 shrink-0 w-full md:w-auto">
+                <button onclick="simulateVpnProtect()" class="w-full md:w-auto px-5 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-xs rounded-lg transition shadow-lg shadow-amber-500/20 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-lock"></i>
+                    <span>Activer la protection VPN</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- BREADCRUMB -->
+        <nav class="flex text-xs text-slate-400 mb-4" aria-label="Breadcrumb">
+            <ol class="inline-flex items-center space-x-1 md:space-x-2">
+                <li class="inline-flex items-center">
+                    <a href="#" class="hover:text-amber-400 flex items-center gap-1">
+                        <i class="fa-solid fa-house"></i> Accueil
+                    </a>
+                </li>
+                <li><i class="fa-solid fa-chevron-right text-[10px] text-slate-600"></i></li>
+                <li><a href="#" class="hover:text-amber-400">Films</a></li>
+                <li><i class="fa-solid fa-chevron-right text-[10px] text-slate-600"></i></li>
+                <li><a href="#" class="hover:text-amber-400">Blu-ray Remux</a></li>
+                <li><i class="fa-solid fa-chevron-right text-[10px] text-slate-600"></i></li>
+                <li class="text-slate-200 font-medium truncate max-w-xs md:max-w-md">X-Men (2000) MULTI Blu-ray Remux</li>
+            </ol>
+        </nav>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+            <!-- LEFT COLUMN: Main Torrent Details -->
+            <div class="lg:col-span-8 space-y-6">
+
+                <!-- TORRENT TITLE HEADER CARD -->
+                <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-xl relative overflow-hidden">
+                    <div class="flex flex-wrap items-start justify-between gap-3 border-b border-slate-800 pb-4">
+                        <div>
+                            <div class="flex items-center gap-2 flex-wrap mb-2">
+                                <span class="bg-amber-500/10 text-amber-400 border border-amber-500/30 text-xs font-bold px-2.5 py-0.5 rounded-md">
+                                    <i class="fa-solid fa-compact-disc mr-1"></i> Blu-ray Remux
+                                </span>
+                                <span class="bg-sky-500/10 text-sky-400 border border-sky-500/30 text-xs font-bold px-2.5 py-0.5 rounded-md">
+                                    <i class="fa-solid fa-video mr-1"></i> AVC / 1080p
+                                </span>
+                                <span class="bg-purple-500/10 text-purple-400 border border-purple-500/30 text-xs font-bold px-2.5 py-0.5 rounded-md">
+                                    <i class="fa-solid fa-language mr-1"></i> MULTI (VFF + ENG)
+                                </span>
+                            </div>
+                            <h1 class="text-xl sm:text-2xl font-extrabold text-white leading-tight">
+                                X-Men (2000) MULTI 1080p Blu-ray REMUX AVC DTS-HD MA 5.1-T9
+                            </h1>
+                        </div>
+                    </div>
+
+                    <div class="mt-5 grid grid-cols-1 sm:grid-cols-12 gap-6 items-center">
+                        <!-- Movie Cover Poster -->
+                        <div class="sm:col-span-4 flex flex-col items-center">
+                            <div class="relative group rounded-xl overflow-hidden shadow-2xl border-2 border-slate-700 bg-slate-950 max-w-[220px] w-full">
+                                <img src="https://images.static-bluray.com/movies/covers/12063_front.jpg" 
+                                     alt="X-Men (2000) Blu-ray Remux Cover" 
+                                     onerror="this.onerror=null; this.src='https://placehold.co/300x450/1e293b/f59e0b?text=X-MEN+2000';"
+                                     class="w-full h-auto object-cover transform group-hover:scale-105 transition duration-300">
+                                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent opacity-60"></div>
+                                <span class="absolute top-2 right-2 bg-slate-900/90 backdrop-blur-md text-amber-400 font-black text-xs px-2 py-1 rounded-md border border-amber-500/30">
+                                    ★ 7.4/10
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Technical Stats Table -->
+                        <div class="sm:col-span-8 space-y-3">
+                            <div class="grid grid-cols-2 gap-3 text-xs">
+                                <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+                                    <span class="text-slate-400 block mb-0.5"><i class="fa-solid fa-hard-drive text-amber-400 mr-1"></i> Taille du fichier</span>
+                                    <span class="font-bold text-slate-100 text-sm">24.85 Go</span>
+                                </div>
+                                <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+                                    <span class="text-slate-400 block mb-0.5"><i class="fa-solid fa-layer-group text-sky-400 mr-1"></i> Catégorie</span>
+                                    <span class="font-bold text-slate-100 text-sm">Films / Remux</span>
+                                </div>
+                                <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+                                    <span class="text-slate-400 block mb-0.5"><i class="fa-solid fa-calendar-days text-emerald-400 mr-1"></i> Date d'ajout</span>
+                                    <span class="font-bold text-slate-100 text-sm">14 Octobre 2023</span>
+                                </div>
+                                <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+                                    <span class="text-slate-400 block mb-0.5"><i class="fa-solid fa-download text-purple-400 mr-1"></i> Complété</span>
+                                    <span class="font-bold text-slate-100 text-sm">1,482 fois</span>
+                                </div>
+                            </div>
+
+                            <!-- Peer Stats Bar -->
+                            <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 flex items-center justify-around">
+                                <div class="text-center">
+                                    <span class="text-[11px] text-emerald-400 uppercase tracking-wider font-extrabold block">Seeders</span>
+                                    <span id="seedersCount" class="text-xl font-extrabold text-emerald-400 flex items-center justify-center gap-1">
+                                        <i class="fa-solid fa-arrow-up text-sm"></i> 342
+                                    </span>
+                                </div>
+                                <div class="h-8 w-px bg-slate-800"></div>
+                                <div class="text-center">
+                                    <span class="text-[11px] text-red-400 uppercase tracking-wider font-extrabold block">Leechers</span>
+                                    <span id="leechersCount" class="text-xl font-extrabold text-red-400 flex items-center justify-center gap-1">
+                                        <i class="fa-solid fa-arrow-down text-sm"></i> 14
+                                    </span>
+                                </div>
+                                <div class="h-8 w-px bg-slate-800"></div>
+                                <div class="text-center">
+                                    <span class="text-[11px] text-amber-400 uppercase tracking-wider font-extrabold block">Santé</span>
+                                    <span class="text-sm font-bold text-amber-400 flex items-center gap-1">
+                                        <i class="fa-solid fa-heart-pulse"></i> Excellente
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DOWNLOAD ACTION BUTTONS -->
+                    <div id="downloadSection" class="mt-6 pt-5 border-t border-slate-800 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <button onclick="downloadTorrent()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold py-3 px-4 rounded-xl shadow-lg shadow-emerald-900/30 flex items-center justify-center gap-3 transition transform active:scale-95 group">
+                            <i class="fa-solid fa-download text-lg group-hover:bounce"></i>
+                            <span class="text-sm">TÉLÉCHARGER LE TORRENT</span>
+                        </button>
+
+                        <button onclick="copyMagnet()" class="w-full bg-slate-800 hover:bg-slate-700 text-amber-400 border border-amber-500/30 hover:border-amber-500/60 font-bold py-3 px-4 rounded-xl shadow-lg flex items-center justify-center gap-3 transition transform active:scale-95">
+                            <i class="fa-solid fa-magnet text-lg"></i>
+                            <span class="text-sm">LIEN MAGNET</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- TABBED DETAILS CONTENT -->
+                <div class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-xl">
+                    <!-- Tab Navigation Header -->
+                    <div class="flex border-b border-slate-800 bg-slate-950 overflow-x-auto no-scrollbar">
+                        <button onclick="switchTab('synopsis')" id="tab-synopsis" class="tab-btn px-5 py-3.5 text-xs font-bold text-amber-400 border-b-2 border-amber-500 flex items-center gap-2 shrink-0 bg-slate-900/50">
+                            <i class="fa-solid fa-circle-info"></i> Synopsis & Info
+                        </button>
+                        <button onclick="switchTab('nfo')" id="tab-nfo" class="tab-btn px-5 py-3.5 text-xs font-bold text-slate-400 hover:text-white border-b-2 border-transparent flex items-center gap-2 shrink-0">
+                            <i class="fa-solid fa-file-code"></i> NFO / MediaInfo
+                        </button>
+                        <button onclick="switchTab('files')" id="tab-files" class="tab-btn px-5 py-3.5 text-xs font-bold text-slate-400 hover:text-white border-b-2 border-transparent flex items-center gap-2 shrink-0">
+                            <i class="fa-solid fa-folder-tree"></i> Fichiers (3)
+                        </button>
+                        <button onclick="switchTab('comments')" id="tab-comments" class="tab-btn px-5 py-3.5 text-xs font-bold text-slate-400 hover:text-white border-b-2 border-transparent flex items-center gap-2 shrink-0">
+                            <i class="fa-solid fa-comments"></i> Avis (<span id="commentsCountHeader">4</span>)
+                        </button>
+                    </div>
+
+                    <!-- TAB CONTENT PANELS -->
+                    <div class="p-6">
+
+                        <!-- TAB 1: SYNOPSIS & MOVIE INFO -->
+                        <div id="content-synopsis" class="tab-content space-y-6">
+                            <div>
+                                <h3 class="text-sm font-bold text-amber-400 uppercase tracking-wider mb-2 flex items-center gap-2">
+                                    <i class="fa-solid fa-book-open"></i> Synopsis du Film
+                                </h3>
+                                <p class="text-sm text-slate-300 leading-relaxed bg-slate-950/40 p-4 rounded-xl border border-slate-800/80">
+                                    1999. Dans un monde proche du nôtre, les humains commencent à développer de puissants pouvoirs mutants sous l'effet de mutations génétiques spontanées. Persécutés par une société craintive et rejetés de tous, ils se divisent en deux factions majeures. Le Professeur Charles Xavier dirige l'école des X-Men, prônant la coexistence pacifique avec l'humanité. De l'autre côté, Magneto pense que la guerre entre mutants et humains est inévitable et cherche à faire régner la suprématie mutante. Wolverine et Rogue se retrouvent plongés au cœur de ce conflit épique.
+                                </p>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                                <div class="space-y-2 bg-slate-950/40 p-4 rounded-xl border border-slate-800">
+                                    <h4 class="font-bold text-slate-200 border-b border-slate-800 pb-2 mb-2 text-xs uppercase tracking-wider text-amber-400">Fiche Technique</h4>
+                                    <div class="flex justify-between py-1 border-b border-slate-800/50"><span class="text-slate-400">Titre Original :</span> <span class="font-medium text-slate-200">X-Men</span></div>
+                                    <div class="flex justify-between py-1 border-b border-slate-800/50"><span class="text-slate-400">Réalisateur :</span> <span class="font-medium text-slate-200">Bryan Singer</span></div>
+                                    <div class="flex justify-between py-1 border-b border-slate-800/50"><span class="text-slate-400">Année de Sortie :</span> <span class="font-medium text-slate-200">2000</span></div>
+                                    <div class="flex justify-between py-1 border-b border-slate-800/50"><span class="text-slate-400">Durée :</span> <span class="font-medium text-slate-200">1h 44min</span></div>
+                                    <div class="flex justify-between py-1"><span class="text-slate-400">Genre :</span> <span class="font-medium text-slate-200">Action, Sci-Fi, Aventure</span></div>
+                                </div>
+
+                                <div class="space-y-2 bg-slate-950/40 p-4 rounded-xl border border-slate-800">
+                                    <h4 class="font-bold text-slate-200 border-b border-slate-800 pb-2 mb-2 text-xs uppercase tracking-wider text-amber-400">Distribution Principale</h4>
+                                    <ul class="space-y-1 text-slate-300">
+                                        <li class="flex items-center gap-2"><i class="fa-solid fa-user-ninja text-amber-500/70 text-[10px]"></i> <strong>Hugh Jackman</strong> — Logan / Wolverine</li>
+                                        <li class="flex items-center gap-2"><i class="fa-solid fa-brain text-amber-500/70 text-[10px]"></i> <strong>Patrick Stewart</strong> — Professeur Charles Xavier</li>
+                                        <li class="flex items-center gap-2"><i class="fa-solid fa-magnet text-amber-500/70 text-[10px]"></i> <strong>Ian McKellen</strong> — Erik Lehnsherr / Magneto</li>
+                                        <li class="flex items-center gap-2"><i class="fa-solid fa-bolt text-amber-500/70 text-[10px]"></i> <strong>Halle Berry</strong> — Ororo Munroe / Storm</li>
+                                        <li class="flex items-center gap-2"><i class="fa-solid fa-glasses text-amber-500/70 text-[10px]"></i> <strong>James Marsden</strong> — Scott Summers / Cyclope</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- TAB 2: NFO / MEDIAINFO -->
+                        <div id="content-nfo" class="tab-content hidden space-y-4">
+                            <div class="flex justify-between items-center">
+                                <h3 class="text-sm font-bold text-amber-400 uppercase tracking-wider">
+                                    <i class="fa-solid fa-terminal mr-1"></i> Fichier d'informations (NFO / MediaInfo)
+                                </h3>
+                                <button onclick="copyNFO()" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-xs text-slate-300 rounded border border-slate-700 transition">
+                                    <i class="fa-solid fa-copy mr-1"></i> Copier NFO
+                                </button>
+                            </div>
+                            <pre id="nfoText" class="bg-slate-950 p-4 rounded-xl border border-slate-800 text-emerald-400 font-mono text-xs leading-relaxed overflow-x-auto whitespace-pre">
+===================================================================
+ Torrent9 Release Info: X-Men (2000) MULTI 1080p Blu-ray REMUX AVC
+===================================================================
+
+[GENERAL INFO]
+Complete Name              : X-Men.2000.MULTI.1080p.BluRay.REMUX.AVC.DTS-HD.MA.5.1-T9.mkv
+Format                     : Matroska (MKV)
+File Size                  : 24.85 GiB
+Duration                   : 1 h 44 min 12 s
+Overall Bitrate            : 34.1 Mbps
+Source                     : 1080p Blu-ray Disc AVC DTS-HD MA 5.1 (US Edition)
+
+[VIDEO CODEC]
+Format                     : AVC (Advanced Video Codec)
+Format Profile             : High@L4.1
+Width                      : 1920 pixels
+Height                     : 1080 pixels
+Display Aspect Ratio       : 16:9 (2.35:1 Letterboxed)
+Frame Rate                 : 23.976 (24000/1001) FPS
+Bit Depth                  : 8 bits
+Chroma Subsampling         : 4:2:0
+Nominal Bitrate            : 28.5 Mbps
+
+[AUDIO TRACK 1]
+Format                     : DTS Audio
+Commercial Name            : DTS Digital Surround 5.1
+Language                   : French (VFF - TrueFrench)
+Bitrate                    : 768 kb/s
+Sampling Rate              : 48.0 kHz
+Channels                   : 6 channels (5.1)
+
+[AUDIO TRACK 2]
+Format                     : DTS-HD Master Audio
+Commercial Name            : DTS-HD MA 5.1
+Language                   : English
+Bitrate                    : ~3890 kb/s
+Sampling Rate              : 48.0 kHz
+Channels                   : 6 channels (5.1)
+
+[SUBTITLES]
+Language #1                : French (Full) - SRT
+Language #2                : French (Forced) - SRT
+Language #3                : English (Full) - SDH
+===================================================================</pre>
+                        </div>
+
+                        <!-- TAB 3: FILE LIST -->
+                        <div id="content-files" class="tab-content hidden space-y-3">
+                            <div class="flex items-center justify-between text-xs text-slate-400 pb-2 border-b border-slate-800">
+                                <span>Nom du fichier</span>
+                                <span>Taille</span>
+                            </div>
+                            <div class="space-y-2 text-xs">
+                                <div class="flex items-center justify-between p-2.5 bg-slate-950/60 rounded-lg border border-slate-800 hover:border-slate-700 transition">
+                                    <div class="flex items-center space-x-2 truncate pr-2">
+                                        <i class="fa-solid fa-file-video text-amber-400 text-base"></i>
+                                        <span class="text-slate-200 font-medium truncate">X-Men.2000.MULTI.1080p.BluRay.REMUX.AVC.DTS-HD.MA.5.1-T9.mkv</span>
+                                    </div>
+                                    <span class="font-bold text-slate-300 shrink-0">24.84 Go</span>
+                                </div>
+                                <div class="flex items-center justify-between p-2.5 bg-slate-950/60 rounded-lg border border-slate-800 hover:border-slate-700 transition">
+                                    <div class="flex items-center space-x-2 truncate pr-2">
+                                        <i class="fa-solid fa-file-code text-sky-400 text-base"></i>
+                                        <span class="text-slate-200 font-medium truncate">X-Men.2000.BluRay.REMUX.nfo</span>
+                                    </div>
+                                    <span class="font-bold text-slate-300 shrink-0">12.4 Ko</span>
+                                </div>
+                                <div class="flex items-center justify-between p-2.5 bg-slate-950/60 rounded-lg border border-slate-800 hover:border-slate-700 transition">
+                                    <div class="flex items-center space-x-2 truncate pr-2">
+                                        <i class="fa-solid fa-file-lines text-emerald-400 text-base"></i>
+                                        <span class="text-slate-200 font-medium truncate">French.Forced.srt</span>
+                                    </div>
+                                    <span class="font-bold text-slate-300 shrink-0">48.2 Ko</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- TAB 4: COMMENTS SECTION -->
+                        <div id="content-comments" class="tab-content hidden space-y-6">
+                            
+                            <!-- Add Comment Form -->
+                            <div class="bg-slate-950/60 p-4 rounded-xl border border-slate-800 space-y-3">
+                                <h4 class="text-xs font-bold text-amber-400 uppercase tracking-wider flex items-center gap-1.5">
+                                    <i class="fa-solid fa-pen-to-square"></i> Laisser un avis sur ce torrent
+                                </h4>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    <input type="text" id="commentAuthor" placeholder="Votre Pseudo" class="bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-amber-500">
+                                    <div class="flex items-center space-x-2">
+                                        <span class="text-xs text-slate-400">Note:</span>
+                                        <div class="flex text-amber-400 text-sm cursor-pointer space-x-1" id="starRating">
+                                            <i class="fa-solid fa-star" data-rating="1" onclick="setRating(1)"></i>
+                                            <i class="fa-solid fa-star" data-rating="2" onclick="setRating(2)"></i>
+                                            <i class="fa-solid fa-star" data-rating="3" onclick="setRating(3)"></i>
+                                            <i class="fa-solid fa-star" data-rating="4" onclick="setRating(4)"></i>
+                                            <i class="fa-solid fa-star" data-rating="5" onclick="setRating(5)"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <textarea id="commentText" rows="3" placeholder="Qualité vidéo/audio, débit de téléchargement, remerciements..." class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-amber-500"></textarea>
+                                <div class="flex justify-end">
+                                    <button onclick="postComment()" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-4 py-2 rounded-lg text-xs transition flex items-center gap-1.5">
+                                        <i class="fa-solid fa-paper-plane"></i>
+                                        <span>Publier le commentaire</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Comments Stream -->
+                            <div class="space-y-3" id="commentsContainer">
+                                
+                                <!-- Comment 1 -->
+                                <div class="bg-slate-950/40 p-3.5 rounded-xl border border-slate-800 text-xs space-y-1.5">
+                                    <div class="flex justify-between items-center">
+                                        <div class="flex items-center space-x-2">
+                                            <span class="font-bold text-slate-200">CinémaFan_92</span>
+                                            <span class="bg-amber-500/10 text-amber-400 text-[10px] px-1.5 py-0.5 rounded font-semibold border border-amber-500/20">Uploader Vérifié</span>
+                                        </div>
+                                        <span class="text-slate-500 text-[11px]">Il y a 3 jours</span>
+                                    </div>
+                                    <div class="text-amber-400 text-[10px]">★★★★★</div>
+                                    <p class="text-slate-300">Superbe qualité Remux ! La piste DTS-HD en anglais est phénoménale et le débit reste très stable autour de 25 Mo/s. Merci Torrent9 !</p>
+                                </div>
+
+                                <!-- Comment 2 -->
+                                <div class="bg-slate-950/40 p-3.5 rounded-xl border border-slate-800 text-xs space-y-1.5">
+                                    <div class="flex justify-between items-center">
+                                        <div class="flex items-center space-x-2">
+                                            <span class="font-bold text-slate-200">Xavier_Mutant</span>
+                                        </div>
+                                        <span class="text-slate-500 text-[11px]">Il y a 5 jours</span>
+                                    </div>
+                                    <div class="text-amber-400 text-[10px]">★★★★★</div>
+                                    <p class="text-slate-300">Audio VFF d'origine parfaitement synchronisée. Image propre sans compression excessive. Je reste en seed à 1 Gb/s !</p>
+                                </div>
+
+                                <!-- Comment 3 -->
+                                <div class="bg-slate-950/40 p-3.5 rounded-xl border border-slate-800 text-xs space-y-1.5">
+                                    <div class="flex justify-between items-center">
+                                        <div class="flex items-center space-x-2">
+                                            <span class="font-bold text-slate-200">RetroGamerFr</span>
+                                        </div>
+                                        <span class="text-slate-500 text-[11px]">Il y a 1 semaine</span>
+                                    </div>
+                                    <div class="text-amber-400 text-[10px]">★★★★☆</div>
+                                    <p class="text-slate-300">Un classique incontournable du genre super-héros au début des années 2000. Le bitrate vidéo à 28.5 Mbps restitue le grain cinéma d'époque d'une façon très fidèle.</p>
+                                </div>
+
+                                <!-- Comment 4 -->
+                                <div class="bg-slate-950/40 p-3.5 rounded-xl border border-slate-800 text-xs space-y-1.5">
+                                    <div class="flex justify-between items-center">
+                                        <div class="flex items-center space-x-2">
+                                            <span class="font-bold text-slate-200">DarkSlayer</span>
+                                        </div>
+                                        <span class="text-slate-500 text-[11px]">Il y a 2 semaines</span>
+                                    </div>
+                                    <div class="text-amber-400 text-[10px]">★★★★★</div>
+                                    <p class="text-slate-300">Nickel, rapide à télécharger et lit parfaitement sur ma TV LG via Plex sans réencodage.</p>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- RIGHT COLUMN: Sidebar (Related content & category navigation) -->
+            <aside class="lg:col-span-4 space-y-6">
+
+                <!-- SEARCH FILTER BOX (MOBILE & SIDEBAR) -->
+                <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 shadow-xl">
+                    <h3 class="text-xs font-extrabold text-slate-300 uppercase tracking-wider mb-3 flex items-center justify-between">
+                        <span><i class="fa-solid fa-filter text-amber-400 mr-1"></i> Filtrer la qualité</span>
+                        <span class="text-[10px] text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded">Films</span>
+                    </h3>
+                    <div class="space-y-1.5 text-xs">
+                        <a href="#" class="flex justify-between items-center p-2 rounded hover:bg-slate-800 text-slate-300 hover:text-white transition">
+                            <span><i class="fa-solid fa-check text-emerald-400 mr-2"></i>Blu-ray Remux 1080p</span>
+                            <span class="bg-slate-800 text-slate-400 px-1.5 py-0.5 rounded text-[10px]">Active</span>
+                        </a>
+                        <a href="#" class="flex justify-between items-center p-2 rounded hover:bg-slate-800 text-slate-400 hover:text-slate-200 transition">
+                            <span><i class="fa-solid fa-compact-disc text-slate-500 mr-2"></i>4K UltraHD HDR</span>
+                            <span class="bg-slate-800 text-slate-400 px-1.5 py-0.5 rounded text-[10px]">1,240</span>
+                        </a>
+                        <a href="#" class="flex justify-between items-center p-2 rounded hover:bg-slate-800 text-slate-400 hover:text-slate-200 transition">
+                            <span><i class="fa-solid fa-tv text-slate-500 mr-2"></i>1080p Light x265</span>
+                            <span class="bg-slate-800 text-slate-400 px-1.5 py-0.5 rounded text-[10px]">3,890</span>
+                        </a>
+                        <a href="#" class="flex justify-between items-center p-2 rounded hover:bg-slate-800 text-slate-400 hover:text-slate-200 transition">
+                            <span><i class="fa-solid fa-video text-slate-500 mr-2"></i>720p HDLight</span>
+                            <span class="bg-slate-800 text-slate-400 px-1.5 py-0.5 rounded text-[10px]">5,110</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- SIMILAR TORRENTS / FRANCHISE -->
+                <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 shadow-xl">
+                    <h3 class="text-xs font-extrabold text-slate-200 uppercase tracking-wider mb-4 border-b border-slate-800 pb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-clapperboard text-amber-400"></i> Saga X-Men & Similaires
+                    </h3>
+
+                    <div class="space-y-3">
+                        
+                        <!-- Similar Item 1 -->
+                        <a href="#" onclick="showToast('Chargement de X2...')" class="block bg-slate-950/60 p-2.5 rounded-lg border border-slate-800/80 hover:border-amber-500/50 transition group">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-14 bg-slate-800 rounded overflow-hidden shrink-0">
+                                    <img src="https://images.static-bluray.com/movies/covers/12063_front.jpg" alt="X-Men 2" class="w-full h-full object-cover group-hover:scale-110 transition">
+                                </div>
+                                <div class="min-w-0 flex-1">
+                                    <h4 class="text-xs font-bold text-slate-200 group-hover:text-amber-400 truncate transition">X-Men 2 (2003) MULTI 1080p Remux</h4>
+                                    <div class="flex items-center space-x-3 text-[11px] text-slate-400 mt-1">
+                                        <span><i class="fa-solid fa-hard-drive text-amber-500 mr-0.5"></i> 26.1 Go</span>
+                                        <span class="text-emerald-400 font-semibold"><i class="fa-solid fa-arrow-up mr-0.5"></i> 210</span>
+                                        <span class="text-red-400"><i class="fa-solid fa-arrow-down mr-0.5"></i> 8</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- Similar Item 2 -->
+                        <a href="#" onclick="showToast('Chargement de X-Men 3...')" class="block bg-slate-950/60 p-2.5 rounded-lg border border-slate-800/80 hover:border-amber-500/50 transition group">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-14 bg-slate-800 rounded overflow-hidden shrink-0">
+                                    <img src="https://images.static-bluray.com/movies/covers/12063_front.jpg" alt="X-Men 3" class="w-full h-full object-cover group-hover:scale-110 transition">
+                                </div>
+                                <div class="min-w-0 flex-1">
+                                    <h4 class="text-xs font-bold text-slate-200 group-hover:text-amber-400 truncate transition">X-Men: L'affrontement final (2006) 1080p</h4>
+                                    <div class="flex items-center space-x-3 text-[11px] text-slate-400 mt-1">
+                                        <span><i class="fa-solid fa-hard-drive text-amber-500 mr-0.5"></i> 22.4 Go</span>
+                                        <span class="text-emerald-400 font-semibold"><i class="fa-solid fa-arrow-up mr-0.5"></i> 185</span>
+                                        <span class="text-red-400"><i class="fa-solid fa-arrow-down mr-0.5"></i> 5</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- Similar Item 3 -->
+                        <a href="#" onclick="showToast('Chargement de Logan...')" class="block bg-slate-950/60 p-2.5 rounded-lg border border-slate-800/80 hover:border-amber-500/50 transition group">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-14 bg-slate-800 rounded overflow-hidden shrink-0">
+                                    <img src="https://images.static-bluray.com/movies/covers/12063_front.jpg" alt="Logan" class="w-full h-full object-cover group-hover:scale-110 transition">
+                                </div>
+                                <div class="min-w-0 flex-1">
+                                    <h4 class="text-xs font-bold text-slate-200 group-hover:text-amber-400 truncate transition">Logan (2017) MULTI 2160p 4K Remux HDR</h4>
+                                    <div class="flex items-center space-x-3 text-[11px] text-slate-400 mt-1">
+                                        <span><i class="fa-solid fa-hard-drive text-amber-500 mr-0.5"></i> 58.2 Go</span>
+                                        <span class="text-emerald-400 font-semibold"><i class="fa-solid fa-arrow-up mr-0.5"></i> 490</span>
+                                        <span class="text-red-400"><i class="fa-solid fa-arrow-down mr-0.5"></i> 32</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- Similar Item 4 -->
+                        <a href="#" onclick="showToast('Chargement de First Class...')" class="block bg-slate-950/60 p-2.5 rounded-lg border border-slate-800/80 hover:border-amber-500/50 transition group">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-14 bg-slate-800 rounded overflow-hidden shrink-0">
+                                    <img src="https://images.static-bluray.com/movies/covers/12063_front.jpg" alt="X-Men First Class" class="w-full h-full object-cover group-hover:scale-110 transition">
+                                </div>
+                                <div class="min-w-0 flex-1">
+                                    <h4 class="text-xs font-bold text-slate-200 group-hover:text-amber-400 truncate transition">X-Men: Le Commencement (2011) 1080p</h4>
+                                    <div class="flex items-center space-x-3 text-[11px] text-slate-400 mt-1">
+                                        <span><i class="fa-solid fa-hard-drive text-amber-500 mr-0.5"></i> 27.9 Go</span>
+                                        <span class="text-emerald-400 font-semibold"><i class="fa-solid fa-arrow-up mr-0.5"></i> 312</span>
+                                        <span class="text-red-400"><i class="fa-solid fa-arrow-down mr-0.5"></i> 11</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                    </div>
+                </div>
+
+                <!-- POPULAR TAGS & COMMUNITY -->
+                <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 shadow-xl">
+                    <h3 class="text-xs font-extrabold text-slate-300 uppercase tracking-wider mb-3">
+                        <i class="fa-solid fa-tags text-amber-400 mr-1"></i> Mots-clés Populaires
+                    </h3>
+                    <div class="flex flex-wrap gap-1.5 text-[11px]">
+                        <span class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-2 py-1 rounded cursor-pointer transition">Marvel</span>
+                        <span class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-2 py-1 rounded cursor-pointer transition">Wolverine</span>
+                        <span class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-2 py-1 rounded cursor-pointer transition">Hugh Jackman</span>
+                        <span class="bg-amber-500/20 text-amber-400 border border-amber-500/30 px-2 py-1 rounded cursor-pointer font-bold">1080p REMUX</span>
+                        <span class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-2 py-1 rounded cursor-pointer transition">Bryan Singer</span>
+                        <span class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-2 py-1 rounded cursor-pointer transition">DTS-HD MA</span>
+                        <span class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-2 py-1 rounded cursor-pointer transition">VFF TrueFrench</span>
+                    </div>
+                </div>
+
+            </aside>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 border-t border-slate-800 mt-12 py-8 text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="flex items-center space-x-2 text-white font-extrabold text-base">
+                    <span class="bg-amber-500 text-slate-950 px-2 py-0.5 rounded">T9</span>
+                    <span>TORRENT9 fr-FR</span>
+                </div>
+                <div class="flex flex-wrap justify-center gap-4 text-slate-400">
+                    <a href="#" class="hover:text-amber-400 transition">Accueil</a>
+                    <a href="#" class="hover:text-amber-400 transition">Règlement</a>
+                    <a href="#" class="hover:text-amber-400 transition">FAQ / Aide</a>
+                    <a href="#" class="hover:text-amber-400 transition">Protection des données</a>
+                    <a href="#" class="hover:text-amber-400 transition">Contact DMCA</a>
+                </div>
+            </div>
+            <p class="text-center text-slate-600 text-[11px] leading-relaxed">
+                Avertissement : Torrent9 est une plateforme communautaire d'indexation de fichiers torrents P2P. Aucun fichier sous droit d'auteur n'est hébergé sur nos serveurs. Veuillez respecter la législation en vigueur dans votre pays.
+            </p>
+        </div>
+    </footer>
+
+    <!-- TOAST NOTIFICATION CONTAINER -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 bg-slate-900 border border-amber-500/50 text-white px-4 py-3 rounded-xl shadow-2xl transition transform translate-y-20 opacity-0 pointer-events-none flex items-center space-x-3">
+        <div id="toastIcon" class="text-amber-400 text-lg">
+            <i class="fa-solid fa-circle-check"></i>
+        </div>
+        <span id="toastMessage" class="text-xs font-semibold">Action effectuée avec succès !</span>
+    </div>
+
+    <!-- JAVASCRIPT CORE LOGIC -->
+    <script>
+        let selectedRating = 5;
+
+        // Switch active tab in Torrent Details module
+        function switchTab(tabId) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            
+            // Deactivate all tab buttons
+            document.querySelectorAll('.tab-btn').forEach(el => {
+                el.classList.remove('text-amber-400', 'border-amber-500', 'bg-slate-900/50');
+                el.classList.add('text-slate-400', 'border-transparent');
+            });
+
+            // Show target content
+            const targetContent = document.getElementById('content-' + tabId);
+            if(targetContent) {
+                targetContent.classList.remove('hidden');
+            }
+
+            // Activate active button
+            const activeBtn = document.getElementById('tab-' + tabId);
+            if(activeBtn) {
+                activeBtn.classList.remove('text-slate-400', 'border-transparent');
+                activeBtn.classList.add('text-amber-400', 'border-amber-500', 'bg-slate-900/50');
+            }
+        }
+
+        // Simulate Torrent File Download
+        function downloadTorrent() {
+            const torrentFileName = "X-Men.2000.MULTI.1080p.BluRay.REMUX.AVC.DTS-HD.MA.5.1-T9.torrent";
+            const dummyContent = "d8:announce37:udp://tracker.openbittorrent.com:8013:creation datei1697280000e4:infod6:lengthi26679549952e4:name61:X-Men.2000.MULTI.1080p.BluRay.REMUX.AVC.DTS-HD.MA.5.1-T9.mkv12:piece lengthi4194304ee";
+            
+            const blob = new Blob([dummyContent], { type: 'application/x-bittorrent' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = torrentFileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            showToast("Téléchargement du fichier .torrent démarré !");
+        }
+
+        // Copy Magnet Link
+        function copyMagnet() {
+            const magnetURI = "magnet:?xt=urn:btih:8f3c8a912b704e12e84d129a0021b334a1bc92e1&dn=X-Men.2000.MULTI.1080p.BluRay.REMUX.AVC.DTS-HD.MA.5.1-T9&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A8000&tr=udp%3A%2F%2Fopen.demonii.com%3A1337";
+            
+            // Fallback copy strategy for sandboxed frames
+            const textArea = document.createElement("textarea");
+            textArea.value = magnetURI;
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                showToast("Lien Magnet copié dans le presse-papier !");
+            } catch (err) {
+                showToast("Impossible de copier automatiquement le magnet.");
+            }
+            document.body.removeChild(textArea);
+        }
+
+        // Copy NFO Text
+        function copyNFO() {
+            const nfoText = document.getElementById('nfoText').innerText;
+            const textArea = document.createElement("textarea");
+            textArea.value = nfoText;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            showToast("NFO copié dans le presse-papier !");
+        }
+
+        // Search bar handler
+        function handleSearch() {
+            const query = document.getElementById('searchInput').value.trim();
+            if(query) {
+                showToast("Recherche de : '" + query + "'");
+            } else {
+                showToast("Veuillez saisir un terme de recherche.");
+            }
+        }
+
+        // VPN simulation popup
+        function simulateVpnProtect() {
+            showToast("Redirection vers la protection VPN anonyme...");
+        }
+
+        // Set rating stars
+        function setRating(rating) {
+            selectedRating = rating;
+            const stars = document.querySelectorAll('#starRating i');
+            stars.forEach((star, idx) => {
+                if(idx < rating) {
+                    star.classList.remove('fa-regular');
+                    star.classList.add('fa-solid');
+                } else {
+                    star.classList.remove('fa-solid');
+                    star.classList.add('fa-regular');
+                }
+            });
+        }
+
+        // Post new user comment
+        function postComment() {
+            const author = document.getElementById('commentAuthor').value.trim() || 'Anonyme';
+            const text = document.getElementById('commentText').value.trim();
+
+            if(!text) {
+                showToast("Veuillez rédiger un commentaire avant d'envoyer.");
+                return;
+            }
+
+            const starsHtml = '★'.repeat(selectedRating) + '☆'.repeat(5 - selectedRating);
+            const container = document.getElementById('commentsContainer');
+            
+            const commentBox = document.createElement('div');
+            commentBox.className = "bg-slate-950/40 p-3.5 rounded-xl border border-amber-500/30 text-xs space-y-1.5 animate-fade-in";
+            commentBox.innerHTML = `
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center space-x-2">
+                        <span class="font-bold text-amber-400">${escapeHtml(author)}</span>
+                        <span class="bg-amber-500/10 text-amber-400 text-[10px] px-1.5 py-0.5 rounded font-semibold border border-amber-500/20">Avis récent</span>
+                    </div>
+                    <span class="text-slate-500 text-[11px]">À l'instant</span>
+                </div>
+                <div class="text-amber-400 text-[10px]">${starsHtml}</div>
+                <p class="text-slate-300">${escapeHtml(text)}</p>
+            `;
+
+            container.insertBefore(commentBox, container.firstChild);
+            
+            // Clear inputs
+            document.getElementById('commentText').value = '';
+            showToast("Votre commentaire a été publié avec succès !");
+
+            // Update header count
+            const countHeader = document.getElementById('commentsCountHeader');
+            if(countHeader) {
+                countHeader.innerText = parseInt(countHeader.innerText) + 1;
+            }
+        }
+
+        function escapeHtml(text) {
+            return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+        }
+
+        // Toast Notification System
+        let toastTimeout;
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const msgEl = document.getElementById('toastMessage');
+            
+            msgEl.innerText = message;
+            toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+            
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
