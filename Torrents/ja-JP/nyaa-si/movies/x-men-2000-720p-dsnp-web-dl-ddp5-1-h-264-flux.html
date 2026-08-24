@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="ja" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nyaa :: X-Men.2000.720p.DSNP.WEB-DL.DDP5.1.H.264-FLUX</title>
+    <link rel="shortcut icon" href="https://nyaa.si/static/favicon.png" type="image/png">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        nyaa: {
+                            blue: '#337ab7',
+                            darkblue: '#286090',
+                            bgdark: '#181a1b',
+                            carddark: '#222426',
+                            borderdark: '#383c3e',
+                            green: '#5cb85c',
+                            red: '#d9534f',
+                            header: '#2b303b'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Roboto+Mono:wght@400;500&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Roboto', 'Noto Sans JP', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            transition: background-color 0.2s, color 0.2s;
+        }
+        .dark body {
+            background-color: #121314;
+            color: #d1d5db;
+        }
+        .nfo-box {
+            font-family: 'Roboto Mono', monospace;
+            background-color: #0d1117;
+            color: #39d353;
+            border: 1px solid #30363d;
+        }
+        .torrent-category-badge {
+            background-color: #f0ad4e;
+            color: #fff;
+        }
+        /* Custom scrollbars */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1e2227;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3e4451;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #5c6370;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased">
+
+    <header class="bg-nyaa-blue text-white shadow-md dark:bg-gray-900 border-b dark:border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-14">
+                <!-- Brand & Main Nav -->
+                <div class="flex items-center space-x-6">
+                    <a href="#" class="flex items-center space-x-2 font-bold text-xl tracking-tight hover:opacity-90 transition">
+                        <img src="https://nyaa.si/static/favicon.png" alt="Nyaa Logo" class="w-6 h-6 rounded">
+                        <span class="text-white">Nyaa</span>
+                        <span class="text-xs bg-red-600 text-white px-1.5 py-0.5 rounded font-mono uppercase tracking-wider">ja-JP</span>
+                    </a>
+                    <nav class="hidden md:flex space-x-4 text-sm font-medium">
+                        <a href="#" class="px-2 py-1 rounded hover:bg-black/10 dark:hover:bg-gray-800 transition"><i class="fa-solid fa-list mr-1"></i> Torrents</a>
+                        <a href="#" class="px-2 py-1 rounded hover:bg-black/10 dark:hover:bg-gray-800 transition"><i class="fa-solid fa-upload mr-1"></i> Upload</a>
+                        <a href="#" class="px-2 py-1 rounded hover:bg-black/10 dark:hover:bg-gray-800 transition"><i class="fa-solid fa-book mr-1"></i> Rules</a>
+                        <a href="#" class="px-2 py-1 rounded hover:bg-black/10 dark:hover:bg-gray-800 transition"><i class="fa-solid fa-comments mr-1"></i> Forum</a>
+                        <a href="#" class="px-2 py-1 rounded hover:bg-black/10 dark:hover:bg-gray-800 transition text-amber-300"><i class="fa-solid fa-rss mr-1"></i> RSS</a>
+                    </nav>
+                </div>
+
+                <!-- Right Menu: Search & User / Theme -->
+                <div class="flex items-center space-x-3">
+                    <button id="themeToggle" class="p-2 text-gray-200 hover:text-white rounded-lg hover:bg-black/10 dark:hover:bg-gray-800 transition text-sm" title="Toggle Light/Dark Theme">
+                        <i class="fa-solid fa-moon dark:hidden"></i>
+                        <i class="fa-solid fa-sun hidden dark:inline text-yellow-400"></i>
+                    </button>
+                    
+                    <div class="relative hidden sm:block">
+                        <input type="text" placeholder="Search torrents..." class="w-48 lg:w-64 text-sm bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-md px-3 py-1.5 pl-8 focus:outline-none focus:ring-2 focus:ring-blue-300 border border-gray-300 dark:border-gray-700">
+                        <i class="fa-solid fa-magnifying-glass absolute left-2.5 top-2.5 text-gray-400 text-xs"></i>
+                    </div>
+
+                    <a href="#" class="text-xs bg-white/20 hover:bg-white/30 text-white px-3 py-1.5 rounded font-medium transition">
+                        <i class="fa-solid fa-user-lock mr-1"></i> Login
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        
+        <!-- Breadcrumb & Notice -->
+        <div class="mb-4 flex flex-wrap items-center justify-between gap-2 text-xs sm:text-sm text-gray-600 dark:text-gray-400">
+            <div class="flex items-center space-x-2">
+                <a href="#" class="hover:underline text-nyaa-blue dark:text-blue-400">Home</a>
+                <span>/</span>
+                <a href="#" class="hover:underline text-nyaa-blue dark:text-blue-400">Live Action - Non-English-translated</a>
+                <span>/</span>
+                <span class="text-gray-800 dark:text-gray-200 font-medium truncate max-w-xs sm:max-w-md">X-Men.2000.720p.DSNP.WEB-DL...</span>
+            </div>
+            <div class="flex items-center space-x-2">
+                <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 dark:bg-emerald-900/60 text-emerald-800 dark:text-emerald-300">
+                    <i class="fa-solid fa-shield-halved mr-1"></i> Trusted Submitter
+                </span>
+                <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-blue-100 dark:bg-blue-900/60 text-blue-800 dark:text-blue-300">
+                    Disney+ JP Source
+                </span>
+            </div>
+        </div>
+
+        <div class="bg-white dark:bg-nyaa-carddark rounded-lg shadow-sm border border-gray-200 dark:border-nyaa-borderdark overflow-hidden mb-6">
+            
+            <!-- Release Title Bar -->
+            <div class="bg-gray-100 dark:bg-gray-800 px-5 py-4 border-b border-gray-200 dark:border-gray-700 flex flex-col md:flex-row md:items-center justify-between gap-3">
+                <h1 class="text-lg sm:text-xl font-bold text-gray-900 dark:text-white leading-snug break-all">
+                    X-Men.2000.720p.DSNP.WEB-DL.DDP5.1.H.264-FLUX
+                </h1>
+                <div class="flex items-center space-x-2 shrink-0">
+                    <button onclick="copyInfoHash()" class="text-xs bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 px-3 py-1.5 rounded transition flex items-center gap-1">
+                        <i class="fa-solid fa-copy"></i> Copy Hash
+                    </button>
+                    <button onclick="toggleBookmark(this)" class="text-xs bg-amber-500 hover:bg-amber-600 text-white px-3 py-1.5 rounded transition flex items-center gap-1">
+                        <i class="fa-regular fa-star"></i> Favorite
+                    </button>
+                </div>
+            </div>
+
+            <div class="p-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-xs sm:text-sm border-b border-gray-200 dark:border-gray-800 bg-gray-50/50 dark:bg-black/20">
+                <div>
+                    <span class="text-gray-500 dark:text-gray-400 block mb-0.5 font-medium">Category:</span>
+                    <a href="#" class="text-nyaa-blue dark:text-blue-400 font-semibold hover:underline flex items-center gap-1">
+                        <i class="fa-solid fa-film text-gray-400"></i> Live Action - English-translated
+                    </a>
+                </div>
+                <div>
+                    <span class="text-gray-500 dark:text-gray-400 block mb-0.5 font-medium">Submitter:</span>
+                    <a href="#" class="text-emerald-600 dark:text-emerald-400 font-semibold hover:underline flex items-center gap-1">
+                        <i class="fa-solid fa-circle-check"></i> FLUX
+                    </a>
+                </div>
+                <div>
+                    <span class="text-gray-500 dark:text-gray-400 block mb-0.5 font-medium">Date / Time (UTC):</span>
+                    <span class="text-gray-800 dark:text-gray-200 font-mono">2023-11-14 18:42</span>
+                </div>
+                <div>
+                    <span class="text-gray-500 dark:text-gray-400 block mb-0.5 font-medium">File Size:</span>
+                    <span class="text-gray-800 dark:text-gray-200 font-mono font-bold">2.42 GiB</span>
+                </div>
+
+                <div>
+                    <span class="text-gray-500 dark:text-gray-400 block mb-0.5 font-medium">Seeders:</span>
+                    <span class="text-emerald-600 dark:text-emerald-400 font-bold font-mono text-base"><i class="fa-solid fa-arrow-up mr-1"></i>184</span>
+                </div>
+                <div>
+                    <span class="text-gray-500 dark:text-gray-400 block mb-0.5 font-medium">Leechers:</span>
+                    <span class="text-rose-600 dark:text-rose-400 font-bold font-mono text-base"><i class="fa-solid fa-arrow-down mr-1"></i>12</span>
+                </div>
+                <div>
+                    <span class="text-gray-500 dark:text-gray-400 block mb-0.5 font-medium">Completed:</span>
+                    <span class="text-blue-600 dark:text-blue-400 font-bold font-mono text-base"><i class="fa-solid fa-check-double mr-1"></i>4,219</span>
+                </div>
+                <div>
+                    <span class="text-gray-500 dark:text-gray-400 block mb-0.5 font-medium">Info Hash:</span>
+                    <span id="infoHashText" class="font-mono text-xs text-gray-600 dark:text-gray-400 truncate block hover:text-clip" title="8f3b2a194c7e60d21a9831e40a5b281d76543210">
+                        8f3b2a194c7e6...3210
+                    </span>
+                </div>
+            </div>
+
+            <div class="p-4 bg-white dark:bg-nyaa-carddark flex flex-wrap items-center justify-between gap-3 border-b border-gray-200 dark:border-gray-800">
+                <div class="flex flex-wrap items-center gap-2">
+                    <button onclick="triggerMagnetModal()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-md font-semibold text-sm shadow transition flex items-center gap-2">
+                        <i class="fa-solid fa-magnet"></i> Magnet Link
+                    </button>
+                    <button onclick="downloadTorrentFile()" class="bg-nyaa-blue hover:bg-nyaa-darkblue text-white px-4 py-2 rounded-md font-semibold text-sm shadow transition flex items-center gap-2">
+                        <i class="fa-solid fa-download"></i> Torrent File (.torrent)
+                    </button>
+                    <button onclick="copyMagnetURI()" class="bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 border border-gray-300 dark:border-gray-700 px-3 py-2 rounded-md text-sm transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-link"></i> Copy Magnet URI
+                    </button>
+                </div>
+
+                <div class="flex items-center space-x-2 text-xs">
+                    <button onclick="reportTorrent()" class="text-gray-500 hover:text-red-500 dark:text-gray-400 dark:hover:text-red-400 px-2 py-1 transition">
+                        <i class="fa-solid fa-flag mr-1"></i> Report Torrent
+                    </button>
+                </div>
+            </div>
+
+            <div class="p-6 space-y-6">
+                
+                <!-- Audio & Subtitle Feature Box -->
+                <div class="bg-amber-50 dark:bg-amber-950/40 border-l-4 border-amber-500 p-4 rounded-r-md">
+                    <h2 class="text-amber-800 dark:text-amber-300 font-bold text-sm uppercase tracking-wide flex items-center gap-2">
+                        <i class="fa-solid fa-language"></i> Audio & Subtitle Specifications
+                    </h2>
+                    <div class="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm">
+                        <div class="flex items-start space-x-2">
+                            <i class="fa-solid fa-volume-high text-amber-600 dark:text-amber-400 mt-1"></i>
+                            <div>
+                                <span class="font-bold text-gray-900 dark:text-gray-100">Audio Tracks:</span>
+                                <ul class="list-disc list-inside text-gray-700 dark:text-gray-300 mt-0.5 space-y-0.5">
+                                    <li>Track 1: <strong class="text-blue-600 dark:text-blue-400">English</strong> (Dolby Digital Plus 5.1 / E-AC-3 @ 640 kbps)</li>
+                                    <li>Track 2: <strong class="text-blue-600 dark:text-blue-400">Japanese (日本語)</strong> (AAC 2.0 Stereo @ 192 kbps - DSNP Theatrical Dub)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-2">
+                            <i class="fa-solid fa-closed-captioning text-amber-600 dark:text-amber-400 mt-1"></i>
+                            <div>
+                                <span class="font-bold text-gray-900 dark:text-gray-100">Subtitles:</span>
+                                <ul class="list-disc list-inside text-gray-700 dark:text-gray-300 mt-0.5 space-y-0.5">
+                                    <li>Subtitle 1: <strong class="text-emerald-600 dark:text-emerald-400">Japanese (日本語)</strong> [Full Text / SubRip SRT]</li>
+                                    <li>Subtitle 2: <strong class="text-emerald-600 dark:text-emerald-400">English [CC]</strong> [SDH Captions / SubRip SRT]</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Poster & Release Description Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <!-- Movie Poster Container -->
+                    <div class="md:col-span-1 space-y-3">
+                        <div class="rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700 shadow-sm group relative">
+                            <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=600&q=80" 
+                                 alt="X-Men 2000 Poster Art" 
+                                 class="w-full h-auto object-cover group-hover:scale-105 transition duration-300"
+                                 onerror="this.src='https://placehold.co/400x600/1f2937/ffffff?text=X-MEN+2000+DSNP'">
+                            <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 to-transparent p-3 text-white text-xs">
+                                <p class="font-bold">X-Men (2000)</p>
+                                <p class="text-gray-300 text-[10px]">Action, Sci-Fi, Superhero • 1h 44m</p>
+                            </div>
+                        </div>
+
+                        <!-- IMDb & Ratings -->
+                        <div class="bg-gray-50 dark:bg-gray-800 p-3 rounded-md text-xs space-y-1.5 border border-gray-200 dark:border-gray-700">
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-500 dark:text-gray-400">IMDb Rating:</span>
+                                <span class="font-bold text-amber-500"><i class="fa-solid fa-star mr-1"></i>7.3 / 10</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-500 dark:text-gray-400">Release Year:</span>
+                                <span class="font-medium text-gray-800 dark:text-gray-200">2000</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-500 dark:text-gray-400">Source:</span>
+                                <span class="font-medium text-blue-500">Disney+ (DSNP)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Overview and NFO Details -->
+                    <div class="md:col-span-3 space-y-4 text-sm leading-relaxed text-gray-800 dark:text-gray-200">
+                        <div>
+                            <h3 class="text-base font-bold text-gray-900 dark:text-white border-b border-gray-200 dark:border-gray-700 pb-2 mb-2 flex items-center gap-2">
+                                <i class="fa-solid fa-circle-info text-nyaa-blue"></i> Synopsis / 概要
+                            </h3>
+                            <p class="mb-2">
+                                In a world where mutants—humans with extraordinary superpowers—are treated with fear and prejudice by society, two groups emerge with opposing ideologies. Wolverine and Rogue get drawn into a conflict between Professor Charles Xavier's peaceful X-Men and Magneto's Brotherhood of Mutants.
+                            </p>
+                            <p class="text-gray-600 dark:text-gray-400 text-xs italic">
+                                日本語: 突如として現れた超人的能力を持つ変異体「ミュータント」。人類から恐れられ疎外される中、プロフェッサーX率いる平和志向の「X-MEN」と、マグニートー率いる人類征服を企む悪の組織が対立する。
+                            </p>
+                        </div>
+
+                        <!-- Technical NFO Code Block -->
+                        <div>
+                            <div class="flex items-center justify-between mb-1.5">
+                                <h3 class="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                                    <i class="fa-solid fa-terminal mr-1"></i> MediaInfo / Release NFO
+                                </h3>
+                                <button onclick="toggleNfoExpand()" class="text-xs text-nyaa-blue hover:underline">Toggle Expand</button>
+                            </div>
+                            <pre id="nfoBox" class="nfo-box p-4 rounded-md text-xs overflow-x-auto max-h-64 transition-all duration-300">
+RELEASE NAME....: X-Men.2000.720p.DSNP.WEB-DL.DDP5.1.H.264-FLUX
+RELEASE DATE....: 2023-11-14
+CONTAINER.......: Matroska (.mkv)
+FILE SIZE.......: 2.42 GiB
+DURATION........: 01:44:12
+VIDEO CODEC.....: AVC / H.264 High@L3.1
+RESOLUTION......: 1280x536
+ASPECT RATIO....: 2.39:1
+FRAME RATE......: 23.976 FPS
+BITRATE.........: 2 750 kb/s
+
+AUDIO 1.........: English / Dolby Digital Plus 5.1 / 640 kbps (Default)
+AUDIO 2.........: Japanese / AAC / 2.0 Stereo / 192 kbps (日本語吹替)
+
+SUBTITLE 1......: Japanese / SubRip (.srt) / 日本語字幕
+SUBTITLE 2......: English [CC] / SubRip (.srt) / English SDH
+
+SOURCE..........: Disney+ WEB-DL (JP Region)
+ENCODER.........: FLUX Group
+NOTES...........: Clean Web-DL rip with original Japanese audio track preserved.</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-base font-bold text-gray-900 dark:text-white border-b border-gray-200 dark:border-gray-700 pb-2 mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-images text-nyaa-blue"></i> Screen Captures / スクリーンショット
+                    </h3>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+                        <div onclick="openLightbox('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=80', 'Scene Capture 1')" class="cursor-pointer group relative rounded overflow-hidden border border-gray-200 dark:border-gray-700 bg-black aspect-video">
+                            <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=400&q=80" alt="Screenshot 1" class="w-full h-full object-cover group-hover:scale-110 transition duration-300 opacity-90 group-hover:opacity-100">
+                            <div class="absolute inset-0 bg-black/30 group-hover:bg-black/0 transition flex items-center justify-center">
+                                <i class="fa-solid fa-magnifying-glass-plus text-white opacity-0 group-hover:opacity-100 transition text-lg"></i>
+                            </div>
+                        </div>
+                        <div onclick="openLightbox('https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1200&q=80', 'Scene Capture 2')" class="cursor-pointer group relative rounded overflow-hidden border border-gray-200 dark:border-gray-700 bg-black aspect-video">
+                            <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=400&q=80" alt="Screenshot 2" class="w-full h-full object-cover group-hover:scale-110 transition duration-300 opacity-90 group-hover:opacity-100">
+                            <div class="absolute inset-0 bg-black/30 group-hover:bg-black/0 transition flex items-center justify-center">
+                                <i class="fa-solid fa-magnifying-glass-plus text-white opacity-0 group-hover:opacity-100 transition text-lg"></i>
+                            </div>
+                        </div>
+                        <div onclick="openLightbox('https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=1200&q=80', 'Scene Capture 3')" class="cursor-pointer group relative rounded overflow-hidden border border-gray-200 dark:border-gray-700 bg-black aspect-video">
+                            <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=400&q=80" alt="Screenshot 3" class="w-full h-full object-cover group-hover:scale-110 transition duration-300 opacity-90 group-hover:opacity-100">
+                            <div class="absolute inset-0 bg-black/30 group-hover:bg-black/0 transition flex items-center justify-center">
+                                <i class="fa-solid fa-magnifying-glass-plus text-white opacity-0 group-hover:opacity-100 transition text-lg"></i>
+                            </div>
+                        </div>
+                        <div onclick="openLightbox('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80', 'Scene Capture 4')" class="cursor-pointer group relative rounded overflow-hidden border border-gray-200 dark:border-gray-700 bg-black aspect-video">
+                            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=400&q=80" alt="Screenshot 4" class="w-full h-full object-cover group-hover:scale-110 transition duration-300 opacity-90 group-hover:opacity-100">
+                            <div class="absolute inset-0 bg-black/30 group-hover:bg-black/0 transition flex items-center justify-center">
+                                <i class="fa-solid fa-magnifying-glass-plus text-white opacity-0 group-hover:opacity-100 transition text-lg"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+                    <button onclick="toggleFileList()" class="w-full bg-gray-100 dark:bg-gray-800 px-4 py-3 text-left font-bold text-xs sm:text-sm text-gray-800 dark:text-gray-200 flex items-center justify-between hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+                        <span class="flex items-center gap-2">
+                            <i class="fa-solid fa-folder-open text-amber-500"></i> File List (3 Files)
+                        </span>
+                        <i id="fileListChevron" class="fa-solid fa-chevron-down text-gray-500 transition-transform"></i>
+                    </button>
+                    <div id="fileListContent" class="divide-y divide-gray-200 dark:divide-gray-800 text-xs sm:text-sm">
+                        <div class="px-4 py-2.5 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-800/50">
+                            <span class="font-mono text-gray-800 dark:text-gray-200 flex items-center gap-2">
+                                <i class="fa-solid fa-file-video text-blue-500"></i> X-Men.2000.720p.DSNP.WEB-DL.DDP5.1.H.264-FLUX.mkv
+                            </span>
+                            <span class="font-mono text-gray-500">2.42 GiB</span>
+                        </div>
+                        <div class="px-4 py-2.5 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-800/50">
+                            <span class="font-mono text-gray-800 dark:text-gray-200 flex items-center gap-2">
+                                <i class="fa-solid fa-file-lines text-emerald-500"></i> FLUX-Release-Notes.nfo
+                            </span>
+                            <span class="font-mono text-gray-500">4.12 KiB</span>
+                        </div>
+                        <div class="px-4 py-2.5 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-800/50">
+                            <span class="font-mono text-gray-800 dark:text-gray-200 flex items-center gap-2">
+                                <i class="fa-solid fa-file-image text-purple-500"></i> Poster-Cover.jpg
+                            </span>
+                            <span class="font-mono text-gray-500">385 KiB</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="bg-white dark:bg-nyaa-carddark rounded-lg shadow-sm border border-gray-200 dark:border-nyaa-borderdark p-6">
+            <div class="flex items-center justify-between border-b border-gray-200 dark:border-gray-700 pb-3 mb-6">
+                <h2 class="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                    <i class="fa-solid fa-comments text-nyaa-blue"></i> User Comments (<span id="commentCount">3</span>)
+                </h2>
+                <span class="text-xs text-gray-500">Showing latest comments</span>
+            </div>
+
+            <!-- Existing Comments Container -->
+            <div id="commentsList" class="space-y-4 mb-6">
+                <!-- Comment 1 -->
+                <div class="p-4 rounded-lg bg-gray-50 dark:bg-gray-800/60 border border-gray-200 dark:border-gray-700">
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="flex items-center space-x-2">
+                            <img src="https://api.dicebear.com/7.x/identicon/svg?seed=MutantFan" alt="Avatar" class="w-6 h-6 rounded-full bg-gray-200">
+                            <span class="font-bold text-xs sm:text-sm text-nyaa-blue dark:text-blue-400">MutantFan99</span>
+                            <span class="text-[10px] bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-1.5 py-0.5 rounded">User</span>
+                        </div>
+                        <span class="text-xs text-gray-500 font-mono">2023-11-14 20:15 UTC</span>
+                    </div>
+                    <p class="text-xs sm:text-sm text-gray-800 dark:text-gray-200">
+                        Thanks for keeping both the Japanese dub and English audio! The Disney+ stream quality is super clean compared to the old BD rip.
+                    </p>
+                </div>
+
+                <!-- Comment 2 -->
+                <div class="p-4 rounded-lg bg-gray-50 dark:bg-gray-800/60 border border-gray-200 dark:border-gray-700">
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="flex items-center space-x-2">
+                            <img src="https://api.dicebear.com/7.x/identicon/svg?seed=TokyoRider" alt="Avatar" class="w-6 h-6 rounded-full bg-gray-200">
+                            <span class="font-bold text-xs sm:text-sm text-emerald-600 dark:text-emerald-400">TokyoRider_JP</span>
+                            <span class="text-[10px] bg-emerald-100 dark:bg-emerald-900 text-emerald-800 dark:text-emerald-200 px-1.5 py-0.5 rounded">VIP</span>
+                        </div>
+                        <span class="text-xs text-gray-500 font-mono">2023-11-15 02:40 UTC</span>
+                    </div>
+                    <p class="text-xs sm:text-sm text-gray-800 dark:text-gray-200">
+                        日本語吹替と日本語字幕が入っていて助かります！シード協力します。(The Japanese dub and subtitles included are very helpful! Seeding!)
+                    </p>
+                </div>
+
+                <!-- Comment 3 -->
+                <div class="p-4 rounded-lg bg-gray-50 dark:bg-gray-800/60 border border-gray-200 dark:border-gray-700">
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="flex items-center space-x-2">
+                            <img src="https://api.dicebear.com/7.x/identicon/svg?seed=FLUX" alt="Avatar" class="w-6 h-6 rounded-full bg-gray-200">
+                            <span class="font-bold text-xs sm:text-sm text-purple-600 dark:text-purple-400">FLUX</span>
+                            <span class="text-[10px] bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-1.5 py-0.5 rounded font-bold">Uploader</span>
+                        </div>
+                        <span class="text-xs text-gray-500 font-mono">2023-11-15 05:10 UTC</span>
+                    </div>
+                    <p class="text-xs sm:text-sm text-gray-800 dark:text-gray-200">
+                        Enjoy everyone! Seeding from a 10Gbps seedbox. If you find any audio sync issues let me know.
+                    </p>
+                </div>
+            </div>
+
+            <form onsubmit="postComment(event)" class="space-y-3 pt-4 border-t border-gray-200 dark:border-gray-700">
+                <h3 class="text-sm font-bold text-gray-800 dark:text-gray-200">Add a Comment</h3>
+                <div>
+                    <textarea id="newCommentText" rows="3" required placeholder="Write a constructive comment (Markdown supported)..." class="w-full text-xs sm:text-sm p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-nyaa-blue focus:outline-none"></textarea>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="text-[11px] text-gray-500">Be respectful and adhere to Nyaa community rules.</span>
+                    <button type="submit" class="bg-nyaa-blue hover:bg-nyaa-darkblue text-white px-5 py-2 rounded-md font-semibold text-xs sm:text-sm shadow transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-paper-plane"></i> Submit Comment
+                    </button>
+                </div>
+            </form>
+        </div>
+
+    </main>
+
+    <footer class="bg-gray-900 text-gray-400 text-xs py-8 mt-10 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-3">
+            <div class="flex justify-center items-center space-x-4">
+                <a href="#" class="hover:text-white transition">Main Index</a>
+                <span>•</span>
+                <a href="#" class="hover:text-white transition">Rules & FAQ</a>
+                <span>•</span>
+                <a href="#" class="hover:text-white transition">IRC Channel (#nyaa)</a>
+                <span>•</span>
+                <a href="#" class="hover:text-white transition">API Documentation</a>
+            </div>
+            <p class="text-gray-500">
+                Nyaa.si clone mock interface created for release demonstration. All media properties belong to their respective owners.
+            </p>
+            <p class="text-gray-600 font-mono text-[11px]">
+                Server time: 2026-08-23 21:36:00 UTC | Rendered in 0.014s
+            </p>
+        </div>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div id="lightboxModal" class="fixed inset-0 z-50 bg-black/90 hidden items-center justify-center p-4" onclick="closeLightbox()">
+        <div class="relative max-w-4xl w-full" onclick="event.stopPropagation()">
+            <button onclick="closeLightbox()" class="absolute -top-10 right-0 text-white text-2xl hover:text-gray-300">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <img id="lightboxImg" src="" alt="Enlarged screenshot" class="w-full h-auto max-h-[85vh] object-contain rounded shadow-2xl">
+            <p id="lightboxCaption" class="text-center text-white text-xs mt-3 font-mono"></p>
+        </div>
+    </div>
+
+    <!-- Magnet Download Simulation Modal -->
+    <div id="magnetModal" class="fixed inset-0 z-50 bg-black/70 hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-md w-full p-6 space-y-4 border border-gray-200 dark:border-gray-700">
+            <div class="flex items-center justify-between border-b dark:border-gray-700 pb-3">
+                <h3 class="font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                    <i class="fa-solid fa-magnet text-emerald-500"></i> Magnet Link Handler
+                </h3>
+                <button onclick="closeMagnetModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <p class="text-xs text-gray-600 dark:text-gray-300">
+                Connecting to bitTorrent client or WebTorrent swarm for:
+            </p>
+            <div class="bg-gray-100 dark:bg-gray-900 p-3 rounded font-mono text-xs break-all text-gray-700 dark:text-gray-300">
+                magnet:?xt=urn:btih:8f3b2a194c7e60d21a9831e40a5b281d76543210&dn=X-Men.2000.720p.DSNP.WEB-DL.DDP5.1.H.264-FLUX&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337
+            </div>
+
+            <!-- Simulated Download Progress Bar -->
+            <div class="space-y-1">
+                <div class="flex justify-between text-xs text-gray-500 font-mono">
+                    <span id="dlStatus">Connecting to peers...</span>
+                    <span id="dlSpeed">0 KB/s</span>
+                </div>
+                <div class="w-full bg-gray-200 dark:bg-gray-700 h-2.5 rounded-full overflow-hidden">
+                    <div id="dlProgressBar" class="bg-emerald-500 h-full w-0 transition-all duration-300"></div>
+                </div>
+            </div>
+
+            <div class="flex justify-end space-x-2 pt-2">
+                <button onclick="copyMagnetURI()" class="text-xs bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 text-gray-800 dark:text-gray-200 px-3 py-1.5 rounded">
+                    Copy Link
+                </button>
+                <button onclick="closeMagnetModal()" class="text-xs bg-nyaa-blue hover:bg-nyaa-darkblue text-white px-4 py-1.5 rounded">
+                    Done
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Box -->
+    <div id="toast" class="fixed bottom-5 right-5 bg-gray-900 text-white px-4 py-3 rounded-lg shadow-lg text-xs flex items-center space-x-2 translate-y-20 opacity-0 transition-all duration-300 z-50 border border-gray-700">
+        <i id="toastIcon" class="fa-solid fa-circle-check text-emerald-400"></i>
+        <span id="toastMessage">Action completed successfully.</span>
+    </div>
+
+    <script>
+        // Theme toggle logic
+        const themeToggleBtn = document.getElementById('themeToggle');
+        themeToggleBtn.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            showToast('Theme switched', 'fa-moon');
+        });
+
+        // Toast notification system
+        function showToast(message, iconClass = 'fa-circle-check') {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toastMessage');
+            const toastIcon = document.getElementById('toastIcon');
+
+            toastMsg.textContent = message;
+            toastIcon.className = `fa-solid ${iconClass} text-emerald-400`;
+
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // Copy functions
+        function copyInfoHash() {
+            const hash = "8f3b2a194c7e60d21a9831e40a5b281d76543210";
+            navigator.clipboard.writeText(hash).then(() => {
+                showToast("Info Hash copied to clipboard!", "fa-copy");
+            }).catch(() => {
+                showToast("Copied Info Hash: " + hash);
+            });
+        }
+
+        function copyMagnetURI() {
+            const magnet = "magnet:?xt=urn:btih:8f3b2a194c7e60d21a9831e40a5b281d76543210&dn=X-Men.2000.720p.DSNP.WEB-DL.DDP5.1.H.264-FLUX&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337";
+            navigator.clipboard.writeText(magnet).then(() => {
+                showToast("Magnet URI copied to clipboard!", "fa-magnet");
+            }).catch(() => {
+                showToast("Magnet URI copied!");
+            });
+        }
+
+        // Favorite Toggle
+        function toggleBookmark(btn) {
+            const icon = btn.querySelector('i');
+            if (icon.classList.contains('fa-regular')) {
+                icon.className = 'fa-solid fa-star text-yellow-300';
+                btn.classList.replace('bg-amber-500', 'bg-amber-600');
+                showToast("Added to favorites!", "fa-star");
+            } else {
+                icon.className = 'fa-regular fa-star';
+                btn.classList.replace('bg-amber-600', 'bg-amber-500');
+                showToast("Removed from favorites", "fa-star");
+            }
+        }
+
+        // Download simulation
+        function downloadTorrentFile() {
+            showToast("Downloading .torrent file...", "fa-file-arrow-down");
+            const element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent('Simulated Torrent File for X-Men 2000'));
+            element.setAttribute('download', 'X-Men.2000.720p.DSNP.WEB-DL.DDP5.1.H.264-FLUX.torrent');
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
+
+        // Magnet simulation modal
+        let simInterval = null;
+        function triggerMagnetModal() {
+            const modal = document.getElementById('magnetModal');
+            const pBar = document.getElementById('dlProgressBar');
+            const status = document.getElementById('dlStatus');
+            const speed = document.getElementById('dlSpeed');
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+
+            pBar.style.width = '0%';
+            status.textContent = 'Connecting to 184 seeders...';
+            speed.textContent = '0 KB/s';
+
+            let progress = 0;
+            clearInterval(simInterval);
+            simInterval = setInterval(() => {
+                progress += Math.floor(Math.random() * 12) + 5;
+                if (progress >= 100) {
+                    progress = 100;
+                    pBar.style.width = '100%';
+                    status.textContent = 'Seeding / Metadata downloaded!';
+                    speed.textContent = '14.2 MB/s';
+                    clearInterval(simInterval);
+                } else {
+                    pBar.style.width = progress + '%';
+                    status.textContent = `Downloading metadata... (${progress}%)`;
+                    speed.textContent = (Math.random() * 8 + 4).toFixed(1) + ' MB/s';
+                }
+            }, 300);
+        }
+
+        function closeMagnetModal() {
+            const modal = document.getElementById('magnetModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            clearInterval(simInterval);
+        }
+
+        // NFO Box Expand
+        function toggleNfoExpand() {
+            const nfo = document.getElementById('nfoBox');
+            if (nfo.classList.contains('max-h-64')) {
+                nfo.classList.remove('max-h-64');
+                nfo.classList.add('max-h-[800px]');
+            } else {
+                nfo.classList.add('max-h-64');
+                nfo.classList.remove('max-h-[800px]');
+            }
+        }
+
+        // File list toggle
+        function toggleFileList() {
+            const content = document.getElementById('fileListContent');
+            const chevron = document.getElementById('fileListChevron');
+            content.classList.toggle('hidden');
+            chevron.classList.toggle('rotate-180');
+        }
+
+        // Screenshot Lightbox
+        function openLightbox(src, caption) {
+            const modal = document.getElementById('lightboxModal');
+            const img = document.getElementById('lightboxImg');
+            const cap = document.getElementById('lightboxCaption');
+
+            img.src = src;
+            cap.textContent = caption;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeLightbox() {
+            const modal = document.getElementById('lightboxModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // Report Torrent
+        function reportTorrent() {
+            showToast("Report submitted to moderators.", "fa-flag");
+        }
+
+        // Live Comment Posting
+        function postComment(event) {
+            event.preventDefault();
+            const textarea = document.getElementById('newCommentText');
+            const text = textarea.value.trim();
+            if (!text) return;
+
+            const commentsList = document.getElementById('commentsList');
+            const commentCount = document.getElementById('commentCount');
+
+            const now = new Date();
+            const dateStr = now.toISOString().replace('T', ' ').substring(0, 16) + ' UTC';
+
+            const newCommentHtml = `
+                <div class="p-4 rounded-lg bg-blue-50/50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800 animate-fade-in">
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="flex items-center space-x-2">
+                            <img src="https://api.dicebear.com/7.x/identicon/svg?seed=GuestUser" alt="Avatar" class="w-6 h-6 rounded-full bg-gray-200">
+                            <span class="font-bold text-xs sm:text-sm text-nyaa-blue dark:text-blue-400">You (Guest)</span>
+                            <span class="text-[10px] bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-1.5 py-0.5 rounded">Just Now</span>
+                        </div>
+                        <span class="text-xs text-gray-500 font-mono">${dateStr}</span>
+                    </div>
+                    <p class="text-xs sm:text-sm text-gray-800 dark:text-gray-200">${escapeHtml(text)}</p>
+                </div>
+            `;
+
+            commentsList.insertAdjacentHTML('beforeend', newCommentHtml);
+            commentCount.textContent = parseInt(commentCount.textContent) + 1;
+            textarea.value = '';
+            showToast("Comment posted!", "fa-paper-plane");
+        }
+
+        function escapeHtml(string) {
+            return String(string).replace(/[&<>"']/g, function (s) {
+                return {
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    '"': '&quot;',
+                    "'": '&#39;'
+                }[s];
+            });
+        }
+    </script>
+</body>
+</html>
