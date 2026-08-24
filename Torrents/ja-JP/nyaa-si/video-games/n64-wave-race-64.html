@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[N64] ウェーブレース64 / Wave Race 64 (Japan, USA) [ROM+OST] :: Nyaa</title>
+  <link rel="icon" href="https://nyaa.si/static/favicon.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --bg-color: #f8f9fa;
+      --panel-bg: #ffffff;
+      --text-color: #333333;
+      --text-muted: #777777;
+      --border-color: #dddddd;
+      --navbar-bg: #222222;
+      --navbar-link: #9d9d9d;
+      --navbar-link-active: #ffffff;
+      --primary-blue: #337ab7;
+      --primary-hover: #23527c;
+      --success-green: #5cb85c;
+      --info-blue: #5bc0de;
+      --table-stripe: #f9f9f9;
+      --panel-header-bg: #f5f5f5;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+      font-size: 14px;
+      line-height: 1.42857143;
+      color: var(--text-color);
+      background-color: var(--bg-color);
+    }
+
+    a {
+      color: var(--primary-blue);
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: var(--primary-hover);
+      text-decoration: underline;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: var(--navbar-bg);
+      border-bottom: 1px solid transparent;
+      padding: 0 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 50px;
+    }
+
+    .navbar-brand {
+      display: flex;
+      align-items: center;
+      color: #fff;
+      font-weight: bold;
+      font-size: 18px;
+      padding: 10px 15px;
+      text-decoration: none;
+    }
+
+    .navbar-brand img {
+      width: 20px;
+      height: 20px;
+      margin-right: 8px;
+    }
+
+    .navbar-nav {
+      display: flex;
+      list-style: none;
+      align-items: center;
+    }
+
+    .navbar-nav li a {
+      color: var(--navbar-link);
+      padding: 15px 12px;
+      display: block;
+      font-size: 13px;
+    }
+
+    .navbar-nav li a:hover,
+    .navbar-nav li.active a {
+      color: var(--navbar-link-active);
+      text-decoration: none;
+    }
+
+    .navbar-search {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .form-control {
+      height: 30px;
+      padding: 4px 8px;
+      font-size: 12px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      outline: none;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 5px 10px;
+      font-size: 12px;
+      font-weight: normal;
+      text-align: center;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      border: 1px solid transparent;
+      border-radius: 3px;
+      text-decoration: none !important;
+    }
+
+    .btn-primary {
+      color: #fff;
+      background-color: var(--primary-blue);
+      border-color: #2e6da4;
+    }
+
+    .btn-success {
+      color: #fff;
+      background-color: var(--success-green);
+      border-color: #4cae4c;
+    }
+
+    .btn-info {
+      color: #fff;
+      background-color: var(--info-blue);
+      border-color: #46b8da;
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1170px;
+      margin: 20px auto;
+      padding: 0 15px;
+    }
+
+    /* Panel */
+    .panel {
+      background-color: var(--panel-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      box-shadow: 0 1px 1px rgba(0,0,0,.05);
+      margin-bottom: 20px;
+    }
+
+    .panel-heading {
+      background-color: var(--panel-header-bg);
+      border-bottom: 1px solid var(--border-color);
+      padding: 10px 15px;
+      border-top-left-radius: 3px;
+      border-top-right-radius: 3px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .panel-title {
+      font-size: 16px;
+      font-weight: bold;
+      color: inherit;
+    }
+
+    .panel-body {
+      padding: 15px;
+    }
+
+    /* Meta Table / Grid */
+    .torrent-meta {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+      background-color: var(--panel-header-bg);
+      padding: 12px;
+      border-radius: 4px;
+      border: 1px solid #eaeaea;
+    }
+
+    .meta-row {
+      display: flex;
+      font-size: 13px;
+    }
+
+    .meta-label {
+      width: 120px;
+      font-weight: bold;
+      color: var(--text-muted);
+    }
+
+    .meta-val {
+      flex: 1;
+    }
+
+    .text-success { color: #3c763d; font-weight: bold; }
+    .text-danger { color: #a94442; font-weight: bold; }
+    .text-info { color: #31708f; }
+
+    /* Action Buttons Bar */
+    .action-bar {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    /* Markdown / Description Content */
+    #torrent-description {
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    #torrent-description h3 {
+      font-size: 16px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 4px;
+      margin: 15px 0 8px 0;
+    }
+
+    #torrent-description ul {
+      margin-left: 20px;
+      margin-bottom: 10px;
+    }
+
+    .preview-box {
+      margin: 15px 0;
+      padding: 10px;
+      background: #fafafa;
+      border: 1px solid #e0e0e0;
+      border-radius: 3px;
+      display: inline-block;
+    }
+
+    /* Filelist Accordion */
+    .file-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      font-size: 13px;
+    }
+
+    .file-table th, .file-table td {
+      padding: 8px;
+      border: 1px solid var(--border-color);
+      text-align: left;
+    }
+
+    .file-table th {
+      background-color: var(--panel-header-bg);
+    }
+
+    .file-table tr:nth-child(even) {
+      background-color: var(--table-stripe);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px 0;
+      color: var(--text-muted);
+      font-size: 12px;
+      border-top: 1px solid var(--border-color);
+      margin-top: 40px;
+    }
+
+    /* Interactive Copy Toast */
+    #toast {
+      visibility: hidden;
+      min-width: 200px;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      border-radius: 4px;
+      padding: 10px;
+      position: fixed;
+      z-index: 1000;
+      bottom: 30px;
+      right: 30px;
+      font-size: 13px;
+    }
+
+    #toast.show {
+      visibility: visible;
+      animation: fadein 0.3s, fadeout 0.3s 2.2s;
+    }
+
+    @keyframes fadein { from { bottom: 0; opacity: 0; } to { bottom: 30px; opacity: 1; } }
+    @keyframes fadeout { from { bottom: 30px; opacity: 1; } to { bottom: 0; opacity: 0; } }
+
+    @media (max-width: 768px) {
+      .torrent-meta { grid-template-columns: 1fr; }
+      .navbar { flex-direction: column; align-items: flex-start; padding: 10px; }
+      .navbar-search { margin-top: 10px; width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div style="display: flex; align-items: center;">
+      <a class="navbar-brand" href="#">
+        <img src="https://nyaa.si/static/favicon.png" alt="Nyaa Logo"> Nyaa
+      </a>
+      <ul class="navbar-nav">
+        <li class="active"><a href="#"><i class="fa fa-home"></i> ホーム</a></li>
+        <li><a href="#"><i class="fa fa-upload"></i> アップロード</a></li>
+        <li><a href="#"><i class="fa fa-info-circle"></i> ヘルプ・利用規約</a></li>
+      </ul>
+    </div>
+    <div class="navbar-search">
+      <select class="form-control">
+        <option>すべてのカテゴリー</option>
+        <option selected>ゲーム - レトロゲーム</option>
+      </select>
+      <input type="text" class="form-control" placeholder="検索..." value="Wave Race 64">
+      <button class="btn btn-primary"><i class="fa fa-search"></i> 検索</button>
+    </div>
+  </nav>
+
+  <!-- Main View Container -->
+  <div class="container">
+
+    <div class="panel">
+      <!-- Title Heading -->
+      <div class="panel-heading">
+        <h1 class="panel-title">[N64] ウェーブレース64 / Wave Race 64 (Japan, USA) [v1.1 + OST FLAC]</h1>
+      </div>
+
+      <div class="panel-body">
+
+        <!-- Metadata Grid -->
+        <div class="torrent-meta">
+          <div class="meta-row">
+            <span class="meta-label">カテゴリー:</span>
+            <span class="meta-val"><a href="#">Games - Retro</a></span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">日付:</span>
+            <span class="meta-val">1996-09-27 12:00 JST</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">投稿者:</span>
+            <span class="meta-val"><a href="#" style="font-weight: bold; color: #286090;">Nintendo_Archivist</a></span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">シード (Seeders):</span>
+            <span class="meta-val text-success" id="seed-count">64</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">ファイル情報:</span>
+            <span class="meta-val">128.4 MiB (4 ファイル)</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">リーク (Leechers):</span>
+            <span class="meta-val text-danger" id="leech-count">2</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">情報ハッシュ:</span>
+            <span class="meta-val" style="font-family: monospace; font-size: 11px;">96b403f7ca84e72390a421b44616238b724f1996</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">完了数:</span>
+            <span class="meta-val text-info">1,996</span>
+          </div>
+        </div>
+
+        <!-- Download Buttons -->
+        <div class="action-bar">
+          <a href="#" class="btn btn-primary" onclick="triggerDownload(event, 'torrent')">
+            <i class="fa fa-download"></i> トレントファイルのダウンロード
+          </a>
+          <a href="#" class="btn btn-success" onclick="triggerDownload(event, 'magnet')">
+            <i class="fa fa-magnet"></i> マグネットリンク
+          </a>
+          <button class="btn btn-info" onclick="copyMagnet()">
+            <i class="fa fa-copy"></i> ハッシュのコピー
+          </button>
+        </div>
+
+        <!-- Content Description -->
+        <div id="torrent-description">
+          <h3>🎮 作品概要 / Overview</h3>
+          <p>
+            <strong>『ウェーブレース64』 (Wave Race 64)</strong> は、1996年に任天堂より発売された NINTENDO 64 向け水上ジェットスキーレースゲームです。波の物理シミュレーションと水面反射の表現において、当時最高峰のグラフィックス技術を誇りました。
+          </p>
+
+          <div class="preview-box">
+            <strong>📋 ゲームスペック:</strong>
+            <ul>
+              <li><strong>プラットフォーム:</strong> NINTENDO 64 (N64)</li>
+              <li><strong>開発元 / 発売元:</strong> 任天堂 (Nintendo EAD)</li>
+              <li><strong>プロデューサー:</strong> 宮本 茂 (Shigeru Miyamoto)</li>
+              <li><strong>発売日:</strong> 1996年9月27日 (日本) / 1996年11月5日 (北米)</li>
+              <li><strong>作曲:</strong> 兼岡 一弘 (Kazumi Totaka / Kazuhiro Kaneoka)</li>
+            </ul>
+          </div>
+
+          <h3>📦 収録内容 / Contents</h3>
+          <ul>
+            <li><code>Wave Race 64 (Japan) (Rev A).z64</code> - 日本語版 ROM (Ver 1.1)</li>
+            <li><code>Wave Race 64 (USA) (Rev A).z64</code> - 北米版 ROM</li>
+            <li><code>Wave Race 64 - Kawasaki Jet Ski Original Soundtrack (FLAC).zip</code> - 完全版サントラ</li>
+            <li><code>Manual_JP.pdf</code> - 取扱説明書スキャン</li>
+          </ul>
+
+          <h3>⚙️ 動作確認済みエミュレータ</h3>
+          <p>Simple64, Ares, Project64, RetroArch (Mupen64Plus-Next Core), 各種実機 FlashCart (EverDrive-64) にて起動確認済み。</p>
+        </div>
+
+        <!-- File List Panel Section -->
+        <h3 style="margin-top: 30px; font-size: 16px; border-bottom: 1px solid var(--border-color); padding-bottom: 5px;">
+          <i class="fa fa-folder-open"></i> ファイル一覧 (File List)
+        </h3>
+        <table class="file-table">
+          <thead>
+            <tr>
+              <th>ファイル名</th>
+              <th style="width: 120px;">サイズ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><i class="fa fa-file"></i> Wave Race 64 (Japan) (Rev A).z64</td>
+              <td>8.00 MiB</td>
+            </tr>
+            <tr>
+              <td><i class="fa fa-file"></i> Wave Race 64 (USA) (Rev A).z64</td>
+              <td>8.00 MiB</td>
+            </tr>
+            <tr>
+              <td><i class="fa fa-file-archive"></i> Wave Race 64 - Original Soundtrack (FLAC).zip</td>
+              <td>108.2 MiB</td>
+            </tr>
+            <tr>
+              <td><i class="fa fa-file-pdf"></i> Manual_JP.pdf</td>
+              <td>4.20 MiB</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2026 Nyaa.si Clone - Wave Race 64 Fan Archive View</p>
+    <p style="margin-top: 4px; font-size: 11px;">All trademarks and copyrights belong to their respective owners (Nintendo Co., Ltd.).</p>
+  </footer>
+
+  <!-- Toast Notification -->
+  <div id="toast">マグネットハッシュをクリップボードにコピーしました！</div>
+
+  <script>
+    const HASH = "96b403f7ca84e72390a421b44616238b724f1996";
+    const MAGNET_LINK = `magnet:?xt=urn:btih:${HASH}&dn=Wave+Race+64+(Japan+USA)+[v1.1+OST]&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce`;
+
+    function triggerDownload(e, type) {
+      e.preventDefault();
+      if (type === 'magnet') {
+        window.location.href = MAGNET_LINK;
+      } else {
+        alert("『ウェーブレース64』の .torrent ダウンロードを開始します (ダミー)");
+      }
+    }
+
+    function copyMagnet() {
+      navigator.clipboard.writeText(MAGNET_LINK).then(() => {
+        const toast = document.getElementById("toast");
+        toast.className = "show";
+        setTimeout(() => { 
+          toast.className = toast.className.replace("show", ""); 
+        }, 2500);
+      });
+    }
+  </script>
+</body>
+</html>
