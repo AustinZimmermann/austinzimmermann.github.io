@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="fr" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Torrent9 - Star.Wars.The.Empire.Strikes.Back.Episode.V.1980.MULTI.720p.DSNP.WEB-DL.DDP5.1.H.264-CMRG</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        t9: {
+                            bg: '#0e1217',
+                            card: '#161b22',
+                            cardHover: '#1c212a',
+                            border: '#262c36',
+                            primary: '#2563eb',
+                            primaryHover: '#1d4ed8',
+                            green: '#10b981',
+                            red: '#ef4444',
+                            yellow: '#f59e0b',
+                            textMuted: '#9ca3af'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+                        mono: ['Consolas', 'Monaco', 'Courier New', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0e1217;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #262c36;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #374151;
+        }
+        .nfo-box {
+            font-family: 'Courier New', Courier, monospace;
+            white-space: pre;
+            line-height: 1.25;
+            letter-spacing: -0.5px;
+        }
+        @keyframes pulse-soft {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+        .animate-pulse-soft {
+            animation: pulse-soft 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+    </style>
+</head>
+<body class="bg-t9-bg text-gray-200 font-sans antialiased min-h-screen flex flex-col justify-between">
+
+    <!-- Header / Navbar -->
+    <header class="bg-t9-card border-b border-t9-border sticky top-0 z-40 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                
+                <!-- Logo & Brand -->
+                <div class="flex items-center space-x-6">
+                    <a href="#" class="flex items-center space-x-2 text-2xl font-black tracking-wider text-white group">
+                        <span class="bg-blue-600 text-white px-2.5 py-1 rounded-lg shadow-md group-hover:bg-blue-500 transition-colors">T9</span>
+                        <span class="text-blue-500">TORRENT<span class="text-white">9</span></span>
+                        <span class="text-xs bg-red-600 text-white px-1.5 py-0.5 rounded uppercase font-semibold tracking-normal hidden sm:inline-block">FR</span>
+                    </a>
+                    
+                    <!-- Navigation Links -->
+                    <nav class="hidden md:flex space-x-1 text-sm font-medium">
+                        <a href="#" class="px-3 py-2 rounded-md bg-blue-600/20 text-blue-400 border border-blue-500/30 font-semibold"><i class="fa-solid fa-film mr-1.5"></i> Films</a>
+                        <a href="#" class="px-3 py-2 rounded-md text-gray-300 hover:text-white hover:bg-t9-cardHover transition-colors"><i class="fa-solid fa-tv mr-1.5"></i> Séries</a>
+                        <a href="#" class="px-3 py-2 rounded-md text-gray-300 hover:text-white hover:bg-t9-cardHover transition-colors"><i class="fa-solid fa-music mr-1.5"></i> Musiques</a>
+                        <a href="#" class="px-3 py-2 rounded-md text-gray-300 hover:text-white hover:bg-t9-cardHover transition-colors"><i class="fa-solid fa-gamepad mr-1.5"></i> Jeux</a>
+                        <a href="#" class="px-3 py-2 rounded-md text-gray-300 hover:text-white hover:bg-t9-cardHover transition-colors"><i class="fa-solid fa-fire text-yellow-500 mr-1.5"></i> Top 100</a>
+                    </nav>
+                </div>
+
+                <!-- Search Bar & User Actions -->
+                <div class="flex items-center space-x-3">
+                    <div class="relative hidden sm:block w-64 lg:w-80">
+                        <input type="text" value="Star Wars Episode V" class="w-full bg-t9-bg text-sm text-gray-200 border border-t9-border rounded-lg pl-9 pr-4 py-2 focus:outline-none focus:border-blue-500 transition-colors placeholder-gray-500" placeholder="Rechercher un torrent...">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-gray-400 text-sm"></i>
+                    </div>
+
+                    <button class="bg-blue-600 hover:bg-blue-500 text-white px-3.5 py-2 rounded-lg text-sm font-medium flex items-center transition-colors shadow">
+                        <i class="fa-solid fa-user-check mr-2"></i> Connexion
+                    </button>
+                    
+                    <button class="md:hidden text-gray-400 hover:text-white p-2" id="mobile-menu-btn" onclick="toggleMobileMenu()">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="hidden md:hidden bg-t9-card border-b border-t9-border px-4 pt-2 pb-4 space-y-2" id="mobile-menu">
+            <div class="mb-3">
+                <input type="text" value="Star Wars Episode V" class="w-full bg-t9-bg text-sm text-gray-200 border border-t9-border rounded-lg px-3 py-2" placeholder="Rechercher...">
+            </div>
+            <a href="#" class="block px-3 py-2 rounded-md bg-blue-600/20 text-blue-400 font-semibold"><i class="fa-solid fa-film mr-2"></i> Films</a>
+            <a href="#" class="block px-3 py-2 rounded-md text-gray-300 hover:bg-t9-cardHover"><i class="fa-solid fa-tv mr-2"></i> Séries</a>
+            <a href="#" class="block px-3 py-2 rounded-md text-gray-300 hover:bg-t9-cardHover"><i class="fa-solid fa-music mr-2"></i> Musiques</a>
+            <a href="#" class="block px-3 py-2 rounded-md text-gray-300 hover:bg-t9-cardHover"><i class="fa-solid fa-gamepad mr-2"></i> Jeux</a>
+            <a href="#" class="block px-3 py-2 rounded-md text-gray-300 hover:bg-t9-cardHover"><i class="fa-solid fa-fire text-yellow-500 mr-2"></i> Top 100</a>
+        </div>
+    </header>
+
+    <!-- Main Wrapper -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-grow w-full">
+        
+        <!-- Torrent Tracker Warning Banner (VPN Ad Classic) -->
+        <div class="bg-gradient-to-r from-amber-900/40 via-amber-950/30 to-t9-card border border-amber-600/40 rounded-xl p-4 mb-6 shadow-md flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center space-x-3">
+                <div class="bg-amber-500/20 p-2.5 rounded-lg border border-amber-500/30 shrink-0">
+                    <i class="fa-solid fa-shield-halved text-amber-400 text-xl"></i>
+                </div>
+                <div>
+                    <h4 class="text-sm font-bold text-amber-200 flex items-center">
+                        <span class="inline-block w-2 h-2 rounded-full bg-amber-400 mr-2 animate-ping"></span>
+                        Avertissement Hadopi / Arcom & Protection P2P
+                    </h4>
+                    <p class="text-xs text-gray-300 mt-0.5">Votre adresse IP <span class="font-mono bg-amber-950 px-1.5 py-0.5 rounded border border-amber-800/50 text-amber-300 font-bold">193.168.1.42</span> est actuellement <span class="text-red-400 font-semibold">visible</span>. Masquez votre identité lors du téléchargement.</p>
+                </div>
+            </div>
+            <a href="#" onclick="showVpnNotice()" class="shrink-0 bg-amber-500 hover:bg-amber-400 text-gray-950 font-bold text-xs px-4 py-2.5 rounded-lg transition-colors flex items-center shadow">
+                <i class="fa-solid fa-lock mr-1.5"></i> Activer un VPN Sécurisé
+            </a>
+        </div>
+
+        <!-- Breadcrumbs -->
+        <nav class="flex text-xs text-gray-400 mb-4" aria-label="Breadcrumb">
+            <ol class="inline-flex items-center space-x-1 md:space-x-2">
+                <li class="inline-flex items-center"><a href="#" class="hover:text-white"><i class="fa-solid fa-house mr-1.5"></i>Accueil</a></li>
+                <li><i class="fa-solid fa-chevron-right text-gray-600 text-[10px] mx-1"></i></li>
+                <li><a href="#" class="hover:text-white">Films</a></li>
+                <li><i class="fa-solid fa-chevron-right text-gray-600 text-[10px] mx-1"></i></li>
+                <li><a href="#" class="hover:text-white">Science-Fiction</a></li>
+                <li><i class="fa-solid fa-chevron-right text-gray-600 text-[10px] mx-1"></i></li>
+                <li class="text-blue-400 font-medium truncate max-w-[200px] sm:max-w-none">Star Wars: Épisode V</li>
+            </ol>
+        </nav>
+
+        <!-- Release Title Header Box -->
+        <div class="bg-t9-card border border-t9-border rounded-xl p-5 mb-6 shadow-md relative overflow-hidden">
+            <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-blue-600/10 rounded-full blur-2xl pointer-events-none"></div>
+            
+            <div class="flex flex-wrap items-center gap-2 mb-3">
+                <span class="bg-blue-600 text-white text-xs font-bold px-2.5 py-1 rounded uppercase tracking-wide">FILM MULTI</span>
+                <span class="bg-purple-600 text-white text-xs font-bold px-2.5 py-1 rounded uppercase tracking-wide">720p WEB-DL</span>
+                <span class="bg-emerald-600 text-white text-xs font-bold px-2.5 py-1 rounded uppercase tracking-wide"><i class="fa-solid fa-circle-check mr-1"></i>VÉRIFIÉ</span>
+                <span class="bg-gray-800 text-gray-300 border border-gray-700 text-xs font-mono px-2.5 py-1 rounded">Disney+ (DSNP)</span>
+            </div>
+
+            <h1 class="text-lg sm:text-xl md:text-2xl font-mono font-bold text-white break-all leading-snug">
+                Star.Wars.The.Empire.Strikes.Back.Episode.V.1980.MULTI.720p.DSNP.WEB-DL.DDP5.1.H.264-CMRG
+            </h1>
+
+            <p class="text-xs text-t9-textMuted mt-2 flex items-center flex-wrap gap-y-1 gap-x-4">
+                <span><i class="fa-regular fa-clock mr-1 text-blue-400"></i>Ajouté le: <strong>14 Mai 2024 (Mise à jour HD)</strong></span>
+                <span><i class="fa-solid fa-microchip mr-1 text-blue-400"></i>Team: <strong class="text-blue-300">CMRG</strong></span>
+                <span><i class="fa-solid fa-download mr-1 text-emerald-400"></i>Téléchargements: <strong>12 480</strong></span>
+            </p>
+        </div>
+
+        <!-- Quick Action Buttons Bar -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
+            <button onclick="downloadTorrent()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 px-4 rounded-xl shadow-lg transition-all flex items-center justify-center space-x-2 group transform active:scale-95">
+                <i class="fa-solid fa-download text-lg group-hover:bounce"></i>
+                <span class="text-sm">TÉLÉCHARGER LE TORRENT</span>
+            </button>
+
+            <button onclick="copyMagnet()" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-3.5 px-4 rounded-xl shadow-lg transition-all flex items-center justify-center space-x-2 group transform active:scale-95">
+                <i class="fa-solid fa-magnet text-lg text-red-300"></i>
+                <span class="text-sm">LIEN MAGNET</span>
+            </button>
+
+            <button onclick="openTrailerModal()" class="bg-t9-card border border-t9-border hover:bg-t9-cardHover text-gray-200 font-semibold py-3.5 px-4 rounded-xl shadow transition-all flex items-center justify-center space-x-2">
+                <i class="fa-solid fa-circle-play text-red-500 text-lg"></i>
+                <span class="text-sm">BANDE-ANNONCE</span>
+            </button>
+
+            <button onclick="bookmarkTorrent(this)" class="bg-t9-card border border-t9-border hover:bg-t9-cardHover text-gray-300 font-semibold py-3.5 px-4 rounded-xl shadow transition-all flex items-center justify-center space-x-2">
+                <i class="fa-regular fa-bookmark text-yellow-500 text-lg"></i>
+                <span class="text-sm" id="bookmark-text">AJOUTER AUX FAVORIS</span>
+            </button>
+        </div>
+
+        <!-- Torrent Stats Matrix Card -->
+        <div class="bg-t9-card border border-t9-border rounded-xl p-4 mb-6 shadow-sm">
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 text-center divide-x-0 sm:divide-x divide-t9-border/60">
+                <div class="p-2">
+                    <span class="text-xs text-t9-textMuted uppercase font-semibold block mb-1">Seeders (Sources)</span>
+                    <span class="text-lg font-bold text-emerald-400 flex items-center justify-center">
+                        <i class="fa-solid fa-arrow-up text-xs mr-1"></i>1 842
+                    </span>
+                </div>
+                <div class="p-2">
+                    <span class="text-xs text-t9-textMuted uppercase font-semibold block mb-1">Leechers (Clients)</span>
+                    <span class="text-lg font-bold text-red-400 flex items-center justify-center">
+                        <i class="fa-solid fa-arrow-down text-xs mr-1"></i>124
+                    </span>
+                </div>
+                <div class="p-2">
+                    <span class="text-xs text-t9-textMuted uppercase font-semibold block mb-1">Taille Totale</span>
+                    <span class="text-lg font-bold text-white font-mono">4.85 GB</span>
+                </div>
+                <div class="p-2">
+                    <span class="text-xs text-t9-textMuted uppercase font-semibold block mb-1">Langues Audio</span>
+                    <span class="text-sm font-bold text-blue-400 flex items-center justify-center space-x-1 mt-1">
+                        <span class="bg-blue-900/60 text-blue-200 px-1.5 py-0.5 rounded text-xs border border-blue-700/50">FR</span>
+                        <span class="bg-blue-900/60 text-blue-200 px-1.5 py-0.5 rounded text-xs border border-blue-700/50">EN</span>
+                    </span>
+                </div>
+                <div class="p-2">
+                    <span class="text-xs text-t9-textMuted uppercase font-semibold block mb-1">Sous-Titres</span>
+                    <span class="text-xs font-semibold text-gray-300 mt-1 block">FR, EN, DE, NL</span>
+                </div>
+                <div class="p-2">
+                    <span class="text-xs text-t9-textMuted uppercase font-semibold block mb-1">Santé Torrent</span>
+                    <span class="text-xs font-bold text-emerald-400 flex items-center justify-center space-x-1 mt-1">
+                        <span class="inline-block w-full bg-gray-700 h-2 rounded-full overflow-hidden max-w-[80px]">
+                            <span class="bg-emerald-500 h-full block w-[94%]"></span>
+                        </span>
+                        <span>94%</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Area: Left Column (Details) + Right Column (Sidebar) -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            
+            <!-- Left Column (Movie Poster, Details, Audio/Sub Table, Files & NFO Tabs) -->
+            <div class="lg:col-span-2 space-y-6">
+                
+                <!-- Movie Main Info Box -->
+                <div class="bg-t9-card border border-t9-border rounded-xl p-5 shadow-sm">
+                    <div class="flex flex-col sm:flex-row gap-6">
+                        
+                        <!-- Poster Container -->
+                        <div class="sm:w-1/3 shrink-0">
+                            <div class="relative rounded-lg overflow-hidden border border-t9-border shadow-md group">
+                                <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80" alt="Star Wars Episode V Poster" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.onerror=null; this.src='https://placehold.co/400x600/161b22/ffffff?text=Star+Wars+Ep+V';">
+                                <div class="absolute top-2 left-2 bg-yellow-500 text-gray-950 font-black text-xs px-2 py-1 rounded shadow flex items-center">
+                                    <i class="fa-solid fa-star mr-1"></i> 8.7 / 10
+                                </div>
+                                <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-3 text-center">
+                                    <span class="text-xs text-gray-300 font-mono">Imdb Top #15</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Synopsis & Metadata -->
+                        <div class="sm:w-2/3 flex flex-col justify-between">
+                            <div>
+                                <h2 class="text-xl font-bold text-white mb-2">Star Wars : Épisode V - L'Empire contre-attaque</h2>
+                                <p class="text-xs text-blue-400 font-semibold mb-3">Titre original : Star Wars: Episode V - The Empire Strikes Back (1980)</p>
+                                
+                                <h3 class="text-xs uppercase tracking-wider text-t9-textMuted font-bold mb-1">Synopsis :</h3>
+                                <p class="text-sm text-gray-300 leading-relaxed mb-4">
+                                    Malgré la destruction de l'Étoile Noire, l'Empire maintient son emprise sur la galaxie et poursuit sans relâche les rebelles. Refugiés sur la planète glacée d'Hoth, Luke Skywalker et ses compagnons sont attaqués par les troupes d'assaut de Dark Vador. Luke s'enfuit vers Dagobah pour suivre l'entraînement Jedi du Maître Yoda, tandis que Han Solo et la Princesse Leia tentent d'échapper à la flotte impériale.
+                                </p>
+                            </div>
+
+                            <!-- Film Specs Grid -->
+                            <div class="border-t border-t9-border/80 pt-3 grid grid-cols-2 gap-y-2 gap-x-4 text-xs">
+                                <div><span class="text-t9-textMuted">Réalisateur :</span> <span class="text-gray-200 font-medium">Irvin Kershner</span></div>
+                                <div><span class="text-t9-textMuted">Date de sortie :</span> <span class="text-gray-200 font-medium">1980</span></div>
+                                <div><span class="text-t9-textMuted">Acteurs :</span> <span class="text-gray-200 font-medium">Mark Hamill, Harrison Ford, Carrie Fisher</span></div>
+                                <div><span class="text-t9-textMuted">Genre :</span> <span class="text-gray-200 font-medium">Science-fiction, Aventure</span></div>
+                                <div><span class="text-t9-textMuted">Nationalité :</span> <span class="text-gray-200 font-medium">Américain</span></div>
+                                <div><span class="text-t9-textMuted">Durée :</span> <span class="text-gray-200 font-medium">2h 04min</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Technical Audio / Video Specifications Table -->
+                <div class="bg-t9-card border border-t9-border rounded-xl p-5 shadow-sm">
+                    <h3 class="text-md font-bold text-white mb-4 flex items-center border-b border-t9-border pb-3">
+                        <i class="fa-solid fa-sliders text-blue-500 mr-2"></i> Spécifications Techniques du Release
+                    </h3>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                        
+                        <!-- General & Video Details -->
+                        <div class="bg-t9-bg p-3.5 rounded-lg border border-t9-border space-y-2">
+                            <div class="font-bold text-blue-400 uppercase tracking-wider text-[11px] mb-2 flex items-center">
+                                <i class="fa-solid fa-video mr-1.5"></i> Informations Vidéo
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-t9-border/40">
+                                <span class="text-t9-textMuted">Source :</span>
+                                <span class="text-gray-200 font-mono font-semibold">Disney+ (DSNP WEB-DL)</span>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-t9-border/40">
+                                <span class="text-t9-textMuted">Format / Codec :</span>
+                                <span class="text-gray-200 font-mono">MKV / AVC / H.264</span>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-t9-border/40">
+                                <span class="text-t9-textMuted">Résolution :</span>
+                                <span class="text-gray-200 font-mono">1280 x 536p (2.40:1)</span>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-t9-border/40">
+                                <span class="text-t9-textMuted">Fréquence (FPS) :</span>
+                                <span class="text-gray-200 font-mono">23.976 fps</span>
+                            </div>
+                            <div class="flex justify-between py-1">
+                                <span class="text-t9-textMuted">Bitrate Vidéo :</span>
+                                <span class="text-gray-200 font-mono">~4 200 Kbps</span>
+                            </div>
+                        </div>
+
+                        <!-- Audio Details -->
+                        <div class="bg-t9-bg p-3.5 rounded-lg border border-t9-border space-y-2">
+                            <div class="font-bold text-emerald-400 uppercase tracking-wider text-[11px] mb-2 flex items-center">
+                                <i class="fa-solid fa-volume-high mr-1.5"></i> Pistes Audio (MULTI)
+                            </div>
+                            <div class="py-1 border-b border-t9-border/40">
+                                <div class="flex justify-between font-semibold">
+                                    <span class="text-gray-200">1. Français (VF)</span>
+                                    <span class="text-emerald-400 font-mono">5.1 DDP</span>
+                                </div>
+                                <p class="text-[11px] text-t9-textMuted mt-0.5">Dolby Digital Plus (E-AC-3) @ 640 kbps / 6 Canaux</p>
+                            </div>
+                            <div class="py-1">
+                                <div class="flex justify-between font-semibold">
+                                    <span class="text-gray-200">2. Anglais (VO)</span>
+                                    <span class="text-emerald-400 font-mono">5.1 DDP</span>
+                                </div>
+                                <p class="text-[11px] text-t9-textMuted mt-0.5">Dolby Digital Plus (E-AC-3) @ 640 kbps / 6 Canaux</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Subtitles Section -->
+                    <div class="mt-4 bg-t9-bg p-3.5 rounded-lg border border-t9-border">
+                        <div class="font-bold text-yellow-400 uppercase tracking-wider text-[11px] mb-2 flex items-center">
+                            <i class="fa-solid fa-closed-captioning mr-1.5"></i> Sous-Titres Inclus (Softsubs MKV)
+                        </div>
+                        <div class="flex flex-wrap gap-2 text-xs">
+                            <span class="bg-t9-card border border-t9-border px-2.5 py-1 rounded text-gray-200 font-medium flex items-center">
+                                <i class="fa-solid fa-check text-emerald-400 text-xs mr-1.5"></i> Français (Complets)
+                            </span>
+                            <span class="bg-t9-card border border-t9-border px-2.5 py-1 rounded text-gray-200 font-medium flex items-center">
+                                <i class="fa-solid fa-check text-emerald-400 text-xs mr-1.5"></i> Français (Forcés / Forcé)
+                            </span>
+                            <span class="bg-t9-card border border-t9-border px-2.5 py-1 rounded text-gray-200 font-medium flex items-center">
+                                <i class="fa-solid fa-check text-emerald-400 text-xs mr-1.5"></i> English SDH (Sourd & Malentendants)
+                            </span>
+                            <span class="bg-t9-card border border-t9-border px-2.5 py-1 rounded text-gray-200 font-medium flex items-center">
+                                <i class="fa-solid fa-check text-emerald-400 text-xs mr-1.5"></i> German (Allemand)
+                            </span>
+                            <span class="bg-t9-card border border-t9-border px-2.5 py-1 rounded text-gray-200 font-medium flex items-center">
+                                <i class="fa-solid fa-check text-emerald-400 text-xs mr-1.5"></i> Dutch (Néerlandais)
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Tabbed Container (FileList & NFO) -->
+                <div class="bg-t9-card border border-t9-border rounded-xl overflow-hidden shadow-sm">
+                    <div class="flex border-b border-t9-border bg-t9-bg/50">
+                        <button onclick="switchTab('files')" id="tab-btn-files" class="px-5 py-3 text-xs font-bold uppercase tracking-wider border-b-2 border-blue-500 text-blue-400 flex items-center transition-colors">
+                            <i class="fa-solid fa-folder-tree mr-2"></i> Contenu du Torrent (3 fichiers)
+                        </button>
+                        <button onclick="switchTab('nfo')" id="tab-btn-nfo" class="px-5 py-3 text-xs font-bold uppercase tracking-wider border-b-2 border-transparent text-t9-textMuted hover:text-gray-200 flex items-center transition-colors">
+                            <i class="fa-solid fa-file-code mr-2"></i> Fichier .NFO
+                        </button>
+                    </div>
+
+                    <!-- Files Panel -->
+                    <div id="tab-content-files" class="p-4">
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-xs font-mono">
+                                <thead>
+                                    <tr class="text-t9-textMuted border-b border-t9-border uppercase text-[10px]">
+                                        <th class="pb-2">Nom du fichier</th>
+                                        <th class="pb-2 text-right">Taille</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-t9-border/40 text-gray-300">
+                                    <tr class="hover:bg-t9-cardHover">
+                                        <td class="py-2.5 flex items-center">
+                                            <i class="fa-solid fa-file-video text-blue-400 mr-2.5 text-sm"></i>
+                                            <span class="break-all">Star.Wars.The.Empire.Strikes.Back.Episode.V.1980.MULTI.720p.DSNP.WEB-DL.DDP5.1.H.264-CMRG.mkv</span>
+                                        </td>
+                                        <td class="py-2.5 text-right font-semibold text-gray-200">4.80 GB</td>
+                                    </tr>
+                                    <tr class="hover:bg-t9-cardHover">
+                                        <td class="py-2.5 flex items-center">
+                                            <i class="fa-solid fa-file-lines text-yellow-500 mr-2.5 text-sm"></i>
+                                            <span>CMRG-Release-Notes.nfo</span>
+                                        </td>
+                                        <td class="py-2.5 text-right text-t9-textMuted">4.2 KB</td>
+                                    </tr>
+                                    <tr class="hover:bg-t9-cardHover">
+                                        <td class="py-2.5 flex items-center">
+                                            <i class="fa-solid fa-globe text-emerald-400 mr-2.5 text-sm"></i>
+                                            <span>Torrent9.site-Visitez-nous.url</span>
+                                        </td>
+                                        <td class="py-2.5 text-right text-t9-textMuted">120 B</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- NFO Panel -->
+                    <div id="tab-content-nfo" class="p-4 hidden bg-black/60">
+                        <div class="nfo-box text-green-400 text-xs overflow-x-auto p-4 rounded border border-green-900/30 bg-black font-mono leading-tight">
+***********************************************************************************************
+  Star.Wars.The.Empire.Strikes.Back.Episode.V.1980.MULTI.720p.DSNP.WEB-DL.DDP5.1.H.264-CMRG
+***********************************************************************************************
+
+[GENERAL INFORMATIONS]
+
+ Complete name ........: Star.Wars.The.Empire.Strikes.Back.Episode.V.1980.MULTI.720p.DSNP.WEB-DL.DDP5.1.H.264-CMRG.mkv
+ Format ...............: Matroska
+ File size ............: 4.85 GiB
+ Duration .............: 2 h 04 min
+ Overall bit rate .....: 5 580 kb/s
+ Encoded date .........: UTC 2024-05-14 11:22:01
+ Writing application ..: mkvmerge v78.0
+ Release Group ........: CMRG
+
+[VIDEO INFORMATIONS]
+
+ Format/Info ..........: Advanced Video Codec (H.264)
+ Format profile .......: High@L4.1
+ Resolution ...........: 1280 x 536 pixels
+ Display aspect ratio .: 2.40:1
+ Frame rate ...........: 23.976 (24000/1001) FPS
+ Bit rate .............: 4 300 kb/s
+
+[AUDIO INFORMATIONS]
+
+ Audio #1 (French) ....: E-AC-3 (Dolby Digital Plus) 6 channels @ 640 kb/s (VF / French)
+ Audio #2 (English) ...: E-AC-3 (Dolby Digital Plus) 6 channels @ 640 kb/s (VO / Original)
+
+[SUBTITLE INFORMATIONS]
+
+ Subtitle #1 ..........: French / Français (Full) [UTF-8]
+ Subtitle #2 ..........: French / Français (Forced) [UTF-8]
+ Subtitle #3 ..........: English SDH [UTF-8]
+ Subtitle #4 ..........: German / Deutsch [UTF-8]
+ Subtitle #5 ..........: Dutch / Nederlands [UTF-8]
+
+GREETZ: To all French P2P Trackers & Torrent9 Community!
+***********************************************************************************************
+                        </div>
+                    </div>
+                </div>
+
+                <!-- User Comments Section -->
+                <div class="bg-t9-card border border-t9-border rounded-xl p-5 shadow-sm">
+                    <h3 class="text-md font-bold text-white mb-4 flex items-center justify-between border-b border-t9-border pb-3">
+                        <span><i class="fa-solid fa-comments text-blue-500 mr-2"></i> Commentaires (<span id="comment-count">3</span>)</span>
+                        <span class="text-xs text-t9-textMuted font-normal">Membre connecté requis pour poster</span>
+                    </h3>
+
+                    <!-- Add Comment Input Box -->
+                    <div class="mb-6">
+                        <textarea id="comment-input" rows="3" class="w-full bg-t9-bg border border-t9-border rounded-lg p-3 text-xs text-gray-200 focus:outline-none focus:border-blue-500 transition-colors placeholder-gray-500 resize-none" placeholder="Laissez un commentaire sur la qualité de ce torrent (VF, Image, Synchro)..."></textarea>
+                        <div class="flex justify-between items-center mt-2">
+                            <span class="text-[11px] text-gray-500"><i class="fa-solid fa-circle-info mr-1"></i> Soyez courtois et respectez la charte Torrent9.</span>
+                            <button onclick="postComment()" class="bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold px-4 py-2 rounded-lg transition-colors shadow">
+                                Envoyer le commentaire
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Comment List -->
+                    <div class="space-y-4" id="comments-container">
+                        
+                        <!-- Comment 1 -->
+                        <div class="bg-t9-bg p-3.5 rounded-lg border border-t9-border flex gap-3">
+                            <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-xs shrink-0">
+                                J
+                            </div>
+                            <div class="flex-grow">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xs font-bold text-blue-400">JediMaster_99 <span class="bg-blue-900/40 text-blue-300 text-[10px] px-1.5 py-0.5 rounded ml-2 border border-blue-800/40">VIP</span></span>
+                                    <span class="text-[10px] text-t9-textMuted">Hier à 18:42</span>
+                                </div>
+                                <p class="text-xs text-gray-300 mt-1">Superbe release ! Le son DDP 5.1 en français est d'une clarté impressionnante, parfaitement synchronisé. Merci à la team CMRG pour la qualité Disney+ !</p>
+                            </div>
+                        </div>
+
+                        <!-- Comment 2 -->
+                        <div class="bg-t9-bg p-3.5 rounded-lg border border-t9-border flex gap-3">
+                            <div class="w-8 h-8 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold text-xs shrink-0">
+                                D
+                            </div>
+                            <div class="flex-grow">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xs font-bold text-emerald-400">DarkVador_FR</span>
+                                    <span class="text-[10px] text-t9-textMuted">Il y a 2 jours</span>
+                                </div>
+                                <p class="text-xs text-gray-300 mt-1">Graine parfaite à 10 Mo/s, sous-titres FR complets au top. Merci Torrent9 !</p>
+                            </div>
+                        </div>
+
+                        <!-- Comment 3 -->
+                        <div class="bg-t9-bg p-3.5 rounded-lg border border-t9-border flex gap-3">
+                            <div class="w-8 h-8 rounded-full bg-purple-600 text-white flex items-center justify-center font-bold text-xs shrink-0">
+                                L
+                            </div>
+                            <div class="flex-grow">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xs font-bold text-purple-400">Luke_S</span>
+                                    <span class="text-[10px] text-t9-textMuted">Il y a 3 jours</span>
+                                </div>
+                                <p class="text-xs text-gray-300 mt-1">Impeccable en 720p sur ma TV, le ratio taille/qualité est parfait.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Right Sidebar Column (Popular Torrents, Related Saga releases) -->
+            <div class="space-y-6">
+                
+                <!-- Fast Direct Magnet Box -->
+                <div class="bg-t9-card border border-t9-border rounded-xl p-5 shadow-sm">
+                    <h3 class="text-sm font-bold text-white mb-3 flex items-center">
+                        <i class="fa-solid fa-bolt text-yellow-400 mr-2"></i> Téléchargement Rapide
+                    </h3>
+                    <p class="text-xs text-t9-textMuted mb-4">
+                        Utilisez votre client torrent (qBittorrent, Transmission, uTorrent) pour lancer le téléchargement.
+                    </p>
+                    <button onclick="copyMagnet()" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-2.5 px-4 rounded-lg text-xs transition-colors shadow flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-magnet text-red-300"></i>
+                        <span>Copier l'adresse Magnet</span>
+                    </button>
+                </div>
+
+                <!-- Related Star Wars Torrents -->
+                <div class="bg-t9-card border border-t9-border rounded-xl p-4 shadow-sm">
+                    <h3 class="text-sm font-bold text-white mb-3 flex items-center border-b border-t9-border pb-2">
+                        <i class="fa-solid fa-film text-blue-500 mr-2"></i> Dans la même saga
+                    </h3>
+
+                    <div class="space-y-3">
+                        
+                        <!-- Related 1 -->
+                        <a href="Star.Wars.A.New.Hope.Episode.IV.1977.MULTI.720p.DSNP.WEB-DL.DDP5.1.H.264-CMRG" class="block p-2 rounded-lg bg-t9-bg/60 hover:bg-t9-cardHover border border-t9-border/50 transition-colors group">
+                            <div class="text-xs font-semibold text-gray-200 group-hover:text-blue-400 transition-colors line-clamp-1">
+                                Star Wars: Episode IV - A New Hope (1977) MULTI 1080p
+                            </div>
+                            <div class="flex justify-between items-center text-[11px] text-t9-textMuted mt-1">
+                                <span class="font-mono">6.2 GB</span>
+                                <div>
+                                    <span class="text-emerald-400 mr-2"><i class="fa-solid fa-arrow-up text-[9px]"></i> 1 210</span>
+                                    <span class="text-red-400"><i class="fa-solid fa-arrow-down text-[9px]"></i> 45</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- Related 2 -->
+                        <a href="Star.Wars.Return.of.the.Jedi.Episode.VI.1983.MULTI.720p.DSNP.WEB-DL.DDP5.1.H.264-CMRG.html" class="block p-2 rounded-lg bg-t9-bg/60 hover:bg-t9-cardHover border border-t9-border/50 transition-colors group">
+                            <div class="text-xs font-semibold text-gray-200 group-hover:text-blue-400 transition-colors line-clamp-1">
+                                Star Wars: Episode VI - Return of the Jedi (1983) MULTI 720p
+                            </div>
+                            <div class="flex justify-between items-center text-[11px] text-t9-textMuted mt-1">
+                                <span class="font-mono">4.5 GB</span>
+                                <div>
+                                    <span class="text-emerald-400 mr-2"><i class="fa-solid fa-arrow-up text-[9px]"></i> 980</span>
+                                    <span class="text-red-400"><i class="fa-solid fa-arrow-down text-[9px]"></i> 32</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- Related 3 -->
+                        <a href="#" class="block p-2 rounded-lg bg-t9-bg/60 hover:bg-t9-cardHover border border-t9-border/50 transition-colors group">
+                            <div class="text-xs font-semibold text-gray-200 group-hover:text-blue-400 transition-colors line-clamp-1">
+                                Rogue One: A Star Wars Story (2016) MULTI 1080p WEB-DL
+                            </div>
+                            <div class="flex justify-between items-center text-[11px] text-t9-textMuted mt-1">
+                                <span class="font-mono">7.8 GB</span>
+                                <div>
+                                    <span class="text-emerald-400 mr-2"><i class="fa-solid fa-arrow-up text-[9px]"></i> 2 150</span>
+                                    <span class="text-red-400"><i class="fa-solid fa-arrow-down text-[9px]"></i> 89</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- Related 4 -->
+                        <a href="#" class="block p-2 rounded-lg bg-t9-bg/60 hover:bg-t9-cardHover border border-t9-border/50 transition-colors group">
+                            <div class="text-xs font-semibold text-gray-200 group-hover:text-blue-400 transition-colors line-clamp-1">
+                                The Mandalorian S03 MULTI 1080p WEB-DL 10bit
+                            </div>
+                            <div class="flex justify-between items-center text-[11px] text-t9-textMuted mt-1">
+                                <span class="font-mono">18.4 GB</span>
+                                <div>
+                                    <span class="text-emerald-400 mr-2"><i class="fa-solid fa-arrow-up text-[9px]"></i> 3 400</span>
+                                    <span class="text-red-400"><i class="fa-solid fa-arrow-down text-[9px]"></i> 112</span>
+                                </div>
+                            </div>
+                        </a>
+
+                    </div>
+                </div>
+
+                <!-- Top Films Popular Box -->
+                <div class="bg-t9-card border border-t9-border rounded-xl p-4 shadow-sm">
+                    <h3 class="text-sm font-bold text-white mb-3 flex items-center border-b border-t9-border pb-2">
+                        <i class="fa-solid fa-fire text-yellow-500 mr-2"></i> Top Films Populaires
+                    </h3>
+                    <ul class="space-y-2.5 text-xs">
+                        <li class="flex items-center justify-between text-gray-300 hover:text-white cursor-pointer">
+                            <span class="truncate pr-2"><strong class="text-yellow-500 font-mono mr-1.5">1.</strong> Dune : Deuxième Partie (2024) MULTI 1080p</span>
+                            <span class="text-emerald-400 font-mono text-[11px]">4.2k</span>
+                        </li>
+                        <li class="flex items-center justify-between text-gray-300 hover:text-white cursor-pointer">
+                            <span class="truncate pr-2"><strong class="text-gray-400 font-mono mr-1.5">2.</strong> Oppenheimer (2023) MULTI 1080p BluRay</span>
+                            <span class="text-emerald-400 font-mono text-[11px]">3.8k</span>
+                        </li>
+                        <li class="flex items-center justify-between text-gray-300 hover:text-white cursor-pointer">
+                            <span class="truncate pr-2"><strong class="text-amber-700 font-mono mr-1.5">3.</strong> Gladiator II (2024) MULTI 720p WEBRip</span>
+                            <span class="text-emerald-400 font-mono text-[11px]">3.1k</span>
+                        </li>
+                        <li class="flex items-center justify-between text-gray-300 hover:text-white cursor-pointer">
+                            <span class="truncate pr-2"><strong class="text-gray-500 font-mono mr-1.5">4.</strong> Interstellar (2014) MULTI 1080p REMUX</span>
+                            <span class="text-emerald-400 font-mono text-[11px]">2.9k</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-t9-card border-t border-t9-border mt-12 py-8 text-xs text-t9-textMuted">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="flex items-center space-x-2">
+                    <span class="bg-blue-600 text-white px-2 py-0.5 rounded font-black">T9</span>
+                    <span class="text-white font-bold tracking-wider">TORRENT9.site</span>
+                    <span>&copy; 2026 Torrent9 FR - Indexation P2P</span>
+                </div>
+                <div class="flex flex-wrap justify-center gap-4 text-gray-400">
+                    <a href="#" class="hover:text-white">Aide / FAQ</a>
+                    <a href="#" class="hover:text-white">Règlement du site</a>
+                    <a href="#" class="hover:text-white">Contact / DMCA</a>
+                    <a href="#" class="hover:text-white">Proxy Torrent9</a>
+                    <a href="#" class="hover:text-white">RSS Feed</a>
+                </div>
+            </div>
+            <p class="text-[11px] text-gray-500 text-center md:text-left mt-4 leading-relaxed">
+                Avertissement : Torrent9 est un annuaire de liens torrents P2P. Aucun fichier audio ou vidéo n'est hébergé sur nos serveurs. Veuillez respecter les lois sur le droit d'auteur en vigueur dans votre pays.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Toast Notification Overlay -->
+    <div id="toast" class="fixed bottom-5 right-5 bg-emerald-600 text-white px-4 py-3 rounded-xl shadow-2xl flex items-center space-x-3 transform translate-y-24 opacity-0 transition-all duration-300 z-50 pointer-events-none">
+        <i class="fa-solid fa-circle-check text-xl"></i>
+        <div>
+            <h5 class="font-bold text-xs" id="toast-title">Succès</h5>
+            <p class="text-xs text-emerald-100" id="toast-message">Action effectuée avec succès.</p>
+        </div>
+    </div>
+
+    <!-- Trailer Modal -->
+    <div id="trailer-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-t9-card border border-t9-border rounded-xl w-full max-w-3xl overflow-hidden shadow-2xl">
+            <div class="flex items-center justify-between p-4 border-b border-t9-border bg-t9-bg">
+                <h3 class="text-sm font-bold text-white flex items-center">
+                    <i class="fa-solid fa-film text-red-500 mr-2"></i> Bande-Annonce - Star Wars: Episode V (1980)
+                </h3>
+                <button onclick="closeTrailerModal()" class="text-gray-400 hover:text-white p-1">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            <div class="relative pt-[56.25%] bg-black">
+                <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube-nocookie.com/embed/JNwNXF9Y6kY?autoplay=0" title="Star Wars Episode V Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- VPN Modal Notice -->
+    <div id="vpn-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-t9-card border border-amber-500/50 rounded-xl w-full max-w-md overflow-hidden shadow-2xl">
+            <div class="p-6 text-center">
+                <div class="w-16 h-16 bg-amber-500/20 text-amber-400 rounded-full flex items-center justify-center mx-auto mb-4 border border-amber-500/30">
+                    <i class="fa-solid fa-user-shield text-3xl"></i>
+                </div>
+                <h3 class="text-lg font-bold text-white mb-2">Protection de votre vie privée</h3>
+                <p class="text-xs text-gray-300 mb-4 leading-relaxed">
+                    Votre IP (<span class="font-mono text-amber-300 font-bold">193.168.1.42</span>) est visible par les pairs et les organismes de surveillance. Protégez vos téléchargements avec un tunnel VPN chiffré.
+                </p>
+                <div class="space-y-2">
+                    <button onclick="closeVpnNotice(); triggerToast('VPN Activé', 'Votre connexion est maintenant sécurisée.');" class="w-full bg-amber-500 hover:bg-amber-400 text-gray-950 font-bold py-2.5 px-4 rounded-lg text-xs transition-colors">
+                        Activer la protection anonyme
+                    </button>
+                    <button onclick="closeVpnNotice()" class="w-full bg-t9-bg hover:bg-t9-cardHover text-gray-400 py-2 px-4 rounded-lg text-xs transition-colors">
+                        Continuer sans protection
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Magnet Link Constant
+        const MAGNET_URI = "magnet:?xt=urn:btih:8f42d13a9640984e031f01c900e123456789abcd&dn=Star.Wars.The.Empire.Strikes.Back.Episode.V.1980.MULTI.720p.DSNP.WEB-DL.DDP5.1.H.264-CMRG&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce";
+
+        // Tab Switching Functionality
+        function switchTab(tab) {
+            const filesTab = document.getElementById('tab-content-files');
+            const nfoTab = document.getElementById('tab-content-nfo');
+            const filesBtn = document.getElementById('tab-btn-files');
+            const nfoBtn = document.getElementById('tab-btn-nfo');
+
+            if (tab === 'files') {
+                filesTab.classList.remove('hidden');
+                nfoTab.classList.add('hidden');
+                
+                filesBtn.className = "px-5 py-3 text-xs font-bold uppercase tracking-wider border-b-2 border-blue-500 text-blue-400 flex items-center transition-colors";
+                nfoBtn.className = "px-5 py-3 text-xs font-bold uppercase tracking-wider border-b-2 border-transparent text-t9-textMuted hover:text-gray-200 flex items-center transition-colors";
+            } else {
+                filesTab.classList.add('hidden');
+                nfoTab.classList.remove('hidden');
+
+                nfoBtn.className = "px-5 py-3 text-xs font-bold uppercase tracking-wider border-b-2 border-blue-500 text-blue-400 flex items-center transition-colors";
+                filesBtn.className = "px-5 py-3 text-xs font-bold uppercase tracking-wider border-b-2 border-transparent text-t9-textMuted hover:text-gray-200 flex items-center transition-colors";
+            }
+        }
+
+        // Copy Magnet Link
+        function copyMagnet() {
+            // Using standard document.execCommand fallback compliant with iframe security
+            const dummy = document.createElement("textarea");
+            document.body.appendChild(dummy);
+            dummy.value = MAGNET_URI;
+            dummy.select();
+            document.execCommand("copy");
+            document.body.removeChild(dummy);
+
+            triggerToast("Lien Magnet copié !", "L'URL du magnet a été copiée dans le presse-papier.");
+        }
+
+        // Download Torrent File Simulator
+        function downloadTorrent() {
+            const fileName = "Star.Wars.The.Empire.Strikes.Back.Episode.V.1980.MULTI.720p.DSNP.WEB-DL.DDP5.1.H.264-CMRG.torrent";
+            const dummyContent = "d8:announce39:udp://tracker.opentrackr.org:1337/announce13:creation datei1715685721e4:info12:piece lengthi524288e4:name91:Star.Wars.The.Empire.Strikes.Back.Episode.V.1980.MULTI.720p.DSNP.WEB-DL.DDP5.1.H.264-CMRGee";
+            
+            const blob = new Blob([dummyContent], { type: "application/x-bittorrent" });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = fileName;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            triggerToast("Fichier Torrent téléchargé", fileName);
+        }
+
+        // Bookmark Toggle
+        let isBookmarked = false;
+        function bookmarkTorrent(btn) {
+            isBookmarked = !isBookmarked;
+            const textSpan = document.getElementById('bookmark-text');
+            if (isBookmarked) {
+                textSpan.innerText = "DANS VOS FAVORIS";
+                btn.classList.add('bg-blue-600/20', 'border-blue-500/50', 'text-blue-400');
+                triggerToast("Favoris", "Torrent ajouté à votre liste de favoris.");
+            } else {
+                textSpan.innerText = "AJOUTER AUX FAVORIS";
+                btn.classList.remove('bg-blue-600/20', 'border-blue-500/50', 'text-blue-400');
+                triggerToast("Favoris", "Torrent retiré de vos favoris.");
+            }
+        }
+
+        // User Comment Posting
+        function postComment() {
+            const input = document.getElementById('comment-input');
+            const text = input.value.trim();
+            
+            if (!text) {
+                triggerToast("Erreur", "Veuillez saisir un texte avant de poster.");
+                return;
+            }
+
+            const container = document.getElementById('comments-container');
+            const countSpan = document.getElementById('comment-count');
+            
+            const currentCount = parseInt(countSpan.innerText) || 3;
+            countSpan.innerText = currentCount + 1;
+
+            const commentHtml = `
+                <div class="bg-t9-bg p-3.5 rounded-lg border border-blue-500/30 flex gap-3 animate-pulse-soft">
+                    <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-xs shrink-0">
+                        V
+                    </div>
+                    <div class="flex-grow">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold text-blue-400">Vous (Visiteur)</span>
+                            <span class="text-[10px] text-t9-textMuted">À l'instant</span>
+                        </div>
+                        <p class="text-xs text-gray-200 mt-1">${escapeHtml(text)}</p>
+                    </div>
+                </div>
+            `;
+
+            container.insertAdjacentHTML('afterbegin', commentHtml);
+            input.value = '';
+            triggerToast("Commentaire publié", "Votre commentaire a été ajouté avec succès.");
+        }
+
+        // Utility to sanitize HTML
+        function escapeHtml(string) {
+            return String(string).replace(/[&<>"']/g, function (s) {
+                return {
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    '"': '&quot;',
+                    "'": '&#39;'
+                }[s];
+            });
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Modals Control
+        function openTrailerModal() {
+            document.getElementById('trailer-modal').classList.remove('hidden');
+        }
+        function closeTrailerModal() {
+            document.getElementById('trailer-modal').classList.add('hidden');
+        }
+
+        function showVpnNotice() {
+            document.getElementById('vpn-modal').classList.remove('hidden');
+        }
+        function closeVpnNotice() {
+            document.getElementById('vpn-modal').classList.add('hidden');
+        }
+
+        // Toast Notification System
+        let toastTimeout;
+        function triggerToast(title, message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-title').innerText = title;
+            document.getElementById('toast-message').innerText = message;
+
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 3500);
+        }
+    </script>
+</body>
+</html>
