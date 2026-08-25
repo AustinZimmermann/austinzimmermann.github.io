@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="fr" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Torrent9 - Star.Wars.Revenge.of.the.Sith.Episode.III.2005.MULTI.720p.DSNP.WEB-DL.DDP5.1.H.264-CMRG</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom Google Font (Inter & Roboto) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        t9: {
+                            red: '#e50914',
+                            redHover: '#b80710',
+                            blue: '#0284c7',
+                            blueHover: '#0369a1',
+                            dark: '#12161f',
+                            card: '#1a202c',
+                            cardLight: '#232a3b',
+                            border: '#2d3748',
+                            textMuted: '#94a3b8'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom scrollbars and sleek shadows for Torrent9 theme */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #12161f;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+
+        .nfo-box {
+            background-color: #0b0f17;
+            border-color: #1e293b;
+            color: #38bdf8;
+            font-family: 'Fira Code', monospace;
+            white-space: pre;
+            overflow-x: auto;
+        }
+
+        .glow-red {
+            box-shadow: 0 0 15px rgba(229, 9, 20, 0.4);
+        }
+        .glow-blue {
+            box-shadow: 0 0 15px rgba(2, 132, 199, 0.4);
+        }
+
+        .t9-table-row:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+        .t9-table-row:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-t9-dark text-slate-200 font-sans antialiased min-h-screen flex flex-col justify-between">
+
+    <!-- Top Announcement Bar -->
+    <div class="bg-gradient-to-r from-t9-red via-red-700 to-red-900 text-white text-xs py-2 px-4 text-center font-medium shadow-md">
+        <div class="container mx-auto flex items-center justify-between">
+            <span class="hidden sm:inline"><i class="fa-solid fa-triangle-exclamation mr-2"></i><strong>TORRENT9 OFFICIEL:</strong> Attention aux faux sites miroir. Conservez uniquement cette adresse !</span>
+            <span class="sm:hidden text-center w-full"><i class="fa-solid fa-shield-halved mr-1"></i> Torrent9.fr - Site Officiel</span>
+            <div class="hidden md:flex items-center space-x-4 text-xs">
+                <a href="#" class="hover:underline text-slate-200"><i class="fa-solid fa-shield-alt text-emerald-400 mr-1"></i> Mode Anonyme actif</a>
+                <a href="#" class="hover:underline text-slate-200"><i class="fa-solid fa-bookmark mr-1"></i> Ajouter aux favoris</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="bg-slate-900 border-b border-t9-border sticky top-0 z-40 shadow-xl">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-16 gap-4">
+                
+                <!-- Logo -->
+                <a href="#" class="flex items-center space-x-2 group shrink-0">
+                    <div class="w-10 h-10 bg-t9-red rounded-lg flex items-center justify-center font-black text-xl text-white tracking-wider shadow-lg group-hover:bg-t9-redHover transition-colors">
+                        T9
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-xl font-extrabold text-white tracking-tight">TORRENT<span class="text-t9-red">9</span></span>
+                        <span class="text-[10px] text-t9-textMuted uppercase tracking-widest font-semibold -mt-1">fr-FR • Release</span>
+                    </div>
+                </a>
+
+                <!-- Search Form -->
+                <div class="flex-1 max-w-2xl hidden md:block">
+                    <form onsubmit="event.preventDefault(); triggerSearch();" class="flex items-center">
+                        <div class="relative w-full">
+                            <input type="text" id="searchInput" placeholder="Rechercher un torrent (ex: Star Wars 720p MULTI, Avatar, Gladiator...)" 
+                                   class="w-full bg-slate-800 border border-slate-700 rounded-l-lg py-2 pl-4 pr-10 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-t9-red transition-all">
+                            <button type="button" onclick="document.getElementById('searchInput').value=''" class="absolute right-3 top-2.5 text-slate-400 hover:text-white">
+                                <i class="fa-solid fa-xmark text-xs"></i>
+                            </button>
+                        </div>
+                        <select class="bg-slate-800 border-y border-r border-slate-700 text-slate-300 text-xs px-3 py-2.5 focus:outline-none">
+                            <option value="all">Toutes catégories</option>
+                            <option value="films" selected>Films</option>
+                            <option value="series">Séries</option>
+                            <option value="musique">Musiques</option>
+                            <option value="e-books">Ebooks</option>
+                        </select>
+                        <button type="submit" class="bg-t9-red hover:bg-t9-redHover text-white px-5 py-2.5 rounded-r-lg font-medium text-sm transition-colors flex items-center gap-2">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <span class="hidden lg:inline">Chercher</span>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- User Navigation Quick Buttons -->
+                <div class="flex items-center space-x-3">
+                    <a href="#downloadSection" class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-2 rounded-lg text-xs font-semibold border border-slate-700 flex items-center gap-1.5 transition-colors">
+                        <i class="fa-solid fa-arrow-down text-t9-red"></i>
+                        <span class="hidden sm:inline">Direct Download</span>
+                    </a>
+                    <button onclick="toggleVPNModal()" class="bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-2 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-sm">
+                        <i class="fa-solid fa-lock"></i>
+                        <span class="hidden sm:inline">VPN Sécurisé</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sub-Header Menu Bar -->
+        <nav class="bg-slate-950/80 border-t border-slate-800/80 px-4">
+            <div class="container mx-auto flex items-center space-x-1 overflow-x-auto text-xs font-medium py-1.5 scrollbar-none">
+                <a href="#" class="px-3 py-1.5 rounded-md text-white bg-t9-red/20 text-t9-red font-bold flex items-center gap-1.5"><i class="fa-solid fa-house"></i> Accueil</a>
+                <a href="#" class="px-3 py-1.5 rounded-md text-slate-300 hover:bg-slate-800 hover:text-white transition-colors flex items-center gap-1.5"><i class="fa-solid fa-film text-t9-red"></i> Films</a>
+                <a href="#" class="px-3 py-1.5 rounded-md text-slate-300 hover:bg-slate-800 hover:text-white transition-colors flex items-center gap-1.5"><i class="fa-solid fa-tv text-blue-400"></i> Séries</a>
+                <a href="#" class="px-3 py-1.5 rounded-md text-slate-300 hover:bg-slate-800 hover:text-white transition-colors flex items-center gap-1.5"><i class="fa-solid fa-music text-purple-400"></i> Musiques</a>
+                <a href="#" class="px-3 py-1.5 rounded-md text-slate-300 hover:bg-slate-800 hover:text-white transition-colors flex items-center gap-1.5"><i class="fa-solid fa-gamepad text-emerald-400"></i> Jeux 3DC</a>
+                <a href="#" class="px-3 py-1.5 rounded-md text-slate-300 hover:bg-slate-800 hover:text-white transition-colors flex items-center gap-1.5"><i class="fa-solid fa-book text-amber-400"></i> Ebooks</a>
+                <a href="#" class="px-3 py-1.5 rounded-md text-amber-400 hover:bg-amber-500/10 transition-colors flex items-center gap-1.5 font-bold"><i class="fa-solid fa-fire text-amber-500"></i> Top 100</a>
+                <a href="#" class="px-3 py-1.5 rounded-md text-t9-blue hover:bg-blue-500/10 transition-colors flex items-center gap-1.5 font-bold"><i class="fa-solid fa-clock-rotate-left"></i> Derniers Ajouts</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content Layout -->
+    <main class="container mx-auto px-4 py-6 flex-1">
+        
+        <!-- Breadcrumbs -->
+        <div class="flex items-center space-x-2 text-xs text-t9-textMuted mb-4 overflow-x-auto whitespace-nowrap">
+            <a href="#" class="hover:text-t9-blue"><i class="fa-solid fa-house mr-1"></i> Torrent9</a>
+            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+            <a href="#" class="hover:text-t9-blue">Films</a>
+            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+            <a href="#" class="hover:text-t9-blue">Science-Fiction</a>
+            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+            <span class="text-slate-300 font-semibold truncate">Star Wars : Épisode III – La Revanche des Sith (720p DSNP WEB-DL MULTI)</span>
+        </div>
+
+        <!-- Release Header Banner Box -->
+        <div class="bg-t9-card border border-t9-border rounded-xl p-4 md:p-6 mb-6 shadow-xl relative overflow-hidden">
+            <div class="absolute -right-20 -top-20 w-80 h-80 bg-t9-red/10 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div class="flex flex-col lg:flex-row gap-6">
+                <!-- Poster Column -->
+                <div class="w-full lg:w-64 flex-shrink-0 flex flex-col items-center">
+                    <div class="relative group w-56 lg:w-full rounded-lg overflow-hidden border border-slate-700 shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=600&q=80" 
+                             alt="Star Wars Episode III Poster Mock" 
+                             class="w-full h-80 object-cover transform group-hover:scale-105 transition-transform duration-500"
+                             onerror="this.src='https://placehold.co/400x600/1e293b/38bdf8?text=STAR+WARS+EPISODE+III';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-3">
+                            <span class="inline-block bg-t9-red text-white text-[11px] font-bold px-2 py-0.5 rounded text-center shadow">
+                                <i class="fa-solid fa-film mr-1"></i> MULTI DSNP 720p
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Specs Tag cloud -->
+                    <div class="mt-4 flex flex-wrap gap-1.5 justify-center w-full">
+                        <span class="bg-slate-800 text-slate-300 text-[11px] px-2 py-1 rounded border border-slate-700 font-mono"><i class="fa-solid fa-closed-captioning text-t9-blue mr-1"></i>FR / EN / DE / NL</span>
+                        <span class="bg-slate-800 text-slate-300 text-[11px] px-2 py-1 rounded border border-slate-700 font-mono"><i class="fa-solid fa-volume-high text-emerald-400 mr-1"></i>DDP 5.1</span>
+                        <span class="bg-slate-800 text-slate-300 text-[11px] px-2 py-1 rounded border border-slate-700 font-mono"><i class="fa-solid fa-database text-amber-400 mr-1"></i>3.42 GB</span>
+                    </div>
+                </div>
+
+                <!-- Details & Download Action Column -->
+                <div class="flex-1 flex flex-col justify-between space-y-4">
+                    <div>
+                        <!-- Main Release Title -->
+                        <div class="flex flex-wrap items-center gap-2 mb-2">
+                            <span class="bg-t9-red text-white text-xs px-2.5 py-0.5 rounded font-black tracking-wide">FILM</span>
+                            <span class="bg-blue-600 text-white text-xs px-2.5 py-0.5 rounded font-bold">DSNP WEB-DL</span>
+                            <span class="bg-slate-800 text-emerald-400 border border-emerald-500/30 text-xs px-2 py-0.5 rounded font-mono font-bold"><i class="fa-solid fa-check mr-1"></i>VÉRIFIÉ</span>
+                        </div>
+                        
+                        <h1 class="text-xl md:text-2xl font-black text-white leading-snug break-all font-mono">
+                            Star.Wars.Revenge.of.the.Sith.Episode.III.2005.MULTI.720p.DSNP.WEB-DL.DDP5.1.H.264-CMRG
+                        </h1>
+                        <h2 class="text-sm md:text-base text-t9-textMuted mt-1 font-medium italic">
+                            Star Wars : Épisode III – La Revanche des Sith (2005)
+                        </h2>
+
+                        <!-- Stats Row -->
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 my-4 bg-slate-900/80 p-3 rounded-lg border border-slate-800">
+                            <div class="flex flex-col">
+                                <span class="text-[11px] text-t9-textMuted uppercase font-semibold">Taille Fichier</span>
+                                <span class="text-sm font-bold text-white font-mono"><i class="fa-solid fa-hard-drive text-amber-400 mr-1.5"></i>3.42 Go</span>
+                            </div>
+                            <div class="flex flex-col">
+                                <span class="text-[11px] text-t9-textMuted uppercase font-semibold">Seeders (Sources)</span>
+                                <span class="text-sm font-bold text-emerald-400 font-mono"><i class="fa-solid fa-arrow-up text-emerald-400 mr-1.5"></i>1 420</span>
+                            </div>
+                            <div class="flex flex-col">
+                                <span class="text-[11px] text-t9-textMuted uppercase font-semibold">Leechers (Clients)</span>
+                                <span class="text-sm font-bold text-t9-red font-mono"><i class="fa-solid fa-arrow-down text-t9-red mr-1.5"></i>45</span>
+                            </div>
+                            <div class="flex flex-col">
+                                <span class="text-[11px] text-t9-textMuted uppercase font-semibold">Complétés</span>
+                                <span class="text-sm font-bold text-t9-blue font-mono"><i class="fa-solid fa-check-double text-t9-blue mr-1.5"></i>18 920</span>
+                            </div>
+                        </div>
+
+                        <!-- Rating & Social Bar -->
+                        <div class="flex flex-wrap items-center justify-between gap-4 py-2 border-y border-slate-800">
+                            <div class="flex items-center space-x-2">
+                                <span class="text-xs text-t9-textMuted">Note des membres:</span>
+                                <div class="flex items-center text-amber-400 text-sm" id="starRating">
+                                    <i class="fa-solid fa-star cursor-pointer hover:scale-125 transition-transform" onclick="rateMovie(1)"></i>
+                                    <i class="fa-solid fa-star cursor-pointer hover:scale-125 transition-transform" onclick="rateMovie(2)"></i>
+                                    <i class="fa-solid fa-star cursor-pointer hover:scale-125 transition-transform" onclick="rateMovie(3)"></i>
+                                    <i class="fa-solid fa-star cursor-pointer hover:scale-125 transition-transform" onclick="rateMovie(4)"></i>
+                                    <i class="fa-solid fa-star-half-stroke cursor-pointer hover:scale-125 transition-transform" onclick="rateMovie(5)"></i>
+                                </div>
+                                <span class="text-xs font-bold text-white font-mono" id="ratingValue">4.85 / 5</span>
+                                <span class="text-[11px] text-slate-500">(842 votes)</span>
+                            </div>
+
+                            <div class="flex items-center space-x-2 text-xs">
+                                <button onclick="toggleBookmark(this)" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded flex items-center gap-1.5 border border-slate-700 transition-colors">
+                                    <i class="fa-regular fa-bookmark text-amber-400"></i>
+                                    <span>Sauvegarder</span>
+                                </button>
+                                <button onclick="shareTorrent()" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded flex items-center gap-1.5 border border-slate-700 transition-colors">
+                                    <i class="fa-solid fa-share-nodes text-t9-blue"></i>
+                                    <span>Partager</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Download CTA Buttons Section -->
+                    <div id="downloadSection" class="bg-slate-900/90 p-4 rounded-xl border border-slate-800 space-y-3">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <!-- Direct Torrent Download Button -->
+                            <button onclick="triggerTorrentDownload()" class="bg-t9-red hover:bg-t9-redHover text-white font-bold py-3.5 px-4 rounded-lg shadow-lg flex items-center justify-center gap-3 transition-all transform active:scale-95 group">
+                                <i class="fa-solid fa-download text-xl group-hover:bounce"></i>
+                                <div class="text-left">
+                                    <div class="text-xs uppercase opacity-90 leading-tight">Télécharger</div>
+                                    <div class="text-sm font-black tracking-wide">LE TORRENT (.torrent)</div>
+                                </div>
+                            </button>
+
+                            <!-- Magnet Link Button -->
+                            <button onclick="triggerMagnetDownload()" class="bg-t9-blue hover:bg-t9-blueHover text-white font-bold py-3.5 px-4 rounded-lg shadow-lg flex items-center justify-center gap-3 transition-all transform active:scale-95 group">
+                                <i class="fa-solid fa-magnet text-xl group-hover:rotate-12 transition-transform"></i>
+                                <div class="text-left">
+                                    <div class="text-xs uppercase opacity-90 leading-tight">Lien Direct</div>
+                                    <div class="text-sm font-black tracking-wide">LIEN MAGNET</div>
+                                </div>
+                            </button>
+                        </div>
+
+                        <!-- VPN Protection Banner (Torrent9 Classic Feature) -->
+                        <div class="bg-gradient-to-r from-emerald-950/60 to-slate-900 border border-emerald-600/40 rounded-lg p-3 flex items-center justify-between text-xs gap-3">
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center flex-shrink-0">
+                                    <i class="fa-solid fa-user-shield text-base"></i>
+                                </div>
+                                <div>
+                                    <span class="font-bold text-emerald-400 block">Téléchargez de manière 100% Anonyme !</span>
+                                    <span class="text-slate-400 text-[11px]">Votre IP actuelle est visible par votre FAI. Masquez votre identité avec un VPN.</span>
+                                </div>
+                            </div>
+                            <button onclick="toggleVPNModal()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-3 py-1.5 rounded transition-colors whitespace-nowrap text-xs shadow">
+                                Activer VPN
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Body: Left Column (Details, NFO, Screenshots, Comments) + Right Sidebar -->
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+            
+            <!-- Left Main Column (3 Cols) -->
+            <div class="lg:col-span-3 space-y-6">
+
+                <!-- Audio & Subtitles Highlight Box (Explicitly requested specs) -->
+                <div class="bg-t9-card border border-t9-border rounded-xl p-5 shadow-lg">
+                    <h3 class="text-sm font-extrabold uppercase text-slate-300 tracking-wider mb-4 flex items-center border-b border-slate-800 pb-2">
+                        <i class="fa-solid fa-sliders text-t9-red mr-2"></i> Pistes Audio & Sous-titres Incluses
+                    </h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Audio Tracks -->
+                        <div class="bg-slate-900/90 p-4 rounded-lg border border-slate-800">
+                            <div class="flex items-center space-x-2 text-emerald-400 font-bold text-xs uppercase mb-3">
+                                <i class="fa-solid fa-volume-high text-base"></i>
+                                <span>Pistes Audio (Dolby Digital Plus 5.1)</span>
+                            </div>
+                            <ul class="space-y-2 text-xs">
+                                <li class="flex items-center justify-between bg-slate-800/60 p-2 rounded">
+                                    <span class="flex items-center gap-2 font-medium">
+                                        <span class="w-5 h-3 inline-block rounded-sm overflow-hidden bg-slate-700 flex items-center justify-center font-bold text-[9px]">EN</span>
+                                        English (Anglais - Original)
+                                    </span>
+                                    <span class="font-mono text-t9-textMuted bg-slate-900 px-2 py-0.5 rounded text-[11px]">E-AC-3 5.1 @ 256 kb/s</span>
+                                </li>
+                                <li class="flex items-center justify-between bg-slate-800/60 p-2 rounded">
+                                    <span class="flex items-center gap-2 font-medium">
+                                        <span class="w-5 h-3 inline-block rounded-sm overflow-hidden bg-slate-700 flex items-center justify-center font-bold text-[9px]">FR</span>
+                                        French (Français VFF)
+                                    </span>
+                                    <span class="font-mono text-t9-textMuted bg-slate-900 px-2 py-0.5 rounded text-[11px]">E-AC-3 5.1 @ 256 kb/s</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Subtitle Tracks -->
+                        <div class="bg-slate-900/90 p-4 rounded-lg border border-slate-800">
+                            <div class="flex items-center space-x-2 text-t9-blue font-bold text-xs uppercase mb-3">
+                                <i class="fa-solid fa-closed-captioning text-base"></i>
+                                <span>Sous-titres Multi-Langues (SRT/UTF-8)</span>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2 text-xs">
+                                <div class="flex items-center space-x-2 bg-slate-800/60 p-2 rounded">
+                                    <i class="fa-solid fa-check text-emerald-400 text-xs"></i>
+                                    <span>Français (Full + FORCED)</span>
+                                </div>
+                                <div class="flex items-center space-x-2 bg-slate-800/60 p-2 rounded">
+                                    <i class="fa-solid fa-check text-emerald-400 text-xs"></i>
+                                    <span>English (Full + SDH)</span>
+                                </div>
+                                <div class="flex items-center space-x-2 bg-slate-800/60 p-2 rounded">
+                                    <i class="fa-solid fa-check text-emerald-400 text-xs"></i>
+                                    <span>German (Allemand)</span>
+                                </div>
+                                <div class="flex items-center space-x-2 bg-slate-800/60 p-2 rounded">
+                                    <i class="fa-solid fa-check text-emerald-400 text-xs"></i>
+                                    <span>Dutch (Néerlandais)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabbed Information Section -->
+                <div class="bg-t9-card border border-t9-border rounded-xl overflow-hidden shadow-lg">
+                    <!-- Tab Header -->
+                    <div class="flex border-b border-t9-border bg-slate-900/80 overflow-x-auto">
+                        <button onclick="switchTab('synopsis')" id="tab-synopsis" class="tab-btn px-5 py-3 text-xs font-bold uppercase tracking-wider text-t9-red border-b-2 border-t9-red transition-all flex items-center gap-2 whitespace-nowrap">
+                            <i class="fa-solid fa-circle-info"></i> Synopsis & Info
+                        </button>
+                        <button onclick="switchTab('nfo')" id="tab-nfo" class="tab-btn px-5 py-3 text-xs font-bold uppercase tracking-wider text-slate-400 hover:text-white transition-all flex items-center gap-2 whitespace-nowrap">
+                            <i class="fa-solid fa-file-code"></i> Fichier NFO / Spécifications
+                        </button>
+                        <button onclick="switchTab('screenshots')" id="tab-screenshots" class="tab-btn px-5 py-3 text-xs font-bold uppercase tracking-wider text-slate-400 hover:text-white transition-all flex items-center gap-2 whitespace-nowrap">
+                            <i class="fa-solid fa-images"></i> Captures d'écran
+                        </button>
+                        <button onclick="switchTab('comments')" id="tab-comments" class="tab-btn px-5 py-3 text-xs font-bold uppercase tracking-wider text-slate-400 hover:text-white transition-all flex items-center gap-2 whitespace-nowrap">
+                            <i class="fa-solid fa-comments"></i> Commentaires (<span id="commentCountHeader">142</span>)
+                        </button>
+                    </div>
+
+                    <!-- Tab Content Panels -->
+                    <div class="p-5">
+                        <!-- Synopsis Panel -->
+                        <div id="panel-synopsis" class="tab-panel space-y-4">
+                            <div class="prose prose-invert max-w-none text-slate-300 text-sm leading-relaxed">
+                                <p class="font-medium text-slate-200">
+                                    La Guerre des Clones fait rage. Après trois ans de combats acharnés, le Chevalier Jedi Anakin Skywalker et le Maître Jedi Obi-Wan Kenobi mènent une mission de sauvetage audacieuse pour délivrer le Chancelier Palpatine des griffes du Général Grievous et du Comte Dooku.
+                                </p>
+                                <p>
+                                    Alors que la méfiance grandit entre le Conseil Jedi et le Chancelier, Anakin se retrouve tiraillé par des visions prémonitoires concernant la mort de sa femme, Padmé Amidala. Séduit par les promesses de pouvoir et d'immortalité du Côté Obscur, le jeune Jedi succombe progressivement à la manipulation du Seigneur Sith Dark Sidious, scellant ainsi le sort de la République Galactique et l'avènement de l'Empire.
+                                </p>
+                            </div>
+
+                            <!-- Movie Technical Data Grid -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-xs bg-slate-900/60 p-4 rounded-lg border border-slate-800">
+                                <div><span class="text-t9-textMuted font-semibold">Titre Original :</span> <span class="text-white">Star Wars: Episode III - Revenge of the Sith</span></div>
+                                <div><span class="text-t9-textMuted font-semibold">Titre Français :</span> <span class="text-white">Star Wars : Épisode III - La Revanche des Sith</span></div>
+                                <div><span class="text-t9-textMuted font-semibold">Date de sortie :</span> <span class="text-white">18 Mai 2005 (France)</span></div>
+                                <div><span class="text-t9-textMuted font-semibold">Réalisateur :</span> <span class="text-white">George Lucas</span></div>
+                                <div><span class="text-t9-textMuted font-semibold">Acteurs :</span> <span class="text-white">Hayden Christensen, Ewan McGregor, Natalie Portman, Ian McDiarmid</span></div>
+                                <div><span class="text-t9-textMuted font-semibold">Genre :</span> <span class="text-white">Science-fiction, Action, Aventure</span></div>
+                                <div><span class="text-t9-textMuted font-semibold">Durée :</span> <span class="text-white">2h 20min (140 minutes)</span></div>
+                                <div><span class="text-t9-textMuted font-semibold">Source Stream :</span> <span class="text-t9-blue font-bold">Disney+ (DSNP WEB-DL)</span></div>
+                            </div>
+                        </div>
+
+                        <!-- NFO Panel -->
+                        <div id="panel-nfo" class="tab-panel hidden">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-xs text-t9-textMuted font-mono">CMRG-RELEASE-INFO.nfo</span>
+                                <button onclick="copyNFO()" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 px-2.5 py-1 rounded font-mono border border-slate-700">
+                                    <i class="fa-regular fa-copy mr-1"></i>Copier NFO
+                                </button>
+                            </div>
+                            <pre class="nfo-box p-4 rounded-lg text-xs leading-relaxed border max-h-96 overflow-y-auto" id="nfoContent">
+====================================================================================
+ Star.Wars.Revenge.of.the.Sith.Episode.III.2005.MULTI.720p.DSNP.WEB-DL.DDP5.1.H.264-CMRG
+====================================================================================
+
+RELEASE DATE....: 2026-08-24
+RELEASE SIZE....: 3.42 GiB
+RUNTIME.........: 2h 20mn 06s
+VIDEO CODEC.....: AVC (H.264) High@L4.1
+BITRATE.........: 3 150 Kbps
+RESOLUTION......: 1280 x 544 pixels
+FRAME RATE......: 23.976 fps
+ASPECT RATIO....: 2.35:1
+SOURCE..........: Disney+ WEB-DL (DSNP)
+
+AUDIO 1.........: English / E-AC-3 / 6 channels / 256 Kbps / 48.0 kHz (DDP 5.1)
+AUDIO 2.........: French  / E-AC-3 / 6 channels / 256 Kbps / 48.0 kHz (DDP 5.1)
+
+SUBTITLES.......: French (SRT - VFF)
+SUBTITLES.......: French Forced (SRT)
+SUBTITLES.......: English (SRT - SDH)
+SUBTITLES.......: German (SRT - Deutsch)
+SUBTITLES.......: Dutch (SRT - Nederlands)
+
+ENCODER / GROUP.: CMRG Release Team
+NOTES...........: Untouched Web-DL stream audio & video sync verified. Enjoy!
+====================================================================================</pre>
+                        </div>
+
+                        <!-- Screenshots Panel -->
+                        <div id="panel-screenshots" class="tab-panel hidden">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <div class="rounded border border-slate-800 overflow-hidden bg-slate-900 group">
+                                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80" alt="Screenshot 1" class="w-full h-40 object-cover group-hover:scale-105 transition-transform">
+                                    <div class="p-2 text-[11px] text-slate-400 font-mono">Capture 1: Spatial Battle over Coruscant</div>
+                                </div>
+                                <div class="rounded border border-slate-800 overflow-hidden bg-slate-900 group">
+                                    <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=600&q=80" alt="Screenshot 2" class="w-full h-40 object-cover group-hover:scale-105 transition-transform">
+                                    <div class="p-2 text-[11px] text-slate-400 font-mono">Capture 2: Duel on Mustafar</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Comments Panel -->
+                        <div id="panel-comments" class="tab-panel hidden space-y-6">
+                            
+                            <!-- Add Comment Form -->
+                            <form onsubmit="addComment(event)" class="bg-slate-900 p-4 rounded-xl border border-slate-800 space-y-3">
+                                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-300">Poster un commentaire</h4>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    <input type="text" id="commentAuthor" required placeholder="Votre pseudo..." class="bg-slate-800 border border-slate-700 rounded px-3 py-2 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-t9-red">
+                                    <select class="bg-slate-800 border border-slate-700 rounded px-3 py-2 text-xs text-slate-300 focus:outline-none">
+                                        <option value="5">⭐⭐⭐⭐⭐ Qualité Excellente (5/5)</option>
+                                        <option value="4">⭐⭐⭐⭐ Très Bon (4/5)</option>
+                                        <option value="3">⭐⭐⭐ Correct (3/5)</option>
+                                    </select>
+                                </div>
+                                <textarea id="commentText" required rows="3" placeholder="Merci de laisser un commentaire constructif sur la qualité vidéo/audio ou la vitesse de seed..." class="w-full bg-slate-800 border border-slate-700 rounded p-3 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-t9-red"></textarea>
+                                <div class="flex justify-end">
+                                    <button type="submit" class="bg-t9-red hover:bg-t9-redHover text-white text-xs font-bold px-4 py-2 rounded transition-colors flex items-center gap-1.5">
+                                        <i class="fa-solid fa-paper-plane"></i> Envoyer mon commentaire
+                                    </button>
+                                </div>
+                            </form>
+
+                            <!-- Comment List Container -->
+                            <div class="space-y-4" id="commentsList">
+                                
+                                <!-- Comment 1 -->
+                                <div class="bg-slate-900/80 p-4 rounded-lg border border-slate-800 flex gap-3">
+                                    <div class="w-9 h-9 rounded-full bg-t9-red text-white font-bold flex items-center justify-center text-xs flex-shrink-0">
+                                        J24
+                                    </div>
+                                    <div class="flex-1 space-y-1">
+                                        <div class="flex items-center justify-between">
+                                            <div class="flex items-center gap-2">
+                                                <span class="font-bold text-xs text-white">JediMaster_24</span>
+                                                <span class="bg-emerald-500/20 text-emerald-400 text-[10px] px-1.5 py-0.5 rounded font-bold">Uploader VVIP</span>
+                                            </div>
+                                            <span class="text-[11px] text-t9-textMuted">Il y a 2 heures</span>
+                                        </div>
+                                        <p class="text-xs text-slate-300">
+                                            Superbe release ! La piste DDP 5.1 en français est d'une clarté absolue pendant la scène de duel sur Mustafar. Merci à la team CMRG pour la synchro parfaite.
+                                        </p>
+                                        <div class="flex items-center space-x-3 text-[11px] text-slate-500 pt-1">
+                                            <button onclick="likeComment(this)" class="hover:text-t9-blue flex items-center gap-1"><i class="fa-regular fa-thumbs-up"></i> <span>24</span></button>
+                                            <a href="#downloadSection" class="hover:text-slate-300">Répondre</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Comment 2 -->
+                                <div class="bg-slate-900/80 p-4 rounded-lg border border-slate-800 flex gap-3">
+                                    <div class="w-9 h-9 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center text-xs flex-shrink-0">
+                                        S99
+                                    </div>
+                                    <div class="flex-1 space-y-1">
+                                        <div class="flex items-center justify-between">
+                                            <div class="flex items-center gap-2">
+                                                <span class="font-bold text-xs text-white">Skywalker99</span>
+                                                <span class="bg-slate-800 text-slate-400 text-[10px] px-1.5 py-0.5 rounded">Membre</span>
+                                            </div>
+                                            <span class="text-[11px] text-t9-textMuted">Il y a 5 heures</span>
+                                        </div>
+                                        <p class="text-xs text-slate-300">
+                                            Vitesse de seed max sur ma fibre (95 Mo/s) ! Fichier propre, pas de décalage son/image, sous-titres complets avec le Dutch inclus comme annoncé. Top !
+                                        </p>
+                                        <div class="flex items-center space-x-3 text-[11px] text-slate-500 pt-1">
+                                            <button onclick="likeComment(this)" class="hover:text-t9-blue flex items-center gap-1"><i class="fa-regular fa-thumbs-up"></i> <span>12</span></button>
+                                            <a href="#downloadSection" class="hover:text-slate-300">Répondre</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Related Torrents Section -->
+                <div class="bg-t9-card border border-t9-border rounded-xl p-5 shadow-lg">
+                    <h3 class="text-sm font-extrabold uppercase text-slate-300 tracking-wider mb-4 flex items-center justify-between border-b border-slate-800 pb-2">
+                        <span><i class="fa-solid fa-layer-group text-t9-blue mr-2"></i> Torrents Similaires - Saga Star Wars</span>
+                        <span class="text-xs text-t9-textMuted font-normal">Saga complète disponible sur Torrent9</span>
+                    </h3>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs border-collapse">
+                            <thead>
+                                <tr class="bg-slate-900 text-slate-400 uppercase text-[10px] tracking-wider border-b border-slate-800">
+                                    <th class="py-2.5 px-3">Nom du torrent</th>
+                                    <th class="py-2.5 px-3 text-center">Taille</th>
+                                    <th class="py-2.5 px-3 text-center text-emerald-400">Seeds</th>
+                                    <th class="py-2.5 px-3 text-center text-t9-red">Leech</th>
+                                    <th class="py-2.5 px-3 text-right">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-800/60 font-medium">
+                                <tr class="t9-table-row transition-colors">
+                                    <td class="py-2.5 px-3 flex items-center gap-2">
+                                        <i class="fa-solid fa-film text-t9-red"></i>
+                                        <a href="#" class="hover:text-t9-blue truncate max-w-md font-mono text-[11px]">Star.Wars.Episode.I.The.Phantom.Menace.1999.MULTI.1080p.WEB-DL</a>
+                                    </td>
+                                    <td class="py-2.5 px-3 text-center text-slate-400 font-mono">4.85 Go</td>
+                                    <td class="py-2.5 px-3 text-center text-emerald-400 font-bold font-mono">920</td>
+                                    <td class="py-2.5 px-3 text-center text-t9-red font-bold font-mono">22</td>
+                                    <td class="py-2.5 px-3 text-right">
+                                        <button onclick="triggerMagnetDownload()" class="text-t9-blue hover:text-white p-1" title="Magnet"><i class="fa-solid fa-magnet"></i></button>
+                                    </td>
+                                </tr>
+                                <tr class="t9-table-row transition-colors">
+                                    <td class="py-2.5 px-3 flex items-center gap-2">
+                                        <i class="fa-solid fa-film text-t9-red"></i>
+                                        <a href="#" class="hover:text-t9-blue truncate max-w-md font-mono text-[11px]">Star.Wars.Episode.II.Attack.of.the.Clones.2002.MULTI.720p.WEB-DL</a>
+                                    </td>
+                                    <td class="py-2.5 px-3 text-center text-slate-400 font-mono">3.10 Go</td>
+                                    <td class="py-2.5 px-3 text-center text-emerald-400 font-bold font-mono">845</td>
+                                    <td class="py-2.5 px-3 text-center text-t9-red font-bold font-mono">18</td>
+                                    <td class="py-2.5 px-3 text-right">
+                                        <button onclick="triggerMagnetDownload()" class="text-t9-blue hover:text-white p-1" title="Magnet"><i class="fa-solid fa-magnet"></i></button>
+                                    </td>
+                                </tr>
+                                <tr class="t9-table-row transition-colors">
+                                    <td class="py-2.5 px-3 flex items-center gap-2">
+                                        <i class="fa-solid fa-film text-t9-red"></i>
+                                        <a href="#" class="hover:text-t9-blue truncate max-w-md font-mono text-[11px]">Star.Wars.Episode.IV.A.New.Hope.1977.MULTI.1080p.BluRay.x264</a>
+                                    </td>
+                                    <td class="py-2.5 px-3 text-center text-slate-400 font-mono">6.20 Go</td>
+                                    <td class="py-2.5 px-3 text-center text-emerald-400 font-bold font-mono">1 850</td>
+                                    <td class="py-2.5 px-3 text-center text-t9-red font-bold font-mono">64</td>
+                                    <td class="py-2.5 px-3 text-right">
+                                        <button onclick="triggerMagnetDownload()" class="text-t9-blue hover:text-white p-1" title="Magnet"><i class="fa-solid fa-magnet"></i></button>
+                                    </td>
+                                </tr>
+                                <tr class="t9-table-row transition-colors">
+                                    <td class="py-2.5 px-3 flex items-center gap-2">
+                                        <i class="fa-solid fa-film text-t9-red"></i>
+                                        <a href="#" class="hover:text-t9-blue truncate max-w-md font-mono text-[11px]">Star.Wars.Episode.V.The.Empire.Strikes.Back.1980.MULTI.720p.HDTV</a>
+                                    </td>
+                                    <td class="py-2.5 px-3 text-center text-slate-400 font-mono">2.88 Go</td>
+                                    <td class="py-2.5 px-3 text-center text-emerald-400 font-bold font-mono">1 410</td>
+                                    <td class="py-2.5 px-3 text-center text-t9-red font-bold font-mono">31</td>
+                                    <td class="py-2.5 px-3 text-right">
+                                        <button onclick="triggerMagnetDownload()" class="text-t9-blue hover:text-white p-1" title="Magnet"><i class="fa-solid fa-magnet"></i></button>
+                                    </td>
+                                </tr>
+                                <tr class="t9-table-row transition-colors">
+                                    <td class="py-2.5 px-3 flex items-center gap-2">
+                                        <i class="fa-solid fa-tv text-blue-400"></i>
+                                        <a href="#" class="hover:text-t9-blue truncate max-w-md font-mono text-[11px]">Star.Wars.Andor.S01.COMPLETE.FRENCH.720p.WEB.H264-T9</a>
+                                    </td>
+                                    <td class="py-2.5 px-3 text-center text-slate-400 font-mono">11.4 Go</td>
+                                    <td class="py-2.5 px-3 text-center text-emerald-400 font-bold font-mono">2 340</td>
+                                    <td class="py-2.5 px-3 text-center text-t9-red font-bold font-mono">110</td>
+                                    <td class="py-2.5 px-3 text-right">
+                                        <button onclick="triggerMagnetDownload()" class="text-t9-blue hover:text-white p-1" title="Magnet"><i class="fa-solid fa-magnet"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Right Sidebar Column (1 Col) -->
+            <div class="space-y-6">
+                
+                <!-- Category Sidebar Widget -->
+                <div class="bg-t9-card border border-t9-border rounded-xl p-4 shadow-lg">
+                    <h4 class="text-xs font-extrabold uppercase tracking-wider text-slate-300 border-b border-slate-800 pb-2 mb-3 flex items-center">
+                        <i class="fa-solid fa-bars text-t9-red mr-2"></i> Catégories Films
+                    </h4>
+                    <ul class="space-y-1.5 text-xs">
+                        <li><a href="#" class="flex justify-between items-center py-1.5 px-2 rounded hover:bg-slate-800 text-slate-300 hover:text-white transition-colors"><span><i class="fa-solid fa-rocket mr-2 text-t9-blue"></i>Science-Fiction</span> <span class="bg-slate-800 text-t9-textMuted text-[10px] px-2 py-0.5 rounded font-mono">14,280</span></a></li>
+                        <li><a href="#" class="flex justify-between items-center py-1.5 px-2 rounded hover:bg-slate-800 text-slate-300 hover:text-white transition-colors"><span><i class="fa-solid fa-gun mr-2 text-amber-500"></i>Action</span> <span class="bg-slate-800 text-t9-textMuted text-[10px] px-2 py-0.5 rounded font-mono">28,910</span></a></li>
+                        <li><a href="#" class="flex justify-between items-center py-1.5 px-2 rounded hover:bg-slate-800 text-slate-300 hover:text-white transition-colors"><span><i class="fa-solid fa-ghost mr-2 text-purple-400"></i>Horreur</span> <span class="bg-slate-800 text-t9-textMuted text-[10px] px-2 py-0.5 rounded font-mono">8,430</span></a></li>
+                        <li><a href="#" class="flex justify-between items-center py-1.5 px-2 rounded hover:bg-slate-800 text-slate-300 hover:text-white transition-colors"><span><i class="fa-solid fa-masks-theater mr-2 text-rose-400"></i>Drame</span> <span class="bg-slate-800 text-t9-textMuted text-[10px] px-2 py-0.5 rounded font-mono">19,150</span></a></li>
+                        <li><a href="#" class="flex justify-between items-center py-1.5 px-2 rounded hover:bg-slate-800 text-slate-300 hover:text-white transition-colors"><span><i class="fa-solid fa-child mr-2 text-emerald-400"></i>Animation</span> <span class="bg-slate-800 text-t9-textMuted text-[10px] px-2 py-0.5 rounded font-mono">11,040</span></a></li>
+                    </ul>
+                </div>
+
+                <!-- Trending / Top Films Widget -->
+                <div class="bg-t9-card border border-t9-border rounded-xl p-4 shadow-lg">
+                    <h4 class="text-xs font-extrabold uppercase tracking-wider text-slate-300 border-b border-slate-800 pb-2 mb-3 flex items-center">
+                        <i class="fa-solid fa-fire text-amber-500 mr-2"></i> Top Films de la Semaine
+                    </h4>
+                    <div class="space-y-3">
+                        <a href="#" class="flex items-center space-x-3 group">
+                            <span class="w-6 h-6 rounded bg-amber-500/20 text-amber-400 font-bold text-xs flex items-center justify-center font-mono">1</span>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-xs font-bold text-slate-200 group-hover:text-t9-blue truncate">Dune: Part Two (2024)</p>
+                                <p class="text-[10px] text-t9-textMuted font-mono">1080p MULTI • <span class="text-emerald-400 font-bold">3,410 seeds</span></p>
+                            </div>
+                        </a>
+                        <a href="#" class="flex items-center space-x-3 group">
+                            <span class="w-6 h-6 rounded bg-slate-800 text-slate-400 font-bold text-xs flex items-center justify-center font-mono">2</span>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-xs font-bold text-slate-200 group-hover:text-t9-blue truncate">Oppenheimer (2023)</p>
+                                <p class="text-[10px] text-t9-textMuted font-mono">2160p 4K MULTI • <span class="text-emerald-400 font-bold">2,890 seeds</span></p>
+                            </div>
+                        </a>
+                        <a href="#" class="flex items-center space-x-3 group">
+                            <span class="w-6 h-6 rounded bg-slate-800 text-slate-400 font-bold text-xs flex items-center justify-center font-mono">3</span>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-xs font-bold text-slate-200 group-hover:text-t9-blue truncate">Gladiator II (2024)</p>
+                                <p class="text-[10px] text-t9-textMuted font-mono">720p TRUEFRENCH • <span class="text-emerald-400 font-bold">2,150 seeds</span></p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Live Site Stats Widget -->
+                <div class="bg-gradient-to-br from-slate-900 to-t9-card border border-t9-border rounded-xl p-4 shadow-lg text-xs space-y-2">
+                    <div class="flex items-center justify-between text-slate-400">
+                        <span><i class="fa-solid fa-database text-t9-blue mr-1.5"></i> Torrents Actifs:</span>
+                        <span class="font-bold text-white font-mono">148,920</span>
+                    </div>
+                    <div class="flex items-center justify-between text-slate-400">
+                        <span><i class="fa-solid fa-users text-emerald-400 mr-1.5"></i> Membres En Ligne:</span>
+                        <span class="font-bold text-emerald-400 font-mono">42,108</span>
+                    </div>
+                    <div class="flex items-center justify-between text-slate-400">
+                        <span><i class="fa-solid fa-bolt text-amber-400 mr-1.5"></i> Statut Réseau:</span>
+                        <span class="font-bold text-emerald-400">100% Opérationnel</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-slate-950 border-t border-slate-800 mt-12 py-8 text-xs text-t9-textMuted">
+        <div class="container mx-auto px-4 space-y-4">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4 border-b border-slate-800 pb-6">
+                <div class="flex items-center space-x-2">
+                    <div class="w-7 h-7 bg-t9-red rounded flex items-center justify-center font-black text-sm text-white">T9</div>
+                    <span class="text-base font-extrabold text-white">TORRENT<span class="text-t9-red">9</span>.fr</span>
+                </div>
+                <div class="flex flex-wrap justify-center gap-4 font-medium text-slate-400">
+                    <a href="#" class="hover:text-t9-red">Contact</a>
+                    <a href="#" class="hover:text-t9-red">DMCA / Legal Notice</a>
+                    <a href="#" class="hover:text-t9-red">Règlement</a>
+                    <a href="#" class="hover:text-t9-red">FAQ</a>
+                    <a href="#" class="hover:text-t9-red">Forum Torrent9</a>
+                </div>
+            </div>
+
+            <div class="text-center text-[11px] leading-relaxed text-slate-500 max-w-4xl mx-auto">
+                Torrent9 ne héberge aucun fichier multimédia sur ses serveurs. Les fichiers torrents et liens magnet sont fournis exclusivement par la communauté peer-to-peer. Veuillez respecter les lois relatives au droit d'auteur en vigueur dans votre pays.
+            </div>
+            
+            <div class="text-center text-[10px] text-slate-600 font-mono">
+                &copy; 2026 Torrent9 (fr-FR). Tous droits réservés. Release: Star.Wars.Revenge.of.the.Sith.Episode.III.2005.MULTI.720p.DSNP.WEB-DL.DDP5.1.H.264-CMRG
+            </div>
+        </div>
+    </footer>
+
+    <!-- Magnet / Download Modal -->
+    <div id="magnetModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
+        <div class="bg-t9-card border border-t9-border rounded-xl max-w-lg w-full p-6 space-y-4 shadow-2xl relative">
+            <button onclick="closeMagnetModal()" class="absolute right-4 top-4 text-slate-400 hover:text-white">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            
+            <div class="flex items-center space-x-3 text-t9-blue">
+                <i class="fa-solid fa-magnet text-3xl"></i>
+                <div>
+                    <h3 class="font-bold text-white text-base">Lien Magnet P2P Généré</h3>
+                    <p class="text-xs text-t9-textMuted">Prêt pour votre client BitTorrent (uTorrent, Transmission, qBittorrent...)</p>
+                </div>
+            </div>
+
+            <div class="bg-slate-900 p-3 rounded border border-slate-800">
+                <label class="text-[10px] text-t9-textMuted uppercase font-mono block mb-1">Lien Magnet (BTIH Hash)</label>
+                <input type="text" readonly id="magnetURI" value="magnet:?xt=urn:btih:3F4A98E21109BCA72E19854291823091283ABCDE&dn=Star.Wars.Revenge.of.the.Sith.Episode.III.2005.MULTI.720p.DSNP.WEB-DL.DDP5.1.H.264-CMRG&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80" 
+                       class="w-full bg-slate-950 text-emerald-400 font-mono text-xs p-2 rounded border border-slate-800 focus:outline-none">
+            </div>
+
+            <div class="flex gap-3">
+                <button onclick="copyMagnetURI()" class="flex-1 bg-t9-blue hover:bg-t9-blueHover text-white font-bold py-2.5 rounded text-xs transition-colors flex items-center justify-center gap-2">
+                    <i class="fa-regular fa-copy"></i> Copier le Lien Magnet
+                </button>
+                <button onclick="closeMagnetModal()" class="bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold px-4 py-2.5 rounded text-xs transition-colors">
+                    Fermer
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- VPN Modal -->
+    <div id="vpnModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
+        <div class="bg-t9-card border border-emerald-500/30 rounded-xl max-w-md w-full p-6 space-y-4 shadow-2xl relative">
+            <button onclick="closeVPNModal()" class="absolute right-4 top-4 text-slate-400 hover:text-white">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            
+            <div class="text-center space-y-2">
+                <div class="w-12 h-12 bg-emerald-500/20 text-emerald-400 rounded-full flex items-center justify-center mx-auto text-2xl">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <h3 class="font-extrabold text-white text-lg">Protection VPN Recommandée</h3>
+                <p class="text-xs text-slate-300 leading-relaxed">
+                    Avant de démarrer le téléchargement de <strong class="text-white">Star Wars Episode III</strong>, protégez votre adresse IP contre la surveillance HADOPI / ARCOM.
+                </p>
+            </div>
+
+            <div class="bg-slate-900 p-3 rounded-lg border border-slate-800 space-y-2 text-xs">
+                <div class="flex items-center text-emerald-400 font-bold"><i class="fa-solid fa-check mr-2"></i> Chiffrement Militaire AES-256</div>
+                <div class="flex items-center text-emerald-400 font-bold"><i class="fa-solid fa-check mr-2"></i> Aucune conservation des logs (No-Log)</div>
+                <div class="flex items-center text-emerald-400 font-bold"><i class="fa-solid fa-check mr-2"></i> Bande passante illimitée 10 Gbps</div>
+            </div>
+
+            <button onclick="closeVPNModal()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-lg text-xs tracking-wider uppercase shadow-lg transition-colors">
+                Activer mon VPN Anonyme (Essai Gratuit)
+            </button>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-5 right-5 bg-slate-900 border border-t9-blue text-white px-4 py-3 rounded-lg shadow-2xl hidden items-center space-x-3 z-50 transition-all">
+        <i class="fa-solid fa-circle-check text-t9-blue text-lg" id="toastIcon"></i>
+        <span id="toastMsg" class="text-xs font-semibold">Notification Torrent9</span>
+    </div>
+
+    <script>
+        // Tab Switching Logic
+        function switchTab(tabName) {
+            // Hide all panels
+            document.querySelectorAll('.tab-panel').forEach(panel => {
+                panel.classList.add('hidden');
+            });
+            // Reset tab styles
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('text-t9-red', 'border-b-2', 'border-t9-red');
+                btn.classList.add('text-slate-400');
+            });
+
+            // Show target panel
+            const activePanel = document.getElementById('panel-' + tabName);
+            const activeTabBtn = document.getElementById('tab-' + tabName);
+            if (activePanel && activeTabBtn) {
+                activePanel.classList.remove('hidden');
+                activeTabBtn.classList.remove('text-slate-400');
+                activeTabBtn.classList.add('text-t9-red', 'border-b-2', 'border-t9-red');
+            }
+        }
+
+        // Torrent Download Simulation
+        function triggerTorrentDownload() {
+            showToast("Téléchargement du fichier .torrent initié !");
+            // Create dummy torrent file download
+            const blob = new Blob(["d8:announce39:udp://tracker.openbittorrent.com:80e"], { type: "application/x-bittorrent" });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "Star.Wars.Revenge.of.the.Sith.Episode.III.2005.MULTI.720p.DSNP.WEB-DL.DDP5.1.H.264-CMRG.torrent";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Magnet Link Modal Toggle
+        function triggerMagnetDownload() {
+            document.getElementById('magnetModal').classList.remove('hidden');
+            document.getElementById('magnetModal').classList.add('flex');
+        }
+
+        function closeMagnetModal() {
+            document.getElementById('magnetModal').classList.add('hidden');
+            document.getElementById('magnetModal').classList.remove('flex');
+        }
+
+        function copyMagnetURI() {
+            const magnetURI = document.getElementById('magnetURI');
+            magnetURI.select();
+            document.execCommand('copy');
+            showToast("Lien Magnet copié dans le presse-papier !");
+            closeMagnetModal();
+        }
+
+        // VPN Modal Toggle
+        function toggleVPNModal() {
+            document.getElementById('vpnModal').classList.remove('hidden');
+            document.getElementById('vpnModal').classList.add('flex');
+        }
+
+        function closeVPNModal() {
+            document.getElementById('vpnModal').classList.add('hidden');
+            document.getElementById('vpnModal').classList.remove('flex');
+        }
+
+        // Copy NFO Text
+        function copyNFO() {
+            const nfoText = document.getElementById('nfoContent').innerText;
+            const tempInput = document.createElement('textarea');
+            tempInput.value = nfoText;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            showToast("Spécifications NFO copiées !");
+        }
+
+        // Toast Helper Function
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toastMsg');
+            toastMsg.innerText = msg;
+            toast.classList.remove('hidden');
+            toast.classList.add('flex');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+                toast.classList.remove('flex');
+            }, 3000);
+        }
+
+        // Star Rating Simulation
+        function rateMovie(stars) {
+            showToast(`Merci ! Vous avez attribué ${stars}/5 à ce torrent.`);
+            document.getElementById('ratingValue').innerText = `${((4.85 * 842 + stars) / 843).toFixed(2)} / 5`;
+        }
+
+        // Bookmark Toggle
+        function toggleBookmark(btn) {
+            const icon = btn.querySelector('i');
+            if (icon.classList.contains('fa-regular')) {
+                icon.classList.remove('fa-regular');
+                icon.classList.add('fa-solid');
+                showToast("Torrent sauvegardé dans vos favoris !");
+            } else {
+                icon.classList.remove('fa-solid');
+                icon.classList.add('fa-regular');
+                showToast("Torrent retiré des favoris.");
+            }
+        }
+
+        // Share Torrent Function
+        function shareTorrent() {
+            const url = window.location.href;
+            const temp = document.createElement('input');
+            temp.value = url;
+            document.body.appendChild(temp);
+            temp.select();
+            document.execCommand('copy');
+            document.body.removeChild(temp);
+            showToast("Lien de la fiche copié dans le presse-papier !");
+        }
+
+        // Search Trigger
+        function triggerSearch() {
+            const query = document.getElementById('searchInput').value;
+            if (query.trim()) {
+                showToast(`Recherche sur Torrent9: "${query}"...`);
+            }
+        }
+
+        // Add Comment Function
+        function addComment(e) {
+            e.preventDefault();
+            const author = document.getElementById('commentAuthor').value;
+            const text = document.getElementById('commentText').value;
+
+            if (!author || !text) return;
+
+            const commentsList = document.getElementById('commentsList');
+            const newCommentHtml = `
+                <div class="bg-slate-900/80 p-4 rounded-lg border border-slate-800 flex gap-3 animate-fade-in">
+                    <div class="w-9 h-9 rounded-full bg-slate-700 text-white font-bold flex items-center justify-center text-xs flex-shrink-0">
+                        ${author.substring(0, 2).toUpperCase()}
+                    </div>
+                    <div class="flex-1 space-y-1">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <span class="font-bold text-xs text-white">${author}</span>
+                                <span class="bg-slate-800 text-slate-400 text-[10px] px-1.5 py-0.5 rounded">Nouveau Membre</span>
+                            </div>
+                            <span class="text-[11px] text-t9-textMuted">À l'instant</span>
+                        </div>
+                        <p class="text-xs text-slate-300">${text}</p>
+                        <div class="flex items-center space-x-3 text-[11px] text-slate-500 pt-1">
+                            <button onclick="likeComment(this)" class="hover:text-t9-blue flex items-center gap-1"><i class="fa-regular fa-thumbs-up"></i> <span>0</span></button>
+                            <a href="#downloadSection" class="hover:text-slate-300">Répondre</a>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            commentsList.insertAdjacentHTML('afterbegin', newCommentHtml);
+            document.getElementById('commentText').value = '';
+            showToast("Votre commentaire a été publié avec succès !");
+            
+            // Increment header comment count
+            const headerCount = document.getElementById('commentCountHeader');
+            headerCount.innerText = parseInt(headerCount.innerText) + 1;
+        }
+
+        // Like Comment
+        function likeComment(btn) {
+            const countSpan = btn.querySelector('span');
+            let currentLikes = parseInt(countSpan.innerText);
+            countSpan.innerText = currentLikes + 1;
+            btn.classList.add('text-t9-blue');
+        }
+    </script>
+</body>
+</html>
