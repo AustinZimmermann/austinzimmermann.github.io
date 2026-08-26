@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>X-Men (2000) [Blu-ray Remux AVC 1080p DTS-HD MA 5.1] :: Nyaa</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --bg-color: #f4f5f7;
+      --card-bg: #ffffff;
+      --border-color: #e1e4e8;
+      --primary: #337ab7;
+      --primary-hover: #286090;
+      --success: #5cb85c;
+      --danger: #d9534f;
+      --text-main: #333333;
+      --text-muted: #777777;
+      --panel-header-bg: #f5f5f5;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+      font-size: 13px;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      padding-bottom: 50px;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: #222222;
+      border-bottom: 1px solid #080808;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      height: 50px;
+    }
+
+    .navbar-brand {
+      color: #ffffff;
+      font-weight: bold;
+      font-size: 18px;
+      text-decoration: none;
+      margin-right: 25px;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 15px;
+    }
+
+    .nav-links a {
+      color: #9d9d9d;
+      text-decoration: none;
+    }
+
+    .nav-links a:hover {
+      color: #ffffff;
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1140px;
+      margin: 20px auto;
+      padding: 0 15px;
+    }
+
+    /* Panel Card */
+    .panel {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+      margin-bottom: 20px;
+    }
+
+    .panel-heading {
+      background-color: var(--panel-header-bg);
+      border-bottom: 1px solid var(--border-color);
+      padding: 10px 15px;
+      font-size: 15px;
+      font-weight: bold;
+      word-break: break-all;
+    }
+
+    .panel-body {
+      padding: 15px;
+    }
+
+    /* Metadata Grid */
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 15px;
+      margin-bottom: 15px;
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .meta-label {
+      font-weight: bold;
+      color: var(--text-muted);
+      margin-bottom: 3px;
+    }
+
+    .text-success { color: var(--success); font-weight: bold; }
+    .text-danger { color: var(--danger); font-weight: bold; }
+
+    /* Action Buttons */
+    .actions-bar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-weight: bold;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary { background-color: var(--primary); color: #fff; border-color: #2e6da4; }
+    .btn-primary:hover { background-color: var(--primary-hover); }
+    .btn-success { background-color: var(--success); color: #fff; border-color: #4cae4c; }
+    .btn-success:hover { background-color: #449d44; }
+
+    /* Description Box */
+    .description-container {
+      background: #fafafa;
+      border: 1px solid #eee;
+      border-radius: 4px;
+      padding: 20px;
+      line-height: 1.6;
+    }
+
+    .desc-header {
+      font-size: 16px;
+      font-weight: bold;
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 5px;
+      margin-bottom: 12px;
+    }
+
+    .desc-section-title {
+      font-weight: bold;
+      color: #2c3e50;
+      margin: 12px 0 6px 0;
+      font-size: 13.5px;
+    }
+
+    ul.specs-list {
+      list-style-type: square;
+      margin-left: 20px;
+      margin-bottom: 12px;
+    }
+
+    pre.mediainfo {
+      background: #272822;
+      color: #f8f8f2;
+      padding: 12px;
+      border-radius: 4px;
+      overflow-x: auto;
+      font-family: Consolas, monospace;
+      font-size: 12px;
+      line-height: 1.4;
+      margin-top: 10px;
+    }
+
+    /* File List Toggle */
+    .accordion-toggle {
+      width: 100%;
+      text-align: left;
+      background: #f8f9fa;
+      border: 1px solid #e1e4e8;
+      padding: 10px 15px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      border-radius: 4px;
+    }
+
+    .file-tree {
+      display: none;
+      background: #ffffff;
+      border: 1px solid #e1e4e8;
+      border-top: none;
+      padding: 12px 20px;
+      list-style: none;
+    }
+
+    .file-tree.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <a href="#" class="navbar-brand">Nyaa</a>
+    <ul class="nav-links">
+      <li><a href="#"><i class="fa fa-upload"></i> アップロード</a></li>
+      <li><a href="#"><i class="fa fa-info-circle"></i> ガイドライン</a></li>
+      <li><a href="#"><i class="fa fa-rss"></i> RSS</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <div class="panel">
+      <!-- Title Heading -->
+      <div class="panel-heading">
+        X-Men (2000) [1080p Blu-ray Remux AVC DTS-HD MA 5.1 x264] [40 Chapters]
+      </div>
+
+      <div class="panel-body">
+        <!-- Metadata -->
+        <div class="meta-grid">
+          <div class="meta-item">
+            <span class="meta-label">カテゴリー:</span>
+            <span>実写 - ノンイングリッシュ翻訳済 (Live Action)</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">投稿日時:</span>
+            <span>2026-08-26 14:00 JST</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">シダー (Seeders):</span>
+            <span class="text-success">48</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">ファイルサイズ:</span>
+            <span>28.4 GiB</span>
+          </div>
+
+          <div class="meta-item">
+            <span class="meta-label">投稿者:</span>
+            <span class="text-primary">MarvelRemuxGroup</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">情報ハッシュ:</span>
+            <span style="font-family: monospace; font-size: 11px;">e8f3b20c914d7a1288c3f4410a8d79201bc3aa5e</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">リーチャー (Leechers):</span>
+            <span class="text-danger">3</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">完了数:</span>
+            <span>412 回</span>
+          </div>
+        </div>
+
+        <!-- Download Buttons -->
+        <div class="actions-bar">
+          <a href="#" class="btn btn-primary" id="torrentBtn"><i class="fa fa-download"></i> トレントファイルをダウンロード</a>
+          <a href="#" class="btn btn-success" id="magnetBtn"><i class="fa fa-magnet"></i> マグネットリンク</a>
+        </div>
+
+        <!-- Description -->
+        <div class="description-container">
+          <div class="desc-header">X-Men (2000) - 劇場公開版 Remux</div>
+          <p>2000年公開の映画『X-メン』(X-MEN) の国内・海外版 Blu-ray から抽出したロスレス Remux MKV ファイルです。全40チャプター仕様。</p>
+
+          <div class="desc-section-title">【映像仕様 (Video)】</div>
+          <ul class="specs-list">
+            <li>コーデック: MPEG-4 AVC</li>
+            <li>解像度: 1920x1080 (1080p High Profile 4.1)</li>
+            <li>フレームレート: 23.976 fps</li>
+            <li>アスペクト比: 16:9 (2.35:1 シネマスコープ)</li>
+          </ul>
+
+          <div class="desc-section-title">【音声トラック (Audio)】</div>
+          <ul class="specs-list">
+            <li>Audio #1 (英語): English 5.1 DTS-HD Master Audio (48 kHz / 24-bit)</li>
+            <li>Audio #2 (英語): English 5.1 Dolby Digital EX (48 kHz / 448 kbps)</li>
+            <li>Audio #3 (日本語吹替): Japanese 5.1 DTS (48 kHz / 768 kbps)</li>
+          </ul>
+
+          <div class="desc-section-title">【字幕トラック (Subtitles)】</div>
+          <ul class="specs-list">
+            <li>Subtitle #1: 日本語 (Japanese / PGS)</li>
+            <li>Subtitle #2: 英語 SDH (English SDH / PGS)</li>
+          </ul>
+
+          <div class="desc-section-title">【チャプター (Chapters)】</div>
+          <p>40 チャプター (BDチャプター完全準拠・タイトル付与)</p>
+
+          <div class="desc-section-title">MediaInfo 詳細:</div>
+          <pre class="mediainfo">
+General
+Unique ID                                : 2341908234901823901823091
+Complete name                            : X-Men.2000.1080p.JPN.BluRay.REMUX.AVC.DTS-HD.MA.5.1-FGT.mkv
+Format                                   : Matroska
+Format version                           : Version 4
+File size                                : 28.4 GiB
+Duration                                 : 1 h 44 min
+Chapters                                 : 40 Chapters
+
+Video
+Format/Info                              : Advanced Video Codec
+Format profile                           : High@L4.1
+Bit rate                                 : 31.2 Mb/s
+Width                                    : 1 920 pixels
+Height                                   : 1 080 pixels
+Display aspect ratio                     : 16:9
+
+Audio #1
+Format                                   : DTS-HD MA
+Language                                 : English
+Channel(s)                               : 6 channels (5.1)
+
+Audio #2
+Format                                   : AC-3 (Dolby Digital EX)
+Language                                 : English
+Channel(s)                               : 6 channels (5.1)
+
+Audio #3
+Format                                   : DTS
+Language                                 : Japanese
+Channel(s)                               : 6 channels (5.1)
+
+Text #1
+Language                                 : Japanese
+Format                                   : PGS
+
+Text #2
+Language                                 : English (SDH)
+Format                                   : PGS
+          </pre>
+        </div>
+
+        <!-- Collapsible File List -->
+        <div style="margin-top: 20px;">
+          <button class="accordion-toggle" id="toggleFiles">
+            <span><i class="fa fa-folder-open"></i> ファイル一覧 (1 ファイル)</span>
+            <i class="fa fa-chevron-down"></i>
+          </button>
+          <ul class="file-tree" id="fileList">
+            <li><i class="fa fa-file-video"></i> X-Men.2000.1080p.JPN.BluRay.REMUX.AVC.DTS-HD.MA.5.1-FGT.mkv <span class="text-muted">(28.4 GiB)</span></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Toggle File Tree
+    const toggleBtn = document.getElementById('toggleFiles');
+    const fileList = document.getElementById('fileList');
+
+    toggleBtn.addEventListener('click', () => {
+      fileList.classList.toggle('active');
+      const icon = toggleBtn.querySelector('.fa-chevron-down, .fa-chevron-up');
+      if (fileList.classList.contains('active')) {
+        icon.classList.replace('fa-chevron-down', 'fa-chevron-up');
+      } else {
+        icon.classList.replace('fa-chevron-up', 'fa-chevron-down');
+      }
+    });
+
+    // Alert placeholder for demo downloads
+    document.getElementById('magnetBtn').addEventListener('click', (e) => {
+      e.preventDefault();
+      alert('Magnet URI: magnet:?xt=urn:btih:e8f3b20c914d7a1288c3f4410a8d79201bc3aa5e&dn=X-Men.2000.Blu-ray.Remux');
+    });
+
+    document.getElementById('torrentBtn').addEventListener('click', (e) => {
+      e.preventDefault();
+      alert('トレントファイルのダウンロードを開始します。');
+    });
+  </script>
+</body>
+</html>
