@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nyaa - [N64] スターフォックス64 / Star Fox 64 (Japan) (v1.1) [.z64]</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --nyaa-blue: #337ab7;
+      --nyaa-dark: #2e6da4;
+      --bg-color: #f8f9fa;
+      --panel-bg: #ffffff;
+      --border-color: #ddd;
+      --text-color: #333;
+      --text-muted: #777;
+      --success-green: #28a745;
+      --danger-red: #dc3545;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    /* ナビゲーションバー */
+    .navbar {
+      background-color: #222;
+      border-bottom: 1px solid #080808;
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #9d9d9d;
+    }
+    .navbar a {
+      color: #9d9d9d;
+      text-decoration: none;
+      padding: 10px 15px;
+    }
+    .navbar a:hover, .navbar a.active {
+      color: #fff;
+    }
+    .navbar-brand {
+      font-size: 18px;
+      font-weight: bold;
+      color: #fff !important;
+    }
+    .navbar-nav {
+      display: flex;
+      list-style: none;
+    }
+
+    /* メインコンテナ */
+    .container {
+      max-width: 1170px;
+      margin: 20px auto;
+      padding: 0 15px;
+    }
+
+    /* パネル共通 */
+    .panel {
+      background-color: var(--panel-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      box-shadow: 0 1px 1px rgba(0,0,0,.05);
+      margin-bottom: 20px;
+    }
+    .panel-heading {
+      background-color: #f5f5f5;
+      border-bottom: 1px solid var(--border-color);
+      padding: 10px 15px;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .panel-title {
+      font-size: 16px;
+      color: inherit;
+    }
+    .panel-body {
+      padding: 15px;
+    }
+
+    /* トレント詳細ヘッダー */
+    .panel-primary {
+      border-color: var(--nyaa-blue);
+    }
+    .panel-primary > .panel-heading {
+      background-color: var(--nyaa-blue);
+      border-color: var(--nyaa-blue);
+      color: #fff;
+    }
+
+    /* メタデータグリッド */
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+    @media (max-width: 768px) {
+      .meta-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    .meta-item {
+      padding: 5px 0;
+    }
+    .meta-label {
+      font-weight: bold;
+      color: var(--text-muted);
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+    .meta-value {
+      font-size: 14px;
+    }
+    .text-success { color: var(--success-green); font-weight: bold; }
+    .text-danger { color: var(--danger-red); font-weight: bold; }
+
+    /* アクションボタン */
+    .download-bar {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px solid #eee;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      font-size: 14px;
+      font-weight: normal;
+      border-radius: 4px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.2s;
+    }
+    .btn-success {
+      background-color: #5cb85c;
+      border-color: #4cae4c;
+      color: #fff;
+    }
+    .btn-success:hover { background-color: #449d44; }
+    .btn-danger {
+      background-color: #d9534f;
+      border-color: #d43f3a;
+      color: #fff;
+    }
+    .btn-danger:hover { background-color: #c9302c; }
+
+    /* 説明欄 */
+    #torrent-description {
+      background-color: #fafafa;
+      border: 1px solid #eee;
+      border-radius: 4px;
+      padding: 15px;
+      font-family: monospace;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+
+    /* ファイル一覧 */
+    .file-tree {
+      list-style: none;
+      font-family: monospace;
+      font-size: 13px;
+    }
+    .file-tree li {
+      padding: 4px 0;
+      border-bottom: 1px dotted #eee;
+      display: flex;
+      justify-content: space-between;
+    }
+    .file-tree i {
+      margin-right: 6px;
+      color: #666;
+    }
+
+    /* コメント欄 */
+    .comment-item {
+      border-bottom: 1px solid #eee;
+      padding: 12px 0;
+    }
+    .comment-meta {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 5px;
+    }
+    .comment-meta strong {
+      color: var(--nyaa-blue);
+    }
+    .comment-form textarea {
+      width: 100%;
+      height: 80px;
+      padding: 10px;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      resize: vertical;
+      margin-bottom: 10px;
+      font-family: inherit;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ナビゲーションバー -->
+  <nav class="navbar">
+    <div class="navbar-nav">
+      <a href="#" class="navbar-brand">Nyaa</a>
+      <a href="#" class="active">ホーム</a>
+      <a href="#">アップロード</a>
+      <a href="#">ルール</a>
+      <a href="#">FAQ</a>
+    </div>
+    <div class="navbar-nav">
+      <a href="#"><i class="fa-solid fa-user"></i> ログイン / 登録</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    
+    <!-- トレント詳細パネル -->
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">[N64] スターフォックス64 / Star Fox 64 (Japan) (v1.1) [.z64]</h3>
+      </div>
+      <div class="panel-body">
+        
+        <div class="meta-grid">
+          <div class="meta-item">
+            <div class="meta-label">カテゴリー:</div>
+            <div class="meta-value"><a href="#" style="color: var(--nyaa-blue); text-decoration: none;">Games - Retro</a></div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">投稿日時:</div>
+            <div class="meta-value">1997-04-27 10:00 UTC</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">投稿者:</div>
+            <div class="meta-value"><a href="#" style="color: var(--nyaa-blue); text-decoration: none;">CorneriaOps</a></div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">ファイルサイズ:</div>
+            <div class="meta-value">12.0 MiB</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">シード (Seeders):</div>
+            <div class="meta-value text-success" id="seeders-count">64</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">リーチャー (Leechers):</div>
+            <div class="meta-value text-danger" id="leechers-count">4</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">完了 (Completed):</div>
+            <div class="meta-value" id="completed-count">1,997</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">インフォハッシュ (Info Hash):</div>
+            <div class="meta-value" style="font-family: monospace; font-size: 11px;">e9b06f8a84594c7b8098c11e5f88421b96a41f64</div>
+          </div>
+        </div>
+
+        <div class="download-bar">
+          <a href="#" class="btn btn-danger" id="magnet-btn">
+            <i class="fa-solid fa-magnet"></i> マグネットリンク
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ファイル一覧パネル -->
+    <div class="panel">
+      <div class="panel-heading">
+        <span class="panel-title">ファイル一覧 (1 ファイル)</span>
+      </div>
+      <div class="panel-body">
+        <ul class="file-tree">
+          <li>
+            <span><i class="fa-regular fa-file"></i> Star Fox 64 (Japan) (v1.1).z64</span>
+            <span>12.0 MiB</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 詳細説明パネル -->
+    <div class="panel">
+      <div class="panel-heading">
+        <span class="panel-title">説明</span>
+      </div>
+      <div class="panel-body">
+        <div id="torrent-description">========================================================
+タイトル: スターフォックス64 (Star Fox 64)
+プラットフォーム: NINTENDO 64
+発売元: 任天堂 / 開発: 任天堂情報開発本部
+発売日: 1997年4月27日 (日本)
+フォーマット: .z64 (Big-Endian / Native N64 ROM Dump)
+ファイルサイズ: 12,582,912 bytes (96 Mbits / 12.0 MiB)
+========================================================
+
+【ROM情報 / No-Intro Verification】
+- Database Name: Nintendo - Nintendo 64
+- File: Star Fox 64 (Japan) (v1.1).z64
+- CRC32: B66C2277
+- MD5: 935D62D55BFA8C4DE145A827FE47B1E3
+- SHA-1: 304620A272671569B13248888D7992A676E9412F
+
+【概要】
+3Dポリゴンシューティングゲームの金字塔。
+音声・振動パック（Rumble Pak）初対応作品。
+
+【注意事項】
+実機バックアップ、エミュレータ（Ares, simple64, RMG等）またはFlashcart（EverDrive-64等）での動作確認用。
+転送時はByte-swapped (.v64) ではなく Native (.z64) であることを確認してください。</div>
+      </div>
+    </div>
+
+    <!-- コメントパネル -->
+    <div class="panel">
+      <div class="panel-heading">
+        <span class="panel-title">コメント</span>
+      </div>
+      <div class="panel-body">
+        <div id="comments-container">
+          <div class="comment-item">
+            <div class="comment-meta">
+              <strong>SlippyToad</strong> (2日前)
+            </div>
+            <div class="comment-text">
+              「フォックス！後ろに敵だ！」実機+振動パックのレスポンス良好でした。CRC一致確認済みです。
+            </div>
+          </div>
+          <div class="comment-item">
+            <div class="comment-meta">
+              <strong>PeppyHare</strong> (1日前)
+            </div>
+            <div class="comment-text">
+              Do a barrel roll! 動作問題ありません。シード維持します。
+            </div>
+          </div>
+        </div>
+
+        <form class="comment-form" id="commentForm" style="margin-top: 15px;">
+          <textarea id="commentInput" placeholder="コメントを入力（Markdown対応）..."></textarea>
+          <button type="submit" class="btn btn-success"><i class="fa-solid fa-comment"></i> コメントを送信</button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // マグネットリンクのアクション
+      const magnetBtn = document.getElementById('magnet-btn');
+      magnetBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const hash = 'e9b06f8a84594c7b8098c11e5f88421b96a41f64';
+        const name = encodeURIComponent('[N64] スターフォックス64 (Japan) (v1.1) [.z64]');
+        const magnetURI = `magnet:?xt=urn:btih:${hash}&dn=${name}`;
+        window.location.href = magnetURI;
+      });
+
+      // コメント投稿ハンドラ
+      const commentForm = document.getElementById('commentForm');
+      const commentInput = document.getElementById('commentInput');
+      const commentsContainer = document.getElementById('comments-container');
+
+      commentForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const text = commentInput.value.trim();
+        if (!text) return;
+
+        const commentDiv = document.createElement('div');
+        commentDiv.className = 'comment-item';
+        commentDiv.innerHTML = `
+          <div class="comment-meta">
+            <strong>ゲストユーザー</strong> (たった今)
+          </div>
+          <div class="comment-text">${escapeHtml(text)}</div>
+        `;
+        commentsContainer.appendChild(commentDiv);
+        commentInput.value = '';
+      });
+
+      function escapeHtml(str) {
+        return str.replace(/[&<>'"]/g, 
+          tag => ({
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            "'": '&#39;',
+            '"': '&quot;'
+          }[tag] || tag)
+        );
+      }
+    });
+  </script>
+</body>
+</html>
