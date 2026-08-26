@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daredevil / デアデビル (2003) [Director’s Cut] (1080p Blu-ray Remux AVC DTS-HD MA 5.1) :: Nyaa</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --nyaa-blue: #337ab7;
+            --nyaa-dark-blue: #23527c;
+            --nyaa-bg: #f8f9fa;
+            --panel-bg: #ffffff;
+            --border-color: #dddddd;
+            --text-primary: #333333;
+            --text-muted: #777777;
+            --success-green: #3c763d;
+            --danger-red: #a94442;
+            --info-blue: #31708f;
+            --success-bg: #dff0d8;
+            --danger-bg: #f2dede;
+            --info-bg: #d9edf7;
+            --header-bg: #222222;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "BIZ UDPGothic", Meiryo, sans-serif;
+            font-size: 13px;
+            line-height: 1.5;
+            color: var(--text-primary);
+            background-color: var(--nyaa-bg);
+            padding-bottom: 50px;
+        }
+
+        a {
+            color: var(--nyaa-blue);
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: var(--nyaa-dark-blue);
+            text-decoration: underline;
+        }
+
+        /* Top Navigation */
+        .navbar {
+            background-color: var(--header-bg);
+            border-bottom: 1px solid #080808;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+        }
+
+        .container {
+            max-width: 1170px;
+            margin: 0 auto;
+            padding: 0 15px;
+            width: 100%;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 18px;
+            color: #ffffff !important;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .navbar-nav {
+            display: flex;
+            list-style: none;
+            gap: 15px;
+        }
+
+        .navbar-nav a {
+            color: #9d9d9d;
+            font-size: 14px;
+        }
+
+        .navbar-nav a:hover {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        /* Search Header */
+        .search-bar-wrap {
+            margin: 20px 0;
+            display: flex;
+            gap: 5px;
+        }
+
+        .search-select, .search-input, .btn {
+            font-size: 13px;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .search-select {
+            background: #fff;
+            max-width: 200px;
+        }
+
+        .search-input {
+            flex-grow: 1;
+        }
+
+        .btn-primary {
+            background-color: var(--nyaa-blue);
+            border-color: #2e6da4;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--nyaa-dark-blue);
+        }
+
+        /* Main Torrent Panel */
+        .panel {
+            background: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            box-shadow: 0 1px 1px rgba(0,0,0,.05);
+            margin-bottom: 20px;
+        }
+
+        .panel-heading {
+            background-color: #f5f5f5;
+            border-bottom: 1px solid var(--border-color);
+            padding: 10px 15px;
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+        }
+
+        .panel-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #333;
+            word-break: break-word;
+        }
+
+        .panel-body {
+            padding: 15px;
+        }
+
+        /* Metadata Grid */
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .meta-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .meta-cell {
+            padding: 8px 10px;
+            background: #fbfbfb;
+            border: 1px solid #eeeeee;
+            border-radius: 3px;
+        }
+
+        .meta-label {
+            font-weight: 700;
+            font-size: 11px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 3px;
+        }
+
+        .meta-value {
+            font-weight: 500;
+        }
+
+        .text-success { color: var(--success-green); font-weight: 700; }
+        .text-danger { color: var(--danger-red); font-weight: 700; }
+        .text-info { color: var(--info-blue); font-weight: 700; }
+
+        /* Action Buttons */
+        .download-actions {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding: 10px 0;
+            border-top: 1px solid #eeeeee;
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        .btn-download {
+            background-color: #5cb85c;
+            border-color: #4cae4c;
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 4px;
+            font-size: 13px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-download:hover {
+            background-color: #449d44;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .btn-magnet {
+            background-color: var(--nyaa-blue);
+            border-color: #2e6da4;
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 4px;
+            font-size: 13px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-magnet:hover {
+            background-color: var(--nyaa-dark-blue);
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /* Description Area */
+        .torrent-description {
+            background: #fafafa;
+            border: 1px solid #eee;
+            border-radius: 4px;
+            padding: 15px;
+            font-family: inherit;
+        }
+
+        .desc-header {
+            font-size: 15px;
+            font-weight: 700;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 6px;
+            margin-bottom: 12px;
+            margin-top: 18px;
+        }
+
+        .desc-header:first-of-type {
+            margin-top: 0;
+        }
+
+        .nfo-block {
+            background-color: #222;
+            color: #f1f1f1;
+            padding: 12px;
+            border-radius: 4px;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 12px;
+            white-space: pre-wrap;
+            overflow-x: auto;
+            margin-top: 10px;
+            line-height: 1.4;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 2px 6px;
+            font-size: 11px;
+            font-weight: 600;
+            line-height: 1;
+            color: #fff;
+            border-radius: 2px;
+            margin-right: 4px;
+        }
+        .tag-bd { background-color: #8e44ad; }
+        .tag-remux { background-color: #d35400; }
+        .tag-audio { background-color: #27ae60; }
+
+        /* File List Dropdown */
+        .accordion-btn {
+            background-color: #f5f5f5;
+            color: #444;
+            cursor: pointer;
+            padding: 10px 15px;
+            width: 100%;
+            border: 1px solid var(--border-color);
+            text-align: left;
+            outline: none;
+            font-size: 13px;
+            font-weight: 700;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .accordion-panel {
+            padding: 0 15px;
+            background-color: white;
+            display: none;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            border-top: none;
+            border-radius: 0 0 4px 4px;
+        }
+
+        .file-tree {
+            list-style: none;
+            padding: 10px 0;
+            font-family: monospace;
+            font-size: 12px;
+        }
+
+        .file-tree li {
+            padding: 4px 0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fa-solid fa-cat"></i> Nyaa
+            </a>
+            <ul class="navbar-nav">
+                <li><a href="#"><i class="fa-solid fa-upload"></i> アップロード</a></li>
+                <li><a href="#"><i class="fa-solid fa-circle-info"></i> ルール</a></li>
+                <li><a href="#"><i class="fa-solid fa-comments"></i> フォーラム</a></li>
+                <li><a href="#"><i class="fa-solid fa-user"></i> ログイン</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Content Container -->
+    <div class="container">
+        
+        <!-- Search UI (ja-JP localized) -->
+        <div class="search-bar-wrap">
+            <select class="search-select">
+                <option value="0_0">すべてのカテゴリー</option>
+                <option value="4_0" selected>Live Action - Non-English-translated</option>
+                <option value="4_1">Live Action - Raw</option>
+            </select>
+            <input type="text" class="search-input" value="Daredevil 2003 Director's Cut Remux" placeholder="検索ワードを入力...">
+            <button class="btn btn-primary" type="button"><i class="fa-solid fa-magnifying-glass"></i> 検索</button>
+        </div>
+
+        <!-- Main Panel -->
+        <div class="panel">
+            <div class="panel-heading">
+                <h1 class="panel-title">Daredevil / デアデビル (2003) [Director's Cut] (1080p Blu-ray Remux AVC DTS-HD MA 5.1, DTS 5.1) [44 Chapters]</h1>
+            </div>
+            
+            <div class="panel-body">
+                <!-- Metadata Table -->
+                <div class="meta-grid">
+                    <div class="meta-cell">
+                        <div class="meta-label">カテゴリー:</div>
+                        <div class="meta-value"><a href="#">実写 - 翻訳版 (Non-English)</a></div>
+                    </div>
+                    <div class="meta-cell">
+                        <div class="meta-label">投稿日時:</div>
+                        <div class="meta-value" title="2026-08-26 14:30:00">2026-08-26 14:30</div>
+                    </div>
+                    <div class="meta-cell">
+                        <div class="meta-label">投稿者:</div>
+                        <div class="meta-value"><a href="#">MarvelRemuxer_JP</a></div>
+                    </div>
+                    <div class="meta-cell">
+                        <div class="meta-label">ファイルサイズ:</div>
+                        <div class="meta-value">31.4 GiB</div>
+                    </div>
+                    <div class="meta-cell">
+                        <div class="meta-label">シード数 (Seeders):</div>
+                        <div class="meta-value text-success">42</div>
+                    </div>
+                    <div class="meta-cell">
+                        <div class="meta-label">リーチャー数 (Leechers):</div>
+                        <div class="meta-value text-danger">3</div>
+                    </div>
+                    <div class="meta-cell">
+                        <div class="meta-label">完了数 (Completed):</div>
+                        <div class="meta-value text-info">189</div>
+                    </div>
+                    <div class="meta-cell">
+                        <div class="meta-label">情報ハッシュ:</div>
+                        <div class="meta-value" style="font-family: monospace; font-size: 11px;">e8b9f4a1c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0</div>
+                    </div>
+                </div>
+
+                <!-- Download Actions -->
+                <div class="download-actions">
+                    <a href="#" class="btn-download" id="downloadTorrent">
+                        <i class="fa-solid fa-download"></i> トレントファイルをダウンロード (.torrent)
+                    </a>
+                    <a href="magnet:?xt=urn:btih:e8b9f4a1c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0&dn=Daredevil.2003.DC.1080p.JPN.BluRay.REMUX.AVC.DTS-HD.MA.5.1-EPSiLON.mkv" class="btn-magnet">
+                        <i class="fa-solid fa-magnet"></i> マグネットリンク
+                    </a>
+                </div>
+
+                <!-- Torrent Details & Description -->
+                <div class="torrent-description">
+                    <div style="margin-bottom: 15px;">
+                        <span class="tag tag-bd">Blu-ray</span>
+                        <span class="tag tag-remux">Remux</span>
+                        <span class="tag tag-audio">DTS-HD MA 5.1</span>
+                    </div>
+
+                    <p>2003年公開の映画『デアデビル』の<strong>ディレクターズ・カット版（Director's Cut）</strong>国内盤/北米盤ハイブリッド Blu-ray Remux です。<br>
+                    未公開シーン約30分が追加され、劇場版とは大幅にトーンが異なるR指定エディション（本編133分）を収録。全44チャプター完全対応。</p>
+
+                    <div class="desc-header">詳細情報 (MediaInfo)</div>
+                    <div class="nfo-block">General
+Unique ID                                : 23489104820948102948102948102948
+Complete name                            : Daredevil.2003.DC.1080p.JPN.BluRay.REMUX.AVC.DTS-HD.MA.5.1-EPSiLON.mkv
+Format                                   : Matroska (Version 4)
+File size                                : 31.4 GiB
+Duration                                 : 2 h 13 min (133 min)
+Overall bit rate                         : 33.6 Mb/s
+Movie name                               : Daredevil (2003) - Director's Cut
+
+Video
+Format/Info                              : Advanced Video Codec (AVC)
+Format profile                           : High@L4.1
+Bit rate                                 : 28.0 Mb/s
+Width                                    : 1 920 pixels
+Height                                   : 1 080 pixels
+Display aspect ratio                     : 2.35:1 (CinemaScope)
+Frame rate mode                          : Constant
+Frame rate                               : 23.976 (24000/1001) FPS
+Color space                              : YUV 4:2:0
+Bit depth                                : 8 bits
+
+Audio #1 (Main)
+Format                                   : DTS-HD Master Audio
+Bit rate mode                            : Variable
+Bit rate                                 : 3 840 kb/s (Core: 1 509 kb/s)
+Channel(s)                               : 6 channels (5.1 Surround)
+Channel layout                           : C L R Ls Rs LFE
+Sampling rate                            : 48.0 kHz
+Bit depth                                : 24 bits
+Language                                 : English (英語)
+
+Audio #2 (Japanese Dub)
+Format                                   : DTS
+Bit rate mode                            : Constant
+Bit rate                                 : 768 kb/s
+Channel(s)                               : 6 channels (5.1 Surround)
+Channel layout                           : C L R Ls Rs LFE
+Sampling rate                            : 48.0 kHz
+Bit depth                                : 24 bits
+Language                                 : Japanese (日本語 - 小山力也/岡寛恵/咲野俊介/玄田哲章 版)
+
+Subtitles
+Text #1                                  : Japanese (日本語 PGS)
+Text #2                                  : English (英語 SDH PGS)
+
+Chapters
+Total Chapters                           : 44 Chapters (Named & Timestamped)
+00:00:00.000                             : 01. A Darkness Falls
+00:03:12.450                             : 02. The Origin / Blind Faith
+...
+02:11:45.900                             : 43. The Man Without Fear
+02:13:30.000                             : 44. End Credits</div>
+                </div>
+
+                <!-- Collapsible File List -->
+                <button class="accordion-btn" id="fileTreeToggle">
+                    <span><i class="fa-regular fa-folder-open"></i> ファイル一覧 (1ファイル)</span>
+                    <i class="fa-solid fa-chevron-down" id="toggleIcon"></i>
+                </button>
+                <div class="accordion-panel" id="fileTreePanel">
+                    <ul class="file-tree">
+                        <li>
+                            <span><i class="fa-regular fa-file-video"></i> Daredevil.2003.DC.1080p.JPN.BluRay.REMUX.AVC.DTS-HD.MA.5.1-EPSiLON.mkv</span>
+                            <span>31.4 GiB</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>Nyaa.si clone interface for display demonstration.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Toggle File List Accordion
+        const accordionBtn = document.getElementById('fileTreeToggle');
+        const accordionPanel = document.getElementById('fileTreePanel');
+        const toggleIcon = document.getElementById('toggleIcon');
+
+        accordionBtn.addEventListener('click', function() {
+            if (accordionPanel.style.display === "block") {
+                accordionPanel.style.display = "none";
+                toggleIcon.className = "fa-solid fa-chevron-down";
+            } else {
+                accordionPanel.style.display = "block";
+                toggleIcon.className = "fa-solid fa-chevron-up";
+            }
+        });
+
+        // Download alert demonstration
+        document.getElementById('downloadTorrent').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('ダウンロードを開始します: Daredevil (2003) Director\'s Cut Remux.torrent');
+        });
+    </script>
+</body>
+</html>
