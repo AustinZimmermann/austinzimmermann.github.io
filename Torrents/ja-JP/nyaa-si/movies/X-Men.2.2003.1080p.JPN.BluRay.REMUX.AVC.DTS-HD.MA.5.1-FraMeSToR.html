@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X-Men.2.2003.1080p.JPN.BluRay.REMUX.AVC.DTS-HD.MA.5.1-FraMeSToR :: Nyaa</title>
+    <!-- FontAwesome for standard Nyaa-style UI icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #f4f6f9;
+            --navbar-bg: #2b3e50;
+            --navbar-link: #ffffff;
+            --card-bg: #ffffff;
+            --panel-header-bg: #34495e;
+            --panel-header-text: #ffffff;
+            --border-color: #d1d8e0;
+            --text-color: #333333;
+            --text-muted: #6c757d;
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+            --info-color: #17a2b8;
+            --btn-download-bg: #3273dc;
+            --btn-download-hover: #275bb5;
+            --btn-magnet-bg: #23d160;
+            --btn-magnet-hover: #1ca84e;
+            --code-bg: #282c34;
+            --code-text: #abb2bf;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        a {
+            color: #337ab7;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: var(--navbar-bg);
+            color: var(--navbar-link);
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+        }
+
+        .navbar-brand {
+            font-size: 18px;
+            font-weight: bold;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .navbar-nav {
+            display: flex;
+            list-style: none;
+            gap: 15px;
+        }
+
+        .navbar-nav a {
+            color: #c8d1db;
+            font-size: 13px;
+        }
+
+        .navbar-nav a:hover {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .navbar-search {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .navbar-search input {
+            padding: 4px 8px;
+            border-radius: 3px;
+            border: 1px solid #1a252f;
+            font-size: 12px;
+            width: 220px;
+        }
+
+        .navbar-search select {
+            padding: 4px;
+            border-radius: 3px;
+            border: 1px solid #1a252f;
+            font-size: 12px;
+            background-color: #fff;
+        }
+
+        .navbar-search button {
+            background-color: #34495e;
+            border: 1px solid #1a252f;
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1140px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+
+        /* Torrent Card / Panel */
+        .panel {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .panel-header {
+            background-color: var(--panel-header-bg);
+            color: var(--panel-header-text);
+            padding: 10px 15px;
+            font-size: 15px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .panel-body {
+            padding: 15px;
+        }
+
+        /* Metadata Grid */
+        .metadata-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px 20px;
+            font-size: 13px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+
+        .metadata-row {
+            display: flex;
+        }
+
+        .metadata-label {
+            font-weight: bold;
+            width: 140px;
+            color: #495057;
+        }
+
+        .metadata-value {
+            flex: 1;
+            word-break: break-all;
+        }
+
+        .seeders { color: var(--success-color); font-weight: bold; }
+        .leechers { color: var(--danger-color); font-weight: bold; }
+        .completed { color: var(--info-color); font-weight: bold; }
+
+        /* Action Buttons */
+        .action-bar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 3px;
+            font-weight: bold;
+            font-size: 13px;
+            color: #ffffff !important;
+            text-decoration: none !important;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-download { background-color: var(--btn-download-bg); }
+        .btn-download:hover { background-color: var(--btn-download-hover); }
+        .btn-magnet { background-color: var(--btn-magnet-bg); }
+        .btn-magnet:hover { background-color: var(--btn-magnet-hover); }
+
+        /* Description Container */
+        .torrent-description {
+            background-color: #fafbfc;
+            border: 1px solid #e1e4e8;
+            border-radius: 4px;
+            padding: 20px;
+            font-size: 13px;
+            color: #24292e;
+        }
+
+        .torrent-description h2 {
+            font-size: 16px;
+            border-bottom: 2px solid #34495e;
+            padding-bottom: 5px;
+            margin: 15px 0 10px 0;
+            color: #2c3e50;
+        }
+
+        .torrent-description h2:first-child {
+            margin-top: 0;
+        }
+
+        .tech-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+            font-size: 12px;
+        }
+
+        .tech-table th, .tech-table td {
+            border: 1px solid #e1e4e8;
+            padding: 6px 10px;
+            text-align: left;
+        }
+
+        .tech-table th {
+            background-color: #f1f3f5;
+            width: 180px;
+            font-weight: 600;
+        }
+
+        /* NFO / MediaInfo block */
+        .mediainfo-block {
+            background-color: var(--code-bg);
+            color: var(--code-text);
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+            padding: 12px;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-size: 11px;
+            line-height: 1.45;
+            margin-top: 10px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        /* File List Panel */
+        .file-list-toggle {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .file-tree {
+            list-style: none;
+            padding-left: 5px;
+            font-family: monospace;
+            font-size: 12px;
+        }
+
+        .file-tree li {
+            padding: 3px 0;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px dashed #eee;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 11px;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-color);
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Global Header -->
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <i class="fa-solid fa-torii-gate"></i> Nyaa (ja-JP)
+        </div>
+        <ul class="navbar-nav">
+            <li><a href="#"><i class="fa-solid fa-house"></i> ホーム</a></li>
+            <li><a href="#"><i class="fa-solid fa-upload"></i> アップロード</a></li>
+            <li><a href="#"><i class="fa-solid fa-rss"></i> RSS</a></li>
+            <li><a href="#"><i class="fa-solid fa-circle-info"></i> 利用規約/FAQ</a></li>
+        </ul>
+        <div class="navbar-search">
+            <select>
+                <option>すべて</option>
+                <option selected>実写作品 (Live Action)</option>
+                <option>アニメ (Anime)</option>
+            </select>
+            <input type="text" placeholder="検索..." value="X-Men 2 FraMeSToR">
+            <button type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Torrent Detail Panel -->
+        <div class="panel">
+            <div class="panel-header">
+                <span><i class="fa-solid fa-film"></i> X-Men.2.2003.1080p.JPN.BluRay.REMUX.AVC.DTS-HD.MA.5.1-FraMeSToR</span>
+            </div>
+            <div class="panel-body">
+                
+                <!-- Action Buttons -->
+                <div class="action-bar">
+                    <a href="#" class="btn btn-download" id="downloadTorrent">
+                        <i class="fa-solid fa-download"></i> トレントファイルをダウンロード
+                    </a>
+                    <a href="magnet:?xt=urn:btih:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855&dn=X-Men.2.2003.1080p.JPN.BluRay.REMUX.AVC.DTS-HD.MA.5.1-FraMeSToR" class="btn btn-magnet">
+                        <i class="fa-solid fa-magnet"></i> マグネットリンク
+                    </a>
+                </div>
+
+                <!-- Structured Metadata -->
+                <div class="metadata-grid">
+                    <div class="metadata-row">
+                        <span class="metadata-label">カテゴリー:</span>
+                        <span class="metadata-value"><a href="#">実写 - Non-English-translated</a></span>
+                    </div>
+                    <div class="metadata-row">
+                        <span class="metadata-label">投稿日時:</span>
+                        <span class="metadata-value" id="upload-date">2023-05-12 14:32 JST</span>
+                    </div>
+                    <div class="metadata-row">
+                        <span class="metadata-label">投稿者:</span>
+                        <span class="metadata-value"><a href="#" style="font-weight: bold; color: #1abc9c;">FraMeSToR</a></span>
+                    </div>
+                    <div class="metadata-row">
+                        <span class="metadata-label">シード (Seeders):</span>
+                        <span class="metadata-value seeders">38</span>
+                    </div>
+                    <div class="metadata-row">
+                        <span class="metadata-label">情報ハッシュ:</span>
+                        <span class="metadata-value"><code>E3B0C44298FC1C149AFBF4C8996FB92427AE41E4</code></span>
+                    </div>
+                    <div class="metadata-row">
+                        <span class="metadata-label">リーチャー (Leechers):</span>
+                        <span class="metadata-value leechers">3</span>
+                    </div>
+                    <div class="metadata-row">
+                        <span class="metadata-label">ファイルサイズ:</span>
+                        <span class="metadata-value">31.4 GiB</span>
+                    </div>
+                    <div class="metadata-row">
+                        <span class="metadata-label">完了数:</span>
+                        <span class="metadata-value completed">412</span>
+                    </div>
+                </div>
+
+                <!-- Detailed Description Section -->
+                <div class="torrent-description">
+                    <h2>作品概要 / Overview</h2>
+                    <p style="margin-bottom: 12px;">
+                        <strong>邦題:</strong> X-MEN2 (2003)<br>
+                        <strong>原題:</strong> X2 / X-Men 2: X-Men United<br>
+                        日本国内盤 Blu-ray ディスクから無劣化で抽出された Remux パッケージです。英語ロスレスマスター音声に加え、劇場公開・吹替ファン向けの日本語吹替 DTS 音声、日本語字幕および英語 SDH 字幕を完全収録しています。チャプターはオリジナル Disc に準拠した全40チャプター仕様。
+                    </p>
+
+                    <h2>メディア仕様 / Technical Specs</h2>
+                    <table class="tech-table">
+                        <tbody>
+                            <tr>
+                                <th>General</th>
+                                <td>Matroska (MKV) | 31.4 GiB | 2時間 13分 57秒</td>
+                            </tr>
+                            <tr>
+                                <th>Video</th>
+                                <td>MPEG-4 AVC Video / 1080p / 23.976 fps / 16:9 / High Profile 4.1</td>
+                            </tr>
+                            <tr>
+                                <th>Audio 1 (主音声)</th>
+                                <td><strong>英語 (English):</strong> DTS-HD Master Audio 5.1ch (48 kHz / 24-bit)</td>
+                            </tr>
+                            <tr>
+                                <th>Audio 2 (副音声)</th>
+                                <td><strong>英語 (English):</strong> Dolby Digital 5.1ch (48 kHz / 448 kbps)</td>
+                            </tr>
+                            <tr>
+                                <th>Audio 3 (吹替)</th>
+                                <td><strong>日本語 (Japanese):</strong> DTS 5.1ch (48 kHz / 24-bit / 768 kbps)</td>
+                            </tr>
+                            <tr>
+                                <th>Subtitles (字幕)</th>
+                                <td>
+                                    1. 日本語 (Japanese PGS)<br>
+                                    2. 英語 SDH (English SDH PGS)
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Chapters</th>
+                                <td>40 チャプター (Full Chapters Included)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h2>MediaInfo (詳細ログ)</h2>
+                    <div class="mediainfo-block">General
+Unique ID                                : 238194028491823901823901823901823901823
+Complete name                            : X-Men.2.2003.1080p.JPN.BluRay.REMUX.AVC.DTS-HD.MA.5.1-FraMeSToR.mkv
+Format                                   : Matroska
+Format version                           : Version 4
+File size                                : 31.4 GiB
+Duration                                 : 2 h 13 min
+Overall bit rate mode                    : Variable
+Overall bit rate                         : 33.6 Mb/s
+Movie name                               : X-Men 2 (2003) - FraMeSToR REMUX
+Encoded date                             : 2023-05-12 04:18:22 UTC
+Writing application                      : mkvmerge v76.0 ('Celebration') 64-bit
+Writing library                          : libmatroska v1.7.1
+
+Video
+ID                                       : 1
+Format                                   : AVC
+Format/Info                              : Advanced Video Codec
+Format profile                           : High@L4.1
+Bit rate                                 : 27.8 Mb/s
+Width                                    : 1 920 pixels
+Height                                   : 1 080 pixels
+Display aspect ratio                     : 16:9 (2.40:1)
+Frame rate mode                          : Constant
+Frame rate                               : 23.976 (24000/1001) FPS
+Color space                              : YUV
+Chroma subsampling                       : 4:2:0
+Bit depth                                : 8 bits
+
+Audio #1
+ID                                       : 2
+Format                                   : DTS XLL
+Format/Info                              : Digital Theater Systems
+Commercial name                          : DTS-HD Master Audio
+Codec ID                                 : A_DTS
+Bit rate mode                            : Variable
+Channel(s)                               : 6 channels
+Channel layout                           : C L R Ls Rs LFE
+Sampling rate                            : 48.0 kHz
+Bit depth                                : 24 bits
+Title                                    : English DTS-HD MA 5.1
+Language                                 : English
+
+Audio #2
+ID                                       : 3
+Format                                   : AC-3
+Format/Info                              : Audio Coding 3
+Codec ID                                 : A_AC3
+Bit rate                                 : 448 kb/s
+Channel(s)                               : 6 channels
+Sampling rate                            : 48.0 kHz
+Title                                    : English AC-3 5.1
+Language                                 : English
+
+Audio #3
+ID                                       : 4
+Format                                   : DTS
+Format/Info                              : Digital Theater Systems
+Codec ID                                 : A_DTS
+Bit rate                                 : 768 kb/s
+Channel(s)                               : 6 channels
+Sampling rate                            : 48.0 kHz
+Bit depth                                : 24 bits
+Title                                    : Japanese DTS 5.1 (日本語吹替)
+Language                                 : Japanese
+
+Text #1
+ID                                       : 5
+Format                                   : PGS
+Codec ID                                 : S_HDMV/PGS
+Title                                    : Japanese (日本語字幕)
+Language                                 : Japanese
+
+Text #2
+ID                                       : 6
+Format                                   : PGS
+Codec ID                                 : S_HDMV/PGS
+Title                                    : English SDH
+Language                                 : English
+
+Menu
+00:00:00.000                             : en:Chapter 01 (White House Intrusion)
+00:03:45.120                             : en:Chapter 02 (Museum Field Trip)
+00:07:22.500                             : en:Chapter 03 (Mutant Registration Debate)
+...
+02:08:15.000                             : en:Chapter 39 (A New Beginning)
+02:13:57.000                             : en:Chapter 40 (End Credits)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- File List Panel -->
+        <div class="panel">
+            <div class="panel-header file-list-toggle" id="toggleFiles">
+                <span><i class="fa-solid fa-folder-open"></i> ファイルリスト (1 ファイル)</span>
+                <span style="font-size: 11px;"><i class="fa-solid fa-chevron-down"></i> 表示切替</span>
+            </div>
+            <div class="panel-body" id="fileListBody">
+                <ul class="file-tree">
+                    <li>
+                        <span><i class="fa-regular fa-file-video"></i> X-Men.2.2003.1080p.JPN.BluRay.REMUX.AVC.DTS-HD.MA.5.1-FraMeSToR.mkv</span>
+                        <span style="color: var(--text-muted);">31.4 GiB</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 Nyaa. All tracks, media metadata, and hashes are generated according to the REMUX release standard.</p>
+    </footer>
+
+    <!-- Interactive Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // File list dropdown toggle functionality
+            const toggleBtn = document.getElementById('toggleFiles');
+            const fileListBody = document.getElementById('fileListBody');
+
+            toggleBtn.addEventListener('click', () => {
+                if (fileListBody.style.display === 'none') {
+                    fileListBody.style.display = 'block';
+                } else {
+                    fileListBody.style.display = 'none';
+                }
+            });
+
+            // Notification mock on download click
+            const downloadBtn = document.getElementById('downloadTorrent');
+            downloadBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                alert('Torrent file download triggered:\n[X-Men.2.2003.1080p.JPN.BluRay.REMUX.AVC.DTS-HD.MA.5.1-FraMeSToR.torrent]');
+            });
+        });
+    </script>
+</body>
+</html>
