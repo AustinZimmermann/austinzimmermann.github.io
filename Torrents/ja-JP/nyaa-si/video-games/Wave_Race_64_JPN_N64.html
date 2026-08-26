@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wave Race 64 (Japan) (v1.0) [Z64] :: Nyaa</title>
+  <style>
+    :root {
+      --bg-color: #f8f9fa;
+      --panel-bg: #ffffff;
+      --border-color: #d1d5db;
+      --primary-color: #0275d8;
+      --primary-hover: #025aa5;
+      --text-main: #333333;
+      --text-muted: #6c757d;
+      --badge-success: #5cb85c;
+      --badge-danger: #d9534f;
+      --badge-info: #5bc0de;
+      --header-bg: #292b2c;
+      --header-text: #ffffff;
+      --table-header: #eceeef;
+      --table-stripe: #f9f9f9;
+      --torrent-desc-bg: #fafafa;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--text-main);
+      background-color: var(--bg-color);
+    }
+
+    a {
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: var(--primary-hover);
+      text-decoration: underline;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: var(--header-bg);
+      color: var(--header-text);
+      padding: 0 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 48px;
+    }
+
+    .navbar-brand {
+      font-size: 18px;
+      font-weight: bold;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .navbar-nav {
+      display: flex;
+      list-style: none;
+      gap: 15px;
+    }
+
+    .navbar-nav a {
+      color: #ccc;
+      font-size: 13px;
+    }
+
+    .navbar-nav a:hover {
+      color: #fff;
+    }
+
+    .nav-user {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 12px;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1140px;
+      margin: 15px auto;
+      padding: 0 15px;
+    }
+
+    /* Search Bar */
+    .search-container {
+      background-color: var(--panel-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      padding: 10px;
+      margin-bottom: 15px;
+      display: flex;
+      gap: 8px;
+    }
+
+    .search-select, .search-input, .search-btn {
+      height: 32px;
+      font-size: 12px;
+      border: 1px solid var(--border-color);
+      border-radius: 3px;
+      padding: 0 8px;
+    }
+
+    .search-input {
+      flex: 1;
+    }
+
+    .search-btn {
+      background-color: var(--primary-color);
+      color: #fff;
+      cursor: pointer;
+      border: none;
+      padding: 0 15px;
+    }
+
+    .search-btn:hover {
+      background-color: var(--primary-hover);
+    }
+
+    /* Torrent Detail Panel */
+    .panel {
+      background: var(--panel-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      margin-bottom: 20px;
+    }
+
+    .panel-header {
+      background-color: var(--table-header);
+      padding: 10px 15px;
+      border-bottom: 1px solid var(--border-color);
+      font-size: 15px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .panel-body {
+      padding: 15px;
+    }
+
+    /* Meta Grid */
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px 16px;
+      margin-bottom: 15px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 15px;
+    }
+
+    .meta-row {
+      display: flex;
+    }
+
+    .meta-label {
+      width: 110px;
+      font-weight: bold;
+      color: var(--text-muted);
+    }
+
+    .meta-value {
+      flex: 1;
+    }
+
+    .text-success { color: var(--badge-success); font-weight: bold; }
+    .text-danger { color: var(--badge-danger); font-weight: bold; }
+    .text-info { color: var(--badge-info); font-weight: bold; }
+
+    /* Action Buttons */
+    .torrent-actions {
+      display: flex;
+      gap: 10px;
+      margin: 15px 0;
+      padding: 10px 0;
+      border-top: 1px solid #eee;
+      border-bottom: 1px solid #eee;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 500;
+      border-radius: 3px;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid transparent;
+    }
+
+    .btn-download {
+      background-color: var(--badge-success);
+      color: #fff;
+    }
+
+    .btn-download:hover {
+      background-color: #449d44;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .btn-magnet {
+      background-color: var(--badge-danger);
+      color: #fff;
+    }
+
+    .btn-magnet:hover {
+      background-color: #c9302c;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    /* Description Tab / Markdown Box */
+    .description-box {
+      background-color: var(--torrent-desc-bg);
+      border: 1px solid #e1e4e8;
+      border-radius: 4px;
+      padding: 15px;
+      font-size: 13px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .description-box h3 {
+      font-size: 15px;
+      margin-bottom: 8px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 4px;
+    }
+
+    .description-box table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0;
+      background: #fff;
+    }
+
+    .description-box th, .description-box td {
+      border: 1px solid #ddd;
+      padding: 6px 10px;
+      font-size: 12px;
+      text-align: left;
+    }
+
+    .description-box th {
+      background-color: #f2f2f2;
+      width: 160px;
+    }
+
+    .code-block {
+      background: #272822;
+      color: #f8f8f2;
+      padding: 10px;
+      border-radius: 3px;
+      font-family: Consolas, Monaco, "Courier New", monospace;
+      font-size: 12px;
+      overflow-x: auto;
+      margin: 10px 0;
+    }
+
+    /* File List */
+    .file-tree {
+      list-style: none;
+      margin-top: 10px;
+    }
+
+    .file-tree li {
+      padding: 4px 0;
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px dashed #eee;
+    }
+
+    /* Comments Section */
+    .comments-header {
+      margin: 20px 0 10px 0;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .comment-card {
+      background: #fff;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      margin-bottom: 12px;
+    }
+
+    .comment-header {
+      background: var(--table-header);
+      padding: 6px 12px;
+      font-size: 12px;
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .comment-body {
+      padding: 10px 12px;
+      font-size: 13px;
+    }
+
+    .user-badge {
+      display: inline-block;
+      padding: 1px 5px;
+      font-size: 10px;
+      border-radius: 2px;
+      background: #777;
+      color: #fff;
+      margin-left: 5px;
+    }
+
+    .badge-member { background-color: var(--primary-color); }
+    .badge-vip { background-color: #f0ad4e; }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px 0;
+      color: var(--text-muted);
+      font-size: 12px;
+      border-top: 1px solid var(--border-color);
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <span>Nyaa</span>
+      <span style="font-size: 12px; font-weight: normal; color: #aaa;">(ja-JP)</span>
+    </div>
+    <ul class="navbar-nav">
+      <li><a href="#">閲覧</a></li>
+      <li><a href="#">アップロード</a></li>
+      <li><a href="#">利用規約</a></li>
+      <li><a href="#">ヘルプ</a></li>
+    </ul>
+    <div class="nav-user">
+      <span>ゲスト</span>
+      <a href="#">ログイン</a>
+      <a href="#">登録</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <!-- Search Box -->
+    <div class="search-container">
+      <select class="search-select">
+        <option>すべてのカテゴリー</option>
+        <option>ゲーム - ソフトウェア (Games - Retro)</option>
+        <option>ゲーム - Raw</option>
+      </select>
+      <input type="text" class="search-input" value="Wave Race 64 (Japan) (v1.0) [Z64]" placeholder="検索...">
+      <button class="search-btn">検索</button>
+    </div>
+
+    <!-- Main Detail Panel -->
+    <div class="panel">
+      <div class="panel-header">
+        <span>Wave Race 64 (Japan) (v1.0) [Z64]</span>
+        <span style="font-size: 12px; font-weight: normal;">ID: 109964</span>
+      </div>
+      <div class="panel-body">
+        
+        <!-- Metadata Grid -->
+        <div class="meta-grid">
+          <div class="meta-row">
+            <span class="meta-label">カテゴリー:</span>
+            <span class="meta-value"><a href="#">Games</a> - <a href="#">Retro Games</a></span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">投稿日時:</span>
+            <span class="meta-value">2026-08-20 14:32 JST</span>
+          </div>
+
+          <div class="meta-row">
+            <span class="meta-label">アップローダー:</span>
+            <span class="meta-value"><a href="#">RetroArchivist_JP</a> <span class="user-badge badge-vip">Trusted</span></span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">シード数:</span>
+            <span class="meta-value text-success" id="seeders-count">42</span>
+          </div>
+
+          <div class="meta-row">
+            <span class="meta-label">ファイル情報:</span>
+            <span class="meta-value">1 ファイル (8.00 MiB)</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">リードア数:</span>
+            <span class="meta-value text-danger" id="leechers-count">1</span>
+          </div>
+
+          <div class="meta-row">
+            <span class="meta-label">情報ハッシュ:</span>
+            <span class="meta-value"><code style="font-size: 11px;">e9b5f8c6716035da26b009e51b3a1a97d91d64f0</code></span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">完了数:</span>
+            <span class="meta-value text-info">1,280</span>
+          </div>
+        </div>
+
+        <!-- Download Buttons -->
+        <div class="torrent-actions">
+          <a href="#" class="btn btn-download" id="download-torrent">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/><path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/></svg>
+            トレントをダウンロード
+          </a>
+          <a href="#" class="btn btn-magnet" id="magnet-link">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M8 1a7 7 0 0 0-7 7v3a3 3 0 0 0 6 0V8a1 1 0 0 1 2 0v3a3 3 0 0 0 6 0V8a7 7 0 0 0-7-7zm4 10a1 1 0 0 1-2 0V8a3 3 0 0 0-6 0v3a1 1 0 0 1-2 0V8a5 5 0 0 1 10 0v3z"/></svg>
+            マグネットリンク
+          </a>
+        </div>
+
+        <!-- Description Box -->
+        <div class="description-box">
+          <h3>タイトル詳細 / Description</h3>
+          <p>1996年9月27日に任天堂より発売された NINTENDO 64 向け水上バイクレースゲーム『<strong>ウェーブレース64</strong>』（WAVE RACE 64）の日本版初期バージョン（v1.0）ROM ダンプです。</p>
+          <p>バイトオーダーはビッグエンディアン（Big-Endian / .z64）形式となっており、Mupen64Plus、Project64、ares、simple64 等の各種主要エミュレータおよび実機 FlashCart（EverDrive-64等）にそのまま対応しています。</p>
+
+          <table style="margin-top: 15px;">
+            <tr>
+              <th>タイトル名</th>
+              <td>ウェーブレース64 (Wave Race 64)</td>
+            </tr>
+            <tr>
+              <th>対応プラットフォーム</th>
+              <td>NINTENDO 64 (N64)</td>
+            </tr>
+            <tr>
+              <th>リリース年</th>
+              <td>1996年9月27日 (日本)</td>
+            </tr>
+            <tr>
+              <th>開発 / 発売元</th>
+              <td>任天堂 (Nintendo EAD)</td>
+            </tr>
+            <tr>
+              <th>フォーマット / 拡張子</th>
+              <td>Z64 (Big-Endian Native .z64)</td>
+            </tr>
+            <tr>
+              <th>内部ゲームコード</th>
+              <td>NUS-NWRJ-JPN (Version 1.0)</td>
+            </tr>
+            <tr>
+              <th>ファイルサイズ</th>
+              <td>8,388,608 Bytes (64 Mbits / 8.00 MiB)</td>
+            </tr>
+          </table>
+
+          <h3 style="margin-top: 15px;">ハッシュ照合情報 (No-Intro 検証済み)</h3>
+          <div class="code-block">File: Wave Race 64 (Japan).z64
+Size: 8388608 Bytes (8 MiB)
+CRC32: 30D4F59A
+MD5:   1B2C68305E0258BE9C256679B6A87BD3
+SHA-1: E0873426A3CF5D8C7C0FA9AE4A7FE9761928C673
+SHA-256: 765C92B5F42D52F7A5E95E7C8800BAE679234547B256DF394747B49B891ED435</div>
+
+          <h3 style="margin-top: 15px;">備考 / Notes</h3>
+          <ul style="padding-left: 20px; margin-top: 5px;">
+            <li>No-Intro データベース（Nintendo - Nintendo 64）の最新チェックサムと完全一致。</li>
+            <li>1997年発売の「振動パック対応バージョン (Shindou Edition)」ではなく、1996年リリースの<strong>オリジナル初期版（v1.0）</strong>です。川崎重工業（Kawasaki）の実名ライセンスロゴ・バナーがそのまま収録されています。</li>
+          </ul>
+        </div>
+
+        <!-- File List -->
+        <div class="panel" style="margin-bottom: 0;">
+          <div class="panel-header" style="font-size: 13px;">
+            ファイル一覧 (1 ファイル)
+          </div>
+          <div class="panel-body" style="padding: 5px 15px;">
+            <ul class="file-tree">
+              <li>
+                <span>
+                  <svg width="12" height="12" fill="#666" viewBox="0 0 16 16" style="vertical-align: -1px; margin-right: 4px;"><path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z"/></svg>
+                  Wave Race 64 (Japan).z64
+                </span>
+                <span style="color: var(--text-muted);">8.00 MiB</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Comments Section -->
+    <div class="comments-header">コメント (2件)</div>
+    
+    <div class="comment-card">
+      <div class="comment-header">
+        <div>
+          <a href="#" style="font-weight: bold;">N64_Enthusiast</a>
+          <span class="user-badge badge-member">Member</span>
+        </div>
+        <span style="color: #888;">2026-08-21 02:15 JST</span>
+      </div>
+      <div class="comment-body">
+        検証しました。No-Intro ハッシュと完全一致です。振動パック版で差し替えられた Kawasaki ロゴも初期版通りに残っています。シード感謝！
+      </div>
+    </div>
+
+    <div class="comment-card">
+      <div class="comment-header">
+        <div>
+          <a href="#" style="font-weight: bold;">WaterRacer96</a>
+          <span class="user-badge badge-member">Member</span>
+        </div>
+        <span style="color: #888;">2026-08-22 18:40 JST</span>
+      </div>
+      <div class="comment-body">
+        ares v140 にて動作確認完了。水面の物理シミュレーションが今見ても素晴らしい名作ですね。
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2026 Nyaa (ja-JP) - すべてのトレント情報はユーザーによって提供されています。</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const magnetBtn = document.getElementById('magnet-link');
+      const downloadBtn = document.getElementById('download-torrent');
+
+      // トレント情報の動的設定
+      const torrentInfo = {
+        name: 'Wave Race 64 (Japan) (v1.0) [Z64]',
+        infoHash: 'e9b5f8c6716035da26b009e51b3a1a97d91d64f0',
+        trackers: [
+          'http://nyaa.tracker.wf:7777/announce',
+          'udp://open.stealth.si:80/announce',
+          'udp://tracker.opentrackr.org:1337/announce'
+        ]
+      };
+
+      // マグネットURIの生成
+      const trackerParams = torrentInfo.trackers.map(tr => `&tr=${encodeURIComponent(tr)}`).join('');
+      const magnetUri = `magnet:?xt=urn:btih:${torrentInfo.infoHash}&dn=${encodeURIComponent(torrentInfo.name)}${trackerParams}`;
+
+      // イベントリスナー
+      magnetBtn.setAttribute('href', magnetUri);
+
+      downloadBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        alert(`[ダミー処理] トレントファイル (${torrentInfo.name}.torrent) のダウンロードを開始します。`);
+      });
+    });
+  </script>
+</body>
+</html>
