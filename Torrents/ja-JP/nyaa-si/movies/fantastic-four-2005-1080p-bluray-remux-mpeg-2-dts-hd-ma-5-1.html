@@ -3,27 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nyaa :: [Remux-RAW] ファンタスティック・フォー ［超能力ユニット］ / Fantastic Four (2005) [BD-Remux 1080p MPEG-2 DTS-HD MA 5.1 DTS 5.1 Sub(ja,en)]</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <title>ファンタスティック・フォー / Fantastic Four (2005) [Blu-ray Remux 1080p MPEG-2 DTS-HD MA 5.1] :: Nyaa</title>
   <style>
     :root {
-      --bg-color: #f4f6f9;
-      --card-bg: #ffffff;
-      --nav-bg: #2d3748;
-      --nav-hover: #1a202c;
-      --border-color: #e2e8f0;
-      --text-main: #2d3748;
-      --text-muted: #718096;
-      --link-color: #3182ce;
-      --link-hover: #2b6cb0;
-      --badge-success: #38a169;
-      --badge-danger: #e53e3e;
-      --badge-info: #4299e1;
-      --panel-header-bg: #edf2f7;
-      --panel-header-text: #2d3748;
-      --table-stripe: #f7fafc;
-      --btn-magnet: #d69e2e;
-      --btn-download: #3182ce;
+      --bg-body: #f7f7f7;
+      --bg-panel: #ffffff;
+      --border-color: #d8d8d8;
+      --nav-bg: #2f3542;
+      --nav-text: #ffffff;
+      --link-color: #0088cc;
+      --link-hover: #005580;
+      --text-main: #333333;
+      --text-muted: #777777;
+      --green-seed: #2ed573;
+      --red-leech: #ff4757;
+      --blue-comp: #1e90ff;
+      --panel-header: #f5f5f5;
     }
 
     * {
@@ -33,11 +28,11 @@
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Hiragino Kaku Gothic ProN", "Meiryo", Arial, sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-main);
-      line-height: 1.5;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
       font-size: 13px;
+      line-height: 1.5;
+      color: var(--text-main);
+      background-color: var(--bg-body);
     }
 
     a {
@@ -46,36 +41,26 @@
     }
 
     a:hover {
-      text-decoration: underline;
       color: var(--link-hover);
+      text-decoration: underline;
     }
 
     /* Navbar */
     .navbar {
       background-color: var(--nav-bg);
-      color: #fff;
-      padding: 0 20px;
+      color: var(--nav-text);
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      height: 50px;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      padding: 0 20px;
+      height: 48px;
     }
 
-    .navbar-brand {
-      font-size: 20px;
+    .nav-brand {
+      font-size: 18px;
       font-weight: bold;
       color: #fff;
-      margin-right: 25px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .navbar-brand span {
-      color: #63b3ed;
+      margin-right: 20px;
     }
 
     .nav-links {
@@ -84,619 +69,353 @@
       gap: 15px;
     }
 
-    .nav-links li a {
-      color: #cbd5e0;
-      padding: 8px 12px;
-      border-radius: 4px;
+    .nav-links a {
+      color: #cfd9db;
       font-size: 13px;
-      transition: background 0.2s, color 0.2s;
     }
 
-    .nav-links li a:hover, .nav-links li.active a {
-      background-color: var(--nav-hover);
-      color: #fff;
+    .nav-links a:hover {
+      color: #ffffff;
       text-decoration: none;
     }
 
-    .nav-search {
-      margin-left: auto;
+    .nav-right {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 15px;
     }
 
-    .nav-search select, .nav-search input {
-      padding: 6px 10px;
-      border-radius: 4px;
-      border: 1px solid #4a5568;
-      background: #1a202c;
-      color: #fff;
+    .search-bar {
+      display: flex;
+    }
+
+    .search-bar select, .search-bar input, .search-bar button {
+      border: 1px solid #444;
       font-size: 12px;
-      outline: none;
+      padding: 4px 8px;
     }
 
-    .nav-search button {
-      padding: 6px 12px;
-      border-radius: 4px;
-      border: none;
-      background: #3182ce;
+    .search-bar select {
+      background: #fff;
+      border-radius: 3px 0 0 3px;
+    }
+
+    .search-bar input {
+      border-left: none;
+      border-right: none;
+      width: 180px;
+    }
+
+    .search-bar button {
+      background: #4a69bd;
       color: white;
+      border-radius: 0 3px 3px 0;
       cursor: pointer;
-      font-size: 12px;
     }
 
-    .nav-search button:hover {
-      background: #2b6cb0;
-    }
-
-    /* Container */
+    /* Main Container */
     .container {
-      max-width: 1200px;
+      max-width: 1140px;
       margin: 20px auto;
       padding: 0 15px;
     }
 
-    /* Panel */
     .panel {
-      background: var(--card-bg);
+      background-color: var(--bg-panel);
       border: 1px solid var(--border-color);
       border-radius: 4px;
       margin-bottom: 20px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
     }
 
     .panel-header {
-      background: var(--panel-header-bg);
+      background-color: var(--panel-header);
       border-bottom: 1px solid var(--border-color);
-      padding: 12px 16px;
-      font-size: 15px;
+      padding: 10px 15px;
       font-weight: bold;
-      color: var(--panel-header-text);
+      font-size: 15px;
+      border-top-left-radius: 3px;
+      border-top-right-radius: 3px;
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
     }
 
     .panel-body {
-      padding: 16px;
+      padding: 15px;
     }
 
-    /* Torrent Details Grid */
-    .torrent-info-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px 24px;
+    /* Torrent Meta Grid */
+    .meta-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 15px;
+    }
+
+    .meta-table td {
+      padding: 6px 10px;
+      border-bottom: 1px solid #f0f0f0;
       font-size: 13px;
     }
 
-    .info-row {
-      display: flex;
-      align-items: flex-start;
-    }
-
-    .info-label {
-      width: 140px;
+    .meta-label {
+      width: 15%;
       font-weight: bold;
-      color: var(--text-muted);
-      flex-shrink: 0;
+      color: #555;
+      background-color: #fafafa;
     }
 
-    .info-value {
-      flex-grow: 1;
-      word-break: break-all;
+    .meta-val {
+      width: 35%;
     }
 
-    .badge-status {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      font-weight: bold;
-    }
+    .seed-text { color: var(--green-seed); font-weight: bold; }
+    .leech-text { color: var(--red-leech); font-weight: bold; }
+    .comp-text { color: var(--blue-comp); font-weight: bold; }
 
-    .text-success { color: var(--badge-success); }
-    .text-danger { color: var(--badge-danger); }
-    .text-info { color: var(--badge-info); }
-
-    /* Action Buttons */
-    .torrent-actions {
+    /* Actions */
+    .action-bar {
       display: flex;
       gap: 10px;
-      margin-top: 15px;
-      padding-top: 15px;
-      border-top: 1px dashed var(--border-color);
+      padding: 10px 0 15px 0;
+      border-bottom: 1px solid #ececec;
+      margin-bottom: 15px;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 8px 16px;
-      border-radius: 4px;
-      font-size: 13px;
-      font-weight: bold;
-      color: #fff;
-      cursor: pointer;
-      text-decoration: none;
-      border: none;
-      transition: opacity 0.2s;
-    }
-
-    .btn:hover {
-      opacity: 0.9;
-      text-decoration: none;
-      color: #fff;
-    }
-
-    .btn-torrent { background-color: var(--btn-download); }
-    .btn-magnet { background-color: var(--btn-magnet); }
-    .btn-report { background-color: #e53e3e; margin-left: auto; }
-
-    /* Description Markdown/BBCode View */
-    .description-content {
-      background: #fafbfc;
-      border: 1px solid #edf2f7;
-      border-radius: 4px;
-      padding: 20px;
-      font-size: 13.5px;
-      color: #2d3748;
-    }
-
-    .desc-section {
-      margin-bottom: 24px;
-    }
-
-    .desc-section:last-child {
-      margin-bottom: 0;
-    }
-
-    .desc-title {
-      font-size: 15px;
-      font-weight: 700;
-      color: #2b6cb0;
-      border-bottom: 2px solid #bee3f8;
-      padding-bottom: 4px;
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .mediainfo-box {
-      background: #2d3748;
-      color: #e2e8f0;
-      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
-      padding: 14px;
-      border-radius: 4px;
+      padding: 6px 14px;
+      border-radius: 3px;
       font-size: 12px;
+      font-weight: bold;
+      cursor: pointer;
+      border: 1px solid transparent;
+      text-decoration: none !important;
+    }
+
+    .btn-primary {
+      background-color: #0088cc;
+      color: white;
+      border-color: #0077b3;
+    }
+    .btn-primary:hover { background-color: #006699; }
+
+    .btn-success {
+      background-color: #2ed573;
+      color: white;
+      border-color: #26af5f;
+    }
+    .btn-success:hover { background-color: #25a257; }
+
+    /* Torrent Description Content */
+    .description-content {
+      font-family: Consolas, "Courier New", Courier, monospace;
+      font-size: 12.5px;
+      line-height: 1.6;
+      background-color: #fafafa;
+      border: 1px solid #e1e1e8;
+      border-radius: 4px;
+      padding: 15px;
       white-space: pre-wrap;
-      line-height: 1.45;
+      word-break: break-word;
       overflow-x: auto;
     }
 
-    .chapter-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 6px 16px;
-      list-style: none;
-      font-size: 12.5px;
+    .badge {
+      display: inline-block;
+      padding: 2px 6px;
+      font-size: 11px;
+      font-weight: bold;
+      border-radius: 2px;
+      color: #fff;
     }
-
-    .chapter-list li {
-      background: #edf2f7;
-      padding: 4px 8px;
-      border-radius: 3px;
-      display: flex;
-      justify-content: space-between;
-      color: #4a5568;
-    }
-
-    .chapter-list li span.time {
-      font-family: monospace;
-      color: #718096;
-    }
+    .badge-raw { background-color: #e67e22; }
+    .badge-info { background-color: #3498db; }
 
     /* File List Accordion */
+    .accordion-header {
+      background-color: #eee;
+      padding: 8px 12px;
+      cursor: pointer;
+      font-weight: bold;
+      user-select: none;
+      display: flex;
+      justify-content: space-between;
+    }
+
     .file-tree {
       list-style: none;
-      font-size: 12.5px;
+      padding: 10px 15px;
+      display: none;
+      background: #fff;
+      border-top: 1px solid #ddd;
+    }
+
+    .file-tree.show {
+      display: block;
     }
 
     .file-tree li {
-      padding: 6px 10px;
-      border-bottom: 1px solid var(--border-color);
+      padding: 3px 0;
+      border-bottom: 1px dashed #eee;
       display: flex;
-      align-items: center;
       justify-content: space-between;
     }
 
-    .file-tree li:last-child {
-      border-bottom: none;
-    }
-
-    .file-tree .file-name {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    /* Comments */
-    .comment {
-      border-bottom: 1px solid var(--border-color);
-      padding: 14px 0;
-      display: flex;
-      gap: 15px;
-    }
-
-    .comment:last-child {
-      border-bottom: none;
-      padding-bottom: 0;
-    }
-
-    .comment-avatar {
-      width: 44px;
-      height: 44px;
-      border-radius: 4px;
-      background: #cbd5e0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      color: #718096;
-      flex-shrink: 0;
-    }
-
-    .comment-main {
-      flex-grow: 1;
-    }
-
-    .comment-meta {
-      font-size: 12px;
-      color: var(--text-muted);
-      margin-bottom: 6px;
-    }
-
-    .comment-user {
-      font-weight: bold;
-      color: var(--link-color);
-      margin-right: 6px;
-    }
-
-    .comment-text {
-      font-size: 13px;
-    }
-
-    .footer {
+    /* Footer */
+    footer {
       text-align: center;
-      padding: 24px 0;
+      padding: 20px;
       color: var(--text-muted);
       font-size: 12px;
-      border-top: 1px solid var(--border-color);
-      margin-top: 30px;
-    }
-
-    .tag-pill {
-      background: #e2e8f0;
-      color: #4a5568;
-      padding: 2px 6px;
-      border-radius: 3px;
-      font-size: 11px;
-      margin-right: 4px;
+      border-top: 1px solid #e5e5e5;
     }
   </style>
 </head>
 <body>
 
-  <!-- Navigation Bar -->
+  <!-- Top Navigation -->
   <nav class="navbar">
-    <a href="#" class="navbar-brand">
-      <i class="fa-solid fa-cat"></i> Nyaa<span>.si</span>
-    </a>
-    <ul class="nav-links">
-      <li class="active"><a href="#"><i class="fa-solid fa-list"></i> トレント一覧 (Browse)</a></li>
-      <li><a href="#"><i class="fa-solid fa-upload"></i> アップロード (Upload)</a></li>
-      <li><a href="#"><i class="fa-solid fa-circle-info"></i> 利用規約・ルール</a></li>
-      <li><a href="#"><i class="fa-solid fa-rss"></i> RSS</a></li>
-    </ul>
-    <div class="nav-search">
-      <select id="category-select">
-        <option value="0_0">すべてのカテゴリー</option>
-        <option value="4_0" selected>実写動画 - Raw (Live Action - Raw)</option>
-        <option value="1_0">アニメ - Anime</option>
-        <option value="2_0">音楽 - Non-English</option>
-      </select>
-      <input type="text" placeholder="キーワード検索..." value="Fantastic Four 2005 Remux">
-      <button type="button"><i class="fa-solid fa-magnifying-glass"></i> 検索</button>
+    <div style="display: flex; align-items: center;">
+      <a href="#" class="nav-brand">Nyaa</a>
+      <ul class="nav-links">
+        <li><a href="#">アップロード (Upload)</a></li>
+        <li><a href="#">利用規約 (Rules)</a></li>
+        <li><a href="#">ヘルプ (Help)</a></li>
+      </ul>
+    </div>
+    <div class="nav-right">
+      <div class="search-bar">
+        <select>
+          <option>すべてのカテゴリー</option>
+          <option selected>実写 - Raw (Live Action - Raw)</option>
+        </select>
+        <input type="text" placeholder="検索..." value="Fantastic Four 2005">
+        <button type="button">検索</button>
+      </div>
+      <div style="font-size: 12px;">
+        <a href="#" style="color:#fff;">ログイン</a> | <a href="#" style="color:#fff;">登録</a>
+      </div>
     </div>
   </nav>
 
   <div class="container">
-
-    <!-- Main Torrent Panel -->
+    <!-- Torrent Header Panel -->
     <div class="panel">
       <div class="panel-header">
-        <span><i class="fa-solid fa-film text-info"></i> [Remux-RAW] ファンタスティック・フォー ［超能力ユニット］ / Fantastic Four (2005) [BD-Remux 1080p MPEG-2 DTS-HD MA 5.1 DTS 5.1 Sub(ja,en)]</span>
-        <span class="tag-pill">信頼済み (Trusted)</span>
+        <span>[Remux] ファンタスティック・フォー / Fantastic Four (2005) [BD-Remux 1080p MPEG-2 DTS-HD MA 5.1 / DTS 5.1 JP+EN Sub] (32 Chapters)</span>
+        <span class="badge badge-raw">実写 - Raw</span>
       </div>
 
       <div class="panel-body">
-        <div class="torrent-info-grid">
-          <div class="info-row">
-            <span class="info-label">カテゴリー:</span>
-            <span class="info-value"><a href="#">実写動画 - 未加工 (Live Action - Raw)</a></span>
-          </div>
-          <div class="info-row">
-            <span class="info-label">投稿日:</span>
-            <span class="info-value">2026-04-18 14:22 JST</span>
-          </div>
-          <div class="info-row">
-            <span class="info-label">投稿者:</span>
-            <span class="info-value"><a href="#" style="font-weight: bold; color: #2b6cb0;">Cinephile_Archive_JP</a></span>
-          </div>
-          <div class="info-row">
-            <span class="info-label">ファイルサイズ:</span>
-            <span class="info-value"><strong>23.4 GiB</strong> (25,125,488,640 バイト)</span>
-          </div>
-          <div class="info-row">
-            <span class="info-label">シード数 (Seeders):</span>
-            <span class="info-value badge-status text-success"><i class="fa-solid fa-arrow-up"></i> <strong>48</strong></span>
-          </div>
-          <div class="info-row">
-            <span class="info-label">リーチャー数 (Leechers):</span>
-            <span class="info-value badge-status text-danger"><i class="fa-solid fa-arrow-down"></i> <strong>3</strong></span>
-          </div>
-          <div class="info-row">
-            <span class="info-label">完了数 (Completed):</span>
-            <span class="info-value badge-status text-info"><i class="fa-solid fa-check"></i> <strong>312</strong></span>
-          </div>
-          <div class="info-row">
-            <span class="info-label">Info Hash:</span>
-            <span class="info-value" style="font-family: monospace; font-size: 11px;">e8f49b12a55c2763db01487f9c2d1109a25b74ef</span>
-          </div>
+        <!-- Metadata Table -->
+        <table class="meta-table">
+          <tr>
+            <td class="meta-label">カテゴリー:</td>
+            <td class="meta-val"><a href="#">実写 - Non-English-translated / Raw</a></td>
+            <td class="meta-label">投稿日時:</td>
+            <td class="meta-val">2026-08-26 15:42 JST</td>
+          </tr>
+          <tr>
+            <td class="meta-label">投稿者:</td>
+            <td class="meta-val"><a href="#" style="font-weight: bold; color: #d35400;">TokyoRemuxer</a></td>
+            <td class="meta-label">シード数 (Seeders):</td>
+            <td class="meta-val"><span class="seed-text" id="seed-count">48</span></td>
+          </tr>
+          <tr>
+            <td class="meta-label">ファイルサイズ:</td>
+            <td class="meta-val">24.8 GiB</td>
+            <td class="meta-label">リーチャー (Leechers):</td>
+            <td class="meta-val"><span class="leech-text" id="leech-count">3</span></td>
+          </tr>
+          <tr>
+            <td class="meta-label">情報ハッシュ (Info Hash):</td>
+            <td class="meta-val" style="font-family: monospace; font-size: 11px;">e8f3b207a9415c54d1933c9489bca74e2a89012f</td>
+            <td class="meta-label">完了数 (Completed):</td>
+            <td class="meta-val"><span class="comp-text">312</span></td>
+          </tr>
+        </table>
+
+        <!-- Action Buttons -->
+        <div class="action-bar">
+          <a href="#" class="btn btn-primary" id="btn-dl">📥 トレントをダウンロード (.torrent)</a>
+          <a href="magnet:?xt=urn:btih:e8f3b207a9415c54d1933c9489bca74e2a89012f&dn=Fantastic+Four+2005+1080p+MPEG2+Remux" class="btn btn-success" id="btn-magnet">🧲 マグネットリンク (Magnet)</a>
         </div>
 
-        <!-- Action Download Buttons -->
-        <div class="torrent-actions">
-          <a href="#" class="btn btn-torrent" id="download-torrent">
-            <i class="fa-solid fa-download"></i> .torrentファイルをダウンロード
-          </a>
-          <a href="magnet:?xt=urn:btih:e8f49b12a55c2763db01487f9c2d1109a25b74ef&dn=Fantastic.Four.2005.1080p.MPEG-2.BD-Remux.DTS-HD.MA.5.1-RAW" class="btn btn-magnet" id="copy-magnet">
-            <i class="fa-solid fa-magnet"></i> マグネットリンク (Magnet)
-          </a>
-          <button type="button" class="btn btn-report" onclick="alert('通報フォームを開きました。');">
-            <i class="fa-solid fa-flag"></i> 通報
-          </button>
+        <!-- Description Box -->
+        <div style="font-weight: bold; margin-bottom: 6px; font-size: 14px;">📝 詳細情報 (Description)</div>
+        <div class="description-content">
+<strong>【作品情報 / General Information】</strong>
+タイトル: ファンタスティック・フォー ［超能力ユニット］ (Fantastic Four)
+公開年: 2005年
+ディスク仕様: 国内盤 Blu-ray (Japanese Retail BD Remux)
+チャプター数: 32 Chapters (Named / Timed)
+
+<strong>【映像仕様 / Video Specification】</strong>
+Codec: MPEG-2 Video
+Profile: Main@High
+Resolution: 1920 x 1080 (16:9)
+Frame Rate: 23.976 fps
+Bitrate: ~28.5 Mbps
+
+<strong>【音声仕様 / Audio Tracks】</strong>
+• Audio #1 (English): 5.1 DTS-HD Master Audio (~4120 kbps, 24-bit / 48.0 kHz)
+• Audio #2 (Japanese): 5.1 DTS (~768 kbps, 24-bit / 48.0 kHz - 劇場公開版/ソフト版吹替)
+
+<strong>【字幕仕様 / Subtitle Tracks】</strong>
+• Subtitle #1: 日本語 (Japanese PGS)
+• Subtitle #2: 英語 (English SDH PGS)
+
+<strong>【チャプター構成 (32 Chapters)】</strong>
+01. オープニング / Main Titles
+02. フォン・ドゥームの提案 / Von Doom's Pitch
+03. 宇宙ステーションへ / Journey to Space
+04. 宇宙放射線の嵐 / Cosmic Radiation Cloud
+05. 地球帰還と異変 / Changes on Earth
+06. 能力の発現 / Awakening Powers
+07. ブルックリン橋の救出劇 / Brooklyn Bridge Rescue
+...
+31. 決着と勝利 / Defeat of Doom
+32. エンドクレジット / End Credits
         </div>
       </div>
     </div>
 
-    <!-- Description Panel -->
+    <!-- File List Section -->
     <div class="panel">
-      <div class="panel-header">
-        <span><i class="fa-solid fa-align-left"></i> トレント詳細説明 (Description)</span>
+      <div class="accordion-header" id="accordion-toggle">
+        <span>📁 ファイル一覧 (Files - 1 File)</span>
+        <span id="accordion-indicator">[+] 展開</span>
       </div>
-      <div class="panel-body description-content">
-        
-        <!-- Summary Section -->
-        <div class="desc-section">
-          <div class="desc-title"><i class="fa-solid fa-circle-info"></i> 作品情報 (Overview)</div>
-          <p><strong>ファンタスティック・フォー ［超能力ユニット］ (原題: Fantastic Four) (2005年公開)</strong></p>
-          <p style="margin-top: 6px; color: #4a5568;">
-            国内初期盤Blu-ray Discの映像・音声を無劣化で抽出したRemux (MKV) コンテナ版です。<br>
-            初期Blu-ray特有のオリジナルMPEG-2マスタービデオストリーム、オリジナル英語DTS-HD Master Audio 5.1chおよび日本語吹替5.1ch DTS音声を完全収録しています。全32チャプター設定済み。
-          </p>
-        </div>
-
-        <!-- MediaInfo Section -->
-        <div class="desc-section">
-          <div class="desc-title"><i class="fa-solid fa-sliders"></i> メディア詳細仕様 (MediaInfo)</div>
-          <div class="mediainfo-box">General
-Unique ID                                : 284739185720938472910492837492019482716
-Complete name                            : Fantastic.Four.2005.1080p.MPEG-2.BD-Remux.DTS-HD.MA.5.1.mkv
-Format                                   : Matroska
-Format version                           : Version 4
-File size                                : 23.4 GiB
-Duration                                 : 1 h 45 min 54 s
-Overall bit rate mode                    : Variable
-Overall bit rate                         : 31.6 Mb/s
-Movie name                               : Fantastic Four (2005)
-
-Video
-ID                                       : 1
-Format                                   : MPEG Video
-Format version                           : Version 2
-Format profile                           : Main@High
-Bit rate mode                            : Variable
-Bit rate                                 : 23.8 Mb/s
-Maximum bit rate                         : 36.0 Mb/s
-Width                                    : 1 920 pixels
-Height                                   : 1 080 pixels
-Display aspect ratio                     : 16:9
-Frame rate mode                          : Constant
-Frame rate                               : 23.976 (24000/1001) FPS
-Color space                              : YUV
-Chroma subsampling                       : 4:2:0
-Bit depth                                : 8 bits
-
-Audio #1 (Main English)
-ID                                       : 2
-Format                                   : DTS XLL
-Format/Info                              : Digital Theater Systems - Master Audio
-Codec ID                                 : A_DTS
-Bit rate mode                            : Variable
-Bit rate                                 : 4 125 kb/s
-Channel(s)                               : 6 channels (5.1)
-Channel layout                           : C L R Ls Rs LFE
-Sampling rate                            : 48.0 kHz
-Bit depth                                : 24 bits
-Title                                    : English 5.1 DTS-HD MA (Lossless)
-Language                                 : English (en)
-
-Audio #2 (Japanese Dub)
-ID                                       : 3
-Format                                   : DTS
-Format/Info                              : Digital Theater Systems
-Codec ID                                 : A_DTS
-Bit rate mode                            : Constant
-Bit rate                                 : 768 kb/s
-Channel(s)                               : 6 channels (5.1)
-Sampling rate                            : 48.0 kHz
-Bit depth                                : 24 bits
-Title                                    : Japanese 5.1 DTS (劇場公開版・吹替)
-Language                                 : Japanese (ja)
-
-Text #1 (Japanese Subtitles)
-ID                                       : 4
-Format                                   : PGS
-Codec ID                                 : S_HDMV/PGS
-Language                                 : Japanese (ja)
-Title                                    : 日本語字幕 (劇場用字幕)
-
-Text #2 (English SDH)
-ID                                       : 5
-Format                                   : PGS
-Codec ID                                 : S_HDMV/PGS
-Language                                 : English (en)
-Title                                    : English SDH</div>
-        </div>
-
-        <!-- Chapters List Section -->
-        <div class="desc-section">
-          <div class="desc-title"><i class="fa-solid fa-bookmark"></i> チャプターリスト (32 Chapters)</div>
-          <ul class="chapter-list">
-            <li><span>01. メインタイトル / 宇宙へ</span> <span class="time">00:00:00.000</span></li>
-            <li><span>02. 宇宙ステーションの異変</span> <span class="time">00:03:45.225</span></li>
-            <li><span>03. 宇宙線嵐の直撃</span> <span class="time">00:07:12.432</span></li>
-            <li><span>04. 隔離観察室での目覚め</span> <span class="time">00:10:30.630</span></li>
-            <li><span>05. 体の異変と兆候</span> <span class="time">00:13:55.835</span></li>
-            <li><span>06. 伸縮する肉体</span> <span class="time">00:17:20.039</span></li>
-            <li><span>07. 発火するジョニー</span> <span class="time">00:20:44.243</span></li>
-            <li><span>08. スー・ストームの透明化</span> <span class="time">00:24:10.449</span></li>
-            <li><span>09. ベンの苦悩と変容</span> <span class="time">00:27:35.654</span></li>
-            <li><span>10. ブルックリン橋の事故</span> <span class="time">00:31:02.861</span></li>
-            <li><span>11. ヒーロー誕生の瞬間</span> <span class="time">00:34:15.053</span></li>
-            <li><span>12. バクスター・ビルディング</span> <span class="time">00:37:40.258</span></li>
-            <li><span>13. 遺伝子治療の模索</span> <span class="time">00:41:05.463</span></li>
-            <li><span>14. メディアの過熱報道</span> <span class="time">00:44:30.668</span></li>
-            <li><span>15. ドクター・ドゥームの覚醒</span> <span class="time">00:47:55.873</span></li>
-            <li><span>16. ビクターの金属化</span> <span class="time">00:51:20.078</span></li>
-            <li><span>17. 能力のコントロール訓練</span> <span class="time">00:54:45.283</span></li>
-            <li><span>18. 深まるチームの絆</span> <span class="time">00:58:10.488</span></li>
-            <li><span>19. ジョニーのスタンドプレー</span> <span class="time">01:01:35.693</span></li>
-            <li><span>20. 分裂の危機</span> <span class="time">01:05:00.898</span></li>
-            <li><span>21. ビクターの陰謀</span> <span class="time">01:08:25.103</span></li>
-            <li><span>22. 治癒装置の実験</span> <span class="time">01:11:50.308</span></li>
-            <li><span>23. 人間に戻ったベン</span> <span class="time">01:15:15.513</span></li>
-            <li><span>24. ドゥームの強襲</span> <span class="time">01:18:40.718</span></li>
-            <li><span>25. リードの捕縛</span> <span class="time">01:22:05.923</span></li>
-            <li><span>26. ザ・シングの復活</span> <span class="time">01:25:30.128</span></li>
-            <li><span>27. マンハッタン最終決戦</span> <span class="time">01:28:55.333</span></li>
-            <li><span>28. 4つの力の連携</span> <span class="time">01:32:20.538</span></li>
-            <li><span>29. ドゥームの氷結</span> <span class="time">01:35:45.743</span></li>
-            <li><span>30. 街の救世主たち</span> <span class="time">01:39:10.948</span></li>
-            <li><span>31. 新たな誓い</span> <span class="time">01:42:35.153</span></li>
-            <li><span>32. エンドクレジット</span> <span class="time">01:45:00.358</span></li>
-          </ul>
-        </div>
-
-      </div>
+      <ul class="file-tree" id="file-list">
+        <li>
+          <span>🎬 <code>Fantastic.Four.2005.1080p.MPEG-2.Remux.DTS-HD.MA.5.1-TokyoRemuxer.mkv</code></span>
+          <span style="color: #666;">24.8 GiB</span>
+        </li>
+      </ul>
     </div>
-
-    <!-- File Structure Panel -->
-    <div class="panel">
-      <div class="panel-header">
-        <span><i class="fa-solid fa-folder-open"></i> ファイル一覧 (File List - 1 ファイル)</span>
-      </div>
-      <div class="panel-body" style="padding: 0;">
-        <ul class="file-tree">
-          <li>
-            <span class="file-name">
-              <i class="fa-regular fa-file-video text-info"></i>
-              Fantastic.Four.2005.1080p.MPEG-2.BD-Remux.DTS-HD.MA.5.1.mkv
-            </span>
-            <span style="font-weight: bold; color: var(--text-muted);">23.4 GiB</span>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Comments Panel -->
-    <div class="panel">
-      <div class="panel-header">
-        <span><i class="fa-solid fa-comments"></i> コメント (3件)</span>
-      </div>
-      <div class="panel-body">
-        
-        <div class="comment">
-          <div class="comment-avatar"><i class="fa-solid fa-user"></i></div>
-          <div class="comment-main">
-            <div class="comment-meta">
-              <span class="comment-user">Tokyo_Seeder</span> 2026-04-18 16:04 JST
-            </div>
-            <div class="comment-text">
-              初期MPEG-2盤のRemuxアップロードありがとうございます！DTS-HD MAと日本語吹替の両方がしっかり入っていて最高です。シード維持します。
-            </div>
-          </div>
-        </div>
-
-        <div class="comment">
-          <div class="comment-avatar"><i class="fa-solid fa-user"></i></div>
-          <div class="comment-main">
-            <div class="comment-meta">
-              <span class="comment-user">RemuxEnthusiast</span> 2026-04-19 02:15 JST
-            </div>
-            <div class="comment-text">
-              Verified the MediaInfo and stream integrity. Seamless branching without errors. 32 chapters are timed properly according to the JP retail BD. Thank you!
-            </div>
-          </div>
-        </div>
-
-        <div class="comment">
-          <div class="comment-avatar"><i class="fa-solid fa-user"></i></div>
-          <div class="comment-main">
-            <div class="comment-meta">
-              <span class="comment-user">Anime_Cinema</span> 2026-04-20 11:30 JST
-            </div>
-            <div class="comment-text">
-              懐かしいですね。英語字幕(SDH)と日本語PGSの両方入っていて助かります。DL速度も爆速でした。
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
   </div>
 
-  <footer class="footer">
-    <p>© 2026 Nyaa.si - All rights reserved. Peer-to-Peer file sharing demonstration page.</p>
+  <footer>
+    <p>Nyaa &bull; ja-JP UI &bull; 映画・実写リマスターアーカイブ</p>
   </footer>
 
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // Handle Magnet Link Click / Copy Notification
-      const magnetBtn = document.getElementById('copy-magnet');
-      magnetBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        const magnetURI = magnetBtn.getAttribute('href');
-        navigator.clipboard.writeText(magnetURI).then(() => {
-          const originalText = magnetBtn.innerHTML;
-          magnetBtn.innerHTML = '<i class="fa-solid fa-check"></i> マグネットURLをコピーしました！';
-          magnetBtn.style.backgroundColor = '#38a169';
-          setTimeout(() => {
-            magnetBtn.innerHTML = originalText;
-            magnetBtn.style.backgroundColor = 'var(--btn-magnet)';
-          }, 2500);
-        }).catch(err => {
-          window.location.href = magnetURI;
-        });
-      });
+    // Toggle file accordion
+    const toggleBtn = document.getElementById('accordion-toggle');
+    const fileList = document.getElementById('file-list');
+    const indicator = document.getElementById('accordion-indicator');
 
-      // Handle Torrent Download Simulation
-      const downloadBtn = document.getElementById('download-torrent');
-      downloadBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        alert('トレントメタデータファイルのダウンロードを開始します:\n[Remux-RAW] Fantastic Four (2005).torrent');
-      });
+    toggleBtn.addEventListener('click', () => {
+      const isOpen = fileList.classList.toggle('show');
+      indicator.textContent = isOpen ? '[-] 閉じる' : '[+] 展開';
+    });
+
+    // Torrent download simulation prompt
+    document.getElementById('btn-dl').addEventListener('click', (e) => {
+      e.preventDefault();
+      alert('トレントファイルのダウンロードを開始します:\n[Remux] Fantastic Four (2005).torrent');
     });
   </script>
 </body>
