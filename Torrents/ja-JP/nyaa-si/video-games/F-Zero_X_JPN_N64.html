@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nyaa :: [N64] F-ZERO X (Japan) [Z64]</title>
+  <style>
+    /* CSS Reset & Variables */
+    :root {
+      --bg-body: #f4f6f9;
+      --bg-container: #ffffff;
+      --nav-bg: #2b3a42;
+      --nav-hover: #1f2a30;
+      --nav-text: #e0e6ed;
+      --panel-border: #d0d7de;
+      --panel-header-bg: #4f6f8f;
+      --panel-header-text: #ffffff;
+      --panel-body-bg: #f8fafc;
+      --text-main: #333333;
+      --text-muted: #666666;
+      --link-color: #0056b3;
+      --link-hover: #003366;
+      --color-seeders: #28a745;
+      --color-leechers: #dc3545;
+      --color-downloads: #17a2b8;
+      --btn-primary: #337ab7;
+      --btn-primary-hover: #286090;
+      --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+      --mono-stack: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      font-family: var(--font-stack);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    a {
+      color: var(--link-color);
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: var(--link-hover);
+      text-decoration: underline;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: var(--nav-bg);
+      border-bottom: 2px solid #1a252f;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+    }
+
+    .navbar-container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 48px;
+    }
+
+    .nav-brand {
+      color: #ffffff;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      padding-right: 20px;
+      text-decoration: none;
+    }
+
+    .nav-brand:hover {
+      text-decoration: none;
+    }
+
+    .nav-left, .nav-right {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-link {
+      color: var(--nav-text);
+      padding: 14px 12px;
+      font-size: 13px;
+      transition: background 0.15s;
+    }
+
+    .nav-link:hover {
+      background-color: var(--nav-hover);
+      text-decoration: none;
+      color: #ffffff;
+    }
+
+    .nav-search {
+      display: flex;
+      align-items: center;
+      margin-left: 15px;
+    }
+
+    .nav-search select,
+    .nav-search input {
+      height: 30px;
+      font-size: 12px;
+      border: 1px solid #1a252f;
+      padding: 0 8px;
+    }
+
+    .nav-search select {
+      background: #ffffff;
+      border-radius: 3px 0 0 3px;
+      border-right: none;
+    }
+
+    .nav-search input {
+      width: 220px;
+      border-radius: 0;
+    }
+
+    .nav-search button {
+      height: 30px;
+      background: var(--panel-header-bg);
+      border: 1px solid #1a252f;
+      border-left: none;
+      color: #ffffff;
+      padding: 0 12px;
+      font-size: 12px;
+      cursor: pointer;
+      border-radius: 0 3px 3px 0;
+    }
+
+    .nav-search button:hover {
+      background: #3c546d;
+    }
+
+    /* Layout */
+    .container {
+      max-width: 1140px;
+      margin: 20px auto 40px;
+      padding: 0 15px;
+    }
+
+    /* Panel Component */
+    .panel {
+      background-color: var(--bg-container);
+      border: 1px solid var(--panel-border);
+      border-radius: 4px;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    }
+
+    .panel-header {
+      background-color: var(--panel-header-bg);
+      color: var(--panel-header-text);
+      padding: 10px 15px;
+      border-top-left-radius: 3px;
+      border-top-right-radius: 3px;
+      font-size: 15px;
+      font-weight: 700;
+      word-break: break-all;
+    }
+
+    .panel-body {
+      padding: 15px;
+    }
+
+    /* Meta Grid Table */
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background-color: var(--panel-border);
+      border: 1px solid var(--panel-border);
+      border-radius: 3px;
+      margin-bottom: 15px;
+      overflow: hidden;
+    }
+
+    .meta-item {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      background-color: var(--bg-container);
+      font-size: 12.5px;
+    }
+
+    .meta-label {
+      background-color: var(--panel-body-bg);
+      padding: 8px 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      border-right: 1px solid var(--panel-border);
+    }
+
+    .meta-value {
+      padding: 8px 12px;
+      word-break: break-all;
+      display: flex;
+      align-items: center;
+    }
+
+    .text-success { color: var(--color-seeders); font-weight: bold; }
+    .text-danger  { color: var(--color-leechers); font-weight: bold; }
+    .text-info    { color: var(--color-downloads); font-weight: bold; }
+
+    /* Action Bar (Download Buttons) */
+    .action-bar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      padding: 10px 0;
+      border-bottom: 1px solid #e1e4e8;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 3px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s, border-color 0.15s;
+    }
+
+    .btn-download {
+      background-color: var(--btn-primary);
+      border: 1px solid #2e6da4;
+      color: #ffffff;
+    }
+
+    .btn-download:hover {
+      background-color: var(--btn-primary-hover);
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .btn-magnet {
+      background-color: #5cb85c;
+      border: 1px solid #4cae4c;
+      color: #ffffff;
+    }
+
+    .btn-magnet:hover {
+      background-color: #449d44;
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    /* Torrent Description Area */
+    .description-container {
+      background: var(--bg-container);
+      border: 1px solid #e1e4e8;
+      border-radius: 3px;
+      padding: 20px;
+      font-family: var(--mono-stack);
+      font-size: 12px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      word-break: break-all;
+      color: #24292e;
+    }
+
+    .description-heading {
+      color: #0366d6;
+      font-weight: 700;
+      border-bottom: 1px dashed #d1d5da;
+      padding-bottom: 4px;
+      margin: 12px 0 6px;
+      display: block;
+    }
+
+    /* File List Table */
+    .file-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12.5px;
+      margin-top: 15px;
+    }
+
+    .file-table th, .file-table td {
+      padding: 8px 12px;
+      text-align: left;
+      border-bottom: 1px solid #e1e4e8;
+    }
+
+    .file-table th {
+      background-color: var(--panel-body-bg);
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .file-table tr:hover {
+      background-color: #f6f8fa;
+    }
+
+    .file-size {
+      text-align: right;
+      width: 120px;
+      font-family: var(--mono-stack);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 11.5px;
+      padding: 20px 0;
+      border-top: 1px solid var(--panel-border);
+    }
+
+    @media (max-width: 768px) {
+      .meta-grid {
+        grid-template-columns: 1fr;
+      }
+      .nav-search {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="navbar-container">
+      <div class="nav-left">
+        <a href="#" class="nav-brand">Nyaa</a>
+        <a href="#" class="nav-link">アップロード</a>
+        <a href="#" class="nav-link">お知らせ</a>
+        <a href="#" class="nav-link">RSS</a>
+      </div>
+      <div class="nav-right">
+        <div class="nav-search">
+          <select aria-label="カテゴリー選択">
+            <option value="0_0">すべてのカテゴリー</option>
+            <option value="6_0" selected>ソフトウェア (Raw)</option>
+            <option value="6_2">ソフトウェア - ゲーム</option>
+          </select>
+          <input type="text" placeholder="検索..." value="F-ZERO X" aria-label="検索クエリ">
+          <button type="button">検索</button>
+        </div>
+        <a href="#" class="nav-link">ログイン</a>
+        <a href="#" class="nav-link">登録</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="container">
+    
+    <!-- Torrent View Panel -->
+    <article class="panel">
+      <header class="panel-header">
+        [N64] F-ZERO X (Japan) [Z64]
+      </header>
+
+      <div class="panel-body">
+        
+        <!-- Metadata Matrix -->
+        <section class="meta-grid" aria-label="トレントメタデータ">
+          <div class="meta-item">
+            <div class="meta-label">カテゴリー:</div>
+            <div class="meta-value"><a href="#">ソフトウェア - ゲーム</a></div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">投稿日時:</div>
+            <div class="meta-value" id="post-date">1998-07-14 10:45 UTC</div>
+          </div>
+          
+          <div class="meta-item">
+            <div class="meta-label">投稿者:</div>
+            <div class="meta-value"><a href="#">RetroArchive_JP</a></div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">シード数:</div>
+            <div class="meta-value text-success" id="seed-count">64</div>
+          </div>
+
+          <div class="meta-item">
+            <div class="meta-label">ファイル情報:</div>
+            <div class="meta-value">1 ファイル (16.0 MiB)</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">リーチャー数:</div>
+            <div class="meta-value text-danger" id="leech-count">2</div>
+          </div>
+
+          <div class="meta-item">
+            <div class="meta-label">状態:</div>
+            <div class="meta-value">完了 (Trusted)</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">完了数:</div>
+            <div class="meta-value text-info" id="snatch-count">1998</div>
+          </div>
+
+          <div class="meta-item" style="grid-column: span 2;">
+            <div class="meta-label">情報ハッシュ:</div>
+            <div class="meta-value" style="font-family: var(--mono-stack); font-size: 11.5px;">
+              a1b2c3d4e5f60718293a4b5c6d7e8f9012345678
+            </div>
+          </div>
+        </section>
+
+        <!-- Action / Download Buttons -->
+        <section class="action-bar">
+          <a href="#" class="btn btn-download" id="btn-torrent-dl">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 5px;">
+              <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/>
+            </svg>
+            .torrent をダウンロード
+          </a>
+          <a href="magnet:?xt=urn:btih:a1b2c3d4e5f60718293a4b5c6d7e8f9012345678&dn=F-ZERO+X+%28Japan%29+%5BZ64%5D" class="btn btn-magnet">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 5px;">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5v-9l6 4.5-6 4.5z"/>
+            </svg>
+            マグネットリンク
+          </a>
+        </section>
+
+        <!-- Torrent Description / NFO -->
+        <section class="panel" style="border-color: #e1e4e8; box-shadow: none;">
+          <header class="panel-header" style="background-color: #eceff1; color: #455a64; font-size: 13px;">
+            詳細情報 (Description / NFO)
+          </header>
+          <div class="panel-body" style="padding: 10px;">
+            <pre class="description-container">
+<span class="description-heading">■ GENERAL INFORMATION</span>
+Title:            F-ZERO X (エフゼロ エックス)
+Platform:         NINTENDO 64 (N64)
+Region:           Japan (NTSC-J)
+Release Date:     1998-07-14
+Developer:        Nintendo EAD
+Publisher:        Nintendo
+Genre:            Futuristic Racing
+Media Format:     Cartridge (128 Mbit / 16 MiB)
+
+<span class="description-heading">■ FILE SPECIFICATIONS</span>
+Container / Dump: Big-Endian (.z64) [Native Byte Order]
+File Name:        F-Zero X (Japan).z64
+File Size:        16,777,216 Bytes (16.0 MiB)
+Cart ID:          NUS-NFZJ-JPN
+Internal Title:   F-ZERO X
+CRC32:            EE5FF521
+MD5:              4F6C7F19E3A5A1F7A3E26BD8B7812D75
+SHA-1:            5C5996BC6339178EE2FFD563820FE1EE41BD61BD
+
+<span class="description-heading">■ VERIFICATION (No-Intro 2026 Standard)</span>
+- Database Match: Yes (No-Intro N64 Validated)
+- Status:         Verified Clean Dump
+- Byte Order:     Big Endian (.z64) Native Format (Cartridge ROM)
+
+<span class="description-heading">■ COMPATIBILITY NOTE</span>
+・純正実機 + 各種Flashcart (EverDrive-64, ED64Plus, SummerCart64 など) で動作確認済み。
+・エミュレータ (simple64, Ares, parallel-RDP, Project64 v3+) にて 60fps 動作確認済み。
+・Expansion Pak (ハイレゾパック) 対応ソフト (4人プレイ時の描画安定化)。
+            </pre>
+          </div>
+        </section>
+
+        <!-- File Structure List -->
+        <section class="panel" style="border-color: #e1e4e8; box-shadow: none;">
+          <header class="panel-header" style="background-color: #eceff1; color: #455a64; font-size: 13px;">
+            ファイル一覧 (1 ファイル)
+          </header>
+          <div class="panel-body" style="padding: 0;">
+            <table class="file-table">
+              <thead>
+                <tr>
+                  <th>ファイル名</th>
+                  <th class="file-size">サイズ</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="#666" style="vertical-align: text-bottom; margin-right: 4px;">
+                      <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+                    </svg>
+                    F-Zero X (Japan).z64
+                  </td>
+                  <td class="file-size">16.00 MiB</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+      </div>
+    </article>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>Nyaa.si UI Clone Engine - Dedicated Archive</p>
+    </div>
+  </footer>
+
+  <!-- Basic Interactivity -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Torrent ダウンロードクリック時のダミー通知
+      const dlBtn = document.getElementById('btn-torrent-dl');
+      if (dlBtn) {
+        dlBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          alert('[Nyaa Simulator]\nトレントメタデータファイル (F-ZERO_X_Japan.z64.torrent) のダウンロードを開始します。');
+        });
+      }
+    });
+  </script>
+</body>
+</html>
