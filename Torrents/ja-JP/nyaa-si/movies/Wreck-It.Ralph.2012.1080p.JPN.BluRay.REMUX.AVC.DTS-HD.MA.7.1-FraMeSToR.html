@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>シュガー・ラッシュ / Wreck-It.Ralph.2012.1080p.JPN.BluRay.REMUX.AVC.DTS-HD.MA.7.1-FraMeSToR :: Nyaa</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --bg-body: #f4f6f9;
+      --bg-panel: #ffffff;
+      --border-color: #d1d5db;
+      --text-main: #2b303a;
+      --text-muted: #6b7280;
+      --nyaa-blue: #337ab7;
+      --nyaa-blue-hover: #23527c;
+      --nyaa-dark: #1b2430;
+      --nyaa-navbar-border: #111720;
+      --seed-color: #2e7d32;
+      --leech-color: #c62828;
+      --comp-color: #0277bd;
+      --tag-bg: #e5e7eb;
+      --code-bg: #1e1e1e;
+      --code-text: #d4d4d4;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: var(--nyaa-dark);
+      border-bottom: 3px solid var(--nyaa-blue);
+      color: #fff;
+    }
+
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+
+    .nav-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 50px;
+    }
+
+    .brand {
+      font-size: 20px;
+      font-weight: bold;
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand span {
+      color: var(--nyaa-blue);
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 15px;
+    }
+
+    .nav-links a {
+      color: #cfd8dc;
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #fff;
+    }
+
+    .nav-search {
+      display: flex;
+      align-items: center;
+      background: #fff;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .nav-search select {
+      border: none;
+      padding: 4px 8px;
+      font-size: 12px;
+      background: #f1f3f5;
+      border-right: 1px solid #ced4da;
+      outline: none;
+    }
+
+    .nav-search input {
+      border: none;
+      padding: 4px 8px;
+      font-size: 12px;
+      outline: none;
+      width: 180px;
+    }
+
+    .nav-search button {
+      border: none;
+      background: var(--nyaa-blue);
+      color: #fff;
+      padding: 4px 10px;
+      cursor: pointer;
+    }
+
+    /* Main Container */
+    .main-wrapper {
+      padding: 20px 0 40px;
+    }
+
+    /* Torrent Details Panel */
+    .panel {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      margin-bottom: 20px;
+    }
+
+    .panel-header {
+      background-color: #f8fafc;
+      border-bottom: 1px solid var(--border-color);
+      padding: 12px 16px;
+      font-size: 15px;
+      font-weight: 600;
+      word-break: break-all;
+      color: #1f2937;
+    }
+
+    .torrent-info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .info-row {
+      display: flex;
+      border-bottom: 1px solid #edf2f7;
+      padding: 8px 16px;
+      align-items: center;
+    }
+
+    .info-label {
+      width: 110px;
+      font-weight: bold;
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+
+    .info-val {
+      flex-grow: 1;
+    }
+
+    .stat-badge {
+      font-weight: bold;
+    }
+    .stat-seed { color: var(--seed-color); }
+    .stat-leech { color: var(--leech-color); }
+    .stat-comp { color: var(--comp-color); }
+
+    /* Action Bar */
+    .download-bar {
+      padding: 12px 16px;
+      background: #fbfcfd;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 500;
+      border-radius: 3px;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background-color: var(--nyaa-blue);
+      color: #fff;
+      border-color: #286090;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--nyaa-blue-hover);
+    }
+
+    .btn-success {
+      background-color: #5cb85c;
+      color: #fff;
+      border-color: #4cae4c;
+    }
+
+    .btn-success:hover {
+      background-color: #449d44;
+    }
+
+    .btn-default {
+      background-color: #fff;
+      color: #333;
+      border-color: #ccc;
+    }
+
+    .btn-default:hover {
+      background-color: #e6e6e6;
+    }
+
+    /* Description */
+    .torrent-description {
+      padding: 20px;
+      line-height: 1.6;
+      color: #24292e;
+    }
+
+    .desc-section-title {
+      font-size: 14px;
+      font-weight: bold;
+      margin: 16px 0 8px;
+      padding-bottom: 4px;
+      border-bottom: 2px solid #e5e7eb;
+      color: #111827;
+    }
+
+    .mediainfo-box {
+      background: var(--code-bg);
+      color: var(--code-text);
+      padding: 14px;
+      border-radius: 4px;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 12px;
+      white-space: pre-wrap;
+      overflow-x: auto;
+      max-height: 380px;
+      border: 1px solid #333;
+      line-height: 1.45;
+    }
+
+    /* Collapsible File List */
+    .filelist-header {
+      background: #f8fafc;
+      padding: 10px 16px;
+      font-weight: bold;
+      border-bottom: 1px solid var(--border-color);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      user-select: none;
+    }
+
+    .filelist-content {
+      padding: 12px 16px;
+      list-style: none;
+    }
+
+    .file-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 4px 0;
+      border-bottom: 1px dashed #edf2f7;
+    }
+
+    .file-item:last-child {
+      border-bottom: none;
+    }
+
+    /* Comments Section */
+    .comments-header {
+      background: #f8fafc;
+      padding: 10px 16px;
+      font-weight: bold;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .comment-item {
+      padding: 14px 16px;
+      border-bottom: 1px solid #edf2f7;
+    }
+
+    .comment-item:last-child {
+      border-bottom: none;
+    }
+
+    .comment-meta {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 6px;
+      font-size: 12px;
+    }
+
+    .comment-author {
+      font-weight: bold;
+      color: var(--nyaa-blue);
+    }
+
+    .comment-date {
+      color: var(--text-muted);
+    }
+
+    .footer {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 12px;
+      padding-top: 15px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    @media (max-width: 768px) {
+      .torrent-info-grid {
+        grid-template-columns: 1fr;
+      }
+      .nav-search {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container nav-content">
+      <a href="#" class="brand"><i class="fa-solid fa-cat"></i> Nyaa <span>(ja-JP)</span></a>
+      <ul class="nav-links">
+        <li><a href="#"><i class="fa-solid fa-house"></i> ホーム</a></li>
+        <li><a href="#"><i class="fa-solid fa-upload"></i> アップロード</a></li>
+        <li><a href="#"><i class="fa-solid fa-book"></i> ガイドライン</a></li>
+        <li><a href="#"><i class="fa-solid fa-rss"></i> RSS</a></li>
+      </ul>
+      <div class="nav-search">
+        <select>
+          <option>すべてのカテゴリー</option>
+          <option selected>アニメ - Raw</option>
+          <option>実写 - Raw</option>
+        </select>
+        <input type="text" placeholder="検索...">
+        <button type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Container -->
+  <div class="container main-wrapper">
+    <div class="panel">
+      <!-- Title -->
+      <div class="panel-header">
+        シュガー・ラッシュ / Wreck-It.Ralph.2012.1080p.JPN.BluRay.REMUX.AVC.DTS-HD.MA.7.1-FraMeSToR
+      </div>
+
+      <!-- Torrent Meta Grid -->
+      <div class="torrent-info-grid">
+        <div class="info-row">
+          <span class="info-label">カテゴリー:</span>
+          <span class="info-val"><a href="#" style="color:var(--nyaa-blue); text-decoration:none;">アニメ - Raw</a></span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">投稿日時:</span>
+          <span class="info-val">2013-07-17 18:42 UTC</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">投稿者:</span>
+          <span class="info-val"><a href="#" style="color:var(--nyaa-blue); text-decoration:none; font-weight:bold;">FraMeSToR</a></span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">シード数:</span>
+          <span class="info-val stat-badge stat-seed" id="seedCount">42</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">ファイルサイズ:</span>
+          <span class="info-val">26.8 GiB</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">リーチャー数:</span>
+          <span class="info-val stat-badge stat-leech" id="leechCount">3</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">情報ハッシュ:</span>
+          <span class="info-val" style="font-family:monospace; font-size:11px;">e4d9c7205a8b71f30e9d5641cf432a109a823b1f</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">完了数:</span>
+          <span class="info-val stat-badge stat-comp">1,894</span>
+        </div>
+      </div>
+
+      <!-- Download Action Bar -->
+      <div class="download-bar">
+        <a href="#" class="btn btn-primary" id="torrentDlBtn"><i class="fa-solid fa-download"></i> トレントファイルをダウンロード</a>
+        <a href="magnet:?xt=urn:btih:e4d9c7205a8b71f30e9d5641cf432a109a823b1f&dn=Wreck-It.Ralph.2012.1080p.JPN.BluRay.REMUX.AVC.DTS-HD.MA.7.1-FraMeSToR" class="btn btn-success"><i class="fa-solid fa-magnet"></i> マグネットリンク</a>
+        <button class="btn btn-default" onclick="copyHash()"><i class="fa-solid fa-copy"></i> ハッシュをコピー</button>
+      </div>
+
+      <!-- Description Area -->
+      <div class="torrent-description">
+        <div class="desc-section-title"><i class="fa-solid fa-circle-info"></i> リリース概要 (Release Information)</div>
+        <p>
+          ディズニー長編アニメーション第52作『シュガー・ラッシュ』（原題: <em>Wreck-It Ralph</em>, 2012）の日本版 Blu-ray より完全無劣化抽出された Remux パッケージです。<br>
+          本編映像はAVC High@L4.1ネイティブビットレート、音声は英語オリジナルおよび日本語吹き替えともに最高品質の <strong>DTS-HD Master Audio 7.1ch</strong> (24-bit / 48 kHz) を収録しています。
+        </p>
+
+        <div class="desc-section-title"><i class="fa-solid fa-list-ol"></i> トラック構成</div>
+        <ul style="padding-left: 20px; margin-bottom: 12px;">
+          <li><strong>Video:</strong> 1080p MPEG-4 AVC Remux / 16:9 / 23.976 fps</li>
+          <li><strong>Audio 1:</strong> 英語 (English) DTS-HD MA 7.1ch @ ~4600 kbps (24-bit / 48 kHz)</li>
+          <li><strong>Audio 2:</strong> 日本語 (Japanese) DTS-HD MA 7.1ch @ ~4450 kbps (24-bit / 48 kHz)</li>
+          <li><strong>Subtitle 1:</strong> 日本語字幕 (Japanese PGS)</li>
+          <li><strong>Subtitle 2:</strong> 英語字幕 (English SDH PGS)</li>
+          <li><strong>Chapters:</strong> 全16チャプター (Named Chapters Included)</li>
+        </ul>
+
+        <div class="desc-section-title"><i class="fa-solid fa-terminal"></i> MediaInfo</div>
+        <div class="mediainfo-box">General
+Unique ID                   : 238910482910482901840291840918230918
+Complete name               : Wreck-It.Ralph.2012.1080p.JPN.BluRay.REMUX.AVC.DTS-HD.MA.7.1-FraMeSToR.mkv
+Format                      : Matroska
+Format version              : Version 4 / Version 2
+File size                   : 26.8 GiB
+Duration                    : 1 h 41 min 14 s
+Overall bit rate mode       : Variable
+Overall bit rate            : 37.9 Mb/s
+Encoded date                : UTC 2013-07-17 18:05:12
+Writing application         : mkvmerge v6.3.0 ('Sour Grapes') built on Jun 28 2013
+Writing library             : libebml v1.3.0 + libmatroska v1.4.0
+
+Video
+ID                          : 1
+Format                      : AVC
+Format/Info                 : Advanced Video Codec
+Format profile              : High@L4.1
+Format settings             : CABAC / 4 Ref Frames
+Codec ID                    : V_MPEG4/ISO/AVC
+Duration                    : 1 h 41 min 14 s
+Bit rate mode               : Variable
+Bit rate                    : 28.5 Mb/s
+Width                       : 1 920 pixels
+Height                      : 1 080 pixels
+Display aspect ratio        : 16:9
+Frame rate mode             : Constant
+Frame rate                  : 23.976 (24000/1001) FPS
+Color space                 : YUV
+Chroma subsampling          : 4:2:0
+Bit depth                   : 8 bits
+Scan type                   : Progressive
+
+Audio #1
+ID                          : 2
+Format                      : DTS XLL
+Format/Info                 : Digital Theater Systems
+Commercial name             : DTS-HD Master Audio
+Codec ID                    : A_DTS
+Duration                    : 1 h 41 min 14 s
+Bit rate mode               : Variable
+Bit rate                    : 4 612 kb/s
+Channel(s)                  : 8 channels / 7.1 Surround
+Channel layout              : C L R Ls Rs Lb Rb LFE
+Sampling rate               : 48.0 kHz
+Frame rate                  : 93.750 FPS (512 SPF)
+Bit depth                   : 24 bits
+Title                       : English DTS-HD MA 7.1
+Language                    : English
+Default                     : Yes
+Forced                      : No
+
+Audio #2
+ID                          : 3
+Format                      : DTS XLL
+Format/Info                 : Digital Theater Systems
+Commercial name             : DTS-HD Master Audio
+Codec ID                    : A_DTS
+Duration                    : 1 h 41 min 14 s
+Bit rate mode               : Variable
+Bit rate                    : 4 480 kb/s
+Channel(s)                  : 8 channels / 7.1 Surround
+Channel layout              : C L R Ls Rs Lb Rb LFE
+Sampling rate               : 48.0 kHz
+Frame rate                  : 93.750 FPS (512 SPF)
+Bit depth                   : 24 bits
+Title                       : Japanese DTS-HD MA 7.1
+Language                    : Japanese
+Default                     : No
+Forced                      : No
+
+Text #1
+ID                          : 4
+Format                      : PGS
+Codec ID                    : S_HDMV/PGS
+Language                    : Japanese
+Title                       : Japanese (PGS)
+
+Text #2
+ID                          : 5
+Format                      : PGS
+Codec ID                    : S_HDMV/PGS
+Language                    : English
+Title                       : English (SDH PGS)
+
+Menu
+00:00:00.000                : Chapter 1: Bad-Anon Meeting
+00:06:15.250                : Chapter 2: Pac-Man & Central Station
+00:12:44.625                : Chapter 3: Hero's Duty
+00:19:10.120                : Chapter 4: Cy-Bug Escape
+00:25:35.840                : Chapter 5: Sugar Rush Speedway
+00:31:50.000                : Chapter 6: Meeting Vanellope
+00:38:12.750                : Chapter 7: King Candy's Palace
+00:44:20.500                : Chapter 8: Building the Kart
+00:51:05.125                : Chapter 9: Diet Cola Mountain
+00:57:30.800                : Chapter 10: Driving Practice
+01:04:12.200                : Chapter 11: King Candy's Deal
+01:10:45.300                : Chapter 12: The Broken Kart
+01:17:10.450                : Chapter 13: Truth Revealed
+01:23:55.600                : Chapter 14: The Sugar Rush Grand Prix
+01:31:20.100                : Chapter 15: Ralph the Hero
+01:37:45.900                : Chapter 16: End Credits</div>
+      </div>
+
+      <!-- File List Dropdown -->
+      <div class="filelist-header" id="toggleFileList">
+        <span><i class="fa-solid fa-folder-open"></i> ファイル一覧 (1 ファイル)</span>
+        <span id="fileIcon"><i class="fa-solid fa-chevron-down"></i></span>
+      </div>
+      <ul class="filelist-content" id="fileListBody">
+        <li class="file-item">
+          <span><i class="fa-regular fa-file-video"></i> Wreck-It.Ralph.2012.1080p.JPN.BluRay.REMUX.AVC.DTS-HD.MA.7.1-FraMeSToR.mkv</span>
+          <span style="color:var(--text-muted);">26.8 GiB</span>
+        </li>
+      </ul>
+
+      <!-- Comments -->
+      <div class="comments-header">
+        <i class="fa-solid fa-comments"></i> コメント (2件)
+      </div>
+      <div class="comment-item">
+        <div class="comment-meta">
+          <span class="comment-author">AnimeFan_99</span>
+          <span class="comment-date">2013-07-18 04:15 UTC</span>
+        </div>
+        <div>FraMeSToR quality as always! Japanese 7.1 DTS-HD MA track is pristine. Thanks for seeding!</div>
+      </div>
+      <div class="comment-item">
+        <div class="comment-meta">
+          <span class="comment-author">TokyoSeeder</span>
+          <span class="comment-date">2013-07-19 11:20 UTC</span>
+        </div>
+        <div>日本語吹き替えのロスレス7.1ch収録は本当に助かります。シード継続します！</div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>Nyaa.si clone interface for archived metadata visualization.</p>
+    </footer>
+  </div>
+
+  <script>
+    // File List Toggle Behavior
+    const toggleBtn = document.getElementById('toggleFileList');
+    const fileList = document.getElementById('fileListBody');
+    const fileIcon = document.getElementById('fileIcon');
+
+    toggleBtn.addEventListener('click', () => {
+      const isHidden = fileList.style.display === 'none';
+      fileList.style.display = isHidden ? 'block' : 'none';
+      fileIcon.innerHTML = isHidden 
+        ? '<i class="fa-solid fa-chevron-up"></i>' 
+        : '<i class="fa-solid fa-chevron-down"></i>';
+    });
+
+    // Copy Info Hash Helper
+    function copyHash() {
+      const hash = 'e4d9c7205a8b71f30e9d5641cf432a109a823b1f';
+      navigator.clipboard.writeText(hash).then(() => {
+        alert('情報ハッシュをクリップボードにコピーしました:\n' + hash);
+      }).catch(err => {
+        console.error('コピーに失敗しました', err);
+      });
+    }
+
+    // Torrent download simulator
+    document.getElementById('torrentDlBtn').addEventListener('click', (e) => {
+      e.preventDefault();
+      alert('トレントメタデータファイルのダウンロード要求を受け付けました。');
+    });
+  </script>
+</body>
+</html>
