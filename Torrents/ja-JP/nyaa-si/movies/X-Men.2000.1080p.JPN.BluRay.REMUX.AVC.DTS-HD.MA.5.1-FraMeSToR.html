@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X-Men (2000) 1080p JPN BluRay REMUX AVC DTS-HD MA 5.1-FraMeSToR :: Nyaa</title>
+    <!-- FontAwesome 4.7.0 for authentic Nyaa interface icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        :root {
+            --nyaa-blue: #337ab7;
+            --nyaa-dark: #222;
+            --nyaa-border: #ddd;
+            --nyaa-bg-panel: #f5f5f5;
+            --nyaa-success: #5cb85c;
+            --nyaa-danger: #d9534f;
+            --nyaa-info: #5bc0de;
+            --nyaa-text: #333;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+            font-size: 13px;
+            line-height: 1.42857143;
+            color: var(--nyaa-text);
+            background-color: #f8f9fa;
+        }
+
+        a {
+            color: var(--nyaa-blue);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background-color: #222;
+            border-color: #080808;
+            min-height: 50px;
+            margin-bottom: 20px;
+            border-radius: 0;
+        }
+
+        .navbar-container {
+            max-width: 1170px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 15px;
+            height: 50px;
+        }
+
+        .navbar-brand {
+            color: #9d9d9d;
+            font-size: 18px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .navbar-brand span {
+            color: #fff;
+        }
+
+        .navbar-nav {
+            display: flex;
+            list-style: none;
+            gap: 15px;
+        }
+
+        .navbar-nav a {
+            color: #9d9d9d;
+            font-size: 13px;
+        }
+
+        .navbar-nav a:hover {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1170px;
+            margin: 0 auto;
+            padding: 0 15px 40px;
+        }
+
+        /* Panel Structure */
+        .panel {
+            background-color: #fff;
+            border: 1px solid var(--nyaa-border);
+            border-radius: 4px;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+            margin-bottom: 20px;
+        }
+
+        .panel-header {
+            background-color: var(--nyaa-bg-panel);
+            border-bottom: 1px solid var(--nyaa-border);
+            padding: 10px 15px;
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .panel-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            word-break: break-word;
+        }
+
+        .panel-body {
+            padding: 15px;
+        }
+
+        /* Torrent Meta Grid */
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .meta-item {
+            background: #fafafa;
+            border: 1px solid #eee;
+            padding: 8px 12px;
+            border-radius: 3px;
+        }
+
+        .meta-label {
+            font-weight: bold;
+            color: #777;
+            font-size: 11px;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .meta-value {
+            font-size: 13px;
+            color: #222;
+        }
+
+        .text-seeders { color: var(--nyaa-success); font-weight: bold; }
+        .text-leechers { color: var(--nyaa-danger); font-weight: bold; }
+        .text-completed { color: var(--nyaa-info); font-weight: bold; }
+
+        /* Action Buttons */
+        .download-bar {
+            display: flex;
+            gap: 10px;
+            background: #eef2f5;
+            padding: 12px 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            align-items: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 3px;
+            border: 1px solid transparent;
+            cursor: pointer;
+            text-decoration: none !important;
+        }
+
+        .btn-success {
+            background-color: var(--nyaa-success);
+            border-color: #4cae4c;
+            color: #fff;
+        }
+
+        .btn-success:hover {
+            background-color: #449d44;
+        }
+
+        .btn-danger {
+            background-color: var(--nyaa-danger);
+            border-color: #d43f3a;
+            color: #fff;
+        }
+
+        .btn-danger:hover {
+            background-color: #c9302c;
+        }
+
+        /* Torrent Description Styling */
+        .torrent-desc-box {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 3px;
+            font-family: inherit;
+        }
+
+        .mediainfo-box {
+            background-color: #2b2b2b;
+            color: #f1f1f1;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+            font-size: 12px;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            overflow-x: auto;
+            margin: 15px 0;
+            border-left: 4px solid var(--nyaa-blue);
+        }
+
+        .chapter-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+
+        .chapter-table th, .chapter-table td {
+            border: 1px solid #ddd;
+            padding: 6px 10px;
+            text-align: left;
+        }
+
+        .chapter-table th {
+            background-color: #f5f5f5;
+        }
+
+        .chapter-table tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 6px;
+            font-size: 11px;
+            font-weight: 600;
+            line-height: 1;
+            color: #fff;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            border-radius: 3px;
+            background-color: #777;
+        }
+
+        .badge-category {
+            background-color: var(--nyaa-blue);
+        }
+
+        /* File List Accordion */
+        .file-list-toggle {
+            background: #eee;
+            padding: 8px 12px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .file-tree {
+            display: none;
+            padding: 10px;
+            border: 1px solid #eee;
+            border-top: none;
+            background: #fafafa;
+            font-family: monospace;
+            font-size: 12px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            color: #777;
+            font-size: 12px;
+            padding: 20px 0;
+            border-top: 1px solid #e5e5e5;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="#" class="navbar-brand">
+                <i class="fa fa-paw"></i> <span>Nyaa</span>
+            </a>
+            <ul class="navbar-nav">
+                <li><a href="#"><i class="fa fa-upload"></i> アップロード</a></li>
+                <li><a href="#"><i class="fa fa-info-circle"></i> ガイドライン</a></li>
+                <li><a href="#"><i class="fa fa-rss"></i> RSS</a></li>
+                <li><a href="#"><i class="fa fa-user"></i> ログイン / 登録</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Torrent Detail Panel -->
+        <div class="panel">
+            <div class="panel-header">
+                <h1 class="panel-title">
+                    <span class="badge badge-category">Live Action - Raw</span>
+                    X-Men (2000) 1080p JPN BluRay REMUX AVC DTS-HD MA 5.1-FraMeSToR
+                </h1>
+            </div>
+
+            <div class="panel-body">
+                <!-- Metadata Grid -->
+                <div class="meta-grid">
+                    <div class="meta-item">
+                        <span class="meta-label">カテゴリー:</span>
+                        <div class="meta-value"><a href="#">実写 - プロモーション/動画 (Non-English)</a></div>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">投稿日時:</span>
+                        <div class="meta-value">2023-10-14 18:42 UTC</div>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">ファイルサイズ:</span>
+                        <div class="meta-value">28.4 GiB</div>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">投稿者:</span>
+                        <div class="meta-value"><a href="#"><strong>FraMeSToR</strong></a> (Trusted)</div>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">シード (Seeders):</span>
+                        <div class="meta-value text-seeders" id="seeders-count">34</div>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">リーチャー (Leechers):</span>
+                        <div class="meta-value text-leechers" id="leechers-count">2</div>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">完了 (Completed):</span>
+                        <div class="meta-value text-completed">512</div>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">情報ハッシュ:</span>
+                        <div class="meta-value" style="font-family: monospace; font-size: 11px;">8f3b20c4e1a0b5d92e47c18a245f7823e41b99a0</div>
+                    </div>
+                </div>
+
+                <!-- Download Actions -->
+                <div class="download-bar">
+                    <a href="magnet:?xt=urn:btih:8f3b20c4e1a0b5d92e47c18a245f7823e41b99a0&dn=X-Men.2000.1080p.JPN.BluRay.REMUX.AVC.DTS-HD.MA.5.1-FraMeSToR" class="btn btn-danger" id="magnet-btn">
+                        <i class="fa fa-magnet"></i> マグネットリンク (Magnet)
+                    </a>
+                    <a href="#" class="btn btn-success" id="torrent-dl-btn">
+                        <i class="fa fa-download"></i> トレントをダウンロード (.torrent)
+                    </a>
+                </div>
+
+                <!-- Torrent Description -->
+                <h3 style="margin-bottom: 10px; font-size: 14px; border-bottom: 1px solid #eee; padding-bottom: 5px;">詳細説明 (Description)</h3>
+                <div class="torrent-desc-box">
+                    <p><strong>X-MEN (2000) - 日本盤 Blu-ray REMUX エディション</strong></p>
+                    <p style="margin-top: 5px; color: #666;">公式日本盤Blu-rayディスクから無劣化で抽出された完全な REMUX ストリームです。日本語吹き替え、英語オリジナル音声、および日本語字幕・英語 SDH 字幕を収録しています。</p>
+
+                    <!-- Technical Specs Overview -->
+                    <table class="chapter-table" style="margin-top: 15px;">
+                        <thead>
+                            <tr>
+                                <th>トラック</th>
+                                <th>仕様 / 詳細フォーマット</th>
+                                <th>言語</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>映像 (Video)</strong></td>
+                                <td>MPEG-4 AVC 1080p / 23.976 fps / 16:9 / High@L4.1 (BD REMUX)</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td><strong>音声 1 (Audio)</strong></td>
+                                <td>English DTS-HD Master Audio 5.1ch (48kHz / 24-bit)</td>
+                                <td>英語 (オリジナル)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>音声 2 (Audio)</strong></td>
+                                <td>Japanese DTS 5.1ch (48kHz / 16-bit / 768 kbps)</td>
+                                <td>日本語 (劇場公開/吹替版)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>音声 3 (Audio)</strong></td>
+                                <td>English Dolby Digital 5.1ch (48kHz / 640 kbps)</td>
+                                <td>英語 (互換用)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>字幕 (Subtitles)</strong></td>
+                                <td>PGS (HDMV) 日本語字幕 (Japanese)</td>
+                                <td>日本語</td>
+                            </tr>
+                            <tr>
+                                <td><strong>字幕 (Subtitles)</strong></td>
+                                <td>PGS (HDMV) 英語 SDH (English SDH)</td>
+                                <td>英語</td>
+                            </tr>
+                            <tr>
+                                <td><strong>チャプター</strong></td>
+                                <td>完全収録 (全40チャプター / タイムスタンプ付)</td>
+                                <td>-</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <!-- Detailed MediaInfo Block -->
+                    <div class="mediainfo-box">General
+Unique ID                   : 2314589012356789123450987654321
+Complete name               : X-Men.2000.1080p.JPN.BluRay.REMUX.AVC.DTS-HD.MA.5.1-FraMeSToR.mkv
+Format                      : Matroska
+Format version              : Version 4
+File size                   : 28.4 GiB
+Duration                    : 1 h 44 min 12 s
+Overall bit rate mode       : Variable
+Overall bit rate            : 38.9 Mb/s
+Movie name                  : X-MEN (2000) - JPN BD REMUX
+Encoded date                : UTC 2023-10-14 17:30:00
+
+Video
+ID                          : 1
+Format                      : AVC
+Format/Info                 : Advanced Video Codec
+Format profile              : High@L4.1
+Format settings             : CABAC / 4 Ref Frames
+Codec ID                    : V_MPEG4/ISO/AVC
+Bit rate mode               : Variable
+Bit rate                    : 30.8 Mb/s
+Width                       : 1 920 pixels
+Height                      : 1 080 pixels
+Display aspect ratio        : 16:9
+Frame rate mode             : Constant
+Frame rate                  : 23.976 (24000/1001) FPS
+Color space                 : YUV
+Chroma subsampling          : 4:2:0
+Bit depth                   : 8 bits
+
+Audio #1 (Main)
+ID                          : 2
+Format                      : DTS XLL
+Format/Info                 : Digital Theater Systems
+Commercial name             : DTS-HD Master Audio
+Codec ID                    : A_DTS
+Duration                    : 1 h 44 min 12 s
+Bit rate mode               : Variable
+Channel(s)                  : 6 channels / 5.1 surround
+Channel layout              : C L R Ls Rs LFE
+Sampling rate               : 48.0 kHz
+Frame rate                  : 93.750 FPS (512 SPF)
+Bit depth                   : 24 bits
+Title                       : English 5.1 DTS-HD MA
+Language                    : English
+
+Audio #2 (Japanese Dub)
+ID                          : 3
+Format                      : DTS
+Format/Info                 : Digital Theater Systems
+Codec ID                    : A_DTS
+Bit rate mode               : Constant
+Bit rate                    : 768 kb/s
+Channel(s)                  : 6 channels / 5.1 surround
+Sampling rate               : 48.0 kHz
+Title                       : Japanese 5.1 DTS
+Language                    : Japanese
+
+Audio #3 (English AC-3)
+ID                          : 4
+Format                      : AC-3
+Format/Info                 : Audio Coding 3
+Commercial name             : Dolby Digital
+Codec ID                    : A_AC3
+Bit rate mode               : Constant
+Bit rate                    : 640 kb/s
+Channel(s)                  : 6 channels / 5.1 surround
+Sampling rate               : 48.0 kHz
+Title                       : English 5.1 Dolby Digital
+Language                    : English
+
+Text #1
+ID                          : 5
+Format                      : PGS
+Codec ID                    : S_HDMV/PGS
+Title                       : Japanese (日本語字幕)
+Language                    : Japanese
+
+Text #2
+ID                          : 6
+Format                      : PGS
+Codec ID                    : S_HDMV/PGS
+Title                       : English SDH
+Language                    : English
+
+Menu
+00:00:00.000                : en:Chapter 01 (Poland 1944)
+00:02:45.123                : en:Chapter 02 (Meridian, Mississippi)
+00:05:10.543                : en:Chapter 03 (Senate Hearing)
+...                         : [Chapters 04-39]
+01:40:15.890                : en:Chapter 40 (End Credits)</div>
+
+                    <!-- Chapters Accordion -->
+                    <div class="file-list-toggle" onclick="toggleElement('chapter-content')">
+                        <span><i class="fa fa-list-ol"></i> 収録チャプター一覧 (全40チャプターを表示)</span>
+                        <i class="fa fa-chevron-down" id="chapter-chevron"></i>
+                    </div>
+                    <div id="chapter-content" style="display: none; padding-top: 10px;">
+                        <table class="chapter-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>タイムコード</th>
+                                    <th>チャプター名 (シーン)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="chapter-rows">
+                                <!-- Populated dynamically by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- File Tree Section -->
+                    <div class="file-list-toggle" onclick="toggleElement('file-tree-content')" style="margin-top: 10px;">
+                        <span><i class="fa fa-folder-open"></i> ファイル構造 (1 ファイル)</span>
+                        <i class="fa fa-chevron-down" id="file-chevron"></i>
+                    </div>
+                    <div id="file-tree-content" class="file-tree">
+                        📁 X-Men.2000.1080p.JPN.BluRay.REMUX.AVC.DTS-HD.MA.5.1-FraMeSToR<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;📄 X-Men.2000.1080p.JPN.BluRay.REMUX.AVC.DTS-HD.MA.5.1-FraMeSToR.mkv (28.4 GiB)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Nyaa.si UI Clone - Japanese Localization Interface</p>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // Collapsible sections toggle
+        function toggleElement(elementId) {
+            const el = document.getElementById(elementId);
+            const isHidden = el.style.display === "none" || el.style.display === "";
+            el.style.display = isHidden ? "block" : "none";
+            
+            // Toggle icons
+            if (elementId === 'chapter-content') {
+                const icon = document.getElementById('chapter-chevron');
+                icon.className = isHidden ? "fa fa-chevron-up" : "fa fa-chevron-down";
+            } else if (elementId === 'file-tree-content') {
+                const icon = document.getElementById('file-chevron');
+                icon.className = isHidden ? "fa fa-chevron-up" : "fa fa-chevron-down";
+            }
+        }
+
+        // Generate 40 chapters representative of X-Men (2000)
+        document.addEventListener('DOMContentLoaded', () => {
+            const chapterData = [
+                "Poland, 1944 (Prologue)", "Meridian, Mississippi", "Senate Hearing / Mutant Registration", 
+                "Laughlin City, Canada", "The Cage Fight", "Wolverine Meets Rogue", 
+                "Ambush in the Woods", "Rescued by Storm & Cyclops", "Xavier's School for Gifted Youngsters", 
+                "Waking Up in the Med-lab", "Tour of the Mansion", "Cerebro", 
+                "Magneto's Lair", "Senator Kelly Transformed", "History of Erik and Charles", 
+                "Logan Meets the Students", "Magneto's Device", "Senator Kelly Escapes", 
+                "Rogue's Mistake", "Kelly Arrives at the Mansion", "Train Station Departure", 
+                "Mutant Confrontation at Station", "Magneto Takes Rogue", "Kelly's Cellular Breakdown", 
+                "Poisoning of Xavier", "Tracing Magneto", "Suiting Up in the X-Uniforms", 
+                "X-Jet Takeoff", "Arrival at Liberty Island", "Inside the Statue of Liberty", 
+                "Separated by the Brotherhood", "Cyclops & Storm vs. Toad", "Jean & Storm vs. Toad", 
+                "Wolverine vs. Mystique", "Climbing the Torch", "Logan vs. Sabretooth", 
+                "Cyclops' Blast", "Stopping the Machine", "The White House / Resolution", 
+                "End Credits"
+            ];
+
+            const tbody = document.getElementById('chapter-rows');
+            let baseSeconds = 0;
+
+            chapterData.forEach((title, index) => {
+                const tr = document.createElement('tr');
+                const chNum = String(index + 1).padStart(2, '0');
+                
+                // Format pseudo-timecodes sequentially totaling ~1h 44m
+                const hours = Math.floor(baseSeconds / 3600);
+                const minutes = Math.floor((baseSeconds % 3600) / 60);
+                const seconds = baseSeconds % 60;
+                const timeString = `0${hours}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}.000`;
+                
+                baseSeconds += Math.floor(6240 / 40); // Increment evenly
+
+                tr.innerHTML = `
+                    <td><strong>${chNum}</strong></td>
+                    <td style="font-family: monospace;">${timeString}</td>
+                    <td>${title}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            // Demo feedback on actions
+            document.getElementById('torrent-dl-btn').addEventListener('click', (e) => {
+                e.preventDefault();
+                alert('トレントファイルのダウンロードを開始します: [Nyaa] X-Men.2000.1080p.JPN.BluRay.REMUX.torrent');
+            });
+        });
+    </script>
+</body>
+</html>
