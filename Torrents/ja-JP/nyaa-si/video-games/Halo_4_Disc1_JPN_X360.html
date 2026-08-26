@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halo 4 (Xbox 360) (Disc 1 - Campaign) [JPN/USA/EUR] :: Nyaa</title>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #f8f9fa;
+            --container-bg: #ffffff;
+            --border-color: #dee2e6;
+            --header-bg: #2b3e50;
+            --header-text: #ffffff;
+            --link-color: #007bff;
+            --link-hover: #0056b3;
+            --table-header-bg: #e9ecef;
+            --panel-header-bg: #325d88;
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+            --info-color: #17a2b8;
+            --muted-text: #6c757d;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            font-size: 13px;
+            line-height: 1.5;
+            color: #333;
+            background-color: var(--bg-color);
+        }
+
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: var(--link-hover);
+            text-decoration: underline;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: var(--header-bg);
+            color: var(--header-text);
+            padding: 8px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-brand {
+            font-size: 18px;
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .navbar-nav {
+            display: flex;
+            list-style: none;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .navbar-nav a {
+            color: #cfd8dc;
+        }
+
+        .navbar-nav a:hover {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .search-bar {
+            display: flex;
+            gap: 5px;
+        }
+
+        .search-bar input, .search-bar select, .search-bar button {
+            padding: 4px 8px;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+            font-size: 12px;
+        }
+
+        .search-bar button {
+            background-color: #4e5d6c;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1140px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+
+        /* Panel / Card Structure */
+        .panel {
+            background: var(--container-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 1px rgba(0,0,0,.05);
+        }
+
+        .panel-heading {
+            background-color: var(--panel-header-bg);
+            color: white;
+            padding: 10px 15px;
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+            font-size: 15px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .panel-body {
+            padding: 15px;
+        }
+
+        /* Torrent Meta Table */
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .meta-row {
+            display: flex;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 4px;
+        }
+
+        .meta-label {
+            font-weight: bold;
+            width: 140px;
+            color: var(--muted-text);
+        }
+
+        .meta-value {
+            flex-grow: 1;
+        }
+
+        .stats-badge {
+            font-weight: bold;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+        }
+
+        .seeders { color: var(--success-color); }
+        .leechers { color: var(--danger-color); }
+        .completed { color: var(--info-color); }
+
+        /* Action Buttons */
+        .btn-group {
+            display: flex;
+            gap: 8px;
+            margin: 15px 0;
+            padding: 10px 0;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 6px 12px;
+            font-size: 13px;
+            font-weight: bold;
+            border-radius: 3px;
+            text-decoration: none;
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+
+        .btn-success {
+            background-color: var(--success-color);
+            color: white;
+        }
+
+        .btn-primary {
+            background-color: var(--link-color);
+            color: white;
+        }
+
+        .btn-default {
+            background-color: #f8f9fa;
+            border-color: #ccc;
+            color: #333;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+            text-decoration: none;
+        }
+
+        /* Description Content */
+        .description-box {
+            background-color: #fafafa;
+            border: 1px solid var(--border-color);
+            padding: 15px;
+            border-radius: 3px;
+            font-family: Consolas, "Courier New", monospace;
+            white-space: pre-wrap;
+            line-height: 1.4;
+            font-size: 12px;
+        }
+
+        /* File List Accordion */
+        .file-list {
+            list-style: none;
+            border: 1px solid var(--border-color);
+            border-radius: 3px;
+        }
+
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 12px;
+            border-bottom: 1px solid var(--border-color);
+            align-items: center;
+        }
+
+        .file-item:last-child {
+            border-bottom: none;
+        }
+
+        .file-item:hover {
+            background-color: #f1f1f1;
+        }
+
+        .file-name {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Comments Section */
+        .comment {
+            border-bottom: 1px solid var(--border-color);
+            padding: 12px 0;
+            display: flex;
+            gap: 15px;
+        }
+
+        .comment:last-child {
+            border-bottom: none;
+        }
+
+        .comment-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 3px;
+            background-color: #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 24px;
+        }
+
+        .comment-body {
+            flex-grow: 1;
+        }
+
+        .comment-meta {
+            font-size: 11px;
+            color: var(--muted-text);
+            margin-bottom: 4px;
+        }
+
+        .comment-text {
+            font-size: 13px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--muted-text);
+            font-size: 12px;
+            border-top: 1px solid var(--border-color);
+            margin-top: 30px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .meta-grid {
+                grid-template-columns: 1fr;
+            }
+            .navbar {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .btn-group {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <nav class="navbar">
+        <a href="#" class="navbar-brand">
+            <i class="fa-solid fa-cat"></i> Nyaa
+        </a>
+        <div class="search-bar">
+            <select>
+                <option>すべて</option>
+                <option>アニメ - Anime</option>
+                <option selected>ゲーム - Games</option>
+                <option>ソフトウェア - Software</option>
+            </select>
+            <input type="text" placeholder="検索..." value="Halo 4 Xbox 360">
+            <button type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+        <ul class="navbar-nav">
+            <li><a href="#"><i class="fa-solid fa-upload"></i> アップロード</a></li>
+            <li><a href="#"><i class="fa-solid fa-circle-info"></i> ルール</a></li>
+            <li><a href="#"><i class="fa-solid fa-user"></i> ログイン</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+        
+        <!-- Torrent Detail Panel -->
+        <div class="panel">
+            <div class="panel-heading">
+                <span id="torrent-title">Halo 4 (2012) (Disc 1 - Campaign) [Xbox 360] [.iso]</span>
+                <span class="badge"><i class="fa-solid fa-tag"></i> Non-English / Multiple</span>
+            </div>
+            
+            <div class="panel-body">
+                <!-- Metadata Grid -->
+                <div class="meta-grid">
+                    <div class="meta-row">
+                        <div class="meta-label">カテゴリー:</div>
+                        <div class="meta-value"><a href="#">ゲーム - その他 (Games - Non-English)</a></div>
+                    </div>
+                    <div class="meta-row">
+                        <div class="meta-label">投稿日時:</div>
+                        <div class="meta-value">2012-11-06 08:32 JST</div>
+                    </div>
+                    <div class="meta-row">
+                        <div class="meta-label">投稿者:</div>
+                        <div class="meta-value"><a href="#" style="font-weight: bold; color: #2b3e50;">ReclaimerArchive</a></div>
+                    </div>
+                    <div class="meta-row">
+                        <div class="meta-label">シード数:</div>
+                        <div class="meta-value seeders"><i class="fa-solid fa-arrow-up"></i> <span id="seed-count">24</span></div>
+                    </div>
+                    <div class="meta-row">
+                        <div class="meta-label">ファイルサイズ:</div>
+                        <div class="meta-value">8.14 GiB (8,738,924,544 バイト)</div>
+                    </div>
+                    <div class="meta-row">
+                        <div class="meta-label">リーチャー数:</div>
+                        <div class="meta-value leechers"><i class="fa-solid fa-arrow-down"></i> <span id="leech-count">3</span></div>
+                    </div>
+                    <div class="meta-row">
+                        <div class="meta-label">情報ハッシュ (Info Hash):</div>
+                        <div class="meta-value" style="font-family: monospace; font-size: 11px;">4d7b89f02a348911c4e12e76fa29a1b601e850b7</div>
+                    </div>
+                    <div class="meta-row">
+                        <div class="meta-label">完了数:</div>
+                        <div class="meta-value completed"><i class="fa-solid fa-check"></i> 1,489</div>
+                    </div>
+                </div>
+
+                <!-- Action / Download Buttons -->
+                <div class="btn-group">
+                    <a href="#" class="btn btn-success" id="magnet-btn">
+                        <i class="fa-solid fa-magnet"></i> マグネットリンク (Magnet)
+                    </a>
+                    <a href="#" class="btn btn-primary">
+                        <i class="fa-solid fa-download"></i> トレントを保存 (.torrent)
+                    </a>
+                    <button class="btn btn-default" onclick="copyInfoHash()">
+                        <i class="fa-regular fa-copy"></i> ハッシュをコピー
+                    </button>
+                    <button class="btn btn-default" onclick="toggleReport()">
+                        <i class="fa-solid fa-flag"></i> 通報
+                    </button>
+                </div>
+
+                <!-- Description Block -->
+                <h4 style="margin: 15px 0 8px 0; font-size: 14px;"><i class="fa-solid fa-file-lines"></i> 説明 (Description)</h4>
+                <div class="description-box">
+================================================================================
+Halo 4 (Disc 1: Campaign) - Xbox 360 Full Retail .ISO Dump
+================================================================================
+
+■ 基本情報 (General Information)
+タイトル: Halo 4 (ヘイロー 4)
+プラットフォーム: Microsoft Xbox 360
+リリース年: 2012年
+ディスク構成: Disc 1 (キャンペーンモード / Campaign Only)
+メディアフォーマット: XGD3
+コンテナ形式: .iso
+検証: abgx360 v1.0.6 パッチ・ステルス検証済み (Topology Data Verified)
+
+■ 言語サポート (Audio / Subtitles)
+- 日本語 (Japanese Audio & Subtitles)
+- 英語 (English Audio & Subtitles)
+- その他複数言語同梱 (Multi-6)
+
+■ 内容物 (Archive Contents)
+- complex-halo4.d1.iso (8.13 GiB)
+- complex-halo4.d1.dvd (LayerBreak = 2133520)
+
+■ 注意事項 (Notes)
+※ 本ディスクはキャンペーンモード専用です。マルチプレイヤー (War Games / Spartan Ops) を利用する場合は Disc 2 のインストールコンテンツが必要です。
+※ XGD3形式のディスクのため、光学ドライブ書き込み時は対応ドライブ（BurnerMAX Payload Tool対応等）をご使用ください。JTAG/RGH本体の場合は抽出ツール（god2isoやextract-xiso）で展開可能です。
+                </div>
+
+                <!-- File List -->
+                <h4 style="margin: 20px 0 8px 0; font-size: 14px;"><i class="fa-solid fa-folder-open"></i> ファイルリスト (Files)</h4>
+                <ul class="file-list">
+                    <li class="file-item">
+                        <div class="file-name">
+                            <i class="fa-regular fa-file-lines" style="color: #6c757d;"></i>
+                            <span>complex-halo4.d1.dvd</span>
+                        </div>
+                        <div class="file-size text-muted">54 B</div>
+                    </li>
+                    <li class="file-item">
+                        <div class="file-name">
+                            <i class="fa-regular fa-compact-disc" style="color: #007bff;"></i>
+                            <span>complex-halo4.d1.iso</span>
+                        </div>
+                        <div class="file-size text-muted">8.13 GiB</div>
+                    </li>
+                </ul>
+
+                <!-- Comments Section -->
+                <h4 style="margin: 25px 0 10px 0; font-size: 14px;"><i class="fa-solid fa-comments"></i> コメント (2件)</h4>
+                <div class="comment">
+                    <div class="comment-avatar">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div class="comment-body">
+                        <div class="comment-meta">
+                            <strong>Chief117</strong> | 2012-11-06 14:12 JST
+                        </div>
+                        <div class="comment-text">
+                            ABGX passed completely green. Stealth data is valid. Thanks for the quick upload!
+                        </div>
+                    </div>
+                </div>
+                <div class="comment">
+                    <div class="comment-avatar">
+                        <i class="fa-solid fa-user-astronaut"></i>
+                    </div>
+                    <div class="comment-body">
+                        <div class="comment-meta">
+                            <strong>CortanaAI</strong> | 2012-11-07 01:45 JST
+                        </div>
+                        <div class="comment-text">
+                            日本語音声・字幕ともに正常に再生できることをJTAG機にて確認しました。Disc 2のアップロードもお待ちしています。
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>Nyaa.si クローンモックアップ - 閲覧専用</p>
+    </footer>
+
+    <!-- Interactive Script -->
+    <script>
+        function copyInfoHash() {
+            const hash = "4d7b89f02a348911c4e12e76fa29a1b601e850b7";
+            navigator.clipboard.writeText(hash).then(() => {
+                alert("Info Hash をクリップボードにコピーしました:\n" + hash);
+            }).catch(err => {
+                console.error('コピーに失敗しました', err);
+            });
+        }
+
+        function toggleReport() {
+            alert("通報機能: モックアップのため実際には送信されません。");
+        }
+
+        document.getElementById('magnet-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert("マグネットリンクのダミーイベントです。\n\nリンク: magnet:?xt=urn:btih:4d7b89f02a348911c4e12e76fa29a1b601e850b7&dn=Halo+4+(2012)+(Disc+1)+[Xbox+360]");
+        });
+    </script>
+</body>
+</html>
