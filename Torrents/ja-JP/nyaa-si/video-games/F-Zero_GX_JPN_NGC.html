@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[GameCube] F-ZERO GX (Japan) [NKit.iso] :: Nyaa</title>
+  <style>
+    :root {
+      --bg-main: #0f1115;
+      --bg-panel: #161920;
+      --bg-header: #202430;
+      --bg-table-row-odd: #181c24;
+      --bg-table-row-even: #13161c;
+      --border-color: #2b313f;
+      --text-main: #c9d1d9;
+      --text-muted: #8b949e;
+      --link-color: #58a6ff;
+      --link-hover: #79c0ff;
+      --success-green: #2ea043;
+      --seed-color: #3fb950;
+      --leech-color: #f85149;
+      --info-blue: #388bfd;
+      --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+      --font-mono: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      font-family: var(--font-stack);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    a {
+      color: var(--link-color);
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: var(--link-hover);
+      text-decoration: underline;
+    }
+
+    .navbar {
+      background-color: var(--bg-header);
+      border-bottom: 1px solid var(--border-color);
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .navbar-brand {
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      margin-right: 20px;
+    }
+
+    .navbar-brand span {
+      color: var(--link-color);
+    }
+
+    .navbar-nav {
+      display: flex;
+      list-style: none;
+      gap: 15px;
+    }
+
+    .container {
+      max-width: 1140px;
+      margin: 20px auto;
+      padding: 0 15px;
+    }
+
+    .panel {
+      background-color: var(--bg-panel);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+
+    .panel-header {
+      background-color: var(--bg-header);
+      border-bottom: 1px solid var(--border-color);
+      padding: 10px 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .panel-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      word-break: break-all;
+    }
+
+    .torrent-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 10px;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 3px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      text-decoration: none !important;
+    }
+
+    .btn-success {
+      background-color: var(--success-green);
+      color: #fff;
+    }
+
+    .btn-primary {
+      background-color: var(--info-blue);
+      color: #fff;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    @media (max-width: 768px) {
+      .meta-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .meta-row {
+      display: flex;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .meta-row:last-child {
+      border-bottom: none;
+    }
+
+    .meta-label {
+      width: 120px;
+      background-color: rgba(255, 255, 255, 0.02);
+      padding: 8px 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      border-right: 1px solid var(--border-color);
+    }
+
+    .meta-value {
+      flex: 1;
+      padding: 8px 12px;
+    }
+
+    .seeders { color: var(--seed-color); font-weight: 700; }
+    .leechers { color: var(--leech-color); font-weight: 700; }
+    .completed { color: #fff; font-weight: 700; }
+
+    .description-container {
+      padding: 20px;
+      line-height: 1.7;
+    }
+
+    .description-container h2 {
+      font-size: 16px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 5px;
+      margin-top: 15px;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+
+    .description-container h2:first-child {
+      margin-top: 0;
+    }
+
+    .description-container ul {
+      margin-left: 20px;
+      margin-bottom: 15px;
+    }
+
+    .description-container pre {
+      background-color: var(--bg-table-row-even);
+      border: 1px solid var(--border-color);
+      padding: 10px;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      overflow-x: auto;
+      margin-bottom: 15px;
+    }
+
+    .file-list {
+      list-style: none;
+      font-family: var(--font-mono);
+    }
+
+    .file-item {
+      padding: 6px 12px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .file-item:nth-child(odd) {
+      background-color: var(--bg-table-row-odd);
+    }
+
+    .file-item:nth-child(even) {
+      background-color: var(--bg-table-row-even);
+    }
+
+    .file-size {
+      color: var(--text-muted);
+    }
+
+    .footer {
+      text-align: center;
+      padding: 20px;
+      color: var(--text-muted);
+      font-size: 12px;
+      border-top: 1px solid var(--border-color);
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div style="display: flex; align-items: center;">
+      <a href="#" class="navbar-brand">Nyaa<span>.si</span></a>
+      <ul class="navbar-nav">
+        <li><a href="#">閲覧</a></li>
+        <li><a href="#">アップロード</a></li>
+        <li><a href="#">利用規約</a></li>
+        <li><a href="#">IRC チャット</a></li>
+      </ul>
+    </div>
+    <div style="color: var(--text-muted);">
+      言語: <strong>日本語</strong>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="panel">
+      <div class="panel-header">
+        <h1 class="panel-title">[GameCube] F-ZERO GX (Japan) [NKit.iso]</h1>
+        <div class="torrent-actions">
+          <a href="#" id="download-torrent" class="btn btn-primary">
+            ⬇ .torrent
+          </a>
+          <a href="#" id="download-magnet" class="btn btn-success">
+            🧲 マグネット
+          </a>
+        </div>
+      </div>
+
+      <div class="meta-grid">
+        <div>
+          <div class="meta-row">
+            <div class="meta-label">カテゴリー</div>
+            <div class="meta-value"><a href="#">ソフトウェア - その他</a></div>
+          </div>
+          <div class="meta-row">
+            <div class="meta-label">投稿者</div>
+            <div class="meta-value"><a href="#">RetroArchive_JP</a></div>
+          </div>
+          <div class="meta-row">
+            <div class="meta-label">投稿日時</div>
+            <div class="meta-value">2023-11-15 14:32 UTC</div>
+          </div>
+          <div class="meta-row">
+            <div class="meta-label">ファイルサイズ</div>
+            <div class="meta-value">1.12 GiB</div>
+          </div>
+        </div>
+
+        <div>
+          <div class="meta-row">
+            <div class="meta-label">シード数</div>
+            <div class="meta-value seeders" id="seed-count">48</div>
+          </div>
+          <div class="meta-row">
+            <div class="meta-label">リーチャー数</div>
+            <div class="meta-value leechers" id="leech-count">3</div>
+          </div>
+          <div class="meta-row">
+            <div class="meta-label">完了数</div>
+            <div class="meta-value completed" id="completed-count">1,429</div>
+          </div>
+          <div class="meta-row">
+            <div class="meta-label">情報ハッシュ</div>
+            <div class="meta-value" style="font-family: var(--font-mono); font-size: 11px;">
+              e2b85fa19c4d7102e3a89041a7d189b4f981ca2b
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="description-container">
+        <h2>概要</h2>
+        <p>
+          2003年に任天堂から発売され、株式会社セガ（アミューズメントヴィジョン）が開発を手掛けたニンテンドー ゲームキューブ用超高速SFレースゲーム『<strong>F-ZERO GX</strong>』の日本版ダンプデータです。
+        </p>
+        <p>
+          本ファイルは <strong>NKit (Nintendo Toolkit)</strong> により、GameCube特有の未使用領域（ジャンクデータ）を可逆圧縮アルゴリズムで最適化した <code>NKit.iso</code> 形式です。Dolphinエミュレータで直接起動可能であり、必要に応じて元の1:1完全Redump ISOに復元（Restoration）できます。
+        </p>
+
+        <h2>ゲーム情報</h2>
+        <ul>
+          <li><strong>タイトル:</strong> F-ZERO GX</li>
+          <li><strong>プラットフォーム:</strong> ニンテンドー ゲームキューブ (NGC)</li>
+          <li><strong>発売日:</strong> 2003年7月25日 (日本)</li>
+          <li><strong>型番 / Game ID:</strong> GFZJ01</li>
+          <li><strong>対応言語:</strong> 日本語 / 英語</li>
+        </ul>
+
+        <h2>ファイル整合性検証 (Hashes)</h2>
+        <pre><code>[NKit.iso Checksum]
+CRC32: 3FA7B1C2
+MD5:   8D74F1A296E32CB6B864A198B7509C34
+SHA-1: E2B85FA19C4D7102E3A89041A7D189B4F981CA2B
+
+[Restored Redump Match]
+Target: F-Zero GX (Japan).iso
+Size:   1,459,978,240 bytes (1.35 GiB)
+CRC32:  0D543B6A
+MD5:    2E9C1A0E314D5716DCA1D6D24A224F18
+SHA-1:  43E2BA5188FA0E7AE7428807F10BC29E0B205DCE</code></pre>
+
+        <h2>備考・互換性</h2>
+        <ul>
+          <li><strong>Dolphin Emulator:</strong> 最新のBeta/Developmentビルドにてそのまま読み込み・プレイが可能です。</li>
+          <li><strong>実機起動 (Swiss等):</strong> NKit 形式のままロードするとロード時間やストリーミング音声に問題が出る場合があります。実機での再生にはClean ISOへの復元、または通常ISOへの展開を推奨します。</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">
+        <h2 class="panel-title" style="font-size: 13px;">ファイル一覧 (1 ファイル)</h2>
+      </div>
+      <ul class="file-list">
+        <li class="file-item">
+          <span>📁 F-Zero GX (Japan).nkit.iso</span>
+          <span class="file-size">1.12 GiB</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>Nyaa.si クローン UI — データベーステスト & アーカイブ閲覧用モックアップ</p>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const torrentName = "[GameCube] F-ZERO GX (Japan) (En,Ja) [NKit.iso]";
+      const infoHash = "e2b85fa19c4d7102e3a89041a7d189b4f981ca2b";
+      const trackers = [
+        "http://nyaa.tracker.wf:7777/announce",
+        "udp://open.stealth.si:80/announce",
+        "udp://tracker.opentrackr.org:1337/announce"
+      ];
+
+      const trackerParams = trackers.map(tr => `&tr=${encodeURIComponent(tr)}`).join("");
+      const magnetURI = `magnet:?xt=urn:btih:${infoHash}&dn=${encodeURIComponent(torrentName)}${trackerParams}`;
+
+      const magnetBtn = document.getElementById("download-magnet");
+      const torrentBtn = document.getElementById("download-torrent");
+
+      magnetBtn.setAttribute("href", magnetURI);
+
+      torrentBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        alert("モックアップ: .torrent ファイルのダウンロード要求を受信しました。\nファイル名: F-ZERO_GX_Japan_NKit.torrent");
+      });
+
+      console.info("Torrent Metadata Loaded: " + torrentName);
+    });
+  </script>
+</body>
+</html>
