@@ -1,4 +1,4 @@
-# Planet of the Apes (2001) - 1080p BluRay REMUX MPEG-2 DTS-HD MA 5.1 - FraMeSToR
+# Planet.of.the.Apes.2001.1080p.BluRay.REMUX.MPEG-2.DTS-HD.MA.5.1-FraMeSToR
 
 ## Torrent Information
 
