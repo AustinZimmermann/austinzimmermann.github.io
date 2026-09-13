@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>300 ＜スリーハンドレッド＞ / 300.2007.1080p.BluRay.REMUX.VC-1.TrueHD.5.1-FraMeSToR - Nyaa</title>
-    <!-- Tailwind CSS CDN -->
+    <title>300 ＜スリーハンドレッド＞ / 300.2007.1080p.BluRay.REMUX.VC-1.TrueHD.5.1-FraMeSToR - Nyaa.si</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -13,105 +13,131 @@
                 extend: {
                     colors: {
                         nyaa: {
-                            green: '#22c55e',
-                            darkgreen: '#15803d',
-                            dark: '#0f172a',
-                            card: '#1e293b',
-                            border: '#334155',
-                            gold: '#f59e0b',
-                            crimson: '#dc2626'
+                            50: '#fdf4f4',
+                            100: '#fbe8e8',
+                            500: '#e53e3e',
+                            600: '#c53030',
+                            700: '#9b2c2c',
+                            900: '#63171b',
                         }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['Courier New', 'monospace']
                     }
                 }
             }
         }
     </script>
-    <!-- FontAwesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-        .sparta-gradient {
-            background: linear-gradient(135deg, #7f1d1d 0%, #450a0a 50%, #18181b 100%);
-        }
-        .gold-glow {
-            text-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
-        }
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0f172a;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #334155;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #475569;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen selection:bg-red-900 selection:text-white">
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-nyaa-500 selection:text-white">
 
-    <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur-md sticky top-0 z-50">
+    <header class="bg-slate-900 border-b border-slate-800 sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <div class="flex items-center space-x-3">
-                <div class="bg-red-700 text-white font-black px-3 py-1.5 rounded-lg text-lg tracking-wider shadow-lg shadow-red-900/40 flex items-center gap-2">
-                    <i class="fa-solid fa-shield-halved"></i> <span>Nyaa.si</span>
+                <div class="bg-nyaa-600 text-white font-bold px-3 py-1.5 rounded-xl shadow-lg shadow-nyaa-900/40 flex items-center space-x-2">
+                    <i class="fa-solid fa-torii-gate"></i>
+                    <span class="tracking-wider">Nyaa.si</span>
                 </div>
-                <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-950 text-emerald-400 border border-emerald-800/50">
-                    <i class="fa-solid fa-circle text-[8px] mr-1"></i> Live Torrent View
-                </span>
+                <span class="text-xs px-2.5 py-1 rounded-full bg-slate-800 text-slate-300 font-medium border border-slate-700">Japanese / English Release</span>
             </div>
-            <div class="flex items-center gap-3">
-                <button onclick="copyMagnet()" class="bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-medium px-4 py-2 rounded-lg transition shadow-md flex items-center gap-2 cursor-pointer">
-                    <i class="fa-solid fa-magnet text-amber-300"></i> <span class="hidden sm:inline">マグネットリンク</span> (Magnet)
+            <div class="flex items-center space-x-3">
+                <button onclick="copyMagnet()" class="bg-slate-800 hover:bg-slate-700 active:scale-95 transition text-slate-200 px-4 py-2 rounded-xl text-sm font-medium flex items-center space-x-2 border border-slate-700 shadow-sm">
+                    <i class="fa-solid fa-magnet text-nyaa-500"></i>
+                    <span>Magnet Link</span>
                 </button>
-                <button onclick="downloadTorrentFile()" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-sm font-medium px-4 py-2 rounded-lg transition border border-slate-700 flex items-center gap-2 cursor-pointer">
-                    <i class="fa-solid fa-download"></i> <span class="hidden sm:inline">Torrent</span>
+                <button onclick="downloadTorrent()" class="bg-nyaa-600 hover:bg-nyaa-500 active:scale-95 transition text-white px-4 py-2 rounded-xl text-sm font-semibold flex items-center space-x-2 shadow-lg shadow-nyaa-600/30">
+                    <i class="fa-solid fa-download"></i>
+                    <span>.Torrent</span>
                 </button>
             </div>
         </div>
     </header>
 
-    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
         
-        <!-- Hero Movie Banner -->
-        <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-red-900/30 mb-8 sparta-gradient">
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent"></div>
-            <div class="absolute top-4 right-4 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-full border border-slate-700 text-xs font-mono text-amber-400 flex items-center gap-2">
-                <i class="fa-solid fa-shield"></i> FraMeSToR Release
-            </div>
-            <div class="relative z-10 p-6 sm:p-10 md:p-12 flex flex-col md:flex-row gap-8 items-center">
-                <div class="w-48 sm:w-56 flex-shrink-0 rounded-xl overflow-hidden shadow-2xl border-2 border-red-700/50">
-                    <img src="https://image.tmdb.org/t/p/original/xt9aJ1VbVOc10z7Sum7idu4Z3lg.jpg" alt="300 Movie Poster" class="w-full h-auto object-cover transform hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/400x600/1e293b/ef4444?text=300+Remux'">
-                </div>
-                <div class="flex-1 text-center md:text-left">
-                    <div class="flex flex-wrap items-center justify-center md:justify-start gap-2 mb-3">
-                        <span class="bg-red-900/80 text-red-200 text-xs font-bold px-3 py-1 rounded-md uppercase tracking-wider border border-red-700/50">Live Action Movies</span>
-                        <span class="bg-amber-950/80 text-amber-300 text-xs font-bold px-3 py-1 rounded-md uppercase tracking-wider border border-amber-700/50">Trusted Uploader</span>
-                        <span class="bg-blue-950/80 text-blue-300 text-xs font-bold px-3 py-1 rounded-md uppercase tracking-wider border border-blue-700/50">REMUX</span>
+        <!-- Top Info Banner -->
+        <div class="bg-slate-900/80 backdrop-blur-md rounded-2xl border border-slate-800 p-6 sm:p-8 shadow-2xl relative overflow-hidden">
+            <div class="absolute -right-16 -top-16 w-64 h-64 bg-nyaa-600/10 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div class="flex flex-col lg:flex-row gap-8 items-start">
+                <!-- Poster thumbnail preview -->
+                <div class="w-full sm:w-56 flex-shrink-0 mx-auto lg:mx-0">
+                    <div class="aspect-[2/3] rounded-xl overflow-hidden border border-slate-700 shadow-xl bg-slate-800 relative group">
+                        <img src="https://image.tmdb.org/t/p/original/xt9aJ1VbVOc10z7Sum7idu4Z3lg.jpg" 
+                             alt="300 Movie Poster" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+                             onerror="this.src='https://placehold.co/400x600/1e293b/cbd5e1?text=300+(2007)'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-4">
+                            <span class="text-xs text-slate-300 font-medium">FraMeSToR Remux</span>
+                        </div>
                     </div>
-                    <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-2 gold-glow">
-                        300 ＜スリーハンドレッド＞
+                </div>
+
+                <!-- Torrent Metadata -->
+                <div class="flex-grow space-y-4 w-full">
+                    <div class="flex flex-wrap items-center gap-3">
+                        <span class="bg-blue-500/10 text-blue-400 border border-blue-500/20 text-xs font-semibold px-3 py-1 rounded-full">
+                            <i class="fa-solid fa-film mr-1"></i> Movies - English-translated
+                        </span>
+                        <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-semibold px-3 py-1 rounded-full flex items-center space-x-1">
+                            <i class="fa-solid fa-shield-check"></i>
+                            <span>Trusted Uploader</span>
+                        </span>
+                        <span class="text-xs text-slate-400">ID: <strong class="text-slate-200">48151623</strong></span>
+                    </div>
+
+                    <h1 class="text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight text-white leading-snug">
+                        [FraMeSToR] 300 ＜スリーハンドレッド＞ (2007) [1080p Blu-ray REMUX VC-1 TrueHD 5.1 -FraMeSToR]
                     </h1>
-                    <p class="text-lg text-slate-300 font-medium mb-4">
-                        300 (2007) &bull; <span class="text-amber-400 font-mono">1080p BluRay REMUX VC-1 TrueHD 5.1-FraMeSToR</span>
-                    </p>
-                    <div class="flex flex-wrap justify-center md:justify-start gap-4 text-sm text-slate-300 bg-slate-900/60 p-4 rounded-xl border border-slate-800 backdrop-blur-sm">
-                        <div><i class="fa-solid fa-calendar-days text-red-500 mr-1.5"></i> 投稿日: <strong class="text-white">2026-09-12 21:20</strong></div>
-                        <div><i class="fa-solid fa-hard-drive text-amber-500 mr-1.5"></i> サイズ: <strong class="text-white">28.5 GB</strong></div>
-                        <div><i class="fa-solid fa-user text-emerald-500 mr-1.5"></i> 投稿者: <strong class="text-emerald-400">FraMeSToR</strong></div>
-                        <div><i class="fa-solid fa-seedling text-blue-500 mr-1.5"></i> シード/リーチ: <strong class="text-white">412 / 14</strong></div>
+
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-2">
+                        <div class="bg-slate-950/50 p-3.5 rounded-xl border border-slate-800">
+                            <span class="text-xs text-slate-400 block mb-1">File Size</span>
+                            <span class="text-base font-bold text-slate-100">31.4 GiB</span>
+                        </div>
+                        <div class="bg-slate-950/50 p-3.5 rounded-xl border border-slate-800">
+                            <span class="text-xs text-slate-400 block mb-1">Date Posted</span>
+                            <span class="text-base font-bold text-slate-100">2026-06-06 14:22</span>
+                        </div>
+                        <div class="bg-slate-950/50 p-3.5 rounded-xl border border-slate-800">
+                            <span class="text-xs text-slate-400 block mb-1">Uploader</span>
+                            <span class="text-base font-bold text-nyaa-500 flex items-center space-x-1">
+                                <i class="fa-solid fa-user-shield text-xs"></i>
+                                <span>FraMeSToR_Official</span>
+                            </span>
+                        </div>
+                        <div class="bg-slate-950/50 p-3.5 rounded-xl border border-slate-800">
+                            <span class="text-xs text-slate-400 block mb-1">Health / Ratio</span>
+                            <span class="text-base font-bold text-emerald-400 flex items-center space-x-1">
+                                <i class="fa-solid fa-face-smile text-xs"></i>
+                                <span>9.03 Ratio</span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Peer Stats Bar -->
+                    <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800 flex flex-wrap items-center justify-between gap-4">
+                        <div class="flex items-center space-x-6 text-sm">
+                            <div class="flex items-center space-x-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                                <span class="text-slate-400">Seeders:</span>
+                                <strong class="text-emerald-400 text-base">142</strong>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+                                <span class="text-slate-400">Leechers:</span>
+                                <strong class="text-amber-400 text-base">12</strong>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
+                                <span class="text-slate-400">Completed:</span>
+                                <strong class="text-blue-400 text-base">1,284</strong>
+                            </div>
+                        </div>
+                        <div class="text-xs text-slate-400 font-mono bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800">
+                            Hash: 8f9b4c2e...f6e5d
+                        </div>
                     </div>
                 </div>
             </div>
@@ -119,326 +145,189 @@
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
             
-            <!-- Main Content Area -->
+            <!-- Left 2 columns: Detailed Media Specs & Description -->
             <div class="lg:col-span-2 space-y-6">
                 
-                <!-- Hash & Magnet Box -->
-                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
-                    <h2 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
-                        <i class="fa-solid fa-link text-red-500"></i> ハッシュ &amp; ダウンロード (Info Hash)
+                <div class="bg-slate-900 rounded-2xl border border-slate-800 p-6 space-y-6 shadow-xl">
+                    <h2 class="text-lg font-semibold border-b border-slate-800 pb-3 flex items-center space-x-2 text-white">
+                        <i class="fa-solid fa-circle-info text-nyaa-500"></i>
+                        <span>Torrent & Media Information</span>
                     </h2>
-                    <div class="bg-slate-950 p-3.5 rounded-xl font-mono text-xs sm:text-sm text-slate-300 border border-slate-800/80 break-all flex items-center justify-between gap-3">
-                        <span id="infoHashText">300c7e2d9b8a4f6e1a9c8b7a6f5e4d3c2b1a0f9e</span>
-                        <button onclick="copyHash()" class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded-lg text-xs font-sans transition flex items-center gap-1.5 flex-shrink-0 cursor-pointer">
-                            <i class="fa-regular fa-copy"></i> コピー
-                        </button>
-                    </div>
-                    <div class="mt-4 flex flex-wrap gap-3">
-                        <button onclick="copyMagnet()" class="flex-1 bg-red-700 hover:bg-red-600 text-white font-semibold py-3 px-4 rounded-xl transition shadow-lg shadow-red-900/30 flex items-center justify-center gap-2 cursor-pointer text-sm">
-                            <i class="fa-solid fa-magnet text-amber-300 text-lg">></i> マグネットリンクをコピー
-                        </button>
-                        <button onclick="downloadTorrentFile()" class="bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold py-3 px-4 rounded-xl transition border border-slate-700 flex items-center justify-center gap-2 cursor-pointer text-sm">
-                            <i class="fa-solid fa-file-arrow-down text-emerald-400 text-lg"></i> .torrent ファイル
-                        </button>
-                    </div>
-                </div>
 
-                <!-- Overview Description Section -->
-                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 shadow-xl">
-                    <h2 class="text-xl font-bold text-white mb-4 pb-3 border-b border-slate-800 flex items-center gap-2.5">
-                        <i class="fa-solid fa-circle-info text-amber-500"></i> 概要 (Overview)
-                    </h2>
-                    <div class="prose prose-invert max-w-none text-slate-300 space-y-4 text-sm sm:text-base leading-relaxed">
+                    <div class="space-y-4 text-sm text-slate-300">
                         <p>
-                            フランク・ミラーの歴史グラフィックノベルを原作とし、ザック・スナイダー監督が圧倒的な視覚効果と映像美で映画化した『<strong>300 ＜スリーハンドレッド＞</strong>』の最高画質リマスター版（BluRay REMUX）です。
+                            Source: US Blu-ray Remux / VC-1 / 1080p / TrueHD 5.1<br>
+                            Encoded and Remuxed meticulously by <strong class="text-white">FraMeSToR</strong>.
                         </p>
-                        <p>
-                            本リリースは、オリジナル Blu-ray の VC-1 映像ストリームを一切再エンコードせず無劣化抽出（REMUX）した完璧なロスレス仕様です。マルチ音声（英語 TrueHD 5.1、英語 PCM 5.1、英語 DD 5.1 EX、日本語 DD 5.1 吹き替え）および日本語・英語字幕をフル収録しています。
-                        </p>
-                    </div>
 
-                    <!-- Media Technical Details Grid -->
-                    <h3 class="text-lg font-bold text-white mt-8 mb-4 pt-4 border-t border-slate-800 flex items-center gap-2">
-                        <i class="fa-solid fa-sliders text-blue-500"></i> メディア詳細 (Media Details)
-                    </h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
-                        <div class="bg-slate-950/70 p-4 rounded-xl border border-slate-800/80">
-                            <div class="text-red-400 font-bold mb-2 flex items-center gap-2">
-                                <i class="fa-solid fa-film"></i> 映像 (Video)
-                            </div>
-                            <ul class="space-y-1.5 text-slate-300 text-xs sm:text-sm">
-                                <li><strong>コーデック:</strong> VC-1</li>
-                                <li><strong>解像度:</strong> 1920x1080 (1080p)</li>
-                                <li><strong>アスペクト比:</strong> 2.40:1 (シネマスコープ)</li>
-                                <li><strong>フレームレート:</strong> 23.976 fps</li>
-                                <li><strong>ビットレート:</strong> オリジナル BluRay 無劣化</li>
-                            </ul>
-                        </div>
-                        <div class="bg-slate-950/70 p-4 rounded-xl border border-slate-800/80">
-                            <div class="text-amber-400 font-bold mb-2 flex items-center gap-2">
-                                <i class="fa-solid fa-volume-high"></i> 音声 (Audio)
-                            </div>
-                            <ul class="space-y-1.5 text-slate-300 text-xs sm:text-sm">
-                                <li><span class="text-amber-200">1. 英語:</span> Dolby TrueHD Audio 5.1 (1809 kbps)</li>
-                                <li><span class="text-amber-200">2. 英語:</span> LPCM Audio 5.1 (4608 kbps)</li>
-                                <li><span class="text-amber-200">3. 英語:</span> Dolby Digital 5.1 EX (640 kbps)</li>
-                                <li><span class="text-amber-200">4. 日本語:</span> Dolby Digital 5.1 (吹替)</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="mt-4 bg-slate-950/70 p-4 rounded-xl border border-slate-800/80 text-sm">
-                        <div class="text-emerald-400 font-bold mb-2 flex items-center gap-2">
-                            <i class="fa-solid fa-closed-captioning"></i> 字幕 (Subtitles)
-                        </div>
-                        <div class="text-slate-300 text-xs sm:text-sm flex flex-wrap gap-4">
-                            <span><i class="fa-solid fa-check text-emerald-500 mr-1"></i> 日本語 (翻訳字幕 / 吹替用字幕)</span>
-                            <span><i class="fa-solid fa-check text-emerald-500 mr-1"></i> 英語 (English SDH)</span>
-                        </div>
-                    </div>
-
-                    <!-- Screenshots Preview -->
-                    <h3 class="text-lg font-bold text-white mt-8 mb-4 pt-4 border-t border-slate-800 flex items-center gap-2">
-                        <i class="fa-solid fa-camera text-purple-500"></i> スクリーンショット (Screenshots)
-                    </h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                        <div class="rounded-xl overflow-hidden border border-slate-800 bg-slate-950 group relative cursor-pointer" onclick="openModal('https://image.tmdb.org/t/p/original/xt9aJ1VbVOc10z7Sum7idu4Z3lg.jpg', 'レオニダス王 「This is Sparta!」')">
-                            <img src="https://image.tmdb.org/t/p/original/xt9aJ1VbVOc10z7Sum7idu4Z3lg.jpg" alt="Screenshot 1" class="w-full h-32 object-cover group-hover:scale-105 transition duration-300">
-                            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-xs font-semibold text-white">
-                                <i class="fa-solid fa-magnifying-glass-plus mr-1"></i> 拡大表示
+                        <div class="bg-slate-950/60 rounded-xl p-4 border border-slate-800/80 space-y-3 font-mono text-xs">
+                            <div class="text-nyaa-500 font-bold uppercase tracking-wider mb-1">Video Stream Properties</div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                <div><span class="text-slate-500">Format:</span> Matroska (MKV)</div>
+                                <div><span class="text-slate-500">Video Codec:</span> VC-1</div>
+                                <div><span class="text-slate-500">Resolution:</span> 1920x1080</div>
+                                <div><span class="text-slate-500">Framerate:</span> 23.976 fps (~19.5 Mbps)</div>
                             </div>
                         </div>
-                        <div class="rounded-xl overflow-hidden border border-slate-800 bg-slate-950 group relative cursor-pointer" onclick="openModal('https://image.tmdb.org/t/p/original/r4gn5N9Q1r7f54oA3M7Fq5T.jpg', 'テルモピュライの戦い - ファランクス陣形')">
-                            <img src="https://image.tmdb.org/t/p/original/r4gn5N9Q1r7f54oA3M7Fq5T.jpg" alt="Screenshot 2" class="w-full h-32 object-cover group-hover:scale-105 transition duration-300" onerror="this.src='https://placehold.co/400x225/1e293b/ef4444?text=Battle+Scene'">
-                            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-xs font-semibold text-white">
-                                <i class="fa-solid fa-magnifying-glass-plus mr-1"></i> 拡大表示
-                            </div>
-                        </div>
-                        <div class="rounded-xl overflow-hidden border border-slate-800 bg-slate-950 group relative cursor-pointer" onclick="openModal('https://image.tmdb.org/t/p/original/z9z5T21p0A1M2q2e1G5F.jpg', 'ペルシア王 クセルクセスとの対峙')">
-                            <img src="https://image.tmdb.org/t/p/original/z9z5T21p0A1M2q2e1G5F.jpg" alt="Screenshot 3" class="w-full h-32 object-cover group-hover:scale-105 transition duration-300" onerror="this.src='https://placehold.co/400x225/1e293b/ef4444?text=Xerxes'">
-                            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-xs font-semibold text-white">
-                                <i class="fa-solid fa-magnifying-glass-plus mr-1"></i> 拡大表示
-                            </div>
-                        </div>
-                    </div>
 
-                    <!-- Torrent Notes -->
-                    <div class="mt-8 p-4 rounded-xl bg-amber-950/30 border border-amber-900/40 text-amber-200 text-xs sm:text-sm space-y-2">
-                        <div class="font-bold flex items-center gap-2">
-                            <i class="fa-solid fa-triangle-exclamation text-amber-500"></i> トレント注意事項 (Torrent Notes)
-                        </div>
-                        <p>&bull; 映像・音声ともに一切再圧縮を行っていないロスレス REMUX 仕様です。ホームシアターや高音質・高画質再生環境に最適です。</p>
-                        <p>&bull; ダウンロード完了後は継続的なシード（Seed）のご協力をお願いいたします。 Please keep seeding!</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Sidebar Info & File List -->
-            <div class="space-y-6">
-                
-                <!-- File Contents Box -->
-                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
-                    <h2 class="text-base font-bold text-white mb-4 flex items-center justify-between">
-                        <span class="flex items-center gap-2">
-                            <i class="fa-solid fa-folder-open text-emerald-500"></i> ファイルリスト (Files)
-                        </span>
-                        <span class="text-xs bg-slate-800 text-slate-300 px-2 py-1 rounded-md">1 files</span>
-                    </h2>
-                    <div class="space-y-3 font-mono text-xs">
-                        <div class="bg-slate-950 p-3 rounded-xl border border-slate-800/80 flex items-start gap-3">
-                            <i class="fa-solid fa-file-video text-red-500 mt-0.5 text-base"></i>
-                            <div class="flex-1 overflow-hidden">
-                                <div class="text-slate-200 font-semibold truncate">300.2007.1080p.BluRay.REMUX.VC-1.TrueHD.5.1-FraMeSToR.mkv</div>
-                                <div class="text-slate-500 mt-1 flex justify-between">
-                                    <span>MKV Container</span>
-                                    <span class="text-amber-400">28.5 GB</span>
+                        <!-- Audio Streams Breakdown -->
+                        <div class="space-y-2">
+                            <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Audio Streams (4 Tracks Muxed)</h3>
+                            <div class="space-y-2">
+                                <div class="bg-slate-950/40 p-3 rounded-xl border border-slate-800 flex items-start space-x-3">
+                                    <span class="bg-nyaa-600/20 text-nyaa-400 font-bold px-2 py-0.5 rounded text-xs mt-0.5">1</span>
+                                    <div class="text-xs">
+                                        <strong class="text-white font-medium">English - Dolby TrueHD Audio 5.1</strong>
+                                        <p class="text-slate-400 mt-0.5">48 kHz / 3192 kbps / 24-bit (Core: AC3 5.1 / 48 kHz / 640 kbps)</p>
+                                    </div>
+                                </div>
+                                <div class="bg-slate-950/40 p-3 rounded-xl border border-slate-800 flex items-start space-x-3">
+                                    <span class="bg-slate-800 text-slate-300 font-bold px-2 py-0.5 rounded text-xs mt-0.5">2</span>
+                                    <div class="text-xs">
+                                        <strong class="text-white font-medium">English - LPCM Audio 5.1 (Uncompressed PCM)</strong>
+                                        <p class="text-slate-400 mt-0.5">48 kHz / 6912 kbps / 24-bit</p>
+                                    </div>
+                                </div>
+                                <div class="bg-slate-950/40 p-3 rounded-xl border border-slate-800 flex items-start space-x-3">
+                                    <span class="bg-slate-800 text-slate-300 font-bold px-2 py-0.5 rounded text-xs mt-0.5">3</span>
+                                    <div class="text-xs">
+                                        <strong class="text-white font-medium">English - Dolby Digital Audio 5.1 (Commentary)</strong>
+                                        <p class="text-slate-400 mt-0.5">48 kHz / 640 kbps</p>
+                                    </div>
+                                </div>
+                                <div class="bg-slate-950/40 p-3 rounded-xl border border-slate-800 flex items-start space-x-3">
+                                    <span class="bg-slate-800 text-slate-300 font-bold px-2 py-0.5 rounded text-xs mt-0.5">4</span>
+                                    <div class="text-xs">
+                                        <strong class="text-white font-medium">Japanese - Dolby Digital Audio 5.1 (Dub / 日本語吹替)</strong>
+                                        <p class="text-slate-400 mt-0.5">48 kHz / 448 kbps</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Subtitles -->
+                        <div class="space-y-2">
+                            <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Subtitles (Softsubs - UTF-8 / ASS)</h3>
+                            <div class="flex flex-wrap gap-2 text-xs">
+                                <span class="bg-slate-800 text-slate-200 px-3 py-1.5 rounded-lg border border-slate-700">🇯🇵 Japanese (Full)</span>
+                                <span class="bg-slate-800 text-slate-200 px-3 py-1.5 rounded-lg border border-slate-700">🇬🇧 English (Full)</span>
+                                <span class="bg-slate-800 text-slate-200 px-3 py-1.5 rounded-lg border border-slate-700">🇬🇧 English (SDH)</span>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
-                <!-- Uploader & Category Stats -->
-                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
-                    <h2 class="text-base font-bold text-white mb-2 flex items-center gap-2">
-                        <i class="fa-solid fa-chart-pie text-indigo-500"></i> 統計とカテゴリ
-                    </h2>
-                    <div class="space-y-3 text-sm">
-                        <div class="flex justify-between items-center py-2 border-b border-slate-800/80">
-                            <span class="text-slate-400">カテゴリ</span>
-                            <span class="text-slate-200 font-medium">アニメ - 非公開 / 実写映画</span>
+            </div>
+
+            <!-- Right column: File List & Quick Actions -->
+            <div class="space-y-6">
+                
+                <div class="bg-slate-900 rounded-2xl border border-slate-800 p-6 space-y-4 shadow-xl">
+                    <h3 class="text-sm font-bold uppercase tracking-wider text-slate-400 flex items-center space-x-2">
+                        <i class="fa-solid fa-folder-open text-nyaa-500"></i>
+                        <span>Files in Torrent (1)</span>
+                    </h3>
+                    
+                    <div class="bg-slate-950/60 rounded-xl p-3 border border-slate-800/80 flex items-center justify-between text-xs font-mono">
+                        <div class="flex items-center space-x-2.5 truncate">
+                            <i class="fa-solid fa-file-video text-blue-400 text-base flex-shrink-0"></i>
+                            <span class="truncate text-slate-200" title="300.2007.1080p.BluRay.REMUX.VC-1.TrueHD.5.1-FraMeSToR.mkv">300.2007.1080p.BluRay.REMUX.VC-1.TrueHD.5.1-FraMeSToR.mkv</span>
                         </div>
-                        <div class="flex justify-between items-center py-2 border-b border-slate-800/80">
-                            <span class="text-slate-400">シード (Seeders)</span>
-                            <span class="text-emerald-400 font-bold flex items-center gap-1.5">
-                                <i class="fa-solid fa-arrow-up"></i> 412
-                            </span>
+                        <span class="text-slate-400 flex-shrink-0 ml-2">31.4 GiB</span>
+                    </div>
+
+                    <div class="pt-4 border-t border-slate-800 space-y-3">
+                        <button onclick="copyMagnet()" class="w-full bg-nyaa-600 hover:bg-nyaa-500 active:scale-95 transition text-white py-3 rounded-xl font-semibold text-sm flex items-center justify-center space-x-2 shadow-lg shadow-nyaa-600/30">
+                            <i class="fa-solid fa-magnet"></i>
+                            <span>Copy Magnet Link</span>
+                        </button>
+                        <button onclick="downloadTorrent()" class="w-full bg-slate-800 hover:bg-slate-700 active:scale-95 transition text-slate-200 py-3 rounded-xl font-medium text-sm flex items-center justify-center space-x-2 border border-slate-700">
+                            <i class="fa-solid fa-file-arrow-down"></i>
+                            <span>Download .Torrent File</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Interactive Comment / Peer Simulation Card -->
+                <div class="bg-slate-900 rounded-2xl border border-slate-800 p-6 space-y-4 shadow-xl">
+                    <h3 class="text-sm font-bold uppercase tracking-wider text-slate-400 flex items-center space-x-2">
+                        <i class="fa-solid fa-comments text-nyaa-500"></i>
+                        <span>Community Feedback</span>
+                    </h3>
+                    
+                    <div class="space-y-3 text-xs">
+                        <div class="bg-slate-950/50 p-3 rounded-xl border border-slate-800 space-y-1">
+                            <div class="flex justify-between font-medium">
+                                <span class="text-emerald-400">Leonidas99</span>
+                                <span class="text-slate-500">2 days ago</span>
+                            </div>
+                            <p class="text-slate-300">“Absolute masterpiece of a remux! TrueHD track sounds incredible on my home theater setup. Thanks FraMeSToR!”</p>
                         </div>
-                        <div class="flex justify-between items-center py-2 border-b border-slate-800/80">
-                            <span class="text-slate-400">リーチ (Leechers)</span>
-                            <span class="text-amber-400 font-bold flex items-center gap-1.5">
-                                <i class="fa-solid fa-arrow-down"></i> 14
-                            </span>
-                        </div>
-                        <div class="flex justify-between items-center py-2 border-b border-slate-800/80">
-                            <span class="text-slate-400">完了数 (Completed)</span>
-                            <span class="text-blue-400 font-bold">8,942 回</span>
-                        </div>
-                        <div class="flex justify-between items-center py-2">
-                            <span class="text-slate-400">ステータス</span>
-                            <span class="bg-emerald-950 text-emerald-400 border border-emerald-800/50 px-2.5 py-0.5 rounded-full text-xs font-semibold">
-                                Trusted
-                            </span>
+                        <div class="bg-slate-950/50 p-3 rounded-xl border border-slate-800 space-y-1">
+                            <div class="flex justify-between font-medium">
+                                <span class="text-blue-400">Spartan01</span>
+                                <span class="text-slate-500">1 week ago</span>
+                            </div>
+                            <p class="text-slate-300">“Seeding 24/7 on 1Gbps seedbox. Enjoy the speeds everyone!”</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Markdown Export Quick View -->
-                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
-                    <h2 class="text-base font-bold text-white mb-3 flex items-center gap-2">
-                        <i class="fa-solid fa-code text-amber-500"></i> Markdown ソース
-                    </h2>
-                    <p class="text-xs text-slate-400 mb-3">このリスティングの生 Markdown フォーマットをコピーできます。</p>
-                    <button onclick="copyMarkdownSource()" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-mono py-2.5 px-3 rounded-xl transition border border-slate-700 flex items-center justify-center gap-2 cursor-pointer">
-                        <i class="fa-regular fa-copy text-amber-400"></i> Markdown をコピー
-                    </button>
-                </div>
             </div>
 
         </div>
+
     </main>
 
-    <!-- Image Preview Modal -->
-    <div id="imageModal" class="fixed inset-0 bg-black/90 z-50 hidden items-center justify-center p-4 backdrop-blur-md" onclick="closeModal()">
-        <div class="relative max-w-4xl w-full bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl" onclick="event.stopPropagation()">
-            <div class="p-4 bg-slate-950 flex items-center justify-between border-b border-slate-800">
-                <span id="modalTitle" class="text-sm font-bold text-white">Screenshot Preview</span>
-                <button onclick="closeModal()" class="text-slate-400 hover:text-white p-1 rounded-lg transition cursor-pointer">
-                    <i class="fa-solid fa-xmark text-lg"></i>
-                </button>
-            </div>
-            <div class="p-4 flex justify-center bg-black">
-                <img id="modalImage" src="" alt="Zoomed Screenshot" class="max-h-[75vh] object-contain rounded-lg">
-            </div>
-        </div>
-    </div>
+    <footer class="bg-slate-900 border-t border-slate-800 py-6 text-center text-xs text-slate-500 mt-12">
+        <p>Nyaa.si Archive &copy; 2026 &bull; Public Domain Torrent Indexing</p>
+    </footer>
 
-    <!-- Notification Toast Message -->
-    <div id="toast" class="fixed bottom-6 right-6 bg-slate-900 border border-slate-700 text-white px-5 py-3 rounded-xl shadow-2xl z-50 transform translate-y-20 opacity-0 transition-all duration-300 flex items-center gap-3">
-        <div id="toastIcon" class="text-emerald-400 text-lg"><i class="fa-solid fa-circle-check"></i></div>
-        <div id="toastMessage" class="text-sm font-medium">通知メッセージ</div>
+    <!-- Toast Notification Modal -->
+    <div id="toast" class="fixed bottom-6 right-6 transform translate-y-24 opacity-0 transition-all duration-300 bg-slate-800 text-slate-100 border border-slate-700 px-5 py-3 rounded-2xl shadow-2xl flex items-center space-x-3 z-50">
+        <i id="toast-icon" class="fa-solid fa-check-circle text-emerald-400 text-lg"></i>
+        <span id="toast-msg" class="text-sm font-medium">Action completed successfully.</span>
     </div>
 
     <script>
-        const infoHash = "300c7e2d9b8a4f6e1a9c8b7a6f5e4d3c2b1a0f9e";
-        const torrentName = "300.2007.1080p.BluRay.REMUX.VC-1.TrueHD.5.1-FraMeSToR";
-        const magnetLink = `magnet:?xt=urn:btih:${infoHash}&dn=${encodeURIComponent(torrentName)}&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce`;
-
         function showToast(message, isError = false) {
             const toast = document.getElementById('toast');
-            const toastMsg = document.getElementById('toastMessage');
-            const toastIcon = document.getElementById('toastIcon');
+            const toastMsg = document.getElementById('toast-msg');
+            const toastIcon = document.getElementById('toast-icon');
             
             toastMsg.textContent = message;
-            toastIcon.innerHTML = isError ? '<i class="fa-solid fa-triangle-exclamation text-red-400"></i>' : '<i class="fa-solid fa-circle-check text-emerald-400"></i>';
-            
-            toast.classList.remove('translate-y-20', 'opacity-0');
-            setTimeout(() => {
-                toast.classList.add('translate-y-20', 'opacity-0');
-            }, 3500);
-        }
-
-        function copyHash() {
-            if (window.clipboardData && window.clipboardData.setData) {
-                window.clipboardData.setData("Text", infoHash);
-                showToast("ハッシュをクリップボードにコピーしました！");
+            if (isError) {
+                toastIcon.className = "fa-solid fa-circle-exclamation text-nyaa-500 text-lg";
             } else {
-                const textarea = document.createElement("textarea");
-                textarea.value = infoHash;
-                textarea.style.position = "fixed";
-                document.body.appendChild(textarea);
-                textarea.focus();
-                textarea.select();
-                try {
-                    document.execCommand('copy');
-                    showToast("ハッシュをクリップボードにコピーしました！");
-                } catch (err) {
-                    showToast("コピーに失敗しました", true);
-                }
-                document.body.removeChild(textarea);
+                toastIcon.className = "fa-solid fa-check-circle text-emerald-400 text-lg";
             }
+
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 3000);
         }
 
         function copyMagnet() {
-            const textarea = document.createElement("textarea");
-            textarea.value = magnetLink;
-            textarea.style.position = "fixed";
-            document.body.appendChild(textarea);
-            textarea.focus();
-            textarea.select();
-            try {
-                document.execCommand('copy');
-                showToast("マグネットリンクをコピーしました！クライアントに追加してください。");
-            } catch (err) {
-                showToast("コピーに失敗しました", true);
-            }
-            document.body.removeChild(textarea);
-        }
-
-        function downloadTorrentFile() {
-            showToast("torrent ファイルのダウンロードを開始しました！");
-        }
-
-        function copyMarkdownSource() {
-            const markdownContent = `$$
-\\text{FraMeSToR}
-$$
-
-300 ＜スリーハンドレッド＞ (2007)
-
-$$
-\\text{1080p BluRay REMUX VC-1 TrueHD 5.1-FraMeSToR}
-$$
-
-!(https://image.tmdb.org/t/p/original/xt9aJ1VbVOc10z7Sum7idu4Z3lg.jpg)
-
-**情報 (Information):**
-* **カテゴリ (Category):** アニメ - 非公開 / 実写映画 (Live Action Movies)
-* **投稿者 (Uploader):** FraMeSToR (Trusted)
-* **投稿日時 (Uploaded):** 2026-09-12 21:20:00
-* **サイズ (Size):** 28.5 GB
-* **情報ハッシュ (Info Hash):** \`${infoHash}\``;
-
-            const textarea = document.createElement("textarea");
-            textarea.value = markdownContent;
-            textarea.style.position = "fixed";
-            document.body.appendChild(textarea);
-            textarea.focus();
-            textarea.select();
-            try {
-                document.execCommand('copy');
-                showToast("Markdown ソースをコピーしました！");
-            } catch (err) {
-                showToast("コピーに失敗しました", true);
-            }
-            document.body.removeChild(textarea);
-        }
-
-        function openModal(imgSrc, title) {
-            const modal = document.getElementById('imageModal');
-            const modalImg = document.getElementById('modalImage');
-            const modalTitle = document.getElementById('modalTitle');
+            const magnetURI = "magnet:?xt=urn:btih:8f9b4c2e1a0d3f7e6c5b4a3f2e1d0c9b8a7f6e5d&dn=300.2007.1080p.BluRay.REMUX.VC-1.TrueHD.5.1-FraMeSToR";
             
-            modalImg.src = imgSrc;
-            modalTitle.textContent = title;
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
+            // Using safe fallback execution for clipboard
+            const textarea = document.createElement('textarea');
+            textarea.value = magnetURI;
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                showToast("Magnet link copied to clipboard!");
+            } catch (err) {
+                showToast("Failed to copy magnet link.", true);
+            }
+            document.body.removeChild(textarea);
         }
 
-        function closeModal() {
-            const modal = document.getElementById('imageModal');
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
+        function downloadTorrent() {
+            showToast("Downloading torrent file: 300.2007.torrent");
         }
     </script>
 </body>
