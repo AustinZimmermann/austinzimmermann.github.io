@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seedream 5.0 - Multi Image-to-Image Generator</title>
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #0f1117;
+            --panel-bg: #161b22;
+            --panel-border: #30363d;
+            --accent-color: #6366f1;
+            --accent-hover: #4f46e5;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --danger: #ef4444;
+            --radius: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--panel-bg);
+            border-bottom: 1px solid var(--panel-border);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .logo i {
+            color: var(--accent-color);
+        }
+
+        .version-badge {
+            background: rgba(99, 102, 241, 0.2);
+            color: var(--accent-color);
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* Main Container */
+        .main-container {
+            display: grid;
+            grid-template-columns: 420px 1fr;
+            flex: 1;
+            max-width: 1600px;
+            width: 100%;
+            margin: 0 auto;
+            gap: 1.5rem;
+            padding: 1.5rem;
+        }
+
+        @media (max-width: 1024px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Panels */
+        .panel {
+            background-color: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            height: fit-content;
+        }
+
+        h2 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-main);
+        }
+
+        /* Upload Area */
+        .upload-section {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .dropzone {
+            border: 2px dashed var(--panel-border);
+            border-radius: var(--radius);
+            padding: 2rem 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.01);
+        }
+
+        .dropzone:hover, .dropzone.dragover {
+            border-color: var(--accent-color);
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .dropzone i {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .dropzone p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .dropzone span {
+            color: var(--accent-color);
+            font-weight: 500;
+        }
+
+        /* Thumbnails Grid */
+        .thumbnails-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+            gap: 8px;
+            max-height: 160px;
+            overflow-y: auto;
+        }
+
+        .thumbnail-card {
+            position: relative;
+            aspect-ratio: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--panel-border);
+        }
+
+        .thumbnail-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .thumbnail-card .remove-btn {
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            background: rgba(0, 0, 0, 0.7);
+            color: var(--danger);
+            border: none;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 0.7rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Controls & Inputs */
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        label {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        textarea, input[type="text"], select {
+            background: var(--bg-color);
+            border: 1px solid var(--panel-border);
+            border-radius: 8px;
+            padding: 10px;
+            color: var(--text-main);
+            font-size: 0.9rem;
+            resize: vertical;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        textarea:focus, input[type="text"]:focus, select:focus {
+            border-color: var(--accent-color);
+        }
+
+        textarea {
+            min-height: 90px;
+        }
+
+        .range-wrap {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        input[type="range"] {
+            flex: 1;
+            accent-color: var(--accent-color);
+            cursor: pointer;
+        }
+
+        /* Advanced Options Grid */
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        /* Generate Button */
+        .generate-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            padding: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        .generate-btn:hover {
+            background-color: var(--accent-hover);
+        }
+
+        .generate-btn:active {
+            transform: scale(0.98);
+        }
+
+        .generate-btn:disabled {
+            background-color: var(--panel-border);
+            cursor: not-allowed;
+        }
+
+        /* Output Gallery Panel */
+        .output-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            min-height: 500px;
+        }
+
+        .output-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.25rem;
+            flex: 1;
+        }
+
+        .output-placeholder {
+            grid-column: 1 / -1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            color: var(--text-muted);
+            border: 2px dashed var(--panel-border);
+            border-radius: var(--radius);
+            min-height: 350px;
+        }
+
+        .output-placeholder i {
+            font-size: 3rem;
+            color: var(--panel-border);
+        }
+
+        /* Output Card */
+        .output-card {
+            background: var(--bg-color);
+            border: 1px solid var(--panel-border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .output-image-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1;
+            background: #000;
+        }
+
+        .output-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .output-details {
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-size: 0.85rem;
+        }
+
+        .output-prompt {
+            color: var(--text-muted);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .output-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 4px;
+        }
+
+        .action-btn {
+            flex: 1;
+            background: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            color: var(--text-main);
+            padding: 6px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: background 0.2s;
+        }
+
+        .action-btn:hover {
+            background: var(--panel-border);
+        }
+
+        /* Progress Bar Overlay */
+        .progress-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(15, 17, 23, 0.85);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            z-index: 10;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--panel-border);
+            border-top: 4px solid var(--accent-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .progress-text {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            Seedream <span class="version-badge">v5.0</span>
+        </div>
+        <div style="font-size: 0.85rem; color: var(--text-muted);">Multi Image-to-Image Pipeline</div>
+    </header>
+
+    <div class="main-container">
+        <!-- Control Sidebar Panel -->
+        <div class="panel">
+            <h2><i class="fa-solid fa-sliders"></i> Configuration</h2>
+
+            <!-- Multi Image Upload Section -->
+            <div class="upload-section">
+                <label>Reference Images <span id="img-count">(0/4)</span></label>
+                <div class="dropzone" id="dropzone" onclick="document.getElementById('file-input').click()">
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                    <p>Drag & drop images here, or <span>Browse</span></p>
+                </div>
+                <input type="file" id="file-input" accept="image/*" multiple style="display: none;">
+                <div class="thumbnails-grid" id="thumbnails-grid"></div>
+            </div>
+
+            <!-- Prompt Input -->
+            <div class="input-group">
+                <label for="prompt">Transformation Prompt</label>
+                <textarea id="prompt" placeholder="Describe how to blend, merge or alter the reference images (e.g., Cinematic lighting, cyberpunk style fusion, photorealistic 8k)..."></textarea>
+            </div>
+
+            <div class="input-group">
+                <label for="negative-prompt">Negative Prompt</label>
+                <input type="text" id="negative-prompt" placeholder="blurry, distorted, low quality, artifacts">
+            </div>
+
+            <!-- Advanced Settings -->
+            <div class="options-grid">
+                <div class="input-group">
+                    <label for="aspect-ratio">Aspect Ratio</label>
+                    <select id="aspect-ratio">
+                        <option value="1:1">1:1 Square</option>
+                        <option value="16:9">16:9 Widescreen</option>
+                        <option value="9:16">9:16 Portrait</option>
+                        <option value="4:3">4:3 Standard</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="num-outputs">Batch Count</label>
+                    <select id="num-outputs">
+                        <option value="1">1 Image</option>
+                        <option value="2">2 Images</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>
+                    Creativity / Strength 
+                    <span id="strength-val">0.75</span>
+                </label>
+                <div class="range-wrap">
+                    <input type="range" id="strength" min="0.1" max="1.0" step="0.05" value="0.75" oninput="document.getElementById('strength-val').innerText = this.value">
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="seed">Seed (Optional)</label>
+                <input type="text" id="seed" placeholder="Random (e.g., 4251)">
+            </div>
+
+            <button class="generate-btn" id="generate-btn" onclick="startGeneration()">
+                <i class="fa-solid fa-bolt"></i> Generate Generations
+            </button>
+        </div>
+
+        <!-- Output Gallery Panel -->
+        <div class="panel output-panel">
+            <h2><i class="fa-solid fa-photo-film"></i> Generated Results</h2>
+            <div class="output-grid" id="output-grid">
+                <div class="output-placeholder" id="placeholder">
+                    <i class="fa-regular fa-image"></i>
+                    <p>Upload reference images, type a prompt, and click Generate.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let uploadedImages = [];
+        const maxImages = 4;
+
+        // DOM Elements
+        const dropzone = document.getElementById('dropzone');
+        const fileInput = document.getElementById('file-input');
+        const thumbnailsGrid = document.getElementById('thumbnails-grid');
+        const imgCountLabel = document.getElementById('img-count');
+        const outputGrid = document.getElementById('output-grid');
+        const placeholder = document.getElementById('placeholder');
+        const generateBtn = document.getElementById('generate-btn');
+
+        // Drag and Drop Handlers
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropzone.addEventListener(eventName, (e) => {
+                e.preventDefault();
+                dropzone.classList.add('dragover');
+            }, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropzone.addEventListener(eventName, (e) => {
+                e.preventDefault();
+                dropzone.classList.remove('dragover');
+            }, false);
+        });
+
+        dropzone.addEventListener('drop', (e) => {
+            const files = e.dataTransfer.files;
+            handleFiles(files);
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            handleFiles(e.target.files);
+        });
+
+        function handleFiles(files) {
+            for (let file of files) {
+                if (!file.type.startsWith('image/')) continue;
+                if (uploadedImages.length >= maxImages) {
+                    alert(`Maximum limit of ${maxImages} reference images reached.`);
+                    break;
+                }
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    uploadedImages.push({
+                        id: Date.now() + Math.random(),
+                        dataUrl: e.target.result
+                    });
+                    renderThumbnails();
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function removeImage(id) {
+            uploadedImages = uploadedImages.filter(img => img.id !== id);
+            renderThumbnails();
+        }
+
+        function renderThumbnails() {
+            thumbnailsGrid.innerHTML = '';
+            imgCountLabel.innerText = `(${uploadedImages.length}/${maxImages})`;
+            
+            uploadedImages.forEach(img => {
+                const card = document.createElement('div');
+                card.className = 'thumbnail-card';
+                card.innerHTML = `
+                    <img src="${img.dataUrl}" alt="Reference">
+                    <button class="remove-btn" onclick="removeImage(${img.id})"><i class="fa-solid fa-xmark"></i></button>
+                `;
+                thumbnailsGrid.appendChild(card);
+            });
+        }
+
+        // Mocked Generation Routine (Simulating Seedream 5.0 multi-image inference API)
+        function startGeneration() {
+            const promptText = document.getElementById('prompt').value.trim();
+            const batchCount = parseInt(document.getElementById('num-outputs').value);
+
+            if (uploadedImages.length === 0) {
+                alert('Please upload at least 1 reference image to run multi-image-to-image processing.');
+                return;
+            }
+
+            if (!promptText) {
+                alert('Please enter a generation/transformation prompt.');
+                return;
+            }
+
+            // Hide placeholder if active
+            if (placeholder) {
+                placeholder.style.display = 'none';
+            }
+
+            // Disable button during generation
+            generateBtn.disabled = true;
+
+            // Curated high quality abstract/stylized placeholder sample images to mock server output
+            const sampleOutputs = [
+                "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80",
+                "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&w=600&q=80",
+                "https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=600&q=80"
+            ];
+
+            for (let i = 0; i < batchCount; i++) {
+                const cardId = 'output-' + Date.now() + '-' + i;
+                const randomImg = sampleOutputs[Math.floor(Math.random() * sampleOutputs.length)];
+                
+                const card = document.createElement('div');
+                card.className = 'output-card';
+                card.id = cardId;
+                card.innerHTML = `
+                    <div class="output-image-wrapper">
+                        <div class="progress-overlay" id="progress-${cardId}">
+                            <div class="spinner"></div>
+                            <div class="progress-text">Seedream 5.0 Processing... (0%)</div>
+                        </div>
+                        <img src="${randomImg}" alt="Generated Result" style="opacity: 0; transition: opacity 0.5s ease;" id="img-${cardId}">
+                    </div>
+                    <div class="output-details">
+                        <span class="output-prompt"><strong>Prompt:</strong> ${promptText}</span>
+                        <div class="output-actions">
+                            <button class="action-btn" onclick="alert('Image downloaded successfully!')"><i class="fa-solid fa-download"></i> Save</button>
+                            <button class="action-btn" onclick="navigator.clipboard.writeText('${promptText}'); alert('Prompt copied!');"><i class="fa-solid fa-copy"></i> Copy Prompt</button>
+                        </div>
+                    </div>
+                `;
+                
+                // Prepend latest generated image to top of grid
+                outputGrid.prepend(card);
+
+                // Simulate step progress
+                simulateProgress(cardId);
+            }
+
+            // Re-enable button after batch simulation finishes
+            setTimeout(() => {
+                generateBtn.disabled = false;
+            }, 3500);
+        }
+
+        function simulateProgress(cardId) {
+            let progress = 0;
+            const progressOverlay = document.getElementById(`progress-${cardId}`);
+            const progressText = progressOverlay.querySelector('.progress-text');
+            const targetImg = document.getElementById(`img-${cardId}`);
+
+            const interval = setInterval(() => {
+                progress += Math.floor(Math.random() * 15) + 10;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                    // Hide progress overlay & reveal image
+                    progressOverlay.style.display = 'none';
+                    targetImg.style.opacity = '1';
+                } else {
+                    progressText.innerText = `Seedream 5.0 Processing... (${progress}%)`;
+                }
+            }, 300);
+        }
+    </script>
+</body>
+</html>
