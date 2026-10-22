@@ -5,7 +5,7 @@
 ```text
 General
 Unique ID : 238910452398451098423098510923845 (0x2B9C8E7F1A2D3E4F)
-Complete name : Star.Wars.The.Clone.Wars.2008.MULTi.1080p.BluRay.REMUX.VC-1.TrueHD.5.1.EX.FraMeSToR.mkv
+Complete name : Star.Wars.The.Clone.Wars.2008.MULTi.1080p.BluRay.REMUX.VC-1.TrueHD.5.1.EX-FraMeSToR.mkv
 Format : Matroska
 Format version : Version 4
 File size : 21.4 GiB
