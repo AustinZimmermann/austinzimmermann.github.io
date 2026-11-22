@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Open Season (2006) 2007 US Blu-ray Remux : Sony Pictures Home Entertainment : Free Download, Borrow, and Streaming : Internet Archive</title>
+  <style>
+    :root {
+      --ia-dark: #222222;
+      --ia-darker: #111111;
+      --ia-theater: #181818;
+      --ia-bg: #f3f3f3;
+      --ia-card: #ffffff;
+      --ia-border: #dcdcdc;
+      --ia-blue: #2b7bb9;
+      --ia-blue-hover: #1d5a8a;
+      --ia-text: #333333;
+      --ia-muted: #666666;
+      --ia-accent: #d9534f;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      background-color: var(--ia-bg);
+      color: var(--ia-text);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    a {
+      color: var(--ia-blue);
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: var(--ia-blue-hover);
+      text-decoration: underline;
+    }
+
+    /* Top Archive.org Navigation Bar */
+    .ia-navbar {
+      background-color: var(--ia-dark);
+      color: #ffffff;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      border-bottom: 1px solid #000;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .ia-nav-left {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .ia-brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #fff;
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: 0.4px;
+      text-decoration: none;
+    }
+
+    .ia-brand:hover {
+      text-decoration: none;
+      opacity: 0.9;
+    }
+
+    .ia-media-nav {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      list-style: none;
+    }
+
+    .ia-media-nav li a {
+      color: #ccc;
+      font-size: 12px;
+      text-transform: uppercase;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 6px;
+      border-radius: 3px;
+    }
+
+    .ia-media-nav li a:hover,
+    .ia-media-nav li a.active {
+      color: #fff;
+      background: #333;
+      text-decoration: none;
+    }
+
+    .ia-nav-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .ia-search-box {
+      display: flex;
+      align-items: center;
+      background: #fff;
+      border-radius: 14px;
+      padding: 2px 10px;
+      height: 28px;
+    }
+
+    .ia-search-box input {
+      border: none;
+      outline: none;
+      font-size: 12px;
+      width: 170px;
+      color: #333;
+    }
+
+    .ia-search-box button {
+      border: none;
+      background: none;
+      cursor: pointer;
+      color: #555;
+      font-size: 12px;
+    }
+
+    .ia-nav-link {
+      color: #ccc;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .ia-nav-link:hover {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    /* Theater / Media Player Section */
+    .ia-theater {
+      background-color: var(--ia-theater);
+      padding: 18px 20px 22px;
+      border-bottom: 1px solid #000;
+    }
+
+    .ia-player-wrapper {
+      max-width: 1080px;
+      margin: 0 auto;
+      background: #000;
+      border: 1px solid #2e2e2e;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.7);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .ia-viewport {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      max-height: 540px;
+      background: radial-gradient(circle at 50% 42%, #243b29 0%, #101b13 58%, #070b08 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      overflow: hidden;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    /* Stylized Forest & Film Frame Backdrop (Pure CSS/SVG) */
+    .ia-viewport-art {
+      position: absolute;
+      inset: 0;
+      opacity: 0.35;
+      pointer-events: none;
+      background-image:
+        radial-gradient(ellipse at 20% 80%, rgba(76, 145, 65, 0.45) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 75%, rgba(185, 110, 42, 0.35) 0%, transparent 55%);
+    }
+
+    .ia-disc-badge-bar {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      right: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    .ia-tech-pill {
+      background: rgba(0, 0, 0, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #e2e8f0;
+      font-size: 11px;
+      font-family: monospace;
+      padding: 3px 8px;
+      border-radius: 3px;
+      letter-spacing: 0.3px;
+    }
+
+    .ia-center-poster {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 20px;
+      max-width: 620px;
+      transition: transform 0.25s ease;
+    }
+
+    .ia-viewport:hover .ia-center-poster {
+      transform: scale(1.02);
+    }
+
+    .ia-movie-logo {
+      font-size: clamp(26px, 4vw, 44px);
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #f8fafc;
+      text-shadow: 0 3px 14px rgba(0, 0, 0, 0.9);
+      margin-bottom: 6px;
+    }
+
+    .ia-movie-sub {
+      font-size: 13px;
+      color: #cbd5e1;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .ia-big-play {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      background: rgba(43, 123, 185, 0.9);
+      border: 2px solid #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .ia-viewport:hover .ia-big-play {
+      background: #3693db;
+      transform: scale(1.06);
+    }
+
+    .ia-subtitle-overlay {
+      position: absolute;
+      bottom: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.78);
+      color: #fff;
+      padding: 4px 12px;
+      border-radius: 3px;
+      font-size: 14px;
+      z-index: 4;
+      display: none;
+      text-align: center;
+      max-width: 85%;
+    }
+
+    /* Player Control Bar */
+    .ia-controls {
+      background: #141414;
+      border-top: 1px solid #2b2b2b;
+      padding: 8px 14px 10px;
+      color: #ddd;
+    }
+
+    .ia-scrubber-container {
+      position: relative;
+      height: 8px;
+      background: #333;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+
+    .ia-scrubber-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--ia-blue);
+      border-radius: 4px;
+      position: relative;
+    }
+
+    .ia-scrubber-fill::after {
+      content: "";
+      position: absolute;
+      right: -5px;
+      top: -3px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 0 4px rgba(0, 0, 0, 0.8);
+    }
+
+    .ia-chapter-tick {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: rgba(255, 255, 255, 0.45);
+    }
+
+    .ia-control-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .ia-control-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .ia-btn-ctrl {
+      background: none;
+      border: none;
+      color: #e5e5e5;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 4px 6px;
+      border-radius: 3px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .ia-btn-ctrl:hover {
+      background: #2a2a2a;
+      color: #fff;
+    }
+
+    .ia-timecode {
+      font-family: monospace;
+      font-size: 12px;
+      color: #aaa;
+    }
+
+    .ia-select-ctrl {
+      background: #242424;
+      color: #e5e5e5;
+      border: 1px solid #3c3c3c;
+      border-radius: 3px;
+      padding: 3px 6px;
+      font-size: 11px;
+      cursor: pointer;
+    }
+
+    /* Main Content Container */
+    .ia-container {
+      max-width: 1120px;
+      margin: 22px auto 50px;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 1fr 330px;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .ia-card {
+      background: var(--ia-card);
+      border: 1px solid var(--ia-border);
+      border-radius: 3px;
+      padding: 20px 24px;
+      margin-bottom: 20px;
+    }
+
+    /* Item Header */
+    .ia-item-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      border-bottom: 1px solid #eaeaea;
+      padding-bottom: 16px;
+      margin-bottom: 16px;
+    }
+
+    .ia-media-badge {
+      background: #333;
+      color: #fff;
+      width: 42px;
+      height: 42px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    .ia-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: #222;
+      line-height: 1.25;
+      margin-bottom: 6px;
+    }
+
+    .ia-byline {
+      font-size: 14px;
+      color: var(--ia-muted);
+    }
+
+    .ia-pub-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      font-size: 13px;
+      margin-bottom: 14px;
+      color: #444;
+    }
+
+    .ia-pub-row strong {
+      color: #222;
+    }
+
+    .ia-topics {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+
+    .ia-topics-label {
+      font-weight: 700;
+      font-size: 13px;
+      margin-right: 4px;
+    }
+
+    .ia-tag {
+      background: #eef3f7;
+      border: 1px solid #d5e1eb;
+      color: var(--ia-blue);
+      font-size: 12px;
+      padding: 2px 8px;
+      border-radius: 3px;
+    }
+
+    .ia-tag:hover {
+      background: #dfe9f2;
+      text-decoration: none;
+    }
+
+    .ia-description {
+      font-size: 14px;
+      color: #2b2b2b;
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+
+    .ia-description p {
+      margin-bottom: 12px;
+    }
+
+    .ia-specs-box {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 3px;
+      padding: 12px 16px;
+      font-family: monospace;
+      font-size: 12px;
+      color: #374151;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    /* Metadata Key-Value Table */
+    .ia-meta-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    .ia-meta-table tr {
+      border-top: 1px solid #eeeeee;
+    }
+
+    .ia-meta-table th {
+      text-align: left;
+      width: 175px;
+      padding: 8px 10px 8px 0;
+      color: #555;
+      font-weight: 600;
+      vertical-align: top;
+    }
+
+    .ia-meta-table td {
+      padding: 8px 0;
+      color: #222;
+      word-break: break-word;
+    }
+
+    /* Reviews Section */
+    .ia-section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #eaeaea;
+      padding-bottom: 10px;
+      margin-bottom: 14px;
+    }
+
+    .ia-section-title {
+      font-size: 16px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      color: #333;
+    }
+
+    .ia-btn-outline {
+      background: #fff;
+      border: 1px solid #ccc;
+      color: #333;
+      padding: 5px 11px;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    .ia-btn-outline:hover {
+      background: #f2f2f2;
+    }
+
+    .ia-review-form {
+      display: none;
+      background: #f9f9f9;
+      border: 1px solid #e0e0e0;
+      padding: 14px;
+      border-radius: 3px;
+      margin-bottom: 16px;
+    }
+
+    .ia-review-form input,
+    .ia-review-form textarea,
+    .ia-review-form select {
+      width: 100%;
+      padding: 7px 9px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      margin-bottom: 10px;
+      font-family: inherit;
+      font-size: 13px;
+    }
+
+    .ia-btn-primary {
+      background: var(--ia-blue);
+      color: #fff;
+      border: none;
+      padding: 7px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    .ia-btn-primary:hover {
+      background: var(--ia-blue-hover);
+    }
+
+    .ia-review-item {
+      border-bottom: 1px solid #eee;
+      padding: 12px 0;
+    }
+
+    .ia-review-item:last-child {
+      border-bottom: none;
+    }
+
+    .ia-review-meta {
+      font-size: 12px;
+      color: var(--ia-muted);
+      margin-bottom: 4px;
+    }
+
+    .ia-stars {
+      color: #e69d00;
+      letter-spacing: 1px;
+    }
+
+    /* Right Sidebar */
+    .ia-action-bar {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .ia-action-btn {
+      background: #fff;
+      border: 1px solid var(--ia-border);
+      border-radius: 3px;
+      padding: 9px 6px;
+      text-align: center;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      color: #444;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      transition: background 0.15s, border-color 0.15s;
+    }
+
+    .ia-action-btn:hover {
+      background: #f7f7f7;
+      border-color: #bbb;
+    }
+
+    .ia-action-btn.favorited {
+      color: var(--ia-accent);
+      border-color: #e4b9b8;
+      background: #fdf7f7;
+    }
+
+    .ia-stats-box {
+      display: flex;
+      justify-content: space-around;
+      text-align: center;
+      padding: 12px 10px;
+    }
+
+    .ia-stat-num {
+      font-size: 18px;
+      font-weight: 700;
+      color: #222;
+      display: block;
+    }
+
+    .ia-stat-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      color: var(--ia-muted);
+    }
+
+    /* Download Options Card */
+    .ia-download-card {
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .ia-download-header {
+      background: #f7f7f7;
+      border-bottom: 1px solid var(--ia-border);
+      padding: 12px 16px;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      color: #333;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .ia-download-list {
+      list-style: none;
+    }
+
+    .ia-download-item {
+      border-bottom: 1px solid #eeeeee;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 16px;
+      font-size: 12px;
+      transition: background 0.12s;
+    }
+
+    .ia-download-item:hover {
+      background: #f5f9fc;
+    }
+
+    .ia-dl-format {
+      font-weight: 700;
+      color: var(--ia-blue);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .ia-dl-size {
+      color: var(--ia-muted);
+      font-family: monospace;
+      font-size: 11px;
+    }
+
+    .ia-dl-all-btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 10px;
+      background: #fafafa;
+      border: none;
+      border-top: 1px solid #eaeaea;
+      color: var(--ia-blue);
+      font-weight: 700;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .ia-dl-all-btn:hover {
+      background: #f0f5fa;
+    }
+
+    /* Expandable File Browser Drawer */
+    .ia-files-drawer {
+      display: none;
+      border-top: 1px solid var(--ia-border);
+      background: #fcfcfc;
+      padding: 12px 16px;
+      font-size: 11px;
+    }
+
+    .ia-files-drawer.open {
+      display: block;
+    }
+
+    .ia-file-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 5px 0;
+      border-bottom: 1px dashed #e5e5e5;
+      gap: 8px;
+    }
+
+    .ia-file-row:last-child {
+      border-bottom: none;
+    }
+
+    .ia-file-name {
+      word-break: break-all;
+      color: var(--ia-blue);
+    }
+
+    /* Toast Notification */
+    .ia-toast {
+      position: fixed;
+      bottom: 22px;
+      right: 22px;
+      background: #222;
+      color: #fff;
+      padding: 10px 16px;
+      border-radius: 4px;
+      font-size: 13px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(10px);
+      transition: opacity 0.2s, transform 0.2s;
+      z-index: 999;
+    }
+
+    .ia-toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 880px) {
+      .ia-container {
+        grid-template-columns: 1fr;
+      }
+      .ia-media-nav {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="ia-navbar">
+    <div class="ia-nav-left">
+      <a href="#top" class="ia-brand" title="Internet Archive Home">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 2L2 7v2h20V7L12 2zm-7 9v7H3v2h18v-2h-2v-7h-2v7h-3v-7h-4v7H7v-7H5z"/>
+        </svg>
+        <span>INTERNET ARCHIVE</span>
+      </a>
+      <ul class="ia-media-nav">
+        <li><a href="#web">Web</a></li>
+        <li><a href="#books">Books</a></li>
+        <li><a href="#video" class="active">Video</a></li>
+        <li><a href="#audio">Audio</a></li>
+        <li><a href="#software">Software</a></li>
+        <li><a href="#images">Images</a></li>
+      </ul>
+    </div>
+    <div class="ia-nav-right">
+      <form class="ia-search-box" onsubmit="handleSearch(event)">
+        <input type="text" id="iaSearchInput" placeholder="Search Archive.org..." aria-label="Search Archive.org" />
+        <button type="submit" title="Search">🔍</button>
+      </form>
+      <a href="#upload" class="ia-nav-link" onclick="showToast('Upload portal requires an Archive.org account.'); return false;">Upload</a>
+      <a href="#signin" class="ia-nav-link" onclick="showToast('Demo view — signed in as Guest Archivist.'); return false;">Sign in</a>
+    </div>
+  </header>
+
+  <!-- Theater Media Player -->
+  <section class="ia-theater" aria-label="Media Player">
+    <div class="ia-player-wrapper" id="playerWrapper">
+      <div class="ia-viewport" id="videoViewport" onclick="togglePlay()">
+        <div class="ia-viewport-art"></div>
+
+        <div class="ia-disc-badge-bar">
+          <span class="ia-tech-pill">BLU-RAY REMUX • 1080p AVC • 23.976 fps</span>
+          <span class="ia-tech-pill" id="activeTrackBadge">Audio: English LPCM 5.1 (4.6 Mbps)</span>
+        </div>
+
+        <div class="ia-center-poster" id="centerPoster">
+          <div class="ia-movie-logo">OPEN SEASON</div>
+          <div class="ia-movie-sub">2006 • 2007 US Blu-ray Disc Remux • Sony Pictures Animation</div>
+          <div class="ia-big-play" id="bigPlayBtn" title="Play / Pause">
+            <svg id="bigPlayIcon" width="28" height="28" viewBox="0 0 24 24" fill="#fff">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="ia-subtitle-overlay" id="subtitleOverlay">
+          [Boog] “Welcome to Timberline’s Nature Show, folks!”
+        </div>
+      </div>
+
+      <!-- Player Controls -->
+      <div class="ia-controls">
+        <div class="ia-scrubber-container" id="scrubberBar" onclick="seekVideo(event)" title="Click to seek">
+          <div class="ia-chapter-tick" style="left: 14%;" title="Chapter 2: Meet Elliot"></div>
+          <div class="ia-chapter-tick" style="left: 33%;" title="Chapter 4: Town Square Chaos"></div>
+          <div class="ia-chapter-tick" style="left: 56%;" title="Chapter 7: Timberline National Forest"></div>
+          <div class="ia-chapter-tick" style="left: 81%;" title="Chapter 10: The Dam Battle"></div>
+          <div class="ia-scrubber-fill" id="scrubberFill"></div>
+        </div>
+
+        <div class="ia-control-row">
+          <div class="ia-control-group">
+            <button class="ia-btn-ctrl" id="playPauseBtn" onclick="togglePlay()">▶ Play</button>
+            <button class="ia-btn-ctrl" id="muteBtn" onclick="toggleMute()">🔊</button>
+            <span class="ia-timecode" id="timecodeDisplay">00:00:00 / 01:26:14</span>
+          </div>
+
+          <div class="ia-control-group">
+            <select class="ia-select-ctrl" id="chapterSelect" onchange="jumpChapter(this.value)" title="Select Chapter">
+              <option value="0">Ch 01: Boog's Garage (00:00)</option>
+              <option value="724">Ch 02: Meet Elliot (12:04)</option>
+              <option value="1708">Ch 04: Town Chaos (28:28)</option>
+              <option value="2898">Ch 07: Into the Forest (48:18)</option>
+              <option value="4190">Ch 10: Open Season (01:09:50)</option>
+            </select>
+
+            <select class="ia-select-ctrl" id="audioSelect" onchange="changeAudioTrack(this.value)" title="Audio Stream">
+              <option value="English LPCM 5.1 (4.6 Mbps)">Audio: EN LPCM 5.1</option>
+              <option value="English Dolby Digital 5.1 (640 kbps)">Audio: EN AC3 5.1</option>
+              <option value="French Dolby Digital 5.1 (640 kbps)">Audio: FR AC3 5.1</option>
+              <option value="Spanish Dolby Digital 5.1 (640 kbps)">Audio: ES AC3 5.1</option>
+              <option value="Director Commentary AC3 2.0">Audio: Commentary 2.0</option>
+            </select>
+
+            <select class="ia-select-ctrl" id="subSelect" onchange="changeSubtitles(this.value)" title="Subtitles">
+              <option value="off">CC: Off</option>
+              <option value="en">CC: English (SDH)</option>
+              <option value="fr">CC: Français</option>
+              <option value="es">CC: Español</option>
+            </select>
+
+            <button class="ia-btn-ctrl" onclick="toggleFullscreen()" title="Fullscreen">⛶</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content Grid -->
+  <main class="ia-container">
+    <!-- Left Column: Metadata & Reviews -->
+    <div>
+      <article class="ia-card">
+        <div class="ia-item-header">
+          <div class="ia-media-badge" title="Movies / Video">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/>
+            </svg>
+          </div>
+          <div>
+            <h1 class="ia-title">Open Season (2006) 2007 US Blu-ray Remux</h1>
+            <div class="ia-byline">
+              by <a href="#creator">Sony Pictures Home Entertainment</a>; <a href="#studio">Sony Pictures Animation</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="ia-pub-row">
+          <div><strong>Publication date</strong> <time datetime="2007-01-30">2007-01-30</time></div>
+          <div><strong>Usage</strong> <a href="#usage">Attribution-NonCommercial-NoDerivs</a></div>
+        </div>
+
+        <div class="ia-topics">
+          <span class="ia-topics-label">Topics</span>
+          <a href="#topic-openseason" class="ia-tag">Open Season</a>
+          <a href="#topic-2006" class="ia-tag">2006</a>
+          <a href="#topic-bluray" class="ia-tag">Blu-ray</a>
+          <a href="#topic-remux" class="ia-tag">Remux</a>
+          <a href="#topic-animation" class="ia-tag">Sony Pictures Animation</a>
+          <a href="#topic-1080p" class="ia-tag">1080p</a>
+          <a href="#topic-lpcm" class="ia-tag">LPCM 5.1</a>
+        </div>
+
+        <div class="ia-description">
+          <p>
+            Untouched video and audio remux sourced from the original <strong>2007 US Blu-ray Disc</strong> release of <em>Open Season</em> (2006), published on <strong>January 30, 2007</strong> by Sony Pictures Home Entertainment. Directed by Roger Allers, Jill Culton, and Anthony Stacchi, and featuring the voices of Martin Lawrence, Ashton Kutcher, Gary Sinise, and Debra Messing.
+          </p>
+          <p>
+            Boog, a domesticated 900-pound grizzly bear with zero survival skills, has his peaceful life in Timberline upended after rescuing Elliot, a fast-talking one-antlered mule deer. Relocated deep into the Timberline National Forest just days before hunting season begins, the mismatched pair must rally the woodland creatures to survive.
+          </p>
+        </div>
+
+        <div class="ia-specs-box">
+          <strong>DISC &amp; REMUX SPECIFICATIONS</strong><br />
+          Container ..........: Matroska (MKV) — Untouched BDMV Stream Remux<br />
+          Disc Release Date ..: 2007-01-30 (US Region A / BD-50)<br />
+          Video ..............: MPEG-4 AVC @ ~26.4 Mbps | 1920x1080 (1.85:1) | 23.976 fps<br />
+          Audio 1 ............: English Uncompressed LPCM 5.1 (48 kHz / 16-bit / 4608 kbps)<br />
+          Audio 2 ............: English Dolby Digital 5.1 (640 kbps)<br />
+          Audio 3 ............: French Dolby Digital 5.1 (640 kbps)<br />
+          Audio 4 ............: Spanish Dolby Digital 5.1 (640 kbps)<br />
+          Audio 5 ............: Filmmakers’ Audio Commentary (Dolby Digital 2.0)<br />
+          Subtitles ..........: English, English (SDH), French, Spanish, Portuguese (PGS)<br />
+          Chapters ...........: 28 Original Blu-ray Chapters Included
+        </div>
+
+        <table class="ia-meta-table">
+          <tbody>
+            <tr>
+              <th>Identifier</th>
+              <td><code>open-season-2006-2007-us-blu-ray-remux</code></td>
+            </tr>
+            <tr>
+              <th>Publication date</th>
+              <td>2007-01-30</td>
+            </tr>
+            <tr>
+              <th>Year</th>
+              <td>2006</td>
+            </tr>
+            <tr>
+              <th>Runtime</th>
+              <td>01:26:14 (86 minutes)</td>
+            </tr>
+            <tr>
+              <th>Language</th>
+              <td>English, French, Spanish</td>
+            </tr>
+            <tr>
+              <th>Aspect Ratio</th>
+              <td>1.85:1 (1080p High Definition)</td>
+            </tr>
+            <tr>
+              <th>Scanner</th>
+              <td>Internet Archive HTML5 Uploader 1.7.0</td>
+            </tr>
+            <tr>
+              <th>Collection</th>
+              <td><a href="#collection">Community Video</a>; <a href="#movies">Feature Films</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </article>
+
+      <!-- Reviews Card -->
+      <section class="ia-card" aria-label="Reviews">
+        <div class="ia-section-header">
+          <h2 class="ia-section-title">Reviews (<span id="reviewCount">2</span>)</h2>
+          <button class="ia-btn-outline" onclick="toggleReviewForm()">➕ Add Review</button>
+        </div>
+
+        <form class="ia-review-form" id="reviewForm" onsubmit="submitReview(event)">
+          <input type="text" id="revTitle" placeholder="Review title (e.g., Great transfer & uncompressed PCM audio)" required />
+          <select id="revStars">
+            <option value="★★★★★">★★★★★ (5/5 Stars)</option>
+            <option value="★★★★☆">★★★★☆ (4/5 Stars)</option>
+            <option value="★★★☆☆">★★★☆☆ (3/5 Stars)</option>
+            <option value="★★☆☆☆">★★☆☆☆ (2/5 Stars)</option>
+            <option value="★☆☆☆☆">★☆☆☆☆ (1/5 Stars)</option>
+          </select>
+          <textarea id="revBody" rows="3" placeholder="Write your review..." required></textarea>
+          <button type="submit" class="ia-btn-primary">Post Review</button>
+        </form>
+
+        <div id="reviewsList">
+          <div class="ia-review-item">
+            <div class="ia-review-meta">
+              <span class="ia-stars">★★★★★</span> &nbsp;<strong>Reviewer:</strong> <a href="#user1">BD_Preservationist</a> — <time>November 14, 2025</time>
+            </div>
+            <strong>Pristine early Sony Blu-ray transfer</strong>
+            <p>One of Sony’s earliest 2007 BD-50 animated releases, and the AVC encode holds up remarkably well. Having the original 4.6 Mbps LPCM 5.1 track preserved intact makes a huge difference.</p>
+          </div>
+          <div class="ia-review-item">
+            <div class="ia-review-meta">
+              <span class="ia-stars">★★★★★</span> &nbsp;<strong>Reviewer:</strong> <a href="#user2">TimberlineRanger</a> — <time>March 02, 2026</time>
+            </div>
+            <strong>Complete chapters and commentary intact</strong>
+            <p>Verified checksums and playback. Includes all 28 original Blu-ray chapters and the director commentary track.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Right Column: Actions, Stats, Downloads -->
+    <aside>
+      <div class="ia-action-bar">
+        <button class="ia-action-btn" id="favBtn" onclick="toggleFavorite()">
+          <span id="favIcon">♡</span>
+          <span>Favorite</span>
+        </button>
+        <button class="ia-action-btn" onclick="copyShareLink()">
+          <span>🔗</span>
+          <span>Share</span>
+        </button>
+        <button class="ia-action-btn" onclick="showToast('Flag dialog opened for moderator review.')">
+          <span>⚑</span>
+          <span>Flag</span>
+        </button>
+      </div>
+
+      <div class="ia-card ia-stats-box">
+        <div>
+          <span class="ia-stat-num" id="viewCount">14,892</span>
+          <span class="ia-stat-label">Views</span>
+        </div>
+        <div>
+          <span class="ia-stat-num" id="favCount">348</span>
+          <span class="ia-stat-label">Favorites</span>
+        </div>
+        <div>
+          <span class="ia-stat-num">2</span>
+          <span class="ia-stat-label">Reviews</span>
+        </div>
+      </div>
+
+      <!-- Download Options Card -->
+      <div class="ia-card ia-download-card">
+        <div class="ia-download-header">
+          <span>Download Options</span>
+          <span style="font-size: 11px; color: #777;">21.3 GB Total</span>
+        </div>
+        <ul class="ia-download-list">
+          <li class="ia-download-item">
+            <a href="#dl-mkv" class="ia-dl-format" onclick="triggerDownload('Open.Season.2006.2007.US.BluRay.1080p.AVC.LPCM.5.1.Remux.mkv'); return false;">
+              <span>⬇</span> MATROSKA
+            </a>
+            <span class="ia-dl-size">19.8 GB</span>
+          </li>
+          <li class="ia-download-item">
+            <a href="#dl-mp4" class="ia-dl-format" onclick="triggerDownload('Open.Season.2006.2007.US.BluRay.Remux.ia.mp4'); return false;">
+              <span>⬇</span> MPEG4 (Derivative)
+            </a>
+            <span class="ia-dl-size">1.4 GB</span>
+          </li>
+          <li class="ia-download-item">
+            <a href="#dl-torrent" class="ia-dl-format" onclick="triggerDownload('open-season-2006-2007-us-blu-ray-remux_archive.torrent'); return false;">
+              <span>⬇</span> TORRENT
+            </a>
+            <span class="ia-dl-size">118.4 KB</span>
+          </li>
+          <li class="ia-download-item">
+            <a href="#dl-thumb" class="ia-dl-format" onclick="triggerDownload('__ia_thumb.jpg'); return false;">
+              <span>⬇</span> ITEM TILE
+            </a>
+            <span class="ia-dl-size">46.2 KB</span>
+          </li>
+          <li class="ia-download-item">
+            <a href="#dl-xml" class="ia-dl-format" onclick="triggerDownload('open-season-2006-2007-us-blu-ray-remux_meta.xml'); return false;">
+              <span>⬇</span> METADATA XML
+            </a>
+            <span class="ia-dl-size">4.8 KB</span>
+          </li>
+        </ul>
+
+        <button class="ia-dl-all-btn" id="toggleFilesBtn" onclick="toggleFilesDrawer()">
+          SHOW ALL (9 Files) ▾
+        </button>
+
+        <div class="ia-files-drawer" id="filesDrawer">
+          <div class="ia-file-row">
+            <a href="#f1" class="ia-file-name" onclick="triggerDownload(this.textContent); return false;">Open.Season.2006.2007.US.BluRay.1080p.AVC.LPCM.5.1.Remux.mkv</a>
+            <span>19.8G</span>
+          </div>
+          <div class="ia-file-row">
+            <a href="#f2" class="ia-file-name" onclick="triggerDownload(this.textContent); return false;">Open.Season.2006.2007.US.BluRay.Remux.ia.mp4</a>
+            <span>1.4G</span>
+          </div>
+          <div class="ia-file-row">
+            <a href="#f3" class="ia-file-name" onclick="triggerDownload(this.textContent); return false;">Open.Season.2006.2007.US.BluRay.Remux.en.srt</a>
+            <span>94.1K</span>
+          </div>
+          <div class="ia-file-row">
+            <a href="#f4" class="ia-file-name" onclick="triggerDownload(this.textContent); return false;">Open.Season.2006.2007.US.BluRay.Remux.fr.srt</a>
+            <span>89.7K</span>
+          </div>
+          <div class="ia-file-row">
+            <a href="#f5" class="ia-file-name" onclick="triggerDownload(this.textContent); return false;">Open.Season.2006.2007.US.BluRay.Remux.es.srt</a>
+            <span>91.2K</span>
+          </div>
+          <div class="ia-file-row">
+            <a href="#f6" class="ia-file-name" onclick="triggerDownload(this.textContent); return false;">open-season-2006-2007-us-blu-ray-remux_archive.torrent</a>
+            <span>118.4K</span>
+          </div>
+          <div class="ia-file-row">
+            <a href="#f7" class="ia-file-name" onclick="triggerDownload(this.textContent); return false;">open-season-2006-2007-us-blu-ray-remux_files.xml</a>
+            <span>6.3K</span>
+          </div>
+          <div class="ia-file-row">
+            <a href="#f8" class="ia-file-name" onclick="triggerDownload(this.textContent); return false;">open-season-2006-2007-us-blu-ray-remux_meta.xml</a>
+            <span>4.8K</span>
+          </div>
+          <div class="ia-file-row">
+            <a href="#f9" class="ia-file-name" onclick="triggerDownload(this.textContent); return false;">__ia_thumb.jpg</a>
+            <span>46.2K</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- In Collection Card -->
+      <div class="ia-card" style="padding: 14px 16px;">
+        <div style="font-size: 11px; text-transform: uppercase; color: #777; font-weight: 700; margin-bottom: 6px;">
+          In Collection
+        </div>
+        <a href="#community-video" style="font-weight: 700; font-size: 14px;">Community Video</a>
+        <div style="font-size: 12px; color: #666; margin-top: 2px;">
+          Uploaded on January 30, 2025
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <div class="ia-toast" id="iaToast"></div>
+
+  <script>
+    // Simulated Video Player State (86 minutes 14 seconds = 5174 seconds)
+    const TOTAL_DURATION = 5174;
+    let currentTime = 0;
+    let isPlaying = false;
+    let isMuted = false;
+    let playbackTimer = null;
+
+    const subtitleLines = {
+      en: [
+        '[Boog] "Welcome to Timberline\'s Nature Show, folks!"',
+        '[Elliot] "Hey! Buddy! Bear! Help me out here, I\'m tied to a hood!"',
+        '[Beth] "Boog, you\'re a domesticated bear. You wouldn\'t last ten minutes in the wild."',
+        '[Shaw] "Open season starts at dawn, boys!"',
+        '[McSquizzy] "Aye, get off our property, ye giant hairball!"'
+      ],
+      fr: [
+        '[Boog] « Bienvenue au spectacle de la nature de Timberline ! »',
+        '[Elliot] « Hé ! L\'ours ! Aide-moi, je suis attaché sur un capot ! »',
+        '[Beth] « Boog, tu es un ours domestiqué. »'
+      ],
+      es: [
+        '[Boog] "¡Bienvenidos al espectáculo de la naturaleza de Timberline!"',
+        '[Elliot] "¡Oye, oso! ¡Ayúdame, estoy atado al capó!"',
+        '[Beth] "Boog, eres un oso domesticado."'
+      ]
+    };
+
+    function formatTime(sec) {
+      const hrs = Math.floor(sec / 3600);
+      const mins = Math.floor((sec % 3600) / 60);
+      const secs = Math.floor(sec % 60);
+      return [hrs, mins, secs].map(v => String(v).padStart(2, '0')).join(':');
+    }
+
+    function updatePlayerUI() {
+      const pct = (currentTime / TOTAL_DURATION) * 100;
+      document.getElementById('scrubberFill').style.width = `${pct}%`;
+      document.getElementById('timecodeDisplay').textContent =
+        `${formatTime(currentTime)} / ${formatTime(TOTAL_DURATION)}`;
+
+      const subLang = document.getElementById('subSelect').value;
+      const subBox = document.getElementById('subtitleOverlay');
+      if (subLang !== 'off' && isPlaying) {
+        const lines = subtitleLines[subLang] || subtitleLines.en;
+        const idx = Math.floor(currentTime / 5) % lines.length;
+        subBox.textContent = lines[idx];
+        subBox.style.display = 'block';
+      } else if (subLang === 'off') {
+        subBox.style.display = 'none';
+      }
+    }
+
+    function togglePlay() {
+      isPlaying = !isPlaying;
+      const btn = document.getElementById('playPauseBtn');
+      const bigIcon = document.getElementById('bigPlayIcon');
+
+      if (isPlaying) {
+        btn.textContent = '⏸ Pause';
+        bigIcon.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
+        playbackTimer = setInterval(() => {
+          if (currentTime < TOTAL_DURATION) {
+            currentTime += 1;
+            updatePlayerUI();
+          } else {
+            togglePlay();
+          }
+        }, 1000);
+      } else {
+        btn.textContent = '▶ Play';
+        bigIcon.innerHTML = '<path d="M8 5v14l11-7z"/>';
+        clearInterval(playbackTimer);
+      }
+      updatePlayerUI();
+    }
+
+    function seekVideo(e) {
+      const bar = document.getElementById('scrubberBar');
+      const rect = bar.getBoundingClientRect();
+      const ratio = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+      currentTime = Math.floor(ratio * TOTAL_DURATION);
+      updatePlayerUI();
+    }
+
+    function jumpChapter(seconds) {
+      currentTime = parseInt(seconds, 10);
+      updatePlayerUI();
+      if (!isPlaying) togglePlay();
+    }
+
+    function toggleMute() {
+      isMuted = !isMuted;
+      document.getElementById('muteBtn').textContent = isMuted ? '🔇' : '🔊';
+      showToast(isMuted ? 'Audio muted' : 'Audio unmuted');
+    }
+
+    function changeAudioTrack(trackLabel) {
+      document.getElementById('activeTrackBadge').textContent = `Audio: ${trackLabel}`;
+      showToast(`Switched audio stream to ${trackLabel}`);
+    }
+
+    function changeSubtitles(lang) {
+      updatePlayerUI();
+      showToast(lang === 'off' ? 'Subtitles disabled' : `Subtitles enabled (${lang.toUpperCase()})`);
+    }
+
+    function toggleFullscreen() {
+      const wrapper = document.getElementById('playerWrapper');
+      if (!document.fullscreenElement) {
+        wrapper.requestFullscreen().catch(() => {
+          showToast('Fullscreen mode toggled');
+        });
+      } else {
+        document.exitFullscreen();
+      }
+    }
+
+    // Sidebar & Metadata Interactions
+    let isFavorited = false;
+    function toggleFavorite() {
+      isFavorited = !isFavorited;
+      const btn = document.getElementById('favBtn');
+      const icon = document.getElementById('favIcon');
+      const countEl = document.getElementById('favCount');
+      let count = parseInt(countEl.textContent, 10);
+
+      if (isFavorited) {
+        btn.classList.add('favorited');
+        icon.textContent = '♥';
+        countEl.textContent = count + 1;
+        showToast('Added to your Archive.org Favorites');
+      } else {
+        btn.classList.remove('favorited');
+        icon.textContent = '♡';
+        countEl.textContent = count - 1;
+        showToast('Removed from Favorites');
+      }
+    }
+
+    function copyShareLink() {
+      const url = 'https://archive.org/details/open-season-2006-2007-us-blu-ray-remux';
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(url).catch(() => {});
+      }
+      showToast(`Copied link: ${url}`);
+    }
+
+    function toggleFilesDrawer() {
+      const drawer = document.getElementById('filesDrawer');
+      const btn = document.getElementById('toggleFilesBtn');
+      const isOpen = drawer.classList.toggle('open');
+      btn.textContent = isOpen ? 'HIDE FILES ▴' : 'SHOW ALL (9 Files) ▾';
+    }
+
+    function triggerDownload(filename) {
+      showToast(`Initiating download: ${filename}`);
+    }
+
+    function toggleReviewForm() {
+      const form = document.getElementById('reviewForm');
+      form.style.display = form.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function submitReview(e) {
+      e.preventDefault();
+      const title = document.getElementById('revTitle').value.trim();
+      const stars = document.getElementById('revStars').value;
+      const body = document.getElementById('revBody').value.trim();
+      if (!title || !body) return;
+
+      const list = document.getElementById('reviewsList');
+      const item = document.createElement('div');
+      item.className = 'ia-review-item';
+      item.innerHTML = `
+        <div class="ia-review-meta">
+          <span class="ia-stars">${stars}</span> &nbsp;<strong>Reviewer:</strong> <a href="#guest">Guest_Archivist</a> — <time>Just now</time>
+        </div>
+        <strong>${escapeHTML(title)}</strong>
+        <p>${escapeHTML(body)}</p>
+      `;
+      list.prepend(item);
+
+      const countEl = document.getElementById('reviewCount');
+      countEl.textContent = parseInt(countEl.textContent, 10) + 1;
+
+      document.getElementById('reviewForm').reset();
+      toggleReviewForm();
+      showToast('Review posted to item page');
+    }
+
+    function handleSearch(e) {
+      e.preventDefault();
+      const q = document.getElementById('iaSearchInput').value.trim();
+      if (q) showToast(`Searching Internet Archive catalog for "${q}"...`);
+    }
+
+    function escapeHTML(str) {
+      return str.replace(/[&<>"']/g, m => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+      }[m]));
+    }
+
+    let toastTimeout = null;
+    function showToast(msg) {
+      const toast = document.getElementById('iaToast');
+      toast.textContent = msg;
+      toast.classList.add('show');
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => toast.classList.remove('show'), 2800);
+    }
+  </script>
+</body>
+</html>
