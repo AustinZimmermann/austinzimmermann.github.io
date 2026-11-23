@@ -1,0 +1,1544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>X-Men: The Last Stand (2006) 2009 Blu-ray Remux : 20th Century Fox Home Entertainment : Free Download, Borrow, and Streaming : Internet Archive</title>
+  <style>
+    :root {
+      --ia-dark: #222222;
+      --ia-darker: #141414;
+      --ia-theater: #181818;
+      --ia-border: #dcdcdc;
+      --ia-bg: #f6f6f6;
+      --ia-card: #ffffff;
+      --ia-blue: #428bca;
+      --ia-blue-hover: #2a6496;
+      --ia-text: #333333;
+      --ia-muted: #666666;
+      --ia-accent: #e47911;
+      --xmen-gold: #d4af37;
+      --xmen-red: #b71c1c;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      background-color: var(--ia-bg);
+      color: var(--ia-text);
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    a {
+      color: var(--ia-blue);
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: var(--ia-blue-hover);
+      text-decoration: underline;
+    }
+
+    /* Top Internet Archive Navbar */
+    .ia-navbar {
+      background-color: var(--ia-dark);
+      color: #ffffff;
+      border-bottom: 1px solid #000;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .ia-nav-top {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .ia-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #ffffff;
+      font-weight: 700;
+      letter-spacing: 0.6px;
+      font-size: 15px;
+    }
+
+    .ia-brand:hover {
+      text-decoration: none;
+      color: #ffffff;
+    }
+
+    .ia-nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      list-style: none;
+    }
+
+    .ia-nav-links li a {
+      color: #cccccc;
+      font-size: 12px;
+      text-transform: uppercase;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 6px;
+      border-radius: 3px;
+    }
+
+    .ia-nav-links li a.active,
+    .ia-nav-links li a:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.1);
+      text-decoration: none;
+    }
+
+    .ia-search-wrap {
+      display: flex;
+      align-items: center;
+      flex: 1;
+      max-width: 340px;
+    }
+
+    .ia-search-wrap input {
+      width: 100%;
+      padding: 5px 10px;
+      border: 1px solid #444;
+      background: #333;
+      color: #fff;
+      border-radius: 14px 0 0 14px;
+      font-size: 13px;
+      outline: none;
+    }
+
+    .ia-search-wrap input::placeholder {
+      color: #aaa;
+    }
+
+    .ia-search-wrap button {
+      padding: 5px 12px;
+      border: 1px solid #444;
+      border-left: none;
+      background: #444;
+      color: #fff;
+      border-radius: 0 14px 14px 0;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    .ia-search-wrap button:hover {
+      background: #555;
+    }
+
+    .ia-user-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 12px;
+      color: #ccc;
+    }
+
+    .ia-user-actions a {
+      color: #ddd;
+    }
+
+    /* Theater Player Section */
+    .ia-theater {
+      background-color: var(--ia-theater);
+      color: #ffffff;
+      padding: 20px 16px 14px;
+      border-bottom: 1px solid #000;
+    }
+
+    .theater-container {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .player-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      max-height: 540px;
+      background: radial-gradient(circle at center, #262b34 0%, #0b0c0e 78%);
+      border: 1px solid #2e2e2e;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      user-select: none;
+    }
+
+    /* Simulated Film Preview Artwork (Pure HTML/SVG/CSS - No Canvas) */
+    .screen-stage {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .film-grain-overlay {
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 0.015) 0px,
+        rgba(255, 255, 255, 0.015) 1px,
+        transparent 1px,
+        transparent 3px
+      );
+      pointer-events: none;
+    }
+
+    .x-emblem {
+      width: 110px;
+      height: 110px;
+      margin-bottom: 16px;
+      filter: drop-shadow(0 0 18px rgba(212, 175, 55, 0.35));
+      transition: transform 0.3s ease;
+    }
+
+    .screen-stage:hover .x-emblem {
+      transform: scale(1.05);
+    }
+
+    .screen-title {
+      font-size: clamp(20px, 3vw, 32px);
+      font-weight: 800;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #f4f4f4;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.85);
+    }
+
+    .screen-subtitle {
+      font-size: 13px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--xmen-gold);
+      margin-top: 4px;
+      font-weight: 600;
+    }
+
+    .screen-status-pill {
+      margin-top: 16px;
+      background: rgba(0, 0, 0, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      color: #ddd;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #e74c3c;
+    }
+
+    .status-dot.playing {
+      background: #2ecc71;
+      box-shadow: 0 0 8px #2ecc71;
+    }
+
+    .big-play-btn {
+      position: absolute;
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      background: rgba(20, 20, 20, 0.82);
+      border: 2px solid #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .big-play-btn.hidden {
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(0.9);
+    }
+
+    /* Player Controls */
+    .player-controls {
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.75));
+      padding: 8px 14px 10px;
+      z-index: 5;
+    }
+
+    .timeline-wrapper {
+      position: relative;
+      height: 14px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      margin-bottom: 6px;
+    }
+
+    .timeline-track {
+      width: 100%;
+      height: 5px;
+      background: #444;
+      border-radius: 3px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .timeline-buffer {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 42%;
+      background: #666;
+    }
+
+    .timeline-progress {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 0%;
+      background: #428bca;
+    }
+
+    .chapter-tick {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #f1c40f;
+      z-index: 2;
+    }
+
+    .controls-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 12px;
+    }
+
+    .controls-left,
+    .controls-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .ctrl-btn {
+      background: none;
+      border: none;
+      color: #eee;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 12px;
+      padding: 3px 6px;
+      border-radius: 3px;
+    }
+
+    .ctrl-btn:hover {
+      background: rgba(255, 255, 255, 0.14);
+      color: #fff;
+    }
+
+    .ctrl-select {
+      background: #262626;
+      color: #eee;
+      border: 1px solid #444;
+      border-radius: 3px;
+      padding: 2px 6px;
+      font-size: 11px;
+      cursor: pointer;
+    }
+
+    .theater-spec-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 10px;
+      font-size: 12px;
+      color: #b0b0b0;
+    }
+
+    .spec-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .spec-badge {
+      background: #262626;
+      border: 1px solid #3c3c3c;
+      padding: 2px 8px;
+      border-radius: 3px;
+      font-family: monospace;
+      font-size: 11px;
+      color: #e0e0e0;
+    }
+
+    /* Main Archive.org Details Body */
+    .main-container {
+      max-width: 1120px;
+      margin: 22px auto 48px;
+      padding: 0 16px;
+      display: grid;
+      grid-template-columns: minmax(0, 2.15fr) minmax(280px, 1fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 860px) {
+      .main-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .ia-card {
+      background: var(--ia-card);
+      border: 1px solid var(--ia-border);
+      border-radius: 4px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    /* Item Header */
+    .item-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      border-bottom: 1px solid #eaeaea;
+      padding-bottom: 16px;
+      margin-bottom: 16px;
+    }
+
+    .media-type-icon {
+      width: 42px;
+      height: 42px;
+      background: #efefef;
+      border: 1px solid #dcdcdc;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: #444;
+    }
+
+    .item-title-block h1 {
+      font-size: 22px;
+      font-weight: 600;
+      color: #222;
+      line-height: 1.25;
+      margin-bottom: 4px;
+    }
+
+    .item-byline {
+      font-size: 14px;
+      color: var(--ia-muted);
+    }
+
+    .item-byline a {
+      font-weight: 600;
+    }
+
+    /* Action Bar */
+    .action-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding-bottom: 16px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid #eaeaea;
+    }
+
+    .action-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .ia-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #333;
+      background: #f8f8f8;
+      border: 1px solid #cccccc;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    .ia-btn:hover {
+      background: #eeeeee;
+    }
+
+    .ia-btn.active {
+      background: #fff8e6;
+      border-color: #e0b44b;
+      color: #8a5a00;
+    }
+
+    .item-stats {
+      display: flex;
+      gap: 16px;
+      font-size: 13px;
+      color: var(--ia-muted);
+    }
+
+    .item-stats strong {
+      color: #222;
+    }
+
+    /* Tabs */
+    .ia-tabs {
+      display: flex;
+      border-bottom: 1px solid #ddd;
+      margin-bottom: 16px;
+      gap: 4px;
+    }
+
+    .ia-tab {
+      padding: 8px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ia-muted);
+      background: none;
+      border: 1px solid transparent;
+      border-bottom: none;
+      border-radius: 4px 4px 0 0;
+      cursor: pointer;
+      margin-bottom: -1px;
+    }
+
+    .ia-tab.active {
+      color: #222;
+      background: #fff;
+      border-color: #ddd;
+      border-bottom-color: #fff;
+    }
+
+    .tab-panel {
+      display: none;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    .description-text p {
+      margin-bottom: 12px;
+      color: #2b2b2b;
+    }
+
+    .mediainfo-pre {
+      background: #1e1e1e;
+      color: #d4d4d4;
+      padding: 14px;
+      border-radius: 4px;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 12px;
+      overflow-x: auto;
+      line-height: 1.45;
+    }
+
+    /* Metadata Table */
+    .metadata-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 18px;
+      font-size: 13px;
+    }
+
+    .metadata-table tr {
+      border-top: 1px solid #eeeeee;
+    }
+
+    .metadata-table th {
+      width: 165px;
+      text-align: left;
+      padding: 8px 10px 8px 0;
+      color: var(--ia-muted);
+      font-weight: 600;
+      vertical-align: top;
+    }
+
+    .metadata-table td {
+      padding: 8px 0;
+      color: #222;
+      word-break: break-word;
+    }
+
+    .topic-tag {
+      display: inline-block;
+      background: #f0f4f8;
+      border: 1px solid #d5e1ec;
+      padding: 1px 7px;
+      border-radius: 3px;
+      margin: 2px 4px 2px 0;
+      font-size: 12px;
+    }
+
+    /* Reviews Section */
+    .section-heading {
+      font-size: 15px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      color: #444;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .review-item {
+      border-top: 1px solid #eeeeee;
+      padding: 14px 0;
+    }
+
+    .review-item:first-of-type {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .review-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 4px;
+      font-size: 12px;
+      color: var(--ia-muted);
+    }
+
+    .stars {
+      color: #e47911;
+      letter-spacing: 1px;
+      font-size: 14px;
+    }
+
+    .review-title {
+      font-weight: 700;
+      color: #222;
+      margin-bottom: 4px;
+    }
+
+    .review-form {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid #eaeaea;
+    }
+
+    .review-form input,
+    .review-form textarea,
+    .review-form select {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      margin-bottom: 10px;
+      font-family: inherit;
+      font-size: 13px;
+    }
+
+    .ia-btn-primary {
+      background: var(--ia-blue);
+      color: #fff;
+      border: 1px solid #357ebd;
+      padding: 7px 14px;
+      border-radius: 3px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .ia-btn-primary:hover {
+      background: var(--ia-blue-hover);
+    }
+
+    /* Right Sidebar - Download Options */
+    .sidebar-card {
+      background: var(--ia-card);
+      border: 1px solid var(--ia-border);
+      border-radius: 4px;
+      padding: 16px;
+      margin-bottom: 18px;
+    }
+
+    .sidebar-title {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #444;
+      border-bottom: 1px solid #eaeaea;
+      padding-bottom: 8px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .download-list {
+      list-style: none;
+    }
+
+    .download-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 6px;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: 13px;
+      transition: background 0.15s;
+    }
+
+    .download-row:hover {
+      background: #f5f9fc;
+    }
+
+    .download-format {
+      font-weight: 600;
+      color: var(--ia-blue);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .download-size {
+      color: var(--ia-muted);
+      font-size: 12px;
+      font-family: monospace;
+    }
+
+    .show-all-btn {
+      width: 100%;
+      margin-top: 10px;
+      padding: 7px;
+      background: #f4f4f4;
+      border: 1px solid #d4d4d4;
+      border-radius: 3px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #444;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .show-all-btn:hover {
+      background: #e9e9e9;
+    }
+
+    .collection-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .collection-item:last-child {
+      border-bottom: none;
+    }
+
+    .collection-thumb {
+      width: 38px;
+      height: 38px;
+      border-radius: 3px;
+      background: #2c3e50;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+
+    /* Modal & Toast */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 200;
+      padding: 16px;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-box {
+      background: #fff;
+      max-width: 680px;
+      width: 100%;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .modal-header {
+      background: #222;
+      color: #fff;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: 600;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      color: #ccc;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .modal-body {
+      padding: 16px;
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #222;
+      color: #fff;
+      padding: 10px 16px;
+      border-radius: 4px;
+      border-left: 4px solid var(--ia-blue);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      font-size: 13px;
+      opacity: 0;
+      transform: translateY(10px);
+      pointer-events: none;
+      transition: opacity 0.25s, transform 0.25s;
+      z-index: 300;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .ia-footer {
+      background: #eaeaea;
+      border-top: 1px solid #d5d5d5;
+      padding: 20px 16px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--ia-muted);
+    }
+
+    .ia-footer a {
+      margin: 0 8px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Internet Archive Header -->
+  <header class="ia-navbar">
+    <div class="ia-nav-top">
+      <a href="#top" class="ia-brand" onclick="showToast('Internet Archive Home'); return false;">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 21h18M4 18h16M6 18V9M10 18V9M14 18V9M18 18V9M12 2L2 7h20L12 2z" />
+        </svg>
+        <span>INTERNET ARCHIVE</span>
+      </a>
+
+      <ul class="ia-nav-links">
+        <li><a href="#web" onclick="showToast('Wayback Machine Web Archive'); return false;">Web</a></li>
+        <li><a href="#books" onclick="showToast('Texts & Books Collection'); return false;">Books</a></li>
+        <li><a href="#video" class="active" onclick="return false;">Video</a></li>
+        <li><a href="#audio" onclick="showToast('Audio Archive'); return false;">Audio</a></li>
+        <li><a href="#software" onclick="showToast('Software Library'); return false;">Software</a></li>
+        <li><a href="#images" onclick="showToast('Image Collection'); return false;">Images</a></li>
+      </ul>
+
+      <form class="ia-search-wrap" onsubmit="handleSearch(event)">
+        <input type="text" id="iaSearchInput" placeholder="Search" aria-label="Search Internet Archive" />
+        <button type="submit">Go</button>
+      </form>
+
+      <div class="ia-user-actions">
+        <a href="#upload" onclick="showToast('Upload Portal'); return false;">Upload</a>
+        <span>|</span>
+        <a href="#login" onclick="showToast('Sign in to Internet Archive'); return false;">Sign up / Log in</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Theater Media Player -->
+  <section class="ia-theater">
+    <div class="theater-container">
+      <div class="player-frame" id="playerFrame">
+        <div class="screen-stage" id="screenStage" onclick="togglePlay()">
+          <div class="film-grain-overlay"></div>
+
+          <!-- Custom SVG X-Men Emblem -->
+          <svg class="x-emblem" viewBox="0 0 120 120" aria-hidden="true">
+            <circle cx="60" cy="60" r="52" fill="#121417" stroke="#d4af37" stroke-width="6" />
+            <circle cx="60" cy="60" r="42" fill="none" stroke="#b71c1c" stroke-width="2" stroke-dasharray="4 3" />
+            <path d="M34 34 L86 86 M86 34 L34 86" stroke="#d4af37" stroke-width="13" stroke-linecap="round" />
+            <path d="M34 34 L86 86 M86 34 L34 86" stroke="#f5e196" stroke-width="3" stroke-linecap="round" opacity="0.65" />
+          </svg>
+
+          <div class="screen-title">X-MEN: THE LAST STAND</div>
+          <div class="screen-subtitle">2006 Theatrical Feature &bull; 2009 Blu-ray Remux</div>
+
+          <div class="screen-status-pill">
+            <span class="status-dot" id="statusDot"></span>
+            <span id="playerStatusText">Ready &bull; Chapter 01: Main Titles (20th Century Fox)</span>
+          </div>
+
+          <div class="big-play-btn" id="bigPlayBtn" title="Play Stream">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="#ffffff">
+              <polygon points="6,4 20,12 6,20" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Player Controls -->
+        <div class="player-controls">
+          <div class="timeline-wrapper" id="timelineWrapper" onclick="seekTimeline(event)" title="Click to scrub timeline">
+            <div class="timeline-track">
+              <div class="timeline-buffer"></div>
+              <div class="timeline-progress" id="timelineProgress"></div>
+              <div class="chapter-tick" style="left: 12%;" title="Chapter 2: The Mutant Cure"></div>
+              <div class="chapter-tick" style="left: 34%;" title="Chapter 6: Alkali Lake"></div>
+              <div class="chapter-tick" style="left: 58%;" title="Chapter 11: Dark Phoenix"></div>
+              <div class="chapter-tick" style="left: 81%;" title="Chapter 16: Alcatraz Island"></div>
+            </div>
+          </div>
+
+          <div class="controls-row">
+            <div class="controls-left">
+              <button class="ctrl-btn" id="playPauseBtn" onclick="togglePlay()">&#9654; Play</button>
+              <button class="ctrl-btn" id="muteBtn" onclick="toggleMute()">&#128266; Audio</button>
+              <span id="timeDisplay" style="font-family: monospace; color: #ccc;">00:00:00 / 01:44:06</span>
+            </div>
+
+            <div class="controls-right">
+              <select class="ctrl-select" id="chapterSelect" onchange="jumpToChapter(this.value)" aria-label="Chapter Select">
+                <option value="0">Ch 01: Main Titles (00:00:00)</option>
+                <option value="749">Ch 02: The Mutant Cure (00:12:29)</option>
+                <option value="2124">Ch 06: Alkali Lake (00:35:24)</option>
+                <option value="3622">Ch 11: Dark Phoenix (01:00:22)</option>
+                <option value="5058">Ch 16: Alcatraz Island (01:24:18)</option>
+              </select>
+
+              <select class="ctrl-select" onchange="showToast('Switched stream profile: ' + this.value)" aria-label="Quality Select">
+                <option>1080p Remux (AVC)</option>
+                <option>720p Derivative (MP4)</option>
+                <option>480p Proxy (MP4)</option>
+              </select>
+
+              <button class="ctrl-btn" onclick="toggleFullscreen()" title="Fullscreen">&#x26F6;</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="theater-spec-bar">
+        <div class="spec-badges">
+          <span class="spec-badge">CONTAINER: MKV (Matroska)</span>
+          <span class="spec-badge">VIDEO: MPEG-4 AVC 1920x1080 @ 23.976 fps</span>
+          <span class="spec-badge">AUDIO: DTS-HD Master Audio 6.1 (48 kHz / 24-bit)</span>
+          <span class="spec-badge">RELEASE: 2009-04-21</span>
+        </div>
+        <div>Item ID: <code>x-men-the-last-stand-2006-2009-blu-ray-remux</code></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content Grid -->
+  <main class="main-container">
+    <!-- Left Column: Item Details, Metadata & Reviews -->
+    <div>
+      <article class="ia-card">
+        <div class="item-header">
+          <div class="media-type-icon" title="Movies / Video">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="3" width="20" height="18" rx="2" />
+              <line x1="7" y1="3" x2="7" y2="21" />
+              <line x1="17" y1="3" x2="17" y2="21" />
+              <line x1="2" y1="9" x2="7" y2="9" />
+              <line x1="2" y1="15" x2="7" y2="15" />
+              <line x1="17" y1="9" x2="22" y2="9" />
+              <line x1="17" y1="15" x2="22" y2="15" />
+            </svg>
+          </div>
+          <div class="item-title-block">
+            <h1>X-Men: The Last Stand (2006) 2009 Blu-ray Remux</h1>
+            <div class="item-byline">
+              by <a href="#publisher" onclick="showToast('Filtering by 20th Century Fox Home Entertainment'); return false;">20th Century Fox Home Entertainment</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Bar -->
+        <div class="action-toolbar">
+          <div class="action-buttons">
+            <button class="ia-btn" id="favBtn" onclick="toggleFavorite()">
+              <span id="favStar">&#9734;</span> Favorite
+            </button>
+            <button class="ia-btn" onclick="copyShareLink()">
+              &#128279; Share
+            </button>
+            <button class="ia-btn" onclick="openXmlModal()">
+              &#128196; View Metadata XML
+            </button>
+            <button class="ia-btn" onclick="showToast('Flag dialog opened for community moderation')">
+              &#9873; Flag
+            </button>
+          </div>
+
+          <div class="item-stats">
+            <span><strong>14,892</strong> Views</span>
+            <span><strong id="favCount">412</strong> Favorites</span>
+          </div>
+        </div>
+
+        <!-- Content Tabs -->
+        <div class="ia-tabs">
+          <button class="ia-tab active" onclick="switchTab(event, 'tab-desc')">Description</button>
+          <button class="ia-tab" onclick="switchTab(event, 'tab-mediainfo')">MediaInfo Log</button>
+          <button class="ia-tab" onclick="switchTab(event, 'tab-chapters')">Chapters (24)</button>
+        </div>
+
+        <div id="tab-desc" class="tab-panel active description-text">
+          <p>
+            <strong><em>X-Men: The Last Stand</em> (2006)</strong> — Archival 1:1 lossless Blu-ray Remux sourced from the North American <strong>20th Century Fox Home Entertainment</strong> Blu-ray Disc edition published on <strong>April 21, 2009 (2009-04-21)</strong>.
+          </p>
+          <p>
+            Directed by Brett Ratner and starring Hugh Jackman, Halle Berry, Ian McKellen, Famke Janssen, Anna Paquin, Kelsey Grammer, James Marsden, Rebecca Romijn, Shawn Ashmore, and Patrick Stewart. When a pharmaceutical “cure” for the X-gene threatens to alter mutant history, Charles Xavier’s X-Men clash with Magneto’s Brotherhood while Jean Grey awakens as the unstoppable Dark Phoenix.
+          </p>
+          <p>
+            This preservation package retains the untouched 1080p MPEG-4 AVC video stream, original DTS-HD Master Audio 6.1 lossless soundtrack, Dolby Digital 5.1 compatibility tracks, two full-length audio commentary tracks, and retail chapter markers muxed cleanly into a single Matroska (<code>.mkv</code>) container without re-encoding.
+          </p>
+        </div>
+
+        <div id="tab-mediainfo" class="tab-panel">
+          <pre class="mediainfo-pre">General
+Unique ID                                : 249810472819047129481029481029481029481 (0xBBF4109E2A11)
+Complete name                            : X-Men The Last Stand (2006) 2009 Blu-ray Remux.mkv
+Format                                   : Matroska
+Format version                           : Version 4
+File size                                : 26.4 GiB
+Duration                                 : 1 h 44 min
+Overall bit rate mode                    : Variable
+Overall bit rate                         : 36.3 Mb/s
+Encoded date                             : UTC 2009-04-21 00:00:00
+
+Video
+ID                                       : 1
+Format                                   : AVC
+Format/Info                              : Advanced Video Codec
+Format profile                           : High@L4.1
+Width                                    : 1 920 pixels
+Height                                   : 1 080 pixels
+Display aspect ratio                     : 16:9
+Frame rate                               : 23.976 (24000/1001) FPS
+Color space                              : YUV
+Chroma subsampling                       : 4:2:0
+Bit depth                                : 8 bits
+Bit rate                                 : 30.8 Mb/s
+
+Audio #1
+ID                                       : 2
+Format                                   : DTS XLL
+Format/Info                              : Digital Theater Systems (DTS-HD Master Audio)
+Channel(s)                               : 7 channels (6.1 discrete)
+Sampling rate                            : 48.0 kHz
+Bit depth                                : 24 bits
+Language                                 : English</pre>
+        </div>
+
+        <div id="tab-chapters" class="tab-panel">
+          <table class="metadata-table" style="margin-top: 0;">
+            <tr><th>00:00:00.000</th><td>Chapter 01 — 20th Century Fox Fanfare &amp; Prologue</td></tr>
+            <tr><th>00:12:29.416</th><td>Chapter 02 — Worthington Labs &amp; The Mutant Cure</td></tr>
+            <tr><th>00:24:10.125</th><td>Chapter 04 — Danger Room Training</td></tr>
+            <tr><th>00:35:24.833</th><td>Chapter 06 — Return to Alkali Lake</td></tr>
+            <tr><th>01:00:22.041</th><td>Chapter 11 — Jean Grey's House / Dark Phoenix Awakens</td></tr>
+            <tr><th>01:24:18.500</th><td>Chapter 16 — Assault on Alcatraz Island</td></tr>
+            <tr><th>01:38:44.208</th><td>Chapter 23 — Epilogue &amp; End Credits</td></tr>
+          </table>
+        </div>
+
+        <!-- Structured Archive.org Metadata Fields -->
+        <table class="metadata-table">
+          <tr>
+            <th>Publication date</th>
+            <td><a href="#date-2009-04-21" onclick="showToast('Items published on 2009-04-21'); return false;">2009-04-21</a></td>
+          </tr>
+          <tr>
+            <th>Topics</th>
+            <td>
+              <a href="#topic" class="topic-tag" onclick="return false;">X-Men</a>
+              <a href="#topic" class="topic-tag" onclick="return false;">20th Century Fox Home Entertainment</a>
+              <a href="#topic" class="topic-tag" onclick="return false;">Blu-ray Remux</a>
+              <a href="#topic" class="topic-tag" onclick="return false;">Marvel Comics</a>
+              <a href="#topic" class="topic-tag" onclick="return false;">2006</a>
+              <a href="#topic" class="topic-tag" onclick="return false;">2009 Blu-ray</a>
+              <a href="#topic" class="topic-tag" onclick="return false;">Sci-Fi</a>
+            </td>
+          </tr>
+          <tr>
+            <th>Publisher</th>
+            <td>20th Century Fox Home Entertainment</td>
+          </tr>
+          <tr>
+            <th>Language</th>
+            <td><a href="#lang-en" onclick="return false;">English</a></td>
+          </tr>
+          <tr>
+            <th>Runtime</th>
+            <td>01:44:06</td>
+          </tr>
+          <tr>
+            <th>Source</th>
+            <td>Blu-ray Disc (1080p AVC / DTS-HD MA 6.1)</td>
+          </tr>
+          <tr>
+            <th>Identifier</th>
+            <td><code>x-men-the-last-stand-2006-2009-blu-ray-remux</code></td>
+          </tr>
+          <tr>
+            <th>Scanner</th>
+            <td>Internet Archive HTML5 Uploader 1.7.0</td>
+          </tr>
+        </table>
+      </article>
+
+      <!-- Reviews Card -->
+      <section class="ia-card">
+        <div class="section-heading">
+          <span>Reviews (<span id="reviewCount">2</span>)</span>
+          <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733; <small style="color:#666; font-weight:normal;">(4.8 / 5)</small></span>
+        </div>
+
+        <div id="reviewsContainer">
+          <div class="review-item">
+            <div class="review-meta">
+              <span><strong>Reviewer:</strong> <a href="#user1" onclick="return false;">CinephileArchivist</a> &mdash; October 14, 2024</span>
+              <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            </div>
+            <div class="review-title">Clean 1:1 AVC transfer from the April 2009 Fox Blu-ray</div>
+            <p>Verified SHA-256 checksums against the original 2009-04-21 Blu-ray release. Both commentary tracks (Brett Ratner/Zak Penn/Simon Kinberg and Avi Arad/Lauren Shuler Donner/Ralph Winter) are intact and properly labeled.</p>
+          </div>
+
+          <div class="review-item">
+            <div class="review-meta">
+              <span><strong>Reviewer:</strong> <a href="#user2" onclick="return false;">MutantPreservation99</a> &mdash; March 02, 2025</span>
+              <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+            </div>
+            <div class="review-title">DTS-HD MA 6.1 track sounds massive</div>
+            <p>The Golden Gate Bridge sequence retains the full dynamic range of the discrete 6.1 mix. Great preservation upload.</p>
+          </div>
+        </div>
+
+        <form class="review-form" onsubmit="submitReview(event)">
+          <div style="font-weight: 700; margin-bottom: 8px; color: #333;">Add a Review</div>
+          <div style="display: grid; grid-template-columns: 1fr 140px; gap: 10px;">
+            <input type="text" id="revTitle" placeholder="Review headline..." required />
+            <select id="revStars" aria-label="Rating">
+              <option value="5">&#9733;&#9733;&#9733;&#9733;&#9733; (5/5)</option>
+              <option value="4">&#9733;&#9733;&#9733;&#9733;&#9734; (4/5)</option>
+              <option value="3">&#9733;&#9733;&#9733;&#9734;&#9734; (3/5)</option>
+              <option value="2">&#9733;&#9733;&#9734;&#9734;&#9734; (2/5)</option>
+              <option value="1">&#9733;&#9734;&#9734;&#9734;&#9734; (1/5)</option>
+            </select>
+          </div>
+          <textarea id="revBody" rows="3" placeholder="Share notes on video bitrate, audio tracks, or subtitles..." required></textarea>
+          <button type="submit" class="ia-btn-primary">Submit Review</button>
+        </form>
+      </section>
+    </div>
+
+    <!-- Right Sidebar: Download Options & Collections -->
+    <aside>
+      <div class="sidebar-card">
+        <div class="sidebar-title">
+          <span>Download Options</span>
+          <span style="font-weight: normal; font-size: 11px; color: #777;">14 files</span>
+        </div>
+
+        <ul class="download-list" id="downloadList">
+          <li class="download-row">
+            <a href="#dl-mkv" class="download-format" onclick="triggerDownload('X-Men.The.Last.Stand.2006.2009.BluRay.Remux.mkv', '26.4 GB'); return false;">
+              &#11015; MATROSKA (MKV)
+            </a>
+            <span class="download-size">26.4 GB</span>
+          </li>
+          <li class="download-row">
+            <a href="#dl-mp4" class="download-format" onclick="triggerDownload('X-Men.The.Last.Stand.2006.mp4', '2.1 GB'); return false;">
+              &#11015; MPEG4
+            </a>
+            <span class="download-size">2.1 GB</span>
+          </li>
+          <li class="download-row">
+            <a href="#dl-srt" class="download-format" onclick="triggerDownload('X-Men.The.Last.Stand.2006.en.srt', '114.2 KB'); return false;">
+              &#11015; SUBRIP (SRT)
+            </a>
+            <span class="download-size">114.2 KB</span>
+          </li>
+          <li class="download-row">
+            <a href="#dl-torrent" class="download-format" onclick="triggerDownload('x-men-the-last-stand-2006-2009-blu-ray-remux_archive.torrent', '42.8 KB'); return false;">
+              &#11015; TORRENT
+            </a>
+            <span class="download-size">42.8 KB</span>
+          </li>
+          <li class="download-row">
+            <a href="#dl-tile" class="download-format" onclick="triggerDownload('__ia_thumb.jpg', '48.5 KB'); return false;">
+              &#11015; ITEM TILE
+            </a>
+            <span class="download-size">48.5 KB</span>
+          </li>
+          <li class="download-row">
+            <a href="#dl-xml" class="download-format" onclick="openXmlModal(); return false;">
+              &#11015; XML METADATA
+            </a>
+            <span class="download-size">4.2 KB</span>
+          </li>
+
+          <!-- Extra Files (Hidden until Show All clicked) -->
+          <li class="download-row extra-file" style="display: none;">
+            <a href="#dl-files" class="download-format" onclick="triggerDownload('x-men-the-last-stand-2006-2009-blu-ray-remux_files.xml', '6.1 KB'); return false;">
+              &#11015; FILES XML
+            </a>
+            <span class="download-size">6.1 KB</span>
+          </li>
+          <li class="download-row extra-file" style="display: none;">
+            <a href="#dl-sha" class="download-format" onclick="triggerDownload('checksums.sha256', '1.2 KB'); return false;">
+              &#11015; SHA256 CHECKSUMS
+            </a>
+            <span class="download-size">1.2 KB</span>
+          </li>
+          <li class="download-row extra-file" style="display: none;">
+            <a href="#dl-comm" class="download-format" onclick="triggerDownload('Commentary.Tracks.ac3', '312.0 MB'); return false;">
+              &#11015; COMMENTARY AC3
+            </a>
+            <span class="download-size">312.0 MB</span>
+          </li>
+        </ul>
+
+        <button class="show-all-btn" id="toggleFilesBtn" onclick="toggleAllFiles()">SHOW ALL (14 FILES)</button>
+      </div>
+
+      <div class="sidebar-card">
+        <div class="sidebar-title">In Collections</div>
+        <div class="collection-item">
+          <div class="collection-thumb" style="background: #1f4e78;">HD</div>
+          <div>
+            <div><a href="#col1" onclick="return false;"><strong>Blu-ray Remux Preservation</strong></a></div>
+            <div style="font-size: 12px; color: #666;">1,420 items</div>
+          </div>
+        </div>
+        <div class="collection-item">
+          <div class="collection-thumb" style="background: #5c2d91;">FOX</div>
+          <div>
+            <div><a href="#col2" onclick="return false;"><strong>20th Century Fox Home Video</strong></a></div>
+            <div style="font-size: 12px; color: #666;">842 items</div>
+          </div>
+        </div>
+        <div class="collection-item">
+          <div class="collection-thumb" style="background: #2e7d32;">VID</div>
+          <div>
+            <div><a href="#col3" onclick="return false;"><strong>Community Video</strong></a></div>
+            <div style="font-size: 12px; color: #666;">2,918,405 items</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <div class="sidebar-title">Upload Details</div>
+        <div style="font-size: 12px; color: #555; line-height: 1.7;">
+          <div><strong>Uploaded by:</strong> <a href="#uploader" onclick="return false;">FoxBluRayArchiver</a></div>
+          <div><strong>Release Date:</strong> 2009-04-21</div>
+          <div><strong>Catalog No.:</strong> 2258590 (US Blu-ray)</div>
+          <div><strong>Region Code:</strong> Region A / B / C (Free)</div>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Footer -->
+  <footer class="ia-footer">
+    <div>
+      <a href="#about" onclick="return false;">About</a>
+      <a href="#blog" onclick="return false;">Blog</a>
+      <a href="#projects" onclick="return false;">Projects</a>
+      <a href="#help" onclick="return false;">Help</a>
+      <a href="#donate" onclick="return false;">Donate</a>
+      <a href="#contact" onclick="return false;">Contact</a>
+      <a href="#jobs" onclick="return false;">Jobs</a>
+      <a href="#volunteer" onclick="return false;">Volunteer</a>
+    </div>
+    <p style="margin-top: 8px;">Internet Archive is a non-profit library of millions of free texts, movies, software, music, websites, and more.</p>
+  </footer>
+
+  <!-- XML Metadata Modal -->
+  <div class="modal-backdrop" id="xmlModal" onclick="if(event.target===this) closeXmlModal()">
+    <div class="modal-box">
+      <div class="modal-header">
+        <span>x-men-the-last-stand-2006-2009-blu-ray-remux_meta.xml</span>
+        <button class="modal-close" onclick="closeXmlModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <pre class="mediainfo-pre">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;metadata&gt;
+  &lt;identifier&gt;x-men-the-last-stand-2006-2009-blu-ray-remux&lt;/identifier&gt;
+  &lt;mediatype&gt;movies&lt;/mediatype&gt;
+  &lt;title&gt;X-Men: The Last Stand (2006) 2009 Blu-ray Remux&lt;/title&gt;
+  &lt;creator&gt;20th Century Fox Home Entertainment&lt;/creator&gt;
+  &lt;publisher&gt;20th Century Fox Home Entertainment&lt;/publisher&gt;
+  &lt;date&gt;2009-04-21&lt;/date&gt;
+  &lt;year&gt;2009&lt;/year&gt;
+  &lt;language&gt;eng&lt;/language&gt;
+  &lt;subject&gt;X-Men; 20th Century Fox Home Entertainment; Blu-ray Remux; 2006; 2009-04-21&lt;/subject&gt;
+  &lt;runtime&gt;01:44:06&lt;/runtime&gt;
+  &lt;scanner&gt;Internet Archive HTML5 Uploader 1.7.0&lt;/scanner&gt;
+&lt;/metadata&gt;</pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notification Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // Simulated Video Player State
+    const TOTAL_SECONDS = 6246; // 01:44:06
+    let currentSeconds = 0;
+    let isPlaying = false;
+    let isMuted = false;
+    let timerInterval = null;
+
+    function formatTime(sec) {
+      const h = String(Math.floor(sec / 3600)).padStart(2, '0');
+      const m = String(Math.floor((sec % 3600) / 60)).padStart(2, '0');
+      const s = String(Math.floor(sec % 60)).padStart(2, '0');
+      return `${h}:${m}:${s}`;
+    }
+
+    function updatePlayerUI() {
+      const pct = (currentSeconds / TOTAL_SECONDS) * 100;
+      document.getElementById('timelineProgress').style.width = `${pct}%`;
+      document.getElementById('timeDisplay').textContent = `${formatTime(currentSeconds)} / ${formatTime(TOTAL_SECONDS)}`;
+    }
+
+    function togglePlay() {
+      isPlaying = !isPlaying;
+      const btn = document.getElementById('playPauseBtn');
+      const bigBtn = document.getElementById('bigPlayBtn');
+      const dot = document.getElementById('statusDot');
+      const statusText = document.getElementById('playerStatusText');
+
+      if (isPlaying) {
+        btn.innerHTML = '&#10074;&#10074; Pause';
+        bigBtn.classList.add('hidden');
+        dot.classList.add('playing');
+        statusText.textContent = 'Streaming 1080p AVC Remux • DTS-HD MA 6.1';
+        timerInterval = setInterval(() => {
+          if (currentSeconds < TOTAL_SECONDS) {
+            currentSeconds += 1;
+            updatePlayerUI();
+          } else {
+            togglePlay();
+          }
+        }, 1000);
+      } else {
+        btn.innerHTML = '&#9654; Play';
+        bigBtn.classList.remove('hidden');
+        dot.classList.remove('playing');
+        statusText.textContent = `Paused at ${formatTime(currentSeconds)}`;
+        clearInterval(timerInterval);
+      }
+    }
+
+    function toggleMute() {
+      isMuted = !isMuted;
+      const muteBtn = document.getElementById('muteBtn');
+      muteBtn.innerHTML = isMuted ? '&#128263; Muted' : '&#128266; Audio';
+      showToast(isMuted ? 'Audio muted' : 'DTS-HD Master Audio unmuted');
+    }
+
+    function seekTimeline(event) {
+      const rect = document.getElementById('timelineWrapper').getBoundingClientRect();
+      const clickX = Math.max(0, Math.min(event.clientX - rect.left, rect.width));
+      currentSeconds = Math.floor((clickX / rect.width) * TOTAL_SECONDS);
+      updatePlayerUI();
+      document.getElementById('playerStatusText').textContent = `Seeked to ${formatTime(currentSeconds)}`;
+    }
+
+    function jumpToChapter(secondsVal) {
+      currentSeconds = parseInt(secondsVal, 10);
+      updatePlayerUI();
+      const label = document.getElementById('chapterSelect').selectedOptions[0].text;
+      document.getElementById('playerStatusText').textContent = `Playing ${label}`;
+      if (!isPlaying) togglePlay();
+    }
+
+    function toggleFullscreen() {
+      const frame = document.getElementById('playerFrame');
+      if (!document.fullscreenElement) {
+        frame.requestFullscreen().catch(() => showToast('Fullscreen blocked by browser'));
+      } else {
+        document.exitFullscreen();
+      }
+    }
+
+    // Tabs Switching
+    function switchTab(event, panelId) {
+      document.querySelectorAll('.ia-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      event.target.classList.add('active');
+      document.getElementById(panelId).classList.add('active');
+    }
+
+    // Favorite Toggle
+    let favorited = false;
+    function toggleFavorite() {
+      favorited = !favorited;
+      const btn = document.getElementById('favBtn');
+      const star = document.getElementById('favStar');
+      const countEl = document.getElementById('favCount');
+      let count = parseInt(countEl.textContent, 10);
+
+      if (favorited) {
+        btn.classList.add('active');
+        star.innerHTML = '&#9733;';
+        countEl.textContent = count + 1;
+        showToast('Added to your Internet Archive Favorites');
+      } else {
+        btn.classList.remove('active');
+        star.innerHTML = '&#9734;';
+        countEl.textContent = count - 1;
+        showToast('Removed from Favorites');
+      }
+    }
+
+    // Share Link
+    function copyShareLink() {
+      const url = 'https://archive.org/details/x-men-the-last-stand-2006-2009-blu-ray-remux';
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(url).catch(() => {});
+      }
+      showToast('Copied permalink: ' + url);
+    }
+
+    // Download Simulation
+    function triggerDownload(filename, size) {
+      showToast(`Starting download: ${filename} (${size})`);
+    }
+
+    let allFilesShown = false;
+    function toggleAllFiles() {
+      allFilesShown = !allFilesShown;
+      document.querySelectorAll('.extra-file').forEach(row => {
+        row.style.display = allFilesShown ? 'flex' : 'none';
+      });
+      document.getElementById('toggleFilesBtn').textContent = allFilesShown
+        ? 'SHOW FEWER FILES'
+        : 'SHOW ALL (14 FILES)';
+    }
+
+    // Add Review
+    function submitReview(event) {
+      event.preventDefault();
+      const title = document.getElementById('revTitle').value.trim();
+      const body = document.getElementById('revBody').value.trim();
+      const rating = parseInt(document.getElementById('revStars').value, 10);
+      if (!title || !body) return;
+
+      const starsHtml = '&#9733;'.repeat(rating) + '&#9734;'.repeat(5 - rating);
+      const today = new Date().toLocaleDateString('en-US', { month: 'long', day: '2-digit', year: 'numeric' });
+
+      const item = document.createElement('div');
+      item.className = 'review-item';
+      item.innerHTML = `
+        <div class="review-meta">
+          <span><strong>Reviewer:</strong> <a href="#guest" onclick="return false;">ArchivePatron</a> &mdash; ${today}</span>
+          <span class="stars">${starsHtml}</span>
+        </div>
+        <div class="review-title"></div>
+        <p></p>
+      `;
+      item.querySelector('.review-title').textContent = title;
+      item.querySelector('p').textContent = body;
+
+      document.getElementById('reviewsContainer').prepend(item);
+      const countEl = document.getElementById('reviewCount');
+      countEl.textContent = parseInt(countEl.textContent, 10) + 1;
+
+      event.target.reset();
+      showToast('Review posted to item page');
+    }
+
+    // Search Bar
+    function handleSearch(event) {
+      event.preventDefault();
+      const q = document.getElementById('iaSearchInput').value.trim();
+      showToast(q ? `Searching archive.org for "${q}"...` : 'Enter a search query');
+    }
+
+    // Modal & Toast
+    function openXmlModal() {
+      document.getElementById('xmlModal').classList.add('open');
+    }
+
+    function closeXmlModal() {
+      document.getElementById('xmlModal').classList.remove('open');
+    }
+
+    let toastTimeout = null;
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.classList.add('show');
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+  </script>
+</body>
+</html>
