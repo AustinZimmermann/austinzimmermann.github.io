@@ -1,0 +1,1639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BIONICLE: The Legend Reborn (2009 DVD ISO) : Universal Studios Home Entertainment : Free Download, Borrow, and Streaming : Internet Archive</title>
+  <style>
+    :root {
+      --ia-dark: #222222;
+      --ia-darker: #111111;
+      --ia-bg: #f4f4f4;
+      --ia-card: #ffffff;
+      --ia-border: #dddddd;
+      --ia-text: #2c2c2c;
+      --ia-muted: #666666;
+      --ia-blue: #28649e;
+      --ia-blue-hover: #1b4875;
+      --ia-accent: #d9534f;
+      --bara-gold: #f0b43c;
+      --bara-amber: #c96e1c;
+      --bara-shadow: #17100a;
+      --ignika-cyan: #5ce1e6;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      background-color: var(--ia-bg);
+      color: var(--ia-text);
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    a {
+      color: var(--ia-blue);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Archive.org Global Navbar */
+    .ia-navbar {
+      background-color: var(--ia-dark);
+      color: #fff;
+      border-bottom: 1px solid #000;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .ia-nav-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .ia-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #fff;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      font-size: 15px;
+    }
+
+    .ia-brand:hover {
+      text-decoration: none;
+      opacity: 0.9;
+    }
+
+    .ia-media-links {
+      display: flex;
+      gap: 14px;
+      list-style: none;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+
+    .ia-media-links li a {
+      color: #cccccc;
+      padding: 4px 6px;
+      border-radius: 3px;
+      transition: color 0.15s, background 0.15s;
+    }
+
+    .ia-media-links li a.active,
+    .ia-media-links li a:hover {
+      color: #ffffff;
+      background: #3a3a3a;
+      text-decoration: none;
+    }
+
+    .ia-search-box {
+      display: flex;
+      align-items: center;
+      background: #fff;
+      border-radius: 3px;
+      overflow: hidden;
+      width: 260px;
+    }
+
+    .ia-search-box input {
+      border: none;
+      padding: 6px 10px;
+      font-size: 13px;
+      width: 100%;
+      outline: none;
+      color: #222;
+    }
+
+    .ia-search-box button {
+      background: #444;
+      color: #fff;
+      border: none;
+      padding: 6px 12px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .ia-search-box button:hover {
+      background: #555;
+    }
+
+    /* Theater Section */
+    .theater-wrapper {
+      background: #0d0d0d;
+      border-bottom: 1px solid #2b2b2b;
+      padding: 16px 16px 22px;
+      color: #eee;
+    }
+
+    .theater-container {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .theater-tabs {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .theater-tab {
+      background: #242424;
+      color: #ccc;
+      border: 1px solid #3a3a3a;
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .theater-tab:hover {
+      background: #333;
+      color: #fff;
+    }
+
+    .theater-tab.active {
+      background: var(--bara-amber);
+      color: #fff;
+      border-color: var(--bara-gold);
+    }
+
+    /* Simulated DVD Screen (16:9 Pure HTML/CSS/SVG - Zero Canvas) */
+    .dvd-viewport {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      max-height: 540px;
+      background: radial-gradient(circle at 50% 35%, #4a280e 0%, #1d1007 65%, #090502 100%);
+      border: 2px solid #2f2f2f;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.85);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .dvd-view {
+      display: none;
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .dvd-view.active {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* DVD Menu Screen */
+    .dvd-menu-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 72% 45%, rgba(240, 180, 60, 0.25) 0%, transparent 55%),
+        linear-gradient(180deg, rgba(16, 10, 5, 0.3) 0%, rgba(16, 10, 5, 0.85) 100%);
+      pointer-events: none;
+    }
+
+    .bara-dunes {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 36%;
+      background: linear-gradient(180deg, #7c4216 0%, #3d1e08 60%, #180b03 100%);
+      clip-path: polygon(0 45%, 22% 28%, 48% 52%, 75% 22%, 100% 40%, 100% 100%, 0 100%);
+      opacity: 0.75;
+      pointer-events: none;
+    }
+
+    .dvd-menu-layout {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      height: 100%;
+      padding: 28px 36px;
+      align-items: center;
+    }
+
+    .dvd-title-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .dvd-franchise-tag {
+      font-size: 13px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--bara-gold);
+      font-weight: 700;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
+    }
+
+    .dvd-main-logo {
+      font-size: clamp(26px, 3.6vw, 44px);
+      font-weight: 900;
+      letter-spacing: 2px;
+      line-height: 1.05;
+      text-transform: uppercase;
+      background: linear-gradient(180deg, #fff5d6 0%, #f0b43c 55%, #a85610 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.9));
+    }
+
+    .dvd-nav-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 10px;
+      max-width: 280px;
+    }
+
+    .dvd-btn {
+      background: linear-gradient(90deg, rgba(201, 110, 28, 0.35) 0%, rgba(20, 12, 6, 0.75) 100%);
+      border: 1px solid rgba(240, 180, 60, 0.45);
+      border-left: 4px solid var(--bara-gold);
+      color: #fce8c0;
+      padding: 10px 16px;
+      text-align: left;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.18s ease;
+    }
+
+    .dvd-btn:hover,
+    .dvd-btn.selected {
+      background: linear-gradient(90deg, rgba(240, 180, 60, 0.85) 0%, rgba(168, 86, 16, 0.85) 100%);
+      color: #120902;
+      transform: translateX(6px);
+      box-shadow: 0 0 16px rgba(240, 180, 60, 0.5);
+    }
+
+    .ignika-showcase {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .ignika-svg {
+      width: min(230px, 24vw);
+      height: auto;
+      filter: drop-shadow(0 0 22px rgba(240, 180, 60, 0.65));
+      animation: floatMask 4.5s ease-in-out infinite;
+    }
+
+    @keyframes floatMask {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-9px); }
+    }
+
+    .dvd-subpanel {
+      position: absolute;
+      inset: 22px 30px;
+      background: rgba(14, 9, 5, 0.94);
+      border: 1px solid var(--bara-gold);
+      border-radius: 4px;
+      padding: 20px 24px;
+      z-index: 10;
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .dvd-subpanel.open {
+      display: flex;
+    }
+
+    .subpanel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(240, 180, 60, 0.35);
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+    }
+
+    .subpanel-header h3 {
+      color: var(--bara-gold);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-size: 16px;
+    }
+
+    .chapter-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 10px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    .chapter-card {
+      background: #23160c;
+      border: 1px solid #4d3118;
+      padding: 10px 12px;
+      border-radius: 3px;
+      cursor: pointer;
+      text-align: left;
+      color: #f4dfc0;
+      transition: border-color 0.15s, background 0.15s;
+    }
+
+    .chapter-card:hover {
+      border-color: var(--bara-gold);
+      background: #332011;
+    }
+
+    .chapter-num {
+      font-size: 11px;
+      color: var(--bara-gold);
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .chapter-title {
+      font-size: 13px;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    .chapter-time {
+      font-size: 11px;
+      color: #aaa;
+      margin-top: 4px;
+    }
+
+    /* Playback Screen */
+    .playback-stage {
+      flex: 1;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      text-align: center;
+      background: radial-gradient(circle at center, #331e0d 0%, #0b0704 100%);
+    }
+
+    .scene-visual-badge {
+      background: rgba(240, 180, 60, 0.15);
+      border: 1px solid rgba(240, 180, 60, 0.5);
+      color: var(--bara-gold);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 11px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .scene-heading {
+      font-size: 24px;
+      color: #fff;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .scene-desc {
+      max-width: 620px;
+      color: #d6c5b3;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .subtitle-bar {
+      position: absolute;
+      bottom: 58px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.82);
+      color: #fff;
+      padding: 6px 16px;
+      border-radius: 3px;
+      font-size: 15px;
+      font-family: "Courier New", Courier, monospace;
+      max-width: 85%;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .player-controls {
+      background: #141414;
+      border-top: 1px solid #2b2b2b;
+      padding: 8px 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 5;
+    }
+
+    .ctrl-btn {
+      background: #2b2b2b;
+      color: #fff;
+      border: 1px solid #444;
+      padding: 5px 10px;
+      border-radius: 3px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .ctrl-btn:hover {
+      background: #3d3d3d;
+    }
+
+    .scrubber {
+      flex: 1;
+      accent-color: var(--bara-gold);
+      cursor: pointer;
+    }
+
+    .timecode {
+      font-family: monospace;
+      font-size: 12px;
+      color: #bbb;
+      min-width: 105px;
+      text-align: right;
+    }
+
+    /* ISO Directory View */
+    .iso-inspector {
+      padding: 20px 24px;
+      overflow-y: auto;
+      background: #121417;
+      color: #d8dee9;
+      font-family: "Consolas", "Monaco", monospace;
+      font-size: 13px;
+      height: 100%;
+    }
+
+    .iso-tree-header {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #2e3440;
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+      color: #88c0d0;
+    }
+
+    .iso-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .iso-table th,
+    .iso-table td {
+      text-align: left;
+      padding: 6px 10px;
+      border-bottom: 1px solid #232831;
+    }
+
+    .iso-table th {
+      color: #ebcb8b;
+      font-size: 12px;
+    }
+
+    /* Cover Art & Disc Scan View */
+    .disc-scan-view {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 36px;
+      padding: 24px;
+      height: 100%;
+      background: #181818;
+      flex-wrap: wrap;
+      overflow-y: auto;
+    }
+
+    .dvd-case-mockup {
+      width: 220px;
+      height: 310px;
+      background: linear-gradient(155deg, #2b180a 0%, #7d3e11 45%, #1c0f06 100%);
+      border: 3px solid #111;
+      border-radius: 4px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 14px;
+      text-align: center;
+      position: relative;
+    }
+
+    .dvd-case-top-banner {
+      background: #0f2544;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      padding: 4px;
+      border-radius: 2px;
+      text-transform: uppercase;
+    }
+
+    .dvd-disc-mockup {
+      width: 230px;
+      height: 230px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #181818 0%, #181818 16%, #cf8428 17%, #52290a 58%, #e8b04b 92%, #222 100%);
+      border: 4px solid #3a3a3a;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 16px;
+      text-align: center;
+      position: relative;
+    }
+
+    .disc-hub {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #0d0d0d;
+      border: 4px solid #888;
+    }
+
+    /* Main Archive.org Content Area */
+    .ia-main-container {
+      max-width: 1120px;
+      margin: 22px auto 48px;
+      padding: 0 16px;
+      display: grid;
+      grid-template-columns: 1fr 310px;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .ia-card {
+      background: var(--ia-card);
+      border: 1px solid var(--ia-border);
+      border-radius: 3px;
+      padding: 22px 24px;
+      margin-bottom: 20px;
+    }
+
+    .item-header-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .media-icon-badge {
+      background: #2b6dad;
+      color: #fff;
+      width: 42px;
+      height: 42px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-weight: bold;
+      font-size: 12px;
+    }
+
+    .item-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: #1c1c1c;
+      line-height: 1.25;
+    }
+
+    .item-byline {
+      margin-top: 4px;
+      font-size: 14px;
+      color: var(--ia-muted);
+    }
+
+    .item-byline span {
+      color: var(--ia-text);
+      font-weight: 600;
+    }
+
+    .item-pub-date {
+      display: inline-block;
+      margin-top: 6px;
+      font-size: 13px;
+      color: #444;
+      background: #efefef;
+      padding: 2px 8px;
+      border-radius: 3px;
+    }
+
+    .item-description {
+      margin-top: 16px;
+      font-size: 14px;
+      color: #2b2b2b;
+      line-height: 1.65;
+    }
+
+    .item-description p + p {
+      margin-top: 12px;
+    }
+
+    /* Metadata Key-Value Table */
+    .meta-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 18px;
+      font-size: 13px;
+    }
+
+    .meta-table th {
+      width: 175px;
+      text-align: left;
+      padding: 7px 10px;
+      color: var(--ia-muted);
+      font-weight: 600;
+      vertical-align: top;
+      border-top: 1px solid #eeeeee;
+    }
+
+    .meta-table td {
+      padding: 7px 10px;
+      color: #222;
+      border-top: 1px solid #eeeeee;
+    }
+
+    .topic-tag {
+      display: inline-block;
+      background: #eef4fa;
+      border: 1px solid #c9ddef;
+      color: var(--ia-blue);
+      padding: 2px 8px;
+      border-radius: 3px;
+      font-size: 12px;
+      margin: 2px 4px 2px 0;
+    }
+
+    /* Sidebar Download Options */
+    .sidebar-box {
+      background: var(--ia-card);
+      border: 1px solid var(--ia-border);
+      border-radius: 3px;
+      padding: 16px 18px;
+      margin-bottom: 18px;
+    }
+
+    .sidebar-heading {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      color: #444;
+      border-bottom: 1px solid #e5e5e5;
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .download-list {
+      list-style: none;
+    }
+
+    .download-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 7px 6px;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: 13px;
+      cursor: pointer;
+      transition: background 0.12s;
+    }
+
+    .download-item:hover {
+      background: #f5f9fd;
+    }
+
+    .dl-format {
+      font-weight: 700;
+      color: var(--ia-blue);
+    }
+
+    .dl-size {
+      font-size: 12px;
+      color: var(--ia-muted);
+      font-family: monospace;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      text-align: center;
+      gap: 8px;
+    }
+
+    .stat-cell {
+      background: #f9f9f9;
+      border: 1px solid #ececec;
+      padding: 10px 4px;
+      border-radius: 3px;
+    }
+
+    .stat-num {
+      font-size: 16px;
+      font-weight: 700;
+      color: #222;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: var(--ia-muted);
+      text-transform: uppercase;
+    }
+
+    /* Reviews Section */
+    .reviews-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .stars {
+      color: #e69d00;
+      letter-spacing: 1px;
+    }
+
+    .review-entry {
+      border-top: 1px solid #ececec;
+      padding: 14px 0;
+    }
+
+    .review-meta {
+      font-size: 12px;
+      color: var(--ia-muted);
+      margin-bottom: 6px;
+    }
+
+    .review-title {
+      font-weight: 700;
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .review-form {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid #e0e0e0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .review-form input,
+    .review-form select,
+    .review-form textarea {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      font-family: inherit;
+      font-size: 13px;
+    }
+
+    .ia-primary-btn {
+      background: var(--ia-blue);
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 3px;
+      font-weight: 600;
+      cursor: pointer;
+      align-self: flex-start;
+    }
+
+    .ia-primary-btn:hover {
+      background: var(--ia-blue-hover);
+    }
+
+    /* Toast Notification */
+    .ia-toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #222;
+      color: #fff;
+      border-left: 4px solid var(--bara-gold);
+      padding: 12px 18px;
+      border-radius: 4px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+      font-size: 13px;
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(12px);
+      transition: all 0.25s ease;
+    }
+
+    .ia-toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 860px) {
+      .ia-main-container {
+        grid-template-columns: 1fr;
+      }
+      .dvd-menu-layout {
+        grid-template-columns: 1fr;
+        padding: 18px;
+      }
+      .ignika-showcase {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Internet Archive Header -->
+  <header class="ia-navbar">
+    <div class="ia-nav-inner">
+      <a href="#top" class="ia-brand" onclick="showToast('Internet Archive — Universal Access to All Knowledge'); return false;">
+        <!-- Archive Temple SVG Icon -->
+        <svg width="26" height="26" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <polygon points="16,2 30,9 2,9" fill="#ffffff"/>
+          <rect x="4" y="10" width="24" height="2" fill="#cccccc"/>
+          <rect x="6" y="13" width="3" height="12" fill="#ffffff"/>
+          <rect x="12" y="13" width="3" height="12" fill="#ffffff"/>
+          <rect x="17" y="13" width="3" height="12" fill="#ffffff"/>
+          <rect x="23" y="13" width="3" height="12" fill="#ffffff"/>
+          <rect x="3" y="26" width="26" height="3" fill="#ffffff"/>
+        </svg>
+        <span>INTERNET ARCHIVE</span>
+      </a>
+
+      <ul class="ia-media-links">
+        <li><a href="#web" onclick="return false;">Web</a></li>
+        <li><a href="#texts" onclick="return false;">Texts</a></li>
+        <li><a href="#video" class="active" onclick="return false;">Video</a></li>
+        <li><a href="#audio" onclick="return false;">Audio</a></li>
+        <li><a href="#software" onclick="return false;">Software</a></li>
+        <li><a href="#images" onclick="return false;">Images</a></li>
+      </ul>
+
+      <form class="ia-search-box" onsubmit="event.preventDefault(); showToast('Searching Archive.org for: ' + this.q.value);">
+        <input type="text" name="q" placeholder="Search" aria-label="Search Archive.org" />
+        <button type="submit">GO</button>
+      </form>
+    </div>
+  </header>
+
+  <!-- Theater Media Player -->
+  <section class="theater-wrapper">
+    <div class="theater-container">
+      <div class="theater-tabs">
+        <button class="theater-tab active" data-tab="dvd-menu" onclick="switchTheaterTab('dvd-menu', this)">DVD Main Menu (Interactive)</button>
+        <button class="theater-tab" data-tab="dvd-player" onclick="switchTheaterTab('dvd-player', this)">Feature Presentation Player</button>
+        <button class="theater-tab" data-tab="iso-files" onclick="switchTheaterTab('iso-files', this)">ISO Disc Structure (VIDEO_TS)</button>
+        <button class="theater-tab" data-tab="disc-art" onclick="switchTheaterTab('disc-art', this)">DVD Sleeve &amp; Disc Label</button>
+      </div>
+
+      <div class="dvd-viewport">
+        <!-- TAB 1: Interactive DVD Menu -->
+        <div id="view-dvd-menu" class="dvd-view active">
+          <div class="dvd-menu-bg"></div>
+          <div class="bara-dunes"></div>
+
+          <div class="dvd-menu-layout">
+            <div class="dvd-title-stack">
+              <div class="dvd-franchise-tag">LEGO&reg; BIONICLE&reg;</div>
+              <h2 class="dvd-main-logo">THE LEGEND<br/>REBORN</h2>
+              <div style="font-size: 12px; color: #d8b589; letter-spacing: 1px;">UNIVERSAL STUDIOS HOME ENTERTAINMENT &bull; 2009 DVD</div>
+
+              <div class="dvd-nav-buttons">
+                <button class="dvd-btn" onclick="playChapter(0)">
+                  <span>&#9654; Play Movie</span>
+                  <span>70m</span>
+                </button>
+                <button class="dvd-btn" onclick="openSubpanel('chapters')">
+                  <span>&#9776; Scene Selection</span>
+                  <span>8</span>
+                </button>
+                <button class="dvd-btn" onclick="openSubpanel('bonus')">
+                  <span>&#9733; Bonus Features</span>
+                  <span>4</span>
+                </button>
+                <button class="dvd-btn" onclick="openSubpanel('setup')">
+                  <span>&#9881; Audio &amp; Subtitles</span>
+                  <span id="setup-badge">EN 5.1</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Stylized Kanohi Ignika (Mask of Life) Vector Emblem -->
+            <div class="ignika-showcase">
+              <svg class="ignika-svg" viewBox="0 0 220 260" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Kanohi Ignika Mask of Life Emblem">
+                <defs>
+                  <linearGradient id="goldGrad" x1="0" y1="0" x2="220" y2="260" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#fff0b3"/>
+                    <stop offset="45%" stop-color="#e5a229"/>
+                    <stop offset="100%" stop-color="#7c3f08"/>
+                  </linearGradient>
+                  <linearGradient id="darkCrest" x1="110" y1="20" x2="110" y2="240" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#3b210b"/>
+                    <stop offset="100%" stop-color="#170b03"/>
+                  </linearGradient>
+                </defs>
+                <!-- Outer Crown Fin -->
+                <polygon points="110,8 134,42 126,64 94,64 86,42" fill="url(#goldGrad)" stroke="#ffdf85" stroke-width="2"/>
+                <!-- Upper Brow & Cheek Plates -->
+                <path d="M52 68 L110 46 L168 68 L184 134 L156 212 L110 246 L64 212 L36 134 Z" fill="url(#goldGrad)" stroke="#ffe599" stroke-width="2.5"/>
+                <!-- Inner Recessed Core -->
+                <path d="M74 88 L110 72 L146 88 L154 140 L132 198 L110 218 L88 198 L66 140 Z" fill="url(#darkCrest)"/>
+                <!-- Glowing Eyes -->
+                <polygon points="64,114 98,122 92,135 60,126" fill="#5ce1e6"/>
+                <polygon points="156,114 122,122 128,135 160,126" fill="#5ce1e6"/>
+                <!-- Central Nose Bridge & Rune -->
+                <polygon points="110,82 118,150 110,164 102,150" fill="url(#goldGrad)"/>
+                <!-- Mouth Grille -->
+                <rect x="88" y="176" width="44" height="6" rx="2" fill="#e5a229"/>
+                <rect x="93" y="188" width="34" height="5" rx="2" fill="#c98018"/>
+                <rect x="98" y="199" width="24" height="4" rx="2" fill="#9c5c0c"/>
+              </svg>
+              <div style="font-size: 11px; color: #e8c38e; letter-spacing: 1.5px; margin-top: 6px;">KANOHI IGNIKA &bull; BARA MAGNA</div>
+            </div>
+          </div>
+
+          <!-- DVD Subpanel Overlay (Chapters / Bonus / Setup) -->
+          <div id="dvd-subpanel" class="dvd-subpanel">
+            <div class="subpanel-header">
+              <h3 id="subpanel-title">Scene Selection</h3>
+              <button class="ctrl-btn" onclick="closeSubpanel()">&#8592; Main Menu</button>
+            </div>
+            <div id="subpanel-body" class="chapter-grid"></div>
+          </div>
+        </div>
+
+        <!-- TAB 2: Feature Presentation Player -->
+        <div id="view-dvd-player" class="dvd-view">
+          <div class="playback-stage">
+            <div class="scene-visual-badge" id="player-chapter-badge">CHAPTER 1 OF 8 &bull; TITLE 01</div>
+            <h3 class="scene-heading" id="player-scene-title">Exiled to Bara Magna</h3>
+            <p class="scene-desc" id="player-scene-desc">
+              Cast out from his colossal body by the treacherous Makuta Teridax, the Great Spirit Mata Nui's consciousness hurtles through space inside the Mask of Life, crash-landing in the scorching desert wasteland of Bara Magna.
+            </p>
+            <div class="subtitle-bar" id="subtitle-display">[ENGLISH SDH] MATA NUI: Where am I? What has happened to my world?</div>
+          </div>
+
+          <div class="player-controls">
+            <button class="ctrl-btn" id="play-pause-btn" onclick="togglePlay()">&#10074;&#10074; Pause</button>
+            <button class="ctrl-btn" onclick="prevChapter()">&#9198; Prev</button>
+            <button class="ctrl-btn" onclick="nextChapter()">&#9197; Next</button>
+            <input type="range" id="timeline-scrubber" class="scrubber" min="0" max="4218" value="120" oninput="scrubTime(this.value)" />
+            <div class="timecode" id="timecode-display">00:02:00 / 01:10:18</div>
+          </div>
+        </div>
+
+        <!-- TAB 3: ISO Disc Structure -->
+        <div id="view-iso-files" class="dvd-view">
+          <div class="iso-inspector">
+            <div class="iso-tree-header">
+              <span>VOLUME_ID: BIONICLE_THE_LEGEND_REBORN (UDF / ISO-9660)</span>
+              <span>TOTAL DISC SIZE: 4,681,891,840 bytes (4.36 GB)</span>
+            </div>
+            <table class="iso-table">
+              <thead>
+                <tr>
+                  <th>Path / Filename</th>
+                  <th>Type</th>
+                  <th>Size</th>
+                  <th>Modified Timestamp</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>/AUDIO_TS/</td><td>Directory</td><td>0 B</td><td>2009-08-19 14:22:00</td></tr>
+                <tr><td>/VIDEO_TS/VIDEO_TS.IFO</td><td>DVD Navigation Info</td><td>18 KB</td><td>2009-08-19 14:22:04</td></tr>
+                <tr><td>/VIDEO_TS/VIDEO_TS.BUP</td><td>Navigation Backup</td><td>18 KB</td><td>2009-08-19 14:22:04</td></tr>
+                <tr><td>/VIDEO_TS/VIDEO_TS.VOB</td><td>First-Play FBI / Universal Logo</td><td>48.4 MB</td><td>2009-08-19 14:22:08</td></tr>
+                <tr><td>/VIDEO_TS/VTS_01_0.IFO</td><td>Main Feature Program Chain</td><td>86 KB</td><td>2009-08-19 14:22:10</td></tr>
+                <tr><td>/VIDEO_TS/VTS_01_0.VOB</td><td>Interactive Menus (16:9 Anamorphic)</td><td>214.6 MB</td><td>2009-08-19 14:22:16</td></tr>
+                <tr><td>/VIDEO_TS/VTS_01_1.VOB</td><td>Main Feature MPEG-2 Video + AC3</td><td>1.00 GB</td><td>2009-08-19 14:23:02</td></tr>
+                <tr><td>/VIDEO_TS/VTS_01_2.VOB</td><td>Main Feature MPEG-2 Video + AC3</td><td>1.00 GB</td><td>2009-08-19 14:23:49</td></tr>
+                <tr><td>/VIDEO_TS/VTS_01_3.VOB</td><td>Main Feature MPEG-2 Video + AC3</td><td>1.00 GB</td><td>2009-08-19 14:24:35</td></tr>
+                <tr><td>/VIDEO_TS/VTS_01_4.VOB</td><td>Main Feature + End Credits</td><td>684.2 MB</td><td>2009-08-19 14:25:12</td></tr>
+                <tr><td>/VIDEO_TS/VTS_02_0.IFO</td><td>Bonus Features Title Set</td><td>32 KB</td><td>2009-08-19 14:25:15</td></tr>
+                <tr><td>/VIDEO_TS/VTS_02_1.VOB</td><td>Bonus: Metus's Story &amp; Extended Ending</td><td>418.5 MB</td><td>2009-08-19 14:25:44</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- TAB 4: DVD Sleeve & Disc Label -->
+        <div id="view-disc-art" class="dvd-view">
+          <div class="disc-scan-view">
+            <div class="dvd-case-mockup">
+              <div class="dvd-case-top-banner">DVD VIDEO &bull; WIDESCREEN</div>
+              <div>
+                <div style="font-size: 11px; letter-spacing: 3px; color: #f0b43c; font-weight: 700;">LEGO&reg; BIONICLE&reg;</div>
+                <div style="font-size: 20px; font-weight: 900; color: #fff; line-height: 1.1; margin-top: 4px;">THE LEGEND<br/>REBORN</div>
+              </div>
+              <div style="font-size: 11px; color: #f4d6a8; font-style: italic;">"A fallen hero rises in a savage new world."</div>
+              <div style="font-size: 10px; color: #ccc; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 6px;">
+                UNIVERSAL STUDIOS HOME ENTERTAINMENT<br/>CAT# 61108585 &bull; NTSC REGION 1
+              </div>
+            </div>
+
+            <div class="dvd-disc-mockup">
+              <div style="font-size: 10px; font-weight: 800; color: #fff; letter-spacing: 1px; text-shadow: 0 1px 3px #000;">
+                BIONICLE: THE LEGEND REBORN
+              </div>
+              <div class="disc-hub"></div>
+              <div style="font-size: 9px; color: #f5e1c0; line-height: 1.3; text-shadow: 0 1px 2px #000;">
+                &copy; 2009 The LEGO Group.<br/>
+                Universal Studios Home Entertainment.<br/>
+                DVD-5 &bull; 70 Mins &bull; Dolby Digital 5.1
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Details + Sidebar -->
+  <main class="ia-main-container">
+    <div>
+      <!-- Item Metadata Card -->
+      <article class="ia-card">
+        <div class="item-header-top">
+          <div class="media-icon-badge" title="Movies / Video">DVD</div>
+          <div>
+            <h1 class="item-title">BIONICLE: The Legend Reborn (2009 DVD ISO)</h1>
+            <div class="item-byline">
+              by <a href="#creator" onclick="return false;"><span>Universal Studios Home Entertainment</span></a>; <a href="#creator2" onclick="return false;"><span>Threshold Animation Studios</span></a>; <a href="#creator3" onclick="return false;"><span>The LEGO Group</span></a>
+            </div>
+            <div class="item-pub-date">Publication date <strong>2009-09-15</strong></div>
+          </div>
+        </div>
+
+        <div class="item-description">
+          <p>
+            Full bit-for-bit DVD-5 ISO preservation of the 2009 direct-to-video animated feature film <em><strong>BIONICLE: The Legend Reborn</strong></em>, released on September 15, 2009 by Universal Studios Home Entertainment.
+          </p>
+          <p>
+            <strong>Synopsis:</strong> Once the supreme ruler of his universe, the Great Spirit Mata Nui (voiced by Michael Dorn) is betrayed and cast out by Makuta Teridax. Trapped inside the legendary Kanohi Ignika (Mask of Life), Mata Nui crash-lands on Bara Magna—a harsh, sun-scorched desert wasteland where scattered Agori villagers survive through ritual arena battles fought by Glatorian warriors. Befriended by the Scarabax beetle Click and veteran Glatorian Ackar (Jim Cummings) and Kiina (Marla Sokoloff), Mata Nui must unite the rival tribes against the invading Skrall army and the treacherous Bone Hunters.
+          </p>
+          <p>
+            <strong>Disc Notes:</strong> Preserved with original DVD-Video menus, chapter index, English/Spanish/French Dolby Digital 5.1 audio tracks, closed captions, and all on-disc bonus features (<em>Metus's Story</em>, <em>Extended Ending</em>, and character profiles).
+          </p>
+        </div>
+
+        <table class="meta-table">
+          <tbody>
+            <tr>
+              <th>Topics</th>
+              <td>
+                <span class="topic-tag">BIONICLE</span>
+                <span class="topic-tag">BIONICLE: The Legend Reborn</span>
+                <span class="topic-tag">Mata Nui</span>
+                <span class="topic-tag">Bara Magna</span>
+                <span class="topic-tag">LEGO</span>
+                <span class="topic-tag">Universal Studios Home Entertainment</span>
+                <span class="topic-tag">DVD ISO</span>
+                <span class="topic-tag">2009 Animation</span>
+              </td>
+            </tr>
+            <tr>
+              <th>Collection</th>
+              <td><a href="#collection" onclick="return false;">opensource_movies</a>; <a href="#community" onclick="return false;">community</a></td>
+            </tr>
+            <tr>
+              <th>Language</th>
+              <td>English, Spanish, French</td>
+            </tr>
+            <tr>
+              <th>Director / Writer</th>
+              <td>Mark Baldo (Director); Sean Catherine Derek (Screenplay)</td>
+            </tr>
+            <tr>
+              <th>Cast</th>
+              <td>Michael Dorn, Jim Cummings, Marla Sokoloff, Jeff Bennett, David Leisure, Armin Shimerman, Dee Bradley Baker, Mark Famiglietti</td>
+            </tr>
+            <tr>
+              <th>Disc Standard</th>
+              <td>NTSC, Region 1, Dual-Layer / DVD-5 ISO, 1.78:1 Anamorphic Widescreen</td>
+            </tr>
+            <tr>
+              <th>Runtime</th>
+              <td>01:10:18 (70 minutes)</td>
+            </tr>
+            <tr>
+              <th>Catalog Number</th>
+              <td>61108585 (UPC: 025192043864)</td>
+            </tr>
+            <tr>
+              <th>Identifier</th>
+              <td><code>bionicle-the-legend-reborn-2009-dvd-iso</code></td>
+            </tr>
+            <tr>
+              <th>Scanner</th>
+              <td>Internet Archive HTML5 Uploader 1.7.0</td>
+            </tr>
+          </tbody>
+        </table>
+      </article>
+
+      <!-- Community Reviews Card -->
+      <section class="ia-card">
+        <div class="reviews-header">
+          <div>
+            <h2 style="font-size: 18px;">Reviews</h2>
+            <div style="font-size: 13px; color: var(--ia-muted);">
+              <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 4.8 out of 5 (<span id="review-count">3</span> reviews)
+            </div>
+          </div>
+        </div>
+
+        <div id="reviews-list">
+          <div class="review-entry">
+            <div class="review-meta">
+              <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> &bull; Reviewer: <strong>ToaIgnika_2009</strong> &bull; favoritefavoritefavoritefavoritefavorite
+            </div>
+            <div class="review-title">Complete untouched DVD ISO with menus intact!</div>
+            <p>Verified the SHA-1 checksum against my physical 2009 Universal Region 1 pressing. All VOB files, 5.1 AC3 surround tracks, and the "Metus's Story" bonus feature play cleanly in VLC and Kodi.</p>
+          </div>
+
+          <div class="review-entry">
+            <div class="review-meta">
+              <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> &bull; Reviewer: <strong>BaraMagnaArchivist</strong>
+            </div>
+            <div class="review-title">Michael Dorn is iconic as Mata Nui</div>
+            <p>Great preservation of the fourth BIONICLE film. Seeing the transition from Miramax's 2003–2005 trilogy to Threshold Animation's Bara Magna aesthetic in native 480p anamorphic widescreen is awesome.</p>
+          </div>
+
+          <div class="review-entry">
+            <div class="review-meta">
+              <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span> &bull; Reviewer: <strong>OpticalMediaPreserver</strong>
+            </div>
+            <div class="review-title">Clean UDF bridge dump</div>
+            <p>No read errors or CSS encryption artifacts. Includes the Extended Ending bonus feature showing Berix holding the Skrall shield with the hidden map.</p>
+          </div>
+        </div>
+
+        <form class="review-form" onsubmit="submitReview(event)">
+          <strong style="font-size: 14px;">Add a Review</strong>
+          <div style="display: grid; grid-template-columns: 1fr 160px; gap: 10px;">
+            <input type="text" id="rev-name" placeholder="Your Archive.org username" required />
+            <select id="rev-stars">
+              <option value="5">&#9733;&#9733;&#9733;&#9733;&#9733; (5/5)</option>
+              <option value="4">&#9733;&#9733;&#9733;&#9733;&#9734; (4/5)</option>
+              <option value="3">&#9733;&#9733;&#9733;&#9734;&#9734; (3/5)</option>
+              <option value="2">&#9733;&#9733;&#9734;&#9734;&#9734; (2/5)</option>
+              <option value="1">&#9733;&#9734;&#9734;&#9734;&#9734; (1/5)</option>
+            </select>
+          </div>
+          <input type="text" id="rev-title" placeholder="Review headline" required />
+          <textarea id="rev-body" rows="3" placeholder="Share notes on playback, disc structure, or the film..." required></textarea>
+          <button type="submit" class="ia-primary-btn">Post Review</button>
+        </form>
+      </section>
+    </div>
+
+    <!-- Right Sidebar: Download Options & Stats -->
+    <aside>
+      <div class="sidebar-box">
+        <div class="sidebar-heading">
+          <span>Download Options</span>
+          <span style="font-size: 11px; color: #777;">7 FILES</span>
+        </div>
+        <ul class="download-list">
+          <li class="download-item" onclick="downloadManifest('ISO')">
+            <span class="dl-format">ISO IMAGE</span>
+            <span class="dl-size">4.4G</span>
+          </li>
+          <li class="download-item" onclick="downloadManifest('TORRENT')">
+            <span class="dl-format">TORRENT</span>
+            <span class="dl-size">34.2K</span>
+          </li>
+          <li class="download-item" onclick="downloadManifest('MPEG4')">
+            <span class="dl-format">MPEG4 (DERIVATIVE)</span>
+            <span class="dl-size">842.1M</span>
+          </li>
+          <li class="download-item" onclick="downloadManifest('SUBRIP')">
+            <span class="dl-format">SUBRIP (.SRT)</span>
+            <span class="dl-size">68.4K</span>
+          </li>
+          <li class="download-item" onclick="downloadManifest('ITEM TILE')">
+            <span class="dl-format">JPEG COVER SCAN</span>
+            <span class="dl-size">1.2M</span>
+          </li>
+          <li class="download-item" onclick="downloadManifest('XML')">
+            <span class="dl-format">ARCHIVE METADATA (.XML)</span>
+            <span class="dl-size">4.8K</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-box">
+        <div class="sidebar-heading"><span>Item Statistics</span></div>
+        <div class="stats-grid">
+          <div class="stat-cell">
+            <div class="stat-num" id="view-counter">14,892</div>
+            <div class="stat-label">Views</div>
+          </div>
+          <div class="stat-cell">
+            <div class="stat-num">428</div>
+            <div class="stat-label">Favorites</div>
+          </div>
+          <div class="stat-cell">
+            <div class="stat-num">3</div>
+            <div class="stat-label">Reviews</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-box">
+        <div class="sidebar-heading"><span>Similar Items</span></div>
+        <ul style="list-style: none; font-size: 13px; display: flex; flex-direction: column; gap: 10px;">
+          <li>
+            <a href="#sim1" onclick="showToast('Item: BIONICLE: Mask of Light (2003 DVD ISO)'); return false;"><strong>BIONICLE: Mask of Light (2003 DVD)</strong></a>
+            <div style="font-size: 11px; color: #666;">Miramax Home Entertainment &bull; 2003-09-16</div>
+          </li>
+          <li>
+            <a href="#sim2" onclick="showToast('Item: BIONICLE 2: Legends of Metru Nui (2004 DVD ISO)'); return false;"><strong>BIONICLE 2: Legends of Metru Nui (2004)</strong></a>
+            <div style="font-size: 11px; color: #666;">Miramax Home Entertainment &bull; 2004-10-19</div>
+          </li>
+          <li>
+            <a href="#sim3" onclick="showToast('Item: BIONICLE 3: Web of Shadows (2005 DVD ISO)'); return false;"><strong>BIONICLE 3: Web of Shadows (2005)</strong></a>
+            <div style="font-size: 11px; color: #666;">Miramax Home Entertainment &bull; 2005-10-11</div>
+          </li>
+        </ul>
+      </div>
+    </aside>
+  </main>
+
+  <div id="ia-toast" class="ia-toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const chapters = [
+      {
+        title: "Exiled to Bara Magna",
+        startSec: 0,
+        desc: "Betrayed by Makuta Teridax, Mata Nui's spirit hurtles across space in the Kanohi Ignika and crashes onto the desert world of Bara Magna.",
+        subEn: "[ENGLISH SDH] MATA NUI: Where am I? What has happened to my world?",
+        subEs: "[ESPAÑOL] MATA NUI: ¿Dónde estoy? ¿Qué le ha pasado a mi mundo?",
+        subFr: "[FRANÇAIS] MATA NUI : Où suis-je ? Qu'est-il arrivé à mon monde ?"
+      },
+      {
+        title: "Click the Scarabax & Metus",
+        startSec: 495,
+        desc: "A small Scarabax beetle touches the Mask of Life and transforms into a living shield. Agori recruiter Metus arrives in his Thornatus vehicle.",
+        subEn: "[ENGLISH SDH] METUS: Welcome to Bara Magna, friend. Stick with me if you want to survive.",
+        subEs: "[ESPAÑOL] METUS: Bienvenido a Bara Magna, amigo. Quédate conmigo si quieres sobrevivir.",
+        subFr: "[FRANÇAIS] METUS : Bienvenue sur Bara Magna, l'ami. Reste avec moi si tu veux survivre."
+      },
+      {
+        title: "Arena Magna: Ackar vs. Strakk",
+        startSec: 1020,
+        desc: "In the great arena of Vulcanus, veteran Fire Glatorian Ackar defeats Ice Glatorian Strakk—until Strakk attacks dishonorably from behind.",
+        subEn: "[ENGLISH SDH] ACKAR: The match is over, Strakk! Honor means nothing to you!",
+        subEs: "[ESPAÑOL] ACKAR: ¡El combate ha terminado, Strakk! ¡El honor no significa nada para ti!",
+        subFr: "[FRANÇAIS] ACKAR : Le combat est terminé, Strakk ! L'honneur ne signifie rien pour toi !"
+      },
+      {
+        title: "Ambush in Sandray Canyon",
+        startSec: 1640,
+        desc: "Traveling toward Tajun with Kiina and Berix, Ackar and Mata Nui are ambushed by ruthless Bone Hunters riding Rock Steeds.",
+        subEn: "[ENGLISH SDH] KIINA: Bone Hunters! Keep your guard up—they never attack alone!",
+        subEs: "[ESPAÑOL] KIINA: ¡Cazadores de Huesos! ¡Mantente en guardia, nunca atacan solos!",
+        subFr: "[FRANÇAIS] KIINA : Des Chasseurs d'Os ! Restez sur vos gardes, ils n'attaquent jamais seuls !"
+      },
+      {
+        title: "Fall of Tajun & Gresh",
+        startSec: 2190,
+        desc: "The group discovers Tajun in ruins after a combined assault by the Skrall and Bone Hunters, rescuing the injured Jungle Glatorian Gresh.",
+        subEn: "[ENGLISH SDH] GRESH: The Skrall and Bone Hunters... they're working together.",
+        subEs: "[ESPAÑOL] GRESH: Los Skrall y los Cazadores de Huesos... están trabajando juntos.",
+        subFr: "[FRANÇAIS] GRESH : Les Skrall et les Chasseurs d'Os... ils travaillent ensemble."
+      },
+      {
+        title: "The Forge of Elemental Power",
+        startSec: 2740,
+        desc: "Inside a hidden underground chamber, Mata Nui uses the Mask of Life to restore his companions' weapons and imbue them with true elemental powers.",
+        subEn: "[ENGLISH SDH] ACKAR: Fire... real elemental fire! What did you do, Mata Nui?",
+        subEs: "[ESPAÑOL] ACKAR: Fuego... ¡verdadero fuego elemental! ¿Qué hiciste, Mata Nui?",
+        subFr: "[FRANÇAIS] ACKAR : Du feu... un véritable feu élémentaire ! Qu'as-tu fait, Mata Nui ?"
+      },
+      {
+        title: "Duel with Tuma",
+        startSec: 3360,
+        desc: "At the Skrall stronghold of Roxtus, Mata Nui challenges the towering Skrall leader Tuma to one-on-one combat to free the captured Agori.",
+        subEn: "[ENGLISH SDH] TUMA: You are small, outsider. You will break like dry bone!",
+        subEs: "[ESPAÑOL] TUMA: Eres pequeño, forastero. ¡Te romperás como un hueso seco!",
+        subFr: "[FRANÇAIS] TUMA : Tu es petit, étranger. Tu te briseras comme un os sec !"
+      },
+      {
+        title: "Uniting the Villages",
+        startSec: 3820,
+        desc: "With Metus exposed as the traitor and the Skrall defeated, the Agori pull their mega-villages together—revealing the silhouette of a colossal robot.",
+        subEn: "[ENGLISH SDH] MATA NUI: Together, we can rebuild what was lost. Our journey has only begun.",
+        subEs: "[ESPAÑOL] MATA NUI: Juntos podemos reconstruir lo perdido. Nuestro viaje apenas comienza.",
+        subFr: "[FRANÇAIS] MATA NUI : Ensemble, nous pouvons reconstruire ce qui a été perdu."
+      }
+    ];
+
+    const bonusFeatures = [
+      { title: "Metus's Story", time: "04:12", desc: "Animated short chronicling how Metus struck his secret alliance with Tuma and the Skrall." },
+      { title: "Extended Ending", time: "01:48", desc: "Alternate epilogue featuring Berix inspecting the mysterious map etched onto a Skrall shield." },
+      { title: "Bara Magna Character Gallery", time: "Interactive", desc: "3D turntable profiles for Mata Nui, Ackar, Kiina, Gresh, Strakk, Tuma, and Click." },
+      { title: "BIONICLE 2009 Theatrical Trailer", time: "01:35", desc: "Original promotional trailer from LEGO.com/BIONICLE." }
+    ];
+
+    let currentChapter = 0;
+    let currentTimeSec = 0;
+    let isPlaying = false;
+    let timerInterval = null;
+    let audioLang = "EN 5.1";
+    let subLang = "EN";
+
+    function switchTheaterTab(tabId, btnEl) {
+      document.querySelectorAll(".theater-tab").forEach(b => b.classList.remove("active"));
+      btnEl.classList.add("active");
+
+      document.querySelectorAll(".dvd-view").forEach(v => v.classList.remove("active"));
+      document.getElementById("view-" + tabId).classList.add("active");
+    }
+
+    function openSubpanel(type) {
+      const panel = document.getElementById("dvd-subpanel");
+      const title = document.getElementById("subpanel-title");
+      const body = document.getElementById("subpanel-body");
+      body.innerHTML = "";
+
+      if (type === "chapters") {
+        title.textContent = "Scene Selection (8 Chapters)";
+        chapters.forEach((ch, idx) => {
+          const card = document.createElement("button");
+          card.className = "chapter-card";
+          card.innerHTML = `
+            <div class="chapter-num">Chapter ${idx + 1}</div>
+            <div class="chapter-title">${ch.title}</div>
+            <div class="chapter-time">${formatTime(ch.startSec)}</div>
+          `;
+          card.onclick = () => {
+            closeSubpanel();
+            playChapter(idx);
+          };
+          body.appendChild(card);
+        });
+      } else if (type === "bonus") {
+        title.textContent = "Bonus Features (VTS_02)";
+        bonusFeatures.forEach((item) => {
+          const card = document.createElement("button");
+          card.className = "chapter-card";
+          card.innerHTML = `
+            <div class="chapter-num">${item.time}</div>
+            <div class="chapter-title">${item.title}</div>
+            <div class="chapter-time">${item.desc}</div>
+          `;
+          card.onclick = () => {
+            showToast("Playing Bonus Feature: " + item.title);
+          };
+          body.appendChild(card);
+        });
+      } else if (type === "setup") {
+        title.textContent = "Audio & Subtitles Setup";
+        const options = [
+          { label: "Audio: English Dolby Digital 5.1", action: () => setAudio("EN 5.1") },
+          { label: "Audio: Español Dolby Digital 5.1", action: () => setAudio("ES 5.1") },
+          { label: "Audio: Français Dolby Digital 5.1", action: () => setAudio("FR 5.1") },
+          { label: "Subtitles: English SDH", action: () => setSub("EN") },
+          { label: "Subtitles: Español", action: () => setSub("ES") },
+          { label: "Subtitles: Français", action: () => setSub("FR") },
+          { label: "Subtitles: Off", action: () => setSub("OFF") }
+        ];
+        options.forEach(opt => {
+          const btn = document.createElement("button");
+          btn.className = "chapter-card";
+          btn.innerHTML = `<div class="chapter-title">${opt.label}</div>`;
+          btn.onclick = () => {
+            opt.action();
+            showToast("Updated DVD stream: " + opt.label);
+          };
+          body.appendChild(btn);
+        });
+      }
+
+      panel.classList.add("open");
+    }
+
+    function closeSubpanel() {
+      document.getElementById("dvd-subpanel").classList.remove("open");
+    }
+
+    function setAudio(val) {
+      audioLang = val;
+      document.getElementById("setup-badge").textContent = val;
+    }
+
+    function setSub(val) {
+      subLang = val;
+      updatePlayerDisplay();
+    }
+
+    function playChapter(index) {
+      currentChapter = index;
+      currentTimeSec = chapters[index].startSec;
+      const playerTab = document.querySelector('[data-tab="dvd-player"]');
+      switchTheaterTab("dvd-player", playerTab);
+      updatePlayerDisplay();
+      startPlayback();
+    }
+
+    function updatePlayerDisplay() {
+      const ch = chapters[currentChapter];
+      document.getElementById("player-chapter-badge").textContent =
+        `CHAPTER ${currentChapter + 1} OF ${chapters.length} • AUDIO: ${audioLang}`;
+      document.getElementById("player-scene-title").textContent = ch.title;
+      document.getElementById("player-scene-desc").textContent = ch.desc;
+
+      const subEl = document.getElementById("subtitle-display");
+      if (subLang === "OFF") {
+        subEl.style.display = "none";
+      } else {
+        subEl.style.display = "block";
+        subEl.textContent = subLang === "ES" ? ch.subEs : (subLang === "FR" ? ch.subFr : ch.subEn);
+      }
+
+      document.getElementById("timeline-scrubber").value = currentTimeSec;
+      document.getElementById("timecode-display").textContent = `${formatTime(currentTimeSec)} / 01:10:18`;
+    }
+
+    function startPlayback() {
+      isPlaying = true;
+      document.getElementById("play-pause-btn").innerHTML = "&#10074;&#10074; Pause";
+      clearInterval(timerInterval);
+      timerInterval = setInterval(() => {
+        if (currentTimeSec < 4218) {
+          currentTimeSec++;
+          // Sync chapter automatically
+          for (let i = chapters.length - 1; i >= 0; i--) {
+            if (currentTimeSec >= chapters[i].startSec) {
+              if (currentChapter !== i) {
+                currentChapter = i;
+              }
+              break;
+            }
+          }
+          updatePlayerDisplay();
+        } else {
+          pausePlayback();
+        }
+      }, 1000);
+    }
+
+    function pausePlayback() {
+      isPlaying = false;
+      document.getElementById("play-pause-btn").innerHTML = "&#9654; Play";
+      clearInterval(timerInterval);
+    }
+
+    function togglePlay() {
+      if (isPlaying) {
+        pausePlayback();
+      } else {
+        startPlayback();
+      }
+    }
+
+    function prevChapter() {
+      const target = Math.max(0, currentChapter - 1);
+      playChapter(target);
+    }
+
+    function nextChapter() {
+      const target = Math.min(chapters.length - 1, currentChapter + 1);
+      playChapter(target);
+    }
+
+    function scrubTime(val) {
+      currentTimeSec = parseInt(val, 10);
+      for (let i = chapters.length - 1; i >= 0; i--) {
+        if (currentTimeSec >= chapters[i].startSec) {
+          currentChapter = i;
+          break;
+        }
+      }
+      updatePlayerDisplay();
+    }
+
+    function formatTime(sec) {
+      const h = String(Math.floor(sec / 3600)).padStart(2, "0");
+      const m = String(Math.floor((sec % 3600) / 60)).padStart(2, "0");
+      const s = String(sec % 60).padStart(2, "0");
+      return `${h}:${m}:${s}`;
+    }
+
+    function downloadManifest(format) {
+      const xmlContent = `<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <identifier>bionicle-the-legend-reborn-2009-dvd-iso</identifier>
+  <title>BIONICLE: The Legend Reborn (2009 DVD ISO)</title>
+  <creator>Universal Studios Home Entertainment</creator>
+  <date>2009-09-15</date>
+  <mediatype>movies</mediatype>
+  <selected_format>${format}</selected_format>
+  <sha1>9f4a8e2c71d0b5e83a19c64f2d801b7e5c3a9412</sha1>
+</metadata>`;
+      const blob = new Blob([xmlContent], { type: "application/xml" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `bionicle-the-legend-reborn-2009_${format.toLowerCase().replace(/\s+/g, "-")}.xml`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast(`Generated Archive.org manifest for ${format}`);
+    }
+
+    function submitReview(event) {
+      event.preventDefault();
+      const name = document.getElementById("rev-name").value.trim();
+      const starsNum = parseInt(document.getElementById("rev-stars").value, 10);
+      const title = document.getElementById("rev-title").value.trim();
+      const body = document.getElementById("rev-body").value.trim();
+
+      const starsStr = "&#9733;".repeat(starsNum) + "&#9734;".repeat(5 - starsNum);
+      const list = document.getElementById("reviews-list");
+      const entry = document.createElement("div");
+      entry.className = "review-entry";
+      entry.innerHTML = `
+        <div class="review-meta">
+          <span class="stars">${starsStr}</span> &bull; Reviewer: <strong>${escapeHtml(name)}</strong> &bull; Just now
+        </div>
+        <div class="review-title">${escapeHtml(title)}</div>
+        <p>${escapeHtml(body)}</p>
+      `;
+      list.prepend(entry);
+
+      const countEl = document.getElementById("review-count");
+      countEl.textContent = parseInt(countEl.textContent, 10) + 1;
+
+      event.target.reset();
+      showToast("Thank you! Your review has been posted.");
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/[&<>"']/g, m => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+      }[m]));
+    }
+
+    let toastTimeout = null;
+    function showToast(msg) {
+      const toast = document.getElementById("ia-toast");
+      toast.textContent = msg;
+      toast.classList.add("show");
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove("show");
+      }, 3200);
+    }
+  </script>
+</body>
+</html>
