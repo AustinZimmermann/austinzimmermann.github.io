@@ -1,0 +1,1629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Garfield: The Movie (Disney+, 2004) : Free Download, Borrow, and Streaming : Internet Archive</title>
+  <style>
+    :root {
+      --ia-dark: #222222;
+      --ia-darker: #111111;
+      --ia-nav-sub: #333333;
+      --ia-bg: #f3f3f3;
+      --ia-card: #ffffff;
+      --ia-border: #dcdcdc;
+      --ia-text: #333333;
+      --ia-muted: #666666;
+      --ia-link: #2b7bb9;
+      --ia-link-hover: #1d5682;
+      --ia-orange: #ff7b00;
+      --ia-garfield: #f58220;
+      --ia-gold: #f5b400;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      background-color: var(--ia-bg);
+      color: var(--ia-text);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    a {
+      color: var(--ia-link);
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: var(--ia-link-hover);
+      text-decoration: underline;
+    }
+
+    /* Top Archive.org Navigation */
+    .ia-navbar {
+      background-color: var(--ia-dark);
+      color: #fff;
+      border-bottom: 1px solid #000;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .ia-nav-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 16px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .ia-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #fff;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      font-size: 15px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .ia-brand:hover {
+      color: #fff;
+      text-decoration: none;
+      opacity: 0.9;
+    }
+
+    .ia-logo-svg {
+      width: 28px;
+      height: 28px;
+      fill: #fff;
+    }
+
+    .ia-media-icons {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .ia-media-btn {
+      background: none;
+      border: none;
+      color: #bbb;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 10px;
+      gap: 2px;
+      padding: 4px 6px;
+      border-radius: 3px;
+      transition: color 0.15s, background 0.15s;
+    }
+
+    .ia-media-btn:hover,
+    .ia-media-btn.active {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .ia-media-btn.active {
+      border-bottom: 2px solid var(--ia-orange);
+    }
+
+    .ia-search-box {
+      display: flex;
+      align-items: center;
+      background: #fff;
+      border-radius: 16px;
+      padding: 3px 10px;
+      width: 240px;
+      max-width: 100%;
+    }
+
+    .ia-search-box input {
+      border: none;
+      outline: none;
+      width: 100%;
+      font-size: 13px;
+      color: #222;
+      padding: 2px 4px;
+    }
+
+    .ia-search-box button {
+      background: none;
+      border: none;
+      color: #666;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .ia-user-links {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .ia-user-links a {
+      color: #ddd;
+    }
+
+    .ia-user-links a:hover {
+      color: #fff;
+    }
+
+    /* Theater / Video Player Wrapper */
+    .theater-section {
+      background-color: #000;
+      width: 100%;
+      border-bottom: 1px solid #2b2b2b;
+    }
+
+    .theater-container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 12px 16px 18px;
+      transition: max-width 0.25s ease;
+    }
+
+    .theater-container.wide-mode {
+      max-width: 100%;
+      padding: 0 0 12px;
+    }
+
+    .player-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      max-height: 580px;
+      background: radial-gradient(circle at center, #1d150e 0%, #050505 85%);
+      overflow: hidden;
+      border: 1px solid #262626;
+      user-select: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* Simulated Video Screen (Pure HTML/CSS/SVG) */
+    .video-viewport {
+      position: relative;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .film-grain {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 0);
+      background-size: 24px 24px;
+      pointer-events: none;
+    }
+
+    .disney-plus-badge {
+      position: absolute;
+      top: 16px;
+      right: 18px;
+      background: rgba(14, 24, 56, 0.85);
+      border: 1px solid rgba(102, 178, 255, 0.45);
+      color: #cce6ff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.6px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      z-index: 4;
+    }
+
+    .player-stage {
+      text-align: center;
+      z-index: 3;
+      padding: 20px;
+      max-width: 680px;
+      transition: transform 0.3s ease;
+    }
+
+    .player-stage.playing .garfield-emblem {
+      animation: floatBob 2.8s ease-in-out infinite;
+    }
+
+    @keyframes floatBob {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-7px) rotate(1.5deg); }
+    }
+
+    .garfield-emblem {
+      width: 130px;
+      height: 110px;
+      margin: 0 auto 12px;
+      filter: drop-shadow(0 8px 18px rgba(245, 130, 32, 0.35));
+    }
+
+    .movie-screen-title {
+      font-size: clamp(24px, 4vw, 40px);
+      font-weight: 900;
+      color: #ff9429;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      text-shadow: 0 3px 0 #7a2e00, 0 8px 20px rgba(0, 0, 0, 0.9);
+      line-height: 1.1;
+    }
+
+    .movie-screen-sub {
+      color: #f4d3b3;
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 6px;
+      font-weight: 600;
+    }
+
+    .scene-caption-box {
+      margin-top: 18px;
+      display: inline-block;
+      background: rgba(0, 0, 0, 0.78);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-size: 14px;
+      max-width: 90%;
+    }
+
+    .cc-overlay {
+      position: absolute;
+      bottom: 58px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.85);
+      color: #ffeb3b;
+      padding: 5px 14px;
+      border-radius: 3px;
+      font-size: 15px;
+      font-family: monospace;
+      z-index: 6;
+      display: none;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .cc-overlay.visible {
+      display: block;
+    }
+
+    .big-play-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.38);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 5;
+      transition: opacity 0.2s;
+    }
+
+    .big-play-overlay.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .big-play-circle {
+      width: 74px;
+      height: 74px;
+      border-radius: 50%;
+      background: rgba(34, 34, 34, 0.88);
+      border: 2px solid #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+      transition: transform 0.15s, background 0.15s;
+    }
+
+    .big-play-overlay:hover .big-play-circle {
+      transform: scale(1.08);
+      background: var(--ia-garfield);
+    }
+
+    /* Player Controls Bar */
+    .player-controls {
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.95), rgba(18, 18, 18, 0.88));
+      padding: 6px 12px 8px;
+      z-index: 10;
+      border-top: 1px solid #2a2a2a;
+    }
+
+    .progress-bar-container {
+      width: 100%;
+      height: 6px;
+      background: #444;
+      border-radius: 3px;
+      cursor: pointer;
+      position: relative;
+      margin-bottom: 8px;
+      transition: height 0.1s;
+    }
+
+    .progress-bar-container:hover {
+      height: 9px;
+    }
+
+    .progress-buffer {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 68%;
+      background: #666;
+      border-radius: 3px;
+    }
+
+    .progress-fill {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 0%;
+      background: var(--ia-orange);
+      border-radius: 3px;
+    }
+
+    .controls-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #eee;
+      font-size: 12px;
+      gap: 10px;
+    }
+
+    .controls-left,
+    .controls-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .ctrl-btn {
+      background: none;
+      border: none;
+      color: #ddd;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 3px 6px;
+      border-radius: 3px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .ctrl-btn:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .ctrl-btn.active-toggle {
+      color: var(--ia-orange);
+      border: 1px solid rgba(255, 123, 0, 0.5);
+    }
+
+    .volume-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .volume-slider {
+      width: 65px;
+      accent-color: var(--ia-orange);
+      cursor: pointer;
+    }
+
+    .time-display {
+      font-family: monospace;
+      color: #ccc;
+      font-size: 12px;
+    }
+
+    /* Playlist Strip below Player inside Theater */
+    .playlist-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 1px solid #222;
+    }
+
+    .playlist-item {
+      background: #1a1a1a;
+      border: 1px solid #333;
+      color: #ccc;
+      padding: 6px 12px;
+      border-radius: 3px;
+      font-size: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.15s, border-color 0.15s;
+    }
+
+    .playlist-item:hover {
+      background: #262626;
+      color: #fff;
+    }
+
+    .playlist-item.active {
+      background: #2b221a;
+      border-color: var(--ia-orange);
+      color: #fff;
+      font-weight: 600;
+    }
+
+    /* Main Content Container */
+    .main-wrapper {
+      max-width: 1140px;
+      margin: 20px auto 40px;
+      padding: 0 16px;
+      display: grid;
+      grid-template-columns: 1fr 330px;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .card-box {
+      background: var(--ia-card);
+      border: 1px solid var(--ia-border);
+      border-radius: 3px;
+      padding: 20px;
+      margin-bottom: 18px;
+    }
+
+    /* Left Column: Header & Metadata */
+    .item-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      border-bottom: 1px solid #eaeaea;
+      padding-bottom: 14px;
+      margin-bottom: 16px;
+    }
+
+    .mediatype-badge {
+      width: 44px;
+      height: 44px;
+      background: #f0f0f0;
+      border: 1px solid #d5d5d5;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: #444;
+    }
+
+    .item-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: #222;
+      line-height: 1.25;
+      margin-bottom: 4px;
+    }
+
+    .item-byline {
+      font-size: 13px;
+      color: var(--ia-muted);
+    }
+
+    .item-byline span {
+      margin-right: 12px;
+    }
+
+    .item-description {
+      font-size: 14px;
+      color: #2c2c2c;
+      margin-bottom: 18px;
+    }
+
+    .item-description p {
+      margin-bottom: 10px;
+    }
+
+    .metadata-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      margin-top: 10px;
+    }
+
+    .metadata-table th,
+    .metadata-table td {
+      padding: 7px 10px;
+      border-top: 1px solid #eeeeee;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .metadata-table th {
+      width: 165px;
+      color: var(--ia-muted);
+      font-weight: 600;
+    }
+
+    .topic-tag {
+      display: inline-block;
+      background: #eef4f9;
+      border: 1px solid #cfe0ee;
+      color: var(--ia-link);
+      padding: 2px 8px;
+      border-radius: 3px;
+      font-size: 12px;
+      margin: 2px 4px 2px 0;
+      cursor: pointer;
+    }
+
+    .topic-tag:hover {
+      background: #dceaf5;
+      text-decoration: none;
+    }
+
+    /* Reviews Section */
+    .section-heading {
+      font-size: 16px;
+      font-weight: 700;
+      color: #222;
+      border-bottom: 1px solid #e5e5e5;
+      padding-bottom: 8px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .review-item {
+      border-bottom: 1px solid #efefef;
+      padding: 12px 0;
+    }
+
+    .review-item:last-child {
+      border-bottom: none;
+    }
+
+    .review-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 4px;
+    }
+
+    .review-stars {
+      color: var(--ia-gold);
+      font-size: 14px;
+      letter-spacing: 1px;
+    }
+
+    .review-meta {
+      font-size: 12px;
+      color: var(--ia-muted);
+    }
+
+    .review-title {
+      font-weight: 700;
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .review-form {
+      background: #fafafa;
+      border: 1px solid #e4e4e4;
+      padding: 14px;
+      border-radius: 3px;
+      margin-top: 14px;
+    }
+
+    .review-form h4 {
+      font-size: 13px;
+      margin-bottom: 8px;
+      color: #333;
+    }
+
+    .star-picker {
+      display: inline-flex;
+      gap: 4px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      font-size: 18px;
+      color: #ccc;
+    }
+
+    .star-picker span.selected {
+      color: var(--ia-gold);
+    }
+
+    .review-form input,
+    .review-form textarea {
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      padding: 7px 9px;
+      font-family: inherit;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .btn-ia-primary {
+      background: var(--ia-link);
+      color: #fff;
+      border: none;
+      padding: 7px 14px;
+      border-radius: 3px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn-ia-primary:hover {
+      background: var(--ia-link-hover);
+    }
+
+    /* Right Column: Actions, Stats & Download Options */
+    .stats-bar {
+      display: flex;
+      justify-content: space-around;
+      text-align: center;
+      padding-bottom: 14px;
+      border-bottom: 1px solid #eaeaea;
+      margin-bottom: 14px;
+    }
+
+    .stat-num {
+      display: block;
+      font-size: 18px;
+      font-weight: 700;
+      color: #222;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: var(--ia-muted);
+      text-transform: uppercase;
+    }
+
+    .action-buttons {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .action-btn {
+      background: #f8f8f8;
+      border: 1px solid #d4d4d4;
+      border-radius: 3px;
+      padding: 8px 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #333;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      transition: background 0.15s;
+    }
+
+    .action-btn:hover {
+      background: #ededed;
+    }
+
+    .action-btn.favorited {
+      color: #d93025;
+      border-color: #f2b8b5;
+      background: #fff5f5;
+    }
+
+    /* Download Options Accordion */
+    .download-box-title {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #444;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .download-list {
+      list-style: none;
+    }
+
+    .download-row {
+      border-top: 1px solid #eeeeee;
+    }
+
+    .download-row:last-child {
+      border-bottom: 1px solid #eeeeee;
+    }
+
+    .download-link {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 4px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--ia-link);
+      cursor: pointer;
+    }
+
+    .download-link:hover {
+      background: #f7fafd;
+      text-decoration: none;
+    }
+
+    .file-size {
+      color: var(--ia-muted);
+      font-weight: 400;
+      font-size: 11.5px;
+    }
+
+    .extra-files {
+      display: none;
+    }
+
+    .extra-files.open {
+      display: block;
+    }
+
+    .show-all-btn {
+      width: 100%;
+      margin-top: 10px;
+      background: #f4f4f4;
+      border: 1px solid #d6d6d6;
+      padding: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #444;
+      cursor: pointer;
+      border-radius: 3px;
+    }
+
+    .show-all-btn:hover {
+      background: #e9e9e9;
+    }
+
+    .collection-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 7px 0;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: 13px;
+    }
+
+    .collection-item:last-child {
+      border-bottom: none;
+    }
+
+    .collection-icon {
+      width: 28px;
+      height: 28px;
+      background: #ececec;
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #555;
+      font-size: 11px;
+    }
+
+    /* Similar Items Footer Grid */
+    .similar-section {
+      max-width: 1140px;
+      margin: 0 auto 48px;
+      padding: 0 16px;
+    }
+
+    .similar-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    .similar-card {
+      background: #fff;
+      border: 1px solid var(--ia-border);
+      border-radius: 3px;
+      overflow: hidden;
+      transition: box-shadow 0.15s;
+    }
+
+    .similar-card:hover {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    }
+
+    .similar-thumb {
+      height: 115px;
+      background: #222;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .similar-body {
+      padding: 10px;
+      font-size: 12px;
+    }
+
+    .similar-body a {
+      font-weight: 700;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    /* Toast Notification */
+    .ia-toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #222;
+      color: #fff;
+      border-left: 4px solid var(--ia-orange);
+      padding: 10px 16px;
+      border-radius: 3px;
+      font-size: 13px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+      opacity: 0;
+      transform: translateY(10px);
+      pointer-events: none;
+      transition: opacity 0.2s, transform 0.2s;
+      z-index: 999;
+    }
+
+    .ia-toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 860px) {
+      .main-wrapper {
+        grid-template-columns: 1fr;
+      }
+      .ia-media-icons {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Archive.org Navigation Bar -->
+  <header class="ia-navbar">
+    <div class="ia-nav-container">
+      <a href="#top" class="ia-brand" onclick="showToast('Internet Archive Home')">
+        <svg class="ia-logo-svg" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 2L2 6v2h20V6L12 2zm-7 8v8H3v2h18v-2h-2v-8h-2v8h-4v-8h-2v8H7v-8H5z"/>
+        </svg>
+        <span>INTERNET ARCHIVE</span>
+      </a>
+
+      <nav class="ia-media-icons" aria-label="Media Collections">
+        <button class="ia-media-btn" onclick="showToast('Wayback Machine Web Archive')">
+          <span>WEB</span>
+        </button>
+        <button class="ia-media-btn" onclick="showToast('Books & Texts Collection')">
+          <span>TEXTS</span>
+        </button>
+        <button class="ia-media-btn active" onclick="showToast('Moving Image Archive')">
+          <span>VIDEO</span>
+        </button>
+        <button class="ia-media-btn" onclick="showToast('Audio & Live Music Archive')">
+          <span>AUDIO</span>
+        </button>
+        <button class="ia-media-btn" onclick="showToast('Software & Vintage OS')">
+          <span>SOFTWARE</span>
+        </button>
+        <button class="ia-media-btn" onclick="showToast('Image Collection')">
+          <span>IMAGES</span>
+        </button>
+      </nav>
+
+      <div class="ia-search-box">
+        <input type="text" id="iaSearchInput" placeholder="Search the Archive..." aria-label="Search the Archive" />
+        <button type="button" onclick="handleSearch()" title="Search">&#128269;</button>
+      </div>
+
+      <div class="ia-user-links">
+        <a href="#upload" onclick="event.preventDefault(); showToast('Upload portal requires an Archive.org account.')">Upload</a>
+        <a href="#signin" onclick="event.preventDefault(); showToast('Signed in as Archivist_Guest')">Sign In</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Theater / Streaming Player Section -->
+  <section class="theater-section">
+    <div class="theater-container" id="theaterContainer">
+      <div class="player-wrapper" id="playerWrapper">
+        <div class="disney-plus-badge">DISNEY+ STREAMING MASTER • 1080p</div>
+
+        <div class="video-viewport" id="videoViewport" onclick="togglePlay()">
+          <div class="film-grain"></div>
+
+          <div class="player-stage" id="playerStage">
+            <!-- Stylized Garfield Cat Silhouette / Emblem SVG -->
+            <svg class="garfield-emblem" viewBox="0 0 160 130" aria-hidden="true">
+              <!-- Ears -->
+              <polygon points="35,45 25,10 62,32" fill="#f58220" stroke="#7a2e00" stroke-width="3"/>
+              <polygon points="125,45 135,10 98,32" fill="#f58220" stroke="#7a2e00" stroke-width="3"/>
+              <!-- Head -->
+              <ellipse cx="80" cy="70" rx="54" ry="42" fill="#f58220" stroke="#7a2e00" stroke-width="3"/>
+              <!-- Stripes -->
+              <path d="M28,62 L44,65 L29,74 Z" fill="#222"/>
+              <path d="M132,62 L116,65 L131,74 Z" fill="#222"/>
+              <!-- Half-lidded Eyes -->
+              <ellipse cx="64" cy="58" rx="14" ry="16" fill="#fff" stroke="#222" stroke-width="2.5"/>
+              <ellipse cx="96" cy="58" rx="14" ry="16" fill="#fff" stroke="#222" stroke-width="2.5"/>
+              <circle cx="66" cy="61" r="4.5" fill="#111"/>
+              <circle cx="94" cy="61" r="4.5" fill="#111"/>
+              <!-- Eyelids -->
+              <path d="M50,56 Q64,61 78,56 L78,42 L50,42 Z" fill="#e06b0b" stroke="#222" stroke-width="2"/>
+              <path d="M82,56 Q96,61 110,56 L110,42 L82,42 Z" fill="#e06b0b" stroke="#222" stroke-width="2"/>
+              <!-- Muzzle -->
+              <ellipse cx="68" cy="82" rx="15" ry="11" fill="#ffd27d" stroke="#222" stroke-width="2"/>
+              <ellipse cx="92" cy="82" rx="15" ry="11" fill="#ffd27d" stroke="#222" stroke-width="2"/>
+              <!-- Pink Nose -->
+              <ellipse cx="80" cy="74" rx="7" ry="5" fill="#ff8da1" stroke="#222" stroke-width="2"/>
+              <!-- Smirk -->
+              <path d="M62,92 Q80,103 98,92" fill="none" stroke="#222" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+
+            <div class="movie-screen-title" id="screenTitle">Garfield: The Movie</div>
+            <div class="movie-screen-sub" id="screenSubtitle">20th Century Fox • Disney+ Edition (2004)</div>
+            <div class="scene-caption-box" id="sceneStatus">
+              Chapter 1: “The Monday Morning Lasagna Protocol” — Click Play to Preview Stream
+            </div>
+          </div>
+
+          <!-- Closed Captions Overlay -->
+          <div class="cc-overlay" id="ccOverlay">
+            [GARFIELD] “I hate Mondays. Especially Mondays without lasagna.”
+          </div>
+
+          <!-- Center Play Overlay -->
+          <div class="big-play-overlay" id="bigPlayOverlay">
+            <div class="big-play-circle">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff">
+                <polygon points="6,4 20,12 6,20"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Player Controls -->
+        <div class="player-controls">
+          <div class="progress-bar-container" id="progressContainer" onclick="seekVideo(event)">
+            <div class="progress-buffer"></div>
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+
+          <div class="controls-row">
+            <div class="controls-left">
+              <button class="ctrl-btn" id="playPauseBtn" onclick="togglePlay()">&#9654; Play</button>
+              <div class="volume-group">
+                <button class="ctrl-btn" id="muteBtn" onclick="toggleMute()">&#128266;</button>
+                <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="85" oninput="changeVolume(this.value)" aria-label="Volume" />
+              </div>
+              <span class="time-display" id="timeDisplay">00:00:00 / 01:20:14</span>
+            </div>
+
+            <div class="controls-right">
+              <button class="ctrl-btn" id="ccBtn" onclick="toggleCC()" title="Toggle Closed Captions">CC</button>
+              <button class="ctrl-btn" id="speedBtn" onclick="cycleSpeed()" title="Playback Speed">1.0x</button>
+              <button class="ctrl-btn" onclick="toggleTheaterMode()" title="Theater Mode">Theater</button>
+              <button class="ctrl-btn" onclick="toggleFullscreen()" title="Fullscreen">&#x26F6;</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Playlist / Stream Selector -->
+      <div class="playlist-strip">
+        <div class="playlist-item active" onclick="selectTrack(0, this)">
+          <span>&#9654;</span>
+          <span>1. Garfield: The Movie (2004) [Disney+ WEB-DL] (01:20:14)</span>
+        </div>
+        <div class="playlist-item" onclick="selectTrack(1, this)">
+          <span>&#9654;</span>
+          <span>2. Original Theatrical Trailer (2004) (00:02:18)</span>
+        </div>
+        <div class="playlist-item" onclick="selectTrack(2, this)">
+          <span>&#9654;</span>
+          <span>3. Featurette: Bringing Garfield to Life (00:06:42)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content Grid -->
+  <main class="main-wrapper">
+    <!-- Left Column -->
+    <div class="left-column">
+      <article class="card-box">
+        <div class="item-header">
+          <div class="mediatype-badge" title="Movies / Moving Image">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/>
+            </svg>
+          </div>
+          <div>
+            <h1 class="item-title">Garfield: The Movie (Disney+, 2004)</h1>
+            <div class="item-byline">
+              <span>by <a href="#creator" onclick="event.preventDefault(); showToast('Filtering by 20th Century Fox')">20th Century Fox / Disney+</a></span>
+              <span>Publication date: <a href="#year" onclick="event.preventDefault(); showToast('Year: 2004')">2004</a></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="item-description">
+          <p>
+            <em><strong>Garfield: The Movie</strong></em> (2004) is a live-action/CGI family comedy directed by Peter Hewitt and based on Jim Davis’s classic comic strip. Preserved here from the high-definition Disney+ streaming master, the film follows America’s favorite lasagna-loving, Monday-hating orange tabby cat (voiced by Bill Murray).
+          </p>
+          <p>
+            Garfield’s idyllic, pampered life with his doting owner Jon Arbuckle (Breckin Meyer) is turned upside down when Jon adopts Odie, a lovable, dim-witted dog, at the encouragement of veterinarian Dr. Liz Wilson (Jennifer Love Hewitt). When Odie is kidnapped by greedy television personality Happy Chapman (Stephen Tobolowsky), Garfield must leave his comfortable couch behind to mount a rescue mission across the city.
+          </p>
+        </div>
+
+        <table class="metadata-table">
+          <tbody>
+            <tr>
+              <th>Topics</th>
+              <td>
+                <span class="topic-tag" onclick="filterTopic('Garfield')">Garfield</span>
+                <span class="topic-tag" onclick="filterTopic('Garfield: The Movie')">Garfield: The Movie</span>
+                <span class="topic-tag" onclick="filterTopic('Disney+')">Disney+</span>
+                <span class="topic-tag" onclick="filterTopic('2004')">2004</span>
+                <span class="topic-tag" onclick="filterTopic('20th Century Fox')">20th Century Fox</span>
+                <span class="topic-tag" onclick="filterTopic('Bill Murray')">Bill Murray</span>
+                <span class="topic-tag" onclick="filterTopic('Breckin Meyer')">Breckin Meyer</span>
+                <span class="topic-tag" onclick="filterTopic('Jennifer Love Hewitt')">Jennifer Love Hewitt</span>
+              </td>
+            </tr>
+            <tr>
+              <th>Collection</th>
+              <td><a href="#col" onclick="event.preventDefault(); showToast('Collection: Feature Films')">Feature Films</a>; <a href="#col2" onclick="event.preventDefault(); showToast('Collection: Community Video')">Community Video</a></td>
+            </tr>
+            <tr>
+              <th>Language</th>
+              <td>English (with English SDH &amp; Spanish Subtitles)</td>
+            </tr>
+            <tr>
+              <th>Runtime</th>
+              <td>80 minutes (01:20:14)</td>
+            </tr>
+            <tr>
+              <th>Aspect Ratio</th>
+              <td>1.85:1 (1920x1080 Full HD)</td>
+            </tr>
+            <tr>
+              <th>Audio</th>
+              <td>Dolby Digital Plus 5.1 (48 kHz)</td>
+            </tr>
+            <tr>
+              <th>Scanner</th>
+              <td>Internet Archive HTML5 Uploader 1.7.0</td>
+            </tr>
+            <tr>
+              <th>Identifier</th>
+              <td><code>garfield-the-movie-disney-plus-2004</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </article>
+
+      <!-- Reviews Section -->
+      <section class="card-box" id="reviewsSection">
+        <div class="section-heading">
+          <span>Reviews (<span id="reviewCount">3</span>)</span>
+          <span style="font-size: 13px; color: var(--ia-muted);">Average: &#9733;&#9733;&#9733;&#9733;&#9734; (4.3 / 5)</span>
+        </div>
+
+        <div id="reviewsList">
+          <div class="review-item">
+            <div class="review-header">
+              <span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="review-meta">Reviewer: <strong>LasagnaLover04</strong> - June 14, 2024</span>
+            </div>
+            <div class="review-title">Clean 1080p Disney+ preservation!</div>
+            <p>Crystal clear transfer with original theatrical framing intact and synced English subtitles. Bill Murray’s deadpan delivery as Garfield still holds up twenty years later.</p>
+          </div>
+
+          <div class="review-item">
+            <div class="review-header">
+              <span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+              <span class="review-meta">Reviewer: <strong>RetroMediaVault</strong> - September 02, 2024</span>
+            </div>
+            <div class="review-title">Great nostalgic mid-2000s Fox comedy</div>
+            <p>Awesome to see the theatrical trailer and behind-the-scenes featurette bundled alongside the main feature. Audio levels on the 5.1 track are balanced nicely.</p>
+          </div>
+
+          <div class="review-item">
+            <div class="review-header">
+              <span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+              <span class="review-meta">Reviewer: <strong>OdieFanClub</strong> - January 19, 2025</span>
+            </div>
+            <div class="review-title">Pure comfort cinema</div>
+            <p>The dance sequence with Garfield and Odie is iconic. Thank you for archiving this edition with full chapter markers.</p>
+          </div>
+        </div>
+
+        <!-- Add Review Form -->
+        <form class="review-form" onsubmit="submitReview(event)">
+          <h4>Add a Review</h4>
+          <div class="star-picker" id="starPicker" aria-label="Select Star Rating">
+            <span data-val="1" class="selected" onclick="setRating(1)">&#9733;</span>
+            <span data-val="2" class="selected" onclick="setRating(2)">&#9733;</span>
+            <span data-val="3" class="selected" onclick="setRating(3)">&#9733;</span>
+            <span data-val="4" class="selected" onclick="setRating(4)">&#9733;</span>
+            <span data-val="5" class="selected" onclick="setRating(5)">&#9733;</span>
+          </div>
+          <input type="text" id="revTitle" placeholder="Review headline (e.g., Great archival transfer)" required />
+          <textarea id="revBody" rows="3" placeholder="Share your thoughts on this item..." required></textarea>
+          <button type="submit" class="btn-ia-primary">Post Review</button>
+        </form>
+      </section>
+    </div>
+
+    <!-- Right Column -->
+    <aside class="right-column">
+      <!-- Stats & Action Buttons -->
+      <div class="card-box">
+        <div class="stats-bar">
+          <div>
+            <span class="stat-num" id="viewCount">142,891</span>
+            <span class="stat-label">Views</span>
+          </div>
+          <div>
+            <span class="stat-num" id="favCount">1,420</span>
+            <span class="stat-label">Favorites</span>
+          </div>
+          <div>
+            <span class="stat-num" id="statReviewCount">3</span>
+            <span class="stat-label">Reviews</span>
+          </div>
+        </div>
+
+        <div class="action-buttons">
+          <button class="action-btn" id="favBtn" onclick="toggleFavorite()">
+            <span>&#9829;</span>
+            <span id="favBtnText">Favorite</span>
+          </button>
+          <button class="action-btn" onclick="shareItem()">
+            <span>&#8599;</span>
+            <span>Share</span>
+          </button>
+          <button class="action-btn" onclick="showToast('Flag dialog opened for community review.')">
+            <span>&#9873;</span>
+            <span>Flag</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Download Options Card -->
+      <div class="card-box">
+        <div class="download-box-title">
+          <span>DOWNLOAD OPTIONS</span>
+          <span style="font-size: 11px; color: var(--ia-muted);">6 files</span>
+        </div>
+
+        <ul class="download-list">
+          <li class="download-row">
+            <div class="download-link" onclick="triggerDownload('Garfield.The.Movie.2004.DSNP.1080p.mp4', '1.8 GB')">
+              <span>H.264 IA</span>
+              <span class="file-size">1.8 GB</span>
+            </div>
+          </li>
+          <li class="download-row">
+            <div class="download-link" onclick="triggerDownload('Garfield.The.Movie.2004.DSNP.mkv', '4.2 GB')">
+              <span>MATROSKA</span>
+              <span class="file-size">4.2 GB</span>
+            </div>
+          </li>
+          <li class="download-row">
+            <div class="download-link" onclick="triggerDownload('Garfield.The.Movie.2004.en.srt', '84.2 KB')">
+              <span>SUBRIP (SRT)</span>
+              <span class="file-size">84.2 KB</span>
+            </div>
+          </li>
+          <li class="download-row">
+            <div class="download-link" onclick="triggerDownload('garfield-the-movie-disney-plus-2004_archive.torrent', '31.4 KB')">
+              <span>TORRENT</span>
+              <span class="file-size">31.4 KB</span>
+            </div>
+          </li>
+        </ul>
+
+        <ul class="download-list extra-files" id="extraFilesList">
+          <li class="download-row">
+            <div class="download-link" onclick="triggerDownload('garfield-the-movie-disney-plus-2004_meta.xml', '4.1 KB')">
+              <span>METADATA XML</span>
+              <span class="file-size">4.1 KB</span>
+            </div>
+          </li>
+          <li class="download-row">
+            <div class="download-link" onclick="triggerDownload('garfield-the-movie-disney-plus-2004_files.xml', '9.8 KB')">
+              <span>FILES XML</span>
+              <span class="file-size">9.8 KB</span>
+            </div>
+          </li>
+        </ul>
+
+        <button class="show-all-btn" id="showAllBtn" onclick="toggleExtraFiles()">SHOW ALL (6 FILES)</button>
+      </div>
+
+      <!-- In Collections Card -->
+      <div class="card-box">
+        <div class="download-box-title">
+          <span>IN COLLECTIONS</span>
+        </div>
+        <div class="collection-item">
+          <div class="collection-icon">FF</div>
+          <div>
+            <a href="#ff" onclick="event.preventDefault(); showToast('Collection: Feature Films')">Feature Films</a>
+            <div style="font-size: 11px; color: var(--ia-muted);">64,120 items</div>
+          </div>
+        </div>
+        <div class="collection-item">
+          <div class="collection-icon">CV</div>
+          <div>
+            <a href="#cv" onclick="event.preventDefault(); showToast('Collection: Community Video')">Community Video</a>
+            <div style="font-size: 11px; color: var(--ia-muted);">1,290,440 items</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Similar Items Section -->
+  <section class="similar-section">
+    <div class="section-heading">
+      <span>SIMILAR ITEMS (by collection)</span>
+    </div>
+    <div class="similar-grid">
+      <div class="similar-card">
+        <div class="similar-thumb" style="background: linear-gradient(135deg, #3d1c00, #a34900);">
+          GARFIELD: A TAIL OF TWO KITTIES (2006)
+        </div>
+        <div class="similar-body">
+          <a href="#sim1" onclick="event.preventDefault(); showToast('Loading Garfield: A Tail of Two Kitties (2006)')">Garfield: A Tail of Two Kitties (2006)</a>
+          <span style="color: var(--ia-muted);">20th Century Fox • 78 min</span>
+        </div>
+      </div>
+
+      <div class="similar-card">
+        <div class="similar-thumb" style="background: linear-gradient(135deg, #1b2838, #2a475e);">
+          GARFIELD AND FRIENDS (1988–1994)
+        </div>
+        <div class="similar-body">
+          <a href="#sim2" onclick="event.preventDefault(); showToast('Loading Garfield and Friends Complete Series')">Garfield and Friends Complete Series</a>
+          <span style="color: var(--ia-muted);">CBS / Film Roman • 7 Seasons</span>
+        </div>
+      </div>
+
+      <div class="similar-card">
+        <div class="similar-thumb" style="background: linear-gradient(135deg, #1e3b2c, #2f6b4d);">
+          SCOOBY-DOO (2002) HD ARCHIVE
+        </div>
+        <div class="similar-body">
+          <a href="#sim3" onclick="event.preventDefault(); showToast('Loading Scooby-Doo (2002)')">Scooby-Doo (2002) Theatrical Cut</a>
+          <span style="color: var(--ia-muted);">Warner Bros. • 86 min</span>
+        </div>
+      </div>
+
+      <div class="similar-card">
+        <div class="similar-thumb" style="background: linear-gradient(135deg, #3b1e2b, #7a2c4b);">
+          ALVIN AND THE CHIPMUNKS (2007)
+        </div>
+        <div class="similar-body">
+          <a href="#sim4" onclick="event.preventDefault(); showToast('Loading Alvin and the Chipmunks (2007)')">Alvin and the Chipmunks (2007)</a>
+          <span style="color: var(--ia-muted);">20th Century Fox • 92 min</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Toast Notification -->
+  <div class="ia-toast" id="iaToast"></div>
+
+  <script>
+    // Track Data for Simulated Player
+    const tracks = [
+      {
+        title: "Garfield: The Movie",
+        subtitle: "20th Century Fox • Disney+ Edition (2004)",
+        duration: 4814, // 01:20:14
+        chapters: [
+          { time: 0, text: 'Chapter 1: "The Monday Morning Lasagna Protocol"', cc: '[GARFIELD] "I hate Mondays. Especially Mondays without lasagna."' },
+          { time: 900, text: 'Chapter 2: "Jon Visits Dr. Liz Wilson & Meets Odie"', cc: '[JON] "Garfield, say hello to your new little brother, Odie!"' },
+          { time: 2100, text: 'Chapter 3: "Happy Chapman & The Telethon Incident"', cc: '[HAPPY CHAPMAN] "With that dancing dog, network television is mine!"' },
+          { time: 3500, text: 'Chapter 4: "Rescue at Telegraph Station"', cc: '[GARFIELD] "Nobody messes with my dog. Except me."' }
+        ]
+      },
+      {
+        title: "Garfield: The Movie — Theatrical Trailer",
+        subtitle: "2004 Promotional Trailer (1080p Remaster)",
+        duration: 138, // 00:02:18
+        chapters: [
+          { time: 0, text: 'Trailer: "This Summer, The Big Fat Cat Hits The Big Screen"', cc: '[ANNOUNCER] "Get ready for a motion picture of monumental proportions."' },
+          { time: 65, text: 'Trailer: "Bill Murray is the Voice of Garfield"', cc: '[GARFIELD] "Feed me, pet me, never leave me. Simple rules."' }
+        ]
+      },
+      {
+        title: "Featurette: Bringing Garfield to Life",
+        subtitle: "Behind the Scenes CGI & Live-Action Integration",
+        duration: 402, // 00:06:42
+        chapters: [
+          { time: 0, text: 'Featurette: Director Peter Hewitt on Mixing CGI & Live Action', cc: '[PETER HEWITT] "We wanted Garfield to feel completely tangible in Jon’s living room."' },
+          { time: 200, text: 'Featurette: Recording Sessions with Bill Murray', cc: '[BILL MURRAY] "He’s basically a guy in a fur coat who just wants a nap."' }
+        ]
+      }
+    ];
+
+    let currentTrackIdx = 0;
+    let isPlaying = false;
+    let currentTime = 0;
+    let playbackSpeed = 1.0;
+    let isMuted = false;
+    let ccEnabled = false;
+    let timerInterval = null;
+    let isFavorited = false;
+    let selectedStars = 5;
+
+    function formatTime(sec) {
+      const h = Math.floor(sec / 3600);
+      const m = Math.floor((sec % 3600) / 60);
+      const s = Math.floor(sec % 60);
+      return [h, m, s].map(v => String(v).padStart(2, "0")).join(":");
+    }
+
+    function updatePlayerUI() {
+      const track = tracks[currentTrackIdx];
+      const pct = Math.min(100, (currentTime / track.duration) * 100);
+      document.getElementById("progressFill").style.width = pct + "%";
+      document.getElementById("timeDisplay").textContent = `${formatTime(currentTime)} / ${formatTime(track.duration)}`;
+
+      // Update active chapter & CC text
+      let activeChap = track.chapters[0];
+      for (const ch of track.chapters) {
+        if (currentTime >= ch.time) activeChap = ch;
+      }
+      document.getElementById("sceneStatus").textContent = isPlaying
+        ? `Now Streaming — ${activeChap.text}`
+        : `Paused — ${activeChap.text}`;
+      document.getElementById("ccOverlay").textContent = activeChap.cc;
+    }
+
+    function togglePlay() {
+      isPlaying = !isPlaying;
+      const playBtn = document.getElementById("playPauseBtn");
+      const bigOverlay = document.getElementById("bigPlayOverlay");
+      const stage = document.getElementById("playerStage");
+
+      if (isPlaying) {
+        playBtn.innerHTML = "&#10074;&#10074; Pause";
+        bigOverlay.classList.add("hidden");
+        stage.classList.add("playing");
+        timerInterval = setInterval(() => {
+          currentTime += playbackSpeed;
+          if (currentTime >= tracks[currentTrackIdx].duration) {
+            currentTime = 0;
+            togglePlay();
+          }
+          updatePlayerUI();
+        }, 1000);
+      } else {
+        playBtn.innerHTML = "&#9654; Play";
+        bigOverlay.classList.remove("hidden");
+        stage.classList.remove("playing");
+        clearInterval(timerInterval);
+      }
+      updatePlayerUI();
+    }
+
+    function seekVideo(e) {
+      const rect = document.getElementById("progressContainer").getBoundingClientRect();
+      const clickX = Math.max(0, Math.min(e.clientX - rect.left, rect.width));
+      const ratio = clickX / rect.width;
+      currentTime = Math.floor(ratio * tracks[currentTrackIdx].duration);
+      updatePlayerUI();
+    }
+
+    function toggleMute() {
+      isMuted = !isMuted;
+      const btn = document.getElementById("muteBtn");
+      const slider = document.getElementById("volumeSlider");
+      btn.innerHTML = isMuted ? "&#128263;" : "&#128266;";
+      slider.value = isMuted ? 0 : 85;
+    }
+
+    function changeVolume(val) {
+      isMuted = Number(val) === 0;
+      document.getElementById("muteBtn").innerHTML = isMuted ? "&#128263;" : "&#128266;";
+    }
+
+    function toggleCC() {
+      ccEnabled = !ccEnabled;
+      document.getElementById("ccOverlay").classList.toggle("visible", ccEnabled);
+      document.getElementById("ccBtn").classList.toggle("active-toggle", ccEnabled);
+      showToast(ccEnabled ? "Closed Captions (English SDH): ON" : "Closed Captions: OFF");
+    }
+
+    function cycleSpeed() {
+      const speeds = [1.0, 1.25, 1.5, 2.0, 0.75];
+      const nextIdx = (speeds.indexOf(playbackSpeed) + 1) % speeds.length;
+      playbackSpeed = speeds[nextIdx];
+      document.getElementById("speedBtn").textContent = playbackSpeed.toFixed(2).replace(/\.00$/, ".0") + "x";
+      showToast(`Playback speed: ${playbackSpeed}x`);
+    }
+
+    function toggleTheaterMode() {
+      document.getElementById("theaterContainer").classList.toggle("wide-mode");
+    }
+
+    function toggleFullscreen() {
+      const wrapper = document.getElementById("playerWrapper");
+      if (!document.fullscreenElement) {
+        wrapper.requestFullscreen().catch(() => showToast("Fullscreen unavailable in this frame."));
+      } else {
+        document.exitFullscreen();
+      }
+    }
+
+    function selectTrack(idx, el) {
+      currentTrackIdx = idx;
+      currentTime = 0;
+      document.querySelectorAll(".playlist-item").forEach(item => item.classList.remove("active"));
+      el.classList.add("active");
+
+      const track = tracks[idx];
+      document.getElementById("screenTitle").textContent = track.title;
+      document.getElementById("screenSubtitle").textContent = track.subtitle;
+      updatePlayerUI();
+      if (!isPlaying) togglePlay();
+    }
+
+    // Favorite & Share Actions
+    function toggleFavorite() {
+      isFavorited = !isFavorited;
+      const btn = document.getElementById("favBtn");
+      const countEl = document.getElementById("favCount");
+      let count = parseInt(countEl.textContent.replace(/,/g, ""), 10);
+
+      if (isFavorited) {
+        btn.classList.add("favorited");
+        document.getElementById("favBtnText").textContent = "Favorited";
+        countEl.textContent = (count + 1).toLocaleString();
+        showToast("Added to your Internet Archive Favorites.");
+      } else {
+        btn.classList.remove("favorited");
+        document.getElementById("favBtnText").textContent = "Favorite";
+        countEl.textContent = (count - 1).toLocaleString();
+        showToast("Removed from Favorites.");
+      }
+    }
+
+    function shareItem() {
+      const url = "https://archive.org/details/garfield-the-movie-disney-plus-2004";
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(url).catch(() => {});
+      }
+      showToast("Archive.org permalink copied to clipboard!");
+    }
+
+    // Downloads Accordion & Trigger
+    function toggleExtraFiles() {
+      const list = document.getElementById("extraFilesList");
+      const btn = document.getElementById("showAllBtn");
+      const isOpen = list.classList.toggle("open");
+      btn.textContent = isOpen ? "HIDE EXTRA FILES" : "SHOW ALL (6 FILES)";
+    }
+
+    function triggerDownload(filename, size) {
+      showToast(`Starting download: ${filename} (${size})`);
+    }
+
+    // Reviews Logic
+    function setRating(val) {
+      selectedStars = val;
+      document.querySelectorAll("#starPicker span").forEach(star => {
+        const starVal = Number(star.getAttribute("data-val"));
+        star.classList.toggle("selected", starVal <= val);
+      });
+    }
+
+    function submitReview(e) {
+      e.preventDefault();
+      const title = document.getElementById("revTitle").value.trim();
+      const body = document.getElementById("revBody").value.trim();
+      if (!title || !body) return;
+
+      const starsHtml = "&#9733;".repeat(selectedStars) + "&#9734;".repeat(5 - selectedStars);
+      const today = new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "2-digit" });
+
+      const div = document.createElement("div");
+      div.className = "review-item";
+      div.innerHTML = `
+        <div class="review-header">
+          <span class="review-stars">${starsHtml}</span>
+          <span class="review-meta">Reviewer: <strong>Archivist_Guest</strong> - ${today}</span>
+        </div>
+        <div class="review-title"></div>
+        <p></p>
+      `;
+      div.querySelector(".review-title").textContent = title;
+      div.querySelector("p").textContent = body;
+
+      document.getElementById("reviewsList").prepend(div);
+
+      const newCount = document.querySelectorAll("#reviewsList .review-item").length;
+      document.getElementById("reviewCount").textContent = newCount;
+      document.getElementById("statReviewCount").textContent = newCount;
+
+      document.getElementById("revTitle").value = "";
+      document.getElementById("revBody").value = "";
+      setRating(5);
+      showToast("Thank you! Your review has been posted.");
+    }
+
+    // Search & Topic Helpers
+    function filterTopic(topic) {
+      document.getElementById("iaSearchInput").value = topic;
+      showToast(`Searching Archive.org for subject:"${topic}"`);
+    }
+
+    function handleSearch() {
+      const q = document.getElementById("iaSearchInput").value.trim();
+      showToast(q ? `Searching Internet Archive for "${q}"...` : "Enter a keyword to search the Archive.");
+    }
+
+    // Toast Utility
+    let toastTimeout = null;
+    function showToast(msg) {
+      const toast = document.getElementById("iaToast");
+      toast.textContent = msg;
+      toast.classList.add("show");
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => toast.classList.remove("show"), 3200);
+    }
+
+    // Initialize UI
+    updatePlayerUI();
+  </script>
+</body>
+</html>
