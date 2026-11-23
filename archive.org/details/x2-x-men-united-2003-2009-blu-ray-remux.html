@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>X2: X-Men United (2003) 2009 Blu-ray Remux : 20th Century Fox Home Entertainment : Free Download, Borrow, and Streaming : Internet Archive</title>
+  <style>
+    :root {
+      --ia-dark: #222222;
+      --ia-darker: #181818;
+      --ia-nav-border: #383838;
+      --ia-bg: #f3f3f3;
+      --ia-card: #ffffff;
+      --ia-border: #dcdcdc;
+      --ia-text: #2b2b2b;
+      --ia-muted: #666666;
+      --ia-link: #2c679b;
+      --ia-link-hover: #1b4468;
+      --ia-accent: #428bca;
+      --ia-gold: #f5b935;
+      --x2-blue: #0d263b;
+      --x2-cyan: #59b4e8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      background-color: var(--ia-bg);
+      color: var(--ia-text);
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    a {
+      color: var(--ia-link);
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: var(--ia-link-hover);
+      text-decoration: underline;
+    }
+
+    /* Top Archive.org Global Navbar */
+    .ia-navbar {
+      background: var(--ia-dark);
+      color: #fff;
+      border-bottom: 1px solid var(--ia-nav-border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .ia-nav-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 16px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .ia-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #fff;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      font-size: 15px;
+      white-space: nowrap;
+    }
+
+    .ia-brand:hover {
+      text-decoration: none;
+      color: #e2e2e2;
+    }
+
+    .ia-media-links {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      list-style: none;
+    }
+
+    .ia-media-links li a {
+      color: #cccccc;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      padding: 6px 8px;
+      border-radius: 3px;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .ia-media-links li a:hover,
+    .ia-media-links li a.active {
+      background: #363636;
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .ia-search-form {
+      display: flex;
+      align-items: center;
+      flex: 1;
+      max-width: 340px;
+    }
+
+    .ia-search-form input {
+      width: 100%;
+      padding: 6px 10px;
+      border: 1px solid #444;
+      border-right: none;
+      border-radius: 3px 0 0 3px;
+      background: #fff;
+      color: #222;
+      font-size: 13px;
+    }
+
+    .ia-search-form button {
+      padding: 6px 12px;
+      border: 1px solid #444;
+      background: #3a3a3a;
+      color: #fff;
+      border-radius: 0 3px 3px 0;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    .ia-search-form button:hover {
+      background: #4e4e4e;
+    }
+
+    /* Theater Stage (Video Player Area - Pure HTML/CSS/SVG) */
+    .theater-wrapper {
+      background: #0b0d10;
+      border-bottom: 1px solid #2b2b2b;
+      padding: 18px 16px 22px;
+    }
+
+    .theater-container {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .player-viewport {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: radial-gradient(circle at 50% 42%, #163d61 0%, #091726 55%, #04080d 100%);
+      border: 1px solid #283442;
+      border-radius: 3px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: #fff;
+      user-select: none;
+    }
+
+    /* Cerebro-inspired CSS grid overlay (no canvas) */
+    .cerebro-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(to right, rgba(89, 180, 232, 0.08) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(89, 180, 232, 0.08) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+    }
+
+    .player-top-osd {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.78), transparent);
+      font-size: 12px;
+    }
+
+    .badge-remux {
+      background: rgba(13, 38, 59, 0.9);
+      border: 1px solid var(--x2-cyan);
+      color: #bfe6ff;
+      padding: 3px 8px;
+      border-radius: 3px;
+      font-family: monospace;
+      font-size: 11px;
+      letter-spacing: 0.4px;
+    }
+
+    .player-center-stage {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .x-emblem {
+      width: 92px;
+      height: 92px;
+      border-radius: 50%;
+      border: 3px solid #76c3f0;
+      background: radial-gradient(circle, #1c4c78 0%, #091c2e 80%);
+      box-shadow: 0 0 28px rgba(89, 180, 232, 0.45), inset 0 0 14px rgba(118, 195, 240, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .x-emblem:hover {
+      transform: scale(1.06);
+      box-shadow: 0 0 38px rgba(89, 180, 232, 0.75);
+    }
+
+    .player-center-stage.playing .x-emblem {
+      animation: pulseGlow 2.4s infinite ease-in-out;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 24px rgba(89, 180, 232, 0.45); }
+      50% { box-shadow: 0 0 44px rgba(125, 208, 255, 0.85); }
+    }
+
+    .movie-banner-title {
+      font-size: clamp(20px, 3vw, 32px);
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.85);
+    }
+
+    .movie-banner-sub {
+      font-size: 13px;
+      color: #b7d7ec;
+      letter-spacing: 1px;
+    }
+
+    .subtitle-caption {
+      min-height: 24px;
+      padding: 3px 12px;
+      background: rgba(0, 0, 0, 0.68);
+      border-radius: 3px;
+      font-size: 14px;
+      color: #fff6c9;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .subtitle-caption.visible {
+      opacity: 1;
+    }
+
+    /* Player Controls */
+    .player-controls {
+      position: relative;
+      z-index: 3;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.92), rgba(0, 0, 0, 0.65));
+      padding: 8px 14px 10px;
+    }
+
+    .scrubber-bar {
+      width: 100%;
+      height: 6px;
+      background: #3a434d;
+      border-radius: 3px;
+      cursor: pointer;
+      position: relative;
+      margin-bottom: 8px;
+    }
+
+    .scrubber-progress {
+      height: 100%;
+      width: 0%;
+      background: var(--x2-cyan);
+      border-radius: 3px;
+      position: relative;
+    }
+
+    .controls-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .controls-left,
+    .controls-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .ctrl-btn {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      color: #fff;
+      padding: 4px 10px;
+      border-radius: 3px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .ctrl-btn:hover {
+      background: rgba(255, 255, 255, 0.14);
+    }
+
+    .ctrl-btn.active-toggle {
+      border-color: var(--x2-cyan);
+      color: var(--x2-cyan);
+    }
+
+    .timecode {
+      font-family: monospace;
+      font-size: 12px;
+      color: #d8e2eb;
+    }
+
+    .chapter-select {
+      background: #18222c;
+      color: #e4eef7;
+      border: 1px solid #394b5e;
+      border-radius: 3px;
+      padding: 4px 8px;
+      font-size: 12px;
+    }
+
+    /* Main Item Details Layout */
+    .main-content {
+      max-width: 1240px;
+      margin: 22px auto 48px;
+      padding: 0 16px;
+      display: grid;
+      grid-template-columns: 1fr 330px;
+      gap: 24px;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .main-content {
+        grid-template-columns: 1fr;
+      }
+      .ia-media-links {
+        display: none;
+      }
+    }
+
+    .card {
+      background: var(--ia-card);
+      border: 1px solid var(--ia-border);
+      border-radius: 4px;
+      padding: 20px;
+      margin-bottom: 18px;
+    }
+
+    .item-header-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      border-bottom: 1px solid #ececec;
+      padding-bottom: 14px;
+      margin-bottom: 16px;
+    }
+
+    .media-type-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--ia-muted);
+      letter-spacing: 0.7px;
+      margin-bottom: 6px;
+    }
+
+    .item-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: #1f1f1f;
+      line-height: 1.25;
+      margin-bottom: 6px;
+    }
+
+    .item-creator {
+      font-size: 14px;
+      color: var(--ia-muted);
+    }
+
+    .action-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border: 1px solid #cccccc;
+      background: #f9f9f9;
+      color: #333;
+      border-radius: 3px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .action-btn:hover {
+      background: #eeeeee;
+    }
+
+    .action-btn.favorited {
+      border-color: #d9534f;
+      color: #c9302c;
+      background: #fff5f5;
+    }
+
+    .item-description p {
+      margin-bottom: 12px;
+      color: #333;
+    }
+
+    /* Metadata Table */
+    .meta-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+      font-size: 13px;
+    }
+
+    .meta-table th {
+      width: 170px;
+      text-align: left;
+      padding: 8px 10px;
+      color: var(--ia-muted);
+      font-weight: 600;
+      vertical-align: top;
+      border-top: 1px solid #efefef;
+    }
+
+    .meta-table td {
+      padding: 8px 10px;
+      border-top: 1px solid #efefef;
+      color: #222;
+    }
+
+    .topic-tag {
+      display: inline-block;
+      background: #eef4f9;
+      border: 1px solid #d1e2f0;
+      color: var(--ia-link);
+      padding: 2px 8px;
+      border-radius: 3px;
+      font-size: 12px;
+      margin: 2px 4px 2px 0;
+    }
+
+    /* MediaInfo Technical Block */
+    .mediainfo-toggle {
+      margin-top: 14px;
+      background: #f5f7f9;
+      border: 1px solid #d6dee6;
+      padding: 8px 12px;
+      border-radius: 3px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 13px;
+      color: var(--ia-link);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .mediainfo-box {
+      display: none;
+      background: #1b1e23;
+      color: #d7e0ea;
+      font-family: "Consolas", "Courier New", monospace;
+      font-size: 12px;
+      padding: 14px;
+      border-radius: 0 0 3px 3px;
+      white-space: pre-wrap;
+      line-height: 1.45;
+      overflow-x: auto;
+    }
+
+    .mediainfo-box.open {
+      display: block;
+    }
+
+    /* Sidebar Download Options */
+    .sidebar-heading {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      color: #444;
+      border-bottom: 2px solid #e5e5e5;
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .download-list {
+      list-style: none;
+    }
+
+    .download-item {
+      border-bottom: 1px solid #efefef;
+      padding: 8px 0;
+    }
+
+    .download-item:last-child {
+      border-bottom: none;
+    }
+
+    .download-link {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      font-size: 13px;
+      color: var(--ia-link);
+    }
+
+    .file-size {
+      font-weight: 400;
+      font-size: 12px;
+      color: var(--ia-muted);
+      background: #f1f1f1;
+      padding: 1px 6px;
+      border-radius: 3px;
+    }
+
+    .file-subname {
+      font-size: 11px;
+      color: #777;
+      font-family: monospace;
+      word-break: break-all;
+      margin-top: 2px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      text-align: center;
+      gap: 8px;
+    }
+
+    .stat-box {
+      background: #f8f8f8;
+      border: 1px solid #eaeaea;
+      border-radius: 3px;
+      padding: 10px 6px;
+    }
+
+    .stat-num {
+      font-size: 17px;
+      font-weight: 700;
+      color: #222;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: var(--ia-muted);
+      text-transform: uppercase;
+    }
+
+    /* Reviews Section */
+    .reviews-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .stars {
+      color: var(--ia-gold);
+      letter-spacing: 1px;
+      font-size: 16px;
+    }
+
+    .review-entry {
+      border-top: 1px solid #ececec;
+      padding: 14px 0;
+    }
+
+    .review-meta {
+      font-size: 12px;
+      color: var(--ia-muted);
+      margin-bottom: 6px;
+    }
+
+    .review-form {
+      background: #f9fafb;
+      border: 1px solid #e2e6ea;
+      padding: 14px;
+      border-radius: 4px;
+      margin-top: 14px;
+    }
+
+    .review-form input,
+    .review-form select,
+    .review-form textarea {
+      width: 100%;
+      padding: 7px 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      margin-bottom: 10px;
+      font-family: inherit;
+      font-size: 13px;
+    }
+
+    .btn-primary {
+      background: var(--ia-link);
+      color: #fff;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 3px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      background: var(--ia-link-hover);
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #222;
+      color: #fff;
+      padding: 10px 16px;
+      border-radius: 4px;
+      font-size: 13px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s;
+      z-index: 200;
+    }
+
+    .toast.show {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Archive.org Top Bar -->
+  <header class="ia-navbar">
+    <div class="ia-nav-inner">
+      <a href="#top" class="ia-brand" title="Internet Archive Home">
+        <!-- SVG Archive.org Temple Logo -->
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 2L2 7v2h20V7L12 2zm-7 9v8H3v2h18v-2h-2v-8h-3v8h-2v-8h-4v8H8v-8H5z"/>
+        </svg>
+        <span>INTERNET ARCHIVE</span>
+      </a>
+
+      <ul class="ia-media-links">
+        <li><a href="#web">Web</a></li>
+        <li><a href="#texts">Texts</a></li>
+        <li><a href="#video" class="active">Video</a></li>
+        <li><a href="#audio">Audio</a></li>
+        <li><a href="#software">Software</a></li>
+        <li><a href="#images">Images</a></li>
+      </ul>
+
+      <form class="ia-search-form" id="archiveSearchForm">
+        <input type="text" id="archiveSearchInput" placeholder="Search Archive.org..." aria-label="Search Archive.org" />
+        <button type="submit">Go</button>
+      </form>
+    </div>
+  </header>
+
+  <!-- Theater Video Stage (Pure HTML/CSS/SVG - No Canvas) -->
+  <section class="theater-wrapper" id="top">
+    <div class="theater-container">
+      <div class="player-viewport" id="playerViewport">
+        <div class="cerebro-grid"></div>
+
+        <div class="player-top-osd">
+          <span><strong>ITEM:</strong> x2-x-men-united-2003-2009-blu-ray-remux</span>
+          <span class="badge-remux">1080p AVC • 27.4 Mbps • DTS-HD MA 5.1</span>
+        </div>
+
+        <div class="player-center-stage" id="centerStage">
+          <div class="x-emblem" id="centerPlayBtn" role="button" tabindex="0" aria-label="Play or Pause Preview">
+            <svg width="46" height="46" viewBox="0 0 64 64" fill="none" stroke="#9ad7fa" stroke-width="6" stroke-linecap="round">
+              <line x1="16" y1="16" x2="48" y2="48" />
+              <line x1="48" y1="16" x2="16" y2="48" />
+            </svg>
+          </div>
+          <div class="movie-banner-title">X2: X-Men United</div>
+          <div class="movie-banner-sub">20th Century Fox Home Entertainment • 2009 Blu-ray Remux (2003)</div>
+          <div class="subtitle-caption" id="subtitleBox">[ENG SDH] Xavier: "Mutation: it is the key to our evolution."</div>
+        </div>
+
+        <div class="player-controls">
+          <div class="scrubber-bar" id="scrubberBar" title="Seek timeline">
+            <div class="scrubber-progress" id="scrubberProgress"></div>
+          </div>
+          <div class="controls-row">
+            <div class="controls-left">
+              <button type="button" class="ctrl-btn" id="playPauseBtn">▶ Play</button>
+              <span class="timecode" id="timecodeDisplay">00:00:00 / 02:13:47</span>
+              <select class="chapter-select" id="chapterSelect" aria-label="Scene Chapters">
+                <option value="0">Ch 01: Opening Monologue &amp; White House Attack (00:00:00)</option>
+                <option value="1320">Ch 07: Alkali Lake &amp; Stryker’s Base (00:22:00)</option>
+                <option value="2880">Ch 14: Mansion Raid &amp; Wolverine’s Stand (00:48:00)</option>
+                <option value="4440">Ch 21: Magneto’s Plastic Prison Escape (01:14:00)</option>
+                <option value="5940">Ch 28: Dark Cerebro &amp; Jean Grey’s Sacrifice (01:39:00)</option>
+              </select>
+            </div>
+            <div class="controls-right">
+              <button type="button" class="ctrl-btn" id="audioTrackBtn">Audio: DTS-HD MA 5.1</button>
+              <button type="button" class="ctrl-btn" id="ccToggleBtn">CC: Off</button>
+              <button type="button" class="ctrl-btn" id="fullscreenBtn">Fullscreen</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content & Sidebar -->
+  <main class="main-content">
+    <!-- Left Column: Metadata, Description, MediaInfo, Reviews -->
+    <div>
+      <article class="card">
+        <div class="item-header-top">
+          <div>
+            <div class="media-type-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/></svg>
+              <span>Movies / Blu-ray Preservation</span>
+            </div>
+            <h1 class="item-title">X2: X-Men United (2003) 2009 Blu-ray Remux</h1>
+            <div class="item-creator">
+              by <a href="#publisher">20th Century Fox Home Entertainment</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-bar">
+          <button type="button" class="action-btn" id="favoriteBtn">
+            <span>♥</span> <span id="favLabel">Favorite</span> (<span id="favCount">142</span>)
+          </button>
+          <button type="button" class="action-btn" id="shareBtn">
+            <span>🔗</span> Share
+          </button>
+          <a href="#reviewsSection" class="action-btn">
+            <span>★</span> Reviews (<span id="reviewCountBadge">2</span>)
+          </a>
+        </div>
+
+        <!-- Description -->
+        <div class="item-description">
+          <p>
+            Lossless 1:1 video and audio remux sourced from the <strong>April 21, 2009</strong> North American Blu-ray Disc release of <em>X2: X-Men United</em> (2003), distributed by <strong>20th Century Fox Home Entertainment</strong>. Video stream is untouched MPEG-4 AVC (1080p, 2.40:1 aspect ratio) paired with the original English DTS-HD Master Audio 5.1 lossless track, commentary tracks, and retail chapter markers.
+          </p>
+          <p>
+            Directed by Bryan Singer and starring Patrick Stewart, Hugh Jackman, Ian McKellen, Halle Berry, Famke Janssen, James Marsden, Rebecca Romijn, Brian Cox, Alan Cumming, and Anna Paquin, the sequel follows the X-Men and Magneto forming an uneasy alliance to stop Colonel William Stryker from weaponizing Professor Xavier's mutant-tracking Cerebro system.
+          </p>
+        </div>
+
+        <!-- Archival Metadata Table -->
+        <table class="meta-table">
+          <tbody>
+            <tr>
+              <th>Publication date</th>
+              <td><a href="#date-2009-04-21">2009-04-21</a></td>
+            </tr>
+            <tr>
+              <th>Publisher / Studio</th>
+              <td>20th Century Fox Home Entertainment</td>
+            </tr>
+            <tr>
+              <th>Topics</th>
+              <td>
+                <span class="topic-tag">X2: X-Men United</span>
+                <span class="topic-tag">2003</span>
+                <span class="topic-tag">2009 Blu-ray</span>
+                <span class="topic-tag">Blu-ray Remux</span>
+                <span class="topic-tag">20th Century Fox Home Entertainment</span>
+                <span class="topic-tag">Bryan Singer</span>
+                <span class="topic-tag">1080p AVC</span>
+                <span class="topic-tag">DTS-HD MA 5.1</span>
+              </td>
+            </tr>
+            <tr>
+              <th>Language</th>
+              <td>English (with French &amp; Spanish dubs / SDH subtitles)</td>
+            </tr>
+            <tr>
+              <th>Runtime</th>
+              <td>02:13:47 (36 Chapters)</td>
+            </tr>
+            <tr>
+              <th>Identifier</th>
+              <td><code>x2-x-men-united-2003-2009-blu-ray-remux</code></td>
+            </tr>
+            <tr>
+              <th>Scanner</th>
+              <td>Internet Archive HTML5 Uploader 1.7.0</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Expandable MediaInfo -->
+        <div class="mediainfo-toggle" id="mediainfoToggle" role="button" tabindex="0">
+          <span>▶ View Blu-ray Remux Technical Specs (MediaInfo)</span>
+          <span>MKV / 28.4 GB</span>
+        </div>
+        <pre class="mediainfo-box" id="mediainfoBox">General
+Unique ID                                : 249184720918472091847209184720918472091 (0xBB7A...)
+Complete name                            : X2 X-Men United (2003) 2009 Blu-ray Remux.mkv
+Format                                   : Matroska
+Format version                           : Version 4
+File size                                : 28.4 GiB
+Duration                                 : 2 h 13 min
+Overall bit rate mode                    : Variable
+Overall bit rate                         : 30.3 Mb/s
+Encoded date                             : 2009-04-21 (Source Disc Mastering)
+
+Video
+ID                                       : 1
+Format                                   : AVC (Advanced Video Codec)
+Format profile                           : High@L4.1
+Width                                    : 1 920 pixels
+Height                                   : 1 080 pixels
+Display aspect ratio                     : 16:9 (Original Theatrical 2.40:1)
+Frame rate                               : 23.976 (24000/1001) FPS
+Bit rate                                 : 27.4 Mb/s
+Color space / Bit depth                  : YUV / 8 bits
+
+Audio #1
+ID                                       : 2
+Format                                   : DTS XLL (DTS-HD Master Audio)
+Channel(s)                               : 6 channels (5.1)
+Sampling rate                            : 48.0 kHz
+Bit depth                                : 24 bits
+Language                                 : English
+
+Audio #2
+ID                                       : 3
+Format                                   : AC-3 (Director &amp; Cast Commentary)
+Channel(s)                               : 2 channels (Stereo)
+Bit rate                                 : 224 kb/s
+Language                                 : English</pre>
+      </article>
+
+      <!-- Community Reviews -->
+      <section class="card" id="reviewsSection">
+        <div class="reviews-header">
+          <div>
+            <h2 style="font-size: 18px; margin-bottom: 2px;">Reviews</h2>
+            <div class="stars" aria-label="5 out of 5 stars">★★★★★ <span style="color:#555; font-size:13px;">(5.0 average)</span></div>
+          </div>
+        </div>
+
+        <div id="reviewsContainer">
+          <div class="review-entry">
+            <div class="review-meta">
+              <span class="stars" style="font-size:13px;">★★★★★</span> &nbsp;
+              <strong>Reviewer:</strong> <a href="#user1">ArchivalCinephile</a> — on May 14, 2024
+            </div>
+            <p>
+              <strong>Subject:</strong> Untouched 2009 Fox Blu-ray transfer<br />
+              Clean 1:1 remux of the original April 21, 2009 20th Century Fox Blu-ray pressing. The opening White House Nightcrawler sequence and the DTS-HD Master Audio 5.1 mix sound phenomenal with full dynamic range intact.
+            </p>
+          </div>
+
+          <div class="review-entry">
+            <div class="review-meta">
+              <span class="stars" style="font-size:13px;">★★★★★</span> &nbsp;
+              <strong>Reviewer:</strong> <a href="#user2">MutantPreservation</a> — on November 02, 2025
+            </div>
+            <p>
+              <strong>Subject:</strong> Includes both commentary tracks and full chapters<br />
+              Verified checksums and chapter timestamps. Great archival preservation of one of the best superhero sequels of the 2000s.
+            </p>
+          </div>
+        </div>
+
+        <!-- Add Review Form -->
+        <form class="review-form" id="reviewForm">
+          <h3 style="font-size: 14px; margin-bottom: 10px;">Add a Community Review</h3>
+          <input type="text" id="reviewerName" placeholder="Your Archive.org username" required />
+          <select id="reviewRating" aria-label="Star rating">
+            <option value="★★★★★">★★★★★ (5 Stars)</option>
+            <option value="★★★★☆">★★★★☆ (4 Stars)</option>
+            <option value="★★★☆☆">★★★☆☆ (3 Stars)</option>
+            <option value="★★☆☆☆">★★☆☆☆ (2 Stars)</option>
+            <option value="★☆☆☆☆">★☆☆☆☆ (1 Star)</option>
+          </select>
+          <input type="text" id="reviewSubject" placeholder="Review headline / subject" required />
+          <textarea id="reviewBody" rows="3" placeholder="Share notes on video bitrate, audio tracks, or disc preservation..." required></textarea>
+          <button type="submit" class="btn-primary">Post Review</button>
+        </form>
+      </section>
+    </div>
+
+    <!-- Right Sidebar: Download Options & Stats -->
+    <aside>
+      <div class="card">
+        <div class="sidebar-heading">
+          <span>Download Options</span>
+          <span style="font-size:11px; color:#777;">7 FILES</span>
+        </div>
+
+        <ul class="download-list">
+          <li class="download-item">
+            <a href="#download-mkv" class="download-link file-dl" data-filename="X2.X-Men.United.2003.2009.BluRay.1080p.AVC.DTS-HD.MA.5.1.Remux.mkv">
+              <span>MATROSKA (1080p)</span>
+              <span class="file-size">28.4 GB</span>
+            </a>
+            <div class="file-subname">X2.X-Men.United.2003.2009.BluRay.1080p.AVC.DTS-HD.MA.5.1.Remux.mkv</div>
+          </li>
+
+          <li class="download-item">
+            <a href="#download-sub" class="download-link file-dl" data-filename="x2-x-men-united-2003-2009-blu-ray-remux.eng.srt">
+              <span>SUBRIP SUBTITLES</span>
+              <span class="file-size">148.2 KB</span>
+            </a>
+            <div class="file-subname">x2-x-men-united-2003-2009-blu-ray-remux.eng.srt</div>
+          </li>
+
+          <li class="download-item">
+            <a href="#download-torrent" class="download-link file-dl" data-filename="x2-x-men-united-2003-2009-blu-ray-remux_archive.torrent">
+              <span>TORRENT</span>
+              <span class="file-size">112.4 KB</span>
+            </a>
+            <div class="file-subname">x2-x-men-united-2003-2009-blu-ray-remux_archive.torrent</div>
+          </li>
+
+          <li class="download-item">
+            <a href="#download-meta" class="download-link file-dl" data-filename="x2-x-men-united-2003-2009-blu-ray-remux_meta.xml">
+              <span>ITEM METADATA</span>
+              <span class="file-size">4.2 KB</span>
+            </a>
+            <div class="file-subname">x2-x-men-united-2003-2009-blu-ray-remux_meta.xml</div>
+          </li>
+
+          <li class="download-item">
+            <a href="#download-files" class="download-link file-dl" data-filename="x2-x-men-united-2003-2009-blu-ray-remux_files.xml">
+              <span>FILES XML (SHA1)</span>
+              <span class="file-size">2.8 KB</span>
+            </a>
+            <div class="file-subname">x2-x-men-united-2003-2009-blu-ray-remux_files.xml</div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="sidebar-heading">
+          <span>In Collections</span>
+        </div>
+        <p style="font-size: 13px; margin-bottom: 6px;">
+          • <a href="#col-video">Community Video</a>
+        </p>
+        <p style="font-size: 13px;">
+          • <a href="#col-bluray">20th Century Fox Home Entertainment Archives</a>
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="sidebar-heading">
+          <span>Item Statistics</span>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-box">
+            <div class="stat-num" id="viewCounter">14,892</div>
+            <div class="stat-label">Views</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num" id="statFavCounter">142</div>
+            <div class="stat-label">Favorites</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">28.4G</div>
+            <div class="stat-label">Total Size</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <div class="toast" id="toastNotification" role="status" aria-live="polite"></div>
+
+  <script>
+    (function () {
+      // Total runtime in seconds: 02:13:47 = 8027s
+      const TOTAL_SECONDS = 8027;
+      let currentSeconds = 0;
+      let isPlaying = false;
+      let playTimer = null;
+
+      const audioTracks = [
+        "Audio: DTS-HD MA 5.1",
+        "Audio: Singer/Sigel Commentary",
+        "Audio: Cast & Crew Commentary"
+      ];
+      let audioIndex = 0;
+
+      const subtitles = [
+        '[ENG SDH] Xavier: "Mutation: it is the key to our evolution."',
+        '[SFX] BAMF! Blue sulfurous smoke fills the White House corridor.',
+        '[ENG SDH] Wolverine: "You picked the wrong house, bub."',
+        '[ENG SDH] Magneto: "There is always a way out, Charles."',
+        '[ENG SDH] Jean Grey: "Goodbye..."'
+      ];
+
+      // DOM References
+      const playPauseBtn = document.getElementById("playPauseBtn");
+      const centerPlayBtn = document.getElementById("centerPlayBtn");
+      const centerStage = document.getElementById("centerStage");
+      const timecodeDisplay = document.getElementById("timecodeDisplay");
+      const scrubberBar = document.getElementById("scrubberBar");
+      const scrubberProgress = document.getElementById("scrubberProgress");
+      const chapterSelect = document.getElementById("chapterSelect");
+      const audioTrackBtn = document.getElementById("audioTrackBtn");
+      const ccToggleBtn = document.getElementById("ccToggleBtn");
+      const subtitleBox = document.getElementById("subtitleBox");
+      const fullscreenBtn = document.getElementById("fullscreenBtn");
+      const playerViewport = document.getElementById("playerViewport");
+      const toastEl = document.getElementById("toastNotification");
+
+      function showToast(msg) {
+        toastEl.textContent = msg;
+        toastEl.classList.add("show");
+        clearTimeout(toastEl._timer);
+        toastEl._timer = setTimeout(() => toastEl.classList.remove("show"), 2600);
+      }
+
+      function formatTime(sec) {
+        const hrs = Math.floor(sec / 3600);
+        const mins = Math.floor((sec % 3600) / 60);
+        const secs = Math.floor(sec % 60);
+        return [hrs, mins, secs].map(v => String(v).padStart(2, "0")).join(":");
+      }
+
+      function updatePlayerUI() {
+        timecodeDisplay.textContent = `${formatTime(currentSeconds)} / ${formatTime(TOTAL_SECONDS)}`;
+        const pct = (currentSeconds / TOTAL_SECONDS) * 100;
+        scrubberProgress.style.width = `${pct}%`;
+
+        const subIndex = Math.min(
+          subtitles.length - 1,
+          Math.floor((currentSeconds / TOTAL_SECONDS) * subtitles.length)
+        );
+        subtitleBox.textContent = subtitles[subIndex];
+      }
+
+      function togglePlayback() {
+        isPlaying = !isPlaying;
+        if (isPlaying) {
+          playPauseBtn.textContent = "❚❚ Pause";
+          centerStage.classList.add("playing");
+          playTimer = setInterval(() => {
+            currentSeconds = currentSeconds + 1 >= TOTAL_SECONDS ? 0 : currentSeconds + 1;
+            updatePlayerUI();
+          }, 1000);
+        } else {
+          playPauseBtn.textContent = "▶ Play";
+          centerStage.classList.remove("playing");
+          clearInterval(playTimer);
+        }
+      }
+
+      playPauseBtn.addEventListener("click", togglePlayback);
+      centerPlayBtn.addEventListener("click", togglePlayback);
+      centerPlayBtn.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          togglePlayback();
+        }
+      });
+
+      scrubberBar.addEventListener("click", (e) => {
+        const rect = scrubberBar.getBoundingClientRect();
+        const ratio = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+        currentSeconds = Math.floor(ratio * TOTAL_SECONDS);
+        updatePlayerUI();
+      });
+
+      chapterSelect.addEventListener("change", (e) => {
+        currentSeconds = Number(e.target.value);
+        updatePlayerUI();
+        showToast(`Jumped to ${e.target.options[e.target.selectedIndex].text}`);
+      });
+
+      audioTrackBtn.addEventListener("click", () => {
+        audioIndex = (audioIndex + 1) % audioTracks.length;
+        audioTrackBtn.textContent = audioTracks[audioIndex];
+        showToast(`Switched stream to ${audioTracks[audioIndex]}`);
+      });
+
+      ccToggleBtn.addEventListener("click", () => {
+        const active = subtitleBox.classList.toggle("visible");
+        ccToggleBtn.textContent = active ? "CC: On (ENG)" : "CC: Off";
+        ccToggleBtn.classList.toggle("active-toggle", active);
+      });
+
+      fullscreenBtn.addEventListener("click", () => {
+        if (!document.fullscreenElement) {
+          playerViewport.requestFullscreen?.().catch(() => {});
+        } else {
+          document.exitFullscreen?.();
+        }
+      });
+
+      // Expandable MediaInfo
+      const mediainfoToggle = document.getElementById("mediainfoToggle");
+      const mediainfoBox = document.getElementById("mediainfoBox");
+      mediainfoToggle.addEventListener("click", () => {
+        const isOpen = mediainfoBox.classList.toggle("open");
+        mediainfoToggle.firstElementChild.textContent = isOpen
+          ? "▼ Hide Blu-ray Remux Technical Specs (MediaInfo)"
+          : "▶ View Blu-ray Remux Technical Specs (MediaInfo)";
+      });
+
+      // Favorite & Share Buttons
+      const favoriteBtn = document.getElementById("favoriteBtn");
+      const favCountEl = document.getElementById("favCount");
+      const statFavCounter = document.getElementById("statFavCounter");
+      let favorited = false;
+      let favCount = 142;
+
+      favoriteBtn.addEventListener("click", () => {
+        favorited = !favorited;
+        favCount += favorited ? 1 : -1;
+        favCountEl.textContent = favCount;
+        statFavCounter.textContent = favCount;
+        favoriteBtn.classList.toggle("favorited", favorited);
+        showToast(favorited ? "Added to your Archive.org Favorites" : "Removed from Favorites");
+      });
+
+      document.getElementById("shareBtn").addEventListener("click", () => {
+        const itemUrl = "https://archive.org/details/x2-x-men-united-2003-2009-blu-ray-remux";
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(itemUrl).catch(() => {});
+        }
+        showToast(`Copied permalink: ${itemUrl}`);
+      });
+
+      // Simulated Download Notification
+      document.querySelectorAll(".file-dl").forEach((link) => {
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          const fname = link.getAttribute("data-filename");
+          showToast(`Requesting archive node for ${fname}...`);
+        });
+      });
+
+      // Search Bar Handler
+      document.getElementById("archiveSearchForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const q = document.getElementById("archiveSearchInput").value.trim();
+        if (q) {
+          showToast(`Searching Archive.org catalog for "${q}"...`);
+        }
+      });
+
+      // Interactive Reviews Submission
+      const reviewForm = document.getElementById("reviewForm");
+      const reviewsContainer = document.getElementById("reviewsContainer");
+      const reviewCountBadge = document.getElementById("reviewCountBadge");
+
+      reviewForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const user = document.getElementById("reviewerName").value.trim();
+        const stars = document.getElementById("reviewRating").value;
+        const subject = document.getElementById("reviewSubject").value.trim();
+        const body = document.getElementById("reviewBody").value.trim();
+
+        const entry = document.createElement("div");
+        entry.className = "review-entry";
+
+        const meta = document.createElement("div");
+        meta.className = "review-meta";
+        const today = new Date().toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "2-digit"
+        });
+        meta.innerHTML = `<span class="stars" style="font-size:13px;">${stars}</span> &nbsp;<strong>Reviewer:</strong> `;
+        const userLink = document.createElement("a");
+        userLink.href = "#reviewer";
+        userLink.textContent = user;
+        meta.appendChild(userLink);
+        meta.append(` — on ${today}`);
+
+        const content = document.createElement("p");
+        const strongSub = document.createElement("strong");
+        strongSub.textContent = "Subject: ";
+        content.appendChild(strongSub);
+        content.append(subject);
+        content.appendChild(document.createElement("br"));
+        content.append(body);
+
+        entry.appendChild(meta);
+        entry.appendChild(content);
+        reviewsContainer.prepend(entry);
+
+        reviewCountBadge.textContent = Number(reviewCountBadge.textContent) + 1;
+        reviewForm.reset();
+        showToast("Thank you! Your review has been posted.");
+      });
+
+      updatePlayerUI();
+    })();
+  </script>
+</body>
+</html>
